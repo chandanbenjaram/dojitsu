@@ -1,0 +1,10 @@
+<h2>:::EDIT:::<h2/>    
+<% form_for @challenge do |f| %>
+  <!-- the hidden tag will be automatically generated if necessary -->
+
+  <p>
+  Challenge Title: <br/>  
+
+  <%= f.text_field :title %>
+  </p>
+  <% end %>
