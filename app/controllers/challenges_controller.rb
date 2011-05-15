@@ -1,6 +1,5 @@
 class ChallengesController < ApplicationController
   def index
-    puts "urls... #{challenges_path}"    
     @challenges = Challenge.all;
   end
 
@@ -14,12 +13,11 @@ class ChallengesController < ApplicationController
   end
 
   def create
-    puts "create STARTS..."          
     @challenge = Challenge.new
     if @challenge.update_attributes(params[:challenge])
       redirect_to challenges_path
     else
-      render :action => 'edit'
+      render :index
     end
   end
 

@@ -6,9 +6,20 @@
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 </head>
-<body>
-
+<body class="nomargin">
+	<div class="GC">    
+		<div class="GCContent">    
+			<div class="GCHeader">    
+				<%= link_to "Challenges", challenges_path %>
+				<%= link_to "Login/Signup", :controller => "static", :action => 'auth_page' %>
+			</div> 
+			<div class="GCBody">    
 <%= yield %>
+			</div>
+		</div>
+	</div>
+
+
 
 </body>
 </html>

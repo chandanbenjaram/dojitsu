@@ -1,0 +1,33 @@
+.clearfix {
+	clear: both;
+}
+
+.nomargin {
+	margin: 0px;  
+}
+
+.GC {
+	width: 750px;
+	margin: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.GCContent {
+	float: left;
+	border: 3px solid #aaa;
+	border-top: none;
+	width: 700px;
+}
+
+.GCHeader {
+	background-color: #C6C6C6;	
+	height: 50px;
+	padding-top : 10px;
+}      
+
+.GCBody {              
+	background-color: #e5e5e5;
+	height: 650px;
+	padding-top : 10px;
+}      
