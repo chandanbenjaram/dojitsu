@@ -1,9 +1,15 @@
 Dojitsu::Application.routes.draw do |map|  
+  # app resources
   map.resources :challenges
   map.resources :users
-  match 'static/auth_page'
   
-  map.root :controller => "static", :action => 'welcome_page'
+  # static pages
+  match 'static/login'
+  match 'static/aboutus'
+  match 'static/contactus'
+  
+  # default home page
+  map.root :controller => "static", :action => 'home'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
