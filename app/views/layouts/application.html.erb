@@ -1,25 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title><%= title%>
-	</title>
-	<%= stylesheet_link_tag :all %>
+	<title><%= title %></title>
+	<%= csrf_meta_tag %>              
+	<%= render 'layouts/stylesheets'%>
 	<%= javascript_include_tag :defaults %>
-	<%= csrf_meta_tag %>
 </head>
-<body class="nomargin">
-	<div class="GC">    
-		<div class="GCContent">    
-			<div class="GCHeader">    
-				<%= link_to "Challenges", challenges_path %>
-				<%= link_to "Login/Signup", :controller => "static", :action => 'login' %>
-				<%= link_to "About Us", :controller => "static", :action => 'aboutus' %>  
-				<%= link_to "Contact Us", :controller => "static", :action => 'contactus' %> 				
-			</div> 
-			<div class="GCBody">    
-				<%= yield %>
-			</div>
-		</div>
-	</div>		
+<body>      
+	<div class="container">      
+		<%= render 'layouts/globalheader'%>
+		<section>    
+			<%= yield %>
+		</section>
+		<%= render 'layouts/globalfooter'%>
+	</div>
 </body>
 </html>

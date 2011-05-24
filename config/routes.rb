@@ -4,12 +4,15 @@ Dojitsu::Application.routes.draw do |map|
   map.resources :users
   
   # static pages
-  match 'static/login'
-  match 'static/aboutus'
-  match 'static/contactus'
+  match '/login', :to=>'static#login'  
+  match '/aboutus', :to=>'static#aboutus'
+  match '/contactus', :to=>'static#contactus'
+
+  # non-static
+  match '/signup', :to=>'users#new'  
   
-  # default home page
-  map.root :controller => "static", :action => 'home'
+  # root
+  root :to=>'static#home'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

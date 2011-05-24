@@ -1,5 +1,6 @@
 class ChallengesController < ApplicationController
   def index
+    @title = "Challenges"
     @challenges = Challenge.all;
   end
 
