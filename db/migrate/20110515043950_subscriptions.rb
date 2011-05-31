@@ -1,7 +1,8 @@
 class Subscriptions < ActiveRecord::Migration
   def self.up
-    create_table :subscriptions do |s|
-      s.column :rating, :string, :null => true
+    create_table :subscriptions do |t|
+      t.column :rating, :string, :null => true 
+      t.timestamps
     end
   end
 

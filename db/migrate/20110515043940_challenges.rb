@@ -1,7 +1,8 @@
 class Challenges < ActiveRecord::Migration
   def self.up
-    create_table :challenges do |c|
-      c.column :title, :string, :null => false
+    create_table :challenges do |t|
+      t.column :title, :string, :null => false   
+      t.timestamps
     end
     Challenge.create :title => "Sample Challenge: 0"
     Challenge.create :title => "Sample Challenge: 1"
@@ -9,6 +10,6 @@ class Challenges < ActiveRecord::Migration
   end
 
   def self.down
-    drop_tables :challenges
+    drop_table :challenges
   end
 end

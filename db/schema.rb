@@ -10,21 +10,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110515043950) do
+ActiveRecord::Schema.define(:version => 20110531052848) do
 
   create_table "challenges", :force => true do |t|
-    t.string "title", :null => false
+    t.string   "title",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "subscriptions", :force => true do |t|
-    t.string "rating"
+    t.string   "rating"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
-    t.string "fname",    :null => false
-    t.string "lname",    :null => false
-    t.string "emailid",  :null => false
-    t.string "password", :null => false
+    t.string   "fname",      :null => false
+    t.string   "lname",      :null => false
+    t.string   "emailid",    :null => false
+    t.string   "password",   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  add_index "users", ["emailid"], :name => "index_users_on_emailid", :unique => true
 
 end

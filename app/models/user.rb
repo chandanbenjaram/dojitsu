@@ -13,8 +13,13 @@
 class User < ActiveRecord::Base
   has_many :subscriptions
   has_many :challenges, :through => :subscriptions
-  
+
   attr_accessible :fname, :lname, :emailid, :password
-  
-  validates :fname, :presence => true
+
+  regex_emailid = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+  validates :fname, :presence => true  
+  validates :lname, :presence => true
+  validates :emailid, :presence => true, :format => {:with => regex_emailid}, :uniqueness => {:case_sensitive => false}
+  validates :password, :presence => true
 end
