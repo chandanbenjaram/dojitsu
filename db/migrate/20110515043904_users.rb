@@ -4,7 +4,6 @@ class Users < ActiveRecord::Migration
       t.column :fname, :string, :null => false
       t.column :lname, :string, :null => false      
       t.column :emailid, :string, :null => false            
-      t.column :password, :string, :null => false
       t.timestamps                  
     end
   end

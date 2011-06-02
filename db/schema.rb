@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110531052848) do
+ActiveRecord::Schema.define(:version => 20110602073536) do
 
   create_table "challenges", :force => true do |t|
     t.string   "title",      :null => false
@@ -25,12 +25,13 @@ ActiveRecord::Schema.define(:version => 20110531052848) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "fname",      :null => false
-    t.string   "lname",      :null => false
-    t.string   "emailid",    :null => false
-    t.string   "password",   :null => false
+    t.string   "fname",              :null => false
+    t.string   "lname",              :null => false
+    t.string   "emailid",            :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "encrypted_password"
+    t.string   "salt"
   end
 
   add_index "users", ["emailid"], :name => "index_users_on_emailid", :unique => true
