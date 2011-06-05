@@ -4,10 +4,22 @@ class UsersController < ApplicationController
     @title = @user.fname + " " +  @user.lname
   end
 
-  def new
+  def new      
+    @user = User.new
     @title = "Sign Up"
   end                             
 
+  def create                    
+    @user = User.new(params[:user])
+    if @user.save                           
+      flash[:success] = "Welcome to Dojitsu"
+      redirect_to @user
+    else            
+      @title = "Sign up"      
+      render :new
+    end
+  end
+  
   def index
   end
 end
