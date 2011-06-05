@@ -1,5 +1,7 @@
 <h1><%= @title%></h1>
-<%= form_for(@user) do |f| %>   
+<%= form_for(@user) do |f| %>        
+<fieldset>
+	<legend>Details</legend>
 <%= render 'shared/error_messages' %>
 <div class = "field">
 	<%= f.label :fname, 'First Name'%><br />
@@ -26,6 +28,7 @@
 </div>
 
 <div class = "actions">
-	<%= f.submit @title%>
+	<%= f.submit "Register"%>
 </div>
+</fieldset>
 <% end %>

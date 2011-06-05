@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   validates :emailid, :presence => true, :format => {:with => regex_emailid}, :uniqueness => {:case_sensitive => false}
 
   # automatically create the virtual attribute 'password_confirmation'.
-  validates :password, :presence => true, :confirmation => true, :length => { :within => 5..10 }
+  validates :password, :presence => true, :confirmation => true, :length => { :within => 6..50 }
 
   before_save :encrypt_password                                                                                                                            
 
