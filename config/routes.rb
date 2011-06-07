@@ -1,15 +1,19 @@
 Dojitsu::Application.routes.draw do |map|  
+  get "sessions/new"
+
   # app resources
   map.resources :challenges
   map.resources :users
+  map.resources :sessions, :only => [:new, :create, :destroy]
   
   # static pages
-  match '/login', :to=>'static#login'  
   match '/aboutus', :to=>'static#aboutus'
   match '/contactus', :to=>'static#contactus'
 
   # non-static
   match '/signup', :to=>'users#new'  
+  match '/signin', :to=>'sessions#new'
+  match '/signout', :to=>'sessions#destroy'  
   
   # root
   root :to=>'static#home'

@@ -37,9 +37,13 @@ class User < ActiveRecord::Base
   class << self
     def authenticate(emailid, password)
       user = find_by_emailid(emailid)
-      return nil if user.nil?
-      return user if user.has_password?(password) 
+      (user &&  user.has_password?(password))?user:nil
     end        
+
+    def authenticate_by_id_salt(user_id, user_salt)
+      user = find_by_id(id)
+      (user && user.salt == user_salt)?user:nil
+    end
   end
 
   private  

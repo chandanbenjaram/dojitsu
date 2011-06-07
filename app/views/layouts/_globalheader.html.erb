@@ -3,7 +3,17 @@
 		<ul>					
 			<li><%= link_to "Home", root_path %></li>				
 			<li><%= link_to "Challenges", challenges_path %></li>  
-			<li><%= link_to "Login/Signup", login_path %></li>
+			<% if signed_in? %>
+			<li>
+				<%= link_to "Profile", edit_user_path, :user => current_user %>
+				<%= link_to "Signout", signout_path, :method => :delete %>
+			</li>
+			<% else %>
+			<li>
+				<%= link_to "Register", signup_path %>
+				<%= link_to "Signin", signin_path %>
+			</li>
+			<% end %>                                  
 		</ul>
 	</nav>
 </header>

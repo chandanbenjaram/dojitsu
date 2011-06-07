@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @title = @user.fname + " " +  @user.lname
+    sign_in @user
   end
 
   def new      
@@ -11,7 +12,8 @@ class UsersController < ApplicationController
 
   def create                    
     @user = User.new(params[:user])
-    if @user.save                           
+    if @user.save                                                          
+      sign_in @user
       flash[:success] = "Welcome to Dojitsu"
       redirect_to @user
     else            
@@ -19,7 +21,12 @@ class UsersController < ApplicationController
       render :new
     end
   end
-  
+
+  def edit
+    redirect_to @user
+  end
+
+
   def index
   end
 end

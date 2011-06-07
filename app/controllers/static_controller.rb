@@ -12,9 +12,4 @@ class StaticController < ApplicationController
     @title = "Contact Us"
     render 'static/contactus'
   end
-  
-  def login            
-    @title = "User Login/Registration"
-    render 'static/login'
-  end
 end
