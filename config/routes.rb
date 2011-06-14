@@ -1,20 +1,28 @@
-Dojitsu::Application.routes.draw do |map|  
-  get "sessions/new"
-
+Dojitsu::Application.routes.draw do |map|    
   # app resources
-  map.resources :challenges
-  map.resources :users
-  map.resources :sessions, :only => [:new, :create, :destroy]
-  
+  match 'users/auth/:provider/callback', :to=>'authentications#create'
+
+  devise_for :users, :controllers => { :registrations => "registrations"}
+
+  #  match '/auth/:provider/callback', :to=>'authentications#create'
+
+  # map.connect '/auth/failure', :controller => :authentications, :action => :failure
+
+  # map.resources :users
+  # map.resources :registrations
+
+  #  map.resources :authentications
+
   # static pages
   match '/aboutus', :to=>'static#aboutus'
   match '/contactus', :to=>'static#contactus'
+  map.resources :authentications
+  map.resources :challenges
 
   # non-static
-  match '/signup', :to=>'users#new'  
-  match '/signin', :to=>'sessions#new'
-  match '/signout', :to=>'sessions#destroy'  
-  
+  # match '/signup', :to=>'users#new'  
+  # match '/signin', :to=>'sessions#new'
+  # match '/signout', :to=>'sessions#destroy'  
   # root
   root :to=>'static#home'
   

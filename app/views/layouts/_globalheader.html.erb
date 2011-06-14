@@ -3,17 +3,18 @@
 		<ul>					
 			<li><%= link_to "Home", root_path %></li>				
 			<li><%= link_to "Challenges", challenges_path %></li>  
-			<% if signed_in? %>
+			<% if !current_user.nil? %>                        
 			<li>
-				<%= link_to "Profile", edit_user_path, :user => current_user %>
-				<%= link_to "Signout", signout_path, :method => :delete %>
+				Signed in as <%= current_user.email %>. Not you?            
+			</li>
+			<li>
+				<%= link_to "Sign out", destroy_user_session_path %>
 			</li>
 			<% else %>
 			<li>
-				<%= link_to "Register", signup_path %>
-				<%= link_to "Signin", signin_path %>
-			</li>
-			<% end %>                                  
+				<%= link_to "Sign up", new_user_registration_path %> or <%= link_to "Sign in", new_user_session_path %>
+			</li>	
+			<% end %>
 		</ul>
 	</nav>
 </header>

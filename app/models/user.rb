@@ -1,67 +1,29 @@
-# == Schema Information
-# Schema version: 20110515043950
-#
-# Table name: users
-#
-#  id       :integer(4)      not null, primary key
-#  fname    :string(255)     not null
-#  lname    :string(255)     not null
-#  emailid  :string(255)     not null
-#  password :string(255)     not null
-#
-require 'digest'
-
 class User < ActiveRecord::Base
-  has_many :subscriptions
-  has_many :challenges, :through => :subscriptions
+  regex_email= /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable, :lockable and :timeoutable
+  devise :database_authenticatable, :registerable,
+    :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+         
+  has_many :authentications
+  attr_accessible :fname, :lname, :email, :password, :password_confirmation, :remember_me
 
-  attr_accessor :password
-  attr_accessible :fname, :lname, :emailid, :password, :password_confirmation
+  validates :email, :presence => true, :format => {:with => regex_email}, :uniqueness => {:case_sensitive => false}
 
-  regex_emailid = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-
-  validates :fname, :presence => true  
-  validates :lname, :presence => true
-  validates :emailid, :presence => true, :format => {:with => regex_emailid}, :uniqueness => {:case_sensitive => false}
-
-  # automatically create the virtual attribute 'password_confirmation'.
-  validates :password, :presence => true, :confirmation => true, :length => { :within => 6..50 }
-
-  before_save :encrypt_password                                                                                                                            
-
-  def has_password?(password_input)
-    # match against encrypted password
-    self.encrypted_password == encrypt(password_input)
-  end
-
-  class << self
-    def authenticate(emailid, password)
-      user = find_by_emailid(emailid)
-      (user &&  user.has_password?(password))?user:nil
-    end        
-
-    def authenticate_by_id_salt(user_id, user_salt)
-      user = find_by_id(id)
-      (user && user.salt == user_salt)?user:nil
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session[:omniauth]
+        user.authentications.build(:provider => data['provider'], :uid => data['uid'])
+      end
     end
   end
 
-  private  
-  def encrypt_password                              
-    self.salt =  make_salt if new_record?
-    self.encrypted_password = encrypt(password)
+  def apply_omniauth(omniauth)
+    authentications.build(:provider => omniauth[:provider], :uid => omniauth[:uid], :email => omniauth[:email], :name => omniauth[:name])
   end
 
-  def make_salt
-    secure_hash("#{Time.now.utc}--#{password}")
-  end 
-
-  def encrypt(input)
-    secure_hash("#{salt}--#{input}")
-  end     
-
-  def secure_hash(input)
-    Digest::SHA2.hexdigest(input)
+  def password_required?
+    #      debugger
+    (authentications.empty? || !password.blank?) && super
   end
-
 end

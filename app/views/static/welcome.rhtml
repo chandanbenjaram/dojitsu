@@ -1,4 +1,11 @@
+<p>Welcome to Dojitsu</p>
 <p>
-	Welcome to Dojitsu
-</p>
-<%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
+  <% if current_user.nil? %>
+    <%= link_to "Register Now!", new_user_registration_path, :class => "signup_button round" %>
+  <% end %>
+<ul>
+  <% Challenge.all.each do |e|%>
+    <li><%= link_to  e.title, 'challenges#show' %></li>
+  <% end %>
+</ul>
+</p>	
