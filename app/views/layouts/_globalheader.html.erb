@@ -1,33 +1,46 @@
-<header>
-  <nav class="right">
-    <ul>
-      <% if !current_user.nil? %>
+<div class="span-24 header first">&nbsp;</div>
+<div class="span-5 header first">
+  <% if !current_user.nil? %>
+    <%= image_tag((current_user.authentications[0].image_path rescue ""), :alt => "Profile") %>
+  <% else %>
+    <%= link_to(image_tag("dojitsu_logoX1.png",  :alt => "Home"), root_path) %>
+  <% end %>
+</div>
+<div class="span-13 header">
+  <% if !current_user.nil? %>
+    <div class="span-13">trophies</div>
+    <div class="span-13 left">
+      <%= current_user.authentications[0].location_name rescue "" %>&nbsp;(Profile)
+    </div>
+    <div class="span-13"><input type="text"/><input type="button" value="Post"/> </div>
+  <%  else %>
+    <div class="span-13">&nbsp;</div>
+    <div class="span-13 left">
+
+      <span class="text">Turn Group Projects into Social Games</span>
+
+    </div>
+  <% end  %>
+
+
+</div>
+<div class="span-6 header last">
+  <div class="span-6">&nbsp;</div>
+  <div class="span-13">&nbsp;</div>
+
+  <div class="right text-right">
+    <nav>
+      <ul>
         <li>
-          Hello, <%= current_user.email %>!
+          <% if !current_user.nil? %>
+            Hello, <%= current_user.authentications[0].name rescue current_user.email %>!
+            <%= link_to "Log out", destroy_user_session_path %>
+          <% else %>
+            <%= link_to "Register", new_user_registration_path %>
+            <%= link_to "Login", new_user_session_path %>
+          <% end %>
         </li>
-        <li>
-          <%= link_to "Log out", destroy_user_session_path %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to "Register", new_user_registration_path %>
-        </li><li>
-          <%= link_to "Login", new_user_session_path %>
-        </li>
-      <% end %>
-    </ul>
-  </nav>
-  <nav class="left">
-    <ul>
-      <% if !current_user.nil? %>
-        <li>
-          user picture goes here...
-        </li>
-      <% else %>
-        <li>
-          <%= link_to(image_tag("dojitsu_logoX1.png", :class => "appLogo", :alt => "Home"), root_path) %>
-        </li>
-      <% end %>
-    </ul>
-  </nav>
-</header>
+      </ul>
+    </nav>
+     </div>
+</div>

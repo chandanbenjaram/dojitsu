@@ -10,16 +10,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110614075923) do
+ActiveRecord::Schema.define(:version => 20110617105834) do
 
   create_table "authentications", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "provider"
     t.string   "uid"
-    t.string   "name"
     t.string   "email"
-    t.integer  "user_id",    :null => false
+    t.integer  "user_id",       :null => false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "name"
+    t.string   "image_path"
+    t.string   "location_name"
+    t.string   "location_id"
   end
 
   create_table "challenges", :force => true do |t|

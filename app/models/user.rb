@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   end
 
   def apply_omniauth(omniauth)
-    authentications.build(:provider => omniauth[:provider], :uid => omniauth[:uid], :email => omniauth[:email], :name => omniauth[:name])
+    authentications.build(:provider => omniauth[:provider], :uid => omniauth[:uid], :email => omniauth[:email], :name => omniauth[:name], :first_name => omniauth[:first_name], :last_name => omniauth[:last_name], :image_path => omniauth[:image_path], :location_name => omniauth[:location_name], :location_id => omniauth[:location_id])
   end
 
   def password_required?

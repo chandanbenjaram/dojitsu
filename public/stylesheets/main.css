@@ -1,26 +1,9 @@
-.container {
-    text-align: left;
-    background: white;
-    position: relative;
-}
-
-body {
-    background: #fff;
-}
-
-header {
-    padding-top: 10px;
-}
-
-header img {
-    padding: 1em;
-    background: #fff;
-}
-
 .appLogo {
     height: 50px;
-    margin-top: -5px;
+    margin:0px;
+    margin-top: -15px;
     padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 .appLogo.focus{
@@ -194,4 +177,9 @@ div.field, div.actions {
 #error_explanation ul li {
     font-size: 12px;
     list-style: square;
+}
+
+
+.text-right {
+    text-align: right;
 }

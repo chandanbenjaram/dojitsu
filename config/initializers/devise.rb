@@ -176,7 +176,8 @@ Devise.setup do |config|
   # config.omniauth :facebook, '208068219229732', '0d8e4313c829e165ebf70272fc8a2f48'
     config.omniauth :facebook, "208068219229732", "0d8e4313c829e165ebf70272fc8a2f48",
       :authorize_path    => '/oauth/authorize',
-      :access_token_path    => '/oauth/access_token'
+      :access_token_path    => '/oauth/access_token',
+      :scope => 'user_location'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
