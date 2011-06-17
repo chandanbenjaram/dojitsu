@@ -1,20 +1,33 @@
 <header>
-	<nav class="round">
-		<ul>					
-			<li><%= link_to "Home", root_path %></li>				
-			<li><%= link_to "Challenges", challenges_path %></li>  
-			<% if !current_user.nil? %>                        
-			<li>
-				Signed in as <%= current_user.email %>. Not you?            
-			</li>
-			<li>
-				<%= link_to "Sign out", destroy_user_session_path %>
-			</li>
-			<% else %>
-			<li>
-				<%= link_to "Sign up", new_user_registration_path %> or <%= link_to "Sign in", new_user_session_path %>
-			</li>	
-			<% end %>
-		</ul>
-	</nav>
+  <nav class="right">
+    <ul>
+      <% if !current_user.nil? %>
+        <li>
+          Hello, <%= current_user.email %>!
+        </li>
+        <li>
+          <%= link_to "Log out", destroy_user_session_path %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "Register", new_user_registration_path %>
+        </li><li>
+          <%= link_to "Login", new_user_session_path %>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+  <nav class="left">
+    <ul>
+      <% if !current_user.nil? %>
+        <li>
+          user picture goes here...
+        </li>
+      <% else %>
+        <li>
+          <%= link_to(image_tag("dojitsu_logoX1.png", :class => "appLogo", :alt => "Home"), root_path) %>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
 </header>

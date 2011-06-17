@@ -37,12 +37,12 @@ gem 'json'
 # group :development, :test do
 #   gem 'webrat'
 # end
-group :development, :test do
+group :development do
 	gem 'rspec-rails', '2.5.0'
 	gem 'annotate-models', '1.0.4'
   gem 'mongrel'
-#	gem 'ruby-debug'
-
+	gem 'ruby-debug'
+  gem 'fb_graph'
 end
 
 group :test do

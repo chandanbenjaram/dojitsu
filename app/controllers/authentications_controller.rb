@@ -1,4 +1,6 @@
 class AuthenticationsController < ApplicationController
+  require 'fb_graph'
+  
   def index
   end
 
@@ -9,7 +11,15 @@ class AuthenticationsController < ApplicationController
     # callback hash    
     omniauth = request.env["omniauth.auth"]
 
+#    logger.info "From authentication call back, #{request}"
+#    logger.info "From authentication call back, #{session[:omniauth]["credentials"]["token"]}"
+#    session[:omniauth]["credentials"]["token"]
 
+#    debugger
+#      render :text => FbGraph::User.me(omniauth["credentials"]["token"]).fetch.friends.to_yaml
+#      render :text => request.env["omniauth.auth"].to_yaml
+#      return
+      
     # is valid?
     if omniauth and params[:provider]
       # grab all required hash values with defaults for only facebook provider
@@ -23,13 +33,13 @@ class AuthenticationsController < ApplicationController
         return
       end
 
+
       
       # continue on valid uid and provider
       if uid != '' and provider != ''   
         auth = Authentication.find_by_provider_and_uid(provider, uid)        
         if !auth.nil?
           flash[:notice] = "Signed in successfully"
-          # debugger
           sign_in_and_redirect(:user, auth.user)
         elsif @current_user
           @current_user.authentications.create(:provider => provider, :uid => uid, :uname => name, :uemail => email) 
