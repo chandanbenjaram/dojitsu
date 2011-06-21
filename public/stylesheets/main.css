@@ -183,3 +183,48 @@ div.field, div.actions {
 .text-right {
     text-align: right;
 }
+
+.dojo-navbar {
+    background-color: gray;
+    height: 25px;
+}
+
+.dojo-navbar.light {
+    background-color: lightgray;
+}
+
+ul.dojo-menu {
+    padding: 0;
+    vertical-align: bottom;
+}
+
+ul.dojo-menu li {
+    margin: 0px;
+    padding: 10px;
+    display: inline;
+    list-style:	none;
+    vertical-align: bottom;
+}
+
+ul.dojo-menu a {
+    padding: 10px;
+    padding-top: 0px;
+}
+
+ul.dojo-menu a:hover {
+    color: #000;
+    text-decoration: none;
+    background-color: #fff;
+    border-radius: 5px 5px 0px 0px;
+}
+
+a.selectable {
+    color: #fff;
+}
+
+a.selected {
+    text-decoration: none;
+    color: #000;
+    background-color: #fff;
+    border-radius: 5px 5px 0px 0px;
+}

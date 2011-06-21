@@ -1,23 +1,9 @@
-<div class="body span-24">
-  <p>
-    <% if current_user.nil? %>
-      <%= link_to "Register Now!", new_user_registration_path, :class => "signup_button round" %>
+<div class="span-24 homecontent">
+  
+    <% if !current_user.nil? %>
+      <%= render 'layouts/loggedinbody'%>
+    <% else %>
+      <%= render 'layouts/nonloggedinbody'%>
     <% end %>
-  </p>
-</div>
-
-<div class="span-24">
-  <div class="span-12 first">
-    <div class="box">
-      <p> Today's New Challenges </p>
-      <ul>
-        <% Challenge.all.each do |e|%>
-          <li><%= link_to  e.title, 'challenges#show' %></li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-  <div class="span-12 last">  <div class="box">
-      <p> Top Achievers </p>  </div>
-  </div>
+  
 </div>
