@@ -16,7 +16,7 @@
       <%= link_to "My interest Groups", new_user_session_path, :class => "selectable"%>
     </li>
     <li>
-      <%= link_to "My Profile", new_user_session_path, :class => "selectable"%>
+      <%= link_to "My Profile", :edit_user_registration, :user => current_user, :class => "selectable"%>
     </li>
   </ul>
 </div>
@@ -58,7 +58,6 @@
 
     <div class="span-10">
       <p>messages goes here...
-      <%= link_to "My Profile", new_user_session_path, :class => "selectable"%></p>
     </div>
     <div class="span-10">
       &nbsp;
