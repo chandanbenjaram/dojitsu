@@ -28,7 +28,7 @@ gem 'fb_graph'
 # group :development, :test do
 #   gem 'webrat'
 # end
-group :development do
+group :development :test do
 	gem 'rspec-rails', '2.5.0'
 	gem 'annotate-models', '1.0.4'
   	gem 'mongrel'
