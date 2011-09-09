@@ -12,12 +12,30 @@ class AuthenticationsController < ApplicationController
     omniauth = request.env["omniauth.auth"]
 
     #    logger.info "From authentication call back, #{request}"
-    #    logger.info "From authentication call back, #{session[:omniauth]["credentials"]["token"]}"
+    #  logger.info "From authentication call back, #{session[:omniauth]["credentials"]["token"]}"
     #    session[:omniauth]["credentials"]["token"]
 
     #    debugger
-#    #          render :text => FbGraph::User.me(omniauth["credentials"]["token"]).fetch.friends.to_yaml
+    # ::FbGraph::User.me(session[:omniauth]["credentials"]["token"]).fetch;
+    #logger.info "@profile... #{@profile}"
+
+#    ACCESS_TOKEN= omniauth["credentials"]["token"]
+#
+#    user = FbGraph::User.me(ACCESS_TOKEN).fetch;
+#
+#    friends = user.friends
+#    friends.each { |friend|
+##      FbGraph::User.find_by_id()
+#      puts friend.to_yaml()
+#    }
+    
+#    render :text => friends.to_yaml
+#    return
+#
+#    logger.info "me... #{me.fetch().to_yaml}"
+#
 #    render :text => request.env["omniauth.auth"].to_yaml
+#
 #    return
       
     if omniauth and params[:provider]

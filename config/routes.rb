@@ -18,6 +18,7 @@ Dojitsu::Application.routes.draw do |map|
   match '/contactus', :to=>'static#contactus'
   resources :authentications
   resources :challenges
+  resources :user_connections
 
   # non-static
   # match '/signup', :to=>'users#new'  
