@@ -1,26 +1,21 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.5'
+gem 'rails', '3.1.0.rc8'
 gem 'mysql', '2.8.1'   
          
 # authentication specifics
-gem 'devise', '~> 1.2.1'
+gem 'devise'
 gem 'omniauth'
 
 # helpers
 gem 'haml'
 gem 'json'
 gem 'fb_graph'
+gem 'jquery-rails'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-# To use debugger
-# gem 'ruby-debug'
-
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
+# MongoDB specifics
+gem "mongoid", "~> 2.2"
+gem "bson_ext", "~> 1.3"
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
@@ -28,9 +23,19 @@ gem 'fb_graph'
 # group :development, :test do
 #   gem 'webrat'
 # end
-group :development :test do
-	gem 'rspec-rails', '2.5.0'
-	gem 'annotate-models', '1.0.4'
+group :development, :test do
+	gem 'rspec-rails'
+	gem 'annotate-models'
   	gem 'mongrel'
 	gem 'ruby-debug'
+end       
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails', "  ~> 3.1.0.rc"
+  gem 'coffee-rails', "~> 3.1.0.rc"
+  gem 'uglifier'
 end
+
+gem 'jquery-rails'

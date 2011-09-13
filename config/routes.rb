@@ -1,4 +1,4 @@
-Dojitsu::Application.routes.draw do |map|    
+Dojitsu::Application.routes.draw do   
   # app resources
   match 'users/auth/:provider/callback', :to=>'authentications#create'
 
