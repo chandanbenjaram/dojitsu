@@ -5,7 +5,7 @@ gem 'mysql', '2.8.1'
          
 # authentication specifics
 gem 'devise'
-gem 'omniauth'
+gem "oa-oauth", :require => "omniauth/oauth"
 
 # helpers
 gem 'haml'
