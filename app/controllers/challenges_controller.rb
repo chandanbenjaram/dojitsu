@@ -10,18 +10,14 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.find(params[:id])
   end
 
-  def new  
+  def new                        
     @challenge = Challenge.new
     render :action => 'edit'
   end
 
-  def create
-    @challenge = Challenge.new
-    if @challenge.update_attributes(params[:challenge])
-      redirect_to challenges_path
-    else
-      render :index
-    end
+  def create 
+    @challenge = Challenge.create!(params[:challenge])
+    redirect_to @challenge, :notice => "Challenge created!"
   end
 
   def edit
@@ -43,9 +39,4 @@ class ChallengesController < ApplicationController
   end   
 
 end
-
-=begin
-        @post = Post.create params[:post]
-        session[:person] = Person.authenticate(user_name, password)
-=end
 

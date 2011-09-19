@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   has_many :subscriptions
-  has_many :challenges, :through => :subscriptions
   has_many :user_connections
 
   has_many :authentications
