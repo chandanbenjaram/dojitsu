@@ -26,7 +26,6 @@ gem "bson_ext", "~> 1.3"
 group :development, :test do
 	gem 'rspec-rails'
 	gem 'annotate-models'
-  	gem 'mongrel'
 	gem 'ruby-debug'
 end       
 

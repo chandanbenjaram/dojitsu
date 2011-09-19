@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+
+# Challenge Templates
+templateChallenge = TemplateChallenge.new()
+templateChallenge[:title] = "Master, I am dynamic"
+templateChallenge.save
