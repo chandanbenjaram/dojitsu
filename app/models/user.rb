@@ -3,12 +3,13 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+  :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+
+  has_many :user_connections
+  has_many :authentications
 
   has_many :subscriptions
-  has_many :user_connections
 
-  has_many :authentications
   attr_accessible :fname, :lname, :email, :password, :password_confirmation, :remember_me
 
   validates :email, :presence => true, :format => {:with => regex_email}, :uniqueness => {:case_sensitive => false}
@@ -39,4 +40,9 @@ class User < ActiveRecord::Base
     end
   end
 
+  def challenges
+    Challenge.where(:user_id=>self.id).all
+  end
+
 end
+

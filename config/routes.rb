@@ -1,5 +1,5 @@
 Dojitsu::Application.routes.draw do   
-  # app resources
+  # user registration & 3rd party logins
   match 'users/auth/:provider/callback', :to=>'authentications#create'
   devise_for :users, :controllers => { :registrations => "registrations"}
 
@@ -10,5 +10,6 @@ Dojitsu::Application.routes.draw do
   resources :challenges
   resources :user_connections
 
+  # root page
   root :to=>'static#home'
 end
