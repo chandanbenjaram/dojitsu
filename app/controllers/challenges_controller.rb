@@ -1,5 +1,6 @@
 class ChallengesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :find_challenge, :only => [:show, :edit, :update, :destroy]
     
   def index
     @title = "Challenges"
@@ -15,17 +16,19 @@ class ChallengesController < ApplicationController
     render :action => 'edit'
   end
 
-  def create 
-    @challenge = Challenge.create!(params[:challenge])
-    redirect_to @challenge, :notice => "Challenge created!"
+  def create            
+    @challenge = Challenge.create!(params[:challenge]) do |doc|  
+      doc.user_id = current_user.id
+    end
+
+    redirect_to @challenge, :notice => "Challenge created!"   
   end
 
   def edit
-    @challenge = Challenge.find(params[:id])
+    @challenge
   end   
 
   def update
-    @challenge = Challenge.find(params[:id])
     if @challenge.update_attributes(params[:challenge])
       redirect_to :action => 'show', :id => @challenge
     else
@@ -34,9 +37,15 @@ class ChallengesController < ApplicationController
   end
 
   def destroy
-    Challenge.find(params[:id]).destroy
+    @challenge.destroy
     redirect_to :action => 'index'
-  end   
-
+  end        
+  
+  protected
+  
+  def find_challenge
+    @challenge = Challenge.find(params[:id]);
+  end
+  
 end
 

@@ -6,7 +6,8 @@ development:
   database: dojitsu_dev
   username: dojitsu.dev
   password: [pass]
-  host: localhost
+  host: localhost 
+  port: 3306
   timeout: 5000                                             
                                                             
 # Warning: The database defined as "test" will be erased and 
