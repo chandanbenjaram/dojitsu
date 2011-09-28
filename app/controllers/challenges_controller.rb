@@ -1,7 +1,7 @@
 class ChallengesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :find_challenge, :only => [:show, :edit, :update, :destroy]
-    
+
   def index
     @title = "Challenges"
     @challenges = Challenge.all;
@@ -20,7 +20,7 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.create!(params[:challenge]) do |doc|  
       doc.user_id = current_user.id
     end
-
+          
     redirect_to @challenge, :notice => "Challenge created!"   
   end
 
