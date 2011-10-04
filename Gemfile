@@ -12,6 +12,7 @@ gem 'haml'
 gem 'json'
 gem 'fb_graph'
 gem 'jquery-rails'
+gem "client_side_validations", "~> 3.1.0"
 
 # MongoDB specifics
 gem "mongoid", "~> 2.2"
@@ -25,7 +26,7 @@ gem "bson_ext", "~> 1.3"
 # end
 group :development, :test do
 	gem 'rspec-rails'
-	gem 'annotate-models'
+	gem 'annotate'
 	gem 'ruby-debug'
 end       
 

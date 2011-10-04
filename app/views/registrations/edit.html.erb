@@ -1,10 +1,17 @@
 <%= render 'layouts/loggedinbody'%>
 &nbsp;
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <!--
   <%= devise_error_messages! %>
-
+  -->
   <p><%= f.label :email %><br />
   <%= f.email_field :email %></p>
+  
+  <p><%= f.label :fname, "First Name" %><br />
+  <%= f.text_field :fname %></p>
+  
+  <p><%= f.label :lname, "Last Name" %><br />
+  <%= f.text_field :lname %></p>
 
   <p><%= f.label :password %><br />
   <%= f.password_field :password %></p>
@@ -16,6 +23,6 @@
   <%= f.password_field :current_password %></p>
 
   <p><%= f.submit "Update" %></p>
+  <p><%= link_to "Cancel", dashboard_index_url %></p>
 <% end %>
-
 

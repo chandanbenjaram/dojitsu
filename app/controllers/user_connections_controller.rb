@@ -4,4 +4,8 @@ class UserConnectionsController < ApplicationController
   def index
     @user_connections = Challenge.all;
   end
+  
+  def dashbord
+    
+  end
 end
