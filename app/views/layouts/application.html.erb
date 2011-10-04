@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <%= csrf_meta_tag %>
+    <%= render 'layouts/stylesheets'%>
+    <%= render 'layouts/javascripts'%>
+  </head>
+  <body>
+    <div class="container" >
+
+      <div class="span-24 header">
+        <%= render 'layouts/globalheader'%>
+      </div>
+
+      <div class="span-24 body">
+        <% flash.each do |key, val| %>
+          <div class="flash <%= key %>"><%= val %></div>
+        <% end %>
+        <%= yield %>
+      </div>
+
+      <div class="span-24 footer">
+        <%= render 'layouts/globalfooter'%>
+        <%= debug(params) if Rails.env.development? %>
+      </div>
+
+    </div>
+  </body>
+</html>

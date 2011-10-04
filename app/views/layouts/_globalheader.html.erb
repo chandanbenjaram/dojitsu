@@ -1,0 +1,38 @@
+<div class="span-24 header first">&nbsp;</div>
+<div class="span-24">
+  <div class="span-5">
+    <% if !current_user.nil? %>
+      <%= image_tag((current_user.authentications[0].image_path rescue ""), :alt => "Profile") %>
+    <% else %>
+      <%= link_to(image_tag("dojitsu_logo.png",  :alt => "Home"), root_path) %>
+    <% end %>
+  </div>
+  <div class="span-13 header">
+    <% if !current_user.nil? %>
+      <div class="span-13">trophies</div>
+      <div class="span-13 left">
+        <%= current_user.authentications[0].location_name rescue "" %>&nbsp;(Profile)
+      </div>
+      <div class="span-13"><input type="text"/><input type="button" value="Post"/> </div>
+    <% else %>
+      &nbsp;
+    <% end  %>
+  </div>
+  <div class="span-6 header last">
+    <div class="right text-right">
+      <nav>
+        <ul>
+          <li>
+            <% if !current_user.nil? %>
+              Hello, <%= current_user.authentications[0].name rescue current_user.email %>!
+              <%= link_to "Log out", destroy_user_session_path %>
+            <% else %>
+              <%= link_to "Register", new_user_registration_path %>
+              <%= link_to "Login", new_user_session_path %>
+            <% end %>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

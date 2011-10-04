@@ -1,0 +1,13 @@
+<h3>All Challenges</h3>
+<% if @challenges.blank? %>
+<p>no challenges at all.</p>
+<% else %>  
+<ul>
+	<% @challenges.each do |c| %>
+	<li><%= link_to c.title, {:action => 'show', :id => c.id } %>	</li>
+	<% end %>
+</ul>	
+<% end %>                                                       
+<br/>
+<p><%= link_to "Create New Challenge", new_challenge_url %></p>
+tcs
