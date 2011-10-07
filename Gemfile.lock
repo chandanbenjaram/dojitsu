@@ -127,6 +127,8 @@ GEM
       activesupport (= 3.1.0.rc8)
       bundler (~> 1.0)
       railties (= 3.1.0.rc8)
+    rails_highcharts (0.0.3)
+      rails (>= 3.0.8)
     railties (3.1.0.rc8)
       actionpack (= 3.1.0.rc8)
       activesupport (= 3.1.0.rc8)
@@ -194,6 +196,7 @@ DEPENDENCIES
   mysql (= 2.8.1)
   oa-oauth
   rails (= 3.1.0.rc8)
+  rails_highcharts
   rspec-rails
   ruby-debug
   sass-rails (~> 3.1.0.rc)

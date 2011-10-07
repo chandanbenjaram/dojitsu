@@ -71,6 +71,13 @@ a.signup_button {
     padding: 20px;
 }
 
+h3{
+	margin-left:5px;
+	color:#fff;
+	width:50%;
+	float:left;
+}
+
 
 /* Navigation */
 nav {
@@ -210,6 +217,7 @@ a.selected {
 	position:relative;
 	float:left;
 	width:67%;
+	margin-left:0px;
 	margin-top:10px;
 }
 
@@ -218,6 +226,7 @@ a.selected {
 	float:right;
 	width:30%;
 	margin-top:10px;
+	margin-right:0px;
 }
 
 #ds_upcoming_task_and_milestone{
@@ -225,6 +234,7 @@ a.selected {
 	float:left;
 	width:67%;
 	margin-top:10px;
+	margin-left:0px;
 }
 
 #ds_messages{
@@ -232,6 +242,7 @@ a.selected {
 	float:right;
 	width:30%;	
 	margin-top:10px;
+	margin-right:0px;
 }
 
 #ds_my_chall{
@@ -239,6 +250,7 @@ a.selected {
 	float:left;
 	width:67%;
 	margin-top:10px;
+	margin-left:0px;
 }
 
 #ds_news_feed{
@@ -246,6 +258,7 @@ a.selected {
 	float:right;
 	width:30%;
 	margin-top:10px;
+	margin-right:0px;
 }
 
 #ds_top_performer{
@@ -253,4 +266,5 @@ a.selected {
 	float:left;
 	width:67%;
 	margin-top:10px;
+	margin-left:0px;
 }
