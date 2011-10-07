@@ -4,8 +4,8 @@ development:
   adapter: mysql
   encoding: utf8
   database: dojitsu_dev
-  username: dojitsu.dev
-  password: [pass]
+  username: root
+  password:
   host: localhost 
   port: 3306
   timeout: 5000                                             
@@ -17,8 +17,8 @@ test:
   adapter: mysql
   encoding: utf8
   database: dojitsu_qa_0
-  username: dojitsu.qa.0
-  password: [pass]
+  username: root
+  password:
   host: localhost
   timeout: 5000
 
@@ -26,7 +26,7 @@ production:
   adapter: mysql
   encoding: utf8
   database: dojitsu_prod
-  username: dojitsu.prod
-  password: [pass]
+  username: root
+  password: 
   host: localhost
   timeout: 5000
