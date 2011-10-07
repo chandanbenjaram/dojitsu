@@ -210,40 +210,47 @@ a.selected {
 	position:relative;
 	float:left;
 	width:67%;
+	margin-top:10px;
 }
 
 #ds_my_profile{
 	position:relative;
 	float:right;
 	width:30%;
+	margin-top:10px;
 }
 
 #ds_upcoming_task_and_milestone{
 	position:relative;
 	float:left;
 	width:67%;
+	margin-top:10px;
 }
 
 #ds_messages{
 	position:relative;
 	float:right;
 	width:30%;	
+	margin-top:10px;
 }
 
 #ds_my_chall{
 	position:relative;
 	float:left;
 	width:67%;
+	margin-top:10px;
 }
 
 #ds_news_feed{
 	position:relative;
 	float:right;
 	width:30%;
+	margin-top:10px;
 }
 
 #ds_top_performer{
 	position:relative;
 	float:left;
 	width:67%;
+	margin-top:10px;
 }
