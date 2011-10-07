@@ -1,15 +1,15 @@
+<%= javascript_include_tag('bluff-min', 'excanvas', 'js-class')%>
+
 <%= render 'layouts/loggedinbody'%>
 
 <div id="dashbord">
 	<div id="ds_performance_tracker">
 		<div id="ds_performance_tracker_tit" style="background:grey; height:30px;">
 			<h3>Performance Tracker</h3>
-			<input type="button" value="Remove" class="rem" id="#ds_performance_tracker_cont" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_performance_tracker_cont" style="float:right;">
-			<%= link_to(image_tag("delete.jpg", :size => "20x20", :id => '#ds_performance_tracker_cont', :class => 'rem'))%>
+			<input type="button" value="Remove" class="rem" id="#example" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_performance_tracker_cont" style="float:right;">
+			<%= link_to(image_tag("delete.jpg", :size => "20x20", :id => '#example', :class => 'rem'))%>
 		</div>
-		<div id="ds_performance_tracker_cont">
-			Performance Tracker
-		</div>
+		<canvas id="example" style="width: 630px; height: 300px; float: left;"></canvas>
 	</div>	
 	
 	<div id="ds_my_profile">
@@ -74,6 +74,7 @@
 </div>
 
 <script type="text/javascript">
+	//script code for hide and settings
 	jQuery(document).ready(function($) {
     	$(".rem").click(function (str) {
 			//alert($(this).attr("id"));
@@ -88,12 +89,20 @@
 		alert("Work on progress");
       	//$($(this).attr("id")).show(2000);
    		});
+		
+		//script code for bluff charts
+		var g = new Bluff.Line('example', '400x300');
+    	g.title = 'My Challenges';
+    	g.tooltips = true;
+    	g.theme_37signals();
+    	g.data("Apples", [1, 2, 3, 4, 4, 3]);
+    	g.data("Oranges", [4, 8, 7, 9, 8, 9]);
+    	g.data("Watermelon", [2, 3, 1, 5, 6, 8]);
+    	g.data("Peaches", [9, 9, 10, 8, 7, 9]);
+    	g.labels = {0: '2003', 2: '2004', 4: '2005'};
+    	g.draw();
 	});
 </script>
-
-
-
-
 <!--
 <div>
     <a href="" class="filterLink">link</a><br />
