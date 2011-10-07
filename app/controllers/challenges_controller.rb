@@ -7,7 +7,7 @@ class ChallengesController < ApplicationController
     @challenges = Challenge.all;
   end
 
-  def show
+  def show                                      
     @challenge = Challenge.find(params[:id])
   end
 
