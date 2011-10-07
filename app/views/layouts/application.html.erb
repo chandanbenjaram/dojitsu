@@ -5,6 +5,8 @@
     <%= csrf_meta_tag %>
     <%= render 'layouts/stylesheets'%>
     <%= render 'layouts/javascripts'%>
+    <%= javascript_include_tag "application" %>
+	<%= javascript_include_tag :defaults, "rails.validations" %>
   </head>
   <body>
     <div class="container" >
