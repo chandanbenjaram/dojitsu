@@ -1,4 +1,5 @@
-<%= javascript_include_tag('bluff-min', 'excanvas', 'js-class')%>
+<%= javascript_include_tag('bluff-min', 'excanvas', 'js-class', 'jquery.min', 'jquery-ui.min')%>
+<%= stylesheet_link_tag('jquery-ui')%>
 
 <%= render 'layouts/loggedinbody'%>
 
@@ -9,7 +10,7 @@
 			<input type="button" value="Remove" class="rem" id="#example" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_performance_tracker_cont" style="float:right;">
 			<%= link_to(image_tag("delete.jpg", :size => "20x20", :id => '#example', :class => 'rem'))%>
 		</div>
-		<canvas id="example" style="width: 630px; height: 300px; float: left;"></canvas>
+		<canvas id="example" style="width: 636px; height: 300px; float: left;"></canvas>
 	</div>	
 	
 	<div id="ds_my_profile">
@@ -29,6 +30,7 @@
 		</div>
 		<div id="ds_upcoming_task_and_milestone_cont">
 			Upcoming Tasks and Milestones
+			<div id="datepicker"></div>
 		</div>
 	</div>	
 	
@@ -47,6 +49,7 @@
 			<h3>My Challenges</h3>
 			<input type="button" value="Remove" class="rem" id="#ds_my_chall_cont" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_my_chall_cont" style="float:right;">
 		</div>
+		<canvas id="mychallenges" style="width: 636px; height: 300px; float: left;"></canvas>
 		<div id="ds_my_chall_cont">
 			My Challenges
 		</div>
@@ -84,15 +87,16 @@
       		});
 			
     	});
-	
     	$(".ad").click(function () {
 		alert("Work on progress");
       	//$($(this).attr("id")).show(2000);
    		});
 		
+		
 		//script code for bluff charts
+		//alert("In Challenges bluff graph");
 		var g = new Bluff.Line('example', '400x300');
-    	g.title = 'My Challenges';
+    	g.title = 'My Charts';
     	g.tooltips = true;
     	g.theme_37signals();
     	g.data("Apples", [1, 2, 3, 4, 4, 3]);
@@ -101,6 +105,23 @@
     	g.data("Peaches", [9, 9, 10, 8, 7, 9]);
     	g.labels = {0: '2003', 2: '2004', 4: '2005'};
     	g.draw();
+
+		
+		//script code for bluff charts
+		//alert("In Challenges bluff graph");
+		var g = new Bluff.SideBar('mychallenges', '400x300');
+    	g.title = 'My Challenges';
+    	g.tooltips = true;
+    	g.theme_37signals();
+    	g.data("Apples", [1, 2, 3, 4, 4, 3]);
+    	g.data("Oranges", [4, 8, 7, 9, 8, 9]);
+    	g.data("Watermelon", [2, 3, 1, 5, 6, 8]);
+    	g.labels = {0: '2003', 2: '2004', 4: '2005'};
+    	g.draw();				
+		
+		//script for datetime
+		//alert("In dateeeeeeeee");
+		$("#datepicker").datepicker();
 	});
 </script>
 <!--
