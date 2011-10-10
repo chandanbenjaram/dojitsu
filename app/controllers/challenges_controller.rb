@@ -16,7 +16,7 @@ class ChallengesController < ApplicationController
     render :action => 'edit'
   end
 
-  def create            
+  def create
     @challenge = Challenge.create!(params[:challenge]) do |doc|  
       doc.user_id = current_user.id
     end
