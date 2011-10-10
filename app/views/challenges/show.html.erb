@@ -1,7 +1,9 @@
 <% if @challenge.nil? %>
-<p>no challenge selected</p>
+	<p>no challenge selected</p>
 <% else %>
-<p><%= @challenge.title %></p>
+	<p>
+		<%= @challenge.title %>
+	</p>
 <% end %>
 
 <p><%= link_to "View All", challenges_url %></p>
