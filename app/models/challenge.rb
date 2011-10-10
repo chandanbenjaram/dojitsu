@@ -17,7 +17,7 @@ class Challenge
 
   embeds_many :tasks  
 
-  validates_presence_of :title, :description
+  validates_presence_of :title, :description, :dateStart, :dateEnd
   
   def user
     User.find(user_id)
