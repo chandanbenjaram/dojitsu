@@ -1,5 +1,7 @@
+
 <%= stylesheet_link_tag('datePicker')%>
-<%= javascript_include_tag('jquery.datePicker')%>
+<%= javascript_include_tag('jquery.datePicker', 'date')%>
+
 
 <%= form_for( @challenge,:validate => true) do |f| %>
 	<p>
@@ -24,6 +26,8 @@
 	</p>
 	<p>
 		<%= f.label :dateStart, "Start Date" %><br />
+		<%= f.text_field :dateStart, :class => "textfield_effect date-pick" %>
+		<!--
 		<%= f.select :dateStart, options_for_select([
     							["Select Start Date", "0"],							
 								["Immediately","#imm "],
@@ -39,11 +43,12 @@
 		</div>
 		<div id="num" style="display:none;">
 			<%= f.text_field :dateStart, :class => "textfield_effect" %>
-		</div>	
+		</div>
+		-->	
 	</p>
 	<p>
 		<%= f.label :dateEnd, "End Date" %><br />
-		<%= f.text_field :dateEnd, :class => "textfield_effect" %>
+		<%= f.text_field :dateEnd, :class => "textfield_effect date-pick" %>
 	</p>
 	<p>
 		<%= f.label :participants %><br />
@@ -80,16 +85,15 @@
 	jQuery(document).ready(function($) {
 		// Date Picker scripting code
 		//alert("Date picker is working");
-		$('#challenge_dateStart').datetimepicker({
-			showButtonPanel: true	
-		});
+		$('.date-pick').datePicker({startDate:'01/01/1996'});
 		
-		$('#challenge_dateStart').change(function() {
-  			var sel_val = $(this).val();
-			alert(""+sel_val);
-			$('#challenge_dateStart').hide();
-			$(sel_val).show();
-		});
+		
+		//$('#challenge_dateStart').change(function() {
+  			//var sel_val = $(this).val();
+			//alert(""+sel_val);
+			//$('#challenge_dateStart').hide();
+			//$(sel_val).show();
+		//});
 	});
 </script>
 
