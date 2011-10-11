@@ -1,5 +1,20 @@
+<%= render 'layouts/loggedinbody'%>
 <% if @challenge.nil? %>
-<p>no challenge selected</p>
+	<p>no challenge selected</p>
 <% else %>
-<p><%= @challenge.title %></p>
+	<!--<%= debug params.to_yaml%> -->
+	<br><br>
+	<div style="height:700px; width:700px; border-width:thin; border-style:solid" >
+		<div style="background: black; padding-left:10px" >
+			<%= text_field "show", "id", "size" => 110, :value => "c.id"%>
+		</div>
+		<textarea style="width: 680px; height: 82px; padding-left:10px" cols="40" rows="5" name="myname"></textarea>
+			MY TASk<table border=0, align=right, width=120>
+				<tr>
+					<td width=10><%= button_to "Delete" %></td>
+					<td width=10><%= button_to "Delete" %></td>
+					<td width=10><%= button_to "Delete" %></td>	
+					</tr>
+			 </table>
+	</div>			
 <% end %>

@@ -145,7 +145,7 @@ div.field, div.actions {
 }
 
 .dojo-navbar {
-    background-color: gray;
+    background-color: #389AFF;
     height: 25px;
 }
 
@@ -160,7 +160,7 @@ ul.dojo-menu {
 
 ul.dojo-menu li {
     margin: 0px;
-    padding: 10px;
+    padding: 20px;
     display: inline;
     list-style:	none;
     vertical-align: bottom;

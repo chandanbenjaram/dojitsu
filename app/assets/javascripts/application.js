@@ -13,8 +13,7 @@
 //= require jquery-ui
 //= require_tree .
 ;
-(function($){
-    $(document).ready(function() {
+    jQuery(document).ready(function() {
         var menustate = $(this).readMenuState();
         if(menustate)
         {
@@ -72,4 +71,4 @@
         return path;
     };
 
-})(jQuery);
+});

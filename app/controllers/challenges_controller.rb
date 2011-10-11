@@ -25,6 +25,7 @@ class ChallengesController < ApplicationController
   end
 
   def edit
+  	#raise params.inspect
     @challenge
   end   
 
