@@ -1,25 +1,25 @@
-<div class="span-24 dojo-navbar">
-  <ul class="dojo-menu">
-    <li>
-      <%= link_to "Dashboard", dashboard_index_path, :class => "selectable"%>
-    </li>
-    <li>
-      <%= link_to "Manage My Dojo", user_connections_path, :class => "selectable"%>
-    </li>
-    <li>
-      <%= link_to "My Challenges", challenges_path, :class => "selectable"%>
-    </li>
-    <li>
-      <%= link_to "Messages", new_user_session_path, :class => "selectable"%>
-    </li>
-    <li>
-      <%= link_to "Trophies", new_user_session_path, :class => "selectable"%>
-    </li>
-    <li>
-      <%= link_to "My interest Groups", new_user_session_path, :class => "selectable"%>
-    </li>
-    <li>
-      <%= link_to "My Profile", :edit_user_registration, :user => current_user, :class => "selectable"%>
-    </li>
-  </ul>
+<div id="home_nav_id" class="span-24 dojo-navbar">
+	<ul class="dojo-menu">
+		<li>
+			<%= link_to "Dashboard", dashboard_index_path, :class => "selectable"%>
+		</li>
+		<li>
+			<%= link_to "Manage My Dojo", user_connections_path, :class => "selectable"%>
+		</li>
+		<li>
+			<%= link_to "My Challenges", challenges_path, :class => "selectable"%>
+		</li>
+		<li>
+			<%= link_to "Messages", new_user_session_path, :class => "selectable"%>
+		</li>
+		<li>
+			<%= link_to "Trophies", new_user_session_path, :class => "selectable"%>
+		</li>
+		<li>
+			<%= link_to "My interest Groups", new_user_session_path, :class => "selectable"%>
+		</li>
+		<li>
+			<%= link_to "My Profile", :edit_user_registration, :user => current_user, :class => "selectable"%>
+		</li>
+	</ul>
 </div>
