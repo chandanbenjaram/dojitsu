@@ -12,6 +12,7 @@ gem 'haml'
 gem 'json'
 gem 'fb_graph'
 gem 'jquery-rails'
+gem "client_side_validations", "~> 3.1.0"
 
 # MongoDB specifics
 gem "mongoid", "~> 2.2"
