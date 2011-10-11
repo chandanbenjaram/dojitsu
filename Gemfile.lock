@@ -48,7 +48,7 @@ GEM
       execjs
     coffee-script-source (1.1.2)
     columnize (0.3.4)
-    devise (1.4.7)
+    devise (1.4.8)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
       warden (~> 1.0.3)
@@ -136,7 +136,8 @@ GEM
       thor (~> 0.14.6)
     rake (0.9.2)
     rbx-require-relative (0.0.5)
-    rdoc (3.9.4)
+    rdoc (3.10)
+      json (~> 1.4)
     rspec (2.6.0)
       rspec-core (~> 2.6.0)
       rspec-expectations (~> 2.6.0)
@@ -197,4 +198,5 @@ DEPENDENCIES
   rspec-rails
   ruby-debug
   sass-rails (~> 3.1.0.rc)
+  sprockets (~> 2.0.2)
   uglifier

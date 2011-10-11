@@ -13,6 +13,7 @@ gem 'json'
 gem 'fb_graph'
 gem 'jquery-rails'
 gem "client_side_validations", "~> 3.1.0"
+gem "sprockets", "~> 2.0.2"
 
 # MongoDB specifics
 gem "mongoid", "~> 2.2"
