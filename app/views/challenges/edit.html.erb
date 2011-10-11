@@ -26,7 +26,7 @@
 	</p>
 	<p>
 		<%= f.label :dateStart, "Start Date" %><br />
-		<%= f.text_field :dateStart, :class => "textfield_effect date-pick" %>
+		<%= f.text_field :dateStart, :class => "textfield_effect  date-pick" %></br>
 		<!--
 		<%= f.select :dateStart, options_for_select([
     							["Select Start Date", "0"],							
@@ -46,10 +46,13 @@
 		</div>
 		-->	
 	</p>
+	</br>
 	<p>
 		<%= f.label :dateEnd, "End Date" %><br />
 		<%= f.text_field :dateEnd, :class => "textfield_effect date-pick" %>
 	</p>
+	</br>
+	</br>
 	<p>
 		<%= f.label :participants %><br />
 		<%= f.select :participants, options_for_select([
