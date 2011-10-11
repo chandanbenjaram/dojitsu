@@ -1,5 +1,7 @@
 <%= stylesheet_link_tag('datePicker')%>
-<%= javascript_include_tag('jquery.datePicker')%>
+<%= javascript_include_tag('jquery.datePicker', 'date')%>
+
+<%= render 'layouts/loggedinbody'%>
 
 <%= form_for( @challenge,:validate => true) do |f| %>
 	<p>
@@ -24,6 +26,8 @@
 	</p>
 	<p>
 		<%= f.label :dateStart, "Start Date" %><br />
+		<%= f.text_field :dateStart, :class=>"date-pick" %>
+		<!--
 		<%= f.select :dateStart, options_for_select([
     							["Select Start Date", "0"],							
 								["Immediately","#imm "],
@@ -31,6 +35,8 @@
 								["Number","#num"]														
  							]), :style => "width:197px" 
  		%>
+		-->
+		<!--
 		<div id="imm" style="display:none;">
 			<%= f.text_field :dateStart, :class => "textfield_effect" %>
 		</div>
@@ -39,7 +45,8 @@
 		</div>
 		<div id="num" style="display:none;">
 			<%= f.text_field :dateStart, :class => "textfield_effect" %>
-		</div>	
+		</div>
+		-->	
 	</p>
 	<p>
 		<%= f.label :dateEnd, "End Date" %><br />
@@ -79,10 +86,8 @@
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		// Date Picker scripting code
-		//alert("Date picker is working");
-		$('#challenge_dateStart').datetimepicker({
-			showButtonPanel: true	
-		});
+		alert("Date picker is working");
+		$('.date-pick').datePicker({autoFocusNextInput: true});
 		
 		$('#challenge_dateStart').change(function() {
   			var sel_val = $(this).val();
@@ -92,6 +97,4 @@
 		});
 	});
 </script>
-
-
 
