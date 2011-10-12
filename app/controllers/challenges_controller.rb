@@ -44,7 +44,7 @@ class ChallengesController < ApplicationController
   
   def add_task
     @tsk_id = params[:id]
-    #@challenge = Challenge.find(params[:id]);
+    @challenge = Challenge.find(params[:id])
   end
   
   protected
