@@ -137,7 +137,7 @@ a.dp-choose-date {
 	display: block;
 	text-indent: -2000px;
 	overflow: hidden;
-	background: url(../images/calendar.gif) no-repeat; 
+	background: url(calendar.gif) no-repeat; 
 }
 a.dp-choose-date.dp-disabled {
 	background-position: 0 -20px;

@@ -54,7 +54,7 @@
 			};
 
 			s = $.extend({}, $.fn.datePicker.defaults, s);
-			
+
 			if (s.showHeader != $.dpConst.SHOW_HEADER_NONE) {
 				var headRow = $(dc('tr'));
 				for (var i=Date.firstDayOfWeek; i<Date.firstDayOfWeek+7; i++) {
@@ -65,7 +65,7 @@
 					);
 				}
 			};
-			
+
 			var calendarTable = $(dc('table'))
 									.attr(
 										{
@@ -82,21 +82,21 @@
 										)
 									);
 			var tbody = $(dc('tbody'));
-			
+
 			var today = (new Date()).zeroTime();
 			today.setHours(12);
-			
+
 			var month = s.month == undefined ? today.getMonth() : s.month;
 			var year = s.year || today.getFullYear();
-			
+
 			var currentDate = (new Date(year, month, 1, 12, 0, 0));
-			
-			
+
+
 			var firstDayOffset = Date.firstDayOfWeek - currentDate.getDay() + 1;
 			if (firstDayOffset > 1) firstDayOffset -= 7;
 			var weeksToDraw = Math.ceil(( (-1*firstDayOffset+1) + currentDate.getDaysInMonth() ) /7);
 			currentDate.addDays(firstDayOffset-1);
-			
+
 			var doHover = function(firstDayInBounds)
 			{
 				return function()
@@ -147,7 +147,7 @@
 				tbody.append(r);
 			}
 			calendarTable.append(tbody);
-			
+
 			return this.each(
 				function()
 				{
@@ -208,33 +208,33 @@
 		datePicker : function(s)
 		{			
 			if (!$.event._dpCache) $.event._dpCache = [];
-			
+
 			// initialise the date picker controller with the relevant settings...
 			s = $.extend({}, $.fn.datePicker.defaults, s);
-			
+
 			return this.each(
 				function()
 				{
 					var $this = $(this);
 					var alreadyExists = true;
-					
+
 					if (!this._dpId) {
 						this._dpId = $.event.guid++;
 						$.event._dpCache[this._dpId] = new DatePicker(this);
 						alreadyExists = false;
 					}
-					
+
 					if (s.inline) {
 						s.createButton = false;
 						s.displayClose = false;
 						s.closeOnSelect = false;
 						$this.empty();
 					}
-					
+
 					var controller = $.event._dpCache[this._dpId];
-					
+
 					controller.init(s);
-					
+
 					if (!alreadyExists && s.createButton) {
 						// create it!
 						controller.button = $('<a href="#" class="dp-choose-date" title="' + $.dpText.TEXT_CHOOSE_DATE + '">' + $.dpText.TEXT_CHOOSE_DATE + '</a>')
@@ -249,7 +249,7 @@
 								);
 						$this.after(controller.button);
 					}
-					
+
 					if (!alreadyExists && $this.is(':text')) {
 						$this
 							.bind(
@@ -288,9 +288,9 @@
 							controller.setSelected(d, true, true);
 						}
 					}
-					
+
 					$this.addClass('dp-applied');
-					
+
 				}
 			)
 		},
@@ -526,7 +526,7 @@
 			// TODO - implement this?
 		}
 	});
-	
+
 	// private internal function to cut down on the amount of code needed where we forward
 	// dp* methods on the jQuery object on to the relevant DatePicker controllers...
 	var _w = function(f, a1, a2, a3, a4)
@@ -541,11 +541,11 @@
 			}
 		);
 	};
-	
+
 	function DatePicker(ele)
 	{
 		this.ele = ele;
-		
+
 		// initial values...
 		this.displayedMonth		=	null;
 		this.displayedYear		=	null;
@@ -659,7 +659,7 @@
 				s.setDate(1);
 				var e = new Date(this.endDate.getTime());
 				e.setDate(1);
-				
+
 				var t;
 				if ((!m && !y) || (isNaN(m) && isNaN(y))) {
 					// no month or year passed - default to current month
@@ -738,7 +738,7 @@
 					}
 				);
 				$('td', this.context).not('.selected')[this.selectMultiple &&  this.numSelected == this.numSelectable ? 'addClass' : 'removeClass']('unselectable');
-				
+
 				if (dispatchEvents)
 				{
 					var s = this.isSelected(d);
@@ -771,17 +771,17 @@
 			display : function(eleAlignTo)
 			{
 				if ($(this.ele).is('.dp-disabled')) return;
-				
+
 				eleAlignTo = eleAlignTo || this.ele;
 				var c = this;
 				var $ele = $(eleAlignTo);
 				var eleOffset = $ele.offset();
-				
+
 				var $createIn;
 				var attrs;
 				var attrsCalendarHolder;
 				var cssRules;
-				
+
 				if (c.inline) {
 					$createIn = $(this.ele);
 					attrs = {
@@ -802,12 +802,12 @@
 						'top'	:	eleOffset.top + c.verticalOffset,
 						'left'	:	eleOffset.left + c.horizontalOffset
 					};
-					
+
 					var _checkMouse = function(e)
 					{
 						var el = e.target;
 						var cal = $('#dp-popup')[0];
-						
+
 						while (true){
 							if (el == cal) {
 								return true;
@@ -820,7 +820,7 @@
 						}
 					};
 					this._checkMouse = _checkMouse;
-					
+
 					c._closeCalendar(true);
 					$(document).bind(
 						'keydown.datepicker', 
@@ -832,7 +832,7 @@
 						}
 					);
 				}
-				
+
 				if (!c.rememberViewedMonth)
 				{
 					var selectedDate = this.getSelected()[0];
@@ -841,7 +841,7 @@
 						this.setDisplayedMonth(selectedDate.getMonth(), selectedDate.getFullYear(), false);
 					}
 				}
-				
+
 				$createIn
 					.append(
 						$('<div></div>')
@@ -892,9 +892,9 @@
 							)
 							.bgIframe()
 						);
-					
+
 				var $pop = this.inline ? $('.dp-popup', this.context) : $('#dp-popup');
-				
+
 				if (this.showYearNavigation == false) {
 					$('.dp-nav-prev-year, .dp-nav-next-year', c.context).css('display', 'none');
 				}
@@ -914,7 +914,7 @@
 				c._renderCalendar();
 
 				$(this.ele).trigger('dpDisplayed', $pop);
-				
+
 				if (!c.inline) {
 					if (this.verticalPosition == $.dpConst.POS_BOTTOM) {
 						$pop.css('top', eleOffset.top + $ele.height() - $pop.height() + c.verticalOffset);
@@ -925,7 +925,7 @@
 //					$('.selectee', this.context).focus();
 					$(document).bind('mousedown.datepicker', this._checkMouse);
 				}
-				
+
 			},
 			setRenderCallback : function(a)
 			{
@@ -938,9 +938,9 @@
 			cellRender : function ($td, thisDate, month, year) {
 				var c = this.dpController;
 				var d = new Date(thisDate.getTime());
-				
+
 				// add our click handlers to deal with it when the days are clicked...
-				
+
 				$td.bind(
 					'click',
 					function()
@@ -982,7 +982,7 @@
 				} else  if (c.selectMultiple && c.numSelected == c.numSelectable) {
 					$td.addClass('unselectable');
 				}
-				
+
 			},
 			_applyRenderCallbacks : function()
 			{
@@ -1017,7 +1017,7 @@
 			{
 				// set the title...
 				$('h2', this.context).html((new Date(this.displayedYear, this.displayedMonth, 1)).asString($.dpText.HEADER_FORMAT));
-				
+
 				// render the calendar...
 				$('.dp-calendar', this.context).renderCalendar(
 					$.extend(
@@ -1031,7 +1031,7 @@
 							hoverClass		: this.hoverClass
 						})
 				);
-				
+
 				// update the status of the control buttons and disable dates before startDate or after endDate...
 				// TODO: When should the year buttons be disabled? When you can't go forward a whole year from where you are or is that annoying?
 				if (this.displayedYear == this.startDate.getFullYear() && this.displayedMonth == this.startDate.getMonth()) {
@@ -1148,7 +1148,7 @@
 			}
 		}
 	);
-	
+
 	// static constants
 	$.dpConst = {
 		SHOW_HEADER_NONE	:	0,
@@ -1203,7 +1203,7 @@
 		if (ele._dpId) return $.event._dpCache[ele._dpId];
 		return false;
 	};
-	
+
 	// make it so that no error is thrown if bgIframe plugin isn't included (allows you to use conditional
 	// comments to only include bgIframe where it is needed in IE without breaking this plugin).
 	if ($.fn.bgIframe == undefined) {
@@ -1219,6 +1219,6 @@
 				$(els[i].ele)._dpDestroy();
 			}
 		});
-		
-	
+
+
 })(jQuery);

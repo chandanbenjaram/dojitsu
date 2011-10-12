@@ -8,8 +8,8 @@ class Challenge
 
   field :dateStart, :type=>DateTime
   field :dateEnd, :type=>DateTime
-  field :discipline, :type=>Array
-  field :participants, :type=>Array
+  field :discipline, :type=>String
+  field :participants, :type=>String
   field :rules, :type=>Array    
   field :goals, :type=>Array        
 
