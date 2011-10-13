@@ -47,6 +47,10 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.find(params[:id])
   end
   
+  def update_task
+    raise params.to_yaml
+  end
+  
   protected
   
   def find_challenge
