@@ -25,7 +25,7 @@ gem "bson_ext", "~> 1.3"
 # end
 group :development, :test do
 	gem 'rspec-rails'
-	gem 'annotate-models'
+	gem 'annotate'
 	gem 'ruby-debug'
 end       
 

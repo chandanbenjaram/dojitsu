@@ -36,6 +36,19 @@ module Dojitsu
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
+
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = {
+:address => "smtp.gmail.com",
+:port => 587,
+:domain => 'localhost:4000',
+:user_name => 'sriram.in20@gmail.com',
+:password => 'srirammca',
+:authentication => 'plain',
+:enable_starttls_auto => true }
+
+config.action_mailer.perform_deliveries = true
+config.action_mailer.raise_delivery_errors = true 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 

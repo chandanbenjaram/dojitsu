@@ -1,0 +1,63 @@
+<hr/>
+<h3><font color="green">:::Connections:::</font> </h3>
+<%#= current_user.to_yaml %>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:fb="https://www.facebook.com/2008/fbml">
+  <head>
+    <title>Request Tester C</title>
+  </head>
+
+  <body>
+    <div id="fb-root"></div>
+    <script src="http://connect.facebook.net/en_US/all.js"></script>
+    <p>
+      <p> Invite friends by email address </p>
+      <input type="text" value="Users email" name="usermail.email" />
+      <input type="button"
+        onclick="sendRequestToOneRecipient(); return false;"
+        value="send"
+      />
+      </p>
+    <p>
+    <input type="button"
+      onclick="sendRequestToManyRecipients(); return false;"
+      value="Send Request to Many Users"
+    />
+    </p>
+  
+    <script>
+      FB.init({
+        appId  : '232592880122189',
+        status : true,
+        cookie : true,
+        oauth: true
+      });
+  
+FbGraph::User.new('matake').friends # => raise FbGraph::Unauthorized
+  user = FbGraph::User.fetch('matake', :access_token => ACCESS_TOKEN)
+  user.albums
+  user.events
+  user.friends
+  user.likes
+
+   
+      function sendRequestToManyRecipients() {
+        FB.ui({method: 'apprequests',
+          message: 'Sriram invites you for a great challenge ',
+        }, requestCallback);
+      }
+      
+      function requestCallback(response) {
+        // Handle callback here
+      }
+
+
+    </script>
+
+  </body>
+</html>
+
+
+
+
+
