@@ -1,7 +1,9 @@
-<%= stylesheet_link_tag('datePicker','colorbox')%>
-<%= javascript_include_tag('jquery.datePicker', 'date','jquery.colorbox-min')%>
+<%= stylesheet_link_tag('datePicker')%>
+<%= javascript_include_tag('jquery.datePicker', 'date')%>
 
-<% t = Time.now.strftime("%Y-%m-%d") %>
+<%= render 'layouts/loggedinbody'%>
+
+<% t = Time.now.strftime("%m-%d-%Y") %>
 
 <%= form_for( @challenge,:validate => true) do |f| %>
 	<p>
@@ -26,30 +28,44 @@
 	</p>
 	<p>
 		<%= f.label :dateStart, "Start Date" %><br />		
-		<%= f.text_field :dateStart, :class => "textfield_effect  date-pick" %></br>
 		<!--
+		<%= f.text_field :dateStart, :class => "textfield_effect  date-pick" %></br>
+		-->
 		<%= select_tag "ch_st_date", options_for_select([
     							["Select Start Date", "0"],							
-								["Immediately","#imm "],
-								["Date","#dat"],	 
-								["Number","#num"]														
+								["Immediately","#ch_st_imm"],
+								["Date","#ch_st_dat"],	 
+								["Number","#ch_st_num"]														
  							]), :style => "width:197px" 
  		%>
-		<div id="dat" style="display:none;">
+		<div id="ch_st_dat" style="display:none;">
 			<%= f.text_field :dateStart, :class => "textfield_effect  date-pick" %></br>
 		</div>
-		<div id="imm" style="display:none;">
+		<div id="ch_st_imm" style="display:none;">
 			<%= f.text_field :dateStart, :value => "#{t}", :class => "textfield_effect" %>
 		</div>
-		<div id="num" style="display:none;">
+		<div id="ch_st_num" style="display:none;">
 			<%= f.text_field :dateStart, :class => "textfield_effect" %>
 		</div>
-		-->
 	</p>
 	</br>
 	<p>
 		<%= f.label :dateEnd, "End Date" %><br />
+		<!--
 		<%= f.text_field :dateEnd, :class => "textfield_effect date-pick" %>
+		-->
+		<%= select_tag "ch_ed_date", options_for_select([
+    							["Select Start Date", "0"],							
+								["Date","#ch_ed_dat"],	 
+								["Number","#ch_ed_num"]														
+ 							]), :style => "width:197px" 
+ 		%>
+		<div id="ch_ed_dat" style="display:none;">
+			<%= f.text_field :dateEnd, :class => "textfield_effect  date-pick" %></br>
+		</div>
+		<div id="ch_ed_num" style="display:none;">
+			<%= f.text_field :dateEnd, :class => "textfield_effect" %>
+		</div>
 	</p>
 	</br>
 	</br>
@@ -64,14 +80,6 @@
 								["Teams","tem"] 														
  							]), :style => "width:197px" 
  		%>
-	</p>
-	<p>
-		<input type="button" value="Add Task" class="ad" id="#ch_task_add" style="float:left;">
-	</p>
-	<p>
-		<div id="ch_task_add" style="display:none;">
-			<%= f.text_field :tasks, :class => "textfield_effect" %>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Remove" class="rem" id="#ch_task_add" style="float:none;"></br>
-		</div>
 	</p>
 	<p>
 		<%= f.submit "Create Challenge" %>
@@ -106,22 +114,12 @@
 			$(sel_val).show();
 		});
 		
-		//popup for task
-		$('.add_task_popup').colorbox();
-		
-		// script code for add task
-		//alert("add task working");
-		$(".rem").click(function (str) {
-			//alert($(this).attr("id"));
-      		$($(this).attr("id")).hide("fast", function () {
-        	// use callee so don't have to name the function
-        	$(this).prev().hide("fast", arguments); 
-      		});
-			
-    	});
-    	$(".ad").click(function () {
-      	$("p").add("#ch_task_add");
-   		});
+		$('#ch_ed_date').change(function() {
+  			var sel_val = $(this).val();
+			//alert(""+sel_val);
+			$('#ch_ed_date').hide();
+			$(sel_val).show();
+		});
 			
 	});
 </script>

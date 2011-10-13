@@ -1,13 +1,15 @@
 <%= stylesheet_link_tag('colorbox')%>
 <%= javascript_include_tag('jquery.colorbox-min')%>
 
+<%= render 'layouts/loggedinbody'%>
+
 <h3>All Challenges</h3>
 	<% if @challenges.blank? %>
 		<p>no challenges at all.</p>
 	<% else %>
 	<div id="ch_index_list" style="width:100%; float:left;">
 		<% @challenges.each do |c| %>
-			<%= link_to c.title, {:action => 'show', :id => c.id } %> <%= link_to "Add Task", new_challenge_path, :class=>"add_task_popup"  %><br>
+			<%= link_to c.title, {:action => 'show', :id => c.id } %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Add Task", add_task_challenges_path(:id => c.id)%><br>
 		<% end %>	
 	</br>
 	</div>
@@ -18,7 +20,7 @@
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		//popup for task
-		//alert("Date picker is working");
+		//alert("Add task pupup working");
 		$('.add_task_popup').colorbox();	
 	});
 </script>

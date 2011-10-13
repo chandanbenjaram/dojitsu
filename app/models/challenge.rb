@@ -17,10 +17,10 @@ class Challenge
 
   embeds_many :tasks  
 
-  validates_presence_of :title, :description, :dateStart, :dateEnd
+  validates_presence_of :title, :description
   
   def user
     User.find(user_id)
-  end              
-
+  end  
+  
 end                
