@@ -1,9 +1,5 @@
 Dojitsu::Application.routes.draw do   
-<<<<<<< HEAD
-  resources :usermails
-=======
   get "dashboard/index"
->>>>>>> 2d381d6afdaea9ef79a35d8d34ab1030e0b761ba
 
   # user registration & 3rd party logins
   match 'users/auth/:provider/callback', :to=>'authentications#create'
@@ -13,6 +9,8 @@ Dojitsu::Application.routes.draw do
   match '/aboutus', :to=>'static#aboutus'
   match '/contactus', :to=>'static#contactus'
   resources :authentications
+  resources :usermails
+  
   resources :challenges do
     collection do
       get "add_task"
