@@ -1,13 +1,13 @@
 class ChallengesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :find_challenge, :only => [:show, :edit, :update, :destroy]
-    
+
   def index
     @title = "Challenges"
     @challenges = Challenge.all;
   end
 
-  def show
+  def show                                      
     @challenge = Challenge.find(params[:id])
     
   end
@@ -17,11 +17,12 @@ class ChallengesController < ApplicationController
     render :action => 'edit'
   end
 
-  def create            
+  def create
+    #raise params.to_yaml
     @challenge = Challenge.create!(params[:challenge]) do |doc|  
       doc.user_id = current_user.id
     end
-
+          
     redirect_to @challenge, :notice => "Challenge created!"   
   end
 
@@ -40,7 +41,12 @@ class ChallengesController < ApplicationController
   def destroy
     @challenge.destroy
     redirect_to :action => 'index'
-  end        
+  end  
+  
+  def add_task
+    @tsk_id = params[:id]
+    @challenge = Challenge.find(params[:id])
+  end
   
   protected
   

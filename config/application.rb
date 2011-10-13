@@ -54,5 +54,6 @@ config.action_mailer.raise_delivery_errors = true
 
     # Enable the asset pipeline
     config.assets.enabled = true
+    config.autoload_paths << "#{config.root}/lib"
   end
 end

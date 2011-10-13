@@ -1,0 +1,191 @@
+<%= javascript_include_tag('js-class', 'bluff-min', 'excanvas')%>
+<%= stylesheet_link_tag('jquery-ui')%>
+
+<%= render 'layouts/loggedinbody'%>
+
+<div id="dashbord">
+	<div id="ds_performance_tracker">
+		<div id="ds_performance_tracker_tit" style="background:grey; height:30px;">
+			<h3>Performance Tracker</h3>
+			<%= collection_select :user_id,  Challenge.find(:all), '', :title, :prompt => "Select Challenge" %>
+			<input type="button" value="Remove" class="rem" id="#example" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_performance_tracker_cont" style="float:right;">
+			<%= link_to(image_tag("delete.jpg", :size => "20x20", :id => '#example', :class => 'rem'))%>
+		</div>
+		<canvas id="example" style="width: 636px; height: 300px; float: left;"></canvas>
+	</div>	
+	
+	<div id="ds_my_profile">
+		<div id="ds_my_profile_tit" style="background:grey; height:30px;">
+			<h3>My Profile</h3>
+			<input type="button" value="Remove" class="rem" id="#ds_my_profile_cont" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_my_profile_cont" style="float:right;">
+		</div>
+		<div id="ds_my_profile_cont">
+			My Profile
+		</div>
+	</div>
+	
+	<div id="ds_upcoming_task_and_milestone">
+		<div id="ds_upcoming_task_and_milestonetit" style="background:grey; height:30px;">
+			<h3>Upcoming Tasks and Milestones</h3>
+			<input type="button" value="Remove" class="rem" id="#ds_upcoming_task_and_milestone_cont" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_upcoming_task_and_milestone_cont" style="float:right;">
+		</div>
+		<div id="ds_upcoming_task_and_milestone_cont">
+			Upcoming Tasks and Milestones
+			<div id="datepicker"></div>
+		</div>
+	</div>	
+	
+	<div id="ds_messages">
+		<div id="ds_messages_tit" style="background:grey; height:30px;">
+			<h3>Messages</h3>
+			<input type="button" value="Remove" class="rem" id="#ds_messages_cont" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_messages_cont" style="float:right;">
+		</div>
+		<div id="ds_messages_cont">
+			Messages
+		</div>
+	</div>
+
+	<div id="ds_my_chall">
+		<div id="ds_my_chall_tit" style="background:grey; height:30px;">
+			<h3>My Challenges</h3>
+			<input type="button" value="Remove" class="rem" id="#ds_my_chall_cont" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_my_chall_cont" style="float:right;">
+		</div>
+		<canvas id="mychallenges" style="width: 636px; height: 300px; float: left;"></canvas>
+		<div id="ds_my_chall_cont">
+			My Challenges
+		</div>
+	</div>	
+	
+	<div id="ds_news_feed">
+		<div id="ds_news_feed_tit" style="background:grey; height:30px;">
+			<h3>News Feed</h3>
+			<input type="button" value="Remove" class="rem" id="#ds_news_feed_cont" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_news_feed_cont" style="float:right;">
+		</div>
+		<div id="ds_news_feed_cont">
+			News Feed
+		</div>
+	</div>
+	
+	<div id="ds_top_performer">
+		<div id="ds_top_performer_tit" style="background:grey; height:30px;">
+			<h3>Top Performer(Scoreboard)</h3>
+			<input type="button" value="Remove" class="rem" id="#ds_top_performer_cont" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_top_performer_cont" style="float:right;">
+		</div>
+		<div id="ds_top_performer_cont">
+			Top Performer(Scoreboard)
+		</div>
+	</div>	
+</div>
+
+<script type="text/javascript">
+	//script code for hide and settings
+	jQuery(document).ready(function($) {
+    	$(".rem").click(function (str) {
+			//alert($(this).attr("id"));
+      		$($(this).attr("id")).hide("fast", function () {
+        	// use callee so don't have to name the function
+        	$(this).prev().hide("fast", arguments); 
+      		});
+			
+    	});
+    	$(".ad").click(function () {
+		alert("Work on progress");
+      	//$($(this).attr("id")).show(2000);
+   		});
+		
+		
+		//script code for bluff charts
+		//alert("In Challenges bluff graph");
+		var g = new Bluff.Line('example', '400x300');
+    	g.title = 'My Charts';
+    	g.tooltips = true;
+    	g.theme_37signals();
+    	g.data("Apples", [1, 2, 3, 4, 4, 3]);
+    	g.data("Oranges", [4, 8, 7, 9, 8, 9]);
+    	g.data("Watermelon", [2, 3, 1, 5, 6, 8]);
+    	g.data("Peaches", [9, 9, 10, 8, 7, 9]);
+    	g.labels = {0: '2003', 2: '2004', 4: '2005'};
+    	g.draw();
+
+		
+		//script code for bluff charts
+		//alert("In Challenges bluff graph");
+		var g = new Bluff.SideBar('mychallenges', '400x300');
+    	g.title = 'My Challenges';
+    	g.tooltips = true;
+    	g.theme_37signals();
+    	g.data("Apples", [1, 2, 3, 4, 4, 3]);
+    	g.data("Oranges", [4, 8, 7, 9, 8, 9]);
+    	g.data("Watermelon", [2, 3, 1, 5, 6, 8]);
+    	g.labels = {0: '2003', 2: '2004', 4: '2005'};
+    	g.draw();				
+		
+		//script for datetime
+		//alert("In dateeeeeeeee");
+		$("#datepicker").datepicker();
+	});
+</script>
+<!--
+<div>
+    <a href="" class="filterLink">link</a><br />
+    <a href="" class="filterLink">link</a><br />
+    <a href="" class="filterLink">link</a><br />
+</div>
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+	alert("hiiiiiiii")
+            $('.filterLink').click(function() {
+                if($(this).hasClass('disabled')) {
+                    return false;
+                }
+                $(this).addClass('disabled');
+                $(this).siblings().removeClass('disabled');
+                return false;
+            });
+
+    });
+</script>
+-->
+
+<!--
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+  
+   	alert("hiiiiiiiiiiii")
+    
+  });
+</script>
+-->
+
+<!--
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('div.click').click(function() {
+      $(this).toggleClass('highlighted'); 
+    });
+  });
+
+  $(function() {
+    // Can use one CSS selector to find all three divs and bind them all at once.
+    $('#div1, #div2, #div3').bind('click', click);
+  });
+
+  function click() {
+    var p1 = $("#p1");
+
+    if ($(this).is(".highlighted")) {
+      p1.append(this.id + ",");
+    }
+    else {
+      p1.text(p1.text().replace(this.id + ",", ""));
+    }
+  }
+
+</script>
+
+<style type="text/css">
+  .highlighted {
+    background: yellow;
+  }
+</style>
+-->

@@ -24,7 +24,7 @@
         <ul>
           <li>
             <% if !current_user.nil? %>
-              Hello, <%= current_user.authentications[0].name rescue current_user.email %>!
+              Hello, <%= current_user.authentications[0].name rescue current_user.fname %> <%= current_user.lname %>!
               <%= link_to "Log out", destroy_user_session_path %>
             <% else %>
               <%= link_to "Register", new_user_registration_path %>

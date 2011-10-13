@@ -1,6 +1,12 @@
+<%= stylesheet_link_tag('colorbox')%>
+<%= javascript_include_tag('jquery.colorbox-min')%>
+
+<%= render 'layouts/loggedinbody'%>
+
 <% if @challenge.nil? %>
-<p>no challenge selected</p>
+	<p>no challenge selected</p>
 <% else %>
+<<<<<<< HEAD
 
 <p><%= @challenge.title %></p>
 <% end %>
@@ -41,3 +47,19 @@
     </script>
   </body>
 </html>
+=======
+	<p>
+		<%= @challenge.title %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Add Task", add_task_challenges_path( :id => @challenge.id) %>
+	</p>
+<% end %>
+
+<p><%= link_to "View All", challenges_url %></p>
+
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		//popup for task
+		//alert("Add task pupup working");
+		$('.add_task_popup').colorbox();	
+	});
+</script>
+>>>>>>> 2d381d6afdaea9ef79a35d8d34ab1030e0b761ba
