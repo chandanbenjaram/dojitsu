@@ -9,6 +9,7 @@ class ChallengesController < ApplicationController
 
   def show                                      
     @challenge = Challenge.find(params[:id])
+    
   end
 
   def new                        
@@ -17,6 +18,7 @@ class ChallengesController < ApplicationController
   end
 
   def create
+    #raise params.to_yaml
     @challenge = Challenge.create!(params[:challenge]) do |doc|  
       doc.user_id = current_user.id
     end
@@ -40,7 +42,12 @@ class ChallengesController < ApplicationController
   def destroy
     @challenge.destroy
     redirect_to :action => 'index'
-  end        
+  end  
+  
+  def add_task
+    @tsk_id = params[:id]
+    @challenge = Challenge.find(params[:id])
+  end
   
   protected
   

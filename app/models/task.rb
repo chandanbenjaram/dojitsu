@@ -1,5 +1,5 @@
 class Task
   include Mongoid::Document
-  field :name, type: Integer
+  field :description, type: String
   embedded_in :challenges
 end

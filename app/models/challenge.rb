@@ -6,10 +6,10 @@ class Challenge
   field :title, :type=>String
   field :description, :type=>String
 
-  field :dateStart, :type=>DateTime
-  field :dateEnd, :type=>DateTime
-  field :discipline, :type=>Array
-  field :participants, :type=>Array
+  field :dateStart
+  field :dateEnd
+  field :discipline, :type=>String
+  field :participants, :type=>String
   field :rules, :type=>Array    
   field :goals, :type=>Array        
 
@@ -17,10 +17,10 @@ class Challenge
 
   embeds_many :tasks  
 
-  validates_presence_of :title, :description, :dateStart, :dateEnd
+  validates_presence_of :title
   
   def user
     User.find(user_id)
-  end              
-
+  end  
+  
 end                

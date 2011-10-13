@@ -1,9 +1,63 @@
+<%= stylesheet_link_tag('colorbox')%>
+<%= javascript_include_tag('jquery.colorbox-min')%>
+
+<%= render 'layouts/loggedinbody'%>
+
 <% if @challenge.nil? %>
 	<p>no challenge selected</p>
 <% else %>
+<<<<<<< HEAD
+
+<p><%= @challenge.title %></p>
+<% end %>
+ <%= fb_multi_friend_selector("Test message") %>    
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:fb="https://www.facebook.com/2008/fbml">
+  <head>
+    <title>Request Tester C</title>
+  </head>
+
+  <body>
+    <div id="fb-root"></div>
+    <script src="http://connect.facebook.net/en_US/all.js"></script>
+   
+    <p>
+    <input type="button"
+      onclick="sendRequestToManyRecipients(); return false;"
+      value="Invite your friends "
+    />
+    </p>
+    
+    <script>
+      FB.init({
+        appId  : '232592880122189',
+        status : true,
+        cookie : true,
+        oauth: true
+      });
+
+     function sendRequestToManyRecipients() {
+  FB.ui({method: 'apprequests',
+    message: 'My Challenge',
+  }, requestCallback);
+}
+          function requestCallback(response) {
+        // Handle callback here
+      }
+    </script>
+  </body>
+</html>
 	<p>
-		<%= @challenge.title %>
+		<%= @challenge.title %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Add Task", add_task_challenges_path( :id => @challenge.id) %>
 	</p>
 <% end %>
 
 <p><%= link_to "View All", challenges_url %></p>
+
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		//popup for task
+		//alert("Add task pupup working");
+		$('.add_task_popup').colorbox();	
+	});
+</script>
