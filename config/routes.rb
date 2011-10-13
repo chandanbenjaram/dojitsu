@@ -9,6 +9,8 @@ Dojitsu::Application.routes.draw do
   match '/aboutus', :to=>'static#aboutus'
   match '/contactus', :to=>'static#contactus'
   resources :authentications
+  resources :usermails
+ 
   resources :challenges do
     collection do
       get "add_task"
@@ -16,6 +18,8 @@ Dojitsu::Application.routes.draw do
     end
   end
   resources :user_connections
+  resources :messages
+  resources :usermail
 
   # root page
   root :to=>'static#home'

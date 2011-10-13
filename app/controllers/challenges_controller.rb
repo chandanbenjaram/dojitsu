@@ -1,5 +1,5 @@
 class ChallengesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index]
   before_filter :find_challenge, :only => [:show, :edit, :update, :destroy]
 
   def index
@@ -9,6 +9,7 @@ class ChallengesController < ApplicationController
 
   def show                                      
     @challenge = Challenge.find(params[:id])
+    
   end
 
   def new                        
@@ -26,6 +27,7 @@ class ChallengesController < ApplicationController
   end
 
   def edit
+  	#raise params.inspect
     @challenge
   end   
 

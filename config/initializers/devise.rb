@@ -174,7 +174,8 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   # provider :facebook, '208068219229732', '0d8e4313c829e165ebf70272fc8a2f48'
   # config.omniauth :facebook, '208068219229732', '0d8e4313c829e165ebf70272fc8a2f48'
-  config.omniauth :facebook, "181761375220642", "28dc6fdf9d4318d0a3ae0c91692b4005"
+  config.omniauth :facebook, "232592880122189", "7d7557a9be33907cffda2aa02173a03c",:client_options => { :ssl => { :ca_file => "#{Rails.root}/config/ca-bundle.crt" } }
+
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
