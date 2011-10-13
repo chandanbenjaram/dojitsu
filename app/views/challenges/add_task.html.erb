@@ -6,7 +6,7 @@
 	</br>
 	<div id="ne_tsk_div_form" style="width:99%; background-color:#fff; margin-left:4px;">
 	   <div id="ne_tsk_div_form_al" style="width:99%; background-color:#fff; margin-left:4px;">
-		<%= form_tag challenge_path(@challenge.id), :method => :get do %>
+		<%= form_tag update_task_challenges_path(@challenge.id), :method => :get do %>
 			<%= text_field_tag :margin , "#{@challenge.title}" ,:class => "textfield_effect_nw_tk" %>
 			<%= text_area_tag :marginn , "#{@challenge.description}" ,:class => "textarea_nw_tk" %>
 			<!--

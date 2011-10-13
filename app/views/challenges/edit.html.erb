@@ -1,18 +1,23 @@
+<%= render 'layouts/loggedinbody'%>
 <%= stylesheet_link_tag('datePicker')%>
-<%= javascript_include_tag('jquery.datePicker', 'date')%>
+<%= javascript_include_tag('jquery.datePicker', 'date','jquery.table.addrow')%>
 
 <%= render 'layouts/loggedinbody'%>
 
 <% t = Time.now.strftime("%m-%d-%Y") %>
-
-<%= form_for( @challenge,:validate => true) do |f| %>
-	<p>
+<h2 align="center">Create new challenge</h2>
+<div id="ch_main_div" style="width:100%; border:1px solid black; background-color:grey;">
+  </br>
+	<div id="ne_tsk_div_form" style="width:99%; background-color:#fff; margin-left:4px;">
+     <div id="ne_tsk_div_form_al" style="width:99%; background-color:#fff; margin-left:4px;">
+     <%= form_for( @challenge,:validate => true) do |f| %>
+	 <p>
 		<%= f.label :title %><br />
-		<%= f.text_field :title, :class => "textfield_effect" %>
+		<%= f.text_field :title, :class => "textfield_effect_nw_tk" %>
 	</p>
 	<p>
 		<%= f.label :description %><br />
-		<%= f.text_area :description %>
+		<%= f.text_area :description,:class => "textarea_nw_tk" %>
 	</p>
 	<p>
 		<%= f.label :discipline %><br />
@@ -27,10 +32,23 @@
  		%>
 	</p>
 	<p>
+		<%= f.label :participants %><br />
+		<%= f.select :participants, options_for_select([
+    							["Select Pparticipants", "0"],							
+								["Organizer","org "],
+								["Avatars","avt"],	 
+								["Judges","jud"],	
+								["Audience","aud"],	
+								["Teams","tem"] 														
+ 							]), :style => "width:197px" 
+ 		%>
+	</p>
+	<p>
 		<%= f.label :dateStart, "Start Date" %><br />		
 		<!--
 		<%= f.text_field :dateStart, :class => "textfield_effect  date-pick" %></br>
 		-->
+		
 		<%= select_tag "ch_st_date", options_for_select([
     							["Select Start Date", "0"],							
 								["Immediately","#ch_st_imm"],
@@ -54,6 +72,7 @@
 		<!--
 		<%= f.text_field :dateEnd, :class => "textfield_effect date-pick" %>
 		-->
+		
 		<%= select_tag "ch_ed_date", options_for_select([
     							["Select Start Date", "0"],							
 								["Date","#ch_ed_dat"],	 
@@ -70,21 +89,38 @@
 	</br>
 	</br>
 	<p>
-		<%= f.label :participants %><br />
-		<%= f.select :participants, options_for_select([
-    							["Select Pparticipants", "0"],							
-								["Organizer","org "],
-								["Avatars","avt"],	 
-								["Judges","jud"],	
-								["Audience","aud"],	
-								["Teams","tem"] 														
- 							]), :style => "width:197px" 
- 		%>
+		<div id="new_tsk_field">
+		    	<table border="1" class="atable">
+					<tr><th colspan="2">Input your task</th>
+						<th>
+							<input type="button" class="alternativeRow" value="Add Row" style="float:left; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
+						</th>
+					</tr>
+					<tr>
+						<td>New Task</td>
+						<td>
+							<%= text_field_tag :task, nil, :placeholder => 'Enter task...', :class => "textfield_effect_nw_tk_add" %>
+						</td>
+						<td>
+							<input type="button" class="delRow" value="Remove" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
+						</td>
+					</tr>
+					<tr>
+						<td>New Task</td>
+						<td>
+							<%= text_field_tag :task, nil, :placeholder => 'Enter task...', :class => "textfield_effect_nw_tk_add" %>
+						</td>						
+						<td>
+							<input type="button" class="delRow" value="Remove" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
+						</td>
+					</tr>
+				</table>
+		    </div>
 	</p>
 	<p>
 		<%= f.submit "Create Challenge" %>
 	</p>
-	
+	</br>
 	<!--
 	<p>
 		<%= f.label :title %><br/>
@@ -98,8 +134,11 @@
 	
 	<%= f.submit %>
 	-->
-<% end %>
-
+	
+    <% end %>
+    </div>	
+   </div>
+</div>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		// Date Picker scripting code
@@ -120,9 +159,40 @@
 			$('#ch_ed_date').hide();
 			$(sel_val).show();
 		});
+		
+		// Add row for new task
+		$(".alternativeRow").btnAddRow({oddRowCSS:"oddRow",evenRowCSS:"evenRow"});
+		$(".delRow").btnDelRow();
 			
 	});
 </script>
 
+<style type="text/css">
 
+	.atable{
+		border-collapse:collapse;
+		border:1px solid #AAA;
+		width:100%;
+	}
+	
+	.atable th{
+		border:1px solid #AAF;
+		background:#ADD8E6;
+		font-weight:bold;
+	}
+
+	.atable td{
+		padding:4px;
+		border:1px solid #AAF;
+	}
+
+	.oddRow{
+		background:#FFFFFF;
+	}
+
+	.evenRow{
+		background:#F0F8FF;
+	}
+	
+</style>
 

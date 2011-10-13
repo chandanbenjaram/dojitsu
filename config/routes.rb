@@ -10,13 +10,15 @@ Dojitsu::Application.routes.draw do
   match '/contactus', :to=>'static#contactus'
   resources :authentications
   resources :usermails
-  
+ 
   resources :challenges do
     collection do
       get "add_task"
+      get "update_task"
     end
   end
   resources :user_connections
+  resources :messages
   resources :usermail
 
   # root page

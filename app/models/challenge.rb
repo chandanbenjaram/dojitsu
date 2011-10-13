@@ -17,7 +17,7 @@ class Challenge
 
   embeds_many :tasks  
 
-  validates_presence_of :title
+  validates_presence_of :title, :message => "Please enter title!" 
   
   def user
     User.find(user_id)
