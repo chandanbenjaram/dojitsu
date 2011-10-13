@@ -1,6 +1,97 @@
-<%= render 'layouts/loggedinbody'%>
-<%= form_for @challenge do |f| %>
-	<%= f.label :title %>:
-	<%= f.text_field :title %>
+<%= stylesheet_link_tag('datePicker')%>
+<%= javascript_include_tag('jquery.datePicker')%>
+
+<%= form_for( @challenge,:validate => true) do |f| %>
+	<p>
+		<%= f.label :title %><br />
+		<%= f.text_field :title, :class => "textfield_effect" %>
+	</p>
+	<p>
+		<%= f.label :description %><br />
+		<%= f.text_area :description %>
+	</p>
+	<p>
+		<%= f.label :discipline %><br />
+		<%= f.select :discipline, options_for_select([
+    							["Select Categories", "0"],							
+								["Categories 1","cat1"],
+								["Categories 2","cat2"],	 
+								["Categories 3","cat3"],	
+								["Categories 4","cat4"],	
+								["Categories 5","cat5"] 														
+ 							]), :style => "width:197px" 
+ 		%>
+	</p>
+	<p>
+		<%= f.label :dateStart, "Start Date" %><br />
+		<%= f.select :dateStart, options_for_select([
+    							["Select Start Date", "0"],							
+								["Immediately","#imm "],
+								["Date","#dat"],	 
+								["Number","#num"]														
+ 							]), :style => "width:197px" 
+ 		%>
+		<div id="imm" style="display:none;">
+			<%= f.text_field :dateStart, :class => "textfield_effect" %>
+		</div>
+		<div id="dat" style="display:none;">
+			<%= f.text_field :dateStart, :class => "textfield_effect" %>
+		</div>
+		<div id="num" style="display:none;">
+			<%= f.text_field :dateStart, :class => "textfield_effect" %>
+		</div>	
+	</p>
+	<p>
+		<%= f.label :dateEnd, "End Date" %><br />
+		<%= f.text_field :dateEnd, :class => "textfield_effect" %>
+	</p>
+	<p>
+		<%= f.label :participants %><br />
+		<%= f.select :participants, options_for_select([
+    							["Select Pparticipants", "0"],							
+								["Organizer","org "],
+								["Avatars","avt"],	 
+								["Judges","jud"],	
+								["Audience","aud"],	
+								["Teams","tem"] 														
+ 							]), :style => "width:197px" 
+ 		%>
+	</p>
+	<p>
+		<%= f.submit "Create Challenge" %>
+	</p>
+	
+	<!--
+	<p>
+		<%= f.label :title %><br/>
+		<%= text_field_tag 'challenge[title]', @challenge.title, :placeholder => 'enter title...' %>
+	</p>
+
+	<p>
+		<%= f.label :description %><br/>
+		<%= text_area_tag 'challenge[description]', @challenge.description, :placeholder => 'enter description...' %>
+	</p>
+	
 	<%= f.submit %>
+	-->
 <% end %>
+
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		// Date Picker scripting code
+		//alert("Date picker is working");
+		$('#challenge_dateStart').datetimepicker({
+			showButtonPanel: true	
+		});
+		
+		$('#challenge_dateStart').change(function() {
+  			var sel_val = $(this).val();
+			alert(""+sel_val);
+			$('#challenge_dateStart').hide();
+			$(sel_val).show();
+		});
+	});
+</script>
+
+
+

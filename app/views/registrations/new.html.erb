@@ -4,20 +4,20 @@
 <%= devise_error_messages! %>
 -->
 <p><%= f.label :email %><br />
-	<%= f.text_field :email %></p>
+	<%= f.text_field :email, :class => "textfield_effect" %></p>
 	
 	<%= f.label :fname,"First Name" %><br />
-	<%= f.text_field :fname %></p>
+	<%= f.text_field :fname, :class => "textfield_effect" %></p>
 	
 	<%= f.label :lname, "Last Name" %><br />
-	<%= f.text_field :lname %></p>
+	<%= f.text_field :lname, :class => "textfield_effect" %></p>
 
 	<% if @user.password_required? %> 
 	<p><%= f.label :password %><br />
-		<%= f.password_field :password %></p>
+		<%= f.password_field :password , :class => "textfield_effect"%></p>
 
 		<p><%= f.label :password_confirmation %><br />
-			<%= f.password_field :password_confirmation %></p>
+			<%= f.password_field :password_confirmation , :class => "textfield_effect"%></p>
 			<% end %>
 			<p><%= f.submit "Register" %></p>
 			<% end %>

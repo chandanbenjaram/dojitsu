@@ -1,13 +1,13 @@
-<%= render 'layouts/loggedinbody'%>
-<br><h3>All Challenges</h3>
+<h3>All Challenges</h3>
 <% if @challenges.blank? %>
-<p>no challenges at all.</p>
-<% else %>  
-<ul>
-	<% @challenges.each do |c| %>
-	<li><%= link_to c.title, {:action => 'show', :id => c.id } %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Edit", edit_challenge_path(c) %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Delete", challenge_path(c), :method => 'delete' %></li>
-	<% end %>
-</ul>	
+	<p>no challenges at all.</p>
+<% else %>
+	<div id="ch_index_list" style="width:100%; float:left;">
+		<% @challenges.each do |c| %>
+			<%= link_to c.title, {:action => 'show', :id => c.id } %><br>
+		<% end %>
+		</br>
+		<p><%= link_to "Create New Challenge", new_challenge_url %></p>
+	</div>	
 <% end %>                                                       
 <br/>
-<p><%= link_to "Create New Challenge", new_challenge_path %></p>

@@ -71,6 +71,13 @@ a.signup_button {
     padding: 20px;
 }
 
+h3{
+	margin-left:5px;
+	color:#fff;
+	width:50%;
+	float:left;
+}
+
 
 /* Navigation */
 nav {
@@ -145,7 +152,7 @@ div.field, div.actions {
 }
 
 .dojo-navbar {
-    background-color: #389AFF;
+    background-color: #38a4ff;
     height: 25px;
 }
 
@@ -160,7 +167,7 @@ ul.dojo-menu {
 
 ul.dojo-menu li {
     margin: 0px;
-    padding: 20px;
+    padding: 10px;
     display: inline;
     list-style:	none;
     vertical-align: bottom;
@@ -198,3 +205,112 @@ a.selected {
   padding-left: 5px;  
   font-size: 12px;  
 } 
+
+.textfield_effect {
+	border-width: 1px;
+	border-style: solid;
+	border-color: #999999;
+	background-image: url("https://a248.e.akamai.net/si.lscdn.net/deals/images/bingy/text-shadow.png");
+	background-repeat: repeat-x;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	color: #000000;
+	width: 250px;
+	height: 25px;
+}
+
+textarea {
+	border-width: 1px;
+	border-style: solid;
+	border-color: #999999;
+	background-image: url("https://a248.e.akamai.net/si.lscdn.net/deals/images/bingy/text-shadow.png");
+	background-repeat: repeat-x;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333333;
+	width: 240px;
+	height: 100px;
+}
+
+select {
+    -moz-border-radius: 4px;
+    -moz-box-shadow: 1px 1px 5px #cfcfcf inset;
+    border: 1px solid #cfcfcf;
+    vertical-align: middle;
+    width: 250px;
+	height: 25px;
+}
+option {
+    background-color: #fef5e6;
+    border-bottom: 1px solid #ebdac0;
+    border-right: 1px solid #d6bb86;
+    border-left: 1px solid #d6bb86;
+	height: 25px;
+}
+
+option:hover {
+    cursor: pointer;
+}
+
+#dashbord{
+	position:relative;
+	width:100%;
+	float:none;
+	margin-top:5%;
+}
+
+#ds_performance_tracker{
+	position:relative;
+	float:left;
+	width:67%;
+	margin-left:0px;
+	margin-top:10px;
+}
+
+#ds_my_profile{
+	position:relative;
+	float:right;
+	width:30%;
+	margin-top:10px;
+	margin-right:0px;
+}
+
+#ds_upcoming_task_and_milestone{
+	position:relative;
+	float:left;
+	width:67%;
+	margin-top:10px;
+	margin-left:0px;
+}
+
+#ds_messages{
+	position:relative;
+	float:right;
+	width:30%;	
+	margin-top:10px;
+	margin-right:0px;
+}
+
+#ds_my_chall{
+	position:relative;
+	float:left;
+	width:67%;
+	margin-top:10px;
+	margin-left:0px;
+}
+
+#ds_news_feed{
+	position:relative;
+	float:right;
+	width:30%;
+	margin-top:10px;
+	margin-right:0px;
+}
+
+#ds_top_performer{
+	position:relative;
+	float:left;
+	width:67%;
+	margin-top:10px;
+	margin-left:0px;
+}
