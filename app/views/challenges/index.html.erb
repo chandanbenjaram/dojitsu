@@ -9,7 +9,10 @@
 	<% else %>
 	<div id="ch_index_list" style="width:100%; float:left;">
 		<% @challenges.each do |c| %>
-			<%= link_to c.title, {:action => 'show', :id => c.id } %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Add Task", add_task_challenges_path(:id => c.id)%><br>
+			<%= link_to c.title, {:action => 'show', :id => c.id } %><br>
+			<!--
+			<%= link_to "Add Task", add_task_challenges_path(:id => c.id)%><br>
+			-->
 		<% end %>	
 	</br>
 	</div>

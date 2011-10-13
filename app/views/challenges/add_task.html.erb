@@ -1,18 +1,47 @@
+<%= javascript_include_tag('jquery.table.addrow')%>
+
 <%= render 'layouts/loggedinbody'%>
 <h2>Create new task</h2>
 <div id="nw_tsk_div" style="width:100%; border:1px solid black; background-color:grey;">
 	</br>
 	<div id="ne_tsk_div_form" style="width:99%; background-color:#fff; margin-left:4px;">
 	   <div id="ne_tsk_div_form_al" style="width:99%; background-color:#fff; margin-left:4px;">
-		<%= form_tag challenge_path(@challenge.id), :method => :get do %>
+		<%= form_tag update_task_challenges_path(@challenge.id), :method => :get do %>
 			<%= text_field_tag :margin , "#{@challenge.title}" ,:class => "textfield_effect_nw_tk" %>
 			<%= text_area_tag :marginn , "#{@challenge.description}" ,:class => "textarea_nw_tk" %>
+			<!--
 			<input type="button" value="Delete" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
 			<input type="button" class="rm" value="Edit" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
 			<input type="button" class="ad" value="Add" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
-		    </br>
-			<div id="new_tsk_field" style="display:none;">
-		    	hiiiii
+		    -->
+			</br>
+			</br>
+			<div id="new_tsk_field">
+		    	<table border="1" class="atable">
+					<tr><th colspan="2">Input your task</th>
+						<th>
+							<input type="button" class="alternativeRow" value="Add Row" style="float:left; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
+						</th>
+					</tr>
+					<tr>
+						<td>New Task</td>
+						<td>
+							<%= text_field_tag :task, nil, :placeholder => 'Enter task...', :class => "textfield_effect_nw_tk_add" %>
+						</td>
+						<td>
+							<input type="button" class="delRow" value="Remove" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
+						</td>
+					</tr>
+					<tr>
+						<td>New Task</td>
+						<td>
+							<%= text_field_tag :task, nil, :placeholder => 'Enter task...', :class => "textfield_effect_nw_tk_add" %>
+						</td>						
+						<td>
+							<input type="button" class="delRow" value="Remove" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
+						</td>
+					</tr>
+				</table>
 		    </div>
 			<%= submit_tag "Save"%>
 			<input type="button" value="Cancel">
@@ -33,5 +62,38 @@
 		$('.rm').click(function(){
 			alert("hey, U hit remove")
 		})
+		
+		// Add row for new task
+		$(".alternativeRow").btnAddRow({oddRowCSS:"oddRow",evenRowCSS:"evenRow"});
+		$(".delRow").btnDelRow();
 	});
 </script>
+
+<style type="text/css">
+
+	.atable{
+		border-collapse:collapse;
+		border:1px solid #AAA;
+		width:100%;
+	}
+	
+	.atable th{
+		border:1px solid #AAF;
+		background:#ADD8E6;
+		font-weight:bold;
+	}
+
+	.atable td{
+		padding:4px;
+		border:1px solid #AAF;
+	}
+
+	.oddRow{
+		background:#FFFFFF;
+	}
+
+	.evenRow{
+		background:#F0F8FF;
+	}
+	
+</style>

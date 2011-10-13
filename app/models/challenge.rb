@@ -6,8 +6,8 @@ class Challenge
   field :title, :type=>String
   field :description, :type=>String
 
-  field :dateStart, :type=>DateTime
-  field :dateEnd, :type=>DateTime
+  field :dateStart
+  field :dateEnd
   field :discipline, :type=>String
   field :participants, :type=>String
   field :rules, :type=>Array    
@@ -17,7 +17,7 @@ class Challenge
 
   embeds_many :tasks  
 
-  validates_presence_of :title, :description
+  validates_presence_of :title, :message => "Please enter title!" 
   
   def user
     User.find(user_id)

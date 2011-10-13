@@ -1,3 +1,3 @@
 Rails.application.config.middleware.use OmniAuth::Builder do  
-#  provider :facebook, '208068219229732', '0d8e4313c829e165ebf70272fc8a2f48'
+#provider :facebook, '232592880122189', '7d7557a9be33907cffda2aa02173a03c',:client_options => { :ssl => { :ca_file => "#{Rails.root}/config/ca-bundle.crt" } } 
 end

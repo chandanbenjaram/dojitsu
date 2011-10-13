@@ -1,0 +1,149 @@
+<html>
+ <body>
+<%= render 'layouts/loggedinbody'%>
+<hr/>
+<div id="ds_performance_tracker" style="background:white; height:350px; width :500px; border: 1px;  border-width:3px;
+  border-style:solid;
+  border-color:black">
+
+<div id="ds_performance_tracker_tit" style="background:grey; height:30px; width :500px;">
+			<h3>Manage My Dojo</h3>
+			
+		</div>
+
+ <div id="fb-root">
+ 	<p>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+
+    <p align=left><b>Add New</b>
+    <a href="#"
+      onclick="sendRequestToManyRecipients(); return false;"
+      value="Find More" align=left><font color ="black"></nt>Manage Current Dojo</font></a>
+   
+    </p>
+  
+    <script>
+      FB.init({
+        appId  : '232592880122189',
+        status : true,
+        cookie : true,
+        oauth: true
+      });
+
+     
+   
+      function sendRequestToManyRecipients() {
+        FB.ui({method: 'apprequests',
+          message: 'My Great Request',
+        }, requestCallback);
+      }
+      
+      function requestCallback(response) {
+        // Handle callback here
+      }
+
+
+    </script>	</p>
+ 	</div>
+    <div id="fb-root">
+
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+    <table width=450px bgcolor=white>
+    	<tr bgcolor=white>
+    		<td width=400px bgcolor=white><input type="text" value="User ID" name="user_id" /></td>
+      <td width=50px bgcolor=white><input type="button"
+        onclick="sendRequestToOneRecipient(); return false;"
+        value="ADD" align="right"
+      /></td>
+      
+    </tr>
+	<tr bgcolor=white>
+    		<td width=400px bgcolor=white><input type="text" value="User ID" name="user_id" /></td>
+      <td width=50px><input type="button"
+        onclick="sendRequestToOneRecipient(); return false;"
+        value="ADD" align="right"
+      /></td>
+      
+    </tr>
+	<tr bgcolor=white>
+    		<td width=400px bgcolor=white><input type="text" value="User ID" name="user_id" /></td>
+      <td width=50px><input type="button"
+        onclick="sendRequestToOneRecipient(); return false;"
+        value="ADD" align="right"
+      /></td>
+      
+    </tr>
+	<tr bgcolor=white>
+    		<td width=400px bgcolor=white><input type="text" value="User ID" name="user_id" /></td>
+      <td width=50px><input type="button"
+        onclick="sendRequestToOneRecipient(); return false;"
+        value="ADD" align="right"
+      /></td>
+      
+    </tr>
+	</table>
+   
+    
+    <script>
+     FB.init({
+        appId  : '232592880122189',
+        status : true,
+        cookie : true,
+        oauth: true
+      });
+// to send request to single friend use this function 
+      function sendRequestToOneRecipient() {
+        var user_id = document.getElementsByName("user_id")[0].value;
+        FB.ui({method: 'apprequests',
+          message: 'My Great Request',
+          to: user_id, 
+        }, requestCallback);
+      }
+
+    </script>
+</div>
+<div id=fb-root" style="width: 500px; height: 50px; ">
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+
+    <p>
+    <input type="button"
+      onclick="sendRequestToManyRecipients(); return false;"
+      value="Find More"
+    />
+    </p>
+  
+    <script>
+      FB.init({
+        appId  : '232592880122189',
+        status : true,
+        cookie : true,
+        oauth: true
+      });
+
+     
+   
+      function sendRequestToManyRecipients() {
+        FB.ui({method: 'apprequests',
+          message: 'My Great Request',
+        }, requestCallback);
+      }
+      
+      function requestCallback(response) {
+        // Handle callback here
+      }
+
+
+    </script>
+
+</div>
+    
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
