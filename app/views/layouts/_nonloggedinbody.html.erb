@@ -6,7 +6,7 @@
       <p> Today's New Challenges </p>
       <ul>
         <% Challenge.asc(:title).each do |e|%>
-          <li><%= link_to  e.title, 'challenges#show' %></li>
+          <li><%= link_to  e.title, 'users/sign_in' %></li>
         <% end %>
       </ul>
     </div>
