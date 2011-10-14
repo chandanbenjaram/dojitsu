@@ -14,6 +14,7 @@ Dojitsu::Application.routes.draw do
   resources :challenges do
     collection do
       get "add_task"
+      get "update_task"
     end
   end
   resources :user_connections
