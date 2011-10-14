@@ -2,8 +2,6 @@
 <%= stylesheet_link_tag('datePicker')%>
 <%= javascript_include_tag('jquery.datePicker', 'date','jquery.table.addrow')%>
 
-<%= render 'layouts/loggedinbody'%>
-
 <% t = Time.now.strftime("%m-%d-%Y") %>
 <h2 align="center">Create new challenge</h2>
 <div id="ch_main_div" style="width:100%; border:1px solid black; background-color:grey;">
@@ -120,7 +118,7 @@
 	<p>
 		<%= f.submit "Create Challenge" %>
 	</p>
-	</br>
+	
 	<!--
 	<p>
 		<%= f.label :title %><br/>
