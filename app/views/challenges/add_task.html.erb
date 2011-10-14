@@ -1,49 +1,85 @@
 <%= javascript_include_tag('jquery.table.addrow')%>
 
 <%= render 'layouts/loggedinbody'%>
-<h2>Create new task</h2>
+<h2>Second form of challenge</h2>
 <div id="nw_tsk_div" style="width:100%; border:1px solid black; background-color:grey;">
 	</br>
 	<div id="ne_tsk_div_form" style="width:99%; background-color:#fff; margin-left:4px;">
 	   <div id="ne_tsk_div_form_al" style="width:99%; background-color:#fff; margin-left:4px;">
-		<%= form_tag update_task_challenges_path(@challenge.id), :method => :get do %>
-			<%= text_field_tag :margin , "#{@challenge.title}" ,:class => "textfield_effect_nw_tk" %>
-			<%= text_area_tag :marginn , "#{@challenge.description}" ,:class => "textarea_nw_tk" %>
+		<%= form_for @challenge do |f| %>
+		  <p>
+			<%= f.text_field :title ,:class => "textfield_effect_nw_tk" %>
+		  </p>
+		  <p>	
+			<%= f.text_area :description, :class => "textarea_nw_tk" %></br></br>
+		  </p>	
 			<!--
 			<input type="button" value="Delete" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
 			<input type="button" class="rm" value="Edit" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
 			<input type="button" class="ad" value="Add" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
 		    -->
-			</br>
-			</br>
-			<div id="new_tsk_field">
-		    	<table border="1" class="atable">
-					<tr><th colspan="2">Input your task</th>
-						<th>
-							<input type="button" class="alternativeRow" value="Add Row" style="float:left; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
-						</th>
-					</tr>
-					<tr>
-						<td>New Task</td>
-						<td>
-							<%= text_field_tag :task, nil, :placeholder => 'Enter task...', :class => "textfield_effect_nw_tk_add" %>
-						</td>
-						<td>
-							<input type="button" class="delRow" value="Remove" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
-						</td>
-					</tr>
-					<tr>
-						<td>New Task</td>
-						<td>
-							<%= text_field_tag :task, nil, :placeholder => 'Enter task...', :class => "textfield_effect_nw_tk_add" %>
-						</td>						
-						<td>
-							<input type="button" class="delRow" value="Remove" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
-						</td>
-					</tr>
-				</table>
-		    </div>
-			<%= submit_tag "Save"%>
+		  <p>	
+    		<%= f.radio_button :cha_type, "soc", :class => "chall_type"%>
+			<%= f.label "Social Challenge" %><br />			
+			<div id="challenge_cha_type_soc_div" style="display:none;">
+			<fieldset>
+   			<legend><h4 style="color:#000000;"><i><div id="heading_style">Social Challenge</div></i></h4></legend>
+			  <p>
+			  	<%= f.label :scoring_method_soc, "Scoring Method"%></br>
+				<%= f.select :scoring_method_soc, options_for_select([
+    							["Select Categories", "0"],							
+								["Add all milestones together","sco1"],
+								["1st person to reach End Point","sco2"],	 
+								["Highest milestone","sco3"],	
+								["Lowest milestone","sco4"],	
+								["Participant reaches all milestones","sco5"] 														
+ 							]), :style => "width:197px" 
+ 				%>
+				</p>
+				<p>
+			  	<%= f.label :will_participating, "Scoring Method"%></br>
+				<%= f.select :will_participating, options_for_select([
+    							["Select Categories", "0"],							
+								["Participating","Participating"],
+								["Organizing","Organizing"] 														
+ 							]), :style => "width:197px" 
+ 				%>
+				</p>
+				<p>
+			  	<%= f.label :no_of_winners, "Scoring Method"%></br>
+				<%= f.select :no_of_winners, options_for_select([
+								["Select Categories", "0"],
+    							["1", "1"],							
+								["3","3"],
+								["5","5"],	 
+								["All participants win","all"] 														
+ 							]), :style => "width:197px" 
+ 				%>
+				</p>
+			</fieldset>	
+			</div>
+		  </p>	
+			<%= f.radio_button :cha_type, "per", :class => "chall_type" %>
+			<%= f.label "Personal Challenge" %><br />
+			<div id="challenge_cha_type_per_div" style="display:none;">
+			<fieldset>
+   			<legend><h4 style="color:#000000;"><i><div id="heading_style">Personal Challenge</div></i></h4></legend>
+				<p>
+			  	<%= f.label :scoring_method_per, "Scoring Method"%></br>
+				<%= f.select :scoring_method_per, options_for_select([
+    							["Select Categories", "0"],							
+								["Add all milestones together","sco1"],
+								["1st person to reach End Point","sco2"],	 
+								["Highest milestone","sco3"],	
+								["Lowest milestone","sco4"],	
+								["Participant reaches all milestones","sco5"] 														
+ 							]), :style => "width:197px" 
+ 				%>
+				</p>
+			</fieldset>	
+			</div>
+			
+			<%= f.submit "Save"%>
 			<input type="button" value="Cancel">
 		<% end %>
 	   </div>	
@@ -54,46 +90,20 @@
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 		//alert("jquery working");
-		$('.ad').click(function(){
-			alert("hey, U hit add")
-			$("<div></div>").appendTo("div#new_tsk_field");
+		$('.chall_type').click(function(){
+			if ($(this).attr("id") == "challenge_cha_type_per")
+			{
+				//alert($(this).attr("id"));
+				$("#challenge_cha_type_per_div").show("fast");
+				$("#challenge_cha_type_soc_div").hide("fast");
+			}
+			else
+			{
+				//alert($(this).attr("id"));
+				$("#challenge_cha_type_soc_div").show("fast");
+				$("#challenge_cha_type_per_div").hide("fast");
+			}
+			//$("<div></div>").appendTo("div#new_tsk_field");
 		});
-		
-		$('.rm').click(function(){
-			alert("hey, U hit remove")
-		})
-		
-		// Add row for new task
-		$(".alternativeRow").btnAddRow({oddRowCSS:"oddRow",evenRowCSS:"evenRow"});
-		$(".delRow").btnDelRow();
 	});
 </script>
-
-<style type="text/css">
-
-	.atable{
-		border-collapse:collapse;
-		border:1px solid #AAA;
-		width:100%;
-	}
-	
-	.atable th{
-		border:1px solid #AAF;
-		background:#ADD8E6;
-		font-weight:bold;
-	}
-
-	.atable td{
-		padding:4px;
-		border:1px solid #AAF;
-	}
-
-	.oddRow{
-		background:#FFFFFF;
-	}
-
-	.evenRow{
-		background:#F0F8FF;
-	}
-	
-</style>

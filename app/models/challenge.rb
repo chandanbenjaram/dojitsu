@@ -21,8 +21,13 @@ class Challenge
   field :discipline, :type=>String
   field :participants, :type=>String
   field :rules, :type=>Array    
-  field :goals, :type=>Array        
-
+  field :goals, :type=>Array    
+  
+  field :cha_type, :type=>String
+  field :scoring_method_soc, :type=>String
+  field :scoring_method_per, :type=>String
+  field :will_participating, :type=>String
+  field :no_of_winners, :type=>String
   field :user_id, :type=>String
 
   embeds_many :tasks  

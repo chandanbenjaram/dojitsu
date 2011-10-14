@@ -24,7 +24,7 @@ class ChallengesController < ApplicationController
       doc.user_id = current_user.id
     end
           
-    redirect_to @challenge, :notice => "Challenge created!"   
+    redirect_to  add_task_challenges_path(:id => @challenge.id), :notice => "Challenge created!"   
   end
 
   def edit
@@ -46,6 +46,7 @@ class ChallengesController < ApplicationController
   end  
   
   def add_task
+    #raise params.to_yaml
     @tsk_id = params[:id]
     @challenge = Challenge.find(params[:id])
   end
