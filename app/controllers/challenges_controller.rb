@@ -19,6 +19,7 @@ class ChallengesController < ApplicationController
 
   def create
     #raise params.to_yaml
+    #raise dateStart.inspect
     @challenge = Challenge.create!(params[:challenge]) do |doc|  
       doc.user_id = current_user.id
     end

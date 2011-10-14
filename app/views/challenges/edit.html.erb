@@ -2,10 +2,9 @@
 <%= stylesheet_link_tag('datePicker')%>
 <%= javascript_include_tag('jquery.datePicker', 'date','jquery.table.addrow')%>
 
-<%= render 'layouts/loggedinbody'%>
-
 <% t = Time.now.strftime("%m-%d-%Y") %>
-<h2 align="center">Create new challenge</h2>
+</br>
+</br>
 <div id="ch_main_div" style="width:100%; border:1px solid black; background-color:grey;">
   </br>
 	<div id="ne_tsk_div_form" style="width:99%; background-color:#fff; margin-left:4px;">
@@ -57,13 +56,13 @@
  							]), :style => "width:197px" 
  		%>
 		<div id="ch_st_dat" style="display:none;">
-			<%= f.text_field :dateStart, :class => "textfield_effect  date-pick" %></br>
+			<%= f.text_field :dateStart1, :class => "textfield_effect  date-pick" %></br>
 		</div>
 		<div id="ch_st_imm" style="display:none;">
-			<%= f.text_field :dateStart, :value => "#{t}", :class => "textfield_effect" %>
+			<%= f.text_field :dateStart2, :value => "#{t}", :class => "textfield_effect" %>
 		</div>
 		<div id="ch_st_num" style="display:none;">
-			<%= f.text_field :dateStart, :class => "textfield_effect" %>
+			<%= f.text_field :dateStart3, :class => "textfield_effect" %>
 		</div>
 	</p>
 	</br>
@@ -80,10 +79,10 @@
  							]), :style => "width:197px" 
  		%>
 		<div id="ch_ed_dat" style="display:none;">
-			<%= f.text_field :dateEnd, :class => "textfield_effect  date-pick" %></br>
+			<%= f.text_field :dateEnd1, :class => "textfield_effect  date-pick" %></br>
 		</div>
 		<div id="ch_ed_num" style="display:none;">
-			<%= f.text_field :dateEnd, :class => "textfield_effect" %>
+			<%= f.text_field :dateEnd2, :class => "textfield_effect" %>
 		</div>
 	</p>
 	</br>
@@ -93,7 +92,7 @@
 		    	<table border="1" class="atable">
 					<tr><th colspan="2">Input your task</th>
 						<th>
-							<input type="button" class="alternativeRow" value="Add Row" style="float:left; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
+							<input type="button" class="alternativeRow" value="Add Task" style="float:left; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
 						</th>
 					</tr>
 					<tr>
@@ -105,21 +104,17 @@
 							<input type="button" class="delRow" value="Remove" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
 						</td>
 					</tr>
-					<tr>
-						<td>New Task</td>
-						<td>
-							<%= text_field_tag :task, nil, :placeholder => 'Enter task...', :class => "textfield_effect_nw_tk_add" %>
-						</td>						
-						<td>
-							<input type="button" class="delRow" value="Remove" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
-						</td>
-					</tr>
 				</table>
 		    </div>
 	</p>
 	<p>
-		<%= f.submit "Create Challenge" %>
+		<%= f.submit "Next", :style => "float:left;"%>
+		<input type="button" value="Cancel" style="float:left;">
+		<!--
+		<%= button_to "Cancel", :action => "index" ,:style => "float:left;"%>
+		-->
 	</p>
+	</br>
 	</br>
 	<!--
 	<p>
@@ -148,15 +143,15 @@
 		
 		$('#ch_st_date').change(function() {
   			var sel_val = $(this).val();
-			//alert(""+sel_val);
-			$('#ch_st_date').hide();
-			$(sel_val).show();
+			//alert("new"+sel_val);
+			//$('#ch_st_date').hide();
+			$(sel_val).show();	
 		});
 		
 		$('#ch_ed_date').change(function() {
   			var sel_val = $(this).val();
 			//alert(""+sel_val);
-			$('#ch_ed_date').hide();
+			//$('#ch_ed_date').hide();
 			$(sel_val).show();
 		});
 		
