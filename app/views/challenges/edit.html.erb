@@ -5,239 +5,176 @@
 <% t = Time.now.strftime("%m-%d-%Y") %>
 </br>
 </br>
-<div id="ch_main_div" style="width:100%; border:1px solid black; background-color:grey;">
-  </br>
-	<div id="ne_tsk_div_form" style="width:99%; background-color:#fff; margin-left:4px;">
-     <div id="ne_tsk_div_form_al" style="width:99%; background-color:#fff; margin-left:4px;">
-     <%= form_for( @challenge,:validate => true) do |f| %>
-	 <p>
-		<%= f.label :title %><br />
-		<%= f.text_field :title, :class => "textfield_effect_nw_tk" %>
-	</p>
-	<p>
-		<%= f.label :description %><br />
-		<%= f.text_area :description,:class => "textarea_nw_tk" %>
-	</p>
-	<p>
-		<%= f.label :discipline %><br />
-		<%= f.select :discipline, options_for_select([
-    							["Select Categories", "0"],							
-								["Categories 1","cat1"],
-								["Categories 2","cat2"],	 
-								["Categories 3","cat3"],	
-								["Categories 4","cat4"],	
-								["Categories 5","cat5"] 														
- 							]), :style => "width:197px" 
- 		%>
-	</p>
-	<p>
-		<%= f.label :participants %><br />
-		<%= f.select :participants, options_for_select([
-    							["Select Participants", "0"],							
-								["Organizer","org "],
-								["Avatars","avt"],	 
-								["Judges","jud"],	
-								["Audience","aud"],	
-								["Teams","tem"] 														
- 							]), :style => "width:197px" 
- 		%>
-	</p>
-	<p>
-		<%= f.label :dateStart, "Start Date" %><br />		
-		<!--
-		<%= f.text_field :dateStart, :class => "textfield_effect  date-pick" %></br>
-		-->
-		
-		<%= select_tag "ch_st_date", options_for_select([
-    							["Select Start Date", "0"],							
-								["Immediately","#ch_st_imm"],
-								["Date","#ch_st_dat"],	 
-								["Number","#ch_st_num"]														
- 							]), :style => "width:197px" 
- 		%>
-		<div id="ch_st_dat" style="display:none;">
-			<%= f.text_field :dateStart1, :class => "textfield_effect  date-pick" %></br>
-		</div>
-		<div id="ch_st_imm" style="display:none;">
-			<%= f.text_field :dateStart2, :value => "#{t}", :class => "textfield_effect" %>
-		</div>
-		<div id="ch_st_num" style="display:none;">
-			<%= f.text_field :dateStart3, :class => "textfield_effect" %>
-		</div>
-	</p>
-	</br>
-	<p>
-		<%= f.label :dateEnd, "End Date" %><br />
-		<!--
-		<%= f.text_field :dateEnd, :class => "textfield_effect date-pick" %>
-		-->
-		
-		<%= select_tag "ch_ed_date", options_for_select([
-    							["Select Start Date", "0"],							
-								["Date","#ch_ed_dat"],	 
-								["Number","#ch_ed_num"]														
- 							]), :style => "width:197px" 
- 		%>
-		<div id="ch_ed_dat" style="display:none;">
-			<%= f.text_field :dateEnd1, :class => "textfield_effect  date-pick" %></br>
-		</div>
-		<div id="ch_ed_num" style="display:none;">
-			<%= f.text_field :dateEnd2, :class => "textfield_effect" %>
-		</div>
-	</p>
-	</br>
-	</br>
-	<p>
-		<div id="new_tsk_field">
-		    	<table border="1" class="atable">
-					<tr><th colspan="2">Input your task</th>
-						<th>
-							<input type="button" class="alternativeRow" value="Add Task" style="float:left; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
-						</th>
-					</tr>
-					<tr>
-						<td>New Task</td>
-						<td>
-							<%= text_field_tag :task, nil, :placeholder => 'Enter task...', :class => "textfield_effect_nw_tk_add" %>
-						</td>
-						<td>
-							<input type="button" class="delRow" value="Remove" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
-						</td>
-					</tr>
-				</table>
-		    </div>
-	</p>
-	<p>
-		<%= f.submit "Next", :style => "float:left;"%>
-		<input type="button" value="Cancel" style="float:left;">
-		<!--
-		<%= button_to "Cancel", :action => "index" ,:style => "float:left;"%>
-		-->
-	</p>
-	</br>
-	</br>
-	<!--
-	<p>
-		<%= f.label :title %><br/>
-		<%= text_field_tag 'challenge[title]', @challenge.title, :placeholder => 'enter title...' %>
-	</p>
+</br>
+<div id="ne_tsk_div_form">
+	<div id="ne_tsk_div_form_al">
+		<%= form_for( @challenge,:validate => true) do |f| %>
+		<p>
+			<%= f.label :title %><br />
+			<%= f.text_field :title, :class => "textfield_effect_nw_tk" %>
+		</p>
+		<p>
+			<%= f.label :description %><br />
+			<%= f.text_area :description,:class => "textarea_nw_tk" %>
+		</p>
+		<p>
+			<%= f.label :discipline %><br />
+			<%= f.select :discipline, options_for_select([
+				["Select Categories", "0"],							
+				["Categories 1","cat1"],
+				["Categories 2","cat2"],	 
+				["Categories 3","cat3"],	
+				["Categories 4","cat4"],	
+				["Categories 5","cat5"] 														
+				]), :style => "width:197px" 
+				%>
+			</p>
+			<p>
+				<%= f.label :participants %><br />
+				<%= f.select :participants, options_for_select([
+					["Select Participants", "0"],							
+					["Organizer","org "],
+					["Avatars","avt"],	 
+					["Judges","jud"],	
+					["Audience","aud"],	
+					["Teams","tem"] 														
+					]), :style => "width:197px" 
+					%>
+				</p>
+				<p>
+					<%= f.label :dateStart, "Start Date" %><br />		
+					<%= select_tag "ch_st_date", options_for_select([
+						["Immediately","#startDateNow"],
+						["Date","#startDateDate"],	 
+						["Number","#startDateNbr"]														
+						]), :style => "width:197px" 
+						%><br/>
+						<%= f.text_field :dateStart, :class => "textfield_effect  date-pick" %>
+					</p>
+				</br>
+				<p>
+					<%= f.label :dateEnd, "End Date" %><br />
+					<!--
+					<%= f.text_field :dateEnd, :class => "textfield_effect date-pick" %>
+					-->
 
-	<p>
-		<%= f.label :description %><br/>
-		<%= text_area_tag 'challenge[description]', @challenge.description, :placeholder => 'enter description...' %>
-	</p>
-	
-	<%= f.submit %>
-	-->
-	
-    <% end %>
-    </div>	
-   </div>
+					<%= select_tag "ch_ed_date", options_for_select([
+						["Select Start Date", "0"],							
+						["Date","#ch_ed_dat"],	 
+						["Number","#ch_ed_num"]														
+						]), :style => "width:197px" 
+						%>
+						<div id="ch_ed_dat" style="display:none;">
+							<%= f.text_field :dateEnd1, :class => "textfield_effect  date-pick" %></br>
+						</div>
+						<div id="ch_ed_num" style="display:none;">
+							<%= f.text_field :dateEnd2, :class => "textfield_effect" %>
+						</div>
+					</p>
+				</br>
+			</br>
+			<p>
+				<div id="new_tsk_field">
+					<table border="1" class="atable">
+						<tr><th colspan="2">Input your task</th>
+							<th>
+								<input type="button" class="alternativeRow" value="Add Task" style="float:left; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
+							</th>
+						</tr>
+						<tr>
+							<td>New Task</td>
+							<td>
+								<%= text_field_tag :task, nil, :placeholder => 'Enter task...', :class => "textfield_effect_nw_tk_add" %>
+							</td>
+							<td>
+								<input type="button" class="delRow" value="Remove" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
+							</td>
+						</tr>
+					</table>
+				</div>
+			</p>
+			<p>                                                         
+				<input type="button" value="Cancel" style="width: 100px;">
+				<%= f.submit "Next", :style => "width: 100px;"%>
+			</p>
+		</br>
+	</br>
+	<% end %>
+</div>	
 </div>
+
 <script type="text/javascript">
-	jQuery(document).ready(function($) {
-		// Date Picker scripting code
-		//alert("Date picker is working");
-		$('.date-pick').datePicker({startDate:'01/01/1996'});
-		
-		/*
-		$('#ch_st_date').change(function() {
-  			var sel_val = $(this).val();
-			//alert("new"+sel_val);
-			//$('#ch_st_date').hide();
-			$(sel_val).show();	
-		});
-		*/
-		
-		$('#ch_st_date').change(function() {
-  			var sel_val = $(this).val();
-			//alert("new"+sel_val);
-			//$('#ch_st_date').hide();
-			if ($(this).val() == "#ch_st_dat")
-			{
-				//alert("date");
-				$(sel_val).show();
-				$('#ch_st_imm').hide();
-				$('#ch_st_num').hide();	
-			}
-			else if($(this).val() == "#ch_st_imm")
-			{
-				//alert("immediate");
-				$(sel_val).show();
-				$('#ch_st_dat').hide();
-				$('#ch_st_num').hide();
-			}
-			else
-			{
-				//alert("number");
-				$(sel_val).show();
-				$('#ch_st_dat').hide();
-				$('#ch_st_imm').hide();
-			}
-				
-		});
-			
-		$('#ch_ed_date').change(function() {
-  			var sel_val = $(this).val();
-			//alert("new"+sel_val);
-			//$('#ch_st_date').hide();
-			if ($(this).val() == "#ch_ed_dat")
-			{
-				//alert("date");
-				$(sel_val).show();
-				$('#ch_ed_num').hide();	
-			}
-			else
-			{
-				//alert("number");
-				$(sel_val).show();
-				$('#ch_ed_dat').hide();
-			}
-				
-		});
-				
-		/*
-		$('#ch_ed_date').change(function() {
-  			var sel_val = $(this).val();
-			//alert(""+sel_val);
-			//$('#ch_ed_date').hide();
-			$(sel_val).show();
-		});
-		*/
-		
-		// Add row for new task
-		$(".alternativeRow").btnAddRow({oddRowCSS:"oddRow",evenRowCSS:"evenRow"});
-		$(".delRow").btnDelRow();
-			
+jQuery(document).ready(function($) {
+	// Date Picker scripting code
+	//alert("Date picker is working");
+	$('.date-pick').datePicker({startDate:'01/01/1996'});
+
+    $('#ch_st_date').change(function() {
+		console.debug('changed...' + $(this));
+
 	});
+
+	$('#ch_ed_date').change(function() {
+		var sel_val = $(this).val();
+		//alert("new"+sel_val);
+		//$('#ch_st_date').hide();
+		if ($(this).val() == "#ch_ed_dat")
+		{
+			//alert("date");
+			$(sel_val).show();
+			$('#ch_ed_num').hide();	
+		}
+		else
+		{
+			//alert("number");
+			$(sel_val).show();
+			$('#ch_ed_dat').hide();
+		}
+
+	});
+
+	/*
+	$('#ch_ed_date').change(function() {
+	var sel_val = $(this).val();
+	//alert(""+sel_val);
+	//$('#ch_ed_date').hide();
+	$(sel_val).show();
+	});
+	*/
+
+	// Add row for new task
+	$(".alternativeRow").btnAddRow({oddRowCSS:"oddRow",evenRowCSS:"evenRow"});
+	$(".delRow").btnDelRow();
+
+});
 </script>
 
 <style type="text/css">
 
-	.atable{
-		border-collapse:collapse;
-		border:1px solid #AAA;
-		width:100%;
-	}
-	
-	.atable th{
-		border:1px solid #AAF;
-		background:#ADD8E6;
-		font-weight:bold;
-	}
+.atable{
+	border-collapse:collapse;
+	border:1px solid #AAA;
+	width:100%;
+}
 
-	.atable td{
-		padding:4px;
-		border:1px solid #AAF;
-	}
+.atable th{
+	border:1px solid #AAF;
+	background:#ADD8E6;
+	font-weight:bold;
+}
 
-	.oddRow{
-		background:#FFFFFF;
-	}
+.atable td{
+	padding:4px;
+	border:1px solid #AAF;
+}
 
-	.evenRow{
-		background:#F0F8FF;
-	}
-	
+.oddRow{
+	background:#FFFFFF;
+}
+
+.evenRow{
+	background:#F0F8FF;
+}
+
 </style>
 
