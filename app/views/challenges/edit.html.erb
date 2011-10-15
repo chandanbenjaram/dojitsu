@@ -140,20 +140,70 @@
 		//alert("Date picker is working");
 		$('.date-pick').datePicker({startDate:'01/01/1996'});
 		
-		
+		/*
 		$('#ch_st_date').change(function() {
   			var sel_val = $(this).val();
 			//alert("new"+sel_val);
 			//$('#ch_st_date').hide();
 			$(sel_val).show();	
 		});
+		*/
 		
+		$('#ch_st_date').change(function() {
+  			var sel_val = $(this).val();
+			//alert("new"+sel_val);
+			//$('#ch_st_date').hide();
+			if ($(this).val() == "#ch_st_dat")
+			{
+				//alert("date");
+				$(sel_val).show();
+				$('#ch_st_imm').hide();
+				$('#ch_st_num').hide();	
+			}
+			else if($(this).val() == "#ch_st_imm")
+			{
+				//alert("immediate");
+				$(sel_val).show();
+				$('#ch_st_dat').hide();
+				$('#ch_st_num').hide();
+			}
+			else
+			{
+				//alert("number");
+				$(sel_val).show();
+				$('#ch_st_dat').hide();
+				$('#ch_st_imm').hide();
+			}
+				
+		});
+			
+		$('#ch_ed_date').change(function() {
+  			var sel_val = $(this).val();
+			//alert("new"+sel_val);
+			//$('#ch_st_date').hide();
+			if ($(this).val() == "#ch_ed_dat")
+			{
+				//alert("date");
+				$(sel_val).show();
+				$('#ch_ed_num').hide();	
+			}
+			else
+			{
+				//alert("number");
+				$(sel_val).show();
+				$('#ch_ed_dat').hide();
+			}
+				
+		});
+				
+		/*
 		$('#ch_ed_date').change(function() {
   			var sel_val = $(this).val();
 			//alert(""+sel_val);
 			//$('#ch_ed_date').hide();
 			$(sel_val).show();
 		});
+		*/
 		
 		// Add row for new task
 		$(".alternativeRow").btnAddRow({oddRowCSS:"oddRow",evenRowCSS:"evenRow"});
