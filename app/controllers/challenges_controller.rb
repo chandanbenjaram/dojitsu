@@ -15,6 +15,7 @@ class ChallengesController < ApplicationController
     session[:challenge_params] ||={}
     @challenge = Challenge.new(session[:challenge_params])
     @challenge.current_step = session[:form_step]
+    1.times {@challenge.tasks.build}
   end
 
   def create

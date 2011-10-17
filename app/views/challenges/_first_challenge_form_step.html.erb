@@ -62,7 +62,17 @@
 		-->
 	</p>
 	</br>
-	</br>	
+	</br>
+	<%= f.fields_for :tasks do |builder|%>
+	<!--
+	<p>
+		<%= builder.label :task_description, "New Task"%><br>
+		<%= builder.text_field :task_description, :class => "textfield_effect"%>
+		<%= builder.hidden_field :_destroy %>
+		<%= link_to_function "remove", "remove_fields(this)"%>
+	</p>
+	-->
+		
 	<p>
 		<div id="new_tsk_field">
 			<table border="1" class="atable">
@@ -74,7 +84,10 @@
 				<tr>
 					<td>New Task</td>
 					<td>
+						<%= builder.text_field :task_description, :class => "textfield_effect_nw_tk_add"%>
+						<!--
 						<%= text_field_tag :task, nil, :class => "textfield_effect_nw_tk_add" %>
+						-->
 					</td>
 					<td>
 						<input type="button" class="delRow" value="Remove" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
@@ -83,3 +96,4 @@
 			</table>
 		</div>
 	</p>
+	<% end %>

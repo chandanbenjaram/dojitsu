@@ -32,8 +32,9 @@ class Challenge
   field :user_id, :type=>String
 
   embeds_many :tasks
+  accepts_nested_attributes_for :tasks  ,:reject_if => lambda {|a| a[:tasks].blank?}
 
-  validates_presence_of :title,  :if => lambda { |o| o.current_step == "first_challenge_form" } #:message => "Please enter title!" 
+  validates_presence_of :title,  :message => "Please enter title!" ,:if => lambda { |o| o.current_step == "first_challenge_form" } #:message => "Please enter title!" 
   
   def user
     User.find(user_id)

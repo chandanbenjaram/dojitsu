@@ -11,7 +11,7 @@
 <%= form_for @challenge do |f|%>
 	<%= render "#{@challenge.current_step}_step", :f => f%>
  	<p>  
-		<%= f.submit "Back", :name => "previous_button" unless @challenge.first_step? %>
+		<%= f.submit "Back", :style => "width: 100px;", :name => "previous_button" unless @challenge.first_step? %>
 		<%= f.submit "Next", :style => "width: 100px;"%>
 		
 	</p>
@@ -194,8 +194,9 @@ jQuery(document).ready(function($) {
 	// Add row for new task
 	$(".alternativeRow").btnAddRow({oddRowCSS:"oddRow",evenRowCSS:"evenRow"});
 	$(".delRow").btnDelRow();
-
+	
 });
+
 </script>
 
 <style type="text/css">
