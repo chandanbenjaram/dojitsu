@@ -15,6 +15,7 @@ Dojitsu::Application.routes.draw do
     collection do
       get "add_task"
       get "update_task"
+      get "pravin"
     end
   end
   resources :user_connections
