@@ -2,16 +2,29 @@
 
 <%= render 'layouts/loggedinbody'%>
 <h2>Second form of challenge</h2>
+<%= debug @all_data%>
 <div id="nw_tsk_div" style="width:100%; border:1px solid black; background-color:grey;">
 	</br>
 	<div id="ne_tsk_div_form" style="width:99%; background-color:#fff; margin-left:4px;">
 	   <div id="ne_tsk_div_form_al" style="width:99%; background-color:#fff; margin-left:4px;">
-		<%= form_for @challenge do |f| %>
+		<%= form_for (@challenge, :method => "post") do |f| %>
 		  <p>
+		  	<!--
 			<%= f.text_field :title ,:class => "textfield_effect_nw_tk" %>
+			-->
+			<%= text_field_tag :title , "#{@title}" ,:class => "textfield_effect_nw_tk" %>
 		  </p>
 		  <p>	
+		  	<!--
 			<%= f.text_area :description, :class => "textarea_nw_tk" %></br></br>
+			-->
+			<%= text_field_tag :description , "#{@description}" ,:class => "textfield_effect_nw_tk" %>
+			<%= f.hidden_field :title, @title %>
+			<%= hidden_field_tag 'description', @description %>
+			<%= hidden_field_tag 'dateStart', @dateStart %>
+			<%= hidden_field_tag 'dateEnd', @dateEnd %>
+			<%= hidden_field_tag 'discipline', @discipline %>
+			<%= hidden_field_tag 'participants', @participants %> 
 		  </p>	
 			<!--
 			<input type="button" value="Delete" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
@@ -78,7 +91,7 @@
 				</p>
 			</fieldset>	
 			</div>
-			
+		</p>	
 			<%= f.submit "Save"%>
 			<input type="button" value="Cancel">
 		<% end %>
