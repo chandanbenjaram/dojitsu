@@ -11,11 +11,12 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.find(params[:id])
   end
 
-  def new  
-    session[:challenge_params] ||={}
-    @challenge = Challenge.new(session[:challenge_params])
-    @challenge.current_step = session[:form_step]
-    1.times {@challenge.tasks.build}
+  def new
+    @challenge = Challenge.new
+    #session[:challenge_params] ||={}
+    #@challenge = Challenge.new(session[:challenge_params])
+    #@challenge.current_step = session[:form_step]
+    #1.times {@challenge.tasks.build}
   end
 
   def create
@@ -89,7 +90,7 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.new
     render  add_task_challenges_path
   end
-  
+    
   protected
   
   def find_challenge

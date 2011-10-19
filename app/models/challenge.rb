@@ -5,6 +5,7 @@ class Challenge
   
   attr_accessible :title, :description, :dateStart, :dateEnd, :discipline, :participants, :cha_type, :scoring_method_soc, :scoring_method_per, :will_participating, :no_of_winners  
   attr_writer :current_step
+  attr_reader :dateStart1, :dateStart21, :dateStart22, :dateEnd1, :dateEnd21, :dateEnd22
   
   before_save :ensure_start_date
   before_save :ensure_end_date
@@ -13,12 +14,9 @@ class Challenge
   field :description, :type=>String
 
   field :dateStart
-  field :dateStart1
-  field :dateStart2
-  field :dateStart3
   field :dateEnd
-  field :dateEnd1
-  field :dateEnd2
+  field :task_comp
+  field :save_as_tempalate
   field :discipline, :type=>String
   field :participants, :type=>String
   field :rules, :type=>Array    
@@ -29,6 +27,7 @@ class Challenge
   field :scoring_method_per, :type=>String
   field :will_participating, :type=>String
   field :no_of_winners, :type=>String
+  field :add_myself, :type=>String
   field :user_id, :type=>String
 
   embeds_many :tasks

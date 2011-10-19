@@ -1,137 +1,212 @@
+
+<%= stylesheet_link_tag('simple-tabs','datePicker')%>
+<%= javascript_include_tag('simple-tabs','jquery.table.addrow','jquery.datePicker','date')%>
+
 <%= render 'layouts/loggedinbody'%>
-<%= stylesheet_link_tag('datePicker')%>
-<%= javascript_include_tag('jquery.datePicker', 'date','jquery.table.addrow')%>
-
-<% t = Time.now.strftime("%m-%d-%Y") %>
-</br>
-</br>
-</br>
-
-
-<%= form_for @challenge do |f|%>
-	<%= render "#{@challenge.current_step}_step", :f => f%>
- 	<p>  
-		<%= f.submit "Back", :style => "width: 100px;", :name => "previous_button" unless @challenge.first_step? %>
-		<%= f.submit "Next", :style => "width: 100px;"%>
-		
-	</p>
-<% end %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-<div id="ne_tsk_div_form">
-	<div id="ne_tsk_div_form_al">
-		<%= form_for( @challenge, :method => "get" ,:url => pravin_challenges_path, :validate => true) do |f| %>
-		<p>
-			<%= f.label :title %><br />
-			<%= f.text_field :title, :class => "textfield_effect_nw_tk" %>
-		</p>
-		<p>
-			<%= f.label :description %><br />
-			<%= f.text_area :description,:class => "textarea_nw_tk" %>
-		</p>
-		<p>
-			<%= f.label :discipline %><br />
-			<%= f.select :discipline, options_for_select([
-				["Select Categories", "0"],							
-				["Categories 1","cat1"],
-				["Categories 2","cat2"],	 
-				["Categories 3","cat3"],	
-				["Categories 4","cat4"],	
-				["Categories 5","cat5"] 														
-				]), :style => "width:197px" 
-				%>
-			</p>
-			<p>
-				<%= f.label :participants %><br />
-				<%= f.select :participants, options_for_select([
-					["Select Participants", "0"],							
-					["Organizer","org "],
-					["Avatars","avt"],	 
-					["Judges","jud"],	
-					["Audience","aud"],	
-					["Teams","tem"] 														
-					]), :style => "width:197px" 
-					%>
-				</p>
-				<p>
-					<%= f.label :dateStart, "Start Date" %><br />		
+<div id="ch_main_div">
+	<%= form_for @challenge do |f| %>
+		<table width="100%" border="0">
+  			<tr>
+    			<td colspan="4"><p align="center"><%= f.text_field :title, :class => "textfield_effect_nw_tk" %></p></td>
+   			</tr>
+			<tr>
+    			<td width="15%"><%= f.label :description, "DESCRIPTION" %></td>
+    			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk" %></td>
+  			</tr>
+			<tr>
+    			<td><%= f.label :dateStart, "START POINT" %></td>
+    			<td>
 					<%= select_tag "ch_st_date", options_for_select([
-						["Immediately","#startDateNow"],
+						["Choose", "0"],
 						["Date","#startDateDate"],	 
 						["Number","#startDateNbr"]														
 						]), :style => "width:197px" 
-						%><br/>
-						<%= f.text_field :dateStart, :class => "textfield_effect  date-pick" %>
-					</p>
-				</br>
-				</br>
-				<p>
-					<%= f.label :dateEnd, "End Date" %><br />
+					%>
+				</td>
+				<td>
+					<%= f.text_field :dateStart, :class => "textfield_effect  date-pick" %>
+				</td>
+				<td>	
 					<!--
-					<%= f.text_field :dateEnd, :class => "textfield_effect date-pick" %>
+					<div id="ch_st_dat" style="display:none;">
+						<%= f.text_field :dateStart1, :class => "textfield_effect  date-pick" %></br>
+					</div>
+					<div id="ch_st_num" style="display:none;">
+						<%= f.text_field :dateStart21, :class => "textfield_effect" %>
+						<%= f.text_field :dateStart22, :class => "textfield_effect" %>
+					</div>
 					-->
-<!--
+				</td>
+  			</tr>
+			<tr>
+    			<td><%= f.label :dateEnd, "END POINT" %></td>
+    			<td>
 					<%= select_tag "ch_ed_date", options_for_select([
-						["Select Start Date", "0"],							
+						["Choose", "0"],							
 						["Date","#ch_ed_dat"],	 
 						["Number","#ch_ed_num"]														
 						]), :style => "width:197px" 
-						%>
-						<div id="ch_ed_dat" style="display:none;">
-							<%= f.text_field :dateEnd1, :class => "textfield_effect  date-pick" %></br>
-						</div>
-						<div id="ch_ed_num" style="display:none;">
-							<%= f.text_field :dateEnd2, :class => "textfield_effect" %>
-						</div>
-					</p>
-				</br>
-			</br>
-			<p>
-				<div id="new_tsk_field">
-					<table border="1" class="atable">
-						<tr><th colspan="2">Input your task</th>
-							<th>
-								<input type="button" class="alternativeRow" value="Add Task" style="float:left; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
-							</th>
-						</tr>
-						<tr>
-							<td>New Task</td>
-							<td>
-								<%= text_field_tag :task, nil, :placeholder => 'Enter task...', :class => "textfield_effect_nw_tk_add" %>
-							</td>
-							<td>
-								<input type="button" class="delRow" value="Remove" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
-							</td>
-						</tr>
-					</table>
-				</div>
-			</p>
-			<p>                                                         
-				<input type="button" value="Cancel" style="width: 100px;">
-				<%= f.submit "Next", :style => "width: 100px;"%>
-			</p>
-		</br>
-	</br>
-	<% end %>
-</div>	
+					%>				
+				</td>
+				<td>
+					<%= f.text_field :dateEnd, :class => "textfield_effect  date-pick" %>
+				</td>
+				<td>	
+					<!--
+					<div id="ch_st_dat" style="display:none;">
+						<%= f.text_field :dateEnd1, :class => "textfield_effect  date-pick" %></br>
+					</div>
+					<div id="ch_st_num" style="display:none;">
+						<%= f.text_field :dateEnd21, :class => "textfield_effect" %>
+						<%= f.text_field :dateEnd22, :class => "textfield_effect" %>
+					</div>
+					-->
+				</td>
+  			</tr>
+			<tr>
+  				<td><b>CREATE TASK</b></td>
+    			<td colspan="3">
+    				<div id="new_tsk_field">		
+						<table border="1" class="atable">
+							<tr>
+								<th>Score this task by</th>
+								<th>Point(s)</th>
+								<th>Task(name)
+									<input type="button" class="alternativeRow" value="Add Task" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
+								</th>
+							</tr>
+							<tr>
+								<td>
+									<%= select_tag "ch_task_type", options_for_select([
+										["Choose", "0"],
+										["Check box:1 for checking off the task", "0"],							
+										["Number of days to finsh the task","#ch_ed_dat"],	 
+										["Self-report number","#ch_ed_num"]														
+										]), :style => "width:197px;" 
+									%>
+								</td>
+								<td>		
+									<%= text_field_tag :task, nil, :class => "textfield_effect_nw_tk_add" %>
+								</td>
+								<td>
+									<%= text_field_tag :task, nil, :class => "textfield_effect" %>
+									<input type="button" class="delRow" value="Remove" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-top:6px;">
+								</td>
+							</tr>
+							<tr>
+								<td colspan="3">
+									<b>Do all tasks need to be complete before the challenge is marked complete?</b><br>
+									<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
+									<%= f.label "Yes" %>
+									<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
+									<%= f.label "No" %>
+								</td>
+							</tr>
+						</table>
+					</div>
+    			</td>
+  			</tr>
+			<tr>
+  				<td><b>PRIVACY</b></td>
+    			<td colspan="3">
+    				<ul class="tabs">
+    					<li><a href="#tab1">Social</a></li>
+    					<li><a href="#tab2">Personal</a></li>
+					</ul>
+
+					<div class="tab_container">
+    					<div id="tab1" class="tab_content">
+    						<table width="100%" border="0">
+  								<tr>
+    								<td><%= f.label :scoring_method_soc, "Who wins?"%></td>
+									<td>
+										<%= f.select :scoring_method_soc, options_for_select([
+	    									["Choose", "0"],							
+											["Add all milestones together","sco1"],
+											["1st person to reach End Point","sco2"],	 
+											["Highest milestone","sco3"],	
+											["Lowest milestone","sco4"],	
+											["Participant reaches all milestones","sco5"] 														
+ 											]), :style => "width:197px" 
+ 										%>		
+									</td>
+  								</tr>
+  								<tr>
+    								<td><%= f.label :no_of_winners, "How many winners?"%></td>
+									<td>
+										<%= f.select :no_of_winners, options_for_select([
+											["Select Categories", "0"],
+    										["1", "1"],							
+											["3","3"],
+											["5","5"],	 
+											["All participants win","all"] 														
+ 											]), :style => "width:197px" 
+ 										%>		
+									</td>
+  								</tr>
+  								<tr>
+    								<td><%= f.label :will_participating, "Participants"%></td>
+									<td>
+										<%= f.select :will_participating, options_for_select([
+    										["Select Categories", "0"],							
+											["Participating","Participating"],
+											["Organizing","Organizing"] 														
+ 											]), :style => "width:197px" 
+ 										%>
+									</td>
+  								</tr>
+  								<tr>
+  									<td></td>
+    								<td><%= f.check_box :add_myself%><b>Add myself as one of the participants</b></td>
+  								</tr>
+							</table>
+    					</div>
+    					<div id="tab2" class="tab_content">
+       						<table width="100%" border="0">
+  								<tr>
+    								<td><%= f.label :scoring_method_per, "Who wins?"%></td>
+									<td>
+										<%= f.select :scoring_method_per, options_for_select([
+    										["Select Categories", "0"],							
+											["Add all milestones together","sco1"],
+											["1st person to reach End Point","sco2"],	 
+											["Highest milestone","sco3"],	
+											["Lowest milestone","sco4"],	
+											["Participant reaches all milestones","sco5"] 														
+ 											]), :style => "width:197px" 
+ 										%>
+									</td>
+  								</tr>
+							</table>  
+    					</div>
+					</div>
+    			</td>
+  			</tr>
+			<tr>
+  				<td colspan="4"></td>
+  			</tr>
+			<tr>
+    			<td colspan="4"><b><%= f.check_box :save_as_tempalate%>Save this challenge as template in my profile</b></td>
+  			</tr>		
+  			<tr>
+  				<td></td>
+    			<td></td>
+    			<td><p align="right"><%= f.submit "DONE", :style => "width: 100px;", :class => "links" %></p></td>
+    			<td><p align="left"><%= f.submit "CANCEL", :style => "width: 100px;", :class => "links"%></p></td>
+  			</tr> 
+		</table>
+	<% end %>	
 </div>
--->
+
 <script type="text/javascript">
 jQuery(document).ready(function($) {
+	
+	
+	// Add row for new task
+	//alert("hiiiiiiiii");
+	$(".alternativeRow").btnAddRow({oddRowCSS:"oddRow",evenRowCSS:"evenRow"});
+	$(".delRow").btnDelRow();
+	
 	// Date Picker scripting code
 	//alert("Date picker is working");
 	$('.date-pick').datePicker({startDate:'01/01/1996'});
@@ -182,7 +257,6 @@ jQuery(document).ready(function($) {
 
 	});
 	
-	/*
 	$('#ch_ed_date').change(function() {
 	var sel_val = $(this).val();
 	//alert(""+sel_val);
@@ -191,10 +265,6 @@ jQuery(document).ready(function($) {
 	});
 	*/
 
-	// Add row for new task
-	$(".alternativeRow").btnAddRow({oddRowCSS:"oddRow",evenRowCSS:"evenRow"});
-	$(".delRow").btnDelRow();
-	
 });
 
 </script>
@@ -204,7 +274,7 @@ jQuery(document).ready(function($) {
 .atable{
 	border-collapse:collapse;
 	border:1px solid #AAA;
-	width:100%;
+	width:97%;
 }
 
 .atable th{
@@ -227,4 +297,3 @@ jQuery(document).ready(function($) {
 }
 
 </style>
-
