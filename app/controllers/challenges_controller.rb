@@ -50,7 +50,7 @@ class ChallengesController < ApplicationController
 
   def edit
   	#raise params.inspect
-    @challenge
+    @challenge = Challenge.find(params[:id])
   end   
 
   def update
