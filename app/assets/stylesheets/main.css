@@ -237,7 +237,20 @@ a.selected {
 	font-size: 20px;
 	font-weight:bold;
 	color: #000000;
-	width: 100%;
+	width: 95%;
+	height: 25px;
+}
+
+.textarea_nw_tk {
+	border-width: 1px;
+	border-style: solid;
+	border-color: #999999;
+	background-image: url("https://a248.e.akamai.net/si.lscdn.net/deals/images/bingy/text-shadow.png");
+	background-repeat: repeat-x;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	color: #333333;
+	width: 96%;
 	height: 35px;
 }
 
@@ -252,19 +265,6 @@ a.selected {
 	color: #000000;
 	width: 100%;
 	height: 20px;
-}
-
-.textarea_nw_tk {
-	border-width: 1px;
-	border-style: solid;
-	border-color: #999999;
-	background-image: url("https://a248.e.akamai.net/si.lscdn.net/deals/images/bingy/text-shadow.png");
-	background-repeat: repeat-x;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 15px;
-	color: #333333;
-	width: 99%;
-	height: 80px;
 }
 
 textarea {
@@ -287,6 +287,7 @@ select {
     vertical-align: middle;
     width: 250px;
 	height: 25px;
+	color:#f9a943;
 }
 
 option {
@@ -298,11 +299,11 @@ option {
 }
 
 .links {
-    background: none repeat scroll 0 0 #46A5E5;
+    background: none repeat scroll 0 0 #f9a943;
     border-radius: 3px 3px 3px 3px;
     color: #FFFFFF;
     display: block;
-    font-size: 10px;
+    font-size: 12px;
     margin: 20px 0;
     padding: 5px;
     text-align: center;
@@ -376,4 +377,15 @@ option:hover {
 	margin-top:10px;
 	margin-left:0px;
 }
+
+#ch_main_div{
+	border-width:10px;
+  	border-style:solid;
+  	border-color:#f4f4f4;
+	margin-top:35px;
+	-moz-border-radius:    5px;
+    -webkit-border-radius: 5px;
+    border-radius:         5px;
+}
+
 

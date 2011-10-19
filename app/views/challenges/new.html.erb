@@ -1,0 +1,299 @@
+
+<%= stylesheet_link_tag('simple-tabs','datePicker')%>
+<%= javascript_include_tag('simple-tabs','jquery.table.addrow','jquery.datePicker','date')%>
+
+<%= render 'layouts/loggedinbody'%>
+<div id="ch_main_div">
+	<%= form_for @challenge do |f| %>
+		<table width="100%" border="0">
+  			<tr>
+    			<td colspan="4"><p align="center"><%= f.text_field :title, :class => "textfield_effect_nw_tk" %></p></td>
+   			</tr>
+			<tr>
+    			<td width="15%"><%= f.label :description, "DESCRIPTION" %></td>
+    			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk" %></td>
+  			</tr>
+			<tr>
+    			<td><%= f.label :dateStart, "START POINT" %></td>
+    			<td>
+					<%= select_tag "ch_st_date", options_for_select([
+						["Choose", "0"],
+						["Date","#startDateDate"],	 
+						["Number","#startDateNbr"]														
+						]), :style => "width:197px" 
+					%>
+				</td>
+				<td>
+					<%= f.text_field :dateStart, :class => "textfield_effect  date-pick" %>
+				</td>
+				<td>	
+					<!--
+					<div id="ch_st_dat" style="display:none;">
+						<%= f.text_field :dateStart1, :class => "textfield_effect  date-pick" %></br>
+					</div>
+					<div id="ch_st_num" style="display:none;">
+						<%= f.text_field :dateStart21, :class => "textfield_effect" %>
+						<%= f.text_field :dateStart22, :class => "textfield_effect" %>
+					</div>
+					-->
+				</td>
+  			</tr>
+			<tr>
+    			<td><%= f.label :dateEnd, "END POINT" %></td>
+    			<td>
+					<%= select_tag "ch_ed_date", options_for_select([
+						["Choose", "0"],							
+						["Date","#ch_ed_dat"],	 
+						["Number","#ch_ed_num"]														
+						]), :style => "width:197px" 
+					%>				
+				</td>
+				<td>
+					<%= f.text_field :dateEnd, :class => "textfield_effect  date-pick" %>
+				</td>
+				<td>	
+					<!--
+					<div id="ch_st_dat" style="display:none;">
+						<%= f.text_field :dateEnd1, :class => "textfield_effect  date-pick" %></br>
+					</div>
+					<div id="ch_st_num" style="display:none;">
+						<%= f.text_field :dateEnd21, :class => "textfield_effect" %>
+						<%= f.text_field :dateEnd22, :class => "textfield_effect" %>
+					</div>
+					-->
+				</td>
+  			</tr>
+			<tr>
+  				<td><b>CREATE TASK</b></td>
+    			<td colspan="3">
+    				<div id="new_tsk_field">		
+						<table border="1" class="atable">
+							<tr>
+								<th>Score this task by</th>
+								<th>Point(s)</th>
+								<th>Task(name)
+									<input type="button" class="alternativeRow" value="Add Task" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
+								</th>
+							</tr>
+							<tr>
+								<td>
+									<%= select_tag "ch_task_type", options_for_select([
+										["Choose", "0"],
+										["Check box:1 for checking off the task", "0"],							
+										["Number of days to finsh the task","#ch_ed_dat"],	 
+										["Self-report number","#ch_ed_num"]														
+										]), :style => "width:197px;" 
+									%>
+								</td>
+								<td>		
+									<%= text_field_tag :task, nil, :class => "textfield_effect_nw_tk_add" %>
+								</td>
+								<td>
+									<%= text_field_tag :task, nil, :class => "textfield_effect" %>
+									<input type="button" class="delRow" value="Remove" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-top:6px;">
+								</td>
+							</tr>
+							<tr>
+								<td colspan="3">
+									<b>Do all tasks need to be complete before the challenge is marked complete?</b><br>
+									<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
+									<%= f.label "Yes" %>
+									<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
+									<%= f.label "No" %>
+								</td>
+							</tr>
+						</table>
+					</div>
+    			</td>
+  			</tr>
+			<tr>
+  				<td><b>PRIVACY</b></td>
+    			<td colspan="3">
+    				<ul class="tabs">
+    					<li><a href="#tab1">Social</a></li>
+    					<li><a href="#tab2">Personal</a></li>
+					</ul>
+
+					<div class="tab_container">
+    					<div id="tab1" class="tab_content">
+    						<table width="100%" border="0">
+  								<tr>
+    								<td><%= f.label :scoring_method_soc, "Who wins?"%></td>
+									<td>
+										<%= f.select :scoring_method_soc, options_for_select([
+	    									["Choose", "0"],							
+											["Add all milestones together","sco1"],
+											["1st person to reach End Point","sco2"],	 
+											["Highest milestone","sco3"],	
+											["Lowest milestone","sco4"],	
+											["Participant reaches all milestones","sco5"] 														
+ 											]), :style => "width:197px" 
+ 										%>		
+									</td>
+  								</tr>
+  								<tr>
+    								<td><%= f.label :no_of_winners, "How many winners?"%></td>
+									<td>
+										<%= f.select :no_of_winners, options_for_select([
+											["Select Categories", "0"],
+    										["1", "1"],							
+											["3","3"],
+											["5","5"],	 
+											["All participants win","all"] 														
+ 											]), :style => "width:197px" 
+ 										%>		
+									</td>
+  								</tr>
+  								<tr>
+    								<td><%= f.label :will_participating, "Participants"%></td>
+									<td>
+										<%= f.select :will_participating, options_for_select([
+    										["Select Categories", "0"],							
+											["Participating","Participating"],
+											["Organizing","Organizing"] 														
+ 											]), :style => "width:197px" 
+ 										%>
+									</td>
+  								</tr>
+  								<tr>
+  									<td></td>
+    								<td><%= f.check_box :add_myself%><b>Add myself as one of the participants</b></td>
+  								</tr>
+							</table>
+    					</div>
+    					<div id="tab2" class="tab_content">
+       						<table width="100%" border="0">
+  								<tr>
+    								<td><%= f.label :scoring_method_per, "Who wins?"%></td>
+									<td>
+										<%= f.select :scoring_method_per, options_for_select([
+    										["Select Categories", "0"],							
+											["Add all milestones together","sco1"],
+											["1st person to reach End Point","sco2"],	 
+											["Highest milestone","sco3"],	
+											["Lowest milestone","sco4"],	
+											["Participant reaches all milestones","sco5"] 														
+ 											]), :style => "width:197px" 
+ 										%>
+									</td>
+  								</tr>
+							</table>  
+    					</div>
+					</div>
+    			</td>
+  			</tr>
+			<tr>
+  				<td colspan="4"></td>
+  			</tr>
+			<tr>
+    			<td colspan="4"><b><%= f.check_box :save_as_tempalate%>Save this challenge as template in my profile</b></td>
+  			</tr>		
+  			<tr>
+  				<td></td>
+    			<td></td>
+    			<td><p align="right"><%= f.submit "DONE", :style => "width: 100px;", :class => "links" %></p></td>
+    			<td><p align="left"><%= f.submit "CANCEL", :style => "width: 100px;", :class => "links"%></p></td>
+  			</tr> 
+		</table>
+	<% end %>	
+</div>
+
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+	
+	
+	// Add row for new task
+	//alert("hiiiiiiiii");
+	$(".alternativeRow").btnAddRow({oddRowCSS:"oddRow",evenRowCSS:"evenRow"});
+	$(".delRow").btnDelRow();
+	
+	// Date Picker scripting code
+	//alert("Date picker is working");
+	$('.date-pick').datePicker({startDate:'01/01/1996'});
+
+    $('#ch_st_date').change(function() {
+		console.debug('changed...' + $(this));
+
+	});
+	
+	$('#ch_ed_date').change(function() {
+		console.debug('changed...' + $(this));
+
+	});
+	
+	$('.chall_type').click(function(){
+		if ($(this).attr("id") == "challenge_cha_type_per")
+		{
+			//alert($(this).attr("id"));
+			$("#challenge_cha_type_per_div").show("fast");
+			$("#challenge_cha_type_soc_div").hide("fast");
+		}
+		else
+		{
+			//alert($(this).attr("id"));
+			$("#challenge_cha_type_soc_div").show("fast");
+			$("#challenge_cha_type_per_div").hide("fast");
+		}
+		//$("<div></div>").appendTo("div#new_tsk_field");
+	});
+	
+	/*
+	$('#ch_ed_date').change(function() {
+		var sel_val = $(this).val();
+		//alert("new"+sel_val);
+		//$('#ch_st_date').hide();
+		if ($(this).val() == "#ch_ed_dat")
+		{
+			//alert("date");
+			$(sel_val).show();
+			$('#ch_ed_num').hide();	
+		}
+		else
+		{
+			//alert("number");
+			$(sel_val).show();
+			$('#ch_ed_dat').hide();
+		}
+
+	});
+	
+	$('#ch_ed_date').change(function() {
+	var sel_val = $(this).val();
+	//alert(""+sel_val);
+	//$('#ch_ed_date').hide();
+	$(sel_val).show();
+	});
+	*/
+
+});
+
+</script>
+
+<style type="text/css">
+
+.atable{
+	border-collapse:collapse;
+	border:1px solid #AAA;
+	width:97%;
+}
+
+.atable th{
+	border:1px solid #AAF;
+	background:#ADD8E6;
+	font-weight:bold;
+}
+
+.atable td{
+	padding:4px;
+	border:1px solid #AAF;
+}
+
+.oddRow{
+	background:#FFFFFF;
+}
+
+.evenRow{
+	background:#F0F8FF;
+}
+
+</style>

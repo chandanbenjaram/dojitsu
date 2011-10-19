@@ -6,9 +6,35 @@
 </br>
 </br>
 </br>
+
+
+<%= form_for @challenge do |f|%>
+	<%= render "#{@challenge.current_step}_step", :f => f%>
+ 	<p>  
+		<%= f.submit "Back", :name => "previous_button" unless @challenge.first_step? %>
+		<%= f.submit "Next", :style => "width: 100px;"%>
+		
+	</p>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
 <div id="ne_tsk_div_form">
 	<div id="ne_tsk_div_form_al">
-		<%= form_for( @challenge,:validate => true) do |f| %>
+		<%= form_for( @challenge, :method => "get" ,:url => pravin_challenges_path, :validate => true) do |f| %>
 		<p>
 			<%= f.label :title %><br />
 			<%= f.text_field :title, :class => "textfield_effect_nw_tk" %>
@@ -52,12 +78,13 @@
 						<%= f.text_field :dateStart, :class => "textfield_effect  date-pick" %>
 					</p>
 				</br>
+				</br>
 				<p>
 					<%= f.label :dateEnd, "End Date" %><br />
 					<!--
 					<%= f.text_field :dateEnd, :class => "textfield_effect date-pick" %>
 					-->
-
+<!--
 					<%= select_tag "ch_ed_date", options_for_select([
 						["Select Start Date", "0"],							
 						["Date","#ch_ed_dat"],	 
@@ -102,7 +129,7 @@
 	<% end %>
 </div>	
 </div>
-
+-->
 <script type="text/javascript">
 jQuery(document).ready(function($) {
 	// Date Picker scripting code
@@ -113,7 +140,29 @@ jQuery(document).ready(function($) {
 		console.debug('changed...' + $(this));
 
 	});
+	
+	$('#ch_ed_date').change(function() {
+		console.debug('changed...' + $(this));
 
+	});
+	
+	$('.chall_type').click(function(){
+		if ($(this).attr("id") == "challenge_cha_type_per")
+		{
+			//alert($(this).attr("id"));
+			$("#challenge_cha_type_per_div").show("fast");
+			$("#challenge_cha_type_soc_div").hide("fast");
+		}
+		else
+		{
+			//alert($(this).attr("id"));
+			$("#challenge_cha_type_soc_div").show("fast");
+			$("#challenge_cha_type_per_div").hide("fast");
+		}
+		//$("<div></div>").appendTo("div#new_tsk_field");
+	});
+	
+	/*
 	$('#ch_ed_date').change(function() {
 		var sel_val = $(this).val();
 		//alert("new"+sel_val);
@@ -132,7 +181,7 @@ jQuery(document).ready(function($) {
 		}
 
 	});
-
+	
 	/*
 	$('#ch_ed_date').change(function() {
 	var sel_val = $(this).val();
