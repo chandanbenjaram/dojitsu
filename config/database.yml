@@ -26,7 +26,7 @@ production:
   adapter: mysql
   encoding: utf8
   database: dojitsu_prod
-  username: dojitsu.prod
-  password: [pass]
+  username: root
+  password: 
   host: localhost
   timeout: 5000
