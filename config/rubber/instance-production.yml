@@ -1,0 +1,58 @@
+--- 
+- !ruby/object:Rubber::Configuration::InstanceItem 
+  domain: dojitsu.com
+  external_host: ec2-107-22-33-41.compute-1.amazonaws.com
+  external_ip: 184.73.206.218
+  image_id: ami-fd589594
+  image_type: t1.micro
+  instance_id: i-ba030cda
+  internal_host: domU-12-31-39-14-EC-37.compute-1.internal
+  internal_ip: 10.206.239.197
+  name: dev
+  platform: linux
+  roles: 
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: web
+    options: {}
+
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: haproxy
+    options: {}
+
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: app
+    options: {}
+
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: passenger
+    options: {}
+
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: apache
+    options: {}
+
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: db
+    options: 
+      primary: true
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: mysql_master
+    options: {}
+
+  root_device_type: ebs
+  security_groups: 
+  - dojitsu_production_default
+  - dojitsu_production_web
+  - dojitsu_production_dev
+  - dojitsu_production_haproxy
+  - dojitsu_production_app
+  - dojitsu_production_passenger
+  - dojitsu_production_apache
+  - dojitsu_production_db
+  - dojitsu_production_mysql_master
+  static_ip: 184.73.206.218
+  zone: us-east-1d
+- volumes: {}
+
+  static_ips: 
+    dev: 184.73.206.218
