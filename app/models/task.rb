@@ -1,5 +1,7 @@
 class Task
   include Mongoid::Document
+  #field :ch_task_type
   field :task_description, :type => String
-  embedded_in :challenges
+  #field :task_point
+  embedded_in :challenge
 end

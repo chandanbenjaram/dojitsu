@@ -1,8 +1,10 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.0.rc8'
-gem 'mysql', '2.8.1'   
-         
+
+gem 'mysql', '2.8.1'
+#gem 'mysql2'
+           
 # authentication specifics
 gem 'devise'
 gem "oa-oauth", :require => "omniauth/oauth"
@@ -31,6 +33,7 @@ group :development, :test do
 	gem 'rspec-rails'
 	gem 'annotate'
 	#gem 'ruby-debug'
+	#gem 'mongrel'
 end       
 
 # Gems used only for assets and not required
