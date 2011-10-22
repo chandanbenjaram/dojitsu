@@ -13,39 +13,15 @@ class ChallengesController < ApplicationController
 
   def new
     @challenge = Challenge.new
-    #session[:challenge_params] ||={}
-    #@challenge = Challenge.new(session[:challenge_params])
-    #@challenge.current_step = session[:form_step]
-    #1.times {@challenge.tasks.build}
   end
 
   def create
     #raise params.to_yaml
     #raise dateStart.inspect
-    session[:challenge_params].deep_merge!(params[:challenge]) if params[:challenge]
-    @challenge = Challenge.new(session[:challenge_params])
-    @challenge.current_step = session[:form_step]
-    if @challenge.valid?
-      if params[:previous_button]
-        @challenge.previous_step
-      elsif @challenge.last_step?
-        @challenge.save  
-      else
-        @challenge.next_step
-      end
-      session[:form_step] = @challenge.current_step
-    end
-    if @challenge.new_record?
-       render 'new'
-    else
-       session[:form_step] = session[:challenge_params] = nil
-       flash[:notice] = "Challenge Created"
-       redirect_to @challenge
-    end
-    #@challenge = Challenge.create!(params[:challenge]) do |doc|  
-      #doc.user_id = current_user.id
-    #end      
-    #redirect_to  :action => "show", :notice => "Challenge created!"   
+    @challenge = Challenge.create!(params[:challenge]) do |doc|  
+      doc.user_id = current_user.id
+    end      
+    render  :action => "show", :notice => "Challenge created!"   
   end
 
   def edit
@@ -89,6 +65,10 @@ class ChallengesController < ApplicationController
     @participants = params[:challenge][:participants]
     @challenge = Challenge.new
     render  add_task_challenges_path
+  end
+  
+  def test
+    render :layout => false
   end
     
   protected

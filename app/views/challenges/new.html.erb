@@ -1,32 +1,30 @@
 
-<%= stylesheet_link_tag('simple-tabs','datePicker')%>
-<%= javascript_include_tag('simple-tabs','jquery.table.addrow','jquery.datePicker','date')%>
+<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox')%>
+<%= javascript_include_tag('simple-tabs','jquery.table.addrow','jquery.datePicker','date','jquery.colorbox-min')%>
 
 <%= render 'layouts/loggedinbody'%>
 <div id="ch_main_div">
-	<%= form_for @challenge do |f| %>
+	<%= form_for @challenge, :validate => true do |f| %>
 		<table width="100%" border="0">
   			<tr>
-    			<td colspan="4"><p align="center"><%= f.text_field :title, :class => "textfield_effect_nw_tk" %></p></td>
+    			<td colspan="4"><p align="center"><%= f.text_field :title, :class => "textfield_effect_nw_tk", :id => "on_focus_textfield" %></p></td>
    			</tr>
 			<tr>
     			<td width="15%"><%= f.label :description, "DESCRIPTION" %></td>
-    			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk" %></td>
+    			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea" %></td>
   			</tr>
 			<tr>
     			<td><%= f.label :dateStart, "START POINT" %></td>
-    			<td>
+    			<td width="30%">
 					<%= select_tag "ch_st_date", options_for_select([
 						["Choose", "0"],
 						["Date","#startDateDate"],	 
 						["Number","#startDateNbr"]														
 						]), :style => "width:197px" 
-					%>
-				</td>
-				<td>
-					<%= f.text_field :dateStart, :class => "textfield_effect  date-pick" %>
-				</td>
-				<td>	
+					%>				</td>
+				<td width="25%">
+					<%= f.text_field :dateStart, :class => "textfield_effect  date-pick", :id => "on_focus_textfield" %>				</td>
+				<td width="30%">	
 					<!--
 					<div id="ch_st_dat" style="display:none;">
 						<%= f.text_field :dateStart1, :class => "textfield_effect  date-pick" %></br>
@@ -35,8 +33,8 @@
 						<%= f.text_field :dateStart21, :class => "textfield_effect" %>
 						<%= f.text_field :dateStart22, :class => "textfield_effect" %>
 					</div>
-					-->
-				</td>
+					-->				
+			   </td>
   			</tr>
 			<tr>
     			<td><%= f.label :dateEnd, "END POINT" %></td>
@@ -49,7 +47,7 @@
 					%>				
 				</td>
 				<td>
-					<%= f.text_field :dateEnd, :class => "textfield_effect  date-pick" %>
+					<%= f.text_field :dateEnd, :class => "textfield_effect  date-pick", :id => "on_focus_textfield" %>
 				</td>
 				<td>	
 					<!--
@@ -64,7 +62,7 @@
 				</td>
   			</tr>
 			<tr>
-  				<td><b>CREATE TASK</b></td>
+  				<td><b>CREATE TASK <%= link_to "?", test_challenges_path,:class=>"reset_password_popup"%></b></td>
     			<td colspan="3">
     				<div id="new_tsk_field">		
 						<table border="1" class="atable">
@@ -72,7 +70,7 @@
 								<th>Score this task by</th>
 								<th>Point(s)</th>
 								<th>Task(name)
-									<input type="button" class="alternativeRow" value="Add Task" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
+									<input type="button" class="alternativeRow" value="Add Task" style="float:right; color: #000; border: 2px solid #f9a943; padding: 2px 5px; margin-left:2px;">
 								</th>
 							</tr>
 							<tr>
@@ -86,11 +84,11 @@
 									%>
 								</td>
 								<td>		
-									<%= text_field_tag :task, nil, :class => "textfield_effect_nw_tk_add" %>
+									<%= text_field_tag :task_point, nil, :class => "textfield_effect_nw_tk_add", :id => "on_focus_textfield" %>
 								</td>
 								<td>
-									<%= text_field_tag :task, nil, :class => "textfield_effect" %>
-									<input type="button" class="delRow" value="Remove" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-top:6px;">
+									<%= text_field_tag :task_description, nil, :class => "textfield_effect", :id => "on_focus_textfield" %>
+									<input type="button" class="delRow" value="Remove" style="float:right; color: #000; border: 2px solid #f9a943; padding: 2px 5px; margin-top:6px;">
 								</td>
 							</tr>
 							<tr>
@@ -264,6 +262,10 @@ jQuery(document).ready(function($) {
 	$(sel_val).show();
 	});
 	*/
+	
+	//pop up for task creation hint
+	//alert("hiiiii")
+	$('.reset_password_popup').colorbox();
 
 });
 

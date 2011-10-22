@@ -30,7 +30,8 @@ gem "bson_ext", "~> 1.3"
 group :development, :test do
 	gem 'rspec-rails'
 	gem 'annotate'
-	gem 'ruby-debug'
+	gem 'ruby-debug19'
+	#gem 'mongrel'
 end       
 
 # Gems used only for assets and not required

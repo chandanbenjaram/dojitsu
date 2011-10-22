@@ -2,10 +2,12 @@ class Challenge
   include Mongoid::Document 
   include Mongoid::Timestamps::Created
   include Mongoid::Timestamps::Updated
-  
+   
   attr_accessible :title, :description, :dateStart, :dateEnd, :discipline, :participants, :cha_type, :scoring_method_soc, :scoring_method_per, :will_participating, :no_of_winners  
   attr_writer :current_step
   attr_reader :dateStart1, :dateStart21, :dateStart22, :dateEnd1, :dateEnd21, :dateEnd22
+  
+  validates_presence_of :title,  :message => "Please enter title!" 
   
   before_save :ensure_start_date
   before_save :ensure_end_date
@@ -31,37 +33,6 @@ class Challenge
   field :user_id, :type=>String
 
   embeds_many :tasks
-  accepts_nested_attributes_for :tasks  ,:reject_if => lambda {|a| a[:tasks].blank?}
-
-  validates_presence_of :title,  :message => "Please enter title!" ,:if => lambda { |o| o.current_step == "first_challenge_form" } #:message => "Please enter title!" 
-  
-  def user
-    User.find(user_id)
-  end
-  
-  def current_step
-    @current_step || steps.first
-  end
-  
-  def steps
-    %w[first_challenge_form second_challenge_form]
-  end
-  
-  def next_step
-    self.current_step = steps[steps.index(current_step)+1]
-  end
-  
-  def previous_step
-    self.current_step = steps[steps.index(current_step)-1]
-  end
-  
-  def first_step?
-    current_step == steps.first
-  end
-  
-  def last_step?
-    current_step == steps.last
-  end
   
   private
   def ensure_start_date
