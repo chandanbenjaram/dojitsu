@@ -2,8 +2,8 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0.rc8'
 
-#gem 'mysql', '2.8.1'
-gem 'mysql2'
+gem 'mysql', '2.8.1'
+#gem 'mysql2'
            
 # authentication specifics
 gem 'devise'
