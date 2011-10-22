@@ -1,8 +1,10 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.0.rc8'
-gem 'mysql', '2.8.1'   
-         
+
+#gem 'mysql', '2.8.1'
+gem 'mysql2'
+           
 # authentication specifics
 gem 'devise'
 gem "oa-oauth", :require => "omniauth/oauth"
@@ -30,16 +32,17 @@ gem "bson_ext", "~> 1.3"
 group :development, :test do
 	gem 'rspec-rails'
 	gem 'annotate'
-	gem 'ruby-debug19'
-	#gem 'mongrel'
+	#gem 'ruby-debug'
 end       
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', "  ~> 3.1.0.rc"
-  gem 'coffee-rails', "~> 3.1.0.rc"
-  gem 'uglifier'
+  gem 'sass-rails', "~> 3.1.0.rc"
+  # gem 'coffee-rails', "~> 3.1.0.rc"
+  # gem 'uglifier'
 end
 
-gem 'jquery-rails'
+# Deployment stuff
+gem "rubber", "1.15.0"
+

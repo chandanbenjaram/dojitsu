@@ -7,7 +7,7 @@
 	<div id="ds_performance_tracker">
 		<div id="ds_performance_tracker_tit" style="background:grey; height:30px;">
 			<h3>Performance Tracker</h3>
-			<%= collection_select :user_id,  Challenge.find(:all), '', :title, :prompt => "Select Challenge" %>
+			<%= collection_select :current_user, '', current_user.challenges,  :id, :title %>    
 			<input type="button" value="Remove" class="rem" id="#example" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_performance_tracker_cont" style="float:right;">
 			<%= link_to(image_tag("delete.jpg", :size => "20x20", :id => '#example', :class => 'rem'))%>
 		</div>
@@ -85,9 +85,9 @@
       		$($(this).attr("id")).hide("fast", function () {
         	// use callee so don't have to name the function
         	$(this).prev().hide("fast", arguments); 
-      		});	
+      		});
+			
     	});
-		
     	$(".ad").click(function () {
 		alert("Work on progress");
       	//$($(this).attr("id")).show(2000);
