@@ -217,7 +217,7 @@ a.selected {
 .textfield_effect{
 	border-width: 1px;
 	border-style: solid;
-	border-color: #999999;
+	border-color: #f4f4f4;
 	background-image: url("https://a248.e.akamai.net/si.lscdn.net/deals/images/bingy/text-shadow.png");
 	background-repeat: repeat-x;
 	font-family: Arial, Helvetica, sans-serif;

@@ -1,1 +1,27 @@
-<h1>hiiiiiiiii</h1>
+<div id="create_tsk_help" style="width:700px;">
+	<h2>The score for each task will be added up to determin the winner(s).</h2>
+	<table width="90%" border="0">
+  		<tr>
+  			<td width="30%">check box:</td>
+    		<td width="36%"><%= text_field_tag "", "1(on checkong off the task)", :class =>"textfield_effect"%></td>
+			<td width="25%"><%= text_field_tag "", "point(s) per task", :class =>"textfield_effect"%></td>
+    		<td width="9%"><%= text_field_tag "", "Score", :class =>"textfield_effect"%></td>
+  		</tr>
+		<tr>
+  			<td>Date entry:</td>
+    		<td><%= text_field_tag "", "Number of days to finish the task", :class =>"textfield_effect"%></td>
+			<td><%= text_field_tag "", "point(s) per task", :class =>"textfield_effect"%></td>
+    		<td><%= text_field_tag "", "Score", :class =>"textfield_effect"%></td>
+  		</tr>
+		<tr>
+  			<td>Self-reported Number:</td>
+    		<td><%= text_field_tag "", "Number", :class =>"textfield_effect"%></td>
+			<td><%= text_field_tag "", "point(s) per task", :class =>"textfield_effect"%></td>
+    		<td><%= text_field_tag "", "Score", :class =>"textfield_effect"%></td>
+  		</tr>
+		<tr>
+  			<td></td>
+    		<td colspan="3">e.g. reporting 10 miles for "run treadmill (2 points)" task scores 20 points</td>
+  		</tr>
+</table>	
+</div>
