@@ -254,7 +254,7 @@ a.selected {
 	font-size: 20px;
 	font-weight:bold;
 	color: #333333;
-	width: 95%;
+	width: 70%;
 	height: 25px;
 }
 
@@ -278,7 +278,7 @@ a.selected {
 	font-size: 15px;
 	color: #333333;
 	width: 96%;
-	height: 35px;
+	height: 25px;
 }
 
 .textarea_nw_tk:hover{

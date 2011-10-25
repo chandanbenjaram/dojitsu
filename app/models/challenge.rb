@@ -3,58 +3,40 @@ class Challenge
   include Mongoid::Timestamps::Created
   include Mongoid::Timestamps::Updated
    
-  attr_accessible :title, :description, :dateStart, :dateEnd, :discipline, :participants, :cha_type, :scoring_method_soc, :scoring_method_per, :will_participating, :no_of_winners  
-  attr_writer :current_step
+  #attr_accessible :title, :description, :dateStart, :dateEnd, :task_comp,:task_comp, :soc_who_win, :soc_how_many_winner, :soc_will_participating, :soc_add_me, :per_who_win, :task_description, :task_point
   attr_reader :dateStart1, :dateStart21, :dateStart22, :dateEnd1, :dateEnd21, :dateEnd22
-  
+  accepts_nested_attributes_for :tasks
   validates_presence_of :title,  :message => "Please enter title!" 
   
-  before_save :ensure_start_date
-  before_save :ensure_end_date
-
   field :title, :type=>String
   field :description, :type=>String
-
   field :dateStart
   field :dateEnd
+  
   field :task_comp
+  field :soc_who_win
+  field :soc_how_many_winner
+  field :soc_will_participating
+  field :soc_add_me
+  field :per_who_win
+  
   field :save_as_tempalate
   field :discipline, :type=>String
   field :participants, :type=>String
   field :rules, :type=>Array    
   field :goals, :type=>Array    
   
-  field :cha_type, :type=>String
-  field :scoring_method_soc, :type=>String
-  field :scoring_method_per, :type=>String
-  field :will_participating, :type=>String
-  field :no_of_winners, :type=>String
-  field :add_myself, :type=>String
+  #field :per_how_many_winner
+  #field :per_participants
+  #field :cha_type, :type=>String
+  #field :scoring_method_soc, :type=>String
+  #field :scoring_method_per, :type=>String
+  #field :will_participating, :type=>String
+  #field :no_of_winners, :type=>String
+  #field :add_myself, :type=>String
+  
   field :user_id, :type=>String
 
   embeds_many :tasks
-  
-  private
-  def ensure_start_date
-    if dateStart.blank?
-      if !dateStart1.blank?
-        self.dateStart = dateStart1
-      elsif !dateStart3.blank?
-        self.dateStart = dateStart3
-      else
-        self.dateStart = dateStart2
-      end
-    end
-  end
-  
-  def ensure_end_date
-    if dateEnd.blank?
-      if !dateEnd1.blank?
-        self.dateEnd = dateEnd1
-      else
-        self.dateEnd = dateEnd2
-      end
-    end
-  end
   
 end                

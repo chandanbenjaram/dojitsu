@@ -4,8 +4,9 @@
 
 <%= render 'layouts/loggedinbody'%>
 <div id="ch_main_div">
+	<p style="font-size:20px; color:#f9a943;margin-left:10px;margin-top:10px;">CREATE NEW</p>
 	<%= form_for @challenge, :validate => true do |f| %>
-		<table width="100%" border="0">
+		<table width="100%" border="0" style="margin-top:0px;">
   			<tr>
     			<td colspan="4"><p align="center"><%= f.text_field :title, :class => "textfield_effect_nw_tk", :id => "on_focus_textfield" %></p></td>
    			</tr>
@@ -61,6 +62,8 @@
 					-->
 				</td>
   			</tr>
+			
+			<%= f.fields_for :tasks do |ts|%>
 			<tr>
   				<td><b>CREATE TASK <%= link_to "?", test_challenges_path,:class=>"reset_password_popup"%></b></td>
     			<td colspan="3">
@@ -70,24 +73,23 @@
 								<th>Score this task by</th>
 								<th>Point(s)</th>
 								<th>Task(name)
-									<input type="button" class="alternativeRow" value="Add Task" style="float:right; color: #000; border: 2px solid #f9a943; padding: 2px 5px; margin-left:2px;">
+								<input type="button" class="alternativeRow" value="Add Task" style="float:right; color: #000; border: 2px solid #f9a943; padding: 2px 5px; margin-left:2px;">
 								</th>
 							</tr>
 							<tr>
 								<td>
-									<%= select_tag "ch_task_type", options_for_select([
+									<%= ts.select :ch_task_type, options_for_select([
 										["Choose", "0"],
-										["Check box:1 for checking off the task", "0"],							
-										["Number of days to finsh the task","#ch_ed_dat"],	 
-										["Self-report number","#ch_ed_num"]														
+										["Check box:1 for checking off the task", "1"],	 
+										["Self-report number","2"]														
 										]), :style => "width:197px;" 
 									%>
 								</td>
 								<td>		
-									<%= text_field_tag :task_point, nil, :class => "textfield_effect_nw_tk_add", :id => "on_focus_textfield" %>
+									<%= ts.text_field :task_point, :class => "textfield_effect_nw_tk_add", :id => "on_focus_textfield" %>
 								</td>
 								<td>
-									<%= text_field_tag :task_description, nil, :class => "textfield_effect", :id => "on_focus_textfield" %>
+									<%= ts.text_field :task_description, :class => "textfield_effect_nw_tk", :id => "on_focus_textfield" %>
 									<input type="button" class="delRow" value="Remove" style="float:right; color: #000; border: 2px solid #f9a943; padding: 2px 5px; margin-top:6px;">
 								</td>
 							</tr>
@@ -104,6 +106,9 @@
 					</div>
     			</td>
   			</tr>
+			
+			<% end %>
+			
 			<tr>
   				<td><b>PRIVACY</b></td>
     			<td colspan="3">
@@ -116,9 +121,9 @@
     					<div id="tab1" class="tab_content">
     						<table width="100%" border="0">
   								<tr>
-    								<td><%= f.label :scoring_method_soc, "Who wins?"%></td>
+    								<td><%= f.label :soc_who_win, "Who wins?"%></td>
 									<td>
-										<%= f.select :scoring_method_soc, options_for_select([
+										<%= f.select :soc_who_win, options_for_select([
 	    									["Choose", "0"],							
 											["Add all milestones together","sco1"],
 											["1st person to reach End Point","sco2"],	 
@@ -130,9 +135,9 @@
 									</td>
   								</tr>
   								<tr>
-    								<td><%= f.label :no_of_winners, "How many winners?"%></td>
+    								<td><%= f.label :soc_how_many_winner, "How many winners?"%></td>
 									<td>
-										<%= f.select :no_of_winners, options_for_select([
+										<%= f.select :soc_how_many_winner, options_for_select([
 											["Select Categories", "0"],
     										["1", "1"],							
 											["3","3"],
@@ -143,9 +148,9 @@
 									</td>
   								</tr>
   								<tr>
-    								<td><%= f.label :will_participating, "Participants"%></td>
+    								<td><%= f.label :soc_will_participating, "Participants"%></td>
 									<td>
-										<%= f.select :will_participating, options_for_select([
+										<%= f.select :soc_will_participating, options_for_select([
     										["Select Categories", "0"],							
 											["Participating","Participating"],
 											["Organizing","Organizing"] 														
@@ -155,16 +160,16 @@
   								</tr>
   								<tr>
   									<td></td>
-    								<td><%= f.check_box :add_myself%><b>Add myself as one of the participants</b></td>
+    								<td><%= f.check_box :soc_add_me%><b>Add myself as one of the participants</b></td>
   								</tr>
 							</table>
     					</div>
     					<div id="tab2" class="tab_content">
        						<table width="100%" border="0">
   								<tr>
-    								<td><%= f.label :scoring_method_per, "Who wins?"%></td>
+    								<td><%= f.label :per_who_win, "Who wins?"%></td>
 									<td>
-										<%= f.select :scoring_method_per, options_for_select([
+										<%= f.select :per_who_win, options_for_select([
     										["Select Categories", "0"],							
 											["Add all milestones together","sco1"],
 											["1st person to reach End Point","sco2"],	 
@@ -183,14 +188,18 @@
 			<tr>
   				<td colspan="4"></td>
   			</tr>
+			<!--
 			<tr>
     			<td colspan="4"><b><%= f.check_box :save_as_tempalate%>Save this challenge as template in my profile</b></td>
-  			</tr>		
+  			</tr>
+			-->		
   			<tr>
   				<td></td>
     			<td></td>
-    			<td><p align="right"><%= f.submit "DONE", :style => "width: 100px;", :class => "links" %></p></td>
-    			<td><p align="left"><%= f.submit "CANCEL", :style => "width: 100px;", :class => "links"%></p></td>
+    			<td colspan="2">
+    				<%= f.submit "DONE", :style => "width: 100px; float:right", :class => "links" %>
+    				<%= f.submit "CANCEL", :style => "width: 100px; float:right;", :class => "links"%>
+				</td>
   			</tr> 
 		</table>
 	<% end %>	
