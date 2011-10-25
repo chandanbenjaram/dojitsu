@@ -10,8 +10,15 @@ class Challenge
   
   field :title, :type=>String
   field :description, :type=>String
+  
   field :dateStart
   field :dateEnd
+
+  #field :startPoint, :type => PointType
+  #field :endPoint, :type => PointType
+  embeds_one :startPoint, :class_name =>"PointType", :inverse_of => :challenge
+  embeds_one :endPoint, :class_name =>"PointType", :inverse_of => :challenge
+
   
   field :task_comp
   field :soc_who_win

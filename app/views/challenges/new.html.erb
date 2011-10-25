@@ -1,29 +1,39 @@
 
 <%= stylesheet_link_tag('simple-tabs','datePicker','colorbox')%>
-<%= javascript_include_tag('simple-tabs','jquery.table.addrow','jquery.datePicker','date','jquery.colorbox-min')%>
+<%= javascript_include_tag('simple-tabs','jquery.table.addrow','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min')%>
 
 <%= render 'layouts/loggedinbody'%>
 <div id="ch_main_div">
-	<p style="font-size:20px; color:#f9a943;margin-left:10px;margin-top:10px;">CREATE NEW</p>
+	<p style="font-size:20px; color:#f9a943;margin-left:10px;margin-top:10px; font-weight:bold;">CREATE NEW</p>
 	<%= form_for @challenge, :validate => true do |f| %>
 		<table width="100%" border="0" style="margin-top:0px;">
   			<tr>
-    			<td colspan="4"><p align="center"><%= f.text_field :title, :class => "textfield_effect_nw_tk", :id => "on_focus_textfield" %></p></td>
-   			</tr>
+    			<td colspan="4"><p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :id => "on_focus_textfield" %></p></td>	
+			</tr>
 			<tr>
-    			<td width="15%"><%= f.label :description, "DESCRIPTION" %></td>
+				<td colspan="4">
+					<hr style="color:#0066CC;width:98%; height:1px;">
+				</td>
+			</tr>
+			<tr>
+    			<td width="15%"><%= f.label :description, "DESCRIPTION"%></td>
     			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea" %></td>
   			</tr>
 			<tr>
+				<td colspan="4">
+					<hr style="color:#0066CC;width:98%; height:1px;">
+				</td>
+			</tr>
+			<tr>
     			<td><%= f.label :dateStart, "START POINT" %></td>
-    			<td width="30%">
+    			<td width="18%">
 					<%= select_tag "ch_st_date", options_for_select([
 						["Choose", "0"],
 						["Date","#startDateDate"],	 
 						["Number","#startDateNbr"]														
 						]), :style => "width:197px" 
 					%>				</td>
-				<td width="25%">
+				<td width="30%">
 					<%= f.text_field :dateStart, :class => "textfield_effect  date-pick", :id => "on_focus_textfield" %>				</td>
 				<td width="30%">	
 					<!--
@@ -37,6 +47,11 @@
 					-->				
 			   </td>
   			</tr>
+			<tr>
+				<td colspan="4">
+					<hr style="color:#0066CC;width:98%; height:1px;">
+				</td>
+			</tr>
 			<tr>
     			<td><%= f.label :dateEnd, "END POINT" %></td>
     			<td>
@@ -62,20 +77,26 @@
 					-->
 				</td>
   			</tr>
-			
+			<tr>
+				<td colspan="4">
+					<hr style="color:#0066CC;width:98%; height:1px;">
+				</td>
+			</tr>
 			<%= f.fields_for :tasks do |ts|%>
 			<tr>
-  				<td><b>CREATE TASK <%= link_to "?", test_challenges_path,:class=>"reset_password_popup"%></b></td>
+				<div id="demo">
+					<h2>hiiiii</h2>
+				</div>
+  				<td><b>CREATE TASK <%= link_to image_tag("btn_questionmark_up.png"), test_challenges_path,:class=>"reset_password_popup"%></b></td>
     			<td colspan="3">
     				<div id="new_tsk_field">		
 						<table border="1" class="atable">
 							<tr>
-								<th>Score this task by</th>
-								<th>Point(s)</th>
-								<th>Task(name)
-								<input type="button" class="alternativeRow" value="Add Task" style="float:right; color: #000; border: 2px solid #f9a943; padding: 2px 5px; margin-left:2px;">
-								</th>
-							</tr>
+								<th colspan="2">Score this task by</th>
+								<th colspan="2">Point(s)</th>
+								<th colspan="2">Task(name)
+								<input type="button" class="alternativeRow" value="Add Task" style="float:right; color: #000; border: 2px solid #f9a943; padding: 2px 5px; margin-left:2px;">								</th>
+						    </tr>
 							<tr>
 								<td>
 									<%= ts.select :ch_task_type, options_for_select([
@@ -85,30 +106,34 @@
 										]), :style => "width:197px;" 
 									%>
 								</td>
+								<td><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
 								<td>		
-									<%= ts.text_field :task_point, :class => "textfield_effect_nw_tk_add", :id => "on_focus_textfield" %>
+									<%= ts.text_field :task_point, :class => "textfield_effect_nw_tk_add", :id => "on_focus_textfield" %>								
 								</td>
+								<td><%= image_tag("icon_slash.png", :height => '20', :width => '5')%></td>
 								<td>
 									<%= ts.text_field :task_description, :class => "textfield_effect_nw_tk", :id => "on_focus_textfield" %>
-									<input type="button" class="delRow" value="Remove" style="float:right; color: #000; border: 2px solid #f9a943; padding: 2px 5px; margin-top:6px;">
-								</td>
+									<input type="button" class="delRow" value="Remove" style="float:right; color: #000; border: 2px solid #f9a943; padding: 2px 5px; margin-top:6px;">								</td>
+							    <td>&nbsp;</td>
 							</tr>
 							<tr>
-								<td colspan="3">
-									<b>Do all tasks need to be complete before the challenge is marked complete?</b><br>
+								<td colspan="6">
+									<b><%= image_tag("icon_arrow_left.png")%>Do all tasks need to be complete before the challenge is marked complete?</b><br>
 									<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
 									<%= f.label "Yes" %>
 									<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
-									<%= f.label "No" %>
-								</td>
+									<%= f.label "No" %>								</td>
 							</tr>
 						</table>
 					</div>
     			</td>
   			</tr>
-			
 			<% end %>
-			
+			<tr>
+				<td colspan="4">
+					<hr style="color:#0066CC;width:98%; height:2px;">
+				</td>
+			</tr>
 			<tr>
   				<td><b>PRIVACY</b></td>
     			<td colspan="3">
@@ -149,19 +174,14 @@
   								</tr>
   								<tr>
     								<td><%= f.label :soc_will_participating, "Participants"%></td>
-									<td>
-										<%= f.select :soc_will_participating, options_for_select([
-    										["Select Categories", "0"],							
-											["Participating","Participating"],
-											["Organizing","Organizing"] 														
- 											]), :style => "width:197px" 
- 										%>
-									</td>
+									<td><%= link_to "INVITE PARTICIPANTS" ,challenges_path,:class => "links_invite_p", :style => "text-decoration: none; color:#fff;"%></td>
   								</tr>
+								<!--
   								<tr>
   									<td></td>
     								<td><%= f.check_box :soc_add_me%><b>Add myself as one of the participants</b></td>
   								</tr>
+								-->
 							</table>
     					</div>
     					<div id="tab2" class="tab_content">
@@ -186,8 +206,10 @@
     			</td>
   			</tr>
 			<tr>
-  				<td colspan="4"></td>
-  			</tr>
+				<td colspan="4">
+					<hr style="color:#0066CC;width:98%; height:2px;">
+				</td>
+			</tr>
 			<!--
 			<tr>
     			<td colspan="4"><b><%= f.check_box :save_as_tempalate%>Save this challenge as template in my profile</b></td>
@@ -244,6 +266,8 @@ jQuery(document).ready(function($) {
 		//$("<div></div>").appendTo("div#new_tsk_field");
 	});
 	
+	$("#demo img[title]").tooltip();
+	
 	/*
 	$('#ch_ed_date').change(function() {
 		var sel_val = $(this).val();
@@ -280,31 +304,3 @@ jQuery(document).ready(function($) {
 
 </script>
 
-<style type="text/css">
-
-.atable{
-	border-collapse:collapse;
-	border:1px solid #AAA;
-	width:97%;
-}
-
-.atable th{
-	border:1px solid #AAF;
-	background:#ADD8E6;
-	font-weight:bold;
-}
-
-.atable td{
-	padding:4px;
-	border:1px solid #AAF;
-}
-
-.oddRow{
-	background:#FFFFFF;
-}
-
-.evenRow{
-	background:#F0F8FF;
-}
-
-</style>

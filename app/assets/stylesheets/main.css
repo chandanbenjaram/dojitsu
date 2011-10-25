@@ -258,6 +258,20 @@ a.selected {
 	height: 25px;
 }
 
+.textfield_effect_nw_tk_title{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #999999;
+	background-image: url("https://a248.e.akamai.net/si.lscdn.net/deals/images/bingy/text-shadow.png");
+	background-repeat: repeat-x;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	font-weight:bold;
+	color: #333333;
+	width: 97.5%;
+	height: 25px;
+}
+
 .textfield_effect_nw_tk:hover{
     border-color: #4ccbda;
     border-width: 1px;
@@ -279,6 +293,8 @@ a.selected {
 	color: #333333;
 	width: 96%;
 	height: 25px;
+	min-width:96%;
+	max-width:300px;
 }
 
 .textarea_nw_tk:hover{
@@ -388,6 +404,19 @@ option:hover{
     width: 130px;
 }
 
+.links_invite_p {
+    background: none repeat scroll 0 0 #f9a943;
+    border-radius: 3px 3px 3px 3px;
+	word-spacing:2px;
+    display: block;
+    font-size: 14px;
+    margin: 20px 0;
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 240px;
+}
+
 option:hover {
     cursor: pointer;
 }
@@ -463,6 +492,16 @@ option:hover {
 	-moz-border-radius:    5px;
     -webkit-border-radius: 5px;
     border-radius:         5px;
+}
+
+.tooltip {
+	display:none;
+	background:transparent url(tooltip/black_arrow.png);
+	font-size:12px;
+	height:70px;
+	width:160px;
+	padding:25px;
+	color:#fff;	
 }
 
 
