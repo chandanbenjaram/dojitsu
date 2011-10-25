@@ -3,6 +3,16 @@
 <%= javascript_include_tag('simple-tabs','jquery.table.addrow','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min')%>
 
 <%= render 'layouts/loggedinbody'%>
+<table bgcolor="#F0F0F0" width="100%" height="6px">
+	<tr>
+		<td width="40px">
+		</td>
+		<td width="10%">
+<%= button_to "NEW", new_challenge_url ,  :class => "new_button", :method => :get %>
+</td> <td align="left">MY CHALLENGES <b>>></b> CREATE NEW</tr>
+<table>
+	
+<h2> <b>CREATE NEW </b></h2>
 <div id="ch_main_div">
 	<p style="font-size:20px; color:#f9a943;margin-left:10px;margin-top:10px; font-weight:bold;">CREATE NEW</p>
 	<%= form_for @challenge, :validate => true do |f| %>
