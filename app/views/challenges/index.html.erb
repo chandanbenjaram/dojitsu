@@ -3,27 +3,40 @@
 
 <%= render 'layouts/loggedinbody'%>
 
-<h3>All Challenges</h3>
-	<% if @challenges.blank? %>
-		<p>no challenges at all.</p>
-	<% else %>
-	<div id="ch_index_list" style="width:100%; float:left;">
-		<% @challenges.each do |c| %>
-			<%= link_to c.title, {:action => 'show', :id => c.id } %><br>
-			<!--
-			<%= link_to "Add Task", add_task_challenges_path(:id => c.id)%><br>
-			-->
-		<% end %>	
-	</br>
-	</div>
-<% end %>
-<br/>
-<p><%= link_to "Create New Challenge", new_challenge_url %></p>
-
+<!--
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		//popup for task
 		//alert("Add task pupup working");
 		$('.add_task_popup').colorbox();	
 	});
-</script>
+</script>-->
+<table bgcolor="#F0F0F0" width="100%" height="10px">
+	<tr>
+		<td width="40px"></td>
+			<td>
+				<%= button_to  "NEW", new_challenge_url ,  :class => "new_button", :method => :get %>
+			</td>
+			
+	</tr>
+<table>
+
+<table bgcolor="#F0F0F0" width="100%" height="10px">
+<tr>
+	<td width="40px"></td>
+	<td>
+
+			<h4> <b>ALL CHALLENGES </b></h4>
+			<% if @challenges.blank? %>
+					<p>no challenges at all.</p>
+			<% else %>
+					<div id="ch_index_list" style="width:100%; float:left;">
+					<% @challenges.each do |c| %>
+					<%= link_to c.title, {:action => 'show', :id => c.id }%><br>		
+			<% end %>	
+					</div>
+				
+	</td>			
+</tr>
+<table>
+<% end %>
