@@ -281,7 +281,7 @@ a .selected {
 .textfield_effect{
 	border-width: 1px;
 	border-style: solid;
-	border-color: #999999;
+	border-color: #f4f4f4;
 	background-image: url("https://a248.e.akamai.net/si.lscdn.net/deals/images/bingy/text-shadow.png");
 	background-repeat: repeat-x;
 	font-family: Arial, Helvetica, sans-serif;
@@ -318,7 +318,7 @@ a .selected {
 	font-size: 20px;
 	font-weight:bold;
 	color: #333333;
-	width: 95%;
+	width: 70%;
 	height: 25px;
 }
 
@@ -342,7 +342,7 @@ a .selected {
 	font-size: 15px;
 	color: #333333;
 	width: 96%;
-	height: 35px;
+	height: 25px;
 }
 
 .textarea_nw_tk:hover{
