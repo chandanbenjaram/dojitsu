@@ -26,7 +26,7 @@
 				</td>
 			</tr>
 			<tr>
-    			<td width="15%"><%= f.label :description, "DESCRIPTION"%></td>
+    			<td width="15%"><%= f.label :description, "DESCRIPTION" %></td>
     			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea" %></td>
   			</tr>
 			<tr>
@@ -92,17 +92,52 @@
 					<hr style="color:#0066CC;width:98%; height:1px;">
 				</td>
 			</tr>
+			<% fs = 0%>
 			<%= f.fields_for :tasks do |ts|%>
 			<tr>
-  				<td><b>CREATE TASK <%= link_to image_tag("btn_questionmark_up.png"), test_challenges_path,:class=>"reset_password_popup"%></b></td>
-    			<td colspan="3">
+  				<td>
+  					<b id="download_now">CREATE TASK 
+					<!--
+						<%= link_to image_tag("btn_questionmark_up.png"), test_challenges_path,:class=>"reset_password_popup"%>
+    				-->
+					<%= image_tag("btn_questionmark_up.png")%></b>
+					<div class="tooltip">
+					<table width="257" style="margin:10">
+						<tr>	
+    						<td colspan="4"><h2>The score for each task will be added up to determin the winner(s).</h2></td>
+  						</tr>
+						<tr>
+	  					  <td width="20%"><p style="color:#f9a943; font-size:15px;"><b>check box:</b></p></td>
+    						<td width="14%"><input type="text" value="1(Check of the task)" size="18" /></td>
+							<td><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
+							<td width="17%"><input type="text" value="point(s) per task" size="14" /></td>
+    						<td><%= image_tag("icon_equal.png", :height => '10', :width => '10')%></td>
+							<td width="49%"><input type="text" value="Score" size="5" /></td>
+  						</tr>
+						<tr>
+	  					  <td width="20%"><p style="color:#f9a943; font-size:15px;"><b>Self-reported Number:</b></p></td>
+    						<td width="14%"><input type="text" value="Number" size="18" /></td>
+							<td><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
+							<td width="17%"><input type="text" value="point(s) per task" size="14" /></td>
+    						<td><%= image_tag("icon_equal.png", :height => '10', :width => '10')%></td>
+							<td width="49%"><input type="text" value="Score" size="5" /></td>
+  						</tr>
+						<tr>	
+  							<td></td>
+    						<td colspan="3">e.g. reporting 10 miles for "run treadmill (2 points)" task scores 20 points</td>
+  						</tr>		
+					</table>
+					</div>
+				</td>
+				<td colspan="3">
     				<div id="new_tsk_field">		
 						<table border="1" class="atable">
 							<tr>
 								<th colspan="2">Score this task by</th>
 								<th colspan="2">Point(s)</th>
 								<th colspan="2">Task(name)
-								<input type="button" class="alternativeRow" value="Add Task" style="float:right; color: #000; border: 2px solid #f9a943; padding: 2px 5px; margin-left:2px;">								</th>
+								<%= image_tag("btn_add_up.png", :class => "alternativeRow", :style => "float:right; margin-right:20px;") %>
+							</th>
 						    </tr>
 							<tr>
 								<td>
@@ -120,8 +155,9 @@
 								<td><%= image_tag("icon_slash.png", :height => '20', :width => '5')%></td>
 								<td>
 									<%= ts.text_field :task_description, :class => "textfield_effect_nw_tk", :id => "on_focus_textfield" %>
-									<input type="button" class="delRow" value="Remove" style="float:right; color: #000; border: 2px solid #f9a943; padding: 2px 5px; margin-top:6px;">								</td>
-							    <td>&nbsp;</td>
+									<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:12px;") %>
+								</td>
+								<td>&nbsp;</td>
 							</tr>
 							<tr>
 								<td colspan="6">
@@ -273,7 +309,11 @@ jQuery(document).ready(function($) {
 		//$("<div></div>").appendTo("div#new_tsk_field");
 	});
 	
-	$("#demo img[title]").tooltip();
+	$("#download_now").tooltip({ 
+		offset: [10, 2],
+		effect: 'slide',
+		position: "top right"
+	});
 	
 	/*
 	$('#ch_ed_date').change(function() {

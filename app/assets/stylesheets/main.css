@@ -318,7 +318,7 @@ a .selected {
 	font-size: 20px;
 	font-weight:bold;
 	color: #333333;
-	width: 70%;
+	width: 91%;
 	height: 25px;
 }
 
@@ -381,6 +381,11 @@ a .selected {
 	color: #000000;
 	width: 97.5%;
 	height: 25px;
+}
+
+.textfield_effect_nw_tk_title:hover{
+    border-color: #4ccbda;
+    border-width: 1px;
 }
 
 .textfield_effect_nw_tk_add:hover{
@@ -551,7 +556,8 @@ h2{
 	color: #f8981d;
 	font-size: 20px;
 }
-/* #ch_main_div{
+/* 
+#ch_main_div{
 	border-width:10px;
   	border-style:solid;
   	border-color:#f4f4f4;
@@ -559,5 +565,19 @@ h2{
 	-moz-border-radius:    5px;
     -webkit-border-radius: 5px;
     border-radius:         5px;
-}*/
+}
+*/
 
+/* tooltip styling */
+.tooltip {
+	display:none;
+	-moz-user-select: none;
+	background:url(http://static.flowplayer.org/tools/img/tooltip/black_arrow_big.png)repeat-x scroll left bottom transparent;
+	width: auto;
+	overflow: hidden;
+    position: fixed;
+	min-height: 200px;
+	padding:40px 30px 10px 30px;
+	font-size:11px;
+	color:#fff;
+}
