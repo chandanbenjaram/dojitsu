@@ -26,7 +26,7 @@
 				</td>
 			</tr>
 			<tr>
-    			<td width="15%"><%= f.label :description, "DESCRIPTION"%></td>
+    			<td width="15%"><%= f.label :description, "DESCRIPTION" %></td>
     			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea" %></td>
   			</tr>
 			<tr>
@@ -92,6 +92,7 @@
 					<hr style="color:#0066CC;width:98%; height:1px;">
 				</td>
 			</tr>
+			<% fs = 0%>
 			<%= f.fields_for :tasks do |ts|%>
 			<tr>
   				<td><b>CREATE TASK <%= link_to image_tag("btn_questionmark_up.png"), test_challenges_path,:class=>"reset_password_popup"%></b></td>
@@ -102,7 +103,8 @@
 								<th colspan="2">Score this task by</th>
 								<th colspan="2">Point(s)</th>
 								<th colspan="2">Task(name)
-								<input type="button" class="alternativeRow" value="Add Task" style="float:right; color: #000; border: 2px solid #f9a943; padding: 2px 5px; margin-left:2px;">								</th>
+								<%= image_tag("btn_add_up.png", :class => "alternativeRow", :style => "float:right; margin-right:20px;") %>
+							</th>
 						    </tr>
 							<tr>
 								<td>
@@ -120,8 +122,9 @@
 								<td><%= image_tag("icon_slash.png", :height => '20', :width => '5')%></td>
 								<td>
 									<%= ts.text_field :task_description, :class => "textfield_effect_nw_tk", :id => "on_focus_textfield" %>
-									<input type="button" class="delRow" value="Remove" style="float:right; color: #000; border: 2px solid #f9a943; padding: 2px 5px; margin-top:6px;">								</td>
-							    <td>&nbsp;</td>
+									<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:12px;") %>
+								</td>
+								<td>&nbsp;</td>
 							</tr>
 							<tr>
 								<td colspan="6">
