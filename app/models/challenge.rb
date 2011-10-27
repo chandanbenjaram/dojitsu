@@ -5,15 +5,12 @@ class Challenge
    
   #attr_accessible :title, :description, :dateStart, :dateEnd, :task_comp,:task_comp, :soc_who_win, :soc_how_many_winner, :soc_will_participating, :soc_add_me, :per_who_win, :task_description, :task_point
   attr_reader :dateStart1, :dateStart21, :dateStart22, :dateEnd1, :dateEnd21, :dateEnd22
-  accepts_nested_attributes_for :tasks
+  accepts_nested_attributes_for :tasks, :point_types
   validates_presence_of :title,  :message => "Please enter title!" 
   
   field :title, :type=>String
   field :description, :type=>String
   
-  field :dateStart
-  field :dateEnd
-
   #field :startPoint, :type => PointType
   #field :endPoint, :type => PointType
   embeds_one :startPoint, :class_name =>"PointType", :inverse_of => :challenge
@@ -44,6 +41,7 @@ class Challenge
   
   field :user_id, :type=>String
 
-  embeds_many :tasks
+  embeds_many :tasks 
+  embeds_many :point_types
   
 end                

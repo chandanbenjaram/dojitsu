@@ -34,8 +34,9 @@
 					<hr style="color:#0066CC;width:98%; height:1px;">
 				</td>
 			</tr>
+			<%= f.fields_for :point_types do |pt|%>
 			<tr>
-    			<td><%= f.label :dateStart, "START POINT" %></td>
+    			<td><%= pt.label :dateStart, "START POINT" %></td>
     			<td width="18%">
 					<%= select_tag "ch_st_date", options_for_select([
 						["Choose", "0"],
@@ -44,7 +45,7 @@
 						]), :style => "width:197px" 
 					%>				</td>
 				<td width="30%">
-					<%= f.text_field :dateStart, :class => "textfield_effect  date-pick", :id => "on_focus_textfield" %>				</td>
+					<%= pt.text_field :dateStart, :class => "textfield_effect  date-pick", :id => "on_focus_textfield" %>				</td>
 				<td width="30%">	
 					<!--
 					<div id="ch_st_dat" style="display:none;">
@@ -63,7 +64,7 @@
 				</td>
 			</tr>
 			<tr>
-    			<td><%= f.label :dateEnd, "END POINT" %></td>
+    			<td><%= pt.label :dateEnd, "END POINT" %></td>
     			<td>
 					<%= select_tag "ch_ed_date", options_for_select([
 						["Choose", "0"],							
@@ -73,7 +74,7 @@
 					%>				
 				</td>
 				<td>
-					<%= f.text_field :dateEnd, :class => "textfield_effect  date-pick", :id => "on_focus_textfield" %>
+					<%= pt.text_field :dateEnd, :class => "textfield_effect  date-pick", :id => "on_focus_textfield" %>
 				</td>
 				<td>	
 					<!--
@@ -87,6 +88,7 @@
 					-->
 				</td>
   			</tr>
+			<% end %>
 			<tr>
 				<td colspan="4">
 					<hr style="color:#0066CC;width:98%; height:1px;">
