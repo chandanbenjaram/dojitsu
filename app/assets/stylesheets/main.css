@@ -568,3 +568,14 @@ h2{
 }
 */
 
+/* tooltip styling */
+.tooltip {
+	display:none;
+	background:url(http://static.flowplayer.org/tools/img/tooltip/black_arrow_big.png);
+	background-repeat: no-repeat;
+	width: 580px;
+	height: 200px;
+	padding:40px 30px 10px 30px;
+	font-size:11px;
+	color:#fff;
+}
