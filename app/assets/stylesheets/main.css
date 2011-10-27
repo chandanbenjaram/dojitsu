@@ -571,10 +571,12 @@ h2{
 /* tooltip styling */
 .tooltip {
 	display:none;
-	background:url(http://static.flowplayer.org/tools/img/tooltip/black_arrow_big.png);
-	background-repeat: no-repeat;
-	width: 580px;
-	height: 200px;
+	-moz-user-select: none;
+	background:url(http://static.flowplayer.org/tools/img/tooltip/black_arrow_big.png)repeat-x scroll left bottom transparent;
+	width: auto;
+	overflow: hidden;
+    position: fixed;
+	min-height: 200px;
 	padding:40px 30px 10px 30px;
 	font-size:11px;
 	color:#fff;
