@@ -10,7 +10,6 @@ gem 'devise'
 gem "oa-oauth", :require => "omniauth/oauth"
 
 # helpers
-gem 'haml'
 gem 'json'
 gem 'fb_graph'
 gem 'jquery-rails'
@@ -18,6 +17,9 @@ gem 'prototype-rails'
 
 gem 'sprockets'
 gem "client_side_validations", "~> 3.1.0"
+
+# Templating engine specifics
+gem "slim-rails"
 
 # MongoDB specifics
 gem "mongoid", "~> 2.2"
@@ -32,8 +34,8 @@ gem "bson_ext", "~> 1.3"
 group :development, :test do
 	gem 'rspec-rails'
 	gem 'annotate'
-	#gem 'ruby-debug'
-	gem "mongrel"
+	# gem 'ruby-debug'
+	# gem "mongrel"
 end       
 
 # Gems used only for assets and not required

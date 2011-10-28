@@ -11,3 +11,29 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+;
+(function($j) {   
+	$j(function() {  
+		var currentTabVal = localStorage.getItem("DOJO_GLOBALS.currentTab");
+		if(currentTabVal != undefined && currentTabVal){  
+
+ 		var currentTabEle = $j(".homenavbar li:contains('"+ currentTabVal +"')");              
+				$j(currentTabEle).addClass('active');						
+				// I dont think following block make sense to me here, thus commented it out for now. (Chandan)
+/* 			if(!$j(currentTabEle).hasClass('active')){
+				$j(currentTabEle).addClass('active');						
+			}
+*/
+		}
+
+	});
+		
+	$j('.homenavbar li').live('click', function(e){
+		if(typeof(localStorage) === 'undefined'){
+			return -1;
+		}            
+			localStorage.setItem("DOJO_GLOBALS.currentTab", $j(this).text());			
+			$j(this).addClass('active');  
+			$j(this).siblings().removeClass('active');			
+				});
+				})(jQuery);
