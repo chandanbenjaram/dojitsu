@@ -7,11 +7,7 @@ development:
   database: dojitsu_dev
   username: dojitsu.dev
   password: pass
-<<<<<<< HEAD
   host: localhost 
-=======
-  host: localhost
->>>>>>> 9a75b368409723c2c4911b25a995805bb419d44c
   port: 3306
   timeout: 5000
                                                             
