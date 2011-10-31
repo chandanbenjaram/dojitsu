@@ -11,6 +11,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+/*
 ;
 (function($j) {   
 	$j(function() {  
@@ -20,10 +21,9 @@
  		var currentTabEle = $j(".homenavbar li:contains('"+ currentTabVal +"')");              
 				$j(currentTabEle).addClass('active');						
 				// I dont think following block make sense to me here, thus commented it out for now. (Chandan)
-/* 			if(!$j(currentTabEle).hasClass('active')){
+ 			if(!$j(currentTabEle).hasClass('active')){
 				$j(currentTabEle).addClass('active');						
 			}
-*/
 		}
 
 	});
@@ -37,3 +37,6 @@
 			$j(this).siblings().removeClass('active');			
 				});
 				})(jQuery);
+				
+				*/
+				

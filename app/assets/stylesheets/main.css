@@ -105,22 +105,23 @@ nav ul li a:hover {
 }
 
 .homenavbar {
-	width: 100%; 
-}
-
-.homenavbar ul {
 	display: table;
-	width: 100%
+	width: 100%;
+	background-image: url("main_nav_bg_up.png");
+	background-repeat: repeat-x;	
 }
 
 .homenavbar li {
 	display: table-cell;
-	background-color: #f8981d;	
 }
 
-.homenavbar li:hover, li.active {
-	background-color :#F9AD4A;
-	background:#F9AD4A url("main_nav_bg_point_up.png") no-repeat center bottom;
+.homenavbar > .selected {
+	background: url("main_nav_bg_point_mo.png") no-repeat center bottom;
+}
+
+
+.homenavbar li:hover {
+	background:	#F9AD4A url("main_nav_bg_point_up.png") no-repeat center bottom;
 }
 
 .homenavbar a {

@@ -6,20 +6,23 @@ gem 'mysql', '2.8.1'
 #gem 'mysql2'
            
 # authentication specifics
-gem 'devise'
+gem 'devise', '1.4.9'
 gem "oa-oauth", :require => "omniauth/oauth"
 
 # helpers
 gem 'json'
-gem 'fb_graph'
+gem 'fb_graph', '2.1.12'
 gem 'jquery-rails'
-gem 'prototype-rails'
+#gem 'prototype-rails'
 
 gem 'sprockets'
 gem "client_side_validations", "~> 3.1.0"
 
 # Templating engine specifics
 gem "slim-rails"
+
+# UI templates
+gem "simple-navigation"
 
 # MongoDB specifics
 gem "mongoid", "~> 2.2"
@@ -34,7 +37,7 @@ gem "bson_ext", "~> 1.3"
 group :development, :test do
 	gem 'rspec-rails'
 	gem 'annotate'
-	# gem 'ruby-debug'
+	gem 'ruby-debug'
 	# gem "mongrel"
 end       
 
