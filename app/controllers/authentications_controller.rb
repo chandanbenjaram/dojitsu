@@ -10,33 +10,6 @@ class AuthenticationsController < ApplicationController
 
     # callback hash    
     omniauth = request.env["omniauth.auth"]
-
-    #    logger.info "From authentication call back, #{request}"
-    #  logger.info "From authentication call back, #{session[:omniauth]["credentials"]["token"]}"
-    #    session[:omniauth]["credentials"]["token"]
-
-    #    debugger
-    # ::FbGraph::User.me(session[:omniauth]["credentials"]["token"]).fetch;
-    #logger.info "@profile... #{@profile}"
-
-#    ACCESS_TOKEN= omniauth["credentials"]["token"]
-#
-#    user = FbGraph::User.me(ACCESS_TOKEN).fetch;
-#
-#    friends = user.friends
-#    friends.each { |friend|
-##      FbGraph::User.find_by_id()
-#      puts friend.to_yaml()
-#    }
-    
-#    render :text => friends.to_yaml
-#    return
-#
-#    logger.info "me... #{me.fetch().to_yaml}"
-#
-#    render :text => request.env["omniauth.auth"].to_yaml
-#
-#    return
       
     if omniauth and params[:provider]
       if provider_route == 'facebook'
@@ -60,10 +33,11 @@ class AuthenticationsController < ApplicationController
         return
       end
       
-      #      debugger
+      
       # continue on valid uid and provider
     if uid != '' and provider != ''
-        raise auth = Authentication.find_by_provider_and_uid(provider, uid).inspect        
+        # debugger
+        auth = Authentication.find_by_provider_and_uid(provider, uid)        
         if !auth.nil?
           flash[:notice] = "Signed in successfully"
           sign_in_and_redirect(:user, auth.user)

@@ -1,0 +1,10 @@
+= stylesheet_link_tag "colorbox"
+= javascript_include_tag "jquery.colorbox-min"
+= render partial="layouts/loggedinbody"
+- unless @challenges.empty?
+	table
+	  - for challenge in @challenges do
+	      tr
+	        td = link_to challenge.title, {:action => 'show', :id => challenge.id }
+- else
+    p No Challenges found
