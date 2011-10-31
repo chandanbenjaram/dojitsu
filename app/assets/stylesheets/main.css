@@ -115,13 +115,37 @@ nav ul li a:hover {
 }
 
 
-/* Round corners 
-.round {
-    -moz-border-radius:    10px;
-    -webkit-border-radius: 10px;
-    border-radius:         10px;
+ul.homenavbar {
+	display: table;
+	width: 100%;
+	background-color: #F8981D;	 
+	padding: 0px;
 }
-*/
+
+ul.homenavbar li {
+	display: table-cell;
+}
+
+ul.homenavbar li:hover {
+	background:#F9AD4A url("main_nav_bg_point_up.png") no-repeat center bottom;
+}
+
+ul.homenavbar li.selected {
+	background:#F8981D url("main_nav_bg_point_mo.png") no-repeat center bottom;
+}
+
+ul.homenavbar a {
+	display: block;
+	text-align: center;
+	margin: 0.5px;
+	color: #FFFFFF;
+	font-family: Arial;
+	font-size: 13px;
+}                  
+
+ul.homenavbar a:hover {
+	text-decoration: none;
+}
 
 /* User show page */
 table.profile {
