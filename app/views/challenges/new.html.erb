@@ -31,7 +31,7 @@
   			</tr>
 			<tr>
 				<td colspan="4">
-					<hr style="color:#0066CC;width:98%; height:1px;">
+					<hr style="color:#0066CC;width:98%; height:2px;;">
 				</td>
 			</tr>
 			<%= f.fields_for :point_types do |pt|%>
@@ -64,7 +64,7 @@
   			</tr>
 			<tr>
 				<td colspan="4">
-					<hr style="color:#0066CC;width:98%; height:1px;">
+					<hr style="color:#0066CC;width:98%; height:2px;">
 				</td>
 			</tr>
 			<tr>
@@ -97,7 +97,7 @@
 			<% end %>
 			<tr>
 				<td colspan="4">
-					<hr style="color:#0066CC;width:98%; height:1px;">
+					<hr style="color:#0066CC;width:98%; height:2px;">
 				</td>
 			</tr>
 			<% fs = 0%>
@@ -223,7 +223,40 @@
   								</tr>
   								<tr>
     								<td><%= f.label :soc_will_participating, "Participants"%></td>
-									<td><%= link_to "INVITE PARTICIPANTS" ,challenges_path,:class => "links_invite_p", :style => "text-decoration: none; color:#fff;"%></td>
+									<td>
+										<div id="fb-root"></div>
+    									<script src="http://connect.facebook.net/en_US/all.js"></script>
+    									<p>
+    										<input type="button"
+	      										onclick="sendRequestToManyRecipients(); return false;"
+									      		value="INVITE PARTICIPANTS" class="links_invite_p"/>
+    									</p>
+    									<script>
+      										FB.init({
+        										appId  : '232592880122189',
+        										status : true,
+        										cookie : true,
+        										oauth: true
+      										});
+											// to send request to single friend use this function
+      										function sendRequestToOneRecipient() {
+        									var user_id = document.getElementsByName("user_id")[0].value;
+        										FB.ui({method: 'apprequests',
+          										message: 'Do Your Best',
+          										to: user_id,
+        										}, requestCallback);
+      										}
+											// to send request to many friends use this function
+      										function sendRequestToManyRecipients() {
+        										FB.ui({method: 'apprequests',
+          										message: 'Do Your Best',
+        										}, requestCallback);
+      										}
+      										function requestCallback(response) {
+        										// Handle callback here
+      										}
+    									</script>
+									</td>
   								</tr>
 								<!--
   								<tr>
@@ -279,6 +312,10 @@
 <script type="text/javascript">
 jQuery(document).ready(function($) {
 	
+	$('ul.tabs li').click(function(){
+		//alert("hiiiiii");
+		$(".tab_container").reset();
+	});
 	
 	// Add row for new task
 	//alert("hiiiiiiiii");
