@@ -23,14 +23,10 @@ Dojitsu::Application.routes.draw do
 	  put :update_attribute_on_the_spot
     end
   end
+
   resources :user_connections
   resources :messages
   resources :usermail
-
-  resources :user do
-
-  end
-
 
   # root page
   root :to=>'static#home'
