@@ -17,18 +17,16 @@ Dojitsu::Application.routes.draw do
     collection do
       get "add_task"
       get "update_task"
-      get "test"     
+      get "test"  
+      get "show_soc"
+      get "show_per"
 	  put :update_attribute_on_the_spot
     end
   end
+
   resources :user_connections
   resources :messages
   resources :usermail
-
-  resources :user do
-
-  end
-
 
   # root page
   root :to=>'static#home'
