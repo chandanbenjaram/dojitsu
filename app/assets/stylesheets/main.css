@@ -611,3 +611,106 @@ h2{
 	font-size:11px;
 	color:#fff;
 }
+/*edit personal challenge*/
+.challange{
+	text-transform: uppercase;
+	color: #f8981d;
+	font-size:20px;
+	
+}
+
+/* tab bar edit challange*/
+
+
+ul.tabs {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 32px; /*--Set height of tabs--*/
+	border-bottom:solid #F0F0F0;
+	border-left: 1px solid #999;
+	border-top:solid #F0F0F0;
+	width: 100%;
+	background:	#F0F0F0;
+	font-size:11px;
+}
+ul.tabs li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	height: 31px; /*--Subtract 1px from the height of the unordered list--*/
+	line-height: 31px; /*--Vertically aligns the text within the tab--*/
+	border: 1px solid #999;
+	border-left: none;
+	margin-bottom: -1px; /*--Pull the list item down 1px--*/
+	overflow: hidden;
+	position: relative;
+	background: #e0e0e0;
+}
+ul.tabs li a {
+	text-decoration: none;
+	color: #f8981d;
+	display: block;
+	font-size: 1.2em;
+	padding: 0 20px;
+	border: 1px solid #fff; /*--Gives the bevel look with a 1px white border inside the list item--*/
+	outline: none;
+}
+ul.tabs li a:hover {
+	background: #fef4e8;
+}
+html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that the active tab does not listen to the hover properties--*/
+	background: #ffffff;
+	
+	color: #f8981d; /*--Makes the active tab look like it's connected with its content--*/
+}
+
+.tab_container {
+
+	overflow: hidden;
+	clear: both;
+	float: left; width: 100%;
+	background: #fff;
+}
+.tab_content {
+	padding: 0px;
+	/*font-size: 1.2em;*/
+}
+
+.ch_main_div {
+    border-color: #F4F4F4;
+    border-radius: 5px 5px 5px 5px;
+    border-style: solid;
+    border-width: 10px;
+    margin-top: 35px;
+}
+
+.sample{
+	width: 100%;
+	background:	#F0F0F0;
+}
+
+	
+	.ip-input{
+		float:right
+		margin: 0px;
+	}
+
+.accept_request{
+		 background-image: url("accepted.png"); 
+		 width: 95px;
+ 		height: 30px;
+}
+.decline_request{
+		 background-image: url("declane.png"); 
+		  width: 87px;
+ 		height: 30px;
+		background-repeat: no-repeat;
+}
+.think_request{
+		 background-image: url("thinkbutton.png") ;
+	background-repeat: no-repeat;
+		  width: 150px;
+ 		height: 30px; 
+}

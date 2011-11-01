@@ -27,6 +27,7 @@ class Challenge
   field :soc_will_participating
   field :soc_add_me
   field :per_who_win
+  field :soc
   
   field :save_as_tempalate
   field :discipline, :type=>String
@@ -46,5 +47,5 @@ class Challenge
   field :user_id, :type=>String
 
   embeds_many :point_types
-  
+  #embeds_many :lists
 end                
