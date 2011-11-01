@@ -17,7 +17,8 @@ Dojitsu::Application.routes.draw do
     collection do
       get "add_task"
       get "update_task"
-      get "test"      
+      get "test"     
+	  put :update_attribute_on_the_spot
     end
   end
   resources :user_connections
