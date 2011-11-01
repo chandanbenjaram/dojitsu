@@ -82,6 +82,7 @@
         onclick="sendRequestToOneRecipient(); return false;"
         value="ADD" align="right"
       />
+	  
 </td>
       
     </tr>
@@ -135,6 +136,7 @@
         cookie : true,
         oauth: true
       });
+
 // to send request to single friend use this function 
       function sendRequestToOneRecipient() {
         var user_id = document.getElementsByName("user_id")[0].value;
@@ -143,7 +145,16 @@
           to: user_id, 
         }, requestCallback);
       }
-
+// to send request to many friends use this function
+      function sendRequestToManyRecipients() {
+        FB.ui({method: 'apprequests',
+          message: 'My Great Request',
+        }, requestCallback);
+      }
+      
+      function requestCallback(response) {
+        // Handle callback here
+      }
     </script>
 
 
