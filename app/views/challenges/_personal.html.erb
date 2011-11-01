@@ -115,7 +115,7 @@
 								<% sum +=  @challenge.task_point[ch].to_i %>
 							 </td>
 							<td >
-								<div style="float: left;"><p align="left"><%= @challenge.task_description  %></p></div>
+								<div style="float: left;"><p align="left"><%= @challenge.task_description[ch]  %></p></div>
 							</td>
 							<td>
 								<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:12px;") %>
@@ -141,7 +141,7 @@
 	<br>
 			<table bgcolor=#f4f4f4 height="60px">
 					<tr bgcolor=#ffffff height="30px">
-							<td width="400px" height="30px">My Dojitsu score: <br><h3><font color="orange"><%= @challenge.task_description.count %>&nbsp;tasks</font>completed</td>
+							<td width="400px" height="30px">My Dojitsu score: <br><h3><font color="orange"><%= @challenge.task_description.count %></font>completed</td>
 							<td width="100px">
 									<p align=right>
 										<%= sum %>

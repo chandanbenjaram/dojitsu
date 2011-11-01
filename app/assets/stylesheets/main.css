@@ -461,6 +461,7 @@ select {
 	color:#f9a943;
 }
 
+
 select:focus{
     border-color: #4ccbda;
     border-width: 1px;
@@ -586,8 +587,8 @@ h2{
 	color: #f8981d;
 	font-size: 20px;
 }
-/* 
-#ch_main_div{
+
+ch_main_div{
 	border-width:10px;
   	border-style:solid;
   	border-color:#f4f4f4;
@@ -596,7 +597,17 @@ h2{
     -webkit-border-radius: 5px;
     border-radius:         5px;
 }
-*/
+
+ch_main_div1{
+	border-width:60px;
+  	border-style:solid;
+  	border-color:#ffffff;
+	margin-top:10px;
+	-moz-border-radius:    5px;
+    -webkit-border-radius: 5px;
+    border-radius:         5px;
+}
+
 
 /* tooltip styling */
 .tooltip {
