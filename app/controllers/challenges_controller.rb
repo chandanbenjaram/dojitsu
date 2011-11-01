@@ -4,13 +4,28 @@ class ChallengesController < ApplicationController
  can_edit_on_the_spot
   def index
     @title = "Challenges"
-    @challenges = Challenge.all;
+    @challenges = Challenge.all
   end
 
-  def show                                      
+  def show
+    @challenge = Challenge.find(params[:id])
+    if @challenge.soc?
+      redirect_to :action => "show_soc", :id => params[:id] 
+    else
+      redirect_to :action => "show_per", :id => params[:id]
+    end
+  end
+  
+  def show_soc
+    @challenge = Challenge.find(params[:id])
+    @org = User.find(:all,:conditions => ["id=?",@challenge.user_id]).first
+    @lists = List.all
+  end
+
+  def show_per
     @challenge = Challenge.find(params[:id])
   end
-
+  
   def new
     @challenge = Challenge.new
     #1.times {@challenge.tasks.build}
@@ -76,7 +91,7 @@ class ChallengesController < ApplicationController
   protected
   
   def find_challenge
-    @challenge = Challenge.find(params[:id]);
+    @challenge = Challenge.all
   end
   
 end
