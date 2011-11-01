@@ -1,3 +1,4 @@
+
 <div class="span-24 header first">&nbsp;</div>
 <div class="span-24">
   <div class="span-5">
@@ -27,9 +28,12 @@
               Hello, <%= current_user.authentications[0].name rescue current_user.fname %> <%= current_user.lname %>!
               <%= link_to "Log out", destroy_user_session_path %>
             <% else %>
+			
+			
               <%= link_to "Register", new_user_registration_path %>
               <%= link_to "Login", new_user_session_path %>
-            <% end %>
+            
+			<% end %>
           </li>
         </ul>
       </nav>
