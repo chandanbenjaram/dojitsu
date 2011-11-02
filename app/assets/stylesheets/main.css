@@ -172,6 +172,7 @@ ul.homenavbar > li.selected > a {
 	font-family: arial;
 }
 
+
 /* User show page */
 table.profile {
     width: 100%;
@@ -297,11 +298,8 @@ background:#F9AD4A url("main_nav_bg_point_up.png") no-repeat center bottom ;
 
 }
 
-.new_button {
-background:#f8981d url("btn_add_up.png") no-repeat left center ;	
- width: 85px;
- height: 30px;
-color: #FFFFFF;
+.fb-login-button {
+	background:#f8981d url("btn_add_up.png") no-repeat left center ;	
 }
 
 .new_button1 {
