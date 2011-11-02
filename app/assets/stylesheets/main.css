@@ -114,11 +114,9 @@ nav ul li a:hover {
     text-decoration: underline;
 }
 
-
 ul.homenavbar {
 	display: table;
 	width: 100%;
-	background-color: #F8981D;	 
 	padding: 0px;
 }
 
@@ -126,26 +124,54 @@ ul.homenavbar li {
 	display: table-cell;
 }
 
-ul.homenavbar li:hover {
-	background:#F9AD4A url("main_nav_bg_point_up.png") no-repeat center bottom;
-}
-
-ul.homenavbar li.selected {
-	background:#F8981D url("main_nav_bg_point_mo.png") no-repeat center bottom;
-}
-
-ul.homenavbar a {
+ul.homenavbar > li > a {
 	display: block;
 	text-align: center;
-	margin: 0.5px;
 	color: #FFFFFF;
-	font-family: Arial;
+	font-family: arial;
 	font-size: 13px;
+	text-decoration: none;
+	height: 2em;
+	background-image: url(main_nav_bg_up.png);
+	background-repeat: repeat-x;
+	background-position: center bottom;		
 }                  
 
-ul.homenavbar a:hover {
-	text-decoration: none;
+ul.homenavbar  > li > a:hover {                     
+	text-decoration: underline;
+	background-image: url(main_nav_bg_point_up.png),  url(main_nav_bg_mo.png);
+	background-repeat: no-repeat, repeat-x;
+	background-position: fixed, top right; 
+} 
+
+ul.homenavbar > li.selected > a {                     
+	background-image: url(main_nav_bg_point_mo.png),  url(main_nav_bg_up.png);
+	background-repeat: no-repeat, repeat-x;
+	background-position: fixed, top right; 
 }
+
+.challengeSubNav {
+	background-color: #F0F0F0;
+}	
+
+.font12bold {
+	font-size: 12px; 
+	font-weight:bold;
+}   
+
+.gray {
+	color: gray;
+}
+
+.new_challenge_button {
+	background: #f8981d url("btn_add_up.png") no-repeat left center;	
+	text-align: right;
+	min-width: 65px;
+	font-size: 12px; 
+	color: #FFF;
+	font-family: arial;
+}
+
 
 /* User show page */
 table.profile {
@@ -272,11 +298,8 @@ background:#F9AD4A url("main_nav_bg_point_up.png") no-repeat center bottom ;
 
 }
 
-.new_button {
-background:#f8981d url("btn_add_up.png") no-repeat left center ;	
- width: 85px;
- height: 30px;
-color: #FFFFFF;
+.fb-login-button {
+	background:#f8981d url("btn_add_up.png") no-repeat left center ;	
 }
 
 .new_button1 {
