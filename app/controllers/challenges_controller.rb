@@ -9,7 +9,8 @@ class ChallengesController < ApplicationController
 
   def show
     @challenge = Challenge.find(params[:id])
-    if @challenge.soc?
+    #raise @challenge.soc.inspect
+    if @challenge.soc == 1
       redirect_to :action => "show_soc", :id => params[:id] 
     else
       redirect_to :action => "show_per", :id => params[:id]
