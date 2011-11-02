@@ -5,15 +5,18 @@ class ChallengesController < ApplicationController
   def index
     @title = "Challenges"
     @challenges = Challenge.all
+	
   end
 
   def show
     @challenge = Challenge.find(params[:id])
-    if @challenge.soc?
-      redirect_to :action => "show_soc", :id => params[:id] 
-    else
+    if @challenge.soc == 1
+      redirect_to :action => "show_soc", :id => params[:id]
+	  else
+    if @challenge.soc == 0
       redirect_to :action => "show_per", :id => params[:id]
     end
+	end
   end
   
   def show_soc
@@ -24,6 +27,7 @@ class ChallengesController < ApplicationController
 
   def show_per
     @challenge = Challenge.find(params[:id])
+	
   end
   
   def new

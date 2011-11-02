@@ -6,15 +6,9 @@
 		<%= form_for @challenge do |f| %>
 		<table width="100%" border="0" border cellspacing=12px>
 			<tr>
-				<table border=1px width=500px bgcolor=white cellspacing= 12px>
-					<tr>
-						<td>
-							<b><h1><font color="orange"><p class="allcaps"><%= @challenge.title %></p></font></h1></b>
-						</td>
-						<td>&nbsp; </td>
-			
-					</tr>
-				</table>
+				<div class="title">
+				<p class="allcaps"><%= @challenge.title %></p></font></h1></b>
+				</div>
 		
 				<table border=1px width=500px height=60px bgcolor=white>
 					<tr>
@@ -168,6 +162,8 @@
 	<% end %>	
 	</div>
 </div>
+
+
 	<script type="text/javascript">
 	<script type="text/javascript" src="/js/jquery.js"></script>
 	<script type="text/javascript" src="/js/jquery.defaultText.js"></script>
@@ -350,6 +346,19 @@ text-transform: uppercase;
     border-radius:         5px;
 	background-color:#fffff
 }
+
+div.htmltooltip{
+position: absolute; /*leave this and next 3 values alone*/
+z-index: 1000;
+left: -1000px;
+top: -1000px;
+background: #272727;
+border: 10px solid black;
+color: white;
+padding: 3px;
+width: 250px; /*width of tooltip*/
+}
+
 
 
 </style>
