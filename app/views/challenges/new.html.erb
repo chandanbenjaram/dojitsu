@@ -158,7 +158,7 @@
 							</tr>
 							<tr>
 								<td colspan="6">
-									<b><%= image_tag("icon_arrow_left.png")%>Do all tasks need to be complete before the challenge is marked complete?</b><br>
+									<b><%= image_tag("icon_arrow_left.png")%>&nbsp;&nbsp;Do all tasks need to be complete before the challenge is marked complete?</b><br>
 									<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
 									<%= f.label "Yes" %>
 									<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
@@ -251,7 +251,11 @@
 							
   								<tr>
   									<td></td>
-    								<td><%= f.check_box :soc%><b>It's belogns to social challenge</b></td>
+    								<td>
+    									<!--
+    									<%= f.check_box :soc%><b>It's belogns to social challenge</b>
+										-->
+									</td>
   								</tr>
 								
 							</table>
@@ -292,7 +296,7 @@
     			<td></td>
     			<td colspan="2">
     				<%= f.submit "DONE", :style => "width: 100px; float:right", :class => "links" %>
-    				<%= f.submit "CANCEL", :style => "width: 100px; float:right;", :class => "links"%>
+    				<%= link_to "CANCEL", challenges_path, :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel"%>
 				</td>
   			</tr> 
 		</table>

@@ -1,7 +1,7 @@
 class ChallengesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index]
   before_filter :find_challenge, :only => [:show, :edit, :update, :destroy]
- can_edit_on_the_spot
+  can_edit_on_the_spot
   def index
     @title = "Challenges"
     @challenges = Challenge.all
