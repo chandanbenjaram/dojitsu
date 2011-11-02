@@ -20,6 +20,7 @@ Dojitsu::Application.routes.draw do
       get "test"  
       get "show_soc"
       get "show_per"
+      get "my_challenge"
 	  put :update_attribute_on_the_spot
     end
   end

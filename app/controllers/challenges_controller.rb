@@ -60,6 +60,10 @@ class ChallengesController < ApplicationController
     redirect_to :action => 'index'
   end  
   
+  def my_challenge
+    
+  end
+  
   def add_task
     #raise params.to_yaml
     @tsk_id = params[:id]
