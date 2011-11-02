@@ -38,7 +38,7 @@ group :development, :test do
 	gem 'rspec-rails'
 	gem 'annotate'
 	gem 'ruby-debug'
-	# gem "mongrel"
+	gem "mongrel"
 end       
 
 # Gems used only for assets and not required
