@@ -1,0 +1,12 @@
+#mychallenge_boarder
+	#mychallenge My Challenges
+	#mychallenge_hr<hr style="color:#0066CC;width:100%; height:2px;">
+	#mychallenge_name Name
+	
+	table
+	- for ch in @my_all_ch do
+		tr
+			td =ch.title
+		tr	 
+			td =ch.user_id 
+	

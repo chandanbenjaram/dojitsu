@@ -61,7 +61,7 @@ class ChallengesController < ApplicationController
   end  
   
   def my_challenge
-    
+    @my_all_ch = Challenge.all
   end
   
   def add_task

@@ -766,3 +766,11 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	-moz-border-radius: 5px 5px 0px 0px;
 	border: 1px solid #bebebe;
 }
+
+#mychallenge_hr{
+	height:2px;
+}
+
+#mychallenge_name{
+	background-color:#bebebe;
+}
