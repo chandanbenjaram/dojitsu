@@ -11,7 +11,7 @@ class Challenge
   field :title, :type=>String
   field :description, :type=>String
   
-  field :ch_task_type, :type => Array, :default => []
+  field :task_type, :type => Array, :default => []
   field :task_description, :type => Array, :default => []
   field :task_point, :type => Array, :default => []
   
@@ -47,5 +47,7 @@ class Challenge
   field :user_id, :type=>String
 
   embeds_many :point_types
+  embeds_many :tasks
+
   #embeds_many :lists
 end                
