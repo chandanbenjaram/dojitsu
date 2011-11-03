@@ -61,7 +61,11 @@ class ChallengesController < ApplicationController
   end  
   
   def my_challenge
+    @my_total_challenge = Challenge.all.count
     @my_all_ch = Challenge.all
+    @my_all_ch.each do |sd|
+      @org = User.find(:all,:conditions =>["id = ?",sd.user_id]).first
+    end
   end
   
   def add_task

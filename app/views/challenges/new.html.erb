@@ -1,6 +1,6 @@
 
-<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox')%>
-<%= javascript_include_tag('simple-tabs','jquery.table.addrow','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min')%>
+<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css')%>
+<%= javascript_include_tag('simple-tabs','jquery.table.addrow','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.hoverIntent','jquery.cluetip')%>
 <%= render 'layouts/loggedinbody'%>
 
 <div id="ch_main_div">
@@ -98,7 +98,7 @@
 						<%= link_to image_tag("btn_questionmark_up.png"), test_challenges_path,:class=>"reset_password_popup"%>
     				-->
 					<%= image_tag("btn_questionmark_up.png")%></b>
-					<div class="tooltip">
+					<div class="cluetip">
 					<table>
 						<tr>	
     						<td colspan="6"><h2>The score for each task will be added up to determin the winner(s).</h2></td>
@@ -306,6 +306,7 @@
 <script type="text/javascript">
 jQuery(document).ready(function($) {
 	
+	// script for change containt of social and personl challenge
 	$('ul.tabs li').click(function(){
 		//alert("hiiiiii");
 		$(".tab_container").reset();
@@ -319,17 +320,20 @@ jQuery(document).ready(function($) {
 	// Date Picker scripting code
 	//alert("Date picker is working");
 	$('.date-pick').datePicker({startDate:'01/01/1996'});
-
+	
+	//script for changing start point
     $('#ch_st_date').change(function() {
 		console.debug('changed...' + $(this));
 
 	});
 	
+	// script for changing end point
 	$('#ch_ed_date').change(function() {
 		console.debug('changed...' + $(this));
 
 	});
 	
+	// script for challenge 
 	$('.chall_type').click(function(){
 		if ($(this).attr("id") == "challenge_cha_type_per")
 		{
@@ -346,13 +350,19 @@ jQuery(document).ready(function($) {
 		//$("<div></div>").appendTo("div#new_tsk_field");
 	});
 	
+	/*
+	// script for tool tip
 	$("#download_now").tooltip({ 
 		offset: [10, 2],
 		effect: 'slide',
 		position: "top right"
 	});
+	*/
 	
+	// script for clue tip
+	$('#download_now').cluetip({attribute: 'id'});
 	
+	// script for start date
 	$('#ch_st_date').change(function() {
 		var sel_val = $(this).val();
 		//alert("hiiiiiii")
@@ -373,6 +383,7 @@ jQuery(document).ready(function($) {
 
 	});
 	
+	// script for end date
 	$('#ch_ed_date').change(function() {
 		var sel_val = $(this).val();
 		//alert("hiiiiiii")

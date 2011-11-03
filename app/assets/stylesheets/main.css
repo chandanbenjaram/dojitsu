@@ -165,13 +165,12 @@ ul.homenavbar > li.selected > a {
 
 .new_challenge_button {
 	background: #f8981d url("btn_add_up.png") no-repeat left center;	
-	text-align: right;
+	text-align: center;
 	min-width: 65px;
 	font-size: 12px; 
 	color: #FFF;
 	font-family: arial;
 }
-
 
 /* User show page */
 table.profile {
@@ -652,6 +651,11 @@ h2{
 	opacity: 0.95;
 }
 
+.cluetip{
+	display:none;
+}
+
+
 /*edit personal challenge*/
 .challange{
 	text-transform: uppercase;
@@ -756,15 +760,19 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
  		height: 30px; 
 }
 
-#mychallenge{
-	-moz-border-radius: 5px;
-	-moz-border-radius: 5px 5px 0px 0px;
-	background-color:#bebebe;
-}
-
 #mychallenge_boarder{
 	-moz-border-radius: 5px 5px 0px 0px;
 	border: 1px solid #bebebe;
+	width:100%;
+}
+
+#mychallenge{
+	position:relative;
+	width:100%;
+	-moz-border-radius: 5px;
+	-moz-border-radius: 5px 5px 0px 0px;
+	background-color:#bebebe;
+	height:20px;
 }
 
 #mychallenge_hr{
@@ -773,4 +781,10 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 
 #mychallenge_name{
 	background-color:#bebebe;
+	height:20px;
+	width:100%;
+}
+
+#mychallenge_cont{
+	margin-left:20px;	
 }
