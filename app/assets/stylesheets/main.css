@@ -511,6 +511,16 @@ option:hover{
     border-width: 1px;
 }
 
+.radio {
+  width: 19px;
+  height: 25px;
+  padding: 0 5px 0 0;
+  background-image: url("btn_radio_on.png") no-repeat;
+  display: block;
+  clear: left;
+  float: left;
+}
+
 .links {
     background: none repeat scroll 0 0 #f9a943;
     border-radius: 3px 3px 3px 3px;
