@@ -8,7 +8,7 @@ class Challenge
   #callback for assign value1 to value in point_date_type
   before_save :assign_date_value
   
-  attr_accessible :title, :description, :start_point, :end_point, :task_description, :task_point, :ch_task_type
+  attr_accessible :title, :description, :start_point, :end_point, :task_description, :task_point, :ch_task_type, :social_challenge, :personal_challenge
   validates_presence_of :title,  :message => "Please enter title!" 
   
   field :title, :type=>String
@@ -23,7 +23,11 @@ class Challenge
   # STARTING & ENDING POINTS
   embeds_one :start_point, :class_name => "PointType"
   embeds_one :end_point, :class_name => "PointType"
-
+  
+  # CHALLENGE TYPE SOCIAL & PERSONAL
+  embeds_one :social_challenge, :class_name => "ChallengeType"
+  embeds_one :personal_challenge, :class_name => "ChallengeType"
+  
   # TASKS
   #embeds_many :tasks
   
