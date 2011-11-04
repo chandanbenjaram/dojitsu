@@ -35,11 +35,7 @@
 						]), :style => "width:197px" 
 					%>				
 				</td>
-				<!--
-				<td width="30%">
-					<%= pt.text_field :dateStart, :class => "textfield_effect  date-pick", :id => "on_focus_textfield" %>
-				</td>
-				-->
+				
 				<td width="60%">	
 					
 					<div id="ch_st_dat" style="display:none;">
@@ -67,11 +63,7 @@
 						]), :style => "width:197px" 
 					%>				
 				</td>
-				<!--
-				<td>
-					<%= pt.text_field :dateEnd, :class => "textfield_effect  date-pick", :id => "on_focus_textfield" %>
-				</td>
-				-->
+				
 				<td>	
 					
 					<div id="ch_ed_dat" style="display:none;">
@@ -98,7 +90,7 @@
 						<%= link_to image_tag("btn_questionmark_up.png"), test_challenges_path,:class=>"reset_password_popup"%>
     				-->
 					<%= image_tag("btn_questionmark_up.png")%></b>
-					<div class="cluetip">
+					<div class="tooltip">
 					<table>
 						<tr>	
     						<td colspan="6"><h2>The score for each task will be added up to determin the winner(s).</h2></td>
