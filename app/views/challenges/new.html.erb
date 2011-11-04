@@ -16,7 +16,7 @@
 				</td>
 			</tr>
 			<tr>
-    			<td width="15%"><%= f.label :description, "DESCRIPTION" %></td>
+    			<td width="15%" style="color:#999999;"><%= f.label :description, "DESCRIPTION" %></td>
     			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea" %></td>
   			</tr>
 			<tr>
@@ -24,9 +24,8 @@
 					<hr style="color:#0066CC;width:98%; height:2px;;">
 				</td>
 			</tr>
-			<%= f.fields_for :point_types do |pt|%>
 			<tr>
-    			<td>START POINT</td>
+    			<td><b style="color:#999999;">START POINT</b></td>
     			<td width="18%">
 					<%= select_tag "ch_st_date", options_for_select([
 						["Choose", "0"],
@@ -36,15 +35,13 @@
 					%>				
 				</td>
 				<td width="60%">	
-					
 					<div id="ch_st_dat" style="display:none;">
-						<%= pt.text_field :st_value1, :class => "textfield_effect  date-pick" %></br>
+						<%= text_field_tag :st_value1, nil, :class => "textfield_effect  date-pick", :id => "st_dv" %></br>
 					</div>
 					<div id="ch_st_num" style="display:none;">
-						<%= pt.text_field :st_value, :class => "textfield_effect" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<%= pt.text_field :st_label, :class => "textfield_effect" %>
+						<%= text_field_tag :st_value, nil , :class => "textfield_effect", :id => "st_nv"  %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<%= text_field_tag :st_label, nil , :class => "textfield_effect", :id => "st_nl"%>
 					</div>
-							
 			   </td>
   			</tr>
 			<tr>
@@ -53,7 +50,7 @@
 				</td>
 			</tr>
 			<tr>
-    			<td><%= pt.label :dateEnd, "END POINT" %></td>
+    			<td><b style="color:#999999;">END POINT</b></td>
     			<td>
 					<%= select_tag "ch_ed_date", options_for_select([
 						["Choose", "0"],							
@@ -62,29 +59,24 @@
 						]), :style => "width:197px" 
 					%>				
 				</td>
-				
 				<td>	
-					
 					<div id="ch_ed_dat" style="display:none;">
-						<%= pt.text_field :ed_value1, :class => "textfield_effect  date-pick" %></br>
+						<%= text_field_tag :ed_value1, nil, :class => "textfield_effect  date-pick", :id => "ed_dv" %></br>
 					</div>
 					<div id="ch_ed_num" style="display:none;">
-						<%= pt.text_field :ed_value, :class => "textfield_effect" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<%= pt.text_field :ed_label, :class => "textfield_effect" %>
+						<%= text_field_tag :ed_value, nil , :class => "textfield_effect", :id => "ed_nv"  %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<%= text_field_tag :ed_label, nil , :class => "textfield_effect", :id => "ed_nl"%>
 					</div>
-					
 				</td>
   			</tr>
-			<% end %>
 			<tr>
 				<td colspan="4">
 					<hr style="color:#0066CC;width:98%; height:2px;">
 				</td>
 			</tr>
-			<% fs = 0%>
 			<tr>
   				<td>
-  					<b id="download_now">CREATE TASK
+  					<b id="download_now" style="color:#999999;">CREATE TASK
 					<%= image_tag("btn_questionmark_up.png")%></b>
 					<div class="cluetip">
 					<table>
@@ -118,39 +110,36 @@
     				<div id="new_tsk_field">		
 						<table border="1" class="atable">
 							<tr>
-								<th colspan="2">Score this task by</th>
-								<th colspan="2">Point(s)</th>
-								<th colspan="2">Task(name)
+								<th colspan="2" style="color:#999999;">Score this task by</th>
+								<th colspan="2" style="color:#999999;">Point(s)</th>
+								<th colspan="2" style="color:#999999;">Task(name)
 								<%= image_tag("btn_add_up.png", :class => "alternativeRow", :style => "float:right; margin-right:20px;") %>
 							</th>
 						    </tr>
 							<tr>
-								<td>
+								<td width="112">
 									<%= select_tag "challenge[ch_task_type][]", options_for_select([
 										["Choose", "0"],
-										["Check box:1 for checking off the task", "1"],	 
-										["Self-report number","2"]														
+										["Check box:1 for checking off the task", "Check box:1 for checking off the task"],	 
+										["Self-report number","Self-report number"]														
 										]), :style => "width:197px;" 
-									%>
-								</td>
-								<td><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
-								<td>
-									<%= text_field_tag "challenge[task_point][]", nil , :class => "textfield_effect_nw_tk_add", :id => "on_focus_textfield" %>								
-								</td>
-								<td><%= image_tag("icon_slash.png", :height => '20', :width => '5')%></td>
-								<td>
+									%>								</td>
+								<td width="17"><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
+								<td width="69">
+									<%= text_field_tag "challenge[task_point][]", nil , :class => "textfield_effect_nw_tk_add", :id => "on_focus_textfield" %>								</td>
+								<td width="17"><%= image_tag("icon_slash.png", :height => '20', :width => '5')%></td>
+								<td width="385">
 									<%= text_field_tag "challenge[task_description][]", nil ,:class => "textfield_effect_nw_tk", :id => "on_focus_textfield" %>
-									<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:12px;") %>
-								</td>
-								<td>&nbsp;</td>
+									<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:12px;") %>								</td>
+								<td width="13">&nbsp;</td>
 							</tr>
 							<tr>
 								<td colspan="6">
-									<b><%= image_tag("icon_arrow_left.png")%>&nbsp;&nbsp;Do all tasks need to be complete before the challenge is marked complete?</b><br>
+									<b style="color:#999999;"><%= image_tag("icon_arrow_left.png")%>&nbsp;&nbsp;Do all tasks need to be complete before the challenge is marked complete?</b><br>
 									<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
-									<%= f.label "Yes" %>
+									<font style="color:#999999;"><%= f.label "Yes" %></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
-									<%= f.label "No" %>								</td>
+									<font style="color:#999999;"><%= f.label "No" %></font>								</td>
 							</tr>
 						</table>
 					</div>
@@ -161,135 +150,18 @@
 					<hr style="color:#0066CC;width:98%; height:2px;">
 				</td>
 			</tr>
-			<tr>
-  				<td><b>PRIVACY</b></td>
-    			<td colspan="3">
-    				<ul class="tabs">
-    					<li><a href="#tab1">Social</a></li>
-    					<li><a href="#tab2">Personal</a></li>
-					</ul>
-
-					<div class="tab_container">
-    					<div id="tab1" class="tab_content">
-    						<table width="100%" border="0">
-  								<tr>
-    								<td><%= f.label :soc_who_win, "Who wins?"%></td>
-									<td>
-										<%= f.select :soc_who_win, options_for_select([
-	    									["Choose", "0"],							
-											["Add all milestones together","sco1"],
-											["1st person to reach End Point","sco2"],	 
-											["Highest milestone","sco3"],	
-											["Lowest milestone","sco4"],	
-											["Participant reaches all milestones","sco5"] 														
- 											]), :style => "width:197px" 
- 										%>		
-									</td>
-  								</tr>
-  								<tr>
-    								<td><%= f.label :soc_how_many_winner, "How many winners?"%></td>
-									<td>
-										<%= f.select :soc_how_many_winner, options_for_select([
-											["Select Categories", "0"],
-    										["1", "1"],							
-											["3","3"],
-											["5","5"],	 
-											["All participants win","all"] 														
- 											]), :style => "width:197px" 
- 										%>		
-									</td>
-  								</tr>
-  								<tr>
-    								<td><%= f.label :soc_will_participating, "Participants"%></td>
-									<td>
-										<div id="fb-root"></div>
-    									<script src="http://connect.facebook.net/en_US/all.js"></script>
-    									<p>
-    										<input type="button"
-	      										onclick="sendRequestToManyRecipients(); return false;"
-									      		value="INVITE PARTICIPANTS" class="links_invite_p"/>
-    									</p>
-    									<script>
-      										FB.init({
-        										appId  : '232592880122189',
-        										status : true,
-        										cookie : true,
-        										oauth: true
-      										});
-											// to send request to single friend use this function
-      										function sendRequestToOneRecipient() {
-        									var user_id = document.getElementsByName("user_id")[0].value;
-        										FB.ui({method: 'apprequests',
-          										message: 'Do Your Best',
-          										to: user_id,
-        										}, requestCallback);
-      										}
-											// to send request to many friends use this function
-      										function sendRequestToManyRecipients() {
-        										FB.ui({method: 'apprequests',
-          										message: 'Do Your Best',
-        										}, requestCallback);
-      										}
-      										function requestCallback(response) {
-        										// Handle callback here
-      										}
-    									</script>
-									</td>
-  								</tr>
-							
-  								<tr>
-  									<td></td>
-    								<td>
-    									<!--
-    									<%= f.check_box :soc%><b>It's belogns to social challenge</b>
-										-->
-									</td>
-  								</tr>
-								
-							</table>
-    					</div>
-    					<div id="tab2" class="tab_content">
-       						<table width="100%" border="0">
-  								<tr>
-    								<td><%= f.label :per_who_win, "Who wins?"%></td>
-									<td>
-										<%= f.select :per_who_win, options_for_select([
-    										["Select Categories", "0"],							
-											["Add all milestones together","sco1"],
-											["1st person to reach End Point","sco2"],	 
-											["Highest milestone","sco3"],	
-											["Lowest milestone","sco4"],	
-											["Participant reaches all milestones","sco5"] 														
- 											]), :style => "width:197px" 
- 										%>
-									</td>
-  								</tr>
-							</table>  
-    					</div>
-					</div>
-    			</td>
-  			</tr>
-			<tr>
-				<td colspan="4">
-					<hr style="color:#0066CC;width:98%; height:2px;">
-				</td>
-			</tr>
-			<!--
-			<tr>
-    			<td colspan="4"><b><%= f.check_box :save_as_tempalate%>Save this challenge as template in my profile</b></td>
-  			</tr>
-			-->		
   			<tr>
   				<td></td>
     			<td></td>
     			<td colspan="2">
-    				<%= f.submit "DONE", :style => "width: 100px; float:right", :class => "links" %>
     				<%= link_to "CANCEL", challenges_path, :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel"%>
+    				<%= f.submit "DONE", :style => "width: 100px; float:right; margin-right:10px;", :class => "links" %>
 				</td>
   			</tr> 
 		</table>
 	<% end %>	
 </div>
+
 
 <script type="text/javascript">
 jQuery(document).ready(function($) {
@@ -360,13 +232,16 @@ jQuery(document).ready(function($) {
 		{
 			//alert("date");
 			$(sel_val).show();
-			$('#ch_st_num').hide();	
+			$('#ch_st_num').hide();
+			$('#st_nv').val("");
+			$('#st_nl').val("");
 		}
 		else
 		{
 			//alert("number");
 			$(sel_val).show();
 			$('#ch_st_dat').hide();
+			$('#st_dv').val("");
 		}
 
 	});
@@ -381,13 +256,16 @@ jQuery(document).ready(function($) {
 		{
 			//alert("date");
 			$(sel_val).show();
-			$('#ch_ed_num').hide();	
+			$('#ch_ed_num').hide();
+			$('#ed_nv').val("");
+			$('#ed_nl').val("");	
 		}
 		else
 		{
 			//alert("number");
 			$(sel_val).show();
 			$('#ch_ed_dat').hide();
+			$('#ed_dv').val("");
 		}
 
 	});
@@ -397,5 +275,4 @@ jQuery(document).ready(function($) {
 	$('.reset_password_popup').colorbox();
 
 });
-
 </script>
