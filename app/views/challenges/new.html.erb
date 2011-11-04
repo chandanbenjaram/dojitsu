@@ -26,7 +26,7 @@
 			</tr>
 			<%= f.fields_for :point_types do |pt|%>
 			<tr>
-    			<td><%= pt.label :dateStart, "START POINT" %></td>
+    			<td>START POINT</td>
     			<td width="18%">
 					<%= select_tag "ch_st_date", options_for_select([
 						["Choose", "0"],
@@ -35,11 +35,6 @@
 						]), :style => "width:197px" 
 					%>				
 				</td>
-				<!--
-				<td width="30%">
-					<%= pt.text_field :dateStart, :class => "textfield_effect  date-pick", :id => "on_focus_textfield" %>
-				</td>
-				-->
 				<td width="60%">	
 					
 					<div id="ch_st_dat" style="display:none;">
@@ -67,11 +62,7 @@
 						]), :style => "width:197px" 
 					%>				
 				</td>
-				<!--
-				<td>
-					<%= pt.text_field :dateEnd, :class => "textfield_effect  date-pick", :id => "on_focus_textfield" %>
-				</td>
-				-->
+				
 				<td>	
 					
 					<div id="ch_ed_dat" style="display:none;">
@@ -93,10 +84,7 @@
 			<% fs = 0%>
 			<tr>
   				<td>
-  					<b id="download_now">CREATE TASK 
-					<!--
-						<%= link_to image_tag("btn_questionmark_up.png"), test_challenges_path,:class=>"reset_password_popup"%>
-    				-->
+  					<b id="download_now">CREATE TASK
 					<%= image_tag("btn_questionmark_up.png")%></b>
 					<div class="cluetip">
 					<table>

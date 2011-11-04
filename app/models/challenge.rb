@@ -17,9 +17,9 @@ class Challenge
   
   #field :startPoint, :type => PointType
   #field :endPoint, :type => PointType
-  embeds_one :startPoint, :class_name =>"PointType", :inverse_of => :challenge
-  embeds_one :endPoint, :class_name =>"PointType", :inverse_of => :challenge
-
+  
+  embeds_one :point_date_type, :class_name =>"PointType", :inverse_of => :challenge
+  embeds_one :point_number_type, :class_name =>"PointType", :inverse_of => :challenge
   
   field :task_comp
   field :soc_who_win
@@ -34,20 +34,10 @@ class Challenge
   field :participants, :type=>String
   field :rules, :type=>Array    
   field :goals, :type=>Array    
-  
-  #field :per_how_many_winner
-  #field :per_participants
-  #field :cha_type, :type=>String
-  #field :scoring_method_soc, :type=>String
-  #field :scoring_method_per, :type=>String
-  #field :will_participating, :type=>String
-  #field :no_of_winners, :type=>String
-  #field :add_myself, :type=>String
-  
+    
   field :user_id, :type=>String
 
   embeds_many :point_types
   embeds_many :tasks
-
-  #embeds_many :lists
+  
 end                

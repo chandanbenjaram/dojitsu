@@ -67,36 +67,7 @@ class ChallengesController < ApplicationController
       @org = User.find(:all,:conditions =>["id = ?",sd.user_id]).first
     end
   end
-  
-  def add_task
-    #raise params.to_yaml
-    @tsk_id = params[:id]
-    @challenge = Challenge.find(params[:id])
-  end
-  
-  def update_task
-    raise params.to_yaml
-  end
-  
-  def pravin
-    #raise params.to_yaml
-    @all_data = params[:challenge]
-    #raise @all_data.title.inspect
-    #raise params[:title].inspect
-    @title = params[:challenge][:title]
-    @description = params[:challenge][:description]
-    @dateStart = params[:challenge][:dateStart]
-    @dateEnd = params[:challenge][:dateEnd]
-    @discipline = params[:challenge][:discipline]
-    @participants = params[:challenge][:participants]
-    @challenge = Challenge.new
-    render  add_task_challenges_path
-  end
-  
-  def test
-    render :layout => false
-  end
-    
+      
   protected
   
   def find_challenge
