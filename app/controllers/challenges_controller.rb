@@ -34,7 +34,7 @@ class ChallengesController < ApplicationController
   end
 
   def create
-    raise params.to_yaml
+    #raise params.to_yaml
     #raise params.to_yaml
     #raise dateStart.inspect
     #@challenge = Challenge.create!(:title => "c title 0", :start_point => PointDateType.new(:value => Time.now),:end_point => PointDateType.new(:value => Time.now))
@@ -50,16 +50,18 @@ class ChallengesController < ApplicationController
     @ed_p_leb = params[:ed_label]
     
     if @ch_st_date == "#ch_st_dat" and  @ch_ed_date == "#ch_ed_dat"
-      @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description,\
+      @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, \
+        :task_description =>  @ch.task_description , :task_point => @ch.task_point, :ch_task_type => @ch.ch_task_type ,\
         :start_point => PointDateType.new(:value => @st_p_val1), \
         :end_point => PointDateType.new(:value => @ed_p_val1))
     else
       @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, \
+        :task_description =>  @ch.task_description , :task_point => @ch.task_point, :ch_task_type => @ch.ch_task_type ,\
         :start_point => PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb), \
         :end_point => PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb))
     end
-    raise "aaaaa"
-    #render  :action => "show", :notice => "Challenge created!"   
+    #raise "aaaaa"
+    render  :action => "show", :notice => "Challenge created!"   
   end
 
   def edit

@@ -3,7 +3,7 @@ class Challenge
   include Mongoid::Timestamps::Created
   include Mongoid::Timestamps::Updated
   
-  accepts_nested_attributes_for :point_types, :tasks
+  accepts_nested_attributes_for :point_types
   
   #callback for assign value1 to value in point_date_type
   before_save :assign_date_value
@@ -25,7 +25,7 @@ class Challenge
   embeds_one :end_point, :class_name => "PointType"
 
   # TASKS
-  embeds_many :tasks
+  #embeds_many :tasks
   
   private
   
