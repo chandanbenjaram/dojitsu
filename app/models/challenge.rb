@@ -15,12 +15,6 @@ class Challenge
   field :task_description, :type => Array, :default => []
   field :task_point, :type => Array, :default => []
   
-  #field :startPoint, :type => PointType
-  #field :endPoint, :type => PointType
-  
-  embeds_one :point_date_type, :class_name =>"PointType", :inverse_of => :challenge
-  embeds_one :point_number_type, :class_name =>"PointType", :inverse_of => :challenge
-  
   field :task_comp
   field :soc_who_win
   field :soc_how_many_winner
@@ -34,10 +28,16 @@ class Challenge
   field :participants, :type=>String
   field :rules, :type=>Array    
   field :goals, :type=>Array    
-    
+ 
+  # RDBMS associations
   field :user_id, :type=>String
 
-  embeds_many :point_types
+  # STARTING & ENDING POINTS
+  embeds_one :start_point, :class_name => "PointType"
+  embeds_one :end_point, :class_name => "PointType"
+
+  # TASKS
   embeds_many :tasks
-  
+
+  #embeds_many :lists
 end                
