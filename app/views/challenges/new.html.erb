@@ -76,35 +76,8 @@
 			</tr>
 			<tr>
   				<td>
-  					<b id="download_now" style="color:#999999;">CREATE TASK
+  					<b id="load-local" class="load-local" href="#hidden" rel="#hidden"  style="color:#999999;" title="The score for each task will be added up to determin the winner(s).">CREATE TASK
 					<%= image_tag("btn_questionmark_up.png")%></b>
-					<div class="tooltip">
-					<table>
-						<tr>	
-    						<td colspan="6"><h2>The score for each task will be added up to determin the winner(s).</h2></td>
-  						</tr>
-						<tr>
-	  					  <td width="38%"><p style="color:#f9a943; font-size:15px;"><b>check box:</b></p></td>
-   						  <td width="17%"><input type="text" value="1(Check of the task)" size="18" /></td>
-							<td width="3%"><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
-						  <td width="13%"><input type="text" value="point(s) per task" size="14" /></td>
-    						<td width="3%"><%= image_tag("icon_equal.png", :height => '10', :width => '10')%></td>
-						  <td width="28%"><input type="text" value="Score" size="5" /></td>
-  						</tr>
-						<tr>
-	  					  <td width="36%"><p style="color:#f9a943; font-size:15px;"><b>Self-reported Number:</b></p></td>
-   						  <td width="17%"><input type="text" value="Number" size="18" /></td>
-							<td><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
-						  <td width="13%"><input type="text" value="point(s) per task" size="14" /></td>
-    						<td><%= image_tag("icon_equal.png", :height => '10', :width => '10')%></td>
-						  <td width="28%"><input type="text" value="Score" size="5" /></td>
-  						</tr>
-						<tr>	
-  							<td></td>
-    						<td colspan="5">e.g. reporting 10 miles for "run treadmill (2 points)" task scores 20 points</td>
-  						</tr>		
-					</table>
-					</div>
 				</td>
 				<td colspan="3">
     				<div id="new_tsk_field">		
@@ -264,6 +237,56 @@
 		</table>
 	<% end %>	
 </div>
+
+<div id="hidden">
+	<font color="red">
+		<table>						
+						<tr>
+	  					  <td width="38%"><p style="color:#f9a943; font-size:15px;"><b>check box:</b></p></td>
+   						  <td width="17%"><input type="text" value="1(Check of the task)" size="18" /></td>
+							<td width="3%"><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
+						  <td width="13%"><input type="text" value="point(s) per task" size="14" /></td>
+    						<td width="3%"><%= image_tag("icon_equal.png", :height => '10', :width => '10')%></td>
+						  <td width="28%"><input type="text" value="Score" size="5" /></td>
+  						</tr>
+						<tr>
+	  					  <td width="36%"><p style="color:#f9a943; font-size:15px;"><b>Self-reported Number:</b></p></td>
+   						  <td width="17%"><input type="text" value="Number" size="18" /></td>
+							<td><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
+						  <td width="13%"><input type="text" value="point(s) per task" size="14" /></td>
+    						<td><%= image_tag("icon_equal.png", :height => '10', :width => '10')%></td>
+						  <td width="28%"><input type="text" value="Score" size="5" /></td>
+  						</tr>
+						<tr>	
+  							<td></td>
+    						<td colspan="5">e.g. reporting 10 miles for "run treadmill (2 points)" task scores 20 points</td>
+  						</tr>		
+					</table>	
+	</font>
+</div> 
+
+<script type="text/javascript"> 
+  $(document).ready(function() { 
+    $('b.load-local').cluetip({
+		width:640,
+		height:225,
+		local:true, 
+		//cursor: 'pointer',
+		//sticky: true,
+		//closePosition: 'title',
+  		dropShadow: false,
+		cluetipClass: 'jtip',
+		//mouseOutClose: true,
+		arrows: true
+	});
+  }); 
+</script> 
+
+<style>
+#hidden { 
+  display:none; 
+} 
+</style>
 
 
 <script type="text/javascript">
