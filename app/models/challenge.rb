@@ -8,7 +8,7 @@ class Challenge
   #callback for assign value1 to value in point_date_type
   before_save :assign_date_value
   
-  attr_accessible :title, :description, :start_point, :end_point, :tasks, :social_challenge, :personal_challenge, :name
+  attr_accessible :title, :description, :start_point, :end_point, :tasks, :task_comp, :social_challenge, :personal_challenge, :name
   
   validates_presence_of :title,  :message => "Please enter title!" 
        
