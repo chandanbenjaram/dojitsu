@@ -15,11 +15,9 @@ Dojitsu::Application.routes.draw do
  
   resources :challenges do
     collection do
-      get "add_task"
-      get "update_task"
-      get "test"  
       get "show_soc"
       get "show_per"
+      get "my_challenge"
 	  put :update_attribute_on_the_spot
     end
   end

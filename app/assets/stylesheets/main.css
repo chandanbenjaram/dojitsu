@@ -165,13 +165,12 @@ ul.homenavbar > li.selected > a {
 
 .new_challenge_button {
 	background: #f8981d url("btn_add_up.png") no-repeat left center;	
-	text-align: right;
+	text-align: center;
 	min-width: 65px;
 	font-size: 12px; 
 	color: #FFF;
 	font-family: arial;
 }
-
 
 /* User show page */
 table.profile {
@@ -308,15 +307,6 @@ background: url("loginbutton.png") no-repeat left center ;
  height: 24px;
 color: #FFFFFF;
 }
-
-.new_button2 {
-background: url("mark.png") no-repeat left center ; 
- width: 100px;
- height: 24px;
-color: #FFFFFF;
-}
-
-
 .new_button :hover{
 	color: #FFFFFF;
 }
@@ -493,8 +483,6 @@ select {
 	color:#f9a943;
 }
 
-
-
 select:focus{
     border-color: #4ccbda;
     border-width: 1px;
@@ -523,6 +511,16 @@ option:hover{
     border-width: 1px;
 }
 
+.radio {
+  width: 19px;
+  height: 25px;
+  padding: 0 5px 0 0;
+  background-image: url("btn_radio_on.png") no-repeat;
+  display: block;
+  clear: left;
+  float: left;
+}
+
 .links {
     background: none repeat scroll 0 0 #f9a943;
     border-radius: 3px 3px 3px 3px;
@@ -546,7 +544,20 @@ option:hover{
     padding: 5px;
     text-align: center;
     text-transform: uppercase;
-    width: 248px;
+    width: 195px;
+}
+
+.links_cancel {
+    background: none repeat scroll 0 0 #999999;
+    border-radius: 3px 3px 3px 3px;
+	text-color:white;
+    display: block;
+    font-size: 12px;
+    margin: 20px 0;
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100px;
 }
 
 option:hover {
@@ -620,8 +631,8 @@ h2{
 	color: #f8981d;
 	font-size: 20px;
 }
-
-ch_main_div{
+/* 
+#ch_main_div{
 	border-width:10px;
   	border-style:solid;
   	border-color:#f4f4f4;
@@ -630,17 +641,7 @@ ch_main_div{
     -webkit-border-radius: 5px;
     border-radius:         5px;
 }
-
-ch_main_div1{
-	border-width:60px;
-  	border-style:solid;
-  	border-color:#ffffff;
-	margin-top:10px;
-	-moz-border-radius:    5px;
-    -webkit-border-radius: 5px;
-    border-radius:         5px;
-}
-
+*/
 
 /* tooltip styling */
 .tooltip {
@@ -762,4 +763,33 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	background-repeat: no-repeat;
 		  width: 150px;
  		height: 30px; 
+}
+
+#mychallenge_boarder{
+	-moz-border-radius: 5px 5px 0px 0px;
+	border: 1px solid #bebebe;
+	width:100%;
+}
+
+#mychallenge{
+	position:relative;
+	width:100%;
+	-moz-border-radius: 5px;
+	-moz-border-radius: 5px 5px 0px 0px;
+	background-color:#bebebe;
+	height:20px;
+}
+
+#mychallenge_hr{
+	height:2px;
+}
+
+#mychallenge_name{
+	background-color:#bebebe;
+	height:20px;
+	width:100%;
+}
+
+#mychallenge_cont{
+	margin-left:20px;	
 }

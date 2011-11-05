@@ -1,6 +1,6 @@
 
-<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox')%>
-<%= javascript_include_tag('simple-tabs','jquery.table.addrow','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min')%>
+<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css')%>
+<%= javascript_include_tag('simple-tabs','jquery.table.addrow','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.hoverIntent','jquery.cluetip')%>
 <%= render 'layouts/loggedinbody'%>
 
 <div id="ch_main_div">
@@ -16,7 +16,7 @@
 				</td>
 			</tr>
 			<tr>
-    			<td width="15%"><%= f.label :description, "DESCRIPTION" %></td>
+    			<td width="15%" style="color:#999999;"><%= f.label :description, "DESCRIPTION" %></td>
     			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea" %></td>
   			</tr>
 			<tr>
@@ -24,9 +24,8 @@
 					<hr style="color:#0066CC;width:98%; height:2px;;">
 				</td>
 			</tr>
-			<%= f.fields_for :point_types do |pt|%>
 			<tr>
-    			<td><%= pt.label :dateStart, "START POINT" %></td>
+    			<td><b style="color:#999999;">START POINT</b></td>
     			<td width="18%">
 					<%= select_tag "ch_st_date", options_for_select([
 						["Choose", "0"],
@@ -35,31 +34,23 @@
 						]), :style => "width:197px" 
 					%>				
 				</td>
-				<!--
-				<td width="30%">
-					<%= pt.text_field :dateStart, :class => "textfield_effect  date-pick", :id => "on_focus_textfield" %>
-				</td>
-				-->
 				<td width="60%">	
-					
 					<div id="ch_st_dat" style="display:none;">
-						<%= pt.text_field :st_value1, :class => "textfield_effect  date-pick" %></br>
+						<%= text_field_tag :st_value1, nil, :class => "textfield_effect  date-pick", :id => "st_dv" %></br>
 					</div>
 					<div id="ch_st_num" style="display:none;">
-						<%= pt.text_field :st_value, :class => "textfield_effect" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<%= pt.text_field :st_label, :class => "textfield_effect" %>
+						<%= text_field_tag :st_value, nil , :class => "textfield_effect", :id => "st_nv"  %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<%= text_field_tag :st_label, nil , :class => "textfield_effect", :id => "st_nl"%>
 					</div>
-							
 			   </td>
   			</tr>
-			
 			<tr>
 				<td colspan="4">
 					<hr style="color:#0066CC;width:98%; height:2px;">
 				</td>
 			</tr>
 			<tr>
-    			<td><%= pt.label :dateEnd, "END POINT" %></td>
+    			<td><b style="color:#999999;">END POINT</b></td>
     			<td>
 					<%= select_tag "ch_ed_date", options_for_select([
 						["Choose", "0"],							
@@ -68,102 +59,60 @@
 						]), :style => "width:197px" 
 					%>				
 				</td>
-				<!--
-				<td>
-					<%= pt.text_field :dateEnd, :class => "textfield_effect  date-pick", :id => "on_focus_textfield" %>
-				</td>
-				-->
 				<td>	
-					
 					<div id="ch_ed_dat" style="display:none;">
-						<%= pt.text_field :ed_value1, :class => "textfield_effect  date-pick" %></br>
+						<%= text_field_tag :ed_value1, nil, :class => "textfield_effect  date-pick", :id => "ed_dv" %></br>
 					</div>
 					<div id="ch_ed_num" style="display:none;">
-						<%= pt.text_field :ed_value, :class => "textfield_effect" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<%= pt.text_field :ed_label, :class => "textfield_effect" %>
+						<%= text_field_tag :ed_value, nil , :class => "textfield_effect", :id => "ed_nv"  %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<%= text_field_tag :ed_label, nil , :class => "textfield_effect", :id => "ed_nl"%>
 					</div>
-					
 				</td>
   			</tr>
-			<% end %>
 			<tr>
 				<td colspan="4">
 					<hr style="color:#0066CC;width:98%; height:2px;">
 				</td>
 			</tr>
-			<% fs = 0%>
 			<tr>
   				<td>
-  					<b id="download_now">CREATE TASK 
-					<!--
-						<%= link_to image_tag("btn_questionmark_up.png"), test_challenges_path,:class=>"reset_password_popup"%>
-    				-->
+  					<b id="load-local" class="load-local" href="#hidden" rel="#hidden"  style="color:#999999;" title="The score for each task will be added up to determin the winner(s).">CREATE TASK
 					<%= image_tag("btn_questionmark_up.png")%></b>
-					<div class="tooltip">
-					<table>
-						<tr>	
-    						<td colspan="6"><h2>The score for each task will be added up to determin the winner(s).</h2></td>
-  						</tr>
-						<tr>
-	  					  <td width="38%"><p style="color:#f9a943; font-size:15px;"><b>check box:</b></p></td>
-   						  <td width="17%"><input type="text" value="1(Check of the task)" size="18" /></td>
-							<td width="3%"><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
-						  <td width="13%"><input type="text" value="point(s) per task" size="14" /></td>
-    						<td width="3%"><%= image_tag("icon_equal.png", :height => '10', :width => '10')%></td>
-						  <td width="28%"><input type="text" value="Score" size="5" /></td>
-  						</tr>
-						<tr>
-	  					  <td width="36%"><p style="color:#f9a943; font-size:15px;"><b>Self-reported Number:</b></p></td>
-   						  <td width="17%"><input type="text" value="Number" size="18" /></td>
-							<td><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
-						  <td width="13%"><input type="text" value="point(s) per task" size="14" /></td>
-    						<td><%= image_tag("icon_equal.png", :height => '10', :width => '10')%></td>
-						  <td width="28%"><input type="text" value="Score" size="5" /></td>
-  						</tr>
-						<tr>	
-  							<td></td>
-    						<td colspan="5">e.g. reporting 10 miles for "run treadmill (2 points)" task scores 20 points</td>
-  						</tr>		
-					</table>
-					</div>
 				</td>
 				<td colspan="3">
     				<div id="new_tsk_field">		
 						<table border="1" class="atable">
 							<tr>
-								<th colspan="2">Score this task by</th>
-								<th colspan="2">Point(s)</th>
-								<th colspan="2">Task(name)
+								<th colspan="2" style="color:#999999;">Score this task by</th>
+								<th colspan="2" style="color:#999999;">Point(s)</th>
+								<th colspan="2" style="color:#999999;">Task(name)
 								<%= image_tag("btn_add_up.png", :class => "alternativeRow", :style => "float:right; margin-right:20px;") %>
 							</th>
 						    </tr>
 							<tr>
-								<td>
+								<td width="112">
 									<%= select_tag "challenge[ch_task_type][]", options_for_select([
 										["Choose", "0"],
-										["Check box:1 for checking off the task", "1"],	 
-										["Self-report number","2"]														
+										["Check box:1 for checking off the task", "Check box:1 for checking off the task"],	 
+										["Self-report number","Self-report number"]														
 										]), :style => "width:197px;" 
-									%>
-								</td>
-								<td><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
-								<td>
-									<%= text_field_tag "challenge[task_point][]", nil , :class => "textfield_effect_nw_tk_add", :id => "on_focus_textfield" %>								
-								</td>
-								<td><%= image_tag("icon_slash.png", :height => '20', :width => '5')%></td>
-								<td>
+									%>								</td>
+								<td width="17"><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
+								<td width="69">
+									<%= text_field_tag "challenge[task_point][]", nil , :class => "textfield_effect_nw_tk_add", :id => "on_focus_textfield" %>								</td>
+								<td width="17"><%= image_tag("icon_slash.png", :height => '20', :width => '5')%></td>
+								<td width="385">
 									<%= text_field_tag "challenge[task_description][]", nil ,:class => "textfield_effect_nw_tk", :id => "on_focus_textfield" %>
-									<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:12px;") %>
-								</td>
-								<td>&nbsp;</td>
+									<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:12px;") %>								</td>
+								<td width="13">&nbsp;</td>
 							</tr>
 							<tr>
 								<td colspan="6">
-									<b><%= image_tag("icon_arrow_left.png")%>Do all tasks need to be complete before the challenge is marked complete?</b><br>
+									<b style="color:#999999;"><%= image_tag("icon_arrow_left.png")%>&nbsp;&nbsp;Do all tasks need to be complete before the challenge is marked complete?</b><br>
 									<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
-									<%= f.label "Yes" %>
+									<font style="color:#999999;"><%= f.label "Yes" %></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
-									<%= f.label "No" %>								</td>
+									<font style="color:#999999;"><%= f.label "No" %></font>								</td>
 							</tr>
 						</table>
 					</div>
@@ -175,45 +124,45 @@
 				</td>
 			</tr>
 			<tr>
-  				<td><b>PRIVACY</b></td>
+  				<td><b style="color:#999999;">PRIVACY</b></td>
     			<td colspan="3">
     				<ul class="tabs">
-    					<li><a href="#tab1">Social</a></li>
-    					<li><a href="#tab2">Personal</a></li>
+    					<li><a href="#tab1" id="soc">Social</a></li>
+    					<li><a href="#tab2" id="per">Personal</a></li>
 					</ul>
 
 					<div class="tab_container">
     					<div id="tab1" class="tab_content">
     						<table width="100%" border="0">
   								<tr>
-    								<td><%= f.label :soc_who_win, "Who wins?"%></td>
+    								<td><b style="color:#999999;">Who wins</b></td>
 									<td>
-										<%= f.select :soc_who_win, options_for_select([
-	    									["Choose", "0"],							
-											["Add all milestones together","sco1"],
-											["1st person to reach End Point","sco2"],	 
-											["Highest milestone","sco3"],	
-											["Lowest milestone","sco4"],	
-											["Participant reaches all milestones","sco5"] 														
- 											]), :style => "width:197px" 
+										<%= select_tag :soc_who_win, options_for_select([
+	    									["Choose", ""],							
+											["Add all milestones together","Add all milestones together"],
+											["1st person to reach End Point","1st person to reach End Point"],	 
+											["Highest milestone","Highest milestone"],	
+											["Lowest milestone","Lowest milestone"],	
+											["Participant reaches all milestones","Participant reaches all milestones"] 														
+ 											]), :id => "soc_wn", :style => "width:197px" 
  										%>		
 									</td>
   								</tr>
   								<tr>
-    								<td><%= f.label :soc_how_many_winner, "How many winners?"%></td>
+    								<td><b style="color:#999999;">How many winners</b></td>
 									<td>
-										<%= f.select :soc_how_many_winner, options_for_select([
-											["Select Categories", "0"],
+										<%= select_tag :soc_how_many_winner, options_for_select([
+											["Choose", ""],
     										["1", "1"],							
 											["3","3"],
 											["5","5"],	 
 											["All participants win","all"] 														
- 											]), :style => "width:197px" 
+ 											]), :id => "soc_hm", :style => "width:197px" 
  										%>		
 									</td>
   								</tr>
   								<tr>
-    								<td><%= f.label :soc_will_participating, "Participants"%></td>
+    								<td><b style="color:#999999;">Participants</b></td>
 									<td>
 										<div id="fb-root"></div>
     									<script src="http://connect.facebook.net/en_US/all.js"></script>
@@ -249,27 +198,21 @@
     									</script>
 									</td>
   								</tr>
-							
-  								<tr>
-  									<td></td>
-    								<td></td>
-  								</tr>
-								
 							</table>
     					</div>
     					<div id="tab2" class="tab_content">
        						<table width="100%" border="0">
   								<tr>
-    								<td><%= f.label :per_who_win, "Who wins?"%></td>
+    								<td><b style="color:#999999;">Who wins</b></td>
 									<td>
-										<%= f.select :per_who_win, options_for_select([
-    										["Select Categories", "0"],							
-											["Add all milestones together","sco1"],
-											["1st person to reach End Point","sco2"],	 
-											["Highest milestone","sco3"],	
-											["Lowest milestone","sco4"],	
-											["Participant reaches all milestones","sco5"] 														
- 											]), :style => "width:197px" 
+										<%= select_tag :per_who_win, options_for_select([
+    										["Choose", ""],							
+											["Add all milestones together","Add all milestones together"],
+											["1st person to reach End Point","1st person to reach End Point"],	 
+											["Highest milestone","Highest milestone"],	
+											["Lowest milestone","Lowest milestone"],	
+											["Participant reaches all milestones","Participant reaches all milestones"] 														
+ 											]), :id => "per_wn", :style => "width:197px" 
  										%>
 									</td>
   								</tr>
@@ -283,29 +226,85 @@
 					<hr style="color:#0066CC;width:98%; height:2px;">
 				</td>
 			</tr>
-			<!--
-			<tr>
-    			<td colspan="4"><b><%= f.check_box :save_as_tempalate%>Save this challenge as template in my profile</b></td>
-  			</tr>
-			-->		
   			<tr>
   				<td></td>
     			<td></td>
     			<td colspan="2">
-    				<%= f.submit "DONE", :style => "width: 100px; float:right", :class => "links" %>
-    				<%= f.submit "CANCEL", :style => "width: 100px; float:right;", :class => "links"%>
+    				<%= link_to "CANCEL", challenges_path, :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel"%>
+    				<%= f.submit "DONE", :style => "width: 100px; float:right; margin-right:10px;", :class => "links" %>
 				</td>
   			</tr> 
 		</table>
 	<% end %>	
 </div>
 
+<div id="hidden">
+		<table>						
+						<tr>
+	  					  <td width="38%"><p style="color:#f9a943; font-size:15px;"><b>check box:</b></p></td>
+   						  <td width="17%"><input type="text" value="1(Check of the task)" size="18" /></td>
+							<td width="3%"><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
+						  <td width="13%"><input type="text" value="point(s) per task" size="14" /></td>
+    						<td width="3%"><%= image_tag("icon_equal.png", :height => '10', :width => '10')%></td>
+						  <td width="28%"><input type="text" value="Score" size="5" /></td>
+  						</tr>
+						<tr>
+	  					  <td width="36%"><p style="color:#f9a943; font-size:15px;"><b>Self-reported Number:</b></p></td>
+   						  <td width="17%"><input type="text" value="Number" size="18" /></td>
+							<td><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
+						  <td width="13%"><input type="text" value="point(s) per task" size="14" /></td>
+    						<td><%= image_tag("icon_equal.png", :height => '10', :width => '10')%></td>
+						  <td width="28%"><input type="text" value="Score" size="5" /></td>
+  						</tr>
+						<tr>	
+  							<td></td>
+    						<td colspan="5">e.g. reporting 10 miles for "run treadmill (2 points)" task scores 20 points</td>
+  						</tr>		
+					</table>	
+	
+</div> 
+
+<script type="text/javascript"> 
+  $(document).ready(function() { 
+    $('b.load-local').cluetip({
+		width:640,
+		height:225,
+		local:true, 
+		//cursor: 'pointer',
+		//sticky: true,
+		//closePosition: 'title',
+  		dropShadow: false,
+		cluetipClass: 'jtip',
+		//mouseOutClose: true,
+		arrows: true
+	});
+  }); 
+</script> 
+
+<style>
+#hidden { 
+  display:none; 
+} 
+</style>
+
+
 <script type="text/javascript">
 jQuery(document).ready(function($) {
 	
-	$('ul.tabs li').click(function(){
-		//alert("hiiiiii");
-		$(".tab_container").reset();
+	// script for change containt of social and personl challenge
+	$('ul.tabs li').click(function(event){
+		var ty = event.target.id;
+		if( ty == "soc")
+		{
+			//alert("soc");
+			$('#soc_wn').val("");
+			$('#soc_hm').val("");
+		}
+		else
+		{
+			//alert("per");
+			$('#per_wn').val("");
+		}
 	});
 	
 	// Add row for new task
@@ -316,17 +315,20 @@ jQuery(document).ready(function($) {
 	// Date Picker scripting code
 	//alert("Date picker is working");
 	$('.date-pick').datePicker({startDate:'01/01/1996'});
-
+	
+	//script for changing start point
     $('#ch_st_date').change(function() {
 		console.debug('changed...' + $(this));
 
 	});
 	
+	// script for changing end point
 	$('#ch_ed_date').change(function() {
 		console.debug('changed...' + $(this));
 
 	});
 	
+	// script for challenge 
 	$('.chall_type').click(function(){
 		if ($(this).attr("id") == "challenge_cha_type_per")
 		{
@@ -343,13 +345,19 @@ jQuery(document).ready(function($) {
 		//$("<div></div>").appendTo("div#new_tsk_field");
 	});
 	
+	/*
+	// script for tool tip
 	$("#download_now").tooltip({ 
 		offset: [10, 2],
 		effect: 'slide',
 		position: "top right"
 	});
+	*/
 	
+	// script for clue tip
+	$('#download_now').cluetip({attribute: 'id'});
 	
+	// script for start date
 	$('#ch_st_date').change(function() {
 		var sel_val = $(this).val();
 		//alert("hiiiiiii")
@@ -359,17 +367,21 @@ jQuery(document).ready(function($) {
 		{
 			//alert("date");
 			$(sel_val).show();
-			$('#ch_st_num').hide();	
+			$('#ch_st_num').hide();
+			$('#st_nv').val("");
+			$('#st_nl').val("");
 		}
 		else
 		{
 			//alert("number");
 			$(sel_val).show();
 			$('#ch_st_dat').hide();
+			$('#st_dv').val("");
 		}
 
 	});
 	
+	// script for end date
 	$('#ch_ed_date').change(function() {
 		var sel_val = $(this).val();
 		//alert("hiiiiiii")
@@ -379,13 +391,16 @@ jQuery(document).ready(function($) {
 		{
 			//alert("date");
 			$(sel_val).show();
-			$('#ch_ed_num').hide();	
+			$('#ch_ed_num').hide();
+			$('#ed_nv').val("");
+			$('#ed_nl').val("");	
 		}
 		else
 		{
 			//alert("number");
 			$(sel_val).show();
 			$('#ch_ed_dat').hide();
+			$('#ed_dv').val("");
 		}
 
 	});
@@ -395,5 +410,4 @@ jQuery(document).ready(function($) {
 	$('.reset_password_popup').colorbox();
 
 });
-
 </script>

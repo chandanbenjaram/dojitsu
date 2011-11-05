@@ -8,8 +8,13 @@ class ChallengesController < ApplicationController
   end
 
   def show
-  
     @challenge = Challenge.find(params[:id])
+    #raise @challenge.soc.inspect
+    if @challenge.soc == 1
+      redirect_to :action => "show_soc", :id => params[:id] 
+    else
+      redirect_to :action => "show_per", :id => params[:id]
+    end
   end
   
   def show_soc
@@ -19,32 +24,72 @@ class ChallengesController < ApplicationController
   end
 
   def show_per
-      @challenge = Challenge.find(params[:id])
-	 if @challenge.per_who_win? && @challenge.per_who_win!= nil && @challenge.per_who_win!='0'
-
-      render "show_per" and return 
-   else
-      render "show_soc"
-    end
+    @challenge = Challenge.find(params[:id])
   end
   
   def new
     @challenge = Challenge.new
     #1.times {@challenge.tasks.build}
-    1.times {@challenge.point_types.build}
+    #1.times {@challenge.point_types.build}
   end
 
   def create
     #raise params.to_yaml
+    #raise params.to_yaml
     #raise dateStart.inspect
-    @challenge = Challenge.create!(params[:challenge]) do |doc|  
-      doc.user_id = current_user.id
-    end      
+    #@challenge = Challenge.create!(:title => "c title 0", :start_point => PointDateType.new(:value => Time.now),:end_point => PointDateType.new(:value => Time.now))
+    @ch = Challenge.new(params[:challenge])
+    @ch_st_date = params[:ch_st_date]
+    @st_p_val1 = params[:st_value1]
+    @st_p_val = params[:st_value]
+    @st_p_leb = params[:st_label]
+    
+    @ch_ed_date = params[:ch_ed_date]
+    @ed_p_val1 = params[:ed_value1]
+    @ed_p_val = params[:ed_value]
+    @ed_p_leb = params[:ed_label]
+    
+    @so_who_win = params[:soc_who_win]
+    @so_how_many_winner = params[:soc_how_many_winner]
+    @pr_who_win = params[:per_who_win]
+    
+    unless @so_who_win.blank?
+      #raise "soc"
+      if @ch_st_date == "#ch_st_dat" and  @ch_ed_date == "#ch_ed_dat"
+        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, \
+          :task_description =>  @ch.task_description , :task_point => @ch.task_point, :ch_task_type => @ch.ch_task_type ,\
+          :start_point => PointDateType.new(:value => @st_p_val1), \
+          :end_point => PointDateType.new(:value => @ed_p_val1), \
+          :social_challenge => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winner => @so_how_many_winner))
+      else
+        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, \
+          :task_description =>  @ch.task_description , :task_point => @ch.task_point, :ch_task_type => @ch.ch_task_type ,\
+          :start_point => PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb), \
+          :end_point => PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb), \
+          :social_challenge => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winner => @so_how_many_winner))
+      end
+    else
+      #raise "per"
+      if @ch_st_date == "#ch_st_dat" and  @ch_ed_date == "#ch_ed_dat"
+        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, \
+          :task_description =>  @ch.task_description , :task_point => @ch.task_point, :ch_task_type => @ch.ch_task_type ,\
+          :start_point => PointDateType.new(:value => @st_p_val1), \
+          :end_point => PointDateType.new(:value => @ed_p_val1), \
+          :personal_challenge => ChallengePersonalType.new(:who_win => @pr_who_win))
+      else
+        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, \
+          :task_description =>  @ch.task_description , :task_point => @ch.task_point, :ch_task_type => @ch.ch_task_type ,\
+          :start_point => PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb), \
+          :end_point => PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb), \
+          :personal_challenge => ChallengePersonalType.new(:who_win => @pr_who_win))
+      end
+    end
+    #raise "aaaaa"
     render  :action => "show", :notice => "Challenge created!"   
   end
 
   def edit
-   #raise params.inspect
+  	#raise params.inspect
     @challenge = Challenge.find(params[:id])
   end   
 
@@ -62,38 +107,13 @@ class ChallengesController < ApplicationController
   end  
   
   def my_challenge
+    @my_total_challenge = Challenge.all.count
     @my_all_ch = Challenge.all
+    @my_all_ch.each do |sd|
+      @org = User.find(:all,:conditions =>["id = ?",sd.user_id]).first
+    end
   end
-  
-  def add_task
-    #raise params.to_yaml
-    @tsk_id = params[:id]
-    @challenge = Challenge.find(params[:id])
-  end
-  
-  def update_task
-    raise params.to_yaml
-  end
-  
-  def pravin
-    #raise params.to_yaml
-    @all_data = params[:challenge]
-    #raise @all_data.title.inspect
-    #raise params[:title].inspect
-    @title = params[:challenge][:title]
-    @description = params[:challenge][:description]
-    @dateStart = params[:challenge][:dateStart]
-    @dateEnd = params[:challenge][:dateEnd]
-    @discipline = params[:challenge][:discipline]
-    @participants = params[:challenge][:participants]
-    @challenge = Challenge.new
-    render  add_task_challenges_path
-  end
-  
-  def test
-    render :layout => false
-  end
-    
+      
   protected
   
   def find_challenge
@@ -101,3 +121,4 @@ class ChallengesController < ApplicationController
   end
   
 end
+
