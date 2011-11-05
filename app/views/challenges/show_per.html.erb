@@ -1,13 +1,15 @@
 <%= stylesheet_link_tag('simple-tabs','datePicker')%>
-<%= javascript_include_tag('simple-tabs','jquery.table.addrow','jquery.datePicker','date','jquery.editable-1.3.3','on_the_spot')%>
+<%= javascript_include_tag :defaults %>
+<%= javascript_include_tag('simple-tabs','jquery.table.addrow','jquery.datePicker','date','jquery.editable-1.3.3','on_the_spot','jquery.ezpz_tooltip','jquery.ezpz_tooltip.min.js')%>
 <%= render 'layouts/loggedinbody'%>
+
 	<div id="ch_main_div">
 	<div id="ch_main_div1">
 		<%= form_for @challenge do |f| %>
 		<table width="100%" border="0" border cellspacing=12px>
 			<tr>
 				<div class="title">
-				<p class="allcaps"><%= @challenge.title %></p></font></h1></b>
+				<p class="allcaps"><font color="orange"><%= @challenge.title %></p></font></h1></b>
 				</div>
 		
 				<table border=1px width=500px height=60px bgcolor=white>
@@ -37,7 +39,30 @@
 						</td>
 						<td class="editable">
 							<% for ch in @challenge.point_types %>
-								<%=  on_the_spot_edit ch,:st_value1, :type=>:text %>
+							
+
+<script src="http://cdn.jquerytools.org/1.2.6/form/jquery.tools.min.js"></script>
+
+<!-- dateinput styling -->
+<link rel="stylesheet" type="text/css" href="dateinput.css"/>
+
+<!-- HTML5 date input -->
+<p class="date" > <%=  ch.st_value1 %></p>
+
+<!-- make it happen -->
+<script>
+$(".date").dateinput({
+	format: 'dd-mm-yyyy',	// the format displayed for the user
+	selectors: true,             	// whether month/year dropdowns are shown
+	min: -100,                    // min selectable day (100 days backwards)
+	max: 100,                    	// max selectable day (100 days onwards)
+	offset: [10, 20],            	// tweak the position of the calendar
+	speed: 'fast',               	// calendar reveal speed
+	firstDay: 1                  	// which day starts a week. 0 = sunday, 1 = monday etc..
+});
+</script>
+
+
 									<% if ch.st_value1==nil%>
 										
 									<% else %>
@@ -96,7 +121,7 @@
 					<tr bgcolor=#D7D7D7 height=20px border=0px>
 							<td width="100px"><h4>POINT(s)<font color="orange">/</font>TASKS</h4>
 							</td>
-							<td bgcolor=#D7D7D7 
+							<td bgcolor=#D7D7D7 width="600px">
 							</td>
 							<td bgcolor=#D7D7D7><p style="float:right";>SCORE </p></td>
 					</tr>
@@ -111,7 +136,7 @@
 							<td >
 								<div style="float: left;"><p align="left"><%= @challenge.task_description[ch]  %></p></div>
 							</td>
-							<td>
+							<td bgcolor=#FAFFD9 width="30px">
 								<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:12px;") %>
 							</td>
 					</tr>
@@ -130,7 +155,9 @@
 			$("document").ready(function(){
 										$(".addComment").btnAddRow({rowNumColumn:"rowNumber"});
 										$(".delRow").btnDelRow();
-									});						
+									});		
+
+									
 	</script>
 	<br>
 			<table bgcolor=#f4f4f4 height="60px">
@@ -173,8 +200,24 @@
 								$(".addComment").btnAddRow({rowNumColumn:"rowNumber"});
 								$(".delRow").btnDelRow();
 								});
+	
 
 jQuery(document).ready(function($) {
+
+
+
+
+$(":date").dateinput({
+	format: 'dddd dd, mmmm yyyy',	// the format displayed for the user
+	selectors: true,             	// whether month/year dropdowns are shown
+	min: -100,                    // min selectable day (100 days backwards)
+	max: 100,                    	// max selectable day (100 days onwards)
+	offset: [10, 20],            	// tweak the position of the calendar
+	speed: 'fast',               	// calendar reveal speed
+	firstDay: 1                  	// which day starts a week. 0 = sunday, 1 = monday etc..
+});
+
+
 
 $(".editable").editable("http://www.example.com/save.php", { 
     method : "PUT"
@@ -281,6 +324,9 @@ $(function(){
 
 });
 $('.editable2').editable({type:'textarea',submitBy:'dblclick'}).css('background-color','#39c');
+
+
+
 </script>
 
 <style type="text/css">
@@ -315,6 +361,8 @@ background-color: gray;
 .allcaps {
 font-variant: small-caps;
 text-transform: uppercase;
+font-family:"Gothem Book","Arial";
+font-size:20px;
 }
 
 #ch_main_div {
@@ -358,7 +406,6 @@ color: white;
 padding: 3px;
 width: 250px; /*width of tooltip*/
 }
-
 
 
 </style>

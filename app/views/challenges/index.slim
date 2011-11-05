@@ -14,6 +14,12 @@
 	table
 	  - for challenge in @challenges do
 	      tr
-	        td = link_to challenge.title, {:action => 'show', :id => challenge.id }
+	        td 
+			- if challenge.soc? and challenge.soc == 0
+				render :action => 'show_soc', :id => challenge.id  
+			- else
+				= link_to challenge.title, {:action => 'show_per', :id => challenge.id }
+			br
+			
 - else
     p No Challenges found   

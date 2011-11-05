@@ -1,20 +1,15 @@
 class ChallengesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index]
   before_filter :find_challenge, :only => [:show, :edit, :update, :destroy]
- can_edit_on_the_spot
+  can_edit_on_the_spot
   def index
     @title = "Challenges"
     @challenges = Challenge.all
   end
 
   def show
+  
     @challenge = Challenge.find(params[:id])
-    #raise @challenge.soc.inspect
-    if @challenge.soc == 1
-      redirect_to :action => "show_soc", :id => params[:id] 
-    else
-      redirect_to :action => "show_per", :id => params[:id]
-    end
   end
   
   def show_soc
@@ -24,7 +19,13 @@ class ChallengesController < ApplicationController
   end
 
   def show_per
-    @challenge = Challenge.find(params[:id])
+      @challenge = Challenge.find(params[:id])
+	 if @challenge.per_who_win? && @challenge.per_who_win!= nil && @challenge.per_who_win!='0'
+
+      render "show_per" and return 
+   else
+      render "show_soc"
+    end
   end
   
   def new
@@ -43,7 +44,7 @@ class ChallengesController < ApplicationController
   end
 
   def edit
-  	#raise params.inspect
+   #raise params.inspect
     @challenge = Challenge.find(params[:id])
   end   
 
@@ -59,6 +60,10 @@ class ChallengesController < ApplicationController
     @challenge.destroy
     redirect_to :action => 'index'
   end  
+  
+  def my_challenge
+    @my_all_ch = Challenge.all
+  end
   
   def add_task
     #raise params.to_yaml
@@ -96,4 +101,3 @@ class ChallengesController < ApplicationController
   end
   
 end
-
