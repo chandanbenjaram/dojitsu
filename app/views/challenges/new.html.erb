@@ -91,7 +91,7 @@
 						    </tr>
 							<tr>
 								<td width="112">
-									<%= select_tag "challenge[ch_task_type][]", options_for_select([
+									<%= select_tag "task[score_by][]", options_for_select([
 										["Choose", "0"],
 										["Check box:1 for checking off the task", "Check box:1 for checking off the task"],	 
 										["Self-report number","Self-report number"]														
@@ -99,11 +99,11 @@
 									%>								</td>
 								<td width="17"><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
 								<td width="69">
-									<%= text_field_tag "challenge[task_point][]", nil , :class => "textfield_effect_nw_tk_add", :id => "on_focus_textfield" %>								</td>
+									<%= text_field_tag "task[score][]", nil , :class => "textfield_effect_nw_tk_add", :id => "on_focus_textfield" %>								</td>
 								<td width="17"><%= image_tag("icon_slash.png", :height => '20', :width => '5')%></td>
 								<td width="385">
 									<%= hidden_field_tag "challenge[task_status][]", nil %>
-									<%= text_field_tag "challenge[task_description][]", nil ,:class => "textfield_effect_nw_tk", :id => "on_focus_textfield" %>
+									<%= text_field_tag "task[name][]", nil ,:class => "textfield_effect_nw_tk", :id => "on_focus_textfield" %>
 									<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:12px;") %>								</td>
 								<td width="13">	</td>
 							</tr>
