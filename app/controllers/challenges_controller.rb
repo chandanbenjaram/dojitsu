@@ -39,6 +39,7 @@ class ChallengesController < ApplicationController
     #raise dateStart.inspect
     #@challenge = Challenge.create!(:title => "c title 0", :start_point => PointDateType.new(:value => Time.now),:end_point => PointDateType.new(:value => Time.now))
     @ch = Challenge.new(params[:challenge])
+    #raise task = Task.new(params[:tasks]).inspect
     @ch_st_date = params[:ch_st_date]
     @st_p_val1 = params[:st_value1]
     @st_p_val = params[:st_value]
@@ -59,14 +60,14 @@ class ChallengesController < ApplicationController
         @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, \
           :start_point => PointDateType.new(:value => @st_p_val1), \
           :end_point => PointDateType.new(:value => @ed_p_val1), \
-          :task =>Task.new(:name => "pravin"), \
           :social_challenge => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner))
+        @challenge.tasks.push([Task.new(params[:tasks])])  
       else
         @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, \
           :start_point => PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb), \
           :end_point => PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb), \
-          :task =>Task.new(:name => "pravin"), \
           :social_challenge => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner))
+        @challenge.tasks.push([Task.new(params[:tasks])])  
       end
     else
       #raise "per"
@@ -74,14 +75,14 @@ class ChallengesController < ApplicationController
         @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, \
           :start_point => PointDateType.new(:value => @st_p_val1), \
           :end_point => PointDateType.new(:value => @ed_p_val1), \
-          :task =>Task.new(:name => "pravin"), \
           :personal_challenge => ChallengePersonalType.new(:who_win => @pr_who_win))
+        @challenge.tasks.push([Task.new(params[:tasks])])  
       else
         @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, \
           :start_point => PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb), \
           :end_point => PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb), \
-          :task =>Task.new(:name => "pravin"), \
           :personal_challenge => ChallengePersonalType.new(:who_win => @pr_who_win))
+        @challenge.tasks.push([Task.new(params[:tasks])])  
       end
     end
     #raise "aaaaa"
