@@ -29,18 +29,12 @@ class ChallengesController < ApplicationController
   
   def new
     @challenge = Challenge.new
-    1.times {@challenge.tasks.build}
+    1.times {@challenge.tasks.build} 
+    #1.times {@challenge.point_types.build}
   end
 
   def create
-    #raise params.to_yaml
-    #raise params.to_yaml
-    #raise dateStart.inspect
-    #@challenge = Challenge.create!(:title => "c title 0", :start_point => PointDateType.new(:value => Time.now),:end_point => PointDateType.new(:value => Time.now))
     @ch = Challenge.new(params[:challenge])
-    #raise task = Task.new(params[:tasks]).inspect
-    
-    #@tasks = Task.new(params[:tasks])
     
     @ch_st_date = params[:ch_st_date]
     @st_p_val1 = params[:st_value1]
@@ -62,7 +56,7 @@ class ChallengesController < ApplicationController
         @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, \
           :start_point => PointDateType.new(:value => @st_p_val1), \
           :end_point => PointDateType.new(:value => @ed_p_val1), \
-          :social_challenge => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner))         
+          :social_challenge => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner))
       else
         @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, \
           :start_point => PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb), \
@@ -75,20 +69,16 @@ class ChallengesController < ApplicationController
         @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, \
           :start_point => PointDateType.new(:value => @st_p_val1), \
           :end_point => PointDateType.new(:value => @ed_p_val1), \
-          :personal_challenge => ChallengePersonalType.new(:who_win => @pr_who_win))          
+          :personal_challenge => ChallengePersonalType.new(:who_win => @pr_who_win))
       else
         @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, \
           :start_point => PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb), \
           :end_point => PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb), \
-          :personal_challenge => ChallengePersonalType.new(:who_win => @pr_who_win))      
+          :personal_challenge => ChallengePersonalType.new(:who_win => @pr_who_win))
       end
     end
-    
-    
-    
-    @challenge.tasks.push([Task.new(params[:tasks])])
-    
-    #raise "aaaaa"
+
+    @ch.save!
     render  :action => "show", :notice => "Challenge created!"   
   end
 
@@ -108,31 +98,7 @@ class ChallengesController < ApplicationController
   def destroy
     @challenge.destroy
     redirect_to :action => 'index'
-  end 
-  
-  def invite_frd
-    @invitor_email = "pravin@gmail.com"
-    @invitee_challenge_id = "ch001"
-    @invitee_email = ["sriram@gmail.com","venkat@gmail.com"]
-    @invitee_first_name = ["Sri Ram","Venkat"]
-    # INSERT DATA USING MODEL
-    #@challenge_invitee = ChallengeInvitation.create(:invitee_challenge_id=>@invitee_challenge_id, :invitor_email=>@invitor_email, :invitees =>[Invitee.new(:invitee_email=>"sriram@gmail.com", :invitee_first_name=>"Sri ram", :invitee_last_name=>"Kapoor", :status =>"Accepted", :challenge=>Challenge.new(:title=>"ch001",:description=>"ch001 task is testing challenge")), Invitee.new(:invitee_email=>"venkat@gmail.com", :invitee_first_name=>"Venkat", :invitee_last_name=>"Reddy", :status =>"Pending")])
-    # TYING USING LOOL
-    #@as = ChallengeInvitation.new
-    @challenge_invitee = ChallengeInvitation.create(:invitee_challenge_id =>@invitee_challenge_id, :invitor_email=>@invitor_email)
-   
-    @invitee_email.each do |in_email|
-      @challenge_invitee.invitees.create(:invitee_email=>"in_email")
-    end
-    
-    @invitee_first_name.each do |en_fname|
-      
-    end
-    
-    #@challenge_invitee.invitees.push([Invitee.new(:invitee_email=>"sriram@gmail.com")])
-
-    raise "working on progress"
-  end
+  end  
   
   def my_challenge
     @my_total_challenge = Challenge.all.count
