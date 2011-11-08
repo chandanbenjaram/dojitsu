@@ -80,7 +80,7 @@ class ChallengesController < ApplicationController
           :personal_challenge => ChallengePersonalType.new(:who_win => @pr_who_win))
       end
     end
-
+   
     render  :action => "show", :notice => "Challenge created!"   
   end
 
@@ -105,9 +105,42 @@ class ChallengesController < ApplicationController
   def invite_frd
     @invitor_email = "pravin@gmail.com"
     @invitee_challenge_id = "ch001"
-    @challenge_invitee = ChallengeInvitation.create(:invitee_challenge_id=>@invitee_challenge_id, :invitor_email=>@invitor_email, :invitees =>[Invitee.new(:invitee_email=>"sriram@gmail.com", :invitee_first_name=>"Sri ram", :invitee_last_name=>"Kapoor", :status =>"Accepted", :challenge=>Challenge.new(:title=>"ch001",:description=>"ch001 task is testing challenge")), Invitee.new(:invitee_email=>"venkat@gmail.com", :invitee_first_name=>"Venkat", :invitee_last_name=>"Reddy", :status =>"Pending")])
+    @invitee_email = ["sriram@gmail.com","venkat@gmail.com","Suresh@gmail.com","sukendhar@gmail.com"]
+    @invitee_first_name = ["Sri Ram","Venkat","Suresh","Sukendhar"]
+    @invitee_last_name = ["Kappor","Patlola","Mahadevan","Reddy"]
+    @flag_fn = 0
+    @flag_ln = 0
+    @new_fn = []
+    @new_ln = []
+    #@challenge_invitee = ChallengeInvitation.create(:invitee_challenge_id=>@invitee_challenge_id, :invitor_email=>@invitor_email, :invitees =>[Invitee.new(:invitee_email=>"sriram@gmail.com", :invitee_first_name=>"Sri ram", :invitee_last_name=>"Kapoor", :status =>"Accepted", :challenge=>Challenge.new(:title=>"ch001",:description=>"ch001 task is testing challenge")), Invitee.new(:invitee_email=>"venkat@gmail.com", :invitee_first_name=>"Venkat", :invitee_last_name=>"Reddy", :status =>"Pending")])
     
-    raise "working on progress"
+    @challenge_invitee = ChallengeInvitation.create(:invitee_challenge_id=>@invitee_challenge_id, :invitor_email=>@invitor_email)
+    
+    #@challenge_invitee.invitees.push([Invitee.new(:invitee_email =>"sriram@gmail.com")])
+    @invitee_email.each_with_index do |in_email,em_index|
+      @invitee_first_name.each_with_index do |in_fname,fn_index|
+        @invitee_last_name.each_with_index do |in_lname,ln_index|
+          if @flag_ln == ln_index
+            @flag_ln+=1
+            @new_ln[ln_index] = in_lname
+            break
+          end
+        end  
+        if @flag_fn == fn_index
+          @flag_fn+=1
+          @new_fn[fn_index] = in_fname
+          break
+        end
+      end
+      @challenge_invitee.invitees.push([Invitee.new(:invitee_email =>in_email, \
+        :invitee_first_name =>@new_fn[em_index], :invitee_last_name => @new_ln[em_index] )])
+    end
+    
+    #@invitee_first_name.each do |in_fname|
+    #  @challenge_invitee.invitees.push([Invitee.new(:invitee_first_name =>in_fname)])
+    #end
+    
+    raise "CHECK DATABASE TABE 'challenge_invitations' for data"
   end
   
   def my_challenge

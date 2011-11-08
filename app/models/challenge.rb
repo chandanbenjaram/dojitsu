@@ -30,5 +30,4 @@ class Challenge
   
   # TASKS
   embeds_many :tasks
-  embedded_in :invitee
 end                
