@@ -88,30 +88,37 @@
 								<th colspan="2" style="color:#999999;">Task(name)
 								<%= image_tag("btn_add_up.png", :class => "alternativeRow", :style => "float:right; margin-right:20px;") %>
 							</th>
-						    </tr>
+						    </tr>          
 							<tr>
-								<td width="112">
-									<%= select_tag "tasks[score_by][]", options_for_select([
-										["Choose", "0"],
-										["Check box:1 for checking off the task", "Check box:1 for checking off the task"],	 
-										["Self-report number","Self-report number"]														
-										]), :style => "width:197px;" 
-									%>								</td>
-								<td width="17"><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
-								<td width="69">
-									<%= text_field_tag "tasks[score][]", nil , :class => "textfield_effect_nw_tk_add", :id => "on_focus_textfield" %>								</td>
-								<td width="17"><%= image_tag("icon_slash.png", :height => '20', :width => '5')%></td>
-								<td width="385">
-									<%= hidden_field_tag "challenge[task_status][]", nil %>
-									<%= text_field_tag "tasks[name][]", nil ,:class => "textfield_effect_nw_tk", :id => "on_focus_textfield" %>
-									<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:12px;") %>								</td>
-								<td width="13">	</td>
-							</tr>
+								<% if !@challenge.tasks.blank? %>
+								  <% for task in @challenge.tasks %>
+	 										<%= f.fields_for "task_attributes[]", task do |task_fields| %>
+										<td width="112">
+											select field goes here
+	  		    							 </td>
+										<td width="17"><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
+										<td width="69">
+											<%= task_fields.text_field :score %>												
+										</td>
+										<td width="17">
+											<%= image_tag("icon_slash.png", :height => '20', :width => '5')%>
+										</td>
+										<td width="385">
+								    		<%= task_fields.text_field :name %>
+											<%= text_field_tag "tasks[name][]", nil ,:class => "textfield_effect_nw_tk", :id => "on_focus_textfield" %>
+											<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:12px;") %>
+										</td>																						
+										<td width="13">	</td>   
+									
+	 										<% end %> 
+	 									 <% end %>       
+	 								  	<% end %>
+		    				</tr>
 							<tr>
 								<td colspan="6">
 									<b style="color:#999999;"><%= image_tag("icon_arrow_left.png")%>&nbsp;&nbsp;Do all tasks need to be complete before the challenge is marked complete?</b><br>
 									<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
-									<font style="color:#999999;"><%= f.label "Yes" %></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<font style="color:#999999;"><%= f.label "Yes" %></font>
 									<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
 									<font style="color:#999999;"><%= f.label "No" %></font>								</td>
 							</tr>
