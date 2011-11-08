@@ -108,7 +108,31 @@ class ChallengesController < ApplicationController
   def destroy
     @challenge.destroy
     redirect_to :action => 'index'
-  end  
+  end 
+  
+  def invite_frd
+    @invitor_email = "pravin@gmail.com"
+    @invitee_challenge_id = "ch001"
+    @invitee_email = ["sriram@gmail.com","venkat@gmail.com"]
+    @invitee_first_name = ["Sri Ram","Venkat"]
+    # INSERT DATA USING MODEL
+    #@challenge_invitee = ChallengeInvitation.create(:invitee_challenge_id=>@invitee_challenge_id, :invitor_email=>@invitor_email, :invitees =>[Invitee.new(:invitee_email=>"sriram@gmail.com", :invitee_first_name=>"Sri ram", :invitee_last_name=>"Kapoor", :status =>"Accepted", :challenge=>Challenge.new(:title=>"ch001",:description=>"ch001 task is testing challenge")), Invitee.new(:invitee_email=>"venkat@gmail.com", :invitee_first_name=>"Venkat", :invitee_last_name=>"Reddy", :status =>"Pending")])
+    # TYING USING LOOL
+    #@as = ChallengeInvitation.new
+    @challenge_invitee = ChallengeInvitation.create(:invitee_challenge_id =>@invitee_challenge_id, :invitor_email=>@invitor_email)
+   
+    @invitee_email.each do |in_email|
+      @challenge_invitee.invitees.create(:invitee_email=>"in_email")
+    end
+    
+    @invitee_first_name.each do |en_fname|
+      
+    end
+    
+    #@challenge_invitee.invitees.push([Invitee.new(:invitee_email=>"sriram@gmail.com")])
+
+    raise "working on progress"
+  end
   
   def my_challenge
     @my_total_challenge = Challenge.all.count

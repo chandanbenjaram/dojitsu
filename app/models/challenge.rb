@@ -5,6 +5,7 @@ class Challenge
   
   # TASKS
   embeds_many :tasks
+  embedded_in :invitee
   
   # STARTING & ENDING POINTS
   embeds_one :start_point, :class_name => "PointType"
