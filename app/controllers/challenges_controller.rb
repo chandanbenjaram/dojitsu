@@ -29,17 +29,16 @@ class ChallengesController < ApplicationController
   
   def new
     @challenge = Challenge.new
-    1.times {@challenge.tasks.build}
+    1.times {@challenge.tasks.build} 
     #1.times {@challenge.point_types.build}
   end
 
   def create
-    #raise params.to_yaml
-    #raise params.to_yaml
-    #raise dateStart.inspect
-    #@challenge = Challenge.create!(:title => "c title 0", :start_point => PointDateType.new(:value => Time.now),:end_point => PointDateType.new(:value => Time.now))
+    
+    #raise params.inspect
+    
     @ch = Challenge.new(params[:challenge])
-    #raise task = Task.new(params[:tasks]).inspect
+    
     @ch_st_date = params[:ch_st_date]
     @st_p_val1 = params[:st_value1]
     @st_p_val = params[:st_value]
@@ -57,35 +56,31 @@ class ChallengesController < ApplicationController
     unless @so_who_win.blank?
       #raise "soc"
       if @ch_st_date == "#ch_st_dat" and  @ch_ed_date == "#ch_ed_dat"
-        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, \
+        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, :task_attributes => @ch.task_attributes, \
           :start_point => PointDateType.new(:value => @st_p_val1), \
           :end_point => PointDateType.new(:value => @ed_p_val1), \
           :social_challenge => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner))
-        @challenge.tasks.push([Task.new(params[:tasks])])  
       else
-        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, \
+        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, :task_attributes => @ch.task_attributes, \
           :start_point => PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb), \
           :end_point => PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb), \
           :social_challenge => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner))
-        @challenge.tasks.push([Task.new(params[:tasks])])  
       end
     else
       #raise "per"
       if @ch_st_date == "#ch_st_dat" and  @ch_ed_date == "#ch_ed_dat"
-        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, \
+        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, :task_attributes => @ch.task_attributes, \
           :start_point => PointDateType.new(:value => @st_p_val1), \
           :end_point => PointDateType.new(:value => @ed_p_val1), \
           :personal_challenge => ChallengePersonalType.new(:who_win => @pr_who_win))
-        @challenge.tasks.push([Task.new(params[:tasks])])  
       else
-        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, \
+        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, :task_attributes => @ch.task_attributes, \
           :start_point => PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb), \
           :end_point => PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb), \
           :personal_challenge => ChallengePersonalType.new(:who_win => @pr_who_win))
-        @challenge.tasks.push([Task.new(params[:tasks])])  
       end
     end
-    #raise "aaaaa"
+
     render  :action => "show", :notice => "Challenge created!"   
   end
 
@@ -106,6 +101,14 @@ class ChallengesController < ApplicationController
     @challenge.destroy
     redirect_to :action => 'index'
   end  
+  
+  def invite_frd
+    @invitor_email = "pravin@gmail.com"
+    @invitee_challenge_id = "ch001"
+    @challenge_invitee = ChallengeInvitation.create(:invitee_challenge_id=>@invitee_challenge_id, :invitor_email=>@invitor_email, :invitees =>[Invitee.new(:invitee_email=>"sriram@gmail.com", :invitee_first_name=>"Sri ram", :invitee_last_name=>"Kapoor", :status =>"Accepted", :challenge=>Challenge.new(:title=>"ch001",:description=>"ch001 task is testing challenge")), Invitee.new(:invitee_email=>"venkat@gmail.com", :invitee_first_name=>"Venkat", :invitee_last_name=>"Reddy", :status =>"Pending")])
+    
+    raise "working on progress"
+  end
   
   def my_challenge
     @my_total_challenge = Challenge.all.count
