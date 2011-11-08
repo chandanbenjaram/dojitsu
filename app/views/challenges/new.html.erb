@@ -74,6 +74,8 @@
 					<hr style="color:#0066CC;width:98%; height:2px;">
 				</td>
 			</tr>
+			<% for task in @challenge.tasks %>
+    		<% fields_for "challenge[task_attributes][]", task do |task_form| %>
 			<tr>
   				<td>
   					<b id="load-local" class="load-local" href="#hidden" rel="#hidden"  style="color:#999999;" title="The score for each task will be added up to determin the winner(s).">CREATE TASK
@@ -119,6 +121,8 @@
 					</div>
     			</td>
   			</tr>
+			<% end %>
+  			<% end %>
 			<tr>
 				<td colspan="4">
 					<hr style="color:#0066CC;width:98%; height:2px;">

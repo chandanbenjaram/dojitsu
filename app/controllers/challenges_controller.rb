@@ -29,7 +29,7 @@ class ChallengesController < ApplicationController
   
   def new
     @challenge = Challenge.new
-    #1.times {@challenge.tasks.build}
+    1.times {@challenge.tasks.build}
     #1.times {@challenge.point_types.build}
   end
 
