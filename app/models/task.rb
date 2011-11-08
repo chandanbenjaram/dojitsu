@@ -1,5 +1,7 @@
 class Task
   include Mongoid::Document
+ 
+  embedded_in :challenge, :inverse_of => :tasks
   
   # name of task
   field :name
@@ -7,6 +9,5 @@ class Task
   field :score_by
   # score translates to Point on UI
   field :score
-  
-  embedded_in :challenge, :inverse_of => :tasks
+ 
 end

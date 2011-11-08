@@ -5,7 +5,7 @@
 
 <div id="ch_main_div">
 	<p style="font-size:20px; color:#f9a943;margin-left:10px;margin-top:10px; font-weight:bold;">CREATE NEW</p>
-	<%= form_for @challenge, :validate => true do |f| %>
+	<%= form_for(@challenge, :as =>:challenge, :validate => true ) do |f| %>
 		<table width="100%" border="0" style="margin-top:0px;">
   			<tr>
     			<td colspan="4"><p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :id => "on_focus_textfield" %></p></td>	
