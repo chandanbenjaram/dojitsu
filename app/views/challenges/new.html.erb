@@ -197,6 +197,7 @@
     								<td><b style="color:#999999;">Participants</b></td>
 									<td>
 										<div id="fb-root"></div>
+										<%= hidden_field_tag "myvar", 0%>					
     									<script src="http://connect.facebook.net/en_US/all.js"></script>
     									<p>
     										<input type="button"
@@ -220,13 +221,31 @@
       										}
 											// to send request to many friends use this function
       										function sendRequestToManyRecipients() {
-        										FB.ui({method: 'apprequests',
-          										message: 'Do Your Best',
-        										}, requestCallback);
-      										}
+                                                var request ={method: 'apprequests',
+                                                	message: 'Do Your Best',
+                                                	title: "Invite Participants",
+                                                	data: 'tracking information for user'
+                                                };
+                                               FB.ui(request, requestCallback);											   
+                                            }											  
       										function requestCallback(response) {
-        										// Handle callback here
-      										}
+    											var requestsToSend = new Array();
+												var i = 0;
+    											while (i < response.request_ids.length)
+    											{													
+        											FB.api('/'+response.request_ids[i], function(res){
+        												//FB.api('/me/response.request_ids[i]?fields=id,name,first_name,last_name
+            											requestsToSend[i] = res['to']['id'];
+            											userId=requestsToSend[i]
+														//alert("hiiiii");
+														//window.location.href = "http://www.google.com?keyword="+requestsToSend[i];
+														//alert("hello"+@myvar);													
+        											});
+        											i++;
+    											}
+    											console.log(requestsToSend[0], requestsToSend[1], requestsToSend[2], requestsToSend[3]);
+    											//alert(requestsToSend[0]);
+											}																																										
     									</script>
 									</td>
   								</tr>

@@ -104,14 +104,18 @@ class ChallengesController < ApplicationController
   
   def invite_frd
     @invitor_email = "pravin@gmail.com"
-    @invitee_challenge_id = "ch001"
+    @invitee_challenge_id = "4eb922487c1bd8085c000053"
     @invitee_email = ["sriram@gmail.com","venkat@gmail.com","Suresh@gmail.com","sukendhar@gmail.com"]
     @invitee_first_name = ["Sri Ram","Venkat","Suresh","Sukendhar"]
     @invitee_last_name = ["Kappor","Patlola","Mahadevan","Reddy"]
+    @status = ["ACCEPTED","PENDING","ACCEPTED","DECLINED"]
+    
     @flag_fn = 0
     @flag_ln = 0
     @new_fn = []
     @new_ln = []
+    #@id = "4eb922487c1bd8085c000053"
+    #@challenge_copy = Challenge.find(@id)
     #@challenge_invitee = ChallengeInvitation.create(:invitee_challenge_id=>@invitee_challenge_id, :invitor_email=>@invitor_email, :invitees =>[Invitee.new(:invitee_email=>"sriram@gmail.com", :invitee_first_name=>"Sri ram", :invitee_last_name=>"Kapoor", :status =>"Accepted", :challenge=>Challenge.new(:title=>"ch001",:description=>"ch001 task is testing challenge")), Invitee.new(:invitee_email=>"venkat@gmail.com", :invitee_first_name=>"Venkat", :invitee_last_name=>"Reddy", :status =>"Pending")])
     
     @challenge_invitee = ChallengeInvitation.create(:invitee_challenge_id=>@invitee_challenge_id, :invitor_email=>@invitor_email)
@@ -133,11 +137,20 @@ class ChallengesController < ApplicationController
         end
       end
       @challenge_invitee.invitees.push([Invitee.new(:invitee_email =>in_email, \
-        :invitee_first_name =>@new_fn[em_index], :invitee_last_name => @new_ln[em_index] )])
+        :invitee_first_name =>@new_fn[em_index], :invitee_last_name => @new_ln[em_index], :challenge=>Challenge.find(@invitee_challenge_id) )])
     end
     
-    #@invitee_first_name.each do |in_fname|
-    #  @challenge_invitee.invitees.push([Invitee.new(:invitee_first_name =>in_fname)])
+    #APPEND CHALLGENG TO INVITEE WHO ACCEPTED REQUEST
+    @id = "4eb922487c1bd8085c000053" 
+    #@challenge_copy = Challenge.find(@id)
+    #@challenge_invitee.invitees.push(:challenge=>[Challenge.new(:title =>"as")])
+    #@status.each_with_index do |st_value, st_index|
+    #  if st_value == "ACCEPTED"
+    #    #raise Challenge.find(@id).inspect
+    #    @challenge_invitee.invitees.push([Challenge.find(@id)]) 
+    #  else
+    #    raise "not works!!!!!!!!!!!"
+    #  end
     #end
     
     raise "CHECK DATABASE TABE 'challenge_invitations' for data"
