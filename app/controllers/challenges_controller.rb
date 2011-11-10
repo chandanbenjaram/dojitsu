@@ -103,22 +103,22 @@ class ChallengesController < ApplicationController
   end  
   
   def invite_frd
-    @invitor_email = "pravin@gmail.com"
-    @invitee_challenge_id = "4eb922487c1bd8085c000053"
+    #@invitor_email = "pravin@gmail.com"
+    @invitor_challenge_id = "4eb922487c1bd8085c000053"
     @invitee_email = ["sriram@gmail.com","venkat@gmail.com","Suresh@gmail.com","sukendhar@gmail.com"]
     @invitee_first_name = ["Sri Ram","Venkat","Suresh","Sukendhar"]
     @invitee_last_name = ["Kappor","Patlola","Mahadevan","Reddy"]
-    @status = ["ACCEPTED","PENDING","ACCEPTED","DECLINED"]
+    @status = ["ACCEPTED","PENDING","DECLINED"]
     
     @flag_fn = 0
     @flag_ln = 0
     @new_fn = []
     @new_ln = []
     #@id = "4eb922487c1bd8085c000053"
-    #@challenge_copy = Challenge.find(@id)
-    #@challenge_invitee = ChallengeInvitation.create(:invitee_challenge_id=>@invitee_challenge_id, :invitor_email=>@invitor_email, :invitees =>[Invitee.new(:invitee_email=>"sriram@gmail.com", :invitee_first_name=>"Sri ram", :invitee_last_name=>"Kapoor", :status =>"Accepted", :challenge=>Challenge.new(:title=>"ch001",:description=>"ch001 task is testing challenge")), Invitee.new(:invitee_email=>"venkat@gmail.com", :invitee_first_name=>"Venkat", :invitee_last_name=>"Reddy", :status =>"Pending")])
+    #@challenge_copy = Challenge.find(@invitor_challenge_id)
+    #@challenge_invitee = ChallengeInvitation.create(:invitor_challenge_id=>@invitor_challenge_id, :invitor_email=>@invitor_email, :invitees =>[Invitee.new(:invitee_email=>"sriram@gmail.com", :invitee_first_name=>"Sri ram", :invitee_last_name=>"Kapoor", :status =>"Accepted", :challenge=>Challenge.new(:title=>"ch001",:description=>"ch001 task is testing challenge")), Invitee.new(:invitee_email=>"venkat@gmail.com", :invitee_first_name=>"Venkat", :invitee_last_name=>"Reddy", :status =>"Pending")])
     
-    @challenge_invitee = ChallengeInvitation.create(:invitee_challenge_id=>@invitee_challenge_id, :invitor_email=>@invitor_email)
+    @challenge_invitee = ChallengeInvitation.create(:invitor_challenge_id=>@invitor_challenge_id)
     
     #@challenge_invitee.invitees.push([Invitee.new(:invitee_email =>"sriram@gmail.com")])
     @invitee_email.each_with_index do |in_email,em_index|
@@ -137,7 +137,7 @@ class ChallengesController < ApplicationController
         end
       end
       @challenge_invitee.invitees.push([Invitee.new(:invitee_email =>in_email, \
-        :invitee_first_name =>@new_fn[em_index], :invitee_last_name => @new_ln[em_index], :challenge=>Challenge.find(@invitee_challenge_id) )])
+        :invitee_first_name =>@new_fn[em_index], :invitee_last_name => @new_ln[em_index], :challenge=>Challenge.find(@invitor_challenge_id) )])
     end
     
     #APPEND CHALLGENG TO INVITEE WHO ACCEPTED REQUEST
