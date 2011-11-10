@@ -6,6 +6,7 @@
 <div id="ch_main_div">
 	<p style="font-size:20px; color:#f9a943;margin-left:10px;margin-top:10px; font-weight:bold;">CREATE NEW</p>
 	<%= form_for @challenge, :validate => true do |f| %>
+
 		<table width="100%" border="0" style="margin-top:0px;">
   			<tr>
     			<td colspan="4"><p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :id => "on_focus_textfield" %></p></td>	
@@ -164,9 +165,16 @@
   								<tr>
     								<td><b style="color:#999999;">Participants</b></td>
 									<td>
-										<div id="fb-root"></div>
+										<div id="fb-root" >
+										
+										
+										</div>
+										
+
     									<script src="http://connect.facebook.net/en_US/all.js"></script>
     									<p>
+										<p>
+											
     										<input type="button"
 	      										onclick="sendRequestToManyRecipients(); return false;"
 									      		value="INVITE PARTICIPANTS" class="links_invite_p"/>
@@ -178,24 +186,67 @@
         										cookie : true,
         										oauth: true
       										});
+											
 											// to send request to single friend use this function
       										function sendRequestToOneRecipient() {
         									var user_id = document.getElementsByName("user_id")[0].value;
-        										FB.ui({method: 'apprequests',
-          										message: 'Do Your Best',
-          										to: user_id,
-        										}, requestCallback);
+        										FB.ui({
+													method: 'send',
+													name: 'My dojitsu challenge',
+													link: 'http://www.nytimes.com/2011/06/15/arts/people-argue-just-to-win-scholars-assert.html',
+													},requestCallback);
       										}
+											
+											
 											// to send request to many friends use this function
-      										function sendRequestToManyRecipients() {
-        										FB.ui({method: 'apprequests',
-          										message: 'Do Your Best',
-        										}, requestCallback);
-      										}
-      										function requestCallback(response) {
-        										// Handle callback here
-      										}
+      										function sendRequestToManyRecipients()
+											{
+											 
+													var request ={method: 'apprequests',
+													message: 'Do Your Best',
+													title: "Invite Participants",
+													data: 'tracking information for user'
+																		    };
+																
+											FB.ui(request, requestCallback);
+												}
+																					
+																					
+											function requestCallback(response) 
+												{
+														var requestsToSend = new Array();
+														var i = 0;
+														while (i < response.request_ids.length)
+																			{
+																			FB.api('/'+response.request_ids[i], function(res)
+																			{
+														requestsToSend[i] = res['to']['id'];
+														name=requestsToSend[i]
+
+														alert(name);
+																	      	}
+																			);
+											i++;
+																			}
+	
+											$(function () {  
+															$('#alert').click(function ()
+																{  
+																alert(name);  
+																return false;  
+												})  
+																	}
+												);  
+																
+																
+												}
+												
+												
+							
     									</script>
+										<form name="myform">
+								<textarea id="alert" ></textarea>
+								  </form>
 									</td>
   								</tr>
 							</table>
@@ -411,3 +462,17 @@ jQuery(document).ready(function($) {
 
 });
 </script>
+<style type="text/css">
+.fb-root1 {
+    float: right;
+	background :#a52a2a;
+	
+}
+#uoalap_7 {
+background: #f4f4f4
+}
+.vMid {
+background: #ffffff;
+}
+
+</style>

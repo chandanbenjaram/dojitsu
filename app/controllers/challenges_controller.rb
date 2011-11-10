@@ -1,20 +1,19 @@
 class ChallengesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index]
   before_filter :find_challenge, :only => [:show, :edit, :update, :destroy]
+  #on_spot_edit  is the gem to edit the data on spot 
   can_edit_on_the_spot
+
   def index
     @title = "Challenges"
     @challenges = Challenge.all
   end
 
-  def show
+   def show
+  
     @challenge = Challenge.find(params[:id])
-    #raise @challenge.soc.inspect
-    if @challenge.soc == 1
-      redirect_to :action => "show_soc", :id => params[:id] 
-    else
-      redirect_to :action => "show_per", :id => params[:id]
-    end
+	
+	
   end
   
   def show_soc
@@ -24,7 +23,18 @@ class ChallengesController < ApplicationController
   end
 
   def show_per
-    @challenge = Challenge.find(params[:id])
+      @challenge = Challenge.find(params[:id])
+    #  raise @challenge.social_challenge.type 
+ #  if @challenge.social_challenge.type and @challenge.social_challenge.type!='0' and @challenge.social_challenge.type!=nil 
+  
+   ch = @challenge.social_challenge.type 
+   # render :text => ch and return
+	 if ch == ChallengeSocialType and ch!= ChallengeType and ch!=ChallengePersonalType
+	 render "show_soc" and return 
+  else 
+      render "show_per"
+    end
+	
   end
   
   def new
@@ -56,7 +66,7 @@ class ChallengesController < ApplicationController
     unless @so_who_win.blank?
       #raise "soc"
       if @ch_st_date == "#ch_st_dat" and  @ch_ed_date == "#ch_ed_dat"
-        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, \
+        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, 
           :task_description =>  @ch.task_description , :task_point => @ch.task_point, :ch_task_type => @ch.ch_task_type ,\
           :start_point => PointDateType.new(:value => @st_p_val1), \
           :end_point => PointDateType.new(:value => @ed_p_val1), \
@@ -113,6 +123,11 @@ class ChallengesController < ApplicationController
       @org = User.find(:all,:conditions =>["id = ?",sd.user_id]).first
     end
   end
+  
+   def invite_frd
+  #  @invitee_email = params[:msg]
+	# render :text => @invitee_email
+   end
       
   protected
   
@@ -120,5 +135,7 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.all
   end
   
+
+ 
 end
 

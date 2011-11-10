@@ -6,12 +6,14 @@
 	<div id="ch_main_div">
 	<div id="ch_main_div1">
 		<%= form_for @challenge do |f| %>
+		
 		<table width="100%" border="0" border cellspacing=12px>
 			<tr>
 				<div class="title">
 				<p class="allcaps"><font color="orange"><%= @challenge.title %></p></font></h1></b>
 				</div>
-		
+		     </tr>
+			 <tr>
 				<table border=1px width=500px height=60px bgcolor=white>
 					<tr>
 						<td width=120px>
@@ -23,31 +25,32 @@
 								<% if @challenge.nil? %>
 										<p>no challenge selected</p>
 								<% else %>
-										<p>
+			
+			<p>
 										</p>
 								<% end %>
 								-->
 						</td>
 					</tr>
 				</table>
-			<hr/ width=400px>
-	
-				<table border=1px width=400px height=10px bgcolor=white>
+				<hr/ width=400px>
+			 </tr>
+			 <tr>
+			 <table border=1px width=400px height=10px bgcolor=white>
 					<tr>
 						<td width=120px>
 							<b><font color=	#909090>START POINT</font></b>
 						</td>
 						<td class="editable">
-							<% for ch in @challenge.point_types %>
+							<% if @challenge.start_point.value? %>
 							
-
 <script src="http://cdn.jquerytools.org/1.2.6/form/jquery.tools.min.js"></script>
 
 <!-- dateinput styling -->
 <link rel="stylesheet" type="text/css" href="dateinput.css"/>
 
 <!-- HTML5 date input -->
-<p class="date" > <%=  ch.st_value1 %></p>
+<p class="date" > <%= @challenge.start_point.value %>&nbsp;&nbsp;<%#= @challenge.start_point.label %></p>
 
 <!-- make it happen -->
 <script>
@@ -63,13 +66,15 @@ $(".date").dateinput({
 </script>
 
 
-									<% if ch.st_value1==nil%>
+
+<% end %>
+									<% if @challenge.start_point.value==nil%>
 										
 									<% else %>
-										<%= ch.st_label %>
-										<%= ch.st_value %>
+										
+										<%#= @challenge.start_point.value %>
 									<% end %>
-							<% end %>
+						
 						</td>
 							<!--
 						<td width="30%">
@@ -84,20 +89,19 @@ $(".date").dateinput({
 			
 					</tr>
 				</table>
-			<hr/>
-				<table border=1px width=400px height=10px bgcolor=white>
+			 </tr>
+			 <tr>
+			 <table border=1px width=400px height=10px bgcolor=white>
 						<tr>
 							<td width=120px>
 								<b><font color=	#909090>END POINT</font></b></td>
 							<td class="editable">
-								<% for ch in @challenge.point_types %>
-									<%= on_the_spot_edit ch,:ed_value1 ,:type=>:text %>
-										<% if ch.ed_value1==nil %>
+										
+										<% if @challenge.end_point.value==nil %>
 										<% else %>
-												<%= ch.ed_label %>
-												<%= ch.ed_value  %>
+												<%= on_the_spot_edit @challenge.end_point,:value ,:type=>:text %>&nbsp;&nbsp;<%#= @challenge.start_point.label %>
 										<% end %>
-										<% end %>
+										
 							</td>
 						</tr>
 				</table>
@@ -107,8 +111,9 @@ $(".date").dateinput({
 							<td bgcolor="orange"></td>
 						</tr>
 				</table>
-				
-			<div id="ch_main_div2">
+			 </tr>
+			 <tr>
+			 <div id="ch_main_div2">
 				<table border="1" bgcolor=#f4f4f4>
 					<tr bgcolor=#f5f5f5 height=20px border=0px>
 						<th>
@@ -140,8 +145,8 @@ $(".date").dateinput({
 								<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:12px;") %>
 							</td>
 					</tr>
-					
-	<% end %>
+					<% end %>
+
 					<tr bgcolor=#f4f4f4>
 						<td></td>
 						<td>
@@ -185,7 +190,10 @@ $(".date").dateinput({
 						</tr>
 					</table>
 			</div >			
-		</table>
+			 </tr>
+	    </table>
+		
+		
 	<% end %>	
 	</div>
 </div>
@@ -202,11 +210,13 @@ $(".date").dateinput({
 								});
 	
 
+	
+	// Jquery part
 jQuery(document).ready(function($) {
 
 
 
-
+ // to get date on click
 $(":date").dateinput({
 	format: 'dddd dd, mmmm yyyy',	// the format displayed for the user
 	selectors: true,             	// whether month/year dropdowns are shown
@@ -218,7 +228,7 @@ $(":date").dateinput({
 });
 
 
-
+// edit a text on the spot 
 $(".editable").editable("http://www.example.com/save.php", { 
     method : "PUT"
 });
@@ -237,8 +247,10 @@ $(".editable").editable("http://www.example.com/save.php", {
     editClass:'resultItem',
     onSubmit:end
     }); 
-
+// edit on spot 2 nd type
 $('.editable2').editable({type:'textarea',submitBy:'dblclick'}).css('background-color','#39c');
+
+
 $(function(){
 
     $('.editable1').editable({onEdit:begin});
