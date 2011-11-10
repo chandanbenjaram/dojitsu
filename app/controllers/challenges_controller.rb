@@ -104,7 +104,7 @@ class ChallengesController < ApplicationController
   
   def invite_frd
     @invitor_email = "pravin@gmail.com"
-    @invitee_challenge_id = "4eb922487c1bd8085c000053"
+    @invitee_challenge_id = "4eb992f2af812d03000000b5"
     @invitee_email = ["sriram@gmail.com","venkat@gmail.com","Suresh@gmail.com","sukendhar@gmail.com"]
     @invitee_first_name = ["Sri Ram","Venkat","Suresh","Sukendhar"]
     @invitee_last_name = ["Kappor","Patlola","Mahadevan","Reddy"]
@@ -141,7 +141,7 @@ class ChallengesController < ApplicationController
     end
     
     #APPEND CHALLGENG TO INVITEE WHO ACCEPTED REQUEST
-    @id = "4eb922487c1bd8085c000053" 
+    #@id = "4eb922487c1bd8085c000053" 
     #@challenge_copy = Challenge.find(@id)
     #@challenge_invitee.invitees.push(:challenge=>[Challenge.new(:title =>"as")])
     #@status.each_with_index do |st_value, st_index|
@@ -154,6 +154,10 @@ class ChallengesController < ApplicationController
     #end
     
     raise "CHECK DATABASE TABE 'challenge_invitations' for data"
+  end
+  
+  def invitee_accepted_req
+    raise "aaaaaaaaa"
   end
   
   def my_challenge
