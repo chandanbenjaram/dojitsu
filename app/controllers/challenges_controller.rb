@@ -59,12 +59,12 @@ class ChallengesController < ApplicationController
         @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, :task_attributes => @ch.task_attributes, \
           :start_point => PointDateType.new(:value => @st_p_val1), \
           :end_point => PointDateType.new(:value => @ed_p_val1), \
-          :social_challenge => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner))
+          :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner))
       else
         @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, :task_attributes => @ch.task_attributes, \
           :start_point => PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb), \
           :end_point => PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb), \
-          :social_challenge => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner))
+          :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner))
       end
     else
       #raise "per"
@@ -72,12 +72,12 @@ class ChallengesController < ApplicationController
         @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, :task_attributes => @ch.task_attributes, \
           :start_point => PointDateType.new(:value => @st_p_val1), \
           :end_point => PointDateType.new(:value => @ed_p_val1), \
-          :personal_challenge => ChallengePersonalType.new(:who_win => @pr_who_win))
+          :personal_type => ChallengePersonalType.new(:who_win => @pr_who_win))
       else
         @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, :task_attributes => @ch.task_attributes, \
           :start_point => PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb), \
           :end_point => PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb), \
-          :personal_challenge => ChallengePersonalType.new(:who_win => @pr_who_win))
+          :personal_type => ChallengePersonalType.new(:who_win => @pr_who_win))
       end
     end
    
