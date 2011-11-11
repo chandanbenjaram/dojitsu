@@ -3,20 +3,15 @@ class ChallengesController < ApplicationController
   before_filter :find_challenge, :only => [:show, :edit, :update, :destroy]
   #on_spot_edit  is the gem to edit the data on spot 
   can_edit_on_the_spot
-
   def index
     @title = "Challenges"
     @challenges = Challenge.all
   end
 
    def show
-  
-    @challenge = Challenge.find(params[:id])
-	
-	
+      @challenge = Challenge.find(params[:id])	
   end
-  
-  def show_soc
+   def show_soc
     @challenge = Challenge.find(params[:id])
     @org = User.find(:all,:conditions => ["id=?",@challenge.user_id]).first
     @lists = List.all
@@ -25,9 +20,8 @@ class ChallengesController < ApplicationController
   def show_per
       @challenge = Challenge.find(params[:id])
     #  raise @challenge.social_challenge.type 
- #  if @challenge.social_challenge.type and @challenge.social_challenge.type!='0' and @challenge.social_challenge.type!=nil 
-  
-   ch = @challenge.social_challenge.type 
+	#  if @challenge.social_challenge.type and @challenge.social_challenge.type!='0' and @challenge.social_challenge.type!=nil 
+     ch = @challenge.social_type.type 
    # render :text => ch and return
 	 if ch == ChallengeSocialType and ch!= ChallengeType and ch!=ChallengePersonalType
 	 render "show_soc" and return 
@@ -36,19 +30,18 @@ class ChallengesController < ApplicationController
     end
 	
   end
-  
   def new
     @challenge = Challenge.new
-    #1.times {@challenge.tasks.build}
+    1.times {@challenge.tasks.build} 
     #1.times {@challenge.point_types.build}
   end
 
   def create
-    #raise params.to_yaml
-    #raise params.to_yaml
-    #raise dateStart.inspect
-    #@challenge = Challenge.create!(:title => "c title 0", :start_point => PointDateType.new(:value => Time.now),:end_point => PointDateType.new(:value => Time.now))
+    
+    #raise params.inspect
+    
     @ch = Challenge.new(params[:challenge])
+    
     @ch_st_date = params[:ch_st_date]
     @st_p_val1 = params[:st_value1]
     @st_p_val = params[:st_value]
@@ -66,35 +59,31 @@ class ChallengesController < ApplicationController
     unless @so_who_win.blank?
       #raise "soc"
       if @ch_st_date == "#ch_st_dat" and  @ch_ed_date == "#ch_ed_dat"
-        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, 
-          :task_description =>  @ch.task_description , :task_point => @ch.task_point, :ch_task_type => @ch.ch_task_type ,\
+        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, :task_attributes => @ch.task_attributes, \
           :start_point => PointDateType.new(:value => @st_p_val1), \
           :end_point => PointDateType.new(:value => @ed_p_val1), \
-          :social_challenge => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winner => @so_how_many_winner))
+          :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner))
       else
-        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, \
-          :task_description =>  @ch.task_description , :task_point => @ch.task_point, :ch_task_type => @ch.ch_task_type ,\
+        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, :task_attributes => @ch.task_attributes, \
           :start_point => PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb), \
           :end_point => PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb), \
-          :social_challenge => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winner => @so_how_many_winner))
+          :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner))
       end
     else
       #raise "per"
       if @ch_st_date == "#ch_st_dat" and  @ch_ed_date == "#ch_ed_dat"
-        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, \
-          :task_description =>  @ch.task_description , :task_point => @ch.task_point, :ch_task_type => @ch.ch_task_type ,\
+        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, :task_attributes => @ch.task_attributes, \
           :start_point => PointDateType.new(:value => @st_p_val1), \
           :end_point => PointDateType.new(:value => @ed_p_val1), \
-          :personal_challenge => ChallengePersonalType.new(:who_win => @pr_who_win))
+          :personal_type => ChallengePersonalType.new(:who_win => @pr_who_win))
       else
-        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, \
-          :task_description =>  @ch.task_description , :task_point => @ch.task_point, :ch_task_type => @ch.ch_task_type ,\
+        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, :task_attributes => @ch.task_attributes, \
           :start_point => PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb), \
           :end_point => PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb), \
-          :personal_challenge => ChallengePersonalType.new(:who_win => @pr_who_win))
+          :personal_type => ChallengePersonalType.new(:who_win => @pr_who_win))
       end
     end
-    #raise "aaaaa"
+   
     render  :action => "show", :notice => "Challenge created!"   
   end
 
@@ -116,6 +105,60 @@ class ChallengesController < ApplicationController
     redirect_to :action => 'index'
   end  
   
+  def invite_frd
+    @invitor_email = "pravin@gmail.com"
+    @invitee_challenge_id = "4eb922487c1bd8085c000053"
+    @invitee_email = ["sriram@gmail.com","venkat@gmail.com","Suresh@gmail.com","sukendhar@gmail.com"]
+    @invitee_first_name = ["Sri Ram","Venkat","Suresh","Sukendhar"]
+    @invitee_last_name = ["Kappor","Patlola","Mahadevan","Reddy"]
+    @status = ["ACCEPTED","PENDING","ACCEPTED","DECLINED"]
+    
+    @flag_fn = 0
+    @flag_ln = 0
+    @new_fn = []
+    @new_ln = []
+    #@id = "4eb922487c1bd8085c000053"
+    #@challenge_copy = Challenge.find(@id)
+    #@challenge_invitee = ChallengeInvitation.create(:invitee_challenge_id=>@invitee_challenge_id, :invitor_email=>@invitor_email, :invitees =>[Invitee.new(:invitee_email=>"sriram@gmail.com", :invitee_first_name=>"Sri ram", :invitee_last_name=>"Kapoor", :status =>"Accepted", :challenge=>Challenge.new(:title=>"ch001",:description=>"ch001 task is testing challenge")), Invitee.new(:invitee_email=>"venkat@gmail.com", :invitee_first_name=>"Venkat", :invitee_last_name=>"Reddy", :status =>"Pending")])
+    
+    @challenge_invitee = ChallengeInvitation.create(:invitee_challenge_id=>@invitee_challenge_id, :invitor_email=>@invitor_email)
+    
+    #@challenge_invitee.invitees.push([Invitee.new(:invitee_email =>"sriram@gmail.com")])
+    @invitee_email.each_with_index do |in_email,em_index|
+      @invitee_first_name.each_with_index do |in_fname,fn_index|
+        @invitee_last_name.each_with_index do |in_lname,ln_index|
+          if @flag_ln == ln_index
+            @flag_ln+=1
+            @new_ln[ln_index] = in_lname
+            break
+          end
+        end  
+        if @flag_fn == fn_index
+          @flag_fn+=1
+          @new_fn[fn_index] = in_fname
+          break
+        end
+      end
+      @challenge_invitee.invitees.push([Invitee.new(:invitee_email =>in_email, \
+        :invitee_first_name =>@new_fn[em_index], :invitee_last_name => @new_ln[em_index], :challenge=>Challenge.find(@invitee_challenge_id) )])
+    end
+    
+    #APPEND CHALLGENG TO INVITEE WHO ACCEPTED REQUEST
+    @id = "4eb922487c1bd8085c000053" 
+    #@challenge_copy = Challenge.find(@id)
+    #@challenge_invitee.invitees.push(:challenge=>[Challenge.new(:title =>"as")])
+    #@status.each_with_index do |st_value, st_index|
+    #  if st_value == "ACCEPTED"
+    #    #raise Challenge.find(@id).inspect
+    #    @challenge_invitee.invitees.push([Challenge.find(@id)]) 
+    #  else
+    #    raise "not works!!!!!!!!!!!"
+    #  end
+    #end
+    
+    raise "CHECK DATABASE TABE 'challenge_invitations' for data"
+  end
+  
   def my_challenge
     @my_total_challenge = Challenge.all.count
     @my_all_ch = Challenge.all
@@ -123,11 +166,6 @@ class ChallengesController < ApplicationController
       @org = User.find(:all,:conditions =>["id = ?",sd.user_id]).first
     end
   end
-  
-   def invite_frd
-  #  @invitee_email = params[:msg]
-	# render :text => @invitee_email
-   end
       
   protected
   
@@ -135,7 +173,5 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.all
   end
   
-
- 
 end
 

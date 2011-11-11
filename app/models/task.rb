@@ -1,9 +1,12 @@
 class Task
   include Mongoid::Document
   
-  #attr_accessible :task_description, :task_point
-  field :task_description  
-  field :task_point
-  field :ch_task_type
-  embedded_in :challenge, :inverse_of => :tasks
+  # name of task
+  field :name, :type => Hash
+  # score translates to Point on UI  
+  field :score_by
+  # score translates to Point on UI
+  field :score
+  
+  embedded_in :challenge
 end
