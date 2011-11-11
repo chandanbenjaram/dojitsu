@@ -214,38 +214,54 @@
 											// to send request to single friend use this function
       										function sendRequestToOneRecipient() {
         									var user_id = document.getElementsByName("user_id")[0].value;
-        										FB.ui({method: 'apprequests',
-          										message: 'Do Your Best',
-          										to: user_id,
-        										}, requestCallback);
+        										FB.ui({
+													method: 'send',
+													name: 'My dojitsu challenge',
+													link: 'http://www.nytimes.com/2011/06/15/arts/people-argue-just-to-win-scholars-assert.html',
+													},requestCallback);
       										}
 											// to send request to many friends use this function
-      										function sendRequestToManyRecipients() {
-                                                var request ={method: 'apprequests',
-                                                	message: 'Do Your Best',
-                                                	title: "Invite Participants",
-                                                	data: 'tracking information for user'
-                                                };
-                                               FB.ui(request, requestCallback);											   
-                                            }											  
-      										function requestCallback(response) {
-    											var requestsToSend = new Array();
-												var i = 0;
-    											while (i < response.request_ids.length)
-    											{													
-        											FB.api('/'+response.request_ids[i], function(res){
-        												//FB.api('/me/response.request_ids[i]?fields=id,name,first_name,last_name
-            											requestsToSend[i] = res['to']['id'];
-            											userId=requestsToSend[i]
-														//alert("hiiiii");
-														//window.location.href = "http://www.google.com?keyword="+requestsToSend[i];
-														//alert("hello"+@myvar);													
-        											});
-        											i++;
-    											}
-    											console.log(requestsToSend[0], requestsToSend[1], requestsToSend[2], requestsToSend[3]);
-    											//alert(requestsToSend[0]);
-											}																																										
+      										function sendRequestToManyRecipients()
+											{
+													var request ={method: 'apprequests',
+													message: 'Do Your Best',
+													title: "Invite Participants",
+													data: 'tracking information for user'
+																		    };
+											FB.ui(request, requestCallback);
+												}					
+											function requestCallback(response) 
+												{
+														var requestsToSend = new Array();
+														var i = 0;
+														names = Array.new
+														while (i < response.request_ids.length)
+																			{
+																			FB.api('/'+response.request_ids[i], function(res)
+																			{
+														requestsToSend[i] = res['to']['id'];
+														name=requestsToSend[i]
+														alert(name);
+														names<<name
+													
+														
+																	      	}
+																			);
+											i++;
+																			}
+																			
+																			
+	
+											$(function () {  
+															$('#alert').click(function ()
+																{  
+																alert(name);  
+																return false;  
+												})  
+																	}
+												); 	
+												}
+    									</script>
     									</script>
 									</td>
   								</tr>
