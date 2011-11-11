@@ -6,17 +6,14 @@
 	.span-8
 		.span-4   &nbsp;
 		.span-2.right
-   			= button_to "NEW", new_challenge_url, :class => "new_challenge_button", :method => :get
+   			= button_to " NEW", new_challenge_url, :class => "new_challenge_button", :method => :get
     .span-12.font12.gray  MY CHALLENGES >> CREATE NEW
-	
-	
 - unless @challenges.empty?
 	table
 	  - for challenge in @challenges do
 	      tr
 	        td 
 				= link_to challenge.title, {:action => 'show_per', :id => challenge.id }
-			br
 			
 - else
     p No Challenges found   
