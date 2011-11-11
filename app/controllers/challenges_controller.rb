@@ -11,7 +11,7 @@ class ChallengesController < ApplicationController
    def show
       @challenge = Challenge.find(params[:id])	
   end
-   def show_soc
+     def show_soc
     @challenge = Challenge.find(params[:id])
     @org = User.find(:all,:conditions => ["id=?",@challenge.user_id]).first
     @lists = List.all
@@ -20,16 +20,18 @@ class ChallengesController < ApplicationController
   def show_per
       @challenge = Challenge.find(params[:id])
     #  raise @challenge.social_challenge.type 
-	#  if @challenge.social_challenge.type and @challenge.social_challenge.type!='0' and @challenge.social_challenge.type!=nil 
-     ch = @challenge.social_type.type 
-   # render :text => ch and return
-	 if ch == ChallengeSocialType and ch!= ChallengeType and ch!=ChallengePersonalType
-	 render "show_soc" and return 
+ #  if @challenge.social_challenge.type and @challenge.social_challenge.type!='0' and @challenge.social_challenge.type!=nil 
+  
+   ch = @challenge.social_type.type 
+    #render :text => ch and return
+   if ch == ChallengeSocialType and ch!= ChallengeType and ch!=ChallengePersonalType
+   render "show_soc" and return 
   else 
       render "show_per"
     end
-	
+  
   end
+  
   def new
     @challenge = Challenge.new
     1.times {@challenge.tasks.build} 
