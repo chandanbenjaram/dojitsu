@@ -7,20 +7,20 @@
 <div id="ch_main_div">
 <div id="ch_main_div1">
 <%= form_for @challenge do |f| %>
+<%#= debug @challenge %>
 <table width="100%" border="0" border cellspacing=12px>
 	<tr>
 		<div class="title">
 			<p class="allcaps"><font color="orange"><%= @challenge.title %></p></font></h1></b>
 		</div>
-	</tr>
-	<tr>
+		<tr>
 		<table border=1px width=500px height=60px bgcolor=white>
 			<tr>
 				<td width=120px>
 					<b><font color=	#909090>DESCRIPTION</b>
 				</td>
 				<td class="editable">
-					<pre width="30px"><%= on_the_spot_edit @challenge, :description, :type => :textarea, :rows => 4, :columns => 120  %></pre>
+					<pre width="10px"><%= on_the_spot_edit @challenge, :description, :type => :textarea, :rows => 4, :columns => 50  %></pre>
 					<!--
 					<% if @challenge.nil? %>
 						<p>no challenge selected</p>
@@ -78,6 +78,7 @@
 				-->
 			</tr>
 		</table>
+		<hr/ width=400px>
 	</tr>
 	<tr>
 		<table border=1px width=400px height=10px bgcolor=white>
@@ -105,7 +106,7 @@
 			<table border="1" bgcolor=#f4f4f4>
 				<tr bgcolor=#f5f5f5 height=20px border=0px>
 					<th>
-						<b><h3><font color="black">TOTAL:<%= @challenge.task_description.count %></font></h3></b>
+						<b><h3><font color="black">TOTAL:<%= @challenge.task_attributes.count %></font></h3></b>
 					</th>
 					<th colspan="3"><div float:right>
 						<%= image_tag("btn_add_up.png", :class => "addComment", :style => "float:right; margin-right:20px;") %><p align="right">ADD A TASK</p>
@@ -114,61 +115,80 @@
 				<tr bgcolor=#D7D7D7 height=20px border=0px>
 					<td width="100px"><h4>POINT(s)<font color="orange">/</font>TASKS</h4></td>
 					<td bgcolor=#D7D7D7 width="600px"></td>
-							<td bgcolor=#D7D7D7><p style="float:right";>SCORE </p></td>
-					</tr>
-					<% ch= 0 %>
-					<% sum = 0 %>
-					<% for ch in ch..@challenge.task_point.length %>
-					<tr>
-						<td>		
-							<%=  @challenge.task_point[ch] %>
-							<% sum +=  @challenge.task_point[ch].to_i %>
-						</td>
-						<td >
-							<div style="float: left;"><p align="left"><%= @challenge.task_description[ch]  %></p></div>
-						</td>
-						<td bgcolor=#FAFFD9 width="30px">
-							<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:12px;") %>
-						</td>
-					</tr>
-				<% end %>
-				<tr bgcolor=#f4f4f4>
-					<td></td>
-					<td></td>
+					<td bgcolor=#D7D7D7 colspan="2"><p style="float:right";>SCORE </p></td>
 				</tr>
-			</table>
-		
-			<script type="text/javascript" src="/js/jquery.js"></script>
-			<script type="text/javascript" src="/js/jquery.defaultText.js"></script>
-			<script type="text/javascript" src="/js/jquery.table.addrow.js"></script>
-			<script type="text/javascript">
-			$("document").ready(function(){
-					$(".addComment").btnAddRow({rowNumColumn:"rowNumber"});
-					$(".delRow").btnDelRow();
-			});								
-			</script>
-			<br>
-			<table bgcolor=#f4f4f4 height="60px">
-				<tr bgcolor=#ffffff height="30px">
-					<td width="400px" height="30px">My Dojitsu score: <br><h3><font color="orange"><%= @challenge.task_description.count %></font>completed</td>
-					<td width="100px">
-						<p align=right>
-							<%= sum %>
-						</p>	
+				<% ch= 1 %>
+				<% sum = 0 %>
+				<tr>
+					<td width="5%">		
+						<% @challenge.task_attributes.each do |tsk| %>
+							<% tsk.each_with_index do |task_value, task_index|%>
+								<% if task_index == 2%>
+									 <%= task_value[1]%></br>
+									 <% sum += task_value[1].to_i %>
+								<% end %>
+							<% end %>								
+						<% end %>
+					</td>
+					<td width="5%">
+						<% @challenge.task_attributes.each do |tsk| %>
+							<% tsk.each_with_index do |task_value, task_index|%>
+								<% if task_index == 0%>
+									 <font color="orange">/</font></br>						
+								<% end %>
+							<% end %>								
+						<% end %>
+					</td>
+					<td width="80%">
+						<% @challenge.task_attributes.each do |tsk| %>
+							<% tsk.each_with_index do |task_value, task_index|%>
+								<% if task_index == 0%>
+									 <%= task_value[1]%></br>						
+								<% end %>
+							<% end %>								
+						<% end %>		
+					</td>
+					<td width="10%">
+						<% @challenge.task_attributes.each do |tsk| %>
+							<% tsk.each_with_index do |task_value, task_index|%>
+								<% if task_index == 0%>
+									 <font color="orange">10</font></br>						
+								<% end %>
+							<% end %>								
+						<% end %>		
 					</td>
 				</tr>
-				<tr bgcolor=#f4f4f4 height="50px">
-					<td></td>
-					<td></td>
+				<!--
+				<% @challenge.task_attributes.each do |tsk| %>
+				<tr>
+					<% tsk.each_with_index do |task_value, task_index|%>
+						<% if task_index == 2%>
+							<td>
+								<%= task_value[1]%></br>
+								<% sum += task_value[1].to_i %>
+							</td>
+						<% end %>
+						<% if task_index == 0%>
+							<td>
+								<%= task_value[1]%>
+							</td>
+						<% end %>							
+					<% end %>
 				</tr>
-				<tr bgcolor=#f4f4f4 height="50px">
+				<% end %>
+				-->
+					
+					
+				<tr bgcolor=#f4f4f4>
 					<td></td>
-					<td><input type="button" value="MARK AS COMPLETED" ></td>
+					<td></td>									
 				</tr>
-			</table>
-		</div >			
+			<table>
+		</div>			
 	</tr>
-</table>
+	
+	
+</table>	
 <% end %>	
 </div>
 </div>
