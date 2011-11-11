@@ -39,6 +39,11 @@ class ChallengesController < ApplicationController
     
     @ch = Challenge.new(params[:challenge])
     
+    # VERTUAL DATA
+    @invitee_email = ["sriram@gmail.com","venkat@gmail.com","Suresh@gmail.com","sukendhar@gmail.com"]
+    @invitee_first_name = ["Sri Ram","Venkat","Suresh","Sukendhar"]
+    @invitee_last_name = ["Kappor","Patlola","Mahadevan","Reddy"]
+    
     @ch_st_date = params[:ch_st_date]
     @st_p_val1 = params[:st_value1]
     @st_p_val = params[:st_value]
@@ -56,12 +61,12 @@ class ChallengesController < ApplicationController
     unless @so_who_win.blank?
       #raise "soc"
       if @ch_st_date == "#ch_st_dat" and  @ch_ed_date == "#ch_ed_dat"
-        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, :task_attributes => @ch.task_attributes, \
+        @challenge = Challenge.create!(:use_id =>current_user.id, :title => @ch.title, :description => @ch.description, :task_attributes => @ch.task_attributes, \
           :start_point => PointDateType.new(:value => @st_p_val1), \
           :end_point => PointDateType.new(:value => @ed_p_val1), \
           :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner))
       else
-        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, :task_attributes => @ch.task_attributes, \
+        @challenge = Challenge.create!(:use_id =>current_user.id, :title => @ch.title, :description => @ch.description, :task_attributes => @ch.task_attributes, \
           :start_point => PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb), \
           :end_point => PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb), \
           :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner))
@@ -69,17 +74,19 @@ class ChallengesController < ApplicationController
     else
       #raise "per"
       if @ch_st_date == "#ch_st_dat" and  @ch_ed_date == "#ch_ed_dat"
-        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, :task_attributes => @ch.task_attributes, \
+        @challenge = Challenge.create!(:use_id =>current_user.id, :title => @ch.title, :description => @ch.description, :task_attributes => @ch.task_attributes, \
           :start_point => PointDateType.new(:value => @st_p_val1), \
           :end_point => PointDateType.new(:value => @ed_p_val1), \
           :personal_type => ChallengePersonalType.new(:who_win => @pr_who_win))
       else
-        @challenge = Challenge.create!(:title => @ch.title, :description => @ch.description, :task_attributes => @ch.task_attributes, \
+        @challenge = Challenge.create!(:use_id =>current_user.id, :title => @ch.title, :description => @ch.description, :task_attributes => @ch.task_attributes, \
           :start_point => PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb), \
           :end_point => PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb), \
           :personal_type => ChallengePersonalType.new(:who_win => @pr_who_win))
       end
     end
+   
+    @challenge.child_challenges.push(Challenge.new(:title => 'child 0', :user_id => "suresh's user id"))
    
     render  :action => "show", :notice => "Challenge created!"   
   end
