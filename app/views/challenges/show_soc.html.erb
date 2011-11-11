@@ -2,6 +2,7 @@
 <%= javascript_include_tag('simple-tabs')%>
 <%= render 'layouts/loggedinbody'%>
 <br><br>
+<div id="ch_main_div">
  <div class="challange">
  	<%= @challenge.title%>
  </div>
@@ -31,29 +32,29 @@
 		</td>
 	</tr>
 	<!--<tr>
-		<% for st in @challenge.point_types %>
-			<% if st.st_value ==  true %>	
+		
+			
 				<td width="100px" class="titles">STARTING POINT LABEL</td>
-				<td><%= st.st_label %></td>
+				<td><%#= st.st_label %></td>
 				<td width="100px" class="titles">STARTING POINT VALUE</td>
-				<td><%= st.st_value %></td>
-			<% else %>
+				<td><%= @challenge.start_point.value %></td>
+			
 				<td width="100px" class="titles">STARTING POINT </td>
-				<td><%= st.st_value1 %></td>
-			<% end %>
-		<% end %>
+				<td><%#= st.st_value1 %></td>
+			
+		
 	</tr>-->
 	<tr>
        <td width=120px><b><font color= #909090>START POINT</font></b></td>
        <td>
-   			<% for ch in @challenge.point_types %>
-			<%= ch.st_value1 %>
-    			<% if ch.st_value1==nil %>
-   			<%else%>
-    			<%= ch.st_label %>
-    			<%= ch.st_value %> 
-    			<% end %>
-    		<% end %>
+   			
+			
+    			
+   			
+    			
+    			<%= @challenge.start_point.value %> 
+    	
+    		
 		</td>
     </tr>
     <!--
@@ -74,14 +75,9 @@
 			</b>
 		</td>
 		<td>
-      	<% for ch in @challenge.point_types %>
-		<%= ch.ed_value1 %>
-    		<% if ch.ed_value1==nil %>
-    		<% else %>
-    			<%= ch.ed_label %>
-    			<%= ch.ed_value %>
-   			<% end %>
-    	<% end %>
+      	
+    			<%= @challenge.start_point.value %>
+    			
         </td>
      </tr>
      <tr>
@@ -106,24 +102,23 @@
   									<td>
   										<table border="1">
       <tr bgcolor=#f5f5f5 height=20px border=0px>
-       <th><b><h3><font color="black">TOTAL:<%= @challenge.task_description.count %></font></h3></b></th>
+       <th><b><h3><font color="black">TOTAL:</font></h3></b><%= link_to render(:partial => 'challenges/message'), root_url %></th>
        <th colspan="3"><%= image_tag("btn_add_up.png", :class => "addComment", :style => "float:right; margin-right:20px;") %></th>
       </tr>
       <tr bgcolor=#D7D7D7 height=20px border=0px>
-       <td width="100px">
+      
+       <td width="50px"><h4>POINT(s)<font color="orange">/</font>TASKS</h4>
        </td>
-       <td width="700px"><h4>POINT(s)<font color="orange">/</font>TASKS</h4>
-       </td>
-       <td width="100px" bgcolor=#D7D7D7> 
+       <td width="700px" bgcolor=#D7D7D7> 
        </td>
        <td bgcolor=#D7D7D7><p style="float:right";>SCORE </p></td>
+	   <td bgcolor=#D7D7D7></td>
       </tr>
       <% ch= 0 %>
       <% sum = 0 %>
       <% for ch in ch..@challenge.task_point.length %>
       <tr>
-       <td>
-       </td>
+      
        <td>       
        <%=  @challenge.task_point[ch] %>
        <% sum +=  @challenge.task_point[ch].to_i %>
@@ -149,22 +144,141 @@
        						<table width="100%" border="0">
   								<tr><td>
     							<div class="ch_main_div">
-    								TOTAL : &nbsp;<b><%= @lists.length%></b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									 &nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  							
-    							<%= text_field_tag 'ip','', :maxlength => 15, :size => 20, :class => "ip-input" %></div>								
+    									<script type="text/javascript" src="../includes/js/jquery.min.js"></script>  
+    <script src="http://connect.facebook.net/en_US/all.js"></script>  
+
+
+<div id="fb-root"></div>  
+       
+    <table width="100%" border="0">  
+      
+    <tr>  
+      
+    <td align="left">  
+      
+    <div id="friendslist"><table id="class"><script > for (i=0;i<125;i++)</script><td id="here"></td><script>end</script></div>  
+      
+    </td>  
+      
+    </tr>  
+      
+    </table>  
+
+    <script>  
+      
+    FB.init({  
+      
+    appId  : '232592880122189',  
+      
+    status : true, // check login status  
+      
+    cookie : true, // enable cookies to allow the server to access the session  
+      
+    xfbml  : true  // parse XFBML  
+      
+    });  
+      
+ FB.getLoginStatus(function(response) {  
+      
+    if (response.session) {  
+      
+    //getting current logged in user's id from session object  
+      
+    globaluserid=response.session["uid"];  
+	//alert(globaluserid);
+      
+    //fetching friends uids from 'friend' table. We are using FB.api syntax  
+      
+    FB.api(  
+      
+    {  
+      
+    method: 'fql.query', 
+     
+    query: 'SELECT name FROM user WHERE uid='+globaluserid 
+     
+    }, 
+     
+    function(response) { 
+	//alert(response.requests_id);
+      htmlcontent='<img src=>'+response[0].name+' </a>';  
+	  alert(htmlcontent);
+    //once we get the response of above select query we are going to parse them 
+     
+    for(i=0;i<response.length;i++) 
+     
+    { 
+     var l = response.length
+    //fetching name and square profile photo of each friends 
+     
+    FB.api( 
+     
+    { 
+     
+    method: 'fql.query', 
+     
+    query: 'SELECT name,pic_square,first_name,last_name FROM user WHERE uid='+response[i].uid1 
+	 
+     
+    }, 
+     
+    function(response) { 
+     
+    //creating img tag with src from response and title as friend's name  
+      
+    htmlcontent='<img src=>'+response[0].name+' </a>';  	
+      
+	  //alert(response[0].request_ids);
+	  //alert(response[0].first_name);
+    //appending to div based on id. for this line we included jquery  
+      
+    $("#here").append(htmlcontent);  
+      
+    }  
+      
+    );  
+      
+    }  
+      
+    }  
+      
+    );  
+      
+    } else {  
+      
+    // no user session available, someone you dont know  
+      
+    top.location.href="../kfb_login.php";  
+      
+    }  
+      
+    });  
+
+    </script>  
+	
+	
+	
+	
+	   
+	 
+					<div id="fb-root"></div>	
+    							</div>								
     							<br></div>
 								<div class="sample">
     								NAME
     								</div>
 									<div class="fb-login-button" data-show-faces="true" data-width="200" data-max-rows="1"></div>
-<div id="fb-root"></div>
+
 <script>
 	(function(d, s, id){
+	
   	var js, fjs = d.getElementsByTagName(s)[0];
-  	if (d.getElementById(id)){return;}
+	
+  	if (d.getElementById(id)){
+	alert(s);
+	ch=d.getElementById(id);
+	return;}
+	
   	js = d.createElement(s); js.id = id;
   	js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=232592880122189";
 	  fjs.parentNode.insertBefore(js, fjs);
@@ -172,9 +286,7 @@
 </script>
 	
 	<br>
-    								<% @lists.each do |list| %><br>										
-									<%= list.name %><br>
-									<% end %>
+    								
 									
     							</div>
 									
@@ -187,4 +299,4 @@
   			</tr>	
 	</table>
 
-
+</div>

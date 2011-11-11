@@ -43,7 +43,7 @@ module Dojitsu
         :port => 587,
         :domain => 'localhost:4000',
         :user_name => 'sriram.in20@gmail.com',
-        :password => 'srirammca',
+        :password => 'password',
         :authentication => 'plain',
         :enable_starttls_auto => true 
       }
