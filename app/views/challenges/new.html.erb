@@ -227,40 +227,37 @@
 													message: 'Do Your Best',
 													title: "Invite Participants",
 													data: 'tracking information for user'
-																		    };
+											};
 											FB.ui(request, requestCallback);
-												}					
+											}					
 											function requestCallback(response) 
+											{
+												var requestsToSend = new Array();
+												var i = 0;
+												names = Array.new
+												while (i < response.request_ids.length)
 												{
-														var requestsToSend = new Array();
-														var i = 0;
-														names = Array.new
-														while (i < response.request_ids.length)
-																			{
-																			FB.api('/'+response.request_ids[i], function(res)
-																			{
+													FB.api('/'+response.request_ids[i], function(res)
+													{
 														requestsToSend[i] = res['to']['id'];
 														name=requestsToSend[i]
 														alert(name);
-														names<<name
-													
-														
-																	      	}
-																			);
-											i++;
-																			}
-																			
-																			
-	
-											$(function () {  
-															$('#alert').click(function ()
-																{  
-																alert(name);  
-																return false;  
+														names<<name																										
+											      	}
+												);
+												i++;
+											}
+																																							
+											$(function () 
+											{  											
+												$('#alert').click(function ()
+												{  
+													alert(name);  
+													return false;  
 												})  
-																	}
-												); 	
-												}
+											}
+										); 	
+										}
     									</script>
     									</script>
 									</td>
