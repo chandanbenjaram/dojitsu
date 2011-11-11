@@ -3,6 +3,7 @@
   border: 0;
 }
 #cluetip-title {
+	width:98%;
   overflow: hidden;
 }
 #cluetip-title #cluetip-close {
@@ -13,7 +14,7 @@
   width: 43px;
   height: 11px;
   position: absolute;
-  background-image: url(images/wait.gif);
+  background-image: url(loader.gif);
 }
 .cluetip-arrows {
   display: none;
@@ -122,10 +123,10 @@
 /* jtip arrows */
 
 .clue-right-jtip .cluetip-arrows {
-  background-image: url(images/arrowleft.gif);
+  background-image: url(arrow_left.gif);
 }
 .clue-left-jtip .cluetip-arrows {
-  background-image: url(images/arrowright.gif);
+  background-image: url(arrow_right.gif);
   left: 100%;
   margin-right: -11px;
 }

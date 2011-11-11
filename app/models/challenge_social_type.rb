@@ -5,5 +5,5 @@ class ChallengeSocialType < ChallengeType
 
   # challenge invitations ONLY FOR MEOTHER CHALLENGE
   # every NON-MOTHER challenge should ignore this filed
-  #has_many :invitations
+  # has_many :challenge_invitations
 end

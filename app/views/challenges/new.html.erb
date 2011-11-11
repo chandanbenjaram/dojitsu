@@ -5,7 +5,7 @@
 
 <div id="ch_main_div">
 	<p style="font-size:20px; color:#f9a943;margin-left:10px;margin-top:10px; font-weight:bold;">CREATE NEW</p>
-	<%= form_for @challenge, :validate => true do |f| %>
+	<%= form_for(@challenge, :as =>:challenge, :validate => true ) do |f| %>
 		<table width="100%" border="0" style="margin-top:0px;">
   			<tr>
     			<td colspan="4"><p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :id => "on_focus_textfield" %></p></td>	
@@ -16,7 +16,7 @@
 				</td>
 			</tr>
 			<tr>
-    			<td width="15%" style="color:#999999;"><%= f.label :description, "DESCRIPTION" %></td>
+    			<td valign="top" width="15%" style="color:#999999;"><%= f.label :description, "DESCRIPTION" %></td>
     			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea" %></td>
   			</tr>
 			<tr>
@@ -75,13 +75,13 @@
 				</td>
 			</tr>
 			<tr>
-  				<td>
+  				<td valign="top">
   					<b id="load-local" class="load-local" href="#hidden" rel="#hidden"  style="color:#999999;" title="The score for each task will be added up to determin the winner(s).">CREATE TASK
 					<%= image_tag("btn_questionmark_up.png")%></b>
 				</td>
 				<td colspan="3">
     				<div id="new_tsk_field">		
-						<table border="1" class="atable">
+						<table border="1">
 							<tr>
 								<th colspan="2" style="color:#999999;">Score this task by</th>
 								<th colspan="2" style="color:#999999;">Point(s)</th>
@@ -89,29 +89,60 @@
 								<%= image_tag("btn_add_up.png", :class => "alternativeRow", :style => "float:right; margin-right:20px;") %>
 							</th>
 						    </tr>
-							<tr>
+							<% if !@challenge.tasks.blank? %>
+							<% for task in @challenge.tasks %>
+	 						<%= f.fields_for "task_attributes[]", task do |task_fields| %>
+							<tr valign="bottom">
 								<td width="112">
-									<%= select_tag "tasks[score_by][]", options_for_select([
+									<%= task_fields.select :score_by, options_for_select([
 										["Choose", "0"],
 										["Check box:1 for checking off the task", "Check box:1 for checking off the task"],	 
 										["Self-report number","Self-report number"]														
 										]), :style => "width:197px;" 
 									%>								</td>
-								<td width="17"><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
+								<td valign="middle" width="17"><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
 								<td width="69">
-									<%= text_field_tag "tasks[score][]", nil , :class => "textfield_effect_nw_tk_add", :id => "on_focus_textfield" %>								</td>
-								<td width="17"><%= image_tag("icon_slash.png", :height => '20', :width => '5')%></td>
-								<td width="385">
-									<%= hidden_field_tag "challenge[task_status][]", nil %>
-									<%= text_field_tag "tasks[name][]", nil ,:class => "textfield_effect_nw_tk", :id => "on_focus_textfield" %>
-									<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:12px;") %>								</td>
+									<%= task_fields.text_field :score , :class => "textfield_effect_nw_tk_add", :id => "on_focus_textfield"%></td>
+								<td valign="middle" width="17"><%= image_tag("icon_slash.png", :height => '20', :width => '5')%></td>
+								<td valign="middle" width="385">
+									<%= task_fields.text_field :name ,:class => "textfield_effect_nw_tk", :id => "on_focus_textfield"%>
+									<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:8px;") %>								</td>
 								<td width="13">	</td>
 							</tr>
+							<% end %> 
+	 						<% end %>       
+	 						<% end %>
+							<!--          
+							<tr>
+							<% if !@challenge.tasks.blank? %>
+							<% for task in @challenge.tasks %>
+	 						<%= f.fields_for "task_attributes[]", task do |task_fields| %>
+								<td width="112">
+									select field goes here
+	  		    				</td>
+								<td width="17"><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
+								<td width="69">
+									<%= task_fields.text_field :score %>												
+								</td>
+								<td width="17">
+									<%= image_tag("icon_slash.png", :height => '20', :width => '5')%>
+								</td>
+								<td width="385">
+								    <%= task_fields.text_field :name %>
+									<%= text_field_tag "tasks[name][]", nil ,:class => "textfield_effect_nw_tk", :id => "on_focus_textfield" %>
+									<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:12px;") %>
+								</td>																						
+								<td width="13">	</td>   		
+	 						<% end %> 
+	 						<% end %>       
+	 						<% end %>
+		    				</tr>
+							-->
 							<tr>
 								<td colspan="6">
 									<b style="color:#999999;"><%= image_tag("icon_arrow_left.png")%>&nbsp;&nbsp;Do all tasks need to be complete before the challenge is marked complete?</b><br>
 									<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
-									<font style="color:#999999;"><%= f.label "Yes" %></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<font style="color:#999999;"><%= f.label "Yes" %></font>
 									<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
 									<font style="color:#999999;"><%= f.label "No" %></font>								</td>
 							</tr>
@@ -125,7 +156,7 @@
 				</td>
 			</tr>
 			<tr>
-  				<td><b style="color:#999999;">PRIVACY</b></td>
+  				<td valign="top"><b style="color:#999999;">PRIVACY</b></td>
     			<td colspan="3">
     				<ul class="tabs">
     					<li><a href="#tab1" id="soc">Social</a></li>
@@ -166,6 +197,7 @@
     								<td><b style="color:#999999;">Participants</b></td>
 									<td>
 										<div id="fb-root"></div>
+										<%= hidden_field_tag "myvar", 0%>					
     									<script src="http://connect.facebook.net/en_US/all.js"></script>
     									<p>
     										<input type="button"
@@ -189,13 +221,31 @@
       										}
 											// to send request to many friends use this function
       										function sendRequestToManyRecipients() {
-        										FB.ui({method: 'apprequests',
-          										message: 'Do Your Best',
-        										}, requestCallback);
-      										}
+                                                var request ={method: 'apprequests',
+                                                	message: 'Do Your Best',
+                                                	title: "Invite Participants",
+                                                	data: 'tracking information for user'
+                                                };
+                                               FB.ui(request, requestCallback);											   
+                                            }											  
       										function requestCallback(response) {
-        										// Handle callback here
-      										}
+    											var requestsToSend = new Array();
+												var i = 0;
+    											while (i < response.request_ids.length)
+    											{													
+        											FB.api('/'+response.request_ids[i], function(res){
+        												//FB.api('/me/response.request_ids[i]?fields=id,name,first_name,last_name
+            											requestsToSend[i] = res['to']['id'];
+            											userId=requestsToSend[i]
+														//alert("hiiiii");
+														//window.location.href = "http://www.google.com?keyword="+requestsToSend[i];
+														//alert("hello"+@myvar);													
+        											});
+        											i++;
+    											}
+    											console.log(requestsToSend[0], requestsToSend[1], requestsToSend[2], requestsToSend[3]);
+    											//alert(requestsToSend[0]);
+											}																																										
     									</script>
 									</td>
   								</tr>
@@ -240,28 +290,28 @@
 </div>
 
 <div id="hidden">
-		<table>						
+		<table height="150">						
 			<tr>
-	  		  	<td width="38%"><p style="color:#f9a943; font-size:15px;"><b>check box:</b></p></td>
-   			  	<td width="17%"><input type="text" value="1(Check of the task)" size="18" /></td>
+  		  	  <td width="43%"><p style="color:#f9a943; font-size:12px; margin-top:15px;"><b>check box:</b></p></td>
+		  	  <td width="17%"><input type="text" value="1(Check of the task)" size="18" /></td>
 	     	  	<td width="3%"><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
-			  	<td width="13%"><input type="text" value="point(s) per task" size="14" /></td>
+		  	  <td width="13%"><input type="text" value="point(s) per task" size="14" /></td>
   	     	  	<td width="3%"><%= image_tag("icon_equal.png", :height => '10', :width => '10')%></td>
-			  	<td width="28%"><input type="text" value="Score" size="5" /></td>
+		  	  <td width="21%"><input type="text" value="Score" size="5" /></td>
   			</tr>
 			<tr>
-	  		 	<td width="36%"><p style="color:#f9a943; font-size:15px;"><b>Self-reported Number:</b></p></td>
-   		    	<td width="17%"><input type="text" value="Number" size="18" /></td>
+  		 	  <td width="43%" height="36"><p style="color:#f9a943; font-size:12px; margin-top:15px;"><b>Self-reported Number:</b></p></td>
+	    	  <td width="17%"><input type="text" value="Number" size="18" /></td>
 				<td><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
-				<td width="13%"><input type="text" value="point(s) per task" size="14" /></td>
+			  <td width="13%"><input type="text" value="point(s) per task" size="14" /></td>
     			<td><%= image_tag("icon_equal.png", :height => '10', :width => '10')%></td>
-			    <td width="28%"><input type="text" value="Score" size="5" /></td>
+		      <td width="21%"><input type="text" value="Score" size="5" /></td>
   			</tr>
 			<tr>	
-  				<td></td>
+  				<td height="51"></td>
     			<td colspan="5">e.g. reporting 10 miles for "run treadmill (2 points)" task scores 20 points</td>
-  			</tr>		
-		</table>	
+			</tr>
+		</table>			
 </div> 
 
 <script type="text/javascript"> 
