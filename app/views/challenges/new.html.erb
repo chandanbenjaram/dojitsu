@@ -174,7 +174,85 @@
 									<td>
 										<div id="fb-root"></div>
 										<%= hidden_field_tag "myvar", 0%>					
-    					    			<%= render :partial => 'invitations' %>
+    									
+    									<p>
+    										<input type="button"
+	      										onclick="sendRequestToManyRecipients(); return false;"
+									      		value="INVITE PARTICIPANTS" class="links_invite_p"/>
+    									</p>
+    									<script>
+      										FB.init({
+        										appId  : '232592880122189',
+        										status : true,
+        										cookie : true,
+        										oauth: true
+      										});
+										
+      										function sendRequestToOneRecipient() {
+        									var user_id = document.getElementsByName("user_id")[0].value;
+        										FB.ui({
+													method: 'send',
+													name: 'My dojitsu challenge',
+													link: 'http://www.nytimes.com/2011/06/15/arts/people-argue-just-to-win-scholars-assert.html',
+													},requestCallback);
+      										}
+											
+      										function sendRequestToManyRecipients()
+											{
+													var request ={method: 'apprequests',
+													message: 'Do Your Best',
+													title: "Invite Participants",
+													data: 'tracking information for user'
+																		    };
+											FB.ui(request, requestCallback);
+												}					
+											function requestCallback(response) 
+												{
+														var requestsToSend = new Array();
+														var i = 0;
+														names = Array.new
+														while (i < response.request_ids.length)
+																			{
+																			FB.api('/'+response.request_ids[i], function(res)
+																			{
+														requestsToSend[i] = res['to']['id'];
+														name=requestsToSend[i]
+														alert(name);
+														names<<name
+													
+													
+													var query = FB.Data.query('SELECT name,last_name,first_name FROM user WHERE uid={0}',requestsToSend[i]);
+
+												   query.wait(function(rows) {
+														 console.log(rows[0].name);
+														 console.log(rows[0].first_name);
+														 console.log(rows[0].last_name);
+														 //console.log(rows[0].gender);
+														 alert(rows[0].name);
+														 alert(rows[0].first_name);
+														 alert(rows[0].last_name);
+														 //alert(rows[0].sex);
+														});
+																					
+														
+																	      	}
+																			);
+											i++;
+																			}
+																			
+																			
+	
+											$(function () {  
+															$('#alert').click(function ()
+																{  
+																alert(name);  
+																return false;  
+												})  
+																	}
+												); 	
+												}
+    									</script>
+    									
 									</td>
   								</tr>
 							</table>

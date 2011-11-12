@@ -1,5 +1,6 @@
 <div class="span-24 header first">&nbsp;</div>
 <div class="span-24">
+<<<<<<< HEAD
   <div class="span-13 header">
     <% if !current_user.nil? %>
       <div class="span-13">trophies</div>
@@ -58,3 +59,25 @@
      d.getElementsByTagName('head')[0].appendChild(js);
    }(document));
 </script>
+=======
+	<% if !current_user.nil? %>
+      		<%= image_tag((current_user.authentications[0].image_path rescue ""), :style => "float:right", :alt => "Profile") %><br>
+   	<% else %>
+      		<%= link_to(image_tag("dojitsu_logo.png", :style => "float:left", :alt => "Home"), root_path) %>
+    <% end %>
+<div>
+	<% if !current_user.nil? %>
+		<div class="logo_globalheader">
+				<%= link_to(image_tag("logo.png")) %>
+		</div>
+		<div class="popup_globalheader">	
+				<%= current_user.authentications[0].name rescue current_user.fname%></br>
+								<%= link_to "Log out", destroy_user_session_path %>
+
+		</div>
+	<% else %>
+		<%= button_to "", "/users/auth/facebook", :class=> "new_button1", :style => "float:right" %>
+    <% end %>
+	</div>
+</div>
+>>>>>>> 9bfeff0bae1c90c700f721f4f87f244f7e4dd2b3
