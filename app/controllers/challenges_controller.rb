@@ -22,7 +22,19 @@ class ChallengesController < ApplicationController
 
   def show_per
       @challenge = Challenge.find(params[:id])
-      #raise @challenge.social_challenge.type 
+      
+      #@challenge.task_attributes.each do |tsk|
+      #  raise tsk.name.inspect
+      #end
+      
+      
+      #@challenge.task_attributes.each do |ts|
+      #  ts.each do |sd|
+      #    raise sd[4].inspect
+      #  end
+      #end
+
+      #@challenge.social_type.type  
       #if @challenge.social_challenge.type and @challenge.social_challenge.type!='0' and @challenge.social_challenge.type!=nil 
       ch = @challenge.social_type.type 
       #render :text => ch and return
