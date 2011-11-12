@@ -570,19 +570,6 @@ input.radio {
     width: 100px;
 }
 
-.challenge_mark_as_c {
-    background: none repeat scroll 0 0 #999999;
-    border-radius: 3px 3px 3px 3px;
-	text-color:white;
-    display: block;
-    font-size: 12px;
-    margin: 10px 0;
-    padding: 5px;
-    text-align: center;
-    text-transform: uppercase;
-    width: 175px;
-}
-
 
 option:hover {
     cursor: pointer;
@@ -667,13 +654,22 @@ h2{
 }
 */
 
-#tooltip {
-		background-image: url("FDFDG.gif");
-		background-repeat:no-repeat;
-		width:70px;
-		height:22px;
-		padding:5px;
-		font-size:15px;
+/* tooltip styling */
+.tooltip {
+	display:none;
+	-moz-user-select: none;
+	border:solid 2px #f9a943;
+	background: repeat scroll 0 0 rgba(47, 47, 47, 0.7);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#202020, endColorstr=#202020)";
+	background: -webkit-gradient(linear, left top, left bottom, from(#202020), to(#202020));
+	background-repeat:no-repeat;
+	width: auto;
+	overflow: hidden;
+    position: fixed;
+	padding:5px 5px 5px 5px;
+	font-size:11px;
+	color:#fff;
+	opacity: 0.95;
 }
 
 /*edit personal challenge*/
@@ -808,3 +804,12 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 #mychallenge_cont{
 	margin-left:20px;	
 }
+.logo_globalheader{
+	float:left;
+	width: 300px;
+}
+.popup_globalheader{
+	float:right;
+	width: 100px;
+}
+
