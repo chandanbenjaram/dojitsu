@@ -1,13 +1,5 @@
 (function($){
-/*
- * Editable 1.3.3
- *
- * Copyright (c) 2009 Arash Karimzadeh (arashkarimzadeh.com)
- * Licensed under the MIT (MIT-LICENSE.txt)
- * http://www.opensource.org/licenses/mit-license.php
- *
- * Date: Mar 02 2009
- */
+
 $.fn.editable = function(options){
 	var defaults = {
 		onEdit: null,

@@ -41,9 +41,7 @@
 		// override configuration options with user supplied object
 		cfg = $.extend(cfg, g ? { over: f, out: g } : f );
 
-		// instantiate variables
-		// cX, cY = current X and Y position of mouse, updated by mousemove event
-		// pX, pY = previous X and Y position of mouse, set by mouseover and polling interval
+		
 		var cX, cY, pX, pY;
 
 		// A private function for getting mouse position
