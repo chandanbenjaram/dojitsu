@@ -253,21 +253,12 @@
 	Update
 </div>
 
-<script type="text/javascript">
 
-<script type="text/javascript" src="/js/jquery.js"></script>
-<script type="text/javascript" src="/js/jquery.defaultText.js"></script>
-<script type="text/javascript" src="/js/jquery.table.addrow.js"></script>
-<script type="text/javascript">
-	$("document").ready(function(){
-		$(".addComment").btnAddRow({rowNumColumn:"rowNumber"}),
-		$(".delRow").btnDelRow()						
-	});
-	
-	
+<script>
+// execute your scripts when the DOM is ready. this is a good habit
+$(function() {
 	// setup tooltip for a single DIV element
 	$("#mytable a").tooltip({
-
 		// each trashcan image works as a trigger
 		tip: '#tooltip',
 
@@ -279,6 +270,21 @@
 
 		// there is no delay when the mouse is moved away from the trigger
 		delay: 0
+	});	
+});
+</script>
+
+
+
+<script type="text/javascript">
+
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/jquery.defaultText.js"></script>
+<script type="text/javascript" src="/js/jquery.table.addrow.js"></script>
+<script type="text/javascript">
+	$("document").ready(function(){
+		$(".addComment").btnAddRow({rowNumColumn:"rowNumber"}),
+		$(".delRow").btnDelRow()						
 	});
 	
 	// Jquery part
@@ -547,27 +553,6 @@ div.htmltooltip{
 	width: 250px; /*width of tooltip*/
 }
 
-.tooltip {
-	background-color:#000;
-	border:1px solid #fff;
-	padding:10px 15px;
-	width:200px;
-	display:none;
-	color:#fff;
-	text-align:left;
-	font-size:12px;
-
-	/* outline radius for mozilla/firefox only */
-	-moz-box-shadow:0 0 10px #000;
-	-webkit-box-shadow:0 0 10px #000;
-}
-
-#tooltip {
-		width:100px;
-		background-color:#3d7483;
-		padding:5px;
-		font-size:11px;
-}
 </style>
 
 

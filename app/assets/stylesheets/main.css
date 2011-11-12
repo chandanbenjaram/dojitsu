@@ -667,22 +667,26 @@ h2{
 }
 */
 
-/* tooltip styling */
 .tooltip {
+	background-color:#000;
+	border:1px solid #fff;
+	padding:10px 15px;
+	width:200px;
 	display:none;
-	-moz-user-select: none;
-	border:solid 2px #f9a943;
-	background: repeat scroll 0 0 rgba(47, 47, 47, 0.7);
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#202020, endColorstr=#202020)";
-	background: -webkit-gradient(linear, left top, left bottom, from(#202020), to(#202020));
-	background-repeat:no-repeat;
-	width: auto;
-	overflow: hidden;
-    position: fixed;
-	padding:5px 5px 5px 5px;
-	font-size:11px;
 	color:#fff;
-	opacity: 0.95;
+	text-align:left;
+	font-size:12px;
+
+	/* outline radius for mozilla/firefox only */
+	-moz-box-shadow:0 0 10px #000;
+	-webkit-box-shadow:0 0 10px #000;
+}
+
+#tooltip {
+		width:70px;
+		background-color:#f9a943;
+		padding:5px;
+		font-size:15px;
 }
 
 /*edit personal challenge*/
