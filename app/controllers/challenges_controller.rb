@@ -186,6 +186,14 @@ class ChallengesController < ApplicationController
     raise "aaaaaaaaa"
   end
   
+  def challenge_comp
+    #Challenge.where(:_id => "4ebe067b7c1bd8023800006d").update(:is_complete => 1)
+    #@id =params[:id]
+    #raise @sdf = Challenge.update_attribute(:is_complete => 1).where(:id => @id).inspect
+	@sdf = Challenge.where(:_id => params[:id]).update(:is_complete => 1)
+	redirect_to :action => "index"
+  end
+  
   def my_challenge
     @my_total_challenge = Challenge.all.count
     @my_all_ch = Challenge.all
