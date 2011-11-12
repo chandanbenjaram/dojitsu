@@ -152,16 +152,20 @@
 					</td>
 					<td width="10%">
 						<% st=0 %>
+						<% @task_na=0 %>
 						<% tsk_compete= 0 %>
 						<% sum = 0 %>
 						<% @challenge.task_attributes.each do |tsk| %>
-							<% tsk.each_with_index do |task_value, task_index|%>
+							<% tsk.each_with_index do |task_value, task_index|%>					
+								<% if task_index == 0%>
+									<% @task_na= task_value[1]%>
+								<% end %>
 								<% if task_index == 2%>
 									<% st= task_value[1]%>
 								<% end %>		
 								<% if task_index == 3%>
 									<% if st.to_i == 0 %>
-										<%= link_to "0", '#dialog' ,:name=>"modal" %>
+										<%= link_to "0", '#dialog' ,:name=>"modal", :style => "text-decoration: underline;" %>
 					
 										
 										
@@ -236,7 +240,7 @@
 				</tr>
 				<tr bgcolor=#f4f4f4>
 				  <td></td>
-					<td  colspan="2"><%= link_to "MARK AS COMPLETED", "#", :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"%></td>
+					<td  colspan="2"><%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"%></td>
 					<td></td>
 				</tr>
 			</table>
