@@ -75,12 +75,12 @@ limitations under the License.
 
 #jfmfs-inner-header {
     background:none repeat scroll 0 0 #F7F7F7;
-    border-bottom:1px solid #CCCCCC;
+
     color:#3B5998;
     font-size:11px;
     font-weight:bold;
     height:25px;
-    padding:2px;
+    padding:10px;
 }
 
 .jfmfs-friend.selected {
@@ -144,6 +144,7 @@ div.jfmfs-button {
 
 #jfmfs-friend-filter-text {
     height: 23px;
+	width: 70%;
 }
 
 

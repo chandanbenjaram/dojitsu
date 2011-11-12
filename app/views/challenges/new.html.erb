@@ -174,7 +174,7 @@
 									<td>
 										<div id="fb-root"></div>                            
 										<%= hidden_field_tag "myvar", 0%>					
-    					    			<%= render :partial => 'invitations' %>
+    					    			<%= render :partial => 'invitations', :locals => {:form => f} %>
 									</td>
   								</tr>
 							</table>
