@@ -813,3 +813,79 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	width: 100px;
 }
 
+/*dash borad css*/
+.mychallenge
+{
+height:400px;
+width:635px;
+border: 2px solid #BEBEBE;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px; 
+ 
+}
+#titlechallenge
+{
+	
+width:635px;
+border: 1px solid #BEBEBE;
+background:#BEBEBE;
+height:30px;
+-moz-border-radius-topleft: 5px;
+-moz-border-radius-topright: 5px;
+-moz-border-radius-bottomright: 0px;
+-moz-border-radius-bottomleft: 0px;
+-webkit-border-radius: 5px 5px 0px 0px;
+border-radius: 5px 5px 0px 0px;
+
+}
+.second_titlechallenge{
+float:right;
+
+}
+#subbar
+{
+background:#D7D7D7;
+height:25px;
+width:635px;
+}
+#name
+{
+position:absolute;
+float:left;
+left:40px;
+}
+#score
+{
+position:absolute;
+float:left;
+left:450px;
+}
+#challengedetails
+{
+width:635px;
+height:343px;
+background:#fff;
+-moz-border-radius-topleft: 0px;
+-moz-border-radius-topright: 0px;
+-moz-border-radius-bottomright: 5px;
+-moz-border-radius-bottomleft: 5px;
+-webkit-border-radius: 0px 0px 5px 5px;
+border-radius: 0px 0px 5px 5px; 
+}
+#content1
+{
+float:left;
+postion:absolute;
+padding-left:20px;
+width:180px;
+
+}
+#content2
+{
+float:left;
+postion:absolute;
+padding-left:10px;
+width:400px;
+}
+.second_titlechallenge

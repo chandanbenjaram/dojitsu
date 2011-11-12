@@ -1,19 +1,49 @@
-<%= javascript_include_tag('js-class', 'dashboard_index','bluff-min', 'excanvas')%>
-<%= stylesheet_link_tag('jquery-ui')%>
+<%= javascript_include_tag('js-class', 'dashboard_index','bluff-min', 'excanvas','jquery-1.3.2', 'ui.core','ui.progressbar')%>
+<%= stylesheet_link_tag('jquery-ui', 'ui.core','ui.progressbar','ui.theme', 'main')%>
 
 <%= render 'layouts/loggedinbody'%>
 
-<div id="dashbord">
-	<div id="ds_performance_tracker">
-		<div id="ds_performance_tracker_tit" style="background:grey; height:30px;">
-			<h3>Performance Tracker</h3>
-			<%= collection_select :current_user, '', current_user.challenges,  :id, :title %>    
-			<input type="button" value="Remove" class="rem" id="#example" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_performance_tracker_cont" style="float:right;">
-			<%= link_to(image_tag("delete.jpg", :size => "20x20", :id => '#example', :class => 'rem'))%>
-		</div>
-		<canvas id="example" style="width: 636px; height: 300px; float: left;"></canvas>
-	</div>	
-	
+<div class="challange">my dashboard</div>
+			
+<div class="mychallenge">
+	<div id="titlechallenge">MY CHALLENGES ( <%=@as%> ) 
+			<div class="second_titlechallenge"><%= button_to "NEW", new_challenge_url, :class => "new_challenge_button", :method => :get%></div>
+	</div>
+
+	<div id="subbar">
+		<div id="name">Name</div>
+		<div id="score">MY DOJITSU SCORE</div>
+	</div>
+<div id="challengedetails">
+			<div id="challengepart">
+			<br>
+			<%ch=0%>
+<% for ch in ch..2 %>
+<table>
+		<td id="content1">
+				<font size=3>ABC Challenge</font><br><font size=2>by Sun Yu</font><br> Starting Point-End Point<br>
+						</td>
+							<td id="content2">
+										<div>								
+											  <div id="taskprogress"></div>
+												<script type="text/javascript">
+												  $(function() 
+												  {
+														//call progress bar constructor
+													  $("#taskprogress").progressbar({ value: 50 });
+														//set mouseover for progress bar
+			
+													});
+												</script>
+										</div>
+								</td>
+						</table>
+<% end %>
+			</div>
+</div>
+
+</div>	
+			
 	<div id="ds_my_profile">
 		<div id="ds_my_profile_tit" style="background:grey; height:30px;">
 			<h3>My Profile</h3>
