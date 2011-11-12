@@ -1,75 +1,22 @@
-<!--<div class="span-24 header first">&nbsp;</div>
-<div class="span-24">
-  <div class="span-5">
-    <% if !current_user.nil? %>
-      <div class="imgright"><%= image_tag((current_user.authentications[0].image_path rescue ""), :alt => "Profile") %></div>
-    <% else %>
-      <%= link_to(image_tag("dojitsu_logo.png",  :alt => "Home"), root_path) %>
-    <% end %>
-  </div>
-  <div class="span-13 header">
-    <% if !current_user.nil? %>
-      <div class="span-13">trophies</div>
-      <div class="span-13 left">
-        <%= current_user.authentications[0].location_name rescue "" %>&nbsp;(Profile)
-      </div>
-      <div class="span-13"><input type="text"/><input type="button" value="Post"/> </div>
-    <% else %>
-      &nbsp;
-    <% end  %>
-  </div>
-  <div class="span-6 header last">
-    <div class="right text-right">
-      <nav>
-        <ul>
-          <li>
-            <% if !current_user.nil? %>
-              Hello, <%= current_user.authentications[0].name rescue current_user.fname %> <%= current_user.lname %>!
-              <%= link_to "Log out", destroy_user_session_path %>
-            <% else %>
-              <%= button_to "", "/users/auth/facebook", :class=> "new_button1" %>
-            <% end %>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-</div> -->
 <div class="span-24 header first">&nbsp;</div>
 <div class="span-24">
-  <div class="span-13 header">
-    <% if !current_user.nil? %>
-      <div class="span-13">trophies</div>
-      <div class="span-13 left">
-        <%= current_user.authentications[0].location_name rescue "" %>&nbsp;(Profile)
-      </div>
-      <div class="span-13"><input type="text"/><input type="button" value="Post"/> </div>
-    <% else %>
-      &nbsp;
-    <% end  %>
-  </div>
-  <div class="span-10 header last">
-    <div class="right text-right">
-    <nav>
-        <ul>
-          <li>
-          		<div> <% if !current_user.nil? %>
-      						<%= image_tag((current_user.authentications[0].image_path rescue ""), :alt => "Profile") %>
-   				<% else %>
-      			<div class="span-30">
-					<%= link_to(image_tag("dojitsu_logo.png", :style => "float:left", :alt => "Home"), root_path) %>
-    				 <% end %>
-				</div>
-         		<div>
-					 <% if !current_user.nil? %>
-            				  Hello, <%= current_user.authentications[0].name rescue current_user.fname %> <%= current_user.lname %>!
-           				<%= link_to "Log out", destroy_user_session_path %>
-            		<% else %>
-              				<%= button_to "", "/users/auth/facebook", :class=> "new_button1" %>
-            		<% end %>
-				</div>
-          </li>
-        </ul>
-		</nav>
+	<% if !current_user.nil? %>
+      		<%= image_tag((current_user.authentications[0].image_path rescue ""), :style => "float:right", :alt => "Profile") %><br>
+   	<% else %>
+      		<%= link_to(image_tag("dojitsu_logo.png", :style => "float:left", :alt => "Home"), root_path) %>
+    <% end %>
+<div>
+	<% if !current_user.nil? %>
+		<div class="logo_globalheader">
+				<%= link_to(image_tag("logo.png")) %>
+		</div>
+		<div class="popup_globalheader">	
+				<%= current_user.authentications[0].name rescue current_user.fname%></br>
+								<%= link_to "Log out", destroy_user_session_path %>
+
+		</div>
+	<% else %>
+		<%= button_to "", "/users/auth/facebook", :class=> "new_button1", :style => "float:right" %>
+    <% end %>
 	</div>
- </div>
+</div>

@@ -790,3 +790,12 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 #mychallenge_cont{
 	margin-left:20px;	
 }
+.logo_globalheader{
+	float:left;
+	width: 300px;
+}
+.popup_globalheader{
+	float:right;
+	width: 100px;
+}
+
