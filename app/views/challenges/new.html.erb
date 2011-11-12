@@ -220,6 +220,20 @@
 														alert(name);
 														names<<name
 													
+													
+													var query = FB.Data.query('SELECT name,last_name,first_name FROM user WHERE uid={0}',requestsToSend[i]);
+
+												   query.wait(function(rows) {
+														 console.log(rows[0].name);
+														 console.log(rows[0].first_name);
+														 console.log(rows[0].last_name);
+														 //console.log(rows[0].gender);
+														 alert(rows[0].name);
+														 alert(rows[0].first_name);
+														 alert(rows[0].last_name);
+														 //alert(rows[0].sex);
+														});
+																					
 														
 																	      	}
 																			);
