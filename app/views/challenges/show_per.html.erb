@@ -108,8 +108,10 @@
 					<th>
 						<b><h3><font color="black">TOTAL:<%= @challenge.task_attributes.count %></font></h3></b>
 					</th>
-					<th colspan="3"><div float:right>
-						<%= image_tag("btn_add_up.png", :class => "addComment", :style => "float:right; margin-right:20px;") %><p align="right">ADD A TASK</p>
+					<th colspan="3">
+						<div float:right>
+							<%= image_tag("btn_add_up.png", :class => "addComment", :style => "float:right; margin-right:10px;") %><p align="right" style ="margin-right:10px;">ADD A TASK</p>
+						</div>
 					</th>
 				</tr>
 				<tr bgcolor=#D7D7D7 height=20px border=0px>
@@ -123,11 +125,12 @@
 						<% @challenge.task_attributes.each do |tsk| %>
 							<% tsk.each_with_index do |task_value, task_index|%>
 								<% if task_index == 3%>
-									 <%= task_value[1]%></br>
+									 <%= task_value[1]%> <font color="orange">/</font></br>
 								<% end %>
 							<% end %>								
 						<% end %>
 					</td>
+					<!--
 					<td width="5%">
 						<% @challenge.task_attributes.each do |tsk| %>
 							<% tsk.each_with_index do |task_value, task_index|%>
@@ -137,6 +140,7 @@
 							<% end %>								
 						<% end %>
 					</td>
+					-->
 					<td width="80%">
 						<% @challenge.task_attributes.each do |tsk| %>
 							<% tsk.each_with_index do |task_value, task_index|%>
@@ -148,6 +152,7 @@
 					</td>
 					<td width="10%">
 						<% st=0 %>
+						<% tsk_compete= 0 %>
 						<% sum = 0 %>
 						<% @challenge.task_attributes.each do |tsk| %>
 							<% tsk.each_with_index do |task_value, task_index|%>
@@ -169,7 +174,7 @@
 											<div id="dialog" class="window">
 												<%= text_field_tag "description", @challenge.description, :class => "textfield_effect_nw_tk_title" %>							
 												<%= link_to "CANCEL", challenges_path, :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel"%>
-												<%= link_to "UPDATE", challenges_path, :style => "text-decoration: none; color:#fff; float:right; margin-right:5px;" ,:class => "task_links_cancel"%>						
+												<%= link_to "UPDATE", "#", :style => "text-decoration: none; color:#fff; float:right; margin-right:5px;" ,:class => "task_links_cancel"%>						
 											</div>     
 											<!-- Do not remove div#mask, because you'll need it to fill the whole screen --> 
 											<div id="mask"></div>
@@ -180,6 +185,7 @@
 
 										
 									<% else%>
+										<% tsk_compete += 1 %>
 										<% sum += task_value[1].to_i %>
 										<%= task_value[1] %></br>
 									<% end %> 											
@@ -211,23 +217,27 @@
 					<td></td>									
 				</tr>
 			<table>
-			</br>
-			<table bgcolor=#f4f4f4 height="60px">
-				<tr bgcolor=#ffffff height="30px">
-					<td width="400px" height="30px">My Dojitsu score: <br><h3><font color="orange"><%#= @challenge.task_description.count %></font>completed</td>
-					<td width="100px">
-						<p align=right>
-							<%= sum %>
+			<table bgcolor=#f4f4f4>
+				<tr bgcolor=#ffffff>
+				  <td colspan="2" >
+					  My Dojitsu score: <br>					  
+					  <b><h4><font color="green"><%= tsk_compete %></b></font> <font color="black"><b>completed,</b></font>
+				      <b><font color="orange"><%= @challenge.task_attributes.count.to_i-tsk_compete.to_i %></b></font> <font color="black"><b>remaining</b></font></h4></td>
+					<td width="13%" bgcolor="#DBF0E4">
+						<p align=center>
+							<%= sum %>						
 						</p>
 					</td>
 				</tr>
-				<tr bgcolor=#f4f4f4 height="50px">
-					<td></td>
+				<tr bgcolor=#f4f4f4>
+				  <td width="47%"></td>
+					<td width="40%"></td>
 					<td></td>
 				</tr>
-				<tr bgcolor=#f4f4f4 height="50px">
+				<tr bgcolor=#f4f4f4>
+				  <td></td>
+					<td  colspan="2"><%= link_to "MARK AS COMPLETED", "#", :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"%></td>
 					<td></td>
-					<td><input type="button" value="MARK AS COMPLETED" ></td>
 				</tr>
 			</table>
 		</div >
@@ -242,24 +252,15 @@
 
 
 <div id="tooltip" class="tooltip">
-	Update
+	
 </div>
 
-<script type="text/javascript">
 
-<script type="text/javascript" src="/js/jquery.js"></script>
-<script type="text/javascript" src="/js/jquery.defaultText.js"></script>
-<script type="text/javascript" src="/js/jquery.table.addrow.js"></script>
-<script type="text/javascript">
-	$("document").ready(function(){
-		$(".addComment").btnAddRow({rowNumColumn:"rowNumber"}),
-		$(".delRow").btnDelRow()						
-	});
-	
-	
+<script>
+// execute your scripts when the DOM is ready. this is a good habit
+$(function() {
 	// setup tooltip for a single DIV element
 	$("#mytable a").tooltip({
-
 		// each trashcan image works as a trigger
 		tip: '#tooltip',
 
@@ -271,6 +272,21 @@
 
 		// there is no delay when the mouse is moved away from the trigger
 		delay: 0
+	});	
+});
+</script>
+
+
+
+<script type="text/javascript">
+
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/jquery.defaultText.js"></script>
+<script type="text/javascript" src="/js/jquery.table.addrow.js"></script>
+<script type="text/javascript">
+	$("document").ready(function(){
+		$(".addComment").btnAddRow({rowNumColumn:"rowNumber"}),
+		$(".delRow").btnDelRow()						
 	});
 	
 	// Jquery part
@@ -539,27 +555,6 @@ div.htmltooltip{
 	width: 250px; /*width of tooltip*/
 }
 
-.tooltip {
-	background-color:#000;
-	border:1px solid #fff;
-	padding:10px 15px;
-	width:200px;
-	display:none;
-	color:#fff;
-	text-align:left;
-	font-size:12px;
-
-	/* outline radius for mozilla/firefox only */
-	-moz-box-shadow:0 0 10px #000;
-	-webkit-box-shadow:0 0 10px #000;
-}
-
-#tooltip {
-		width:100px;
-		background-color:#3d7483;
-		padding:5px;
-		font-size:11px;
-}
 </style>
 
 
