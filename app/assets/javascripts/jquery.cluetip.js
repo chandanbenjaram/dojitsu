@@ -1,21 +1,4 @@
-/*
- * jQuery clueTip plugin
- * Version 1.0.7  (January 28, 2010)
- * @requires jQuery v1.3+
- *
- * Dual licensed under the MIT and GPL licenses:
- * http://www.opensource.org/licenses/mit-license.php
- * http://www.gnu.org/licenses/gpl.html
- *
- */
- 
-/*
- *
- * Full list of options/settings can be found at the bottom of this file and at http://plugins.learningjquery.com/cluetip/
- *
- * Examples can be found at http://plugins.learningjquery.com/cluetip/demo/
- *
-*/
+
 
 ;(function($) { 
   $.cluetip = {version: '1.0.6'};

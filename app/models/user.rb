@@ -22,8 +22,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def apply_omniauth(omniauth)
-    authentications.build(:provider => omniauth[:provider], :uid => omniauth[:uid], :email => omniauth[:email], :name => omniauth[:name], :first_name => omniauth[:first_name], :last_name => omniauth[:last_name], :image_path => omniauth[:image_path], :location_name => omniauth[:location_name], :location_id => omniauth[:location_id])
+  def apply_omniauth(omniauth)      
+    authentications.build(:provider => omniauth[:provider], :uid => omniauth[:uid], :email => omniauth[:email], :name => omniauth[:name], :first_name => omniauth[:first_name], :last_name => omniauth[:last_name], :image_path => omniauth[:image_path], :location_name => omniauth[:location_name], :location_id => omniauth[:location_id], :token =>omniauth[:token])
   end
 
   def password_required?
@@ -43,6 +43,9 @@ class User < ActiveRecord::Base
   def challenges
     Challenge.where(:user_id=>self.id).all
   end
-
+  
+  def facebook
+    FbGraph::User.new('me', :access_token => self.authentications.find_by_provider('facebook').token).fetch
+    #self.authentications.find_by_provider('facebook')
+  end 
 end
-

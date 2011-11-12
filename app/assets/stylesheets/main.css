@@ -557,6 +557,20 @@ input.radio {
     width: 100px;
 }
 
+.task_links_cancel {
+    background: none repeat scroll 0 0 #f9a943;
+    border-radius: 3px 3px 3px 3px;
+	text-color:white;
+    display: block;
+    font-size: 12px;
+    margin: 20px 0;
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100px;
+}
+
+
 option:hover {
     cursor: pointer;
 }

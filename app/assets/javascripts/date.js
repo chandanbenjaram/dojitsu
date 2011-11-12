@@ -1,21 +1,4 @@
-/*
- * Date prototype extensions. Doesn't depend on any
- * other code. Doens't overwrite existing methods.
- *
- * Adds dayNames, abbrDayNames, monthNames and abbrMonthNames static properties and isLeapYear,
- * isWeekend, isWeekDay, getDaysInMonth, getDayName, getMonthName, getDayOfYear, getWeekOfYear,
- * setDayOfYear, addYears, addMonths, addDays, addHours, addMinutes, addSeconds methods
- *
- * Copyright (c) 2006 Jörn Zaefferer and Brandon Aaron (brandon.aaron@gmail.com || http://brandonaaron.net)
- *
- * Additional methods and properties added by Kelvin Luck: firstDayOfWeek, dateFormat, zeroTime, asString, fromString -
- * I've added my name to these methods so you know who to blame if they are broken!
- * 
- * Dual licensed under the MIT and GPL licenses:
- *   http://www.opensource.org/licenses/mit-license.php
- *   http://www.gnu.org/licenses/gpl.html
- *
- */
+
 
 /**
  * An Array of day names starting with Sunday.
@@ -83,10 +66,9 @@ Date.firstDayOfWeek = 1;
  * @cat Plugins/Methods/Date
  * @author Kelvin Luck
  */
-//Date.format = 'dd/mm/yyyy';
+
 Date.format = 'mm/dd/yyyy';
-//Date.format = 'yyyy-mm-dd';
-//Date.format = 'dd mmm yy';
+
 
 /**
  * The first two numbers in the century to be used when decoding a two digit year. Since a two digit year is ambiguous (and date.setYear
@@ -317,7 +299,7 @@ Date.fullYearStart = '20';
 	 * @cat Plugins/Methods/Date
 	 */
 	add("addDays", function(num) {
-		//this.setDate(this.getDate() + num);
+		
 		this.setTime(this.getTime() + (num*86400000) );
 		return this;
 	});
@@ -477,7 +459,7 @@ Date.fullYearStart = '20';
 			{
 				iY += mLength;
 			}
-			// TODO - this doesn't work very well - are there any rules for what is meant by a two digit year?
+			
 			d.setFullYear(Number(Date.fullYearStart + s.substr(f.indexOf('yy'), 2)));
 		}
 		var iD = f.indexOf('dd');
@@ -496,7 +478,7 @@ Date.fullYearStart = '20';
 	var _zeroPad = function(num) {
 		var s = '0'+num;
 		return s.substring(s.length-2)
-		//return ('0'+num).substring(-2); // doesn't work on IE :(
+		
 	};
 
 })();

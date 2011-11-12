@@ -1,11 +1,4 @@
-/*
- * JTip
- * By Cody Lindley (http://www.codylindley.com)
- * Under an Attribution, Share Alike License
- * JTip is built on top of the very light weight jquery library.
- */
 
-//on page load (as soon as its ready) call JT_init
 $(document).ready(JT_init);
 
 function JT_init(){

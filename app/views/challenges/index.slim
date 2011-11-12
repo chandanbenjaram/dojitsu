@@ -13,6 +13,6 @@
 	table
 	  - for challenge in @challenges do
 	      tr
-	        td = link_to challenge.title, {:action => 'show', :id => challenge.id }
+	        td = link_to challenge.title, {:action => 'show_per', :id => challenge.id }
 - else
     p No Challenges found   

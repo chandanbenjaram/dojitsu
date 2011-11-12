@@ -1,11 +1,4 @@
-/*
- *
- * Copyright (c) 2010 C. F., Wong (<a href="http://cloudgen.w0ng.hk">Cloudgen Examplet Store</a>)
- * (source)http://www.examplet.buss.hk/jquery/table.addrow.php
- * Licensed under the MIT License:
- * http://www.opensource.org/licenses/mit-license.php
- *
- */
+
 (function($){if(typeof $.fn.btnAddRow== "undefined"){
 	var ExpandableTableList=[],className="ExpandableTable";
 	function ExpandableTable(target,maxRow){
