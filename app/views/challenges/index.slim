@@ -1,7 +1,6 @@
 = stylesheet_link_tag "colorbox"
 = javascript_include_tag "jquery.colorbox-min"
 = render partial="layouts/loggedinbody"
-
 .span-24.challengeSubNav
 	.span-8
 		.span-4   &nbsp;
@@ -9,13 +8,11 @@
    			= button_to "NEW", new_challenge_url, :class => "new_challenge_button", :method => :get
     .span-12.font12.gray  MY CHALLENGES >> CREATE NEW
 	
-	- unless @no_of_row.nil?
-		table
-			- for challenge in @challenges do
-				tr
-					td					
-						= link_to challenge.title, {:action => 'show_per', :id => challenge.id }
-	- else
-		p No Challenges  	
-  	 
-  		
+	
+- unless @challenges.empty?
+	table
+	  - for challenge in @challenges do
+	      tr
+	        td = link_to challenge.title, {:action => 'show_per', :id => challenge.id }
+- else
+    p No Challenges found   
