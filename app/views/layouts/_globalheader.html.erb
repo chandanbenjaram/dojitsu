@@ -1,40 +1,3 @@
-<!--<div class="span-24 header first">&nbsp;</div>
-<div class="span-24">
-  <div class="span-5">
-    <% if !current_user.nil? %>
-      <div class="imgright"><%= image_tag((current_user.authentications[0].image_path rescue ""), :alt => "Profile") %></div>
-    <% else %>
-      <%= link_to(image_tag("dojitsu_logo.png",  :alt => "Home"), root_path) %>
-    <% end %>
-  </div>
-  <div class="span-13 header">
-    <% if !current_user.nil? %>
-      <div class="span-13">trophies</div>
-      <div class="span-13 left">
-        <%= current_user.authentications[0].location_name rescue "" %>&nbsp;(Profile)
-      </div>
-      <div class="span-13"><input type="text"/><input type="button" value="Post"/> </div>
-    <% else %>
-      &nbsp;
-    <% end  %>
-  </div>
-  <div class="span-6 header last">
-    <div class="right text-right">
-      <nav>
-        <ul>
-          <li>
-            <% if !current_user.nil? %>
-              Hello, <%= current_user.authentications[0].name rescue current_user.fname %> <%= current_user.lname %>!
-              <%= link_to "Log out", destroy_user_session_path %>
-            <% else %>
-              <%= button_to "", "/users/auth/facebook", :class=> "new_button1" %>
-            <% end %>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-</div> -->
 <div class="span-24 header first">&nbsp;</div>
 <div class="span-24">
   <div class="span-13 header">
@@ -63,7 +26,7 @@
          		<div>
 					 <% if !current_user.nil? %>
             				  Hello, <%= current_user.authentications[0].name rescue current_user.fname %> <%= current_user.lname %>!
-           				<%= link_to "Log out", destroy_user_session_path %>
+           				<%= link_to "Log out", destroy_user_session_path, :onclick => 'dojoFBLogout()' %>
             		<% else %>
               				<%= button_to "", "/users/auth/facebook", :class=> "new_button1" %>
             		<% end %>
@@ -73,3 +36,25 @@
 		</nav>
 	</div>
  </div>
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '232592880122189', // App ID
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      oauth      : true, // enable OAuth 2.0
+      xfbml      : true  // parse XFBML
+    });
+
+    // Additional initialization code here
+  };
+
+  // Load the SDK Asynchronously
+  (function(d){
+     var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     d.getElementsByTagName('head')[0].appendChild(js);
+   }(document));
+</script>

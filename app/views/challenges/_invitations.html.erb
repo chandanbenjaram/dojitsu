@@ -1,0 +1,45 @@
+<%= stylesheet_link_tag('3rdparty/jquery.facebook.multifriend.select.css', '3rdparty/jquery-ui-1.8.16.custom.css', 'challenges.css')%>
+<%= javascript_include_tag('jquery.facebook.multifriend.select') %>
+<p>
+	<input type="button" value="INVITE PARTICIPANTS" class="links_invite_p"/>
+	<div id="jfmfs-container-wrapper" style="display: none;">
+    	<div id="jfmfs-container">
+		</div>
+	</div>  
+
+</p>                             
+
+<script type="text/javascript" charset="utf-8">        
+(function($j) { 
+	var selectorObz = {    
+		filter_default: "Search By Name",
+		max_selected: 999, 
+		max_selected_message: "{0} of {1} selected",
+		friend_fields: "id,name,last_name&access_token="+'<%= current_user.facebook.access_token%>'
+	}
+
+	//if(FB && FB._authResponse)
+	//$j("#jfmfs-container").jfmfs(selectorObz);
+	$j('.links_invite_p').live('click', function(){
+		$j( "#jfmfs-container-wrapper" ).dialog({
+			modal: true,
+			position: 'center',
+			title: 'Invite Participants',
+			closeText: '',
+			dialogClass: 'socialinvitemodal',                                       
+			open: function(event, ui) { $j("#jfmfs-container").jfmfs(selectorObz); },
+			beforeClose: function(event, ui) {
+				var friendSelector = $("#jfmfs-container").data('jfmfs');
+				var selectedFriends = friendSelector.getSelectedIds();				 
+				console.debug(friendSelector);
+				console.debug(selectedFriends);				
+			}
+		});
+	})          
+	
+	$j("#jfmfs-container").bind("jfmfs.selection.changed", function(e, data) { 
+	        console.log("changed", data);
+	    });
+	
+	})(jQuery);                              
+	</script>	
