@@ -58,10 +58,10 @@ SimpleNavigation::Configuration.run do |navigation|
     # end
 
     primary.item :dashboard_id, 'DASHBOARD', dashboard_index_path
-    #primary.item :challenges_id, 'CHALLENGES', challenges_path do |sub_nav| 
-     # sub_nav.item :new_challenge_button_id, 'NEW', new_challenge_path
-    #end
-    primary.item :challenges_id, 'CHALLENGES', challenges_path
+    primary.item :challenges_id, 'CHALLENGES', challenges_path do |sub_nav| 
+      sub_nav.item :new_challenge_button_id, 'NEW', new_challenge_path
+    end
+    #primary.item :challenges_id, 'CHALLENGES', challenges_path
     primary.item :my_dojo_id, 'MY DOJO', user_connections_path    
     primary.item :messages, 'MESSAGES', messages_path
     primary.dom_class = 'homenavbar'
