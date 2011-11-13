@@ -55,7 +55,7 @@ class ChallengesController < ApplicationController
   end
 
   def create
-    #raise params.inspect
+  # raise params.inspect
     @ch = Challenge.new(params[:challenge])
     @ch_st_date = params[:ch_st_date]
     @st_p_val1 = params[:st_value1]
@@ -69,12 +69,14 @@ class ChallengesController < ApplicationController
 
     @so_who_win = params[:soc_who_win]
     @so_how_many_winner = params[:soc_how_many_winner]
+	@so_status =params[:so_status]
     @pr_who_win = params[:per_who_win]
+	
 
     unless @so_who_win.blank?
       #raise "soc"
       @challenge = Challenge.new(:user_id => current_user.id, :title => @ch.title, :description => @ch.description, :task_attributes => @ch.task_attributes, \
-      :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner)) do |new_challenge|
+      :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner,:status=>@so_status)) do |new_challenge|
         if @ch_st_date == "#ch_st_dat" and  @ch_ed_date == "#ch_ed_dat"
           new_challenge.start_point =  PointDateType.new(:value => @st_p_val1)
           new_challenge.end_point = PointDateType.new(:value => @ed_p_val1) 
