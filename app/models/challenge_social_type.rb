@@ -8,6 +8,6 @@ class ChallengeSocialType < ChallengeType
   # has_many :challenge_invitations 
   
   # status can take 3 arguments, ACCEPTED, DECLINED, PENDING
-  field :status, :type =>Integer, :default => 0
+  field :status, :type =>Integer, :default => -1
   
 end
