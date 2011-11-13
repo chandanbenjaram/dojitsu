@@ -1,4 +1,4 @@
-// EZPZ Tooltip v1.0; Copyright (c) 2009 Mike Enriquez, http://theezpzway.com; Released under the MIT License
+
 (function($){
 	$.fn.ezpz_tooltip = function(options){
 		var settings = $.extend({}, $.fn.ezpz_tooltip.defaults, options);

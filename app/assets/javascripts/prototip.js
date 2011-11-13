@@ -1,11 +1,4 @@
-//  Prototip 2.0.1.4 - 17-07-2008
-//  Copyright (c) 2008 Nick Stakenburg (http://www.nickstakenburg.com)
-//
-//  Licensed under a Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 Unported License
-//  http://creativecommons.org/licenses/by-nc-nd/3.0/
 
-//  More information on this project:
-//  http://www.nickstakenburg.com/projects/prototip2/
 
 var Prototip = {
   Version: '2.0.1.4'

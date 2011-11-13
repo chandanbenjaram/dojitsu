@@ -1,5 +1,4 @@
-//Inline HTML Tooltip script: By JavaScript Kit: http://www.javascriptkit.com
-//Created: July 10th, 08'
+
 
 var htmltooltip={
 	tipclass: 'htmltooltip',

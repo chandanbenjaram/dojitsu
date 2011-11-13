@@ -1,31 +1,5 @@
 <%= render 'layouts/loggedinbody'%>
 Messages<br><br>
-<input type="button"
-        onclick="getFolderInfo(); return false;"
-        value="Show Index" align="right"
-      />
-	  <script>
-	  	FB.init({
-        appId  : '232592880122189',
-        status : true,
-        cookie : true,
-        oauth: true
-      });
-function getFolderInfo() {
- 
-        if($this-&gt;_getExtendedPermission()) {
- 
-            $fql = "SELECT folder_id, name, unread_count, viewer_id FROM mailbox_folder WHERE viewer_id={$this-&gt;_uid}";
- 
-            $status = $this-&gt;facebook-&gt;api_client-&gt;fql_query($fql);
- 
-            return $status;
- 
-        }else {
- 
-            return false;
- 
-        }
- 
-    }
-	  	</script>
+Site under construction 
+
+<%= image_tag('images.jpg') %>
