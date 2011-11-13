@@ -165,7 +165,7 @@ ul.homenavbar > li.selected > a {
 
 .new_challenge_button {
 	background: #f8981d url("btn_add_up.png") no-repeat left center;	
-	text-align: center;
+	text-align: right;
 	min-width: 65px;
 	font-size: 12px; 
 	color: #FFF;

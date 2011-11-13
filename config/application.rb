@@ -57,5 +57,8 @@ module Dojitsu
     # Enable the asset pipeline
     config.assets.enabled = true
     config.autoload_paths << "#{config.root}/lib"
+    config.generators do |g| 
+      g.orm :active_record 
+    end
   end
 end

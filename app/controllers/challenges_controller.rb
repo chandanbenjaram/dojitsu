@@ -3,15 +3,18 @@ class ChallengesController < ApplicationController
   before_filter :find_challenge, :only => [:show, :edit, :update, :destroy]
   #on_spot_edit  is the gem to edit the data on spot 
   can_edit_on_the_spot
+  
   def index
     @title = "Challenges"
+    @no_of_row = Challenge.all.count
     @challenges = Challenge.all
   end
 
-   def show
+  def show
       @challenge = Challenge.find(params[:id])	
   end
-     def show_soc
+  
+  def show_soc
     @challenge = Challenge.find(params[:id])
     @org = User.find(:all,:conditions => ["id=?",@challenge.user_id]).first
     @lists = List.all
@@ -19,17 +22,27 @@ class ChallengesController < ApplicationController
 
   def show_per
       @challenge = Challenge.find(params[:id])
-    #  raise @challenge.social_challenge.type 
- #  if @challenge.social_challenge.type and @challenge.social_challenge.type!='0' and @challenge.social_challenge.type!=nil 
-  
-   ch = @challenge.social_type.type 
-    #render :text => ch and return
-   if ch == ChallengeSocialType and ch!= ChallengeType and ch!=ChallengePersonalType
-   render "show_soc" and return 
-  else 
+      
+      #@challenge.task_attributes.each do |tsk|
+      #  raise tsk.name.inspect
+      #end
+      
+      
+      #@challenge.task_attributes.each do |ts|
+      #  ts.each do |sd|
+      #    raise sd[4].inspect
+      #  end
+      #end
+
+      #@challenge.social_type.type  
+      #if @challenge.social_challenge.type and @challenge.social_challenge.type!='0' and @challenge.social_challenge.type!=nil 
+      ch = @challenge.social_type.type 
+      #render :text => ch and return
+      if ch == ChallengeSocialType and ch!= ChallengeType and ch!=ChallengePersonalType
+        render "show_soc" and return 
+      else 
       render "show_per"
     end
-  
   end
   
   def new
@@ -41,7 +54,7 @@ class ChallengesController < ApplicationController
   def create
     
     #raise params.inspect
-    # INVITEE USER ID
+    #INVITEE USER ID
     @user_id = ["sriram@gmail.com","venkat@gmail.com","Suresh@gmail.com","sukendhar@gmail.com"]
     
     @ch = Challenge.new(params[:challenge])
@@ -94,7 +107,7 @@ class ChallengesController < ApplicationController
           :personal_type => ChallengePersonalType.new(:who_win => @pr_who_win))
    end
     @challenge.save!
-    render  :action => "show", :notice => "Challenge created!"   
+    redirect_to :action => "index", :notice => "Challenge created!"   
   end
 
   def edit

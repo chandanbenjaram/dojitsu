@@ -1,276 +1,266 @@
+
 <%= stylesheet_link_tag('simple-tabs','datePicker')%>
 <%= javascript_include_tag :defaults %>
 <%= javascript_include_tag('simple-tabs','jquery.table.addrow','jquery.datePicker','date','jquery.editable-1.3.3','on_the_spot','jquery.ezpz_tooltip','jquery.ezpz_tooltip.min.js')%>
 <%= render 'layouts/loggedinbody'%>
 
-	<div id="ch_main_div">
-	<div id="ch_main_div1">
-		<%= form_for @challenge do |f| %>
-		
-		<table width="100%" border="0" border cellspacing=12px>
+<div id="ch_main_div">
+<div id="ch_main_div1">
+<%= form_for @challenge do |f| %>
+<%#= debug @challenge %>
+<table width="100%" border="0" border cellspacing=12px>
+	<tr>
+		<div class="title">
+			<p class="allcaps"><font color="orange"><%= @challenge.title %></p></font></h1></b>
+		</div>
+		<tr>
+		<table border=1px width=500px height=60px bgcolor=white>
 			<tr>
-				<div class="title">
-				<p class="allcaps"><font color="orange"><%= @challenge.title %></p></font></h1></b>
-				</div>
-		     </tr>
-			 <tr>
-				<table border=1px width=500px height=60px bgcolor=white>
-					<tr>
-						<td width=120px>
-							<b><font color=	#909090>DESCRIPTION</b>
-						</td>
-						<td class="editable">
-							<pre width="30px"><%= on_the_spot_edit @challenge, :description, :type => :textarea, :rows => 4, :columns => 120  %></pre>
-								<!--
-								<% if @challenge.nil? %>
-										<p>no challenge selected</p>
-								<% else %>
-			
-			<p>
-										</p>
-								<% end %>
-								-->
-						</td>
-					</tr>
-				</table>
-				<hr/ width=400px>
-			 </tr>
-			 <tr>
-			 <table border=1px width=400px height=10px bgcolor=white>
-					<tr>
-						<td width=120px>
-							<b><font color=	#909090>START POINT</font></b>
-						</td>
-						<td class="editable">
-							<% if @challenge.start_point.value? %>
-							
-<script src="http://cdn.jquerytools.org/1.2.6/form/jquery.tools.min.js"></script>
-
-<!-- dateinput styling -->
-<link rel="stylesheet" type="text/css" href="dateinput.css"/>
-
-<!-- HTML5 date input -->
-<p class="date" > <%= @challenge.start_point.value %>&nbsp;&nbsp;<%#= @challenge.start_point.label %></p>
-
-<!-- make it happen -->
-<script>
-$(".date").dateinput({
-	format: 'dd-mm-yyyy',	// the format displayed for the user
-	selectors: true,             	// whether month/year dropdowns are shown
-	min: -100,                    // min selectable day (100 days backwards)
-	max: 100,                    	// max selectable day (100 days onwards)
-	offset: [10, 20],            	// tweak the position of the calendar
-	speed: 'fast',               	// calendar reveal speed
-	firstDay: 1                  	// which day starts a week. 0 = sunday, 1 = monday etc..
-});
-</script>
-
-
-
-<% end %>
-									<% if @challenge.start_point.value==nil%>
-										
-									<% else %>
-										
-										<%#= @challenge.start_point.value %>
-									<% end %>
-						
-						</td>
-							<!--
-						<td width="30%">
-							<%#= pt.text_field :dateStart, :class => "textfield_effect  date-pick", :id => "on_focus_textfield" %>
-						</td>
-							-->
-							<!--
-						<td>
-							<%#= pt.text_field :dateEnd, :class => "textfield_effect  date-pick", :id => "on_focus_textfield" %>
-						</td>
-							-->
-			
-					</tr>
-				</table>
-			 </tr>
-			 <tr>
-			 <table border=1px width=400px height=10px bgcolor=white>
-						<tr>
-							<td width=120px>
-								<b><font color=	#909090>END POINT</font></b></td>
-							<td class="editable">
-										
-										<% if @challenge.end_point.value==nil %>
-										<% else %>
-												<%= on_the_spot_edit @challenge.end_point,:value ,:type=>:text %>&nbsp;&nbsp;<%#= @challenge.start_point.label %>
-										<% end %>
-										
-							</td>
-						</tr>
-				</table>
-				<table bg color=#f4f4f4 height="20px" >
-						<tr bgcolor="orange" height=6px border=0px>
-							<td bgcolor="orange"><font color="white">TAsKS</font></td>
-							<td bgcolor="orange"></td>
-						</tr>
-				</table>
-			 </tr>
-			 <tr>
-			 <div id="ch_main_div2">
-				<table border="1" bgcolor=#f4f4f4>
-					<tr bgcolor=#f5f5f5 height=20px border=0px>
-						<th>
-							<b><h3><font color="black">TOTAL:<%= @challenge.task_description.count %></font></h3></b>
-						</th>
-						<th colspan="3"><div float:right>
-							<%= image_tag("btn_add_up.png", :class => "addComment", :style => "float:right; margin-right:20px;") %><p align="right">ADD A TASK</p>
-							</th>
-					</tr>
-					<tr bgcolor=#D7D7D7 height=20px border=0px>
-							<td width="100px"><h4>POINT(s)<font color="orange">/</font>TASKS</h4>
-							</td>
-							<td bgcolor=#D7D7D7 width="600px">
-							</td>
-							<td bgcolor=#D7D7D7><p style="float:right";>SCORE </p></td>
-					</tr>
-						<% ch= 0 %>
-						<% sum = 0 %>
-						<% for ch in ch..@challenge.task_point.length %>
-					<tr>
-							<td>		
-								<%=  @challenge.task_point[ch] %>
-								<% sum +=  @challenge.task_point[ch].to_i %>
-							 </td>
-							<td >
-								<div style="float: left;"><p align="left"><%= @challenge.task_description[ch]  %></p></div>
-							</td>
-							<td bgcolor=#FAFFD9 width="30px">
-								<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:12px;") %>
-							</td>
-					</tr>
+				<td width=120px>
+					<b><font color=	#909090>DESCRIPTION</b>
+				</td>
+				<td class="editable">
+					<pre width="10px"><%= on_the_spot_edit @challenge, :description, :type => :textarea, :rows => 4, :columns => 50  %></pre>
+					<!--
+					<% if @challenge.nil? %>
+						<p>no challenge selected</p>
+					<% else %>			
+						<p>
+						</p>
 					<% end %>
-
-					<tr bgcolor=#f4f4f4>
-						<td></td>
-						<td>
-						</td>
-					</tr>
-			</table>
-	<script type="text/javascript" src="/js/jquery.js"></script>
-	<script type="text/javascript" src="/js/jquery.defaultText.js"></script>
-	<script type="text/javascript" src="/js/jquery.table.addrow.js"></script>
-	<script type="text/javascript">
-			$("document").ready(function(){
-										$(".addComment").btnAddRow({rowNumColumn:"rowNumber"});
-										$(".delRow").btnDelRow();
-									});		
-
-									
-	</script>
-	<br>
-			<table bgcolor=#f4f4f4 height="60px">
-					<tr bgcolor=#ffffff height="30px">
-							<td width="400px" height="30px">My Dojitsu score: <br><h3><font color="orange"><%= @challenge.task_description.count %></font>completed</td>
-							<td width="100px">
-									<p align=right>
-										<%= sum %>
-									</p>
-									
+					-->
+				</td>
+			</tr>
+		</table>
+		<hr/ width=400px>
+	</tr>
+	<tr>
+		<table border=1px width=400px height=10px bgcolor=white>
+			<tr>
+				<td width=120px>
+					<b><font color=	#909090>START POINT</font></b>
+				</td>
+				<td class="editable">
+					<% if @challenge.start_point.value? %>		
+						<script src="http://cdn.jquerytools.org/1.2.6/form/jquery.tools.min.js"></script>
+							<!-- dateinput styling -->
+							<link rel="stylesheet" type="text/css" href="dateinput.css"/>
+							<!-- HTML5 date input -->
+							<p class="date" > <%= @challenge.start_point.value %>&nbsp;&nbsp;<%#= @challenge.start_point.label %></p>
+							<!-- make it happen -->
+						<script>
+						$(".date").dateinput({
+							format: 'dd-mm-yyyy',	// the format displayed for the user
+							selectors: true,             	// whether month/year dropdowns are shown
+							min: -100,                    // min selectable day (100 days backwards)
+							max: 100,                    	// max selectable day (100 days onwards)
+							offset: [10, 20],            	// tweak the position of the calendar
+							speed: 'fast',               	// calendar reveal speed
+							firstDay: 1                  	// which day starts a week. 0 = sunday, 1 = monday etc..
+						});
+						</script>
+					<% end %>
+					<% if @challenge.start_point.value==nil%>
+					
+					<% else %>							
+						<%#= @challenge.start_point.value %>
+					<% end %>
+				</td>
+				<!--
+				<td width="30%">
+					<%#= pt.text_field :dateStart, :class => "textfield_effect  date-pick", :id => "on_focus_textfield" %>
+				</td>
+				-->
+				<!--
+				<td>
+					<%#= pt.text_field :dateEnd, :class => "textfield_effect  date-pick", :id => "on_focus_textfield" %>
+				</td>
+				-->
+			</tr>
+		</table>
+		<hr/ width=400px>
+	</tr>
+	<tr>
+		<table border=1px width=400px height=10px bgcolor=white>
+			<tr>
+				<td width=120px>
+					<b><font color=	#909090>END POINT</font></b></td>
+				<td class="editable">
+					<% if @challenge.end_point.value==nil %>
+					
+					<% else %>
+						<%= on_the_spot_edit @challenge.end_point,:value ,:type=>:text %>&nbsp;&nbsp;<%#= @challenge.start_point.label %>
+					<% end %>										
+				</td>
+			</tr>
+		</table>
+		<table bg color=#f4f4f4 height="20px" >
+			<tr bgcolor="orange" height=6px border=0px>
+				<td bgcolor="orange"><font color="white">TAsKS</font></td>
+				<td bgcolor="orange"></td>
+			</tr>
+		</table>
+	</tr>
+	<tr>
+		<div id="ch_main_div2">
+			<table border="1" bgcolor=#f4f4f4>
+				<tr bgcolor=#f5f5f5 height=20px border=0px>
+					<th>
+						<b><h3><font color="black">TOTAL:<%= @challenge.task_attributes.count %></font></h3></b>
+					</th>
+					<th colspan="3"><div float:right>
+						<%= image_tag("btn_add_up.png", :class => "addComment", :style => "float:right; margin-right:20px;") %><p align="right">ADD A TASK</p>
+					</th>
+				</tr>
+				<tr bgcolor=#D7D7D7 height=20px border=0px>
+					<td width="100px"><h4>POINT(s)<font color="orange">/</font>TASKS</h4></td>
+					<td bgcolor=#D7D7D7 width="600px"></td>
+					<td bgcolor=#D7D7D7 colspan="2"><p style="float:right";>SCORE </p></td>
+				</tr>
+				<% ch= 1 %>
+				<% sum = 0 %>
+				<tr>
+					<td width="5%">		
+						<% @challenge.task_attributes.each do |tsk| %>
+							<% tsk.each_with_index do |task_value, task_index|%>
+								<% if task_index == 2%>
+									 <%= task_value[1]%></br>
+									 <% sum += task_value[1].to_i %>
+								<% end %>
+							<% end %>								
+						<% end %>
+					</td>
+					<td width="5%">
+						<% @challenge.task_attributes.each do |tsk| %>
+							<% tsk.each_with_index do |task_value, task_index|%>
+								<% if task_index == 0%>
+									 <font color="orange">/</font></br>						
+								<% end %>
+							<% end %>								
+						<% end %>
+					</td>
+					<td width="80%">
+						<% @challenge.task_attributes.each do |tsk| %>
+							<% tsk.each_with_index do |task_value, task_index|%>
+								<% if task_index == 0%>
+									 <%= task_value[1]%></br>						
+								<% end %>
+							<% end %>								
+						<% end %>		
+					</td>
+					<td width="10%">
+						<% @challenge.task_attributes.each do |tsk| %>
+							<% tsk.each_with_index do |task_value, task_index|%>
+								<% if task_index == 0%>
+									 <font color="orange">10</font></br>						
+								<% end %>
+							<% end %>								
+						<% end %>		
+					</td>
+				</tr>
+				<!--
+				<% @challenge.task_attributes.each do |tsk| %>
+				<tr>
+					<% tsk.each_with_index do |task_value, task_index|%>
+						<% if task_index == 2%>
+							<td>
+								<%= task_value[1]%></br>
+								<% sum += task_value[1].to_i %>
 							</td>
-
-					</tr>
-					<tr bgcolor=#f4f4f4 height="50px">
-						<td>
-						</td>
-						<td>
-						</td>
-						</tr>
-						<tr bgcolor=#f4f4f4 height="50px">
-						<td>
-						</td>
-						<td><input type="button" value="MARK AS COMPLETED" >
-						</td>
-						</tr>
-					</table>
-			</div >			
-			 </tr>
-	    </table>
-		
-		
-	<% end %>	
-	</div>
+						<% end %>
+						<% if task_index == 0%>
+							<td>
+								<%= task_value[1]%>
+							</td>
+						<% end %>							
+					<% end %>
+				</tr>
+				<% end %>
+				-->
+					
+					
+				<tr bgcolor=#f4f4f4>
+					<td></td>
+					<td></td>									
+				</tr>
+			<table>
+		</div>			
+	</tr>
+	
+	
+</table>	
+<% end %>	
+</div>
 </div>
 
-
-	<script type="text/javascript">
-	<script type="text/javascript" src="/js/jquery.js"></script>
-	<script type="text/javascript" src="/js/jquery.defaultText.js"></script>
-	<script type="text/javascript" src="/js/jquery.table.addrow.js"></script>
-	<script type="text/javascript">
+<script type="text/javascript">
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/jquery.defaultText.js"></script>
+<script type="text/javascript" src="/js/jquery.table.addrow.js"></script>
+<script type="text/javascript">
 	$("document").ready(function(){
-								$(".addComment").btnAddRow({rowNumColumn:"rowNumber"});
-								$(".delRow").btnDelRow();
-								});
-	
-
-	
+		$(".addComment").btnAddRow({rowNumColumn:"rowNumber"});
+		$(".delRow").btnDelRow();						
+	});
 	// Jquery part
-jQuery(document).ready(function($) {
+	jQuery(document).ready(function($) {
+ 	// to get date on click
+	$(":date").dateinput({
+		format: 'dddd dd, mmmm yyyy',	// the format displayed for the user
+		selectors: true,             	// whether month/year dropdowns are shown
+		min: -100,                    // min selectable day (100 days backwards)
+		max: 100,                    	// max selectable day (100 days onwards)
+		offset: [10, 20],            	// tweak the position of the calendar
+		speed: 'fast',               	// calendar reveal speed
+		firstDay: 1                  	// which day starts a week. 0 = sunday, 1 = monday etc..
+	});
 
+	// edit a text on the spot 
+	$(".editable").editable("http://www.example.com/save.php", { 
+    	method : "PUT"
+	});
 
+	$(".editable").editable("http://www.example.com/save.php", { 
+    	settings.submit : '<button type="submit">Save</button>'
+	});
 
- // to get date on click
-$(":date").dateinput({
-	format: 'dddd dd, mmmm yyyy',	// the format displayed for the user
-	selectors: true,             	// whether month/year dropdowns are shown
-	min: -100,                    // min selectable day (100 days backwards)
-	max: 100,                    	// max selectable day (100 days onwards)
-	offset: [10, 20],            	// tweak the position of the calendar
-	speed: 'fast',               	// calendar reveal speed
-	firstDay: 1                  	// which day starts a week. 0 = sunday, 1 = monday etc..
-});
-
-
-// edit a text on the spot 
-$(".editable").editable("http://www.example.com/save.php", { 
-    method : "PUT"
-});
-
-$(".editable").editable("http://www.example.com/save.php", { 
-    settings.submit : '<button type="submit">Save</button>'
-});
-
-$(".editable").editable("http://www.example.com/save.php", { 
-    settings.submit : 'Save'
-});
- $('.editable1').editable({
-    type:'text',
-    submit:'update',
-    cancel:'cancel',
-    editClass:'resultItem',
-    onSubmit:end
+	$(".editable").editable("http://www.example.com/save.php", { 
+    	settings.submit : 'Save'
+	});
+ 	
+	$('.editable1').editable({
+    	type:'text',
+    	submit:'update',
+    	cancel:'cancel',
+    	editClass:'resultItem',
+    	onSubmit:end
     }); 
-// edit on spot 2 nd type
-$('.editable2').editable({type:'textarea',submitBy:'dblclick'}).css('background-color','#39c');
-
-
-$(function(){
-
-    $('.editable1').editable({onEdit:begin});
-    function begin(){
-    this.append('Click somewhere else to submit');
-    }
+	
+	// edit on spot 2 nd type
+	$('.editable2').editable({type:'textarea',submitBy:'dblclick'}).css('background-color','#39c');
+	
+	$(function(){
+    	$('.editable1').editable({onEdit:begin});
+    	function begin(){
+    		this.append('Click somewhere else to submit');
+    	}
     }); 
-       $('.editable3').editable({
-    type:'text',
-    submit:'save',
-    onSubmit:end
+      
+	$('.editable3').editable({
+    	type:'text',
+    	submit:'save',
+    	onSubmit:end
     }); 
 
 	$('div.editable').editable()
-	    $(function(){
-    $('.editable1').editable({onEdit:begin});
-    function begin(){
-    this.append('Click somewhere else to submit');
-    }
+	
+	$(function(){
+    	$('.editable1').editable({onEdit:begin});
+    	function begin(){
+    		this.append('Click somewhere else to submit');
+    	}
     }); 
+	
 	// Add row for new task
 	//alert("hiiiiiiiii");
 	$(".alternativeRow").btnAddRow({oddRowCSS:"oddRow",evenRowCSS:"evenRow"});
@@ -342,14 +332,13 @@ $('.editable2').editable({type:'textarea',submitBy:'dblclick'}).css('background-
 </script>
 
 <style type="text/css">
-
 .atable{
 	border-collapse:collapse;
 	border:1px solid #AAA;
 	width:97%;
 }
 .topcalss {
-background-color: gray;
+	background-color: gray;
 
 }
 .atable th{
@@ -371,10 +360,10 @@ background-color: gray;
 	background:#F0F8FF;
 }
 .allcaps {
-font-variant: small-caps;
-text-transform: uppercase;
-font-family:"Gothem Book","Arial";
-font-size:20px;
+	font-variant: small-caps;
+	text-transform: uppercase;
+	font-family:"Gothem Book","Arial";
+	font-size:20px;
 }
 
 #ch_main_div {
@@ -408,16 +397,14 @@ font-size:20px;
 }
 
 div.htmltooltip{
-position: absolute; /*leave this and next 3 values alone*/
-z-index: 1000;
-left: -1000px;
-top: -1000px;
-background: #272727;
-border: 10px solid black;
-color: white;
-padding: 3px;
-width: 250px; /*width of tooltip*/
+	position: absolute; /*leave this and next 3 values alone*/
+	z-index: 1000;
+	left: -1000px;
+	top: -1000px;
+	background: #272727;
+	border: 10px solid black;
+	color: white;
+	padding: 3px;
+	width: 250px; /*width of tooltip*/
 }
-
-
 </style>
