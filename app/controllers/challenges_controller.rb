@@ -7,7 +7,7 @@ class ChallengesController < ApplicationController
   def index
     @title = "Challenges"
     @no_of_row = Challenge.all.count
-    @challenges = current_user.challenges 
+    @challenges = current_user.challenges
   end
 
   def show       
@@ -91,7 +91,7 @@ class ChallengesController < ApplicationController
       end
     else
       #raise "per"
-      @challenge = Challenge.new(:user_id => current_user.id, :title => @ch.title, :description => @ch.description, \
+      @challenge = Challenge.new(:user_id => (current_user.fbauth.uid rescue current_user.id), :title => @ch.title, :description => @ch.description, \
       :personal_type => ChallengePersonalType.new(:who_win => @pr_who_win)) do |new_challenge|
         if @ch_st_date == "#ch_st_dat" and  @ch_ed_date == "#ch_ed_dat"
           new_challenge.start_point =  PointDateType.new(:value => @st_p_val1)
