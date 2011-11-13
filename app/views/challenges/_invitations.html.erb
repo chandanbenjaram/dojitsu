@@ -16,8 +16,6 @@
 		friend_fields: "id,name,last_name&access_token="+'<%= current_user.facebook.access_token%>'
 	}
 
-	//if(FB && FB._authResponse)
-	//$j("#jfmfs-container").jfmfs(selectorObz);
 	$j('.links_invite_p').live('click', function(){
 		$j( "#jfmfs-container-wrapper" ).dialog({
 			modal: true,
@@ -29,17 +27,10 @@
 			beforeClose: function(event, ui) {
 				var friendSelector = $("#jfmfs-container").data('jfmfs');
 				var selectedFriends = friendSelector.getSelectedIds();
-				console.debug(friendSelector);
-				console.debug(selectedFriends);				
 				$j('#invitees_id').val(selectedFriends);
 			}
 		});
 	})          
-	
-	$j("#jfmfs-container").bind("jfmfs.selection.changed", function(e, data) { 
-	        console.log("changed", data);
-//		$j('#invitees_id') = data;
-	    });
 	
 	})(jQuery);                              
 	</script>	
