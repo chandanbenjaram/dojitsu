@@ -9,10 +9,10 @@ Dojitsu::Application.routes.draw do
   match '/aboutus', :to=>'static#aboutus'
   match '/contactus', :to=>'static#contactus'
   match '/aboutus', :to=>'static#aboutus'  
-  
+
   resources :authentications
   resources :usermails
- 
+
   resources :challenges do
     collection do
       get "show_soc"
@@ -21,8 +21,8 @@ Dojitsu::Application.routes.draw do
       get "invite_frd"
       get "invitee_accepted_req"
       get "challenge_comp"
-	  put :update_attribute_on_the_spot
-	  get "invite_frd"
+      put :update_attribute_on_the_spot
+      get "invite_frd"
     end
   end
 

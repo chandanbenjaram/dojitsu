@@ -11,33 +11,41 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+
+function dojoFBLogout(e){ 
+   	FB.logout();
+};
+
+
 /*
-;
-(function($j) {   
-	$j(function() {  
-		var currentTabVal = localStorage.getItem("DOJO_GLOBALS.currentTab");
-		if(currentTabVal != undefined && currentTabVal){  
+window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '232592880122189', // App ID
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      oauth      : true, // enable OAuth 2.0
+      xfbml      : true  // parse XFBML
+    });
 
- 		var currentTabEle = $j(".homenavbar li:contains('"+ currentTabVal +"')");              
-				$j(currentTabEle).addClass('active');						
-				// I dont think following block make sense to me here, thus commented it out for now. (Chandan)
- 			if(!$j(currentTabEle).hasClass('active')){
-				$j(currentTabEle).addClass('active');						
-			}
-		}
+    // Additional initialization code here
+	/* All the events registered */
+   /* FB.Event.subscribe('auth.login', function(response) {
+           // do something with response    
+   alert('loggedin...');
+           login();
+       });
+       FB.Event.subscribe('auth.logout', function(response) {
+           // do something with response                     
+   		alert('loggedOUT...');
+           logout();
+       });
 
-	});
-		
-	$j('.homenavbar li').live('click', function(e){
-		if(typeof(localStorage) === 'undefined'){
-			return -1;
-		}            
-			localStorage.setItem("DOJO_GLOBALS.currentTab", $j(this).text());			
-			$j(this).addClass('active');  
-			$j(this).siblings().removeClass('active');			
-				});
-				})(jQuery);
-				
-				*/
-
-				
+       FB.getLoginStatus(function(response) {
+           if (response.session) {
+   			alert('loggedinSESSION...');
+               // logged in and connected user, someone you know
+               login();
+   		}
+      });
+     };           
+*/

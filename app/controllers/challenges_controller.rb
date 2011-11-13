@@ -52,7 +52,7 @@ class ChallengesController < ApplicationController
   end
 
   def create
-    
+    debugger
     #raise params.inspect
     #INVITEE USER ID
     @user_id = ["sriram@gmail.com","venkat@gmail.com","Suresh@gmail.com","sukendhar@gmail.com"]
