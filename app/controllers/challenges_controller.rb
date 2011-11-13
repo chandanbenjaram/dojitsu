@@ -7,7 +7,7 @@ class ChallengesController < ApplicationController
   def index
     @title = "Challenges"
     @no_of_row = Challenge.all.count
-    @challenges = Challenge.all
+    @challenges = current_user.challenges 
   end
 
   def show
