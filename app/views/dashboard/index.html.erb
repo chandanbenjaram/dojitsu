@@ -2,109 +2,165 @@
 <%= stylesheet_link_tag('jquery-ui', 'ui.core','ui.progressbar','ui.theme', 'main')%>
 
 <%= render 'layouts/loggedinbody'%>
-
+<aside class="dashboardsidebar2">
+					<div class="whatsnew">
+						WHATS NEW
+							<div id="viewall">
+								&nbsp;&nbsp;VIEW ALL
+							</div>
+					</div>
+					<div id="contentbox">
+					</div>
+					<div id="contentbox">
+					</div>
+					<div id="contentbox">
+					</div>
+</aside>
+<content class="dashboardsidebar1">	
+<div>
 <div class="challange">my dashboard</div>
-			
+		
 <div class="mychallenge">
-	<div id="titlechallenge">MY CHALLENGES ( <%=@as%> ) 
+	<div id="titlechallenge"><div id="title">MY CHALLENGES ( <%=@as%> ) </div>
 			<div class="second_titlechallenge"><%= button_to "NEW", new_challenge_url, :class => "new_challenge_button", :method => :get%></div>
 	</div>
+<div id="subbar">
+<div id="name">
+NAME
+</div>
+<div id="score">
+MY DOJITSU SCORE
+</div>
 
-	<div id="subbar">
-		<div id="name">Name</div>
-		<div id="score">MY DOJITSU SCORE</div>
-	</div>
+</div>
 <div id="challengedetails">
 			<div id="challengepart">
 			<br>
-			<%ch=0%>
-<% for ch in ch..2 %>
-<table>
-		<td id="content1">
-				<font size=3>ABC Challenge</font><br><font size=2>by Sun Yu</font><br> Starting Point-End Point<br>
-						</td>
-							<td id="content2">
+						<table>
+								<td id="content1">
+								<font size=3>ABC Challenge</font><br><font size=2>by Sun Yu</font><br> Starting Point-End Point<br>
+								</td>
+								<td id="content2">
 										<div>								
+										  
 											  <div id="taskprogress"></div>
+												
+												<br>
+												<div id="check1">
 												<script type="text/javascript">
-												  $(function() 
-												  {
+												  $(function() {
+													  
 														//call progress bar constructor
-													  $("#taskprogress").progressbar({ value: 50 });
+													  $("#taskprogress").progressbar({ value: 90 });
+														
 														//set mouseover for progress bar
-			
+													
+														
+														  //display the current value
+														  $("<p>").attr("id", "check").text($("#taskprogress").progressbar("option", "value") + "% Completed ").appendTo("#taskprogress");
+															
+													
+														
 													});
 												</script>
+													<div class="update"> <%= image_tag("FDFDG.gif", :alt => "Update") %> </div>
+												</div>
+										</div>
+								</td>
+								
+						</table>
+				
+				<hr width:100%>
+						<table>
+								<td id="content1">
+								<font size=3>ABC Challenge</font><br><font size=2>by Sun Yu</font><br> Starting Point-End Point<br>
+								</td>
+								<td id="content2">
+										<div>								
+										  
+											  <div id="taskprogress1"></div>
+												
+												<br>
+												<div id="check1">
+															<script type="text/javascript">
+															
+															  $(function() {
+																  
+																	//call progress bar constructor
+																  $("#taskprogress1").progressbar({ value: 20 });
+																	
+																	//set mouseover for progress bar
+																
+																	
+																	  //display the current value
+																	  $("<p>").attr("id", "check").text($("#taskprogress1").progressbar("option", "value") + "% Completed").appendTo("#taskprogress1");
+																		
+																
+																	
+																});
+															</script>
+																<div class="update"> <%= image_tag("FDFDG.gif", :alt => "Update") %> </div>
+												</div>
 										</div>
 								</td>
 						</table>
-<% end %>
+						
+						<hr width:100%>
+						<table>
+								<td id="content1">
+								<font size=3>ABC Challenge</font><br><font size=2>by Sun Yu</font><br> Starting Point-End Point<br>
+								</td>
+								<td id="content2">
+										<div>								
+										  
+											  <div id="taskprogress2"></div>
+												
+												<br>
+												<div id="check1">
+												<script type="text/javascript">
+												  $(function() {
+													  
+														//call progress bar constructor
+													  $("#taskprogress2").progressbar({ value: 20 });
+													
+														  $("<p>").attr("id", "check").text($("#taskprogress2").progressbar("option", "value") + "% Completed").appendTo("#taskprogress2");
+															
+													
+														
+													});
+												
+												</script>
+												<div class="update">    <%= image_tag("FDFDG.gif", :alt => "Update") %>    </div>
+												
+												</div>
+										</div>
+								</td>
+						</table>
+
 			</div>
 </div>
-
-</div>	
-			
-	<div id="ds_my_profile">
-		<div id="ds_my_profile_tit" style="background:grey; height:30px;">
-			<h3>My Profile</h3>
-			<input type="button" value="Remove" class="rem" id="#ds_my_profile_cont" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_my_profile_cont" style="float:right;">
-		</div>
-		<div id="ds_my_profile_cont">
-			My Profile
-		</div>
-	</div>
-	
-	<div id="ds_upcoming_task_and_milestone">
-		<div id="ds_upcoming_task_and_milestonetit" style="background:grey; height:30px;">
-			<h3>Upcoming Tasks and Milestones</h3>
-			<input type="button" value="Remove" class="rem" id="#ds_upcoming_task_and_milestone_cont" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_upcoming_task_and_milestone_cont" style="float:right;">
-		</div>
-		<div id="ds_upcoming_task_and_milestone_cont">
-			Upcoming Tasks and Milestones
-			<div id="datepicker"></div>
-		</div>
-	</div>	
-	
-	<div id="ds_messages">
-		<div id="ds_messages_tit" style="background:grey; height:30px;">
-			<h3>Messages</h3>
-			<input type="button" value="Remove" class="rem" id="#ds_messages_cont" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_messages_cont" style="float:right;">
-		</div>
-		<div id="ds_messages_cont">
-			Messages
-		</div>
-	</div>
-
-	<div id="ds_my_chall">
-		<div id="ds_my_chall_tit" style="background:grey; height:30px;">
-			<h3>My Challenges</h3>
-			<input type="button" value="Remove" class="rem" id="#ds_my_chall_cont" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_my_chall_cont" style="float:right;">
-		</div>
-		<canvas id="mychallenges" style="width: 636px; height: 300px; float: left;"></canvas>
-		<div id="ds_my_chall_cont">
-			My Challenges
-		</div>
-	</div>	
-	
-	<div id="ds_news_feed">
-		<div id="ds_news_feed_tit" style="background:grey; height:30px;">
-			<h3>News Feed</h3>
-			<input type="button" value="Remove" class="rem" id="#ds_news_feed_cont" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_news_feed_cont" style="float:right;">
-		</div>
-		<div id="ds_news_feed_cont">
-			News Feed
-		</div>
-	</div>
-	
-	<div id="ds_top_performer">
-		<div id="ds_top_performer_tit" style="background:grey; height:30px;">
-			<h3>Top Performer(Scoreboard)</h3>
-			<input type="button" value="Remove" class="rem" id="#ds_top_performer_cont" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_top_performer_cont" style="float:right;">
-		</div>
-		<div id="ds_top_performer_cont">
-			Top Performer(Scoreboard)
-		</div>
-	</div>	
 </div>
+</div>
+</content>
 
+<br>
+<div>
+	<div class="mychallenge1">
+				<div id="titlechallenge1"><div id="title">NEW MESSAGES ( <%=@as%> ) </div>
+				<div class="second_titlechallenge1"><%= button_to "NEW", new_challenge_url, :class => "new_challenge_button", :method => :get%>
+				</div>
+		</div>
+	<div id="subbar1">
+		<div id="name1">
+			FROM
+		</div>
+		<div id="score1">
+			TIME
+		</div>
 
+	</div>
+	<div id="challengedetails1">
+				
+	</div>
+</div>
+	

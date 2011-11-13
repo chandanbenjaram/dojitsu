@@ -867,19 +867,19 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 }
 
 /*dash borad css*/
+
 .mychallenge
 {
-height:400px;
+float:left;
+height:500px;
 width:635px;
 border: 2px solid #BEBEBE;
 -webkit-border-radius: 6px;
 -moz-border-radius: 6px;
 border-radius: 6px; 
- 
 }
 #titlechallenge
 {
-	
 width:635px;
 border: 1px solid #BEBEBE;
 background:#BEBEBE;
@@ -889,12 +889,7 @@ height:30px;
 -moz-border-radius-bottomright: 0px;
 -moz-border-radius-bottomleft: 0px;
 -webkit-border-radius: 5px 5px 0px 0px;
-border-radius: 5px 5px 0px 0px;
-
-}
-.second_titlechallenge{
-float:right;
-
+border-radius: 5px 5px 0px 0px; 
 }
 #subbar
 {
@@ -904,15 +899,15 @@ width:635px;
 }
 #name
 {
-position:absolute;
+position:relative;
 float:left;
-left:40px;
+left:-30px;
 }
 #score
 {
-position:absolute;
+position:relative;
 float:left;
-left:450px;
+left:400px;
 }
 #challengedetails
 {
@@ -926,6 +921,67 @@ background:#fff;
 -webkit-border-radius: 0px 0px 5px 5px;
 border-radius: 0px 0px 5px 5px; 
 }
+
+.mychallenge1
+{
+position:absolute;
+top:670px;
+float:left;
+height:500px;
+width:635px;
+border: 2px solid #BEBEBE;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px; 
+margin-left:10px;
+}
+#titlechallenge1
+{
+width:635px;
+border: 1px solid #BEBEBE;
+background:#BEBEBE;
+height:30px;
+-moz-border-radius-topleft: 5px;
+-moz-border-radius-topright: 5px;
+-moz-border-radius-bottomright: 0px;
+-moz-border-radius-bottomleft: 0px;
+-webkit-border-radius: 5px 5px 0px 0px;
+border-radius: 5px 5px 0px 0px; 
+}
+#subbar1
+{
+background:#D7D7D7;
+height:25px;
+width:635px;
+}
+#name1
+{
+position:relative;
+float:left;
+left:10px;
+top:5px;
+}
+#score1
+{
+position:relative;
+float:left;
+left:500px;
+top:5px;
+}
+#challengedetails1
+{
+width:635px;
+height:343px;
+background:#fff;
+-moz-border-radius-topleft: 0px;
+-moz-border-radius-topright: 0px;
+-moz-border-radius-bottomright: 5px;
+-moz-border-radius-bottomleft: 5px;
+-webkit-border-radius: 0px 0px 5px 5px;
+border-radius: 0px 0px 5px 5px; 
+}
+
+
 #content1
 {
 float:left;
@@ -941,4 +997,88 @@ postion:absolute;
 padding-left:10px;
 width:400px;
 }
+#check1
+{
+height:50px;
+width:410px;
+background:#000000;
+
+}
+#check
+{
+color:#7AC142;
+top:17px;
+font-size:15px;
+font-style:bold;
+position:relative;
+}
+.update
+{
+position:relative;
+
+float:left;
+left:330px;
+top:10px;
+}
 .second_titlechallenge
+{
+position:relative;
+float:left;
+left:530px;
+top:-10px
+}
+.dashboardsidebar1{
+float: left;
+width: 645px;
+position:absolute;
+margin-right:10px;
+margin-left:10px;
+}
+.dashboardsidebar2 {
+position:absolute;
+float:left;
+margin-left:660px;
+margin-top:30px;
+width:280px;
+height:auto;
+border: 2px solid #BEBEBE;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px; 
+}
+.whatsnew
+{
+width:280px;
+border: 1px solid #BEBEBE;
+background:#BEBEBE;
+height:30px;
+-moz-border-radius-topleft: 5px;
+-moz-border-radius-topright: 5px;
+-moz-border-radius-bottomright: 0px;
+-moz-border-radius-bottomleft: 0px;
+-webkit-border-radius: 5px 5px 0px 0px;
+border-radius: 5px 5px 0px 0px; 
+}
+#viewall
+{
+position:relative;
+float:left;
+left:200px;
+width:70px;
+height:20px;
+border:1px solid #ffffff;
+background:#F8981D;
+color:#ffffff;
+top:3px;
+}
+#contentbox
+{
+width:260px;
+margin-top:10px;
+margin-bottom:10px;
+margin-left:10px;
+margin-right:10px;
+height:200px;
+background:#F4F4F4;
+
+}
