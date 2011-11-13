@@ -12,7 +12,7 @@
 		</div>
 		<div class="popup_globalheader">	
 				<%= current_user.authentications[0].name rescue current_user.fname%></br>
-								<%= link_to "Log out", destroy_user_session_path %>
+								<%= link_to "Log out", destroy_user_session_path, :onclick => 'dojoFBLogout()'  %>
 
 		</div>
 	<% else %>
@@ -20,3 +20,25 @@
     <% end %>
 	</div>
 </div>
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '232592880122189', // App ID
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      oauth      : true, // enable OAuth 2.0
+      xfbml      : true  // parse XFBML
+    });
+
+    // Additional initialization code here
+  };
+
+  // Load the SDK Asynchronously
+  (function(d){
+     var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     d.getElementsByTagName('head')[0].appendChild(js);
+   }(document));
+</script>
