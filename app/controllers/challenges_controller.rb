@@ -12,17 +12,20 @@ class ChallengesController < ApplicationController
 
   def show
     @challenge = Challenge.find(params[:id])	
+
   end
 
   def show_soc
     @challenge = Challenge.find(params[:id])
     @org = User.find(:all,:conditions => ["id=?",@challenge.user_id]).first
     @lists = List.all
+	
+	
   end
 
   def show_per
     @challenge = Challenge.find(params[:id])
-
+	render :text =>@challenge.social_type.status and return
     #@challenge.task_attributes.each do |tsk|
     #  raise tsk.name.inspect
     #end
