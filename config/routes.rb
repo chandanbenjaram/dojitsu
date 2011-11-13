@@ -16,6 +16,7 @@ Dojitsu::Application.routes.draw do
   resources :challenges do
     collection do
       get "show_soc"
+      get "task_update"
       get "show_per"
       get "my_challenge"
       get "invite_frd"

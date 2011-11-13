@@ -186,12 +186,24 @@ class ChallengesController < ApplicationController
     raise "aaaaaaaaa"
   end
   
+  def task_update
+    @name = params[:name]
+    raise @sd = Challenge.find(:all).first.inspect
+    #raise @as = @sd.task_attributes.find(:all).inspect
+    @sd.task_attributes.each do |ts|
+      ts.each do |gf|
+        raise gf[2].inspect
+      end
+    end
+    render :layout => false
+  end
+  
   def challenge_comp
     #Challenge.where(:_id => "4ebe067b7c1bd8023800006d").update(:is_complete => 1)
     #@id =params[:id]
     #raise @sdf = Challenge.update_attribute(:is_complete => 1).where(:id => @id).inspect
-	@sdf = Challenge.where(:_id => params[:id]).update(:is_complete => 1)
-	redirect_to :action => "index"
+	  @sdf = Challenge.where(:_id => params[:id]).update(:is_complete => 1)
+	  redirect_to :action => "index"
   end
   
   def my_challenge
