@@ -11,7 +11,8 @@ class ChallengesController < ApplicationController
   end
 
   def show
-      @challenge = Challenge.find(params[:id])	
+      @challenge = Challenge.find(params[:id])
+
   end
   
   def show_soc
@@ -22,7 +23,7 @@ class ChallengesController < ApplicationController
 
   def show_per
       @challenge = Challenge.find(params[:id])
-      
+      	# render :text =>@challenge.social_type.challenge_invitations.invitees and return
       #@challenge.task_attributes.each do |tsk|
       #  raise tsk.name.inspect
       #end
@@ -118,6 +119,8 @@ class ChallengesController < ApplicationController
   def update
     if @challenge.update_attributes(params[:challenge])
       redirect_to :action => 'show', :id => @challenge
+	    can_edit_on_the_spot
+
     else
       render :action => edit
     end
@@ -144,7 +147,7 @@ class ChallengesController < ApplicationController
     #@challenge_copy = Challenge.find(@id)
     #@challenge_invitee = ChallengeInvitation.create(:invitee_challenge_id=>@invitee_challenge_id, :invitor_email=>@invitor_email, :invitees =>[Invitee.new(:invitee_email=>"sriram@gmail.com", :invitee_first_name=>"Sri ram", :invitee_last_name=>"Kapoor", :status =>"Accepted", :challenge=>Challenge.new(:title=>"ch001",:description=>"ch001 task is testing challenge")), Invitee.new(:invitee_email=>"venkat@gmail.com", :invitee_first_name=>"Venkat", :invitee_last_name=>"Reddy", :status =>"Pending")])
     
-    @challenge_invitee = ChallengeInvitation.create(:invitee_challenge_id=>@invitee_challenge_id, :invitor_email=>@invitor_email)
+   challenge_social_type = ChallengeInvitation.create(:invitee_challenge_id=>@invitee_challenge_id, :invitor_email=>@invitor_email)
     
     #@challenge_invitee.invitees.push([Invitee.new(:invitee_email =>"sriram@gmail.com")])
     @invitee_email.each_with_index do |in_email,em_index|
@@ -165,7 +168,7 @@ class ChallengesController < ApplicationController
       @challenge_invitee.invitees.push([Invitee.new(:invitee_email =>in_email, \
         :invitee_first_name =>@new_fn[em_index], :invitee_last_name => @new_ln[em_index], :challenge=>Challenge.find(@invitee_challenge_id) )])
     end
-    
+    render :text =>  challenge_social_type
     #APPEND CHALLGENG TO INVITEE WHO ACCEPTED REQUEST
     #@id = "4eb922487c1bd8085c000053" 
     #@challenge_copy = Challenge.find(@id)

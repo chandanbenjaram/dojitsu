@@ -470,6 +470,7 @@ textarea:hover{
 
 textarea:focus{
 
+
     border-color: #4ccbda;
     border-width: 1px;
 }
@@ -725,22 +726,20 @@ ul.tabs1 {
 	border-bottom:solid #F0F0F0;
 	border-left: 1px solid #999;
 	border-top:solid #F0F0F0;
-	width: 100%;
+	width: 90%;
 	background:	#F0F0F0;
 	font-size:11px;
 }
 ul.tabs {
-	margin: 0;
-	padding: 0;
-	float: left;
-	list-style: none;
-	height: 32px; /*--Set height of tabs--*/
-	border-bottom:solid #F0F0F0;
-	border-left: 1px solid #999;
-	border-top:solid #F0F0F0;
-	width: 90%;
-	background:	#F0F0F0;
-	font-size:11px;
+    border-bottom: 1px solid #999999;
+    border-left: 1px solid #999999;
+    float: left;
+    height: 32px;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    width: 75%;
+    background:	#F0F0F0;
 }
 ul.tabs li {
 	float: left;
@@ -777,7 +776,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 
 	overflow: hidden;
 	clear: both;
-	float: left; width: 100%;
+	float: left; width: 90%;
 	background: #fff;
 }
 .tab_container {
