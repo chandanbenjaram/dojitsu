@@ -12,26 +12,10 @@
 		</div>
 		<div class="popup_globalheader">	
 				<%= current_user.authentications[0].name rescue current_user.fname%></br>
-								
+				<%= link_to "Log out", destroy_user_session_path %>								
 		</div>
 	<% else %>
 		<%= button_to "", "/users/auth/facebook", :class=> "new_button1", :style => "float:right" %>
     <% end %>
 	</div>
 </div>
-<style type="text/css">
-
-</style>
-<script type="text/javascript" src="jquery.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-$(".popup_globalheader").hover( function() {
-$("#opaque").css('display','block');
-}, function() {
-	setTimeout(3);
-$("#opaque").hide();
-});
-});
-</script>
-
-<div id='opaque' style='display:none; width:80px; background:#fff; left:830px;top:50px;position:absolute; border:1px solid black;'><%= link_to "Log out", destroy_user_session_path %></div>

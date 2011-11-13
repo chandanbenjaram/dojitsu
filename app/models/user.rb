@@ -40,8 +40,10 @@ class User < ActiveRecord::Base
     end
   end
 
-  def challenges
-    Challenge.where(:user_id=>self.id).all
+  def challenges 
+    #debugger
+    #Challenge.where({:user_id=>self.id}).all
+    Challenge.all
   end
   
   def facebook
