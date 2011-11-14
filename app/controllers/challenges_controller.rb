@@ -53,7 +53,7 @@ class ChallengesController < ApplicationController
 
   def create
     #raise params.inspect
-    raise @ch = Challenge.new(params[:challenge]).inspect
+    @ch = Challenge.new(params[:challenge])
     @ch_st_date = params[:ch_st_date]
     @st_p_val1 = params[:st_value1]
     @st_p_val = params[:st_value]
@@ -103,7 +103,7 @@ class ChallengesController < ApplicationController
       end            
     end
 
-    @ch.tasks.each do |task_attr|
+    @ch.task_attributes.each do |task_attr|
       @challenge.tasks.build(task_attr)
     end
 
@@ -132,13 +132,34 @@ class ChallengesController < ApplicationController
   def invitee_accepted_req
     raise "aaaaaaaaa"
   end
+<<<<<<< HEAD
+  
+  def task_update
+    @name = params[:name]
+    raise @sd = Challenge.find(:all).first.inspect
+    #raise @as = @sd.task_attributes.find(:all).inspect
+    @sd.task_attributes.each do |ts|
+      ts.each do |gf|
+        raise gf[2].inspect
+      end
+    end
+    render :layout => false
+  end
+  
+=======
 
+>>>>>>> cfc039b0033c8eedbbe5d4098133f3977c1d83b1
   def challenge_comp
     #Challenge.where(:_id => "4ebe067b7c1bd8023800006d").update(:is_complete => 1)
     #@id =params[:id]
     #raise @sdf = Challenge.update_attribute(:is_complete => 1).where(:id => @id).inspect
+<<<<<<< HEAD
+	  @sdf = Challenge.where(:_id => params[:id]).update(:is_complete => 1)
+	  redirect_to :action => "index"
+=======
     @sdf = Challenge.where(:_id => params[:id]).update(:is_complete => 1)
     redirect_to :action => "index"
+>>>>>>> cfc039b0033c8eedbbe5d4098133f3977c1d83b1
   end
 
   def my_challenge
