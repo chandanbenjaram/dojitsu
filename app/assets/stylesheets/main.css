@@ -980,7 +980,13 @@ background:#fff;
 -webkit-border-radius: 0px 0px 5px 5px;
 border-radius: 0px 0px 5px 5px; 
 }
-
+.second_titlechallenge1
+{
+position:relative;
+float:left;
+left:530px;
+top:-10px
+}
 
 #content1
 {
