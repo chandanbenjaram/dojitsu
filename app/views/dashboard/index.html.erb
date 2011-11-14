@@ -43,7 +43,7 @@ MY DOJITSU SCORE
 			          
 						<table>
 								<td id="content1">
-								<font size=3><b><%= userChallenge.title %></b></font><br><font size=2>by Sun Yu</font><br> Starting Point-End Point<br>
+								<font size=3><b><%= userChallenge.title %></b></font><br><font size=2>by <%= userChallenge.user_id %></font><br> Starting Point-End Point<br><%= userChallenge.child_challenges.size %> Contestments<br>
 								</td>
 								<td id="content2">
 										<div >								
@@ -52,23 +52,44 @@ MY DOJITSU SCORE
 												
 												<br>
 												<div id="check1">
-												<script type="text/javascript">
-												  $(function() {
-													  
-														//call progress bar constructor
-													  $("#taskprogress<%= t %>").progressbar({ value: 40 });
 														
-														//set mouseover for progress bar
+														
+														<% x=0 %> 
+														<% y=0 %> 
+														<% a=10 %> 
+														<% b= 30 %> 
+														<% userChallenge.task_attributes.each do |userChallenge1| %>
+																<% if userChallenge.is_complete == 0 %>
+																		 
+																		<% x+=1 %>
+																<% end %>
+																<% if userChallenge.is_complete == 1 %>
+																		 
+																		<% y+=1 %>
+																<% end %>
+														<% end %>
+																
+															<div class="update"> <%= image_tag("FDFDG.gif", :alt => "Update") %> </div>
+															<div class="completedtask"> <%= userChallenge.is_complete %> points (<%= y %>&nbsp; tasks)</div>
+															<div class="notcompleted"> <font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="white"><%= userChallenge.is_complete %> points (<%= x %> tasks)</font></div>
 													
-														
-														  //display the current value
-														  $("<p>").attr("id", "check").text($("#taskprogress<%= t %>").progressbar("option", "value") + "% Completed ").appendTo("#taskprogress<%= t %>");
+													<script type="text/javascript">
+														  $(function() {
+															  
+																//call progress bar constructor
+															  $("#taskprogress<%= t %>").progressbar({ value: ((<%= a %>/<%= (a+b) %>)*100) });
+																
+																//set mouseover for progress bar
 															
-													
+																
+																  //display the current value
+																  $("<p>").attr("id", "check").text($("#taskprogress<%= t %>").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress<%= t %>");
+																	
+															
+																
+															});
+														</script> 
 														
-													});
-												</script>
-													<div class="update"> <%= image_tag("FDFDG.gif", :alt => "Update") %> </div>
 												</div>
 										</div>
 								</td>

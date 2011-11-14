@@ -1105,3 +1105,24 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	position:absolute; 
 	border:1px solid black;	
 }
+.completedtask
+{
+color:#fff;
+left:60px;
+position:relative;
+}
+.remainedtask
+{
+
+color:#Ffffff;
+
+}
+
+.notcompleted
+{
+float:left;
+left:3px;
+position:relative;
+color:#fff;
+}
+
