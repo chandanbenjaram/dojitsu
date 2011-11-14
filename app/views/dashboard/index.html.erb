@@ -1,80 +1,136 @@
-<%= javascript_include_tag('js-class', 'dashboard_index','bluff-min', 'excanvas')%>
-<%= stylesheet_link_tag('jquery-ui')%>
+<%= javascript_include_tag('js-class', 'dashboard_index','bluff-min', 'excanvas','jquery-1.3.2', 'ui.core','ui.progressbar')%>
+<%= stylesheet_link_tag('jquery-ui', 'ui.core','ui.progressbar','ui.theme', 'main')%>
 
 <%= render 'layouts/loggedinbody'%>
-
-<div id="dashbord">
-	<div id="ds_performance_tracker">
-		<div id="ds_performance_tracker_tit" style="background:grey; height:30px;">
-			<h3>Performance Tracker</h3>
-			<%= collection_select :current_user, '', current_user.challenges,  :id, :title %>    
-			<input type="button" value="Remove" class="rem" id="#example" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_performance_tracker_cont" style="float:right;">
-			<%= link_to(image_tag("delete.jpg", :size => "20x20", :id => '#example', :class => 'rem'))%>
-		</div>
-		<canvas id="example" style="width: 636px; height: 300px; float: left;"></canvas>
-	</div>	
-	
-	<div id="ds_my_profile">
-		<div id="ds_my_profile_tit" style="background:grey; height:30px;">
-			<h3>My Profile</h3>
-			<input type="button" value="Remove" class="rem" id="#ds_my_profile_cont" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_my_profile_cont" style="float:right;">
-		</div>
-		<div id="ds_my_profile_cont">
-			My Profile
-		</div>
+<aside class="dashboardsidebar2">
+					<div class="whatsnew">
+						WHATS NEW
+							<div id="viewall">
+								&nbsp;&nbsp;VIEW ALL
+							</div>
+					</div>
+					<div id="contentbox">
+					</div>
+					<div id="contentbox">
+					</div>
+					<div id="contentbox">
+					</div>
+</aside>
+<content class="dashboardsidebar1">	
+<div>
+<div class="challange">my dashboard</div>
+		
+<div class="mychallenge">
+	<div id="titlechallenge"><div id="title">MY CHALLENGES ( <%=@as%> ) </div>
+			<div class="second_titlechallenge"><%= button_to "NEW", new_challenge_url, :class => "new_challenge_button", :method => :get%></div>
 	</div>
-	
-	<div id="ds_upcoming_task_and_milestone">
-		<div id="ds_upcoming_task_and_milestonetit" style="background:grey; height:30px;">
-			<h3>Upcoming Tasks and Milestones</h3>
-			<input type="button" value="Remove" class="rem" id="#ds_upcoming_task_and_milestone_cont" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_upcoming_task_and_milestone_cont" style="float:right;">
-		</div>
-		<div id="ds_upcoming_task_and_milestone_cont">
-			Upcoming Tasks and Milestones
-			<div id="datepicker"></div>
-		</div>
-	</div>	
-	
-	<div id="ds_messages">
-		<div id="ds_messages_tit" style="background:grey; height:30px;">
-			<h3>Messages</h3>
-			<input type="button" value="Remove" class="rem" id="#ds_messages_cont" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_messages_cont" style="float:right;">
-		</div>
-		<div id="ds_messages_cont">
-			Messages
-		</div>
-	</div>
-
-	<div id="ds_my_chall">
-		<div id="ds_my_chall_tit" style="background:grey; height:30px;">
-			<h3>My Challenges</h3>
-			<input type="button" value="Remove" class="rem" id="#ds_my_chall_cont" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_my_chall_cont" style="float:right;">
-		</div>
-		<canvas id="mychallenges" style="width: 636px; height: 300px; float: left;"></canvas>
-		<div id="ds_my_chall_cont">
-			My Challenges
-		</div>
-	</div>	
-	
-	<div id="ds_news_feed">
-		<div id="ds_news_feed_tit" style="background:grey; height:30px;">
-			<h3>News Feed</h3>
-			<input type="button" value="Remove" class="rem" id="#ds_news_feed_cont" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_news_feed_cont" style="float:right;">
-		</div>
-		<div id="ds_news_feed_cont">
-			News Feed
-		</div>
-	</div>
-	
-	<div id="ds_top_performer">
-		<div id="ds_top_performer_tit" style="background:grey; height:30px;">
-			<h3>Top Performer(Scoreboard)</h3>
-			<input type="button" value="Remove" class="rem" id="#ds_top_performer_cont" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Add" class="ad" id="#ds_top_performer_cont" style="float:right;">
-		</div>
-		<div id="ds_top_performer_cont">
-			Top Performer(Scoreboard)
-		</div>
-	</div>	
+<div id="subbar">
+<div id="name">
+NAME
+</div>
+<div id="score">
+MY DOJITSU SCORE
 </div>
 
+</div>
+<div id="challengedetails">
+			<div id="challengepart">
+			<br>
+			         <% t=1 %>
+					 <% current_user.challenges.each do |userChallenge| %>
+					 
+					 
+			          
+						<table >
+								<td id="content1">
+								<font size=3><b><%= userChallenge.title %></b></font><br><font size=2>by <%= userChallenge.user_id %></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %> <br><%= userChallenge.child_challenges.size %> Contestments<br>
+								</td>
+								<td id="content2">
+										<div >								
+										  
+											  <div id="taskprogress<%= t %>"></div>
+												
+												<br>
+												<div id="check1">
+														
+														
+														<% x=0 %> 
+														<% y=0 %> 										
+															<% a= 0 %>															
 
+														<% b= 0 %> 
+														
+														<% userChallenge.tasks.each do |aTask| %>
+																
+																<% if (aTask.is_complete == 0 rescue false) %>
+															<% a+=Integer(aTask.score) %>			
+																
+																<% x+=1 %>
+																<% else %>
+														<% b+=Integer(aTask.score) %>
+																<% y+=1 %>
+																<% end %>
+														<% end %>
+																
+															<div class="update"> <%= image_tag("FDFDG.gif", :alt => "Update") %> </div>
+															<div class="completedtask"> <%= a %> points (<%= y %>&nbsp; tasks)</div>
+															<div class="notcompleted"> <font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="white"><%= b %> points (<%= x %> tasks)</font></div>
+													
+													<script type="text/javascript">
+														  $(function() {
+															  
+																//call progress bar constructor
+															  $("#taskprogress<%= t %>").progressbar({ value: Math.round(((<%= a %>/<%= (a+b) %>)*100)) });
+																
+																//set mouseover for progress bar
+															
+																
+																  //display the current value
+																  $("<p>").attr("id", "check").text($("#taskprogress<%= t %>").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress<%= t %>");
+																	
+															
+																
+															});
+														</script> 
+														
+												</div>
+										</div>
+								</td>
+								
+						</table>
+						
+						<hr width:100%>
+						<% t+=1 %>
+				<% end %>
+				
+				
+						
+
+			</div>
+</div>
+</div>
+</div>
+</content>
+
+<br>
+<div>
+	<div class="mychallenge1">
+				<div id="titlechallenge1"><div id="title">NEW MESSAGES ( <%=@as%> ) </div>
+				<div class="second_titlechallenge1"><%= button_to "NEW", new_challenge_url, :class => "new_challenge_button", :method => :get%>
+				</div>
+		</div>
+	<div id="subbar1">
+		<div id="name1">
+			FROM
+		</div>
+		<div id="score1">
+			TIME
+		</div>
+
+	</div>
+	<div id="challengedetails1">
+				
+	</div>
+</div>
+
+	

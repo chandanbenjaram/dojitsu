@@ -3,7 +3,11 @@ class ChallengeSocialType < ChallengeType
   
   field :how_many_winners
 
-  # challenge invitations ONLY FOR MEOTHER CHALLENGE
+  # challenge invitations ONLY FOR MOTHER CHALLENGE
   # every NON-MOTHER challenge should ignore this filed
-  # has_many :challenge_invitations
+  # has_many :challenge_invitations 
+  
+  # status can take 3 arguments, ACCEPTED, DECLINED, PENDING
+  field :status, :type =>Integer, :default => 0
+  
 end

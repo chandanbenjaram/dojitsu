@@ -40,12 +40,19 @@ class User < ActiveRecord::Base
     end
   end
 
-  def challenges
-    Challenge.where(:user_id=>self.id).all
+  def challenges 
+    #debugger
+    #Challenge.where({:user_id=>self.id}).all
+    #Challenge.all 
+     Challenge.all(:conditions => { :user_id => self.id, :user_id => fbauth.uid })
   end
   
   def facebook
-    FbGraph::User.new('me', :access_token => self.authentications.find_by_provider('facebook').token).fetch
+    FbGraph::User.new('me', :access_token => fbauth.token).fetch
     #self.authentications.find_by_provider('facebook')
-  end 
+  end
+
+  def fbauth
+      self.authentications.find_by_provider('facebook')
+  end  
 end

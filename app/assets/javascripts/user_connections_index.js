@@ -1,18 +1,3 @@
- FB.init({
-        appId  : '232592880122189',
-        status : true,
-        cookie : true,
-        oauth: true
-      });
-
-    
-   
-      function sendRequestToManyRecipients() {
-	  window.fbAsyncInit = function() {
-  FB.init({appId: 'XXXXXXXXX', status: true, cookie: true, xfbml: true});
-  FB.Canvas.setSize({ width:760,height:1000 });
-};
-
 (function() {
   var e = document.createElement('script');
   e.type = 'text/javascript';
