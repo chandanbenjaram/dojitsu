@@ -91,7 +91,7 @@
 						    </tr>
 							<% if !@challenge.tasks.blank? %>
 							<% for task in @challenge.tasks %>
-	 						<%= f.fields_for "task_attributes[]", task do |task_fields| %>							
+	 						<%= f.fields_for "tasks[]", task do |task_fields| %>							
 							<tr>
 								<td width="112">
 									<%= task_fields.select :score_by, options_for_select([
