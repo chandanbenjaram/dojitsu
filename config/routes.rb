@@ -18,11 +18,9 @@ Dojitsu::Application.routes.draw do
       get "show_soc"
       get "show_per"
       get "my_challenge"
-      get "invite_frd"
       get "invitee_accepted_req"
       get "challenge_comp"
       put :update_attribute_on_the_spot
-      get "invite_frd"
     end
   end
 
