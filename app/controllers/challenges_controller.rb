@@ -53,7 +53,7 @@ class ChallengesController < ApplicationController
 
   def create
     #raise params.inspect
-    @ch = Challenge.new(params[:challenge])
+    raise @ch = Challenge.new(params[:challenge]).inspect
     @ch_st_date = params[:ch_st_date]
     @st_p_val1 = params[:st_value1]
     @st_p_val = params[:st_value]
@@ -103,7 +103,7 @@ class ChallengesController < ApplicationController
       end            
     end
 
-    @ch.task_attributes.each do |task_attr|
+    @ch.tasks.each do |task_attr|
       @challenge.tasks.build(task_attr)
     end
 
