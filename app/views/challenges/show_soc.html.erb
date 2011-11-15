@@ -116,7 +116,7 @@
 												<td>
 													<table border="1">
 														<tr bgcolor=#f5f5f5 height=20px border=0px>
-															<th><b><h3><font color="black">TOTAL:<%= @challenge.task_attributes.count %></font></h3></b><%#= link_to render(:partial => 'challenges/message'), root_url %></th>
+															<th><b><h3><font color="black">TOTAL:<%= @challenge.tasks.count %></font></h3></b><%#= link_to render(:partial => 'challenges/message'), root_url %></th>
 															<th colspan="3"><%= image_tag("btn_add_up.png")%></th>
 														</tr>
 														<tr bgcolor=#D7D7D7 height=20px border=0px>
@@ -131,23 +131,29 @@
 															<td bgcolor=#D7D7D7>
 															</td>
 													   </tr>
-																   <% ch= 0 %>
+																  
 																  <% sum = 0 %>
-														<%# for ch in ch..@challenge.task_point.length %>
-													  <tr>
+																   
+																<%   len=@challenge.tasks.length %>
+													
+																<% @challenge.tasks.each do |aTask| %>
+																<% aTask.score %>
+													<tr>
 															<td>       
-																<%#=  @challenge.task_point[ch] %>
-																<% #sum +=  @challenge.task_point[ch].to_i %>
+																 	<%= aTask.score %>
 															</td>
 															<td>
-																<%#= @challenge.task_description[ch] %>
+																<%= aTask.name %>
+															</td>
+																<td>
+																<%#= aTask.score_by %>
 															</td>
 															<td align="right">
 																	<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:12px;") %>
 															</td>
 													  </tr>
-     
-														<% #end %>
+														  <% end %>
+														
 											     </table>
 								            </td>		
   							         </tr>	

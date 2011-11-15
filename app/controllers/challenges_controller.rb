@@ -33,7 +33,7 @@ class ChallengesController < ApplicationController
     #    raise sd[4].inspect
     #  end
     #end
-
+  # render :text => @challenge.tasks[0].score and return
     #@challenge.social_type.type  
     #if @challenge.social_challenge.type and @challenge.social_challenge.type!='0' and @challenge.social_challenge.type!=nil 
     ch = @challenge.social_type.type 
