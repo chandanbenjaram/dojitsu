@@ -8,7 +8,7 @@ class Task
   # score translates to Point on UI
   field :score
   # task status
-  field :is_complete, :default => 0
+  field :is_complete, :type => Integer, :default => 0
   
   embedded_in :challenge
 end
