@@ -91,12 +91,12 @@
 						    </tr>
 								<script> alert("outside of if); </script>
 							<% if !@challenge.tasks.blank? %>
-							<script> alert("if loop"); </script>
+							
 							
 							<% for task in @challenge.tasks %>
-							<script> alert("for loop"); </script>
+							
 	 						<%= f.fields_for "task_attributes[]", task do |task_fields| %>
-								<script> alert("first case"); </script>
+								
 							
 							<tr valign="bottom">
 								<td width="112">
