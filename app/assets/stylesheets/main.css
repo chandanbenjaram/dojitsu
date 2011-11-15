@@ -993,7 +993,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	float:left;
 	postion:absolute;
 	padding-left:20px;
-	width:180px;
+	width:120px;
 
 }
 #content2
@@ -1125,4 +1125,15 @@ left:3px;
 position:relative;
 color:#fff;
 }
+
+#points
+{
+position:relative;
+top:-35px;
+width:40px;
+height:25px;
+background:#DDEFCE;
+color:#7AC142;
+}
+
 

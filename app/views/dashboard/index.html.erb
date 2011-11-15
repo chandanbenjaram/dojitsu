@@ -35,7 +35,7 @@ MY DOJITSU SCORE
 </div>
 <div id="challengedetails">
 			<div id="challengepart">
-			<br>
+			
 			         <% t=1 %>
 					 <% current_user.challenges.each do |userChallenge| %>
 					 
@@ -73,19 +73,16 @@ MY DOJITSU SCORE
 														<% end %>
 																
 															<div class="update"> <%= image_tag("FDFDG.gif", :alt => "Update") %> </div>
-															<div class="completedtask"> <%= a %> points (<%= y %>&nbsp; tasks)</div>
-															<div class="notcompleted"> <font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="white"><%= b %> points (<%= x %> tasks)</font></div>
+															<div class="completedtask"> <%= a %> points (<%= x %> &nbsp; tasks)</div>
+															<div class="notcompleted"> <font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="white"><%= b %> points (<%= y %>&nbsp; tasks)</font></div>
 													
 													<script type="text/javascript">
 														  $(function() {
 															  
-																//call progress bar constructor
+															
 															  $("#taskprogress<%= t %>").progressbar({ value: Math.round(((<%= a %>/<%= (a+b) %>)*100)) });
 																
-																//set mouseover for progress bar
-															
 																
-																  //display the current value
 																  $("<p>").attr("id", "check").text($("#taskprogress<%= t %>").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress<%= t %>");
 																	
 															
@@ -95,6 +92,9 @@ MY DOJITSU SCORE
 														
 												</div>
 										</div>
+								</td>
+								<td>
+								<div id="points">&nbsp;&nbsp;<font size=4><b><%= a %><b></font></div>
 								</td>
 								
 						</table>
