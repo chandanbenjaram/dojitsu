@@ -696,6 +696,7 @@ opacity: 0.95;
 }
 */
 #tooltip {
+	display: none;
 	background-image: url("FDFDG.gif");
 	background-repeat:no-repeat;
 	width:100px;

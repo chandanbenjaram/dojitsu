@@ -16,10 +16,12 @@ Dojitsu::Application.routes.draw do
   resources :challenges do
     collection do
       get "show_soc"
+      get "task_update"
       get "show_per"
       get "my_challenge"
       get "invitee_accepted_req"
       get "challenge_comp"
+	  get "task_update_c"
       put :update_attribute_on_the_spot
     end
   end
