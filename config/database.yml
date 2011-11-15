@@ -6,7 +6,7 @@ development:
   encoding: utf8
   database: dojitsu_dev
   username: root
-  password: pass
+  password:
   host: localhost 
   port: 3306
   timeout: 5000
