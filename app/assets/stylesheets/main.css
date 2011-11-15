@@ -696,6 +696,7 @@ opacity: 0.95;
 }
 */
 #tooltip {
+	display: none;
 	background-image: url("FDFDG.gif");
 	background-repeat:no-repeat;
 	width:100px;
@@ -993,7 +994,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	float:left;
 	postion:absolute;
 	padding-left:20px;
-	width:180px;
+	width:120px;
 
 }
 #content2
@@ -1017,6 +1018,9 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	font-size:15px;
 	font-style:bold;
 	position:relative;
+}
+.taskcontent
+{
 }
 .update
 {
@@ -1102,3 +1106,35 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	position:absolute; 
 	border:1px solid black;	
 }
+.completedtask
+{
+color:#fff;
+left:60px;
+position:relative;
+}
+.remainedtask
+{
+
+color:#Ffffff;
+
+}
+
+.notcompleted
+{
+float:left;
+left:3px;
+position:relative;
+color:#fff;
+}
+
+#points
+{
+position:relative;
+top:-35px;
+width:40px;
+height:25px;
+background:#DDEFCE;
+color:#7AC142;
+}
+
+

@@ -1,7 +1,7 @@
 
-<%= stylesheet_link_tag('simple-tabs','datePicker')%>
+<%= stylesheet_link_tag('simple-tabs','datePicker', 'colorbox')%>
 <%= javascript_include_tag :defaults %>
-<%= javascript_include_tag('simple-tabs','jquery.table.addrow','jquery.datePicker','date','jquery.editable-1.3.3','on_the_spot','jquery.ezpz_tooltip','jquery.ezpz_tooltip.min.js','jquery.tools.min')%>
+<%= javascript_include_tag('simple-tabs','jquery.colorbox-min','jquery.table.addrow','jquery.datePicker','date','jquery.editable-1.3.3','on_the_spot','jquery.ezpz_tooltip','jquery.ezpz_tooltip.min.js','jquery.tools.min')%>
 <%= render 'layouts/loggedinbody'%>
 
 <div id="ch_main_div">
@@ -20,7 +20,7 @@
 					<b><font color=	#909090>DESCRIPTION</b>
 				</td>
 				<td class="editable">
-					<pre width="10px"><%= on_the_spot_edit @challenge, :description, :type => :textarea, :rows => 4, :columns => 50  %></pre>
+					<%= on_the_spot_edit @challenge, :description, :type => :textarea %>
 					<!--
 					<% if @challenge.nil? %>
 						<p>no challenge selected</p>
@@ -119,113 +119,71 @@
 					<td bgcolor=#D7D7D7 width="600px"></td>
 					<td bgcolor=#D7D7D7 colspan="2"><p style="float:right";>SCORE </p></td>
 				</tr>
-				<% ch= 1 %>
-				<tr>
-					<td width="5%">		
-						<% @challenge.tasks.each do |tsk| %>
-							<%= @challenge.tasks.name %>						
-						<% end %>
-					</td>
-					<!--
-					<td width="5%">
-						<% @challenge.tasks.each do |tsk| %>
-							<% tsk.each_with_index do |task_value, task_index|%>
-								<% if task_index == 0%>
-									 <font color="orange">/</font></br>						
-								<% end %>
-							<% end %>								
-						<% end %>
-					</td>
-					-->
-					<td width="80%">
-						<% @challenge.tasks.each do |tsk| %>
-							<% tsk.each_with_index do |task_value, task_index|%>
-								<% if task_index == 0%>
-									 <%= task_value[1]%></br>						
-								<% end %>
-							<% end %>								
-						<% end %>		
-					</td>
-					<td width="10%">
-						<% st=0 %>
-						<% @task_na=0 %>
-						<% tsk_compete= 0 %>
-						<% sum = 0 %>
-						<% @challenge.tasks.each do |tsk| %>
-							<% tsk.each_with_index do |task_value, task_index|%>					
-								<% if task_index == 0%>
-									<% @task_na= task_value[1]%>
-								<% end %>
-								<% if task_index == 2%>
-									<% st= task_value[1]%>
-								<% end %>		
-								<% if task_index == 3%>
-									<% if st.to_i == 0 %>
-										<%= link_to "0", '#dialog' ,:name=>"modal", :style => "text-decoration: underline;" %>
-					
-										
-										
-										
-										
-										
-										
-										<div id="boxes">
-											<!-- #customize your modal window here -->
-											<div id="dialog" class="window">
-												<%= text_field_tag "description", @challenge.description, :class => "textfield_effect_nw_tk_title" %>							
-												<%= link_to "CANCEL", challenges_path, :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel"%>
-												<%= link_to "UPDATE", "#", :style => "text-decoration: none; color:#fff; float:right; margin-right:5px;" ,:class => "task_links_cancel"%>						
-											</div>     
-											<!-- Do not remove div#mask, because you'll need it to fill the whole screen --> 
-											<div id="mask"></div>
-										</div>
-										
-										
-
-
-										
-									<% else%>
-										<% tsk_compete += 1 %>
-										<% sum += task_value[1].to_i %>
-										<%= task_value[1] %></br>
-									<% end %> 											
-								<% end %>
-							<% end %>								
-						<% end %>		
-					</td>
-				</tr>
+				<% total_score = 0 %>
+				<% total_score_count = 0 %>
 				<!--
-				<% @challenge.tasks.each do |tsk| %>
-				<tr>
-					<% tsk.each_with_index do |task_value, task_index|%>
-						<% if task_index == 2%>
-							<td>
-								<%= task_value[1]%></br>
-							</td>
-						<% end %>
-						<% if task_index == 0%>
-							<td>
-								<%= task_value[1]%>
-							</td>
-						<% end %>							
-					<% end %>
-				</tr>
+				<% @challenge.tasks.each do |ts|%>
+					<tr>
+							<% @challenge.tasks.each do |aTask| %>
+								<td>
+									<%= aTask.score %><font color="orange">/</font></br>
+								</td>
+								<td>
+									<%= aTask.name %></br>
+								</td>
+							<% end %>
+						</td>
+					<tr>
 				<% end %>
-				-->	
+				-->
+				
+				
+				<tr>
+					<td width="10%">		
+						<% current_user.challenges.each do |userChallenge| %>
+							<% userChallenge.tasks.each do |aTask| %>
+								<%= aTask.score %><%= image_tag("icon_slash.png")%></br>
+								<% end %>								
+						<% end %>
+					</td>
+					<td width="85%">
+						<% current_user.challenges.each do |userChallenge| %>
+							<% userChallenge.tasks.each do |aTask| %>
+								<%= aTask.name %></br>
+							<% end %>								
+						<% end %>
+					</td>
+					<td width="5%" colspan="2">
+						<% current_user.challenges.each do |userChallenge| %>
+							<% userChallenge.tasks.each do |aTask| %>
+								<% if aTask.is_complete.to_i == 0 %>
+									<%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score) ,:class=>"task_update_popup", :style => "text-decoration: underline;" %></br>
+								<% else %>	
+									<% total_score_count +=1 %>
+									<%= aTask.score %></br>
+									<% total_score += aTask.score.to_i %>
+								<% end %>
+							<% end %>								
+						<% end %>
+					</td>
+				</tr>
+				
+				
 				<tr bgcolor=#f4f4f4>
 					<td></td>
 					<td></td>									
+					<td></td>
 				</tr>
-			<table>
+			</table>
 			<table bgcolor=#f4f4f4>
 				<tr bgcolor=#ffffff>
 				  <td colspan="2" >
 					  My Dojitsu score: <br>					  
-					  <b><h4><font color="green"><%= tsk_compete %></b></font> <font color="black"><b>completed,</b></font>
-				      <b><font color="orange"><%= @challenge.tasks.count.to_i-tsk_compete.to_i %></b></font> <font color="black"><b>remaining</b></font></h4></td>
+					  <b><h4><font color="green"><%= total_score_count %></b></font> <font color="black"><b>completed,</b></font>
+				      <b><font color="orange"><%= @challenge.tasks.count.to_i-total_score_count.to_i %></b></font> <font color="black"><b>remaining</b></font></h4></td>
 					<td width="13%" bgcolor="#DBF0E4">
 						<p align=center>
-							<%= sum %>						
+							<%= total_score %>						
 						</p>
 					</td>
 				</tr>
@@ -257,6 +215,9 @@
 
 
 <script>
+	
+	$('.task_update_popup').colorbox();
+	
 // execute your scripts when the DOM is ready. this is a good habit
 $(function() {
 	// setup tooltip for a single DIV element

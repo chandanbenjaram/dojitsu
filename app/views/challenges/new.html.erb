@@ -86,12 +86,18 @@
 								<th colspan="2" style="color:#999999;">Score this task by</th>
 								<th colspan="2" style="color:#999999;">Point(s)</th>
 								<th colspan="2" style="color:#999999;">Task(name)
-								<%= image_tag("btn_add_up.png", :class => "alternativeRow", :style => "float:right; margin-right:20px;") %>
+								<%= image_tag("btn_add_up.png",  :class => "alternativeRow", :style => "float:right; margin-right:20px;") %>
 							</th>
 						    </tr>
+								<script> alert("outside of if); </script>
 							<% if !@challenge.tasks.blank? %>
+							
+							
 							<% for task in @challenge.tasks %>
+							
 	 						<%= f.fields_for "task_attributes[]", task do |task_fields| %>
+								
+							
 							<tr valign="bottom">
 								<td width="112">
 									<%= task_fields.select :score_by, options_for_select([
@@ -110,6 +116,7 @@
 									<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:8px;") %>								</td>
 								<td width="13">	</td>
 							</tr>
+							
 							<% end %> 
 	 						<% end %>       
 	 						<% end %>

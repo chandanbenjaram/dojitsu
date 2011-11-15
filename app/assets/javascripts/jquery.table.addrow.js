@@ -18,6 +18,7 @@
 			this.update();
 			$(".addRow"+this.seed)
 			.live("click",function(){
+		
 				var newRow=t.addRow();
 			});
 			$(".delRow"+this.seed)
@@ -28,6 +29,7 @@
 					if($(v).data("destroy"));
 					for(var k in $(v).data("destroy")){
 						$(v).data("destroy")[k](v);
+						
 					}
 				});
 				oj.remove();
@@ -41,7 +43,7 @@
 			.live("keyup",function(){
 				if((this.nodeName.toLowerCase()=="textarea" && $(this).html()!="") ||
 				(this.nodeName.toLowerCase()=="textarea" && $(this).val()!="") ||
-				(this.nodeName.toLowerCase()=="input" && $(this).val()!="")) t.addRow();
+				(this.nodeName.toLowerCase()=="input" && $(this).val()!="")) t.addrow();
 			});
 			this.goLive=true;
 		}
@@ -50,6 +52,7 @@
 	ExpandableTable.prototype.updateRowNumber=function(){
 		var t=this;
 		if(t.rowNumColumn){
+		
 			$("."+t.cloneClass,t.target).each(function(j,u){
 				var n=j+1;
 				$("."+t.rowNumColumn,$(u)).each(function(i,v){
