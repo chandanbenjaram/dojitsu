@@ -41,7 +41,7 @@ MY DOJITSU SCORE
 					 
 					 
 			          
-						<table >
+					    <table>
 								<td id="content1">
 								<font size=3><b><%= userChallenge.title %></b></font><br><font size=2>by <%= userChallenge.user_id %></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %> <br><%= userChallenge.child_challenges.size %> Contestments<br>
 								</td>
@@ -62,7 +62,7 @@ MY DOJITSU SCORE
 														
 														<% userChallenge.tasks.each do |aTask| %>
 																
-																<% if (aTask.is_complete == 0 rescue false) %>
+																<% if (aTask.is_complete == 1 ) %>
 															<% a+=Integer(aTask.score) %>			
 																
 																<% x+=1 %>
@@ -97,7 +97,7 @@ MY DOJITSU SCORE
 								<div id="points">&nbsp;&nbsp;<font size=4><b><%= a %><b></font></div>
 								</td>
 								
-						</table>
+						</table> 
 						
 						<hr width:100%>
 						<% t+=1 %>
@@ -110,6 +110,7 @@ MY DOJITSU SCORE
 </div>
 </div>
 </div>
+<br>
 </content>
 
 <br>
@@ -131,6 +132,7 @@ MY DOJITSU SCORE
 	<div id="challengedetails1">
 				
 	</div>
+	<br>
 </div>
 
 	
