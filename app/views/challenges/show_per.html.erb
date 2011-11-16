@@ -110,7 +110,7 @@
 					</th>
 					<th colspan="3">
 						<div float:right>
-							<%= image_tag("btn_add_up.png", :class => "addComment", :style => "float:right; margin-right:10px;") %><p align="right" style ="margin-right:10px;">ADD A TASK</p>
+							<%= image_tag("btn_add_up.png", :class => "addComment", :style => "float:right; margin-right:10px;") %>
 						</div>
 					</th>
 				</tr>
@@ -140,22 +140,22 @@
 				
 				<tr>
 					<td width="10%">		
-						<% current_user.challenges.each do |userChallenge| %>
-							<% userChallenge.tasks.each do |aTask| %>
+						
+							<% @challenge.tasks.each do |aTask| %>
 								<%= aTask.score %><%= image_tag("icon_slash.png")%></br>
-								<% end %>								
-						<% end %>
+							<% end %>								
+						
 					</td>
 					<td width="85%">
-						<% current_user.challenges.each do |userChallenge| %>
-							<% userChallenge.tasks.each do |aTask| %>
+						
+							<% @challenge.tasks.each do |aTask| %>
 								<%= aTask.name %></br>
 							<% end %>								
-						<% end %>
+						
 					</td>
 					<td width="5%" colspan="2">
-						<% current_user.challenges.each do |userChallenge| %>
-							<% userChallenge.tasks.each do |aTask| %>
+						
+							<% @challenge.tasks.each do |aTask| %>
 								<% if aTask.is_complete.to_i == 0 %>
 									<%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score) ,:class=>"task_update_popup", :style => "text-decoration: underline;" %></br>
 								<% else %>	
@@ -164,7 +164,7 @@
 									<% total_score += aTask.score.to_i %>
 								<% end %>
 							<% end %>								
-						<% end %>
+						
 					</td>
 				</tr>
 				
