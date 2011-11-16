@@ -63,11 +63,11 @@ MY DOJITSU SCORE
 														<% userChallenge.tasks.each do |aTask| %>
 																
 																<% if (aTask.is_complete == 1 ) %>
-															<% a+=Integer(aTask.score) %>			
+															<% a+=(Integer(aTask.score) rescue 0)%>			
 																
 																<% x+=1 %>
 																<% else %>
-														<% b+=Integer(aTask.score) %>
+														<% b+=(Integer(aTask.score) rescue 0) %>
 																<% y+=1 %>
 																<% end %>
 														<% end %>
