@@ -21,7 +21,7 @@ Dojitsu::Application.routes.draw do
       get "my_challenge"
       get "invitee_accepted_req"
       get "challenge_comp"
-	  get "task_update_c"
+	    get "task_update_c"
       put :update_attribute_on_the_spot
     end
   end

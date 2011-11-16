@@ -6,6 +6,17 @@ ul.tabs {
 	height: 32px; /*--Set height of tabs--*/
 	border-bottom: 1px solid #999;
 	border-left: 1px solid #999;
+	width: 85%;
+	background :#f4f4f4;
+}
+ul.tabs1 {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 32px; /*--Set height of tabs--*/
+	border-bottom: 1px solid #999;
+	border-left: 1px solid #999;
 	width: 97%;
 }
 ul.tabs li {
@@ -23,7 +34,7 @@ ul.tabs li {
 }
 ul.tabs li a {
 	text-decoration: none;
-	color: #000;
+	color: orange;
 	display: block;
 	font-size: 1.2em;
 	padding: 0 20px;
@@ -31,19 +42,29 @@ ul.tabs li a {
 	outline: none;
 }
 ul.tabs li a:hover {
-	background: #ccc;
+        color :white;
+	background:orange;
 }
-html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that the active tab does not listen to the hover properties--*/
+html 
+li.active, html ul.tabs li.active a:hover  { /*--Makes sure that the active tab does not listen to the hover properties--*/
 	background: #fff;
 	border-bottom: 1px solid #fff; /*--Makes the active tab look like it's connected with its content--*/
 }
 
-.tab_container {
+.tab_container1 {
 	border: 1px solid #999;
 	border-top: none;
 	overflow: hidden;
 	clear: both;
 	float: left; width: 97%;
+	background: #fff;
+}
+.tab_container {
+	border: 1px solid #999;
+	border-top: none;
+	overflow: hidden;
+	clear: both;
+	float: left; width: 85%;
 	background: #fff;
 }
 .tab_content {

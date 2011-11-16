@@ -16,19 +16,11 @@
 		<tr>
 		<table border=1px width=500px height=60px bgcolor=white>
 			<tr>
-				<td width=120px>
+				<td width=120px valign="top">
 					<b><font color=	#909090>DESCRIPTION</b>
 				</td>
 				<td class="editable">
 					<%= on_the_spot_edit @challenge, :description, :type => :textarea %>
-					<!--
-					<% if @challenge.nil? %>
-						<p>no challenge selected</p>
-					<% else %>			
-						<p>
-						</p>
-					<% end %>
-					-->
 				</td>
 			</tr>
 		</table>
@@ -48,17 +40,6 @@
 							<!-- HTML5 date input -->
 							<p class="date" > <%= @challenge.start_point.value %>&nbsp;&nbsp;<%#= @challenge.start_point.label %></p>
 							<!-- make it happen -->
-						<script>
-						$(".date").dateinput({
-							format: 'dd-mm-yyyy',	// the format displayed for the user
-							selectors: true,             	// whether month/year dropdowns are shown
-							min: -100,                    // min selectable day (100 days backwards)
-							max: 100,                    	// max selectable day (100 days onwards)
-							offset: [10, 20],            	// tweak the position of the calendar
-							speed: 'fast',               	// calendar reveal speed
-							firstDay: 1                  	// which day starts a week. 0 = sunday, 1 = monday etc..
-						});
-						</script>
 					<% end %>
 					<% if @challenge.start_point.value==nil%>
 					
@@ -66,16 +47,6 @@
 						<%#= @challenge.start_point.value %>
 					<% end %>
 				</td>
-				<!--
-				<td width="30%">
-					<%#= pt.text_field :dateStart, :class => "textfield_effect  date-pick", :id => "on_focus_textfield" %>
-				</td>
-				-->
-				<!--
-				<td>
-					<%#= pt.text_field :dateEnd, :class => "textfield_effect  date-pick", :id => "on_focus_textfield" %>
-				</td>
-				-->
 			</tr>
 		</table>
 		<hr/ width=400px>
@@ -94,115 +65,84 @@
 				</td>
 			</tr>
 		</table>
-		<table bg color=#f4f4f4 height="20px" >
-			<tr bgcolor="orange" height=6px border=0px>
-				<td bgcolor="orange"><font color="white">TAsKS</font></td>
+		<table bg color=#f4f4f4>
+			<tr bgcolor="orange">
+				<td bgcolor="orange"><font color="white"><b>TASKS</b></font></td>
 				<td bgcolor="orange"></td>
 			</tr>
 		</table>
 	</tr>
 	<tr>
 		<div id="ch_main_div2">
-			<table id="mytable" border="1" bgcolor=#f4f4f4 >
-				<tr bgcolor=#f5f5f5 height=20px border=0px>
-					<th>
-						<b><h3><font color="black">TOTAL:<%= @challenge.tasks.count %></font></h3></b>
+			<table width="100%" border="1" bgcolor=#f4f4f4 id="mytable" >
+				<tr bgcolor=#f5f5f5>
+					<th width="85%">
+						<h3 align="left"><font color="#8c8c8c"><b>Total : <%= @challenge.tasks.count %></b></font></h3>
 					</th>
-					<th colspan="3">
-						<div float:right>
-							<%= image_tag("btn_add_up.png", :class => "addComment", :style => "float:right; margin-right:10px;") %><p align="right" style ="margin-right:10px;">ADD A TASK</p>
-						</div>
+					<th width="3%">
+						<%= image_tag("btn_add_up.png", :class => "addComment") %>
+					</th>
+					<th width="12%">
+						<div align="left"><font color="#8c8c8c">ADD A TASK</font> </div>
 					</th>
 				</tr>
-				<tr bgcolor=#D7D7D7 height=20px border=0px>
-					<td width="100px"><h4>POINT(s)<font color="orange">/</font>TASKS</h4></td>
-					<td bgcolor=#D7D7D7 width="600px"></td>
-					<td bgcolor=#D7D7D7 colspan="2"><p style="float:right";>SCORE </p></td>
+				<tr bgcolor=#D7D7D7>
+					<td width="85%">
+						<h4 style="margin-top:15px;"><font color="#999999"  style="margin-top:15px;"><b>POINT(s)</b></font> <%= image_tag("icon_slash.png") %> <font color="#999999"><b>TASKS</b></font></h4>
+					</td>
+					<td>
+					</td>
+					<td width="15%">
+						<h4 style="margin-top:15px;"><p style="float:right; color:#999999;"><b>SCORE</b> </p></h4>
+					</td>
 				</tr>
 				<% total_score = 0 %>
 				<% total_score_count = 0 %>
-				<!--
-				<% @challenge.tasks.each do |ts|%>
-					<tr>
-							<% @challenge.tasks.each do |aTask| %>
-								<td>
-									<%= aTask.score %><font color="orange">/</font></br>
-								</td>
-								<td>
-									<%= aTask.name %></br>
-								</td>
-							<% end %>
-						</td>
-					<tr>
-				<% end %>
-				-->
-				
-				
-				<tr>
-					<td width="10%">		
-						<% current_user.challenges.each do |userChallenge| %>
-							<% userChallenge.tasks.each do |aTask| %>
-								<%= aTask.score %><%= image_tag("icon_slash.png")%></br>
-								<% end %>								
-						<% end %>
-					</td>
-					<td width="85%">
-						<% current_user.challenges.each do |userChallenge| %>
-							<% userChallenge.tasks.each do |aTask| %>
-								<%= aTask.name %></br>
-							<% end %>								
-						<% end %>
-					</td>
-					<td width="5%" colspan="2">
-						<% current_user.challenges.each do |userChallenge| %>
-							<% userChallenge.tasks.each do |aTask| %>
-								<% if aTask.is_complete.to_i == 0 %>
-									<%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score) ,:class=>"task_update_popup", :style => "text-decoration: underline;" %></br>
-								<% else %>	
-									<% total_score_count +=1 %>
-									<%= aTask.score %></br>
-									<% total_score += aTask.score.to_i %>
-								<% end %>
-							<% end %>								
-						<% end %>
+				<% @challenge.tasks.each do |aTask| %>
+				<tr bgcolor=#ffffff>
+					<td colspan="3">
+						<hr/ width=400px>
+						<% if aTask.is_complete.to_i == 0 %>
+							<h4 style="margin-top:15px;"><p style="float:left; color:#999999;"><b><%= aTask.score %> <%= image_tag("icon_slash.png")%></b></p></h4><h4 style="margin-top:15px;"><p style="float:left; color:#999999;  margin-left:5px;"><b><%= aTask.name %></b></p></h4>
+							<div class="showperscore_0"><%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score) ,:class=>"task_update_popup", :style => "text-decoration: underline;" %></div>
+						<% else %>	
+							<% total_score_count +=1 %>
+							<h4 style="margin-top:15px;"><p style="float:left; color:#999999;"><b><%= aTask.score %> <%= image_tag("icon_slash.png")%></b></p></h4><h4 style="margin-top:15px;"><p style="float:left; color:#999999;  margin-left:5px; text-decoration:line-through;"><b><%= aTask.name %></b></p></h4>
+							<div class="showperscore"><%= aTask.score %></div>
+							<% total_score += aTask.score.to_i %>
+						<% end %>	
 					</td>
 				</tr>
-				
-				
+				<% end %>
 				<tr bgcolor=#f4f4f4>
-					<td></td>
-					<td></td>									
-					<td></td>
+					<td colspan="3"></td>
 				</tr>
 			</table>
 			<table bgcolor=#f4f4f4>
 				<tr bgcolor=#ffffff>
-				  <td colspan="2" >
+					<td colspan="2" >
 					  My Dojitsu score: <br>					  
 					  <b><h4><font color="green"><%= total_score_count %></b></font> <font color="black"><b>completed,</b></font>
-				      <b><font color="orange"><%= @challenge.tasks.count.to_i-total_score_count.to_i %></b></font> <font color="black"><b>remaining</b></font></h4></td>
-					<td width="13%" bgcolor="#DBF0E4">
-						<p align=center>
-							<%= total_score %>						
-						</p>
+				      <b><font color="orange"><%= @challenge.tasks.count.to_i-total_score_count.to_i %></b></font> <font color="black"><b>remaining</b></font></h4>
+					</td>
+					<td width="13%">
+						<div class="showperscore"><%= total_score %></div>						
 					</td>
 				</tr>
-				<tr bgcolor=#f4f4f4>
-				  <td width="47%"></td>
-					<td width="40%"></td>
+				<tr bgcolor=#ffffff>
+					<td></td>
+					<td></td>
 					<td></td>
 				</tr>
 				<tr bgcolor=#f4f4f4>
-				  <td></td>
-					<td  colspan="2"><%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"%></td>
 					<td></td>
+					<td colspan="2">
+						<%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"%>
+					</td>
 				</tr>
 			</table>
 		</div >
-	</tr>
-</table>
-</div>			
-</tr>		
+	</tr>		
 </table>	
 <% end %>	
 </div>
