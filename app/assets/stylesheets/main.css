@@ -1038,17 +1038,14 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	top:-10px
 }
 .dashboardsidebar1{
-	float: left;
+
 	width: 645px;
-	position:absolute;
-	margin-right:10px;
-	margin-left:10px;
+	
+
 }
 .dashboardsidebar2 {
-	position:absolute;
-	float:left;
-	margin-left:660px;
-	margin-top:30px;
+	position:relative;
+top:10px;
 	width:280px;
 	height:auto;
 	border: 2px solid #BEBEBE;
