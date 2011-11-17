@@ -15,8 +15,8 @@ class Challenge
   
   #validation for challenge creation
   #validates_associated :start_point
-  #validates_presence_of :title,  :message => "Please enter title!"
-  #validates_length_of :title, :within => 1..30, :too_long => "Title must be between one and 30 characters", :too_short => "Title must be between one and 30 characters"
+  validates_presence_of :title,  :message => "Please enter title!"
+  validates_length_of :title, :within => 1..30, :too_long => "Title must be between one and 30 characters", :too_short => "Title must be between one and 30 characters"
   #validates_presence_of :ch_st_date, :message => "Date or Number must be selected", :allow_nil => true
   #validates_presence_of :ch_ed_date, :message => "Date or Number must be selected"
   
