@@ -12,7 +12,7 @@ class Challenge
   
   #attr_accessible :title, :description, :start_point, :end_point, :tasks, :task_comp, :social_challenge, :personal_challenge, :name
   
-  validates_presence_of :title,  :message => "Please enter title!" 
+  validates_presence_of :title,  :message => "Please enter title!"
        
   field :title, :type=>String
   field :description, :type=>String
