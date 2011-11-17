@@ -9,8 +9,8 @@
 			<td>
 				<font size="4px;"><%= @score%> <%= image_tag("icon_multiply.png")%><%= check_box_tag 'task_done', 'yes', true%> 1 mark as complete</font>
 			</td>
-			<td>
-				<%= image_tag("icon_equal.png")%><font size="4px;"> <%= @score%></font>
+			<td colspan="2">
+				<%= image_tag("icon_equal.png")%><font size="4px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @score%></font>
 			</td>
 		</tr>
 		<tr bgcolor="#ffffff">
@@ -20,5 +20,4 @@
 			<td>
 		</tr>							
     <table>
-	
 </div>	
