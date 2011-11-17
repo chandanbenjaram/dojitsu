@@ -19,7 +19,7 @@
 				<td width=120px valign="top">
 					<b><font color=	#909090>DESCRIPTION</b>
 				</td>
-				<td class="editable">
+				<td class="editable" valign="top">
 					<%= on_the_spot_edit @challenge, :description, :type => :textarea %>
 				</td>
 			</tr>
@@ -60,7 +60,8 @@
 					<% if @challenge.end_point.value==nil %>
 					
 					<% else %>
-						<%= on_the_spot_edit @challenge.end_point,:value ,:type=>:text %>&nbsp;&nbsp;<%#= @challenge.start_point.label %>
+						<%= on_the_spot_edit @challenge.end_point, :value ,:type=>:text %>&nbsp;&nbsp;<%#= @challenge.start_point.label %>
+						<%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :style => "text-decoration: underline;",:align=>"right" %>
 					<% end %>										
 				</td>
 			</tr>
@@ -107,7 +108,7 @@
 							<div class="showperscore_0"><%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score) ,:class=>"task_update_popup", :style => "text-decoration: underline;" %></div>
 						<% else %>	
 							<% total_score_count +=1 %>
-							<h4 style="margin-top:15px;"><p style="float:left; color:#999999;"><b><%= aTask.score %> <%= image_tag("icon_slash.png")%></b></p></h4><h4 style="margin-top:15px;"><p style="float:left; color:#999999;  margin-left:5px; text-decoration:line-through;"><b><%= aTask.name %></b></p></h4>
+							<h4 style="margin-top:15px;"><p style="float:left; color:#999999;"><b><%= aTask.score %> <%= image_tag("icon_slash.png", :style=>"margin-top:10px;")%></b></p></h4><h4 style="margin-top:22px;"><p style="float:left; color:#999999;  margin-left:5px; text-decoration:line-through;"><b><%= aTask.name %></b></p></h4>
 							<div class="showperscore"><%= aTask.score %></div>
 							<% total_score += aTask.score.to_i %>
 						<% end %>	

@@ -479,7 +479,7 @@ select {
 	-moz-box-shadow: 1px 1px 5px #cfcfcf inset;
 	border: 1px solid #cfcfcf;
 	vertical-align: middle;
-	width: 250px;
+	width: 220px;
 	height: 25px;
 	color:#f9a943;
 }
@@ -1160,4 +1160,9 @@ background:#DDEFCE;
 color:#7AC142;
 }
 
-
+.checking
+{
+width:60px;
+height:40px;
+border:2px solid #a52a2a:
+}

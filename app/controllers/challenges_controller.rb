@@ -175,6 +175,12 @@ class ChallengesController < ApplicationController
       @org = User.find(:all,:conditions =>["id = ?",sd.user_id]).first
     end
   end
+  
+  def date_update
+	@challenge_date = Challenge.find(params[:id])
+	@date = @challenge_date.end_point.value 
+	render :layout => false
+  end 
 
   protected
 
