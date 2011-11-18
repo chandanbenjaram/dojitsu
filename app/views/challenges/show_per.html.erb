@@ -81,7 +81,7 @@
 						<h3 align="left"><font color="#8c8c8c"><b>Total : <%= @challenge.tasks.count %></b></font></h3>
 					</th>
 					<th width="3%">
-						<%= image_tag("btn_add_up.png", :class => "addComment") %>
+						<%= link_to image_tag("btn_add_up.png" ), add_task_link_challenges_path(:id => @challenge), :class => "addComment add_task_popup" %>
 					</th>
 					<th width="12%">
 						<div align="left"><font color="#8c8c8c">ADD A TASK</font> </div>
@@ -158,6 +158,7 @@
 <script>
 	
 	$('.task_update_popup').colorbox();
+	$('.add_task_popup').colorbox();
 	
 // execute your scripts when the DOM is ready. this is a good habit
 $(function() {
