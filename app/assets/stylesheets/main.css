@@ -479,7 +479,7 @@ select {
 	-moz-box-shadow: 1px 1px 5px #cfcfcf inset;
 	border: 1px solid #cfcfcf;
 	vertical-align: middle;
-	width: 250px;
+	width: 220px;
 	height: 25px;
 	color:#f9a943;
 }
@@ -696,6 +696,7 @@ opacity: 0.95;
 }
 */
 #tooltip {
+	display: none;
 	background-image: url("FDFDG.gif");
 	background-repeat:no-repeat;
 	width:100px;
@@ -827,6 +828,32 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	background-repeat: no-repeat;
 	width: 150px;
 	height: 30px; 
+}
+.showperscore
+{
+	background: none repeat scroll 0 0 #F5FAF0;
+    color: green;
+    float: right;
+    font-size: 15px;
+    font-weight: bold;
+    height: 35px;
+    padding-top: 15px;
+    text-align: center;
+    width: 50px;
+}
+
+.showperscore_0
+{
+	width:50px;
+	height:35px;
+	background:none repeat scroll 0 0 #fef7ed;
+	color:#fbcb8c;
+	font-size:15px;
+	text-align:center;
+	float:right;
+	right:50px;
+	font-weight:bold;
+	padding-top:15px;
 }
 
 #mychallenge_boarder{
@@ -993,7 +1020,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	float:left;
 	postion:absolute;
 	padding-left:20px;
-	width:180px;
+	width:120px;
 
 }
 #content2
@@ -1037,17 +1064,14 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	top:-10px
 }
 .dashboardsidebar1{
-	float: left;
+
 	width: 645px;
-	position:absolute;
-	margin-right:10px;
-	margin-left:10px;
+	
+
 }
 .dashboardsidebar2 {
-	position:absolute;
-	float:left;
-	margin-left:660px;
-	margin-top:30px;
+	position:relative;
+top:10px;
 	width:280px;
 	height:auto;
 	border: 2px solid #BEBEBE;
@@ -1126,3 +1150,19 @@ position:relative;
 color:#fff;
 }
 
+#points
+{
+position:relative;
+top:-35px;
+width:40px;
+height:25px;
+background:#DDEFCE;
+color:#7AC142;
+}
+
+.checking
+{
+width:60px;
+height:40px;
+border:2px solid #a52a2a:
+}

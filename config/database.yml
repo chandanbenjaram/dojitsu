@@ -6,6 +6,7 @@ development:
   encoding: utf8
   database: dojitsu_dev
   username: dojitsu.dev
+#  password: root
   password: pass
   host: localhost 
   port: 3306

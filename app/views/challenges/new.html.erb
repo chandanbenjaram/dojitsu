@@ -1,11 +1,11 @@
-<!--
-<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css')%>
-<%= javascript_include_tag('simple-tabs','all','jquery.table.addrow','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.hoverIntent','jquery.cluetip','challenge_new')%>
+
+<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css','livevalidations')%>
+<%= javascript_include_tag('simple-tabs','all','jquery.table.addrow','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.hoverIntent','jquery.cluetip','challenge_new','livevalidation_standalone.compressed')%>
 <%= render 'layouts/loggedinbody'%>
 
 <div id="ch_main_div">
 	<p style="font-size:20px; color:#f9a943;margin-left:10px;margin-top:10px; font-weight:bold;">CREATE NEW</p>
-	<%= form_for(@challenge, :as =>:challenge, :validate => true ) do |f| %>
+	<%= form_for @challenge, :validate => true do |f| %>
 		<table width="100%" border="0" style="margin-top:0px;">
   			<tr>
     			<td colspan="4"><p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :id => "on_focus_textfield" %></p></td>	
@@ -18,7 +18,7 @@
 			<tr>
     			<td valign="top" width="15%" style="color:#999999;"><%= f.label :description, "DESCRIPTION" %></td>
     			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea" %></td>
-  			</tr>
+			</tr>
 			<tr>
 				<td colspan="4">
 					<hr style="color:#0066CC;width:98%; height:2px;;">
@@ -28,19 +28,19 @@
     			<td><b style="color:#999999;">START POINT</b></td>
     			<td width="18%">
 					<%= select_tag "ch_st_date", options_for_select([
-						["Choose", "0"],
+						["Choose", ""],
 						["Date","#ch_st_dat"],	 
 						["Number","#ch_st_num"]														
-						]), :style => "width:197px" 
+						]), :style => "width:197px"  
 					%>				
 				</td>
 				<td width="60%">	
 					<div id="ch_st_dat" style="display:none;">
-						<%= text_field_tag :st_value1, nil, :class => "textfield_effect  date-pick", :id => "st_dv" %></br>
+						<%= text_field_tag :st_value1, nil, :class => "textfield_effect  date-pick", :id => "st_dv"  %></br>
 					</div>
 					<div id="ch_st_num" style="display:none;">
-						<%= text_field_tag :st_value, nil , :class => "textfield_effect", :id => "st_nv"  %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<%= text_field_tag :st_label, nil , :class => "textfield_effect", :id => "st_nl"%>
+						<%= text_field_tag :st_value, nil , :class => "textfield_effect", :id => "st_nv" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<%= text_field_tag :st_label, nil , :class => "textfield_effect", :id => "st_nl"  %>
 					</div>
 			   </td>
   			</tr>
@@ -53,7 +53,7 @@
     			<td><b style="color:#999999;">END POINT</b></td>
     			<td>
 					<%= select_tag "ch_ed_date", options_for_select([
-						["Choose", "0"],							
+						["Choose", ""],							
 						["Date","#ch_ed_dat"],	 
 						["Number","#ch_ed_num"]														
 						]), :style => "width:197px" 
@@ -64,8 +64,8 @@
 						<%= text_field_tag :ed_value1, nil, :class => "textfield_effect  date-pick", :id => "ed_dv" %></br>
 					</div>
 					<div id="ch_ed_num" style="display:none;">
-						<%= text_field_tag :ed_value, nil , :class => "textfield_effect", :id => "ed_nv"  %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<%= text_field_tag :ed_label, nil , :class => "textfield_effect", :id => "ed_nl"%>
+						<%= text_field_tag :ed_value, nil , :class => "textfield_effect", :id => "ed_nv"   %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<%= text_field_tag :ed_label, nil , :class => "textfield_effect", :id => "ed_nl"  %>
 					</div>
 				</td>
   			</tr>
@@ -86,12 +86,18 @@
 								<th colspan="2" style="color:#999999;">Score this task by</th>
 								<th colspan="2" style="color:#999999;">Point(s)</th>
 								<th colspan="2" style="color:#999999;">Task(name)
-								<%= image_tag("btn_add_up.png", :class => "alternativeRow", :style => "float:right; margin-right:20px;") %>
+								<%= image_tag("btn_add_up.png",  :class => "alternativeRow", :style => "float:right; margin-right:20px;") %>
 							</th>
 						    </tr>
+	
 							<% if !@challenge.tasks.blank? %>
+							
+							
 							<% for task in @challenge.tasks %>
+							
 	 						<%= f.fields_for "task_attributes[]", task do |task_fields| %>
+								
+							
 							<tr valign="bottom">
 								<td width="112">
 									<%= task_fields.select :score_by, options_for_select([
@@ -102,14 +108,15 @@
 									%>								</td>
 								<td valign="middle" width="17"><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
 								<td width="69">
-									<%= task_fields.text_field :score , :class => "textfield_effect_nw_tk_add", :id => "on_focus_textfield"%></td>
+									<%= task_fields.text_field :score , :class => "textfield_effect_nw_tk_add", :id => "on_focus_textfield"  %></td>
 								<td valign="middle" width="17"><%= image_tag("icon_slash.png", :height => '20', :width => '5')%></td>
 								<td valign="middle" width="385">
 									<%= task_fields.hidden_field :is_complete%>
-									<%= task_fields.text_field :name ,:class => "textfield_effect_nw_tk", :id => "on_focus_textfield"%>
+									<%= task_fields.text_field :name ,:class => "textfield_effect_nw_tk" %>
 									<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:8px;") %>								</td>
 								<td width="13">	</td>
 							</tr>
+							
 							<% end %> 
 	 						<% end %>       
 	 						<% end %>
@@ -169,6 +176,7 @@
  										%>		
 									</td>
   								</tr>
+								
   								<tr>
     								<td><b style="color:#999999;">Participants</b></td>
 									<td>
@@ -194,6 +202,7 @@
  											]), :id => "per_wn", :style => "width:197px" 
  										%>
 									</td>
+				
   								</tr>
 							</table>  
     					</div>
@@ -240,338 +249,19 @@
     			<td colspan="5">e.g. reporting 10 miles for "run treadmill (2 points)" task scores 20 points</td>
 			</tr>
 		</table>			
-</div>-->
-
-
-<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css')%>
-<%= javascript_include_tag('simple-tabs','all','jquery.table.addrow','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.hoverIntent','jquery.cluetip','challenge_new')%>
-<%= render 'layouts/loggedinbody'%>
-
-<div id="ch_main_div">
-	<p style="font-size:20px; color:#f9a943;margin-left:10px;margin-top:10px; font-weight:bold;">CREATE NEW</p>
-	<%= form_for(@challenge, :as =>:challenge, :validate => true ) do |f| %>
-		<table width="100%" border="0" style="margin-top:0px;">
-  			<tr>
-    			<td colspan="4"><p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :id => "on_focus_textfield" %></p></td>	
-			</tr>
-			<tr>
-				<td colspan="4">
-					<hr style="color:#0066CC;width:98%; height:2px;">
-				</td>
-			</tr>
-			<tr>
-    			<td valign="top" width="15%" style="color:#999999;"><%= f.label :description, "DESCRIPTION" %></td>
-    			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea" %></td>
-  			</tr>
-			<tr>
-				<td colspan="4">
-					<hr style="color:#0066CC;width:98%; height:2px;;">
-				</td>
-			</tr>
-			<tr>
-    			<td><b style="color:#999999;">START POINT</b></td>
-    			<td width="18%">
-					<%= select_tag "ch_st_date", options_for_select([
-						["Choose", "0"],
-						["Date","#ch_st_dat"],	 
-						["Number","#ch_st_num"]														
-						]), :style => "width:197px" 
-					%>				
-				</td>
-				<td width="60%">	
-					<div id="ch_st_dat" style="display:none;">
-						<%= text_field_tag :st_value1, nil, :class => "textfield_effect  date-pick", :id => "st_dv" %></br>
-					</div>
-					<div id="ch_st_num" style="display:none;">
-						<%= text_field_tag :st_value, nil , :class => "textfield_effect", :id => "st_nv"  %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<%= text_field_tag :st_label, nil , :class => "textfield_effect", :id => "st_nl"%>
-					</div>
-			   </td>
-  			</tr>
-			<tr>
-				<td colspan="4">
-					<hr style="color:#0066CC;width:98%; height:2px;">
-				</td>
-			</tr>
-			<tr>
-    			<td><b style="color:#999999;">END POINT</b></td>
-    			<td>
-					<%= select_tag "ch_ed_date", options_for_select([
-						["Choose", "0"],							
-						["Date","#ch_ed_dat"],	 
-						["Number","#ch_ed_num"]														
-						]), :style => "width:197px" 
-					%>				
-				</td>
-				<td>	
-					<div id="ch_ed_dat" style="display:none;">
-						<%= text_field_tag :ed_value1, nil, :class => "textfield_effect  date-pick", :id => "ed_dv" %></br>
-					</div>
-					<div id="ch_ed_num" style="display:none;">
-						<%= text_field_tag :ed_value, nil , :class => "textfield_effect", :id => "ed_nv"  %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<%= text_field_tag :ed_label, nil , :class => "textfield_effect", :id => "ed_nl"%>
-					</div>
-				</td>
-  			</tr>
-			<tr>
-				<td colspan="4">
-					<hr style="color:#0066CC;width:98%; height:2px;">
-				</td>
-			</tr>
-			<tr>
-  				<td valign="top">
-  					<b id="load-local" class="load-local" href="#hidden" rel="#hidden"  style="color:#999999;" title="The score for each task will be added up to determin the winner(s).">CREATE TASK
-					<%= image_tag("btn_questionmark_up.png")%></b>
-				</td>
-				<td colspan="3">
-    				<div id="new_tsk_field">		
-						<table border="1">
-							<tr>
-								<th colspan="2" style="color:#999999;">Score this task by</th>
-								<th colspan="2" style="color:#999999;">Point(s)</th>
-								<th colspan="2" style="color:#999999;">Task(name)
-								<%= image_tag("btn_add_up.png", :class => "alternativeRow", :style => "float:right; margin-right:20px;") %>
-							</th>
-						    </tr>
-							<% if !@challenge.tasks.blank? %>
-							<% for task in @challenge.tasks %>
-	 						<%= f.fields_for "task_attributes[]", task do |task_fields| %>
-							<tr valign="bottom">
-								<td width="112">
-									<%= task_fields.select :score_by, options_for_select([
-										["Choose", "0"],
-										["Check box:1 for checking off the task", "Check box:1 for checking off the task"],	 
-										["Self-report number","Self-report number"]														
-										]), :style => "width:197px;" 
-									%>								</td>
-								<td valign="middle" width="17"><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
-								<td width="69">
-									<%= task_fields.text_field :score , :class => "textfield_effect_nw_tk_add", :id => "on_focus_textfield"%></td>
-								<td valign="middle" width="17"><%= image_tag("icon_slash.png", :height => '20', :width => '5')%></td>
-								<td valign="middle" width="385">
-									<%= task_fields.hidden_field :is_complete%>
-									<%= task_fields.text_field :name ,:class => "textfield_effect_nw_tk", :id => "on_focus_textfield"%>
-									<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:8px;") %>								</td>
-								<td width="13">	</td>
-							</tr>
-							<% end %> 
-	 						<% end %>       
-	 						<% end %>
-							
-							<tr>
-								<td colspan="6">
-									<b style="color:#999999;"><%= image_tag("icon_arrow_left.png")%>&nbsp;&nbsp;Do all tasks need to be complete before the challenge is marked complete?</b><br>
-									<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
-									<font style="color:#999999;"><%= f.label "Yes" %></font>
-									<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
-									<font style="color:#999999;"><%= f.label "No" %></font>								</td>
-							</tr>
-						</table>
-					</div>
-    			</td>
-  			</tr>
-			<tr>
-				<td colspan="4">
-					<hr style="color:#0066CC;width:98%; height:2px;">
-				</td>
-			</tr>
-			<tr>
-  				<td valign="top"><b style="color:#999999;">PRIVACY</b></td>
-    			<td colspan="3">
-    				<ul class="tabs">
-    					<li><a href="#tab1" id="soc">Social</a></li>
-    					<li><a href="#tab2" id="per">Personal</a></li>
-					</ul>
-
-					<div class="tab_container">
-    					<div id="tab1" class="tab_content">
-    						<table width="100%" border="0">
-  								<tr>
-    								<td><b style="color:#999999;">Who wins</b></td>
-									<td>
-										<%= select_tag :soc_who_win, options_for_select([
-	    									["Choose", ""],							
-											["Add all milestones together","Add all milestones together"],
-											["1st person to reach End Point","1st person to reach End Point"],	 
-											["Highest milestone","Highest milestone"],	
-											["Lowest milestone","Lowest milestone"],	
-											["Participant reaches all milestones","Participant reaches all milestones"] 														
- 											]), :id => "soc_wn", :style => "width:197px" 
- 										%>		
-									</td>
-  								</tr>
-  								<tr>
-    								<td><b style="color:#999999;">How many winners</b></td>
-									<td>
-										<%= select_tag :soc_how_many_winner, options_for_select([
-											["Choose", ""],
-    										["1", "1"],							
-											["3","3"],
-											["5","5"],	 
-											["All participants win","all"] 														
- 											]), :id => "soc_hm", :style => "width:197px" 
- 										%>		
-									</td>
-  								</tr>
-  								<tr>
-    								<td><b style="color:#999999;">Participants</b></td>
-									<td>
-										<div id="fb-root"></div>
-										<%= hidden_field_tag "myvar", 0%>					
-    									
-    									<p>
-    										<input type="button"
-	      										onclick="sendRequestToManyRecipients(); return false;"
-									      		value="INVITE PARTICIPANTS" class="links_invite_p"/>
-    									</p>
-    									<script>
-      										FB.init({
-        										appId  : '232592880122189',
-        										status : true,
-        										cookie : true,
-        										oauth: true
-      										});
-										
-      										function sendRequestToOneRecipient() {
-        									var user_id = document.getElementsByName("user_id")[0].value;
-        										FB.ui({
-													method: 'send',
-													name: 'My dojitsu challenge',
-													link: 'http://www.nytimes.com/2011/06/15/arts/people-argue-just-to-win-scholars-assert.html',
-													},requestCallback);
-      										}
-											
-      										function sendRequestToManyRecipients()
-											{
-													var request ={method: 'apprequests',
-													message: 'Do Your Best',
-													title: "Invite Participants",
-													data: 'tracking information for user'
-																		    };
-											FB.ui(request, requestCallback);
-												}					
-											function requestCallback(response) 
-												{
-														var requestsToSend = new Array();
-														var i = 0;
-														names = Array.new
-														while (i < response.request_ids.length)
-																			{
-																			FB.api('/'+response.request_ids[i], function(res)
-																			{
-														requestsToSend[i] = res['to']['id'];
-														name=requestsToSend[i]
-														alert("name is: "+ name);
-														names<<name
-													
-													
-													var query = FB.Data.query('SELECT name,last_name,first_name FROM user WHERE uid={0}',requestsToSend[i]);
-
-												   query.wait(function(rows) {
-														 console.log(rows[0].name);
-														 console.log(rows[0].first_name);
-														 console.log(rows[0].last_name);
-														 //console.log(rows[0].gender);
-														 alert(rows[0].name);
-														 alert(rows[0].first_name);
-									
-														 alert(rows[0].last_name);
-														 //alert(rows[0].sex);
-														});
-																					
-														
-																	      	}
-																			);
-											i++;
-																			}
-																			
-																			
-	
-											$(function () {  
-															$('#alert').click(function ()
-																{  
-															
-																alert(name);  
-																return false;  
-												})  
-																	}
-												); 	
-												}
-    									</script>
-    									
-									</td>
-  								</tr>
-							</table>
-    					</div>
-    					<div id="tab2" class="tab_content">
-       						<table width="100%" border="0">
-  								<tr>
-    								<td><b style="color:#999999;">Who wins</b></td>
-									<td>
-										<%= select_tag :per_who_win, options_for_select([
-    										["Choose", ""],							
-											["Add all milestones together","Add all milestones together"],
-											["1st person to reach End Point","1st person to reach End Point"],	 
-											["Highest milestone","Highest milestone"],	
-											["Lowest milestone","Lowest milestone"],	
-											["Participant reaches all milestones","Participant reaches all milestones"] 														
- 											]), :id => "per_wn", :style => "width:197px" 
- 										%>
-									</td>
-  								</tr>
-							</table>  
-    					</div>
-					</div>
-    			</td>
-  			</tr>
-			<tr>
-				<td colspan="4">
-					<hr style="color:#0066CC;width:98%; height:2px;">
-				</td>
-			</tr>
-  			<tr>
-  				<td></td>
-    			<td></td>
-    			<td colspan="2">
-    				<%= link_to "CANCEL", challenges_path, :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel"%>
-    				<%= f.submit "DONE", :style => "width: 100px; float:right; margin-right:10px;", :class => "links" %>
-				</td>
-  			</tr> 
-		</table>
-	<% end %>	
 </div>
 
-<div id="hidden">
-		<table height="150">						
-			<tr>
-  		  	  <td width="43%"><p style="color:#f9a943; font-size:12px; margin-top:15px;"><b>check box:</b></p></td>
-		  	  <td width="17%"><input type="text" value="1(Check of the task)" size="18" /></td>
-	     	  	<td width="3%"><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
-		  	  <td width="13%"><input type="text" value="point(s) per task" size="14" /></td>
-  	     	  	<td width="3%"><%= image_tag("icon_equal.png", :height => '10', :width => '10')%></td>
-		  	  <td width="21%"><input type="text" value="Score" size="5" /></td>
-  			</tr>
-			<tr>
-  		 	  <td width="43%" height="36"><p style="color:#f9a943; font-size:12px; margin-top:15px;"><b>Self-reported Number:</b></p></td>
-	    	  <td width="17%"><input type="text" value="Number" size="18" /></td>
-				<td><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
-			  <td width="13%"><input type="text" value="point(s) per task" size="14" /></td>
-    			<td><%= image_tag("icon_equal.png", :height => '10', :width => '10')%></td>
-		      <td width="21%"><input type="text" value="Score" size="5" /></td>
-  			</tr>
-			<tr>	
-  				<td height="51"></td>
-    			<td colspan="5">e.g. reporting 10 miles for "run treadmill (2 points)" task scores 20 points</td>
-			</tr>
-		</table>			
-</div> 
-
-
-
-<style>
-#hidden { 
-  display:none; 
-} 
-</style>
-
-
+<script type="text/javascript">
+    var ch_st_date = new LiveValidation('ch_st_date');
+    ch_st_date.add(Validate.Presence);
+				
+	var ch_ed_date = new LiveValidation('ch_ed_date');
+	ch_ed_date.add(Validate.Presence);
+				
+	var challenge_task_attributes__name = new LiveValidation('challenge_task_attributes__name');
+	challenge_task_attributes__name.add(Validate.Presence);
+					
+	var livevalidation_email = new LiveValidation('livevalidation_email');
+	livevalidation_email.add( Validate.Presence);
+					
+</script>

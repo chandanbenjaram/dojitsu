@@ -10,6 +10,8 @@
 		
 		arrows: true
 	});
+	
+	
   }); 
 
 jQuery(document).ready(function($) {
@@ -115,4 +117,5 @@ jQuery(document).ready(function($) {
 	$('.reset_password_popup').colorbox();
 
 });
+
 
