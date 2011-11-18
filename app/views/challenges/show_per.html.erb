@@ -106,7 +106,7 @@
 			<table id="mytable" border="1" bgcolor=#f4f4f4 >
 				<tr bgcolor=#f5f5f5 height=20px border=0px>
 					<th>
-						<b><h3><font color="black">TOTAL:<%= @challenge.task_attributes.count %></font></h3></b>
+						<b><h3><font color="black">TOTAL:<%= @challenge.tasks.count %></font></h3></b>
 					</th>
 					<th colspan="3">
 						<div float:right>
@@ -122,17 +122,13 @@
 				<% ch= 1 %>
 				<tr>
 					<td width="5%">		
-						<% @challenge.task_attributes.each do |tsk| %>
-							<% tsk.each_with_index do |task_value, task_index|%>
-								<% if task_index == 3%>
-									 <%= task_value[1]%> <font color="orange">/</font></br>
-								<% end %>
-							<% end %>								
+						<% @challenge.tasks.each do |tsk| %>
+							<%= @challenge.tasks.name %>						
 						<% end %>
 					</td>
 					<!--
 					<td width="5%">
-						<% @challenge.task_attributes.each do |tsk| %>
+						<% @challenge.tasks.each do |tsk| %>
 							<% tsk.each_with_index do |task_value, task_index|%>
 								<% if task_index == 0%>
 									 <font color="orange">/</font></br>						
@@ -142,7 +138,7 @@
 					</td>
 					-->
 					<td width="80%">
-						<% @challenge.task_attributes.each do |tsk| %>
+						<% @challenge.tasks.each do |tsk| %>
 							<% tsk.each_with_index do |task_value, task_index|%>
 								<% if task_index == 0%>
 									 <%= task_value[1]%></br>						
@@ -155,7 +151,7 @@
 						<% @task_na=0 %>
 						<% tsk_compete= 0 %>
 						<% sum = 0 %>
-						<% @challenge.task_attributes.each do |tsk| %>
+						<% @challenge.tasks.each do |tsk| %>
 							<% tsk.each_with_index do |task_value, task_index|%>					
 								<% if task_index == 0%>
 									<% @task_na= task_value[1]%>
@@ -199,7 +195,7 @@
 					</td>
 				</tr>
 				<!--
-				<% @challenge.task_attributes.each do |tsk| %>
+				<% @challenge.tasks.each do |tsk| %>
 				<tr>
 					<% tsk.each_with_index do |task_value, task_index|%>
 						<% if task_index == 2%>
@@ -226,7 +222,7 @@
 				  <td colspan="2" >
 					  My Dojitsu score: <br>					  
 					  <b><h4><font color="green"><%= tsk_compete %></b></font> <font color="black"><b>completed,</b></font>
-				      <b><font color="orange"><%= @challenge.task_attributes.count.to_i-tsk_compete.to_i %></b></font> <font color="black"><b>remaining</b></font></h4></td>
+				      <b><font color="orange"><%= @challenge.tasks.count.to_i-tsk_compete.to_i %></b></font> <font color="black"><b>remaining</b></font></h4></td>
 					<td width="13%" bgcolor="#DBF0E4">
 						<p align=center>
 							<%= sum %>						

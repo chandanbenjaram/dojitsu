@@ -1,37 +1,39 @@
-<%= stylesheet_link_tag('main')%>
+<%= stylesheet_link_tag('main','simple-tabs')%>
 <%= javascript_include_tag('simple-tabs')%>
+<%= javascript_include_tag('simple-tabs','jquery.table.addrow','jquery.datePicker','date','jquery.editable-1.3.3','on_the_spot','jquery.ezpz_tooltip','jquery.ezpz_tooltip.min.js')%>
 <%= render 'layouts/loggedinbody'%>
 <br><br>
 <div id="ch_main_div">
-<div id="ch_main_div1">
- <div class="challange">
- 	<%= @challenge.title%>
- </div>
-	
-	
+			<div id="ch_main_div1">
+						<div class="challange">
+							<%= @challenge.title%>
+						</div>
+			
+			
 						<div>
 							<table>
 									<tr >
 										<td width="20px" >
-											<%= button_to  "", new_challenge_url ,  :class => "accept_request", :method => :get %>
+											<%= image_tag ("accepted.png") %>
 										</td> 
 										<td width="20px" >
-											<%= button_to  "", new_challenge_url ,  :class => "decline_request", :method => :get %>
+											<%= image_tag ("declane.png") %>
 										</td>
 										<td >
-											<%= button_to  "", new_challenge_url ,  :class => "think_request", :method => :get %>
+											<%= image_tag ("thinkbutton.png") %>
 										</td>
 									</tr>
 							</table>	
 						</div>
+			
 			
 						<div>
 							<table >
 									<tr>
 										<td width="100px" heigh="50px">
 											<b><font color= #909090>DESCRIPTION</font></b></td>
-										<td>
-										<%= on_the_spot_edit @challenge,:description , :type=>:textarea  %>
+										<td width="500px">
+										<pre ><%= on_the_spot_edit @challenge,:description , :type=>:textarea ,:rows => 10, :columns => 55  %></pre>
 										</td>
 									</tr>
 							</table>
@@ -43,7 +45,7 @@
 												<td width="100px" class="titles">
 													<b><font color= #909090>ORGANIZER</font></b>
 												</td>
-												<td>current.user
+												<td id="username">
 												</td>
 											</tr>
 											<tr><hr/>
@@ -79,7 +81,7 @@
 										<b><font color= #909090>END POINT</font></b>
 									</td>
 									<td>
-										<%= @challenge.start_point.value %>
+										<%= @challenge.end_point.value %>
 									</td>
 								</tr>
 							</table>
@@ -89,7 +91,9 @@
 						<hr/>
 					</div>
 			
-     <tr>
+					<div>
+							<table>
+								 <tr>
 		<td width="100px" class="titles">
 			<b><font color= #909090>PARTICIPANTS</b></font>
 		</td>
@@ -100,164 +104,109 @@
 	<tr>
     		<td colspan="1">
     				<ul class="tabs">
-    					<li><a href="#tab1">TASKS</a></li>
-    					<li><a href="#tab2">PEOPLE</a></li>
+    					<li><a href="#tab1"><b>TASKS</b></a></li>
+    					<li><a href="#tab2"><b>PEOPLE</b></a></li>
 					</ul>
+				<br>
 
-					<div class="tab_container">
-    					<div id="tab1" class="tab_content">
-    						<table id="mytable" border="1" bgcolor=#f4f4f4 >
-				<tr bgcolor=#f5f5f5 height=20px border=0px>
-					<th>
-						<b><h3><font color="black">TOTAL:<%= @challenge.task_attributes.count %></font></h3></b>
-					</th>
-					<th colspan="3">
-						<div float:right>
-							<%= image_tag("btn_add_up.png", :class => "addComment", :style => "float:right; margin-right:10px;") %><p align="right" style ="margin-right:10px;">ADD A TASK</p>
-						</div>
-					</th>
-				</tr>
-				<tr bgcolor=#D7D7D7 height=20px border=0px>
-					<td width="100px"><h4>POINT(s)<font color="orange">/</font>TASKS</h4></td>
-					<td bgcolor=#D7D7D7 width="600px"></td>
-					<td bgcolor=#D7D7D7 colspan="2"><p style="float:right";>SCORE </p></td>
-				</tr>
-				<% ch= 1 %>
-				<tr>
-					<td width="5%">		
-						<% @challenge.task_attributes.each do |tsk| %>
-							<% tsk.each_with_index do |task_value, task_index|%>
-								<% if task_index == 3%>
-									 <%= task_value[1]%> <font color="orange">/</font></br>
-								<% end %>
-							<% end %>								
-						<% end %>
-					</td>
-					<!--
-					<td width="5%">
-						<% @challenge.task_attributes.each do |tsk| %>
-							<% tsk.each_with_index do |task_value, task_index|%>
-								<% if task_index == 0%>
-									 <font color="orange">/</font></br>						
-								<% end %>
-							<% end %>								
-						<% end %>
-					</td>
-					-->
-					<td width="80%">
-						<% @challenge.task_attributes.each do |tsk| %>
-							<% tsk.each_with_index do |task_value, task_index|%>
-								<% if task_index == 0%>
-									 <%= task_value[1]%></br>						
-								<% end %>
-							<% end %>								
-						<% end %>		
-					</td>
-					<td width="10%">
-						<% st=0 %>
-						<% tsk_compete= 0 %>
-						<% sum = 0 %>
-						<% @challenge.task_attributes.each do |tsk| %>
-							<% tsk.each_with_index do |task_value, task_index|%>
-								<% if task_index == 2%>
-									<% st= task_value[1]%>
-								<% end %>		
-								<% if task_index == 3%>
-									<% if st.to_i == 0 %>
-										<%= link_to "0", '#dialog' ,:name=>"modal" %>
-					
-										
-										
-										
-										
-										
-										
-										<div id="boxes">
-											<!-- #customize your modal window here -->
-											  
-											<!-- Do not remove div#mask, because you'll need it to fill the whole screen --> 
-											<div id="mask"></div>
-										</div>
-										<% else%>
-										<% tsk_compete += 1 %>
-										<% sum += task_value[1].to_i %>
-										<%= task_value[1] %></br>
-									<% end %> 											
-								<% end %>
-							<% end %>								
-						<% end %>		
-					</td>
-				</tr>
-				<!--
-				<% @challenge.task_attributes.each do |tsk| %>
-				<tr>
-					<% tsk.each_with_index do |task_value, task_index|%>
-						<% if task_index == 2%>
-							<td>
-								<%= task_value[1]%></br>
-							</td>
-						<% end %>
-						<% if task_index == 0%>
-							<td>
-								<%= task_value[1]%>
-							</td>
-						<% end %>							
-					<% end %>
-				</tr>
-				<% end %>
-				-->	
-				<tr bgcolor=#f4f4f4>
-					<td></td>
-					<td></td>									
-				</tr>
-			<table>
-			<table bgcolor=#f4f4f4>
-				<tr bgcolor=#ffffff>
-				  <td colspan="2" >
-					  My Dojitsu score: <br>					  
-					  <b><h4><font color="green"><%= tsk_compete %></b></font> <font color="black"><b>completed,</b></font>
-				      <b><font color="orange"><%= @challenge.task_attributes.count.to_i-tsk_compete.to_i %></b></font> <font color="black"><b>remaining</b></font></h4></td>
-					<td width="13%" bgcolor="#00CC99">
-						<p align=center>
-							<%= sum %>						
-						</p>
-					</td>
-				</tr>
-				<tr bgcolor=#f4f4f4>
-				  <td width="47%"></td>
-					<td width="40%"></td>
-					<td></td>
-				</tr>
-				<tr bgcolor=#f4f4f4>
-				  <td></td>
-					<td  colspan="2"><%= link_to "MARK AS COMPLETED", "#", :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"%></td>
-					<td></td>
-				</tr>
-			</table>
-    					</div>
+				<div class="tab_container">
+						<div id="tab1" class="tab_content">
+								<table border="0">
+										<tr>
+												<td>
+													<table border="1">
+														<tr bgcolor=#f5f5f5 height=20px border=0px>
+															<th><b><h3><font color="black">TOTAL:<%= @challenge.tasks.count %></font></h3></b><%#= link_to render(:partial => 'challenges/message'), root_url %></th>
+															<th colspan="3"><%= image_tag("btn_add_up.png")%></th>
+														</tr>
+														<tr bgcolor=#D7D7D7 height=20px border=0px>
+															<td width="50px">
+																<h4>POINT(s)<font color="orange">/</font>TASKS</h4>
+															</td>
+															<td width="700px" bgcolor=#D7D7D7> 
+															</td>
+															<td bgcolor=#D7D7D7>
+																<p style="float:right";>SCORE </p>
+															</td>
+															<td bgcolor=#D7D7D7>
+															</td>
+													   </tr>
+																  
+																  <% sum = 0 %>
+																   
+																<%   len=@challenge.tasks.length %>
+													
+																<% @challenge.tasks.each do |aTask| %>
+																<% aTask.score %>
+													<tr>
+															<td>       
+																 	<%= aTask.score %>
+															</td>
+															<td>
+																<%= aTask.name %>
+															</td>
+																<td>
+																<%#= aTask.score_by %>
+															</td>
+															<td align="right">
+																	<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:12px;") %>
+															</td>
+													  </tr>
+														  <% end %>
+														
+											     </table>
+								            </td>		
+  							         </tr>	
+						      </table>
+    				   </div>
+					   <div>
+					   <br>
+					   </div>
     					<div id="tab2" class="tab_content">
        						<table width="100%" border="0">
-  								<tr><td>
-    							<div class="ch_main_div">
+  								<tr>	
+									<td>
+												<table bgcolor=#F4F4F4>
+													<tr bgcolor=#F4F4F4>
+														<td width=250px">TOTAL:
+														</td>
+														<td><input type="text">&nbsp;
+															<select>
+															<option value="volvo">ALL</option>
+															<option value="saab">ACCEPTED</option>
+															<option value="mercedes">PENDING</option>
+															<option value="audi">DECLINED</option>
+															</select> 
+															</td>
+															<td>
+															<%= image_tag("search.png", :class => "delRow", :style => "float:leftt; margin-top:12px;") %>
+														</td>
+													</tr>
+												</table>
+									
     									<script type="text/javascript" src="../includes/js/jquery.min.js"></script>  
-    <script src="http://connect.facebook.net/en_US/all.js"></script>  
-
-
-<div id="fb-root"></div>  
-       
-    <table width="100%" border="0">  
-      
-    <tr>  
-      
-    <td align="left">  
-      
-    <div id="friendslist"><table id="class"><script > for (i=0;i<125;i++)</script><td id="here"></td><script>end</script></div>  
-      
-    </td>  
-      
-    </tr>  
-      
-    </table>  
+										<script src="http://connect.facebook.net/en_US/all.js"></script>  
+												<div id="fb-root"></div> 
+														<table  border="0"> 
+															<tr bgcolor=#F4F4F4>
+																			<td>
+																				NAME
+																			</td>
+																			<td align="right">
+																				STATUS
+																			</td>
+															</tr>
+															<tr> 
+																<td align="left"> 
+																		<div id="friendslist"></div> 
+																</td> 
+															</tr> 
+														</table> 
+														</td>
+														</tr>
+														</table>
+														</div>
+														</div>
 
     <script> 
      
@@ -278,9 +227,10 @@
             if (response.session)
             { 
                        globaluserid=response.session["uid"]; 
+					   name=globaluserid;
+					    $("#username").append(name);
                       FB.api( 
-                         
-                                    { 
+                             { 
                                      
                                     method: 'fql.query',
                                     
@@ -293,7 +243,6 @@
                                             var a=response.length;
                                              for(i=0;i<a;i++)
                                              {
-                                               
                                                         FB.api({
                                                        
                                                             method: 'fql.query',
@@ -301,7 +250,6 @@
                                                             query: 'SELECT name,pic_square FROM user WHERE uid=' + response[i].uid1
                                                        
                                                         }, function(response){
-                                                               
                                                                 htmlcontent = '<img src=' + response[0].pic_square + ' title=' + response[0].name + ' />';
                                                                 htmlcontent1 ='<b>'+ response[0].name;+'</b>'
                                                                 htmlcontent3='<table>';
@@ -309,7 +257,7 @@
                                                                 htmlcontent5='</td>';
                                                                 htmlcontent6='</table>'
                                                                 htmlcontent2 = '<br/>';
-																htmlcontent2 = '<hr width="800px">';
+																htmlcontent2 = '<hr width="600px">';
                                                                
                                                                 $("#friendslist").append(htmlcontent3);
                                                                 $("#friendslist").append(htmlcontent4);
@@ -345,28 +293,5 @@
      
     </script>
 	 
-	
-	
-	
-	   
-	 
-				
-
-
-	
-	<br>
-    								
-									
-    							</div>
-									
-									</td>
-  								</tr>
-							</table>  
-    					</div>
-					</div>
-    			</td>
-  			</tr>	
-	</table>
-	</div>
 </div>
 </div>
