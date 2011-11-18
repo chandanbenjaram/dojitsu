@@ -2,7 +2,7 @@ class Task
   include Mongoid::Document
   
   #task validations
-  validates_presence_of :name, :message => "Please add at least one task."  
+  #validates_presence_of :name, :message => "Please add at least one task."  
 
   # name of task
   field :name, :type => Hash
