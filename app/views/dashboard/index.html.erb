@@ -5,6 +5,9 @@
 <div class="challange">
 												my dashboard
 											</div>
+											<% as= current_user.challenges.size %>
+											
+												
 <table>
 	<td>
 		<content>
@@ -19,7 +22,7 @@
 											<div class="mychallenge">
 													<div id="titlechallenge">
 														<div id="title">
-															MY CHALLENGES ( <%=@as%> ) 
+															MY CHALLENGES ( <%= as %> ) 
 														</div>
 														<div class="second_titlechallenge">
 															<%= button_to "NEW", new_challenge_url, :class => "new_challenge_button", :method => :get%>
@@ -37,13 +40,20 @@
 													</div>
 													
 													<div style="overflow :auto;  height : 440px;" id="challengedetails">
+												
 														
 															<% t=1 %>
+																<table>
 															<% current_user.challenges.each do |userChallenge| %>
-															<table>
+														                <tr>
 																	<td id="content1">
 																		<% title = userChallenge.title %>
-																		<font size=3><b><%= link_to "#{title}",show_per_challenges_path(:id => userChallenge)%><%#= userChallenge.title %></b></font><br><font size=2>by <%= userChallenge.user_id %></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %> <br><%= userChallenge.child_challenges.size %> contestant<br>
+																		<font size=3><b><%= link_to "#{title}",show_per_challenges_path(:id => userChallenge)%><%#= userChallenge.title %></b></font><br><font size=2>by <%= userChallenge.user_id %></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %> 
+																		<br><%if ( userChallenge.child_challenges.size <2 ) %> 
+																		<%= userChallenge.child_challenges.size %> Contestant<br>
+																		    <% else %>
+																			 <%= userChallenge.child_challenges.size %> Contestants<br>
+																			 <% end %>
 																	</td>
 																	<td id="content2">
 																	
@@ -60,13 +70,14 @@
 																						<% a+=Integer(aTask.score) %>
 																						<% x+=1 %>
 																					<% else %>
-																						<% b+=Integer(aTask.score) %>
+																						<% b += aTask.score.to_i %>
 																						<% y+=1 %>
 																					<% end %>
 																					<% end %>
 												
 																					<div class="update">
-																						<%= image_tag("FDFDG.gif", :alt => "Update") %> 
+																					<%= link_to image_tag("FDFDG.gif", :alt => "Update"),show_per_challenges_path(:id => userChallenge)%>
+																						
 																					</div>
 																					<div class="completedtask"> 
 																						<%= a %> points (<%= x %> &nbsp; tasks)
@@ -89,12 +100,14 @@
 																			</div>
 																	</td>
 																
-																</table>
+																
 																<% t+=1 %>
 															
 															 
 															  <hr width:100%>
+															  </tr>
 															<% end %>
+															</table>
 														
 													</div>
 												</div>
@@ -107,7 +120,7 @@
 											<div class="mychallenge">
 														<div id="titlechallenge">
 															<div id="title">
-																NEW MESSAGES( <%=@as%> ) 
+																NEW MESSAGES 
 															</div>
 															<div class="second_titlechallenge">
 																<%= button_to "NEW", new_challenge_url, :class => "new_challenge_button", :method => :get%>
@@ -123,7 +136,6 @@
 															</div>
 													
 														</div>
-														
 												
 												</div>
 									</div>
