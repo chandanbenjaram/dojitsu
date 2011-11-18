@@ -5,10 +5,10 @@
 
 <div id="ch_main_div">
 	<p style="font-size:20px; color:#f9a943;margin-left:10px;margin-top:10px; font-weight:bold;">CREATE NEW</p>
-	<%= form_for(@challenge, :as =>:challenge, :validate => true ) do |f| %>
+	<%= form_for(@challenge, :as =>:challenge) do |f| %>
 		<table width="100%" border="0" style="margin-top:0px;">
   			<tr>
-    			<td colspan="4"><p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :id => "on_focus_textfield" %></p></td>	
+    			<td colspan="4"><p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :id => "on_focus_textfield", :required=>"required"  %></p></td>	
 			</tr>
 			<tr>
 				<td colspan="4">
@@ -17,8 +17,8 @@
 			</tr>
 			<tr>
     			<td valign="top" width="15%" style="color:#999999;"><%= f.label :description, "DESCRIPTION" %></td>
-    			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea" %></td>
-  			</tr>
+    			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea", :required=>"required" %></td>
+			</tr>
 			<tr>
 				<td colspan="4">
 					<hr style="color:#0066CC;width:98%; height:2px;;">
@@ -28,19 +28,19 @@
     			<td><b style="color:#999999;">START POINT</b></td>
     			<td width="18%">
 					<%= select_tag "ch_st_date", options_for_select([
-						["Choose", "0"],
+						["Choose", ""],
 						["Date","#ch_st_dat"],	 
 						["Number","#ch_st_num"]														
-						]), :style => "width:197px" 
+						]), :style => "width:197px" , :required=>"required" 
 					%>				
 				</td>
 				<td width="60%">	
 					<div id="ch_st_dat" style="display:none;">
-						<%= text_field_tag :st_value1, nil, :class => "textfield_effect  date-pick", :id => "st_dv" %></br>
+						<%= text_field_tag :st_value1, nil, :class => "textfield_effect  date-pick", :id => "st_dv"  %></br>
 					</div>
 					<div id="ch_st_num" style="display:none;">
-						<%= text_field_tag :st_value, nil , :class => "textfield_effect", :id => "st_nv"  %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<%= text_field_tag :st_label, nil , :class => "textfield_effect", :id => "st_nl"%>
+						<%= text_field_tag :st_value, nil , :class => "textfield_effect", :id => "st_nv" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<%= text_field_tag :st_label, nil , :class => "textfield_effect", :id => "st_nl"  %>
 					</div>
 			   </td>
   			</tr>
@@ -53,10 +53,10 @@
     			<td><b style="color:#999999;">END POINT</b></td>
     			<td>
 					<%= select_tag "ch_ed_date", options_for_select([
-						["Choose", "0"],							
+						["Choose", ""],							
 						["Date","#ch_ed_dat"],	 
 						["Number","#ch_ed_num"]														
-						]), :style => "width:197px" 
+						]), :style => "width:197px", :required=>"required" 
 					%>				
 				</td>
 				<td>	
@@ -64,8 +64,8 @@
 						<%= text_field_tag :ed_value1, nil, :class => "textfield_effect  date-pick", :id => "ed_dv" %></br>
 					</div>
 					<div id="ch_ed_num" style="display:none;">
-						<%= text_field_tag :ed_value, nil , :class => "textfield_effect", :id => "ed_nv"  %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<%= text_field_tag :ed_label, nil , :class => "textfield_effect", :id => "ed_nl"%>
+						<%= text_field_tag :ed_value, nil , :class => "textfield_effect", :id => "ed_nv"   %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<%= text_field_tag :ed_label, nil , :class => "textfield_effect", :id => "ed_nl"  %>
 					</div>
 				</td>
   			</tr>
@@ -104,15 +104,15 @@
 										["Choose", "0"],
 										["Check box:1 for checking off the task", "Check box:1 for checking off the task"],	 
 										["Self-report number","Self-report number"]														
-										]), :style => "width:197px;" 
+										]), :style => "width:197px;", :required=>"required" 
 									%>								</td>
 								<td valign="middle" width="17"><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
 								<td width="69">
-									<%= task_fields.text_field :score , :class => "textfield_effect_nw_tk_add", :id => "on_focus_textfield"%></td>
+									<%= task_fields.text_field :score , :class => "textfield_effect_nw_tk_add", :id => "on_focus_textfield" , :required=>"required" %></td>
 								<td valign="middle" width="17"><%= image_tag("icon_slash.png", :height => '20', :width => '5')%></td>
 								<td valign="middle" width="385">
 									<%= task_fields.hidden_field :is_complete%>
-									<%= task_fields.text_field :name ,:class => "textfield_effect_nw_tk", :id => "on_focus_textfield"%>
+									<%= task_fields.text_field :name ,:class => "textfield_effect_nw_tk", :id => "on_focus_textfield" , :required=>"required" %>
 									<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:8px;") %>								</td>
 								<td width="13">	</td>
 							</tr>
@@ -159,7 +159,7 @@
 											["Highest milestone","Highest milestone"],	
 											["Lowest milestone","Lowest milestone"],	
 											["Participant reaches all milestones","Participant reaches all milestones"] 														
- 											]), :id => "soc_wn", :style => "width:197px" 
+ 											]), :id => "soc_wn", :style => "width:197px" , :required=>"required"
  										%>		
 									</td>
   								</tr>
@@ -172,7 +172,7 @@
 											["3","3"],
 											["5","5"],	 
 											["All participants win","all"] 														
- 											]), :id => "soc_hm", :style => "width:197px" 
+ 											]), :id => "soc_hm", :style => "width:197px" , :required=>"required"
  										%>		
 									</td>
   								</tr>
@@ -250,3 +250,9 @@
 			</tr>
 		</table>			
 </div>
+
+<script>
+$(document).ready(function() {
+    $('#challenge_new').validator();
+  }); 
+</script>

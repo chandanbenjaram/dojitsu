@@ -10,6 +10,8 @@
 		
 		arrows: true
 	});
+	
+	
   }); 
 
 jQuery(document).ready(function($) {
