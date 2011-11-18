@@ -1,4 +1,6 @@
 Dojitsu::Application.routes.draw do   
+  resources :validatiions
+
   get "dashboard/index"
 
   # user registration & 3rd party logins
