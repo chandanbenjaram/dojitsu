@@ -38,6 +38,7 @@
 				t.update();
 				if(t.deleteCallBack && $.isFunction(t.deleteCallBack)) 
 					t.deleteCallBack(o);
+				
 			});
 			$(".autoAdd"+this.seed)
 			.live("keyup",function(){

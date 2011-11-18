@@ -1,4 +1,4 @@
-<%= javascript_include_tag('js-class', 'dashboard_index','bluff-min', 'excanvas','jquery-1.3.2', 'ui.core','ui.progressbar')%>
+<%= javascript_include_tag('ui.progressbar')%>
 <%= stylesheet_link_tag('jquery-ui', 'ui.core','ui.progressbar','ui.theme', 'main')%>
 
 <%= render 'layouts/loggedinbody'%>
@@ -7,17 +7,13 @@
 											</div>
 <table>
 	<td>
-		
-	
-				
-				<content>
+		<content>
 				
 				<table>
 					<td>
 						<tr>
 							<td>
-										
-										<div class="dashboardsidebar">
+									<div class="dashboardsidebar">
 											
 										
 											<div class="mychallenge">
@@ -39,14 +35,15 @@
 														</div>
 												
 													</div>
-													<div id="challengedetails">
+													
+													<div style="overflow :auto;  height : 440px;" id="challengedetails">
 														
 															<% t=1 %>
 															<% current_user.challenges.each do |userChallenge| %>
 															<table>
 																	<td id="content1">
 																		<% title = userChallenge.title %>
-																		<font size=3><b><%= link_to "#{title}",show_per_challenges_path(:id => userChallenge)%><%#= userChallenge.title %></b></font><br><font size=2>by <%= userChallenge.user_id %></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %> <br><%= userChallenge.child_challenges.size %> Contestments<br>
+																		<font size=3><b><%= link_to "#{title}",show_per_challenges_path(:id => userChallenge)%><%#= userChallenge.title %></b></font><br><font size=2>by <%= userChallenge.user_id %></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %> <br><%= userChallenge.child_challenges.size %> contestant<br>
 																	</td>
 																	<td id="content2">
 																	
@@ -126,6 +123,7 @@
 															</div>
 													
 														</div>
+														
 												
 												</div>
 									</div>

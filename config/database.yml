@@ -6,11 +6,7 @@ development:
   encoding: utf8
   database: dojitsu_dev
   username: dojitsu.dev
-<<<<<<< HEAD
   password: root
-=======
-  password: pass
->>>>>>> 00521f0c717f7785afe17c32d15f962345550337
   host: localhost 
   port: 3309
   timeout: 5000
