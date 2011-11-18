@@ -25,6 +25,8 @@ Dojitsu::Application.routes.draw do
       get "challenge_comp"
 	    get "task_update_c"
       get "date_update"
+      get "add_task_link"
+      get "add_task_fun"
       put :update_attribute_on_the_spot
     end
   end
