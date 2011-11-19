@@ -183,7 +183,7 @@
 											["3","3"],
 											["5","5"],	 
 											["All participants win","all"] 														
- 											]), :id => "soc_hm", :style => "width:197px", :required => "required"
+ 											]), :id => "soc_hm", :style => "width:197px"
  										%>	
 										<div id="soc_how_many_winner_div"></div>	
 									</td>
@@ -319,13 +319,6 @@
 		{
 			document.getElementById("challenge_task_attributes__score_by_div").innerHTML="<font color=\"#FF0000\">Please add at least one task!</font>";
 			document.challenge_form.challenge_task_attributes__score.focus();
-			return false;
-		}
-		
-		if(document.challenge_form.soc_hm.value=="")
-		{
-			document.getElementById("soc_how_many_winner_div").innerHTML="<font color=\"#FF0000\">Please select a number of winners!</font>";
-			document.challenge_form.soc_hm.focus();
 			return false;
 		}
 		
