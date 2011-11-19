@@ -5,8 +5,8 @@ development:
   #adapter: mysql2
   encoding: utf8
   database: dojitsu_dev
-  username: root
-  password:
+  username: dojitsu.dev
+  password: pass
   host: localhost 
   port: 3306
   timeout: 5000

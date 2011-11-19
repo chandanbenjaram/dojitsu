@@ -50,9 +50,9 @@
 																		<% title = userChallenge.title %>
 																		<font size=3><b><%= link_to "#{title}",show_per_challenges_path(:id => userChallenge)%><%#= userChallenge.title %></b></font><br><font size=2>by <%= userChallenge.user_id %></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %> 
 																		<br><%if ( userChallenge.child_challenges.size <2 ) %> 
-																		<%= userChallenge.child_challenges.size %> Contestant<br>
+																		<%= userChallenge.child_challenges.size %> contestant<br>
 																		    <% else %>
-																			 <%= userChallenge.child_challenges.size %> Contestants<br>
+																			 <%= userChallenge.child_challenges.size %> contestants<br>
 																			 <% end %>
 																	</td>
 																	<td id="content2">
