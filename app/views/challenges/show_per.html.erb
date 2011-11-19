@@ -33,18 +33,10 @@
 					<b><font color=	#909090>START POINT</font></b>
 				</td>
 				<td class="editable">
-					<% if @challenge.start_point.value? %>		
-						<script src="http://cdn.jquerytools.org/1.2.6/form/jquery.tools.min.js"></script>
-							<!-- dateinput styling -->
-							<link rel="stylesheet" type="text/css" href="dateinput.css"/>
-							<!-- HTML5 date input -->
-							<p class="date" > <%= @challenge.start_point.value %>&nbsp;&nbsp;<%#= @challenge.start_point.label %></p>
-							<!-- make it happen -->
-					<% end %>
-					<% if @challenge.start_point.value==nil%>
-					
+					<% if @challenge.start_point.type.to_s == "PointDateType" %>		
+						<%= @challenge.start_point.value.strftime("%b %d, %Y") %>
 					<% else %>							
-						<%#= @challenge.start_point.value %>
+						<%= @challenge.start_point.value %>
 					<% end %>
 				</td>
 			</tr>
@@ -57,11 +49,10 @@
 				<td width=120px>
 					<b><font color=	#909090>END POINT</font></b></td>
 				<td class="editable">
-					<% if @challenge.end_point.value==nil %>
-					
-					<% else %>
-						<%= on_the_spot_edit @challenge.end_point, :value ,:type=>:text %>&nbsp;&nbsp;<%#= @challenge.start_point.label %>
-						<%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :style => "text-decoration: underline;",:align=>"right" %>
+					<% if @challenge.end_point.type.to_s == "PointDateType" %>		
+						<%= @challenge.end_point.value.strftime("%b %d, %Y") %>
+					<% else %>							
+						<%= @challenge.end_point.value %>
 					<% end %>										
 				</td>
 			</tr>
@@ -74,14 +65,15 @@
 		</table>
 	</tr>
 	<tr>
-		<div id="ch_main_div2">
-			<table width="100%" border="1" bgcolor=#f4f4f4 id="mytable" >
+		<div id="ch_main_div3">
+		  <div id="ch_main_div2">
+			<table width="100%" border="1" bgcolor=#f4f4f4 >
 				<tr bgcolor=#f5f5f5>
 					<th width="85%">
 						<h3 align="left"><font color="#8c8c8c"><b>Total : <%= @challenge.tasks.count %></b></font></h3>
 					</th>
 					<th width="3%">
-						<%= link_to image_tag("btn_add_up.png" ), add_task_link_challenges_path(:id => @challenge), :class => "addComment add_task_popup" %>
+						<%= link_to image_tag("btn_add_up.png", :style =>"margin-top:3px;" ), add_task_link_challenges_path(:id => @challenge), :class => "addComment add_task_popup" %>
 					</th>
 					<th width="12%">
 						<div align="left"><font color="#8c8c8c">ADD A TASK</font> </div>
@@ -89,7 +81,7 @@
 				</tr>
 				<tr bgcolor=#D7D7D7>
 					<td width="85%">
-						<h4 style="margin-top:15px;"><font color="#999999"  style="margin-top:15px;"><b>POINT(s)</b></font> <%= image_tag("icon_slash.png") %> <font color="#999999"><b>TASKS</b></font></h4>
+						<h4 style="margin-top:15px;"><font color="#999999"  style="margin-top:15px;"><b>POINT(s)</b></font> <%= image_tag("icon_slash.png", :height => '12', :width => '5') %> <font color="#999999"><b>TASKS</b></font></h4>
 					</td>
 					<td>
 					</td>
@@ -101,17 +93,21 @@
 				<% total_score_count = 0 %>
 				<% @challenge.tasks.each do |aTask| %>
 				<tr bgcolor=#ffffff>
-					<td colspan="3">
-						<hr/ width=400px>
+					<td colspan="3"  id="mytable" >
 						<% if aTask.is_complete.to_i == 0 %>
-							<h4 style="margin-top:15px;"><p style="float:left; color:#999999;"><b><%= aTask.score %> <%= image_tag("icon_slash.png")%></b></p></h4><h4 style="margin-top:15px;"><p style="float:left; color:#999999;  margin-left:5px;"><b><%= aTask.name %></b></p></h4>
-							<div class="showperscore_0"><%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score) ,:class=>"task_update_popup", :style => "text-decoration: underline;" %></div>
+							<div id="task_list">
+								<p style="float:left; margin-top:15px;"><%= aTask.score %> <%= image_tag("icon_slash.png", :height => '10', :width => '5')%></p><p style="float:left;  margin-top:15px; margin-left:5px;"><%= aTask.name %></p>
+								<div class="showperscore_0"><%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => "text-decoration: underline;" %></div>
+							</div>
 						<% else %>	
-							<% total_score_count +=1 %>
-							<h4 style="margin-top:15px;"><p style="float:left; color:#999999;"><b><%= aTask.score %> <%= image_tag("icon_slash.png", :style=>"margin-top:10px;")%></b></p></h4><h4 style="margin-top:22px;"><p style="float:left; color:#999999;  margin-left:5px; text-decoration:line-through;"><b><%= aTask.name %></b></p></h4>
-							<div class="showperscore"><%= aTask.score %></div>
-							<% total_score += aTask.score.to_i %>
-						<% end %>	
+							<div id="task_list">
+								<% total_score_count +=1 %>
+								<p style="float:left; margin-top:15px;"><%= aTask.score %> <%= image_tag("icon_slash.png", :height => '10', :width => '5')%></p><p style="float:left; margin-top:15px; margin-left:5px; text-decoration:line-through;"><%= aTask.name %></p>
+								<div class="showperscore"><%= aTask.score %></div>
+								<% total_score += aTask.score.to_i %>
+							</div>
+						<% end %>
+						<hr/ width=400px>																																	
 					</td>
 				</tr>
 				<% end %>
@@ -142,6 +138,7 @@
 					</td>
 				</tr>
 			</table>
+		  </div >
 		</div >
 	</tr>		
 </table>	
@@ -421,11 +418,11 @@ $(document).ready(function() {
     border-radius: 5px 5px 5px 5px;
     border-style: solid;
     border-width: 10px;
-    margin-top: 35px;
+    margin-top: 25px;
 }
 
 #ch_main_div1{
-	border-width:60px;
+	border-width:30px;
   	border-style:solid;
     border-radius: 15px 15px 15px 15px;
   	border-color:#ffffff;
@@ -434,15 +431,17 @@ $(document).ready(function() {
     -webkit-border-radius: 5px;
     border-radius:         5px;
 }
-#ch_main_div2{
-	border-width:5px;
+
+#ch_main_div3{
+	border-width:2px;
   	border-style:solid;
-    border-radius: 15px 15px 15px 15px;
+  	border-color:grey;
+}
+
+#ch_main_div2{
+	border-width:10px;
+  	border-style:solid;
   	border-color:#f4f4f4;
-	margin-top:10px;
-	-moz-border-radius:    5px;
-    -webkit-border-radius: 5px;
-    border-radius:         5px;
 	background-color:#fffff
 }
 
