@@ -33,18 +33,10 @@
 					<b><font color=	#909090>START POINT</font></b>
 				</td>
 				<td class="editable">
-					<% if @challenge.start_point.value? %>		
-						<script src="http://cdn.jquerytools.org/1.2.6/form/jquery.tools.min.js"></script>
-							<!-- dateinput styling -->
-							<link rel="stylesheet" type="text/css" href="dateinput.css"/>
-							<!-- HTML5 date input -->
-							<p class="date" > <%= @challenge.start_point.value %>&nbsp;&nbsp;<%#= @challenge.start_point.label %></p>
-							<!-- make it happen -->
-					<% end %>
-					<% if @challenge.start_point.value==nil%>
-					
+					<% if @challenge.start_point.type.to_s == "PointNumberType" %>		
+						<p class="date" > <%= @challenge.start_point.value %>&nbsp;&nbsp;<%#= @challenge.start_point.label %></p>
 					<% else %>							
-						<%#= @challenge.start_point.value %>
+						<p class="date" > <%= @challenge.start_point.value.strftime("%b %m, %Y") %>&nbsp;&nbsp;<%#= @challenge.start_point.label %></p>
 					<% end %>
 				</td>
 			</tr>
@@ -57,11 +49,10 @@
 				<td width=120px>
 					<b><font color=	#909090>END POINT</font></b></td>
 				<td class="editable">
-					<% if @challenge.end_point.value==nil %>
-					
-					<% else %>
-						<%= on_the_spot_edit @challenge.end_point, :value ,:type=>:text %>&nbsp;&nbsp;<%#= @challenge.start_point.label %>
-						<%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :style => "text-decoration: underline;",:align=>"right" %>
+					<% if @challenge.start_point.type.to_s == "PointNumberType" %>		
+						<p class="date" > <%= @challenge.start_point.value %>&nbsp;&nbsp;<%#= @challenge.start_point.label %></p>
+					<% else %>							
+						<p class="date" > <%= @challenge.start_point.value.strftime("%b %m, %Y") %>&nbsp;&nbsp;<%#= @challenge.start_point.label %></p>
 					<% end %>										
 				</td>
 			</tr>
