@@ -128,7 +128,8 @@ class ChallengesController < ApplicationController
   def task_update
     @id = params[:id]
     @name = params[:name]
-	  @score = params[:score]
+	 @score = params[:score]
+	 @score_by = params[:score_by]
     render :layout => false
   end
   
