@@ -7,7 +7,7 @@
 				<font size="4px;"><%= @name%></font>
 			<td>
 		</tr>	
-		<tr  bgcolor="#f5faf0">
+		<tr  bgcolor="#ABD6AD">
 			<td>
 				<font size="4px;"><%= @score%> <%= image_tag("icon_multiply.png")%><%= check_box_tag 'task_done', 'yes', true%> 1 mark as complete</font>
 			</td>
@@ -23,18 +23,21 @@
 		</tr>							
     <table>
   <% else %>
-	<table bgcolor="#f4f4f4" >
+	<table bgcolor="#f4f4f4">
 		<tr bgcolor="#ffffff">
 			<td colspan="2">
 				<font size="4px;"><%= @name%></font>
 			<td>
 		</tr>	
-		<tr  bgcolor="#f5faf0">
+		<tr  bgcolor="#ABD6AD">
 			<td>
-				<font size="4px;"><%= @score%> <%= image_tag("icon_multiply.png")%><%= text_field_tag 'no_of_task', nil %> 1 mark as complete</font>
+				<script>
+					var sd = <%= @score%>	
+				</script>
+				<font size="4px;"><%= @score %><%= image_tag("icon_multiply.png")%><%= text_field_tag 'no_of_task', nil, :onkeyup=>"changeVal(this.value,sd)" %> 1 mark as complete</font>
 			</td>
 			<td colspan="2">
-				<%= image_tag("icon_equal.png")%><font size="4px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @score%></font>
+				<%= image_tag("icon_equal.png")%><font size="2px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= text_field_tag 'tatal_s', nil %></font>
 			</td>
 		</tr>
 		<tr bgcolor="#ffffff">

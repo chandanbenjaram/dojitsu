@@ -36,7 +36,9 @@ class ChallengesController < ApplicationController
   end
 
   def create
+    #raise params[:invitees].inspect
     @ch = Challenge.new(params[:challenge])
+    #raise @ch.id.inspect
     @ch_st_date = params[:ch_st_date]
     @st_p_val1 = params[:st_value1]
     @st_p_val = params[:st_value]
@@ -134,6 +136,7 @@ class ChallengesController < ApplicationController
   end
   
   def task_update_c
+	raise params.inspect
 	@ch_ts_update = Challenge.find(params[:id])
 	@name = params[:name]
 	@ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1)
