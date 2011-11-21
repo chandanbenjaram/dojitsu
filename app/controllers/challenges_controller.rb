@@ -22,8 +22,8 @@ class ChallengesController < ApplicationController
 
   def show_per
     @challenge = Challenge.find(params[:id])
-    ch = @challenge.social_type.type 
-    if ch == ChallengeSocialType and ch!= ChallengeType and ch!=ChallengePersonalType
+    
+    if (@challenge.social_type.instance_of? ChallengeSocialType rescue false)
       render "show_soc" and return 
     else 
       render "show_per"
