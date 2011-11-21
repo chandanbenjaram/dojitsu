@@ -829,32 +829,6 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	width: 150px;
 	height: 30px; 
 }
-.showperscore
-{
-	background: none repeat scroll 0 0 #F5FAF0;
-    color: green;
-    float: right;
-    font-size: 15px;
-    font-weight: bold;
-    height: 35px;
-    padding-top: 15px;
-    text-align: center;
-    width: 50px;
-}
-
-.showperscore_0
-{
-	width:50px;
-	height:35px;
-	background:none repeat scroll 0 0 #fef7ed;
-	color:#fbcb8c;
-	font-size:15px;
-	text-align:center;
-	float:right;
-	right:50px;
-	font-weight:bold;
-	padding-top:15px;
-}
 
 #mychallenge_boarder{
 	-moz-border-radius: 5px 5px 0px 0px;
@@ -1165,4 +1139,39 @@ color:#7AC142;
 width:60px;
 height:40px;
 border:2px solid #a52a2a;
+}
+
+#task_list{
+	width:100%;
+	height:50px;
+	font-weight:bold;
+	font-size: 15px;
+	color:#999999;
+}
+
+.showperscore
+{
+	background: none repeat scroll 0 0 #ABD6AD;
+    color: green;
+    float: right;
+    font-size: 15px;
+    font-weight: bold;
+    height: 35px;
+    padding-top: 15px;
+    text-align: center;
+    width: 50px;
+}
+
+.showperscore_0
+{
+	width:50px;
+	height:35px;
+	background:none repeat scroll 0 0 #FFCCCC;
+	color:#fbcb8c;
+	font-size:15px;
+	text-align:center;
+	float:right;
+	right:50px;
+	font-weight:bold;
+	padding-top:15px;
 }
