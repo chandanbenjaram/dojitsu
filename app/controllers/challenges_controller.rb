@@ -23,6 +23,7 @@ class ChallengesController < ApplicationController
   def show_per
 
     @challenge = Challenge.find(params[:id])
+	# render :text => @challenge.child_challenges[0].user_id and return
     #raise @challenge = challenge.tasks.all.inspect
       
     
@@ -93,7 +94,9 @@ class ChallengesController < ApplicationController
         end        
       end
     else
-      #raise "per"
+     #raise "per"
+	  
+	  
       @challenge = Challenge.new(:user_id => (current_user.fbauth.uid rescue current_user.id), :title => @ch.title, :description => @ch.description, \
       :personal_type => ChallengePersonalType.new(:who_win => @pr_who_win)) do |new_challenge|
         if @ch_st_date == "#ch_st_dat" and  @ch_ed_date == "#ch_ed_dat"
@@ -121,7 +124,9 @@ class ChallengesController < ApplicationController
 
   def update
     if @challenge.update_attributes(params[:challenge])
+	 can_edit_on_the_spot
       redirect_to :action => 'show', :id => @challenge
+	  
     else
       render :action => edit
     end
@@ -151,9 +156,53 @@ class ChallengesController < ApplicationController
     render :layout => false
   end
   
+  def date_update
+   
+      @challenge = Challenge.find(params[:id])
+	@value=params[:value]
+	  #@challenge.start_point.value 
+	  @challenge.start_point.value
+	  render :layout => false
+	  end
+	  
+	def status
+	@ch = Challenge.find(params[:id])
+	@status = @ch.social_type
+	@status.update_attribute(:status,"1")
+     if @status.status == 1
+	render:text=> "accepted"
+	 else 
+	 render :text => "declined"
+	end 
+	#render :text => @status 
+	#@ch.social_type.where(:status => params[:status]).update(:status => 1)
+	  end
+	  
+	  
+	def decline
+	@ch = Challenge.find(params[:id])
+	@status = @ch.social_type
+	@status.update_attribute(:status,"-1")
+     if @status.status != 1 or @status.status!= 0
+	 render:text=> "declined"
+	 else 
+	 render :text => "thinking"
+	end 
+	#render :text => @status 
+	#@ch.social_type.where(:status => params[:status]).update(:status => 1)
+	  end
+	  
+	  
+	  
+	  def message
+	  render :partial => 'challenges/message' and return 
+	  render :layout => false
+	  end
+  
   def task_update_c
 	@ch_ts_update = Challenge.find(params[:id])
 	@name = params[:name]
+
 	@ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1)
 	redirect_to show_per_challenges_path(:id => params[:id])
   end

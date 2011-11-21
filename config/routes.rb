@@ -1,3 +1,4 @@
+
 Dojitsu::Application.routes.draw do   
   get "dashboard/index"
 
@@ -22,6 +23,10 @@ Dojitsu::Application.routes.draw do
       get "invitee_accepted_req"
       get "challenge_comp"
 	  get "task_update_c"
+	  get "date_update"
+	  get "message"
+	  get "status"
+	  get "decline"
       put :update_attribute_on_the_spot
     end
   end
