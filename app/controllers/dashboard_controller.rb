@@ -1,9 +1,5 @@
 class DashboardController < ApplicationController
   def index
-    @as = Challenge.find(:all).count
-	
-
- 
+    #raise current_user.inspect
   end
-
 end

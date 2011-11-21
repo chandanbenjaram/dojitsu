@@ -479,7 +479,7 @@ select {
 	-moz-box-shadow: 1px 1px 5px #cfcfcf inset;
 	border: 1px solid #cfcfcf;
 	vertical-align: middle;
-	width: 250px;
+	width: 220px;
 	height: 25px;
 	color:#f9a943;
 }
@@ -1038,17 +1038,14 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	top:-10px
 }
 .dashboardsidebar1{
-	float: left;
+
 	width: 645px;
-	position:absolute;
-	margin-right:10px;
-	margin-left:10px;
+	
+
 }
 .dashboardsidebar2 {
-	position:absolute;
-	float:left;
-	margin-left:660px;
-	margin-top:30px;
+	position:relative;
+top:10px;
 	width:280px;
 	height:auto;
 	border: 2px solid #BEBEBE;
@@ -1137,4 +1134,44 @@ background:#DDEFCE;
 color:#7AC142;
 }
 
+.checking
+{
+width:60px;
+height:40px;
+border:2px solid #a52a2a:
+}
 
+#task_list{
+	width:100%;
+	height:50px;
+	font-weight:bold;
+	font-size: 15px;
+	color:#999999;
+}
+
+.showperscore
+{
+	background: none repeat scroll 0 0 #ABD6AD;
+    color: green;
+    float: right;
+    font-size: 15px;
+    font-weight: bold;
+    height: 35px;
+    padding-top: 15px;
+    text-align: center;
+    width: 50px;
+}
+
+.showperscore_0
+{
+	width:50px;
+	height:35px;
+	background:none repeat scroll 0 0 #FFCCCC;
+	color:#fbcb8c;
+	font-size:15px;
+	text-align:center;
+	float:right;
+	right:50px;
+	font-weight:bold;
+	padding-top:15px;
+}
