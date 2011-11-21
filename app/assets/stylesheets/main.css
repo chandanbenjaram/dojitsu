@@ -808,7 +808,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 
 
 .ip-input{
-	float:right
+	float:right;
 	margin: 0px;
 }
 
@@ -1138,7 +1138,7 @@ color:#7AC142;
 {
 width:60px;
 height:40px;
-border:2px solid #a52a2a:
+border:2px solid #a52a2a;
 }
 
 #task_list{

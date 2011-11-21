@@ -1,13 +1,13 @@
 --- 
 - !ruby/object:Rubber::Configuration::InstanceItem 
   domain: dojitsu.com
-  external_host: ec2-184-73-206-218.compute-1.amazonaws.com
-  external_ip: 184.73.206.218
+  external_host: ec2-107-20-19-126.compute-1.amazonaws.com
+  external_ip: 50.19.123.249
   image_id: ami-fd589594
-  image_type: t1.micro
-  instance_id: i-ba030cda
-  internal_host: domU-12-31-39-14-EC-37.compute-1.internal
-  internal_ip: 10.206.239.197
+  image_type: m1.large
+  instance_id: i-e7295284
+  internal_host: ip-10-83-143-58.ec2.internal
+  internal_ip: 10.83.143.58
   name: dev
   platform: linux
   roles: 
@@ -39,6 +39,10 @@
     name: mysql_master
     options: {}
 
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: mongodb
+    options: {}
+
   root_device_type: ebs
   security_groups: 
   - dojitsu_production_default
@@ -50,9 +54,10 @@
   - dojitsu_production_apache
   - dojitsu_production_db
   - dojitsu_production_mysql_master
-  static_ip: 184.73.206.218
-  zone: us-east-1d
+  - dojitsu_production_mongodb
+  static_ip: 50.19.123.249
+  zone: us-east-1a
 - volumes: {}
 
   static_ips: 
-    dev: 184.73.206.218
+    dev: 50.19.123.249
