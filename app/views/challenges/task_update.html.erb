@@ -27,7 +27,7 @@
 		</tr>							
     <table>
   <% else %>
-   <!--
+    <!--
 	<table bgcolor="#f4f4f4">
 		<tr bgcolor="#ffffff">
 			<td colspan="2">
@@ -67,7 +67,9 @@
 		<table bgcolor="#f4f4f4">
 		<tr bgcolor="#ffffff">
 			<td colspan="2">
-				<%= text_field_tag 'name', @name %>
+				<font size="4px;"><%= @name %></font>
+				<%= hidden_field_tag 'name', @name %>
+				<%= hidden_field_tag 'id', @id %>
 			<td>
 		</tr>	
 		<tr  bgcolor="#ABD6AD">

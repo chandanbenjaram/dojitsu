@@ -136,10 +136,13 @@ class ChallengesController < ApplicationController
   end
   
   def task_update_c
-	raise params.inspect
+	#raise params.inspect
 	@ch_ts_update = Challenge.find(params[:id])
-	@name = params[:name]
-	@ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1)
+	unless params[:tatal_s]
+		@ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1)
+	else
+		@ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1, :score => params[:tatal_s])
+	end 
 	redirect_to show_per_challenges_path(:id => params[:id])
   end
 
