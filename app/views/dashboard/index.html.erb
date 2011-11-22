@@ -128,11 +128,9 @@
     </td>
 	<td valign=top>
 		<div class="dashboardsidebar2">
-			<div class="whatsnew">
-					WHAT'S NEW 
-				<div id="viewall">
-					VIEW ALL
-				</div>
+			<div class="whatsnew">	
+				<font style="float:left">WHAT'S NEW</font> 
+				<%= link_to "VIEW ALL", challenges_path, :style=>"float:right; text-decoration:none; color:#fff;", :class=>"ds_view_all" %>
 			</div>
 			<% @all_new_challenge.each do |anc| %>
 				<div id="contentbox">
@@ -158,9 +156,16 @@
 						</tr>
 						<tr>
 							<td colspan="2">
-								<p style="text-transform:none;">
-									<%=h truncate(anc.description, :length => 128) %>....<%= link_to "VIEW" , "#"%>									
-								</p>								
+								<% if anc.personal_type.type.to_s == "ChallengePersonalType"%>
+									<p style="text-transform:none;">
+										<%=h truncate(anc.description, :length => 128) %>....<%= link_to "VIEW" , show_per_challenges_path(:id => anc.id) %>									
+									</p>
+								<% end %>
+								<% if anc.social_type.type.to_s == "ChallengeSocialType"%>
+									<p style="text-transform:none;">
+										<%=h truncate(anc.description, :length => 128) %>....<%= link_to "VIEW" , show_soc_challenges_path(:id => anc.id) %>									
+									</p>
+								<% end %>								
 							</td>
 						</tr>
 					</table>

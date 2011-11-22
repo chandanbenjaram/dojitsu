@@ -546,6 +546,18 @@ input.radio {
 	width: 130px;
 }
 
+.ds_view_all {
+	background: none repeat scroll 0 0 #f9a943;
+	border-radius: 3px 3px 3px 3px;
+	display: block;
+	font-size: 10px;
+	margin: 2px 15px 2px 2px;
+	padding: 5px;
+	text-align: center;
+	text-transform: uppercase;
+	width: 60px;
+}
+
 .links_invite_p {
 	background: none repeat scroll 0 0 #f9a943;
 	border-radius: 3px 3px 3px 3px;

@@ -17,7 +17,6 @@ class ChallengesController < ApplicationController
   def show_soc
     @challenge = Challenge.find(params[:id])
     @org = User.find(:all,:conditions => ["id=?",@challenge.user_id]).first
-    @lists = List.all
   end
 
   def show_per
