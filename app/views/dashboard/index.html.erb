@@ -136,10 +136,8 @@
 			</div>
 			<% @all_new_challenge.each do |anc| %>
 				<div id="contentbox">
-					<table width="100%" style="margin-top:-2px; margin-left:-2px;">
-						<tr>
-							<td colspan="2"><%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:0px;") %></td>
-						</tr>
+					<%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:0px;") %>
+					<table width="100%" style="margin-top:-10px;">
 						<tr>
 							<td width="60%"><font size="3px;" style="font-weight:bold"><%= anc.title%></font></td>
 							<td width="40%">
@@ -158,8 +156,10 @@
 						<tr>
 							<td colspan="2"><%= anc.child_challenges.size%> contestants</td>
 						</tr>
+						<tr>
+							<td colspan="2"><p style="text-transform:none;"><%= anc.description%></p><p style="float:right"><%= link_to "VIEW" , "#"%></td>
+						</tr>
 					</table>
-					<p><%= anc.description%></p><p style="float:right"><%= link_to "VIEW"%></p>
 				</div>
 			<% end %>
 			<!--
