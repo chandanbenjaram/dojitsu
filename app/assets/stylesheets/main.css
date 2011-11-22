@@ -1047,6 +1047,13 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	background:#000000;
 
 }
+#check2
+{
+	height:60px;
+	width:760px;
+	background:#000000;
+    margin-top:20px;
+}
 #check
 {
 	color:#7AC142;
@@ -1139,6 +1146,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	position:absolute; 
 	border:1px solid black;	
 }
+
 .completedtask
 {
 color:#fff;
@@ -1156,6 +1164,22 @@ color:#Ffffff;
 {
 float:left;
 left:3px;
+position:relative;
+color:#fff;
+}
+
+.completedtask1
+{
+color:#fff;
+left:150px;
+position:relative;
+}
+
+
+.notcompleted1
+{
+float:left;
+left:95px;
 position:relative;
 color:#fff;
 }
@@ -1196,7 +1220,25 @@ border:2px solid #a52a2a;
     padding-top: 15px;
     text-align: center;
     width: 50px;
+	
+	
 }
+.showperscore1
+{
+	background: none repeat scroll 0 0 #ABD6AD;
+    color: green;
+    float: right;
+    font-size: 15px;
+    font-weight: bold;
+    height: 35px;
+    padding-top: 15px;
+    text-align: center;
+    width: 50px;
+	top:-37px;
+	position:relative;
+	right:5px;
+}
+
 
 .showperscore_0
 {

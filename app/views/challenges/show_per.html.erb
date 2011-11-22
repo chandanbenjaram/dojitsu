@@ -114,39 +114,48 @@
 						<hr/ width=400px>																																	
 					</td>
 				</tr>
+				
 				<% end %>
 				<tr bgcolor=#f4f4f4>
 					<td colspan="3"></td>
 				</tr>
 			</table>
-			<table bgcolor=#f4f4f4>
-				<tr bgcolor=#ffffff>
-					<td colspan="2" >
-					  My Dojitsu score: <br>					  
-					  <b><h4><font color="green"><%= total_score_count %></b></font> <font color="black"><b>completed,</b></font>
-				      <b><font color="orange"><%= @challenge.tasks.count.to_i-total_score_count.to_i %></b></font> <font color="black"><b>remaining</b></font></h4>
-					</td>
-					<td width="13%">
-						<div class="showperscore"><%= total_score %></div>						
-					</td>
-				</tr>
-				<tr bgcolor=#ffffff>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr bgcolor=#f4f4f4>
-					<td></td>
-					<td colspan="2">
-						<%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"%>
-					</td>
-				</tr>
-			</table>
+			<div>
+			
+			My Dojitsu score: <br>
+					 <div class="task" id="taskprogress"></div><div class="showperscore1"><%= total_score %></div>	
+					 <style>
+					 .task
+					 {
+					  width:700px;
+					 {
+					 </style>
+					<div id="check2">
+					
+						<div class="completedtask1"> 
+								<%= total_score %> points (<%= total_score_count %> &nbsp; tasks)
+						</div>
+						<div class="notcompleted1">
+									<font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="#fff"><%= (total-total_score) %> points (<%= @challenge.tasks.count.to_i-total_score_count.to_i %>&nbsp; tasks)</font>
+						</div>
+						<script type="text/javascript">
+								$(function() {
+								$("#taskprogress").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });							
+								$("<p>").attr("id", "check").text($("#taskprogress").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress");
+											});
+						</script>
+					
+					</div>
+					
+				</div>
+				
 		  </div >
 		</div >
 	</tr>		
 </table>	
+
 <% end %>	
+
 </div>
 </div>
 
@@ -154,6 +163,7 @@
 <div id="tooltip" class="tooltip">
 	
 </div>
+
 
 
 
