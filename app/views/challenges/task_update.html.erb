@@ -1,4 +1,8 @@
-<div style="background:#f4f4f4; width:500px; height:140px; overflow:hidden">
+
+<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css')%>
+<%= javascript_include_tag('jquery.datePicker','date')%>
+
+<div style="background:#f4f4f4; width:600px; height:200px; overflow:hidden" >
 <% @score_by%>
   <% if @score_by == "Check box:1 for checking off the task" %>
 	<table bgcolor="#f4f4f4" >
@@ -7,7 +11,7 @@
 				<font size="4px;"><%= @name%></font>
 			<td>
 		</tr>	
-		<tr  bgcolor="#f5faf0">
+		<tr  bgcolor="#ABD6AD">
 			<td>
 				<font size="4px;"><%= @score%> <%= image_tag("icon_multiply.png")%><%= check_box_tag 'task_done', 'yes', true%> 1 mark as complete</font>
 			</td>
@@ -23,26 +27,37 @@
 		</tr>							
     <table>
   <% else %>
-	<table bgcolor="#f4f4f4" >
+	<%= form_tag task_update_c_challenges_path, :method => :get do %>
+		<table bgcolor="#f4f4f4">
 		<tr bgcolor="#ffffff">
 			<td colspan="2">
-				<font size="4px;"><%= @name%></font>
+				<font size="4px;"><%= @name %></font>
+				<%= hidden_field_tag 'name', @name %>
+				<%= hidden_field_tag 'id', @id %>
 			<td>
 		</tr>	
-		<tr  bgcolor="#f5faf0">
+		<tr  bgcolor="#ABD6AD">
 			<td>
-				<font size="4px;"><%= @score%> <%= image_tag("icon_multiply.png")%><%= text_field_tag 'no_of_task', nil, :onKeyup=>"cal('hi',@score)" %> 1 mark as complete</font>
+				<script>
+					var sd = <%= @score%>	
+				</script>
+				<font size="4px;"><%= @score %><%= image_tag("icon_multiply.png")%><%= text_field_tag 'no_of_task', nil, :size => 10 ,:onkeyup=>"changeVal(this.value,sd)" %> 1 mark as complete</font>
 			</td>
 			<td colspan="2">
-				<%= image_tag("icon_equal.png")%><font size="4px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @score%></font>
+				<%= image_tag("icon_equal.png")%><font size="2px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= text_field_tag 'tatal_s', nil, :size => 10 %></font>
 			</td>
 		</tr>
 		<tr bgcolor="#ffffff">
-			<td colspan="2">
+			<td></td>
+			<td>
 				<%= link_to "CANCEL",  show_per_challenges_path(:id => @id), :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel"%>
-				<%= link_to "UPDATE",  task_update_c_challenges_path(:id => @id,:name =>@name), :style => "text-decoration: none; color:#fff; float:right; margin-right:5px;" ,:class => "task_links_cancel"%>
+				<%#= link_to "UPDATE",  task_update_c_challenges_path(:id => @id,:name =>@name), :style => "text-decoration: none; color:#fff; float:right; margin-right:5px;" ,:class => "task_links_cancel"%>
+				<%= submit_tag "UPDATE", :style => "width: 100px; float:right; margin-right:10px;", :class => "links" %>
 			<td>
 		</tr>							
     <table>
+	<% end %>
+	
+	
   <% end %>
 </div>	

@@ -17,13 +17,12 @@ class ChallengesController < ApplicationController
   def show_soc
     @challenge = Challenge.find(params[:id])
     @org = User.find(:all,:conditions => ["id=?",@challenge.user_id]).first
-    @lists = List.all
   end
 
   def show_per
     @challenge = Challenge.find(params[:id])
-    ch = @challenge.social_type.type 
-    if ch == ChallengeSocialType and ch!= ChallengeType and ch!=ChallengePersonalType
+    
+    if (@challenge.social_type.instance_of? ChallengeSocialType rescue false)
       render "show_soc" and return 
     else 
       render "show_per"
@@ -36,13 +35,17 @@ class ChallengesController < ApplicationController
   end
 
   def create
+	#raise params.inspect
+    #debugger
+    #raise params[:invitees].inspect
     @ch = Challenge.new(params[:challenge])
-    @ch_st_date = params[:ch_st_date]
+    #raise @ch.id.inspect
+    @ch_st_date = params[:start_point_type]
     @st_p_val1 = params[:st_value1]
     @st_p_val = params[:st_value]
     @st_p_leb = params[:st_label]
 
-    @ch_ed_date = params[:ch_ed_date]
+    @ch_ed_date = params[:end_point_type]
     @ed_p_val1 = params[:ed_value1]
     @ed_p_val = params[:ed_value]
     @ed_p_leb = params[:ed_label]
@@ -55,7 +58,7 @@ class ChallengesController < ApplicationController
       #raise "soc"
       @challenge = Challenge.new(:user_id => (current_user.fbauth.uid rescue current_user.id), :title => @ch.title, :description => @ch.description, \
       :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner)) do |new_challenge|
-        if @ch_st_date == "#ch_st_dat" and  @ch_ed_date == "#ch_ed_dat"
+        if @ch_st_date == "startPointDate" and  @ch_ed_date == "endPointDate"
           new_challenge.start_point =  PointDateType.new(:value => @st_p_val1)
           new_challenge.end_point = PointDateType.new(:value => @ed_p_val1) 
         else
@@ -86,7 +89,7 @@ class ChallengesController < ApplicationController
       #raise "per"
       @challenge = Challenge.new(:user_id => (current_user.fbauth.uid rescue current_user.id), :title => @ch.title, :description => @ch.description, \
       :personal_type => ChallengePersonalType.new(:who_win => @pr_who_win)) do |new_challenge|
-        if @ch_st_date == "#ch_st_dat" and  @ch_ed_date == "#ch_ed_dat"
+        if @ch_st_date == "startPointDate" and  @ch_ed_date == "endPointDate"
           new_challenge.start_point =  PointDateType.new(:value => @st_p_val1)
           new_challenge.end_point = PointDateType.new(:value => @ed_p_val1) 
         else
@@ -125,21 +128,29 @@ class ChallengesController < ApplicationController
     raise "aaaaaaaaa"
   end
   
+  def message
+	render :partial => 'challenges/message'
+  end  
+	  
   def task_update
     @id = params[:id]
     @name = params[:name]
-	 @score = params[:score]
-	 @score_by = params[:score_by]
+	@score = params[:score]
+	@score_by = params[:score_by]
     render :layout => false
   end
   
   def task_update_c
+	#raise params.inspect
 	@ch_ts_update = Challenge.find(params[:id])
-	@name = params[:name]
-	@ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1)
+	unless params[:tatal_s]
+		@ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1)
+	else
+		@ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1, :score => params[:tatal_s])
+	end 
 	redirect_to show_per_challenges_path(:id => params[:id])
   end
-  
+
   def challenge_comp
 	  @sdf = Challenge.where(:_id => params[:id]).update(:is_complete => 1)
 	  redirect_to :action => "index"
@@ -169,7 +180,7 @@ class ChallengesController < ApplicationController
 	@challenge_date = Challenge.find(params[:id])
 	@date = @challenge_date.end_point.value 
 	render :layout => false
-  end 
+  end
 
   protected
 
@@ -177,5 +188,7 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.all
   end
 
+  
+  
 end
 

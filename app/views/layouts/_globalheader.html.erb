@@ -3,7 +3,7 @@
 	<% if !current_user.nil? %>
       		<%= image_tag((current_user.authentications[0].image_path rescue ""), :style => "float:right", :alt => "Profile") %><br>
    	<% else %>
-      		<%= link_to(image_tag("dojitsu_logo.png", :style => "float:left", :alt => "Home"), root_path) %>
+      		<%= link_to(image_tag("logo.png", :style => "float:left", :alt => "Home"), root_path) %>
     <% end %>
 <div>
 	<% if !current_user.nil? %>
@@ -15,7 +15,11 @@
 				<%= link_to "Log out", destroy_user_session_path %>								
 		</div>
 	<% else %>
-		<%= button_to "", "/users/auth/facebook", :class=> "new_button1", :style => "float:right" %>
+		<%= link_to "", "", :class=> "login1", :style => "float:right" %>
+		<%= link_to "", "/users/sign_up", :class=> "register1", :style => "float:right" %>
+		<%= button_to "", "/users/auth/facebook", :class=> "facebook", :style => "float:right" %>
+	
+		
     <% end %>
 	</div>
 </div>

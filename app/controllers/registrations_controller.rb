@@ -16,4 +16,6 @@ class RegistrationsController < Devise::RegistrationsController
   # end 
  # me = FbGraph::User.me(ACCESS_TOKEN)
  #render :text => me.friend_lists
+ def new
+ end
 end

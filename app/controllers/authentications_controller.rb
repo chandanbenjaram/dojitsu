@@ -15,6 +15,7 @@ def create
     if provider_route == 'facebook'
       # user unique id per provider [REQUIRED]
       omniauth['uid'] ?  uid =  omniauth['uid'] : uid = ''
+      session[:f_id] = omniauth['uid']
       omniauth['provider'] ? provider =  omniauth['provider'] : provider = ''
 
       # user profile specific

@@ -1,20 +1,131 @@
 
-<%#= link_to "Register Now!", new_user_registration_path, :class => "signup_button round" %>
+
 
 <div>
-  <div class="span-12 first">
-    <div class="box">
-      <p> Today's New Challenges </p>
-      <ul>
-        <% Challenge.asc(:title).each do |e|%>
-          <li><%= link_to  e.title, 'users/sign_in' %></li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-  <div class="span-12 last">
-    <div class="box">
-      <p> Top Achievers </p>
-    </div>
-  </div>
+  <div class="regmessage">
+
+	<div class="msgtitle">
+		<h2><font color="#AAA9A9" size=4>WHAT'S NEW</font></h2>
+		<div class="viewall">
+			<font size=2><b>VIEWALL</b></font>
+		</div>
+	</div>
+	<table>
+		<td>
+			<tr>
+				<div class="messagereg">
+					Message1
+				</div>
+				<br>
+			</tr>
+			<tr>
+				<div class="messagereg">
+					Message2
+				</div>
+			</tr>
+			<tr>
+				<div class="messagereg">
+					Message3
+				</div>
+			</tr>
+		</td>
+		<td>
+		
+		<div class="regdojitsu1">
+		
+		</div>
+		</td>
+	</table>
 </div>
+  </div>
+  
+</div>
+<style>
+.regdojitsu
+{
+
+top:38px;
+float:left;
+left:630px;
+position:absolute;
+}
+.viewall
+{
+padding-top:2px;
+float:left;
+left:530px;
+bottom:37px;
+position:relative;
+width:70px;
+height:22px;
+background:#F8981D;
+color:#fff;
+}
+.messagereg
+{
+
+width:600px;
+height:100px;
+background:#F9F7F7;
+color:#000;
+border:2px solid #DDDDDD;
+}
+.regmessage
+{
+position:relative;
+float:left;
+left:10px;
+margin-top:20px;
+}
+.registration
+{
+margin-top:10px;
+border:7px solid #DDDDDD;
+width:940px;
+height:400px;
+}
+.regdetails
+{
+width:650px;
+height:400px;
+
+float:left;
+left:160px;
+top:20px;
+position:relative;
+}
+.reglable
+{
+color:#636363;
+
+}
+.reginput
+{
+
+height:25px;
+width:470px;
+background:#FCF9F9;
+border:1px solid #636363;
+}
+.buttons
+{
+float:left;
+left:490px;
+position:relative;
+}
+.register {
+	background: #F8981D; 
+	width: 82px;
+	height: 22px;
+	color:#ffffff;
+
+}
+.cancel{
+background: #A5A5A5; 
+	width: 58px;
+	height: 22px;
+	color:#ffffff;
+}
+
+
+</style>
