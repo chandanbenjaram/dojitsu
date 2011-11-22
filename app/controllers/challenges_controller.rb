@@ -118,6 +118,7 @@ class ChallengesController < ApplicationController
     else
       render :action => edit
     end
+	
   end
 
   def destroy
@@ -136,16 +137,15 @@ class ChallengesController < ApplicationController
   
   
   	def status
-	     @ch = Challenge.find(params[:id])
-		 @id = params[:id]
-         render :text=> "accepted"
-		 #Challenge.find(@id).social_type.update(:status => "1")
-		 #Challenge.find(@id).social_type.save
-		 #redirect_to :action => "show_soc" and return 
 
-		#render :text => Challenge.find(@id).social_type.status
-	#redirect_to show_soc_challenges_path(:id => params[:id]) and return
-	  end
+		 @ch = Challenge.find(params[:id])
+         @status = @ch.social_type
+		@status.update_attribute(:status,1)
+		@status.save
+		 if @status.save 
+		    raise @status.inspect 
+	     end 
+	end
 	  
 	  
 	def decline
@@ -156,9 +156,7 @@ class ChallengesController < ApplicationController
      if @status.status != 1 or @status.status!= 0
 	 render:text=> "declined"
 	end
-	#render :text => @status 
-	#@ch.social_type.where(:status => params[:status]).update(:status => 1)
-	  end
+	end
 	  
 	  
   def task_update
