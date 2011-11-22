@@ -149,7 +149,13 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2"><%= anc.start_point.value.strftime("%b %d, %Y")%> - <%= anc.end_point.value.strftime("%b %d, %Y")%></td>
+							<td colspan="2">
+								<% if anc.start_point.type.to_s == "PointDateType" %>
+									<%= anc.start_point.value.strftime("%b %d, %Y")%> - <%= anc.end_point.value.strftime("%b %d, %Y")%>
+								<% else %>
+									<%= anc.start_point.value %> - <%= anc.end_point.value%>
+								<% end %>
+							</td>
 						</tr>
 						<tr>
 							<td colspan="2"><%= anc.child_challenges.size%> contestants</td>
