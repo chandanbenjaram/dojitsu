@@ -27,6 +27,7 @@
 			beforeClose: function(event, ui) {
 				var friendSelector = $("#jfmfs-container").data('jfmfs');
 				var selectedFriends = friendSelector.getSelectedIds();
+			
 				$j('#invitees_id').val(selectedFriends);
 			}
 		});

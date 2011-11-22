@@ -9,6 +9,15 @@ ul.tabs {
 	width: 85%;
 	background :#f4f4f4;
 }
+
+.topbar {
+	position:relative;
+	background:#f4f4f4;
+	width:100%;
+	height:40px;
+	top :-18px;
+}
+
 ul.tabs1 {
 	margin: 0;
 	padding: 0;

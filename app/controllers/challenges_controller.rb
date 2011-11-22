@@ -142,24 +142,35 @@ class ChallengesController < ApplicationController
 
   	  
 	def status
-	@ch = Challenge.find(params[:id])
-	@status = @ch.social_type
-	@status.update_attribute(:status,"1")
-     
-	#render :text => @status 
-	#@ch.social_type.where(:status => params[:status]).update(:status => 1)
+	
+	     @ch = Challenge.find(params[:id])
+		 @id = params[:id]
+		 #@ch .tasks.where(:name => "taskname").update(:is_complete => 1)
+		 
+		if @ch.social_type
+	
+		 if  @ch.social_type.type != "ChallengeSocialType" 
+			
+		        @ch.social_type.update(:status => 1)
+				end
+				end
+		 #Challenge.find(@id).social_type.update(:status => "1")
+		 #Challenge.find(@id).social_type.save
+		 #redirect_to :action => "show_soc" and return 
+
+		#render :text => Challenge.find(@id).social_type.status
+	#redirect_to show_soc_challenges_path(:id => params[:id]) and return
 	  end
 	  
 	  
 	def decline
 	@ch = Challenge.find(params[:id])
+
 	@status = @ch.social_type
 	@status.update_attribute(:status,"-1")
      if @status.status != 1 or @status.status!= 0
 	 render:text=> "declined"
-	 else 
-	 render :text => "thinking"
-	end 
+	end
 	#render :text => @status 
 	#@ch.social_type.where(:status => params[:status]).update(:status => 1)
 	  end

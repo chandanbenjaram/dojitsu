@@ -1,230 +1,39 @@
-<html>
-<body>
+<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css')%>
+<%= javascript_include_tag('simple-tabs','all','jquery.table.addrow','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.hoverIntent','jquery.cluetip','challenge_new')%>
 <%= render 'layouts/loggedinbody'%>
-<hr/>
+
+<div class="topbar">
+<table>
+<tr><td width="470px"></td><td><%= image_tag("invite.PNG")%>&nbsp;&nbsp;&nbsp;<font color="gray"><b  id="image"></b></font></td><td></td></tr>
+</table>
+</div>
 
 
-
-<div id="ds_performance_tracker" style="background:white; height:350px; width :500px; border: 1px;  border-width:3px;
-  border-style:solid;
-  border-color:black">
- 
-<div id="ds_performance_tracker_tit" style="background:grey; height:30px; width :500px;">
-			<h3>Manage My Dojo</h3>
+  
+<script type="text/javascript" src="../includes/js/jquery.min.js"></script>  
+<script src="http://connect.facebook.net/en_US/all.js"></script>  
+<div id="fb-root"></div> 	
+    <script>
+      FB.init({ 
+         appId  : '232592880122189', 
+         status : true, // check login status 
+         cookie : true, // enable cookies to allow the server to access the session 
+         xfbml  : true  // parse XFBML 
+         });
+    FB.getLoginStatus(function(response) { 
+                 if (response.session)
+            { 
+                       globaluserid=response.session["uid"]; 
+					   name=globaluserid;
 			
-		</div>
+					  
+						}
+						}
+						);
+						FB.api('/me', function(response) {
+var user = response.name
+  $("#image").append(user);
+});
 
- <div id="fb-root">
- 	<p>
-<script src="http://connect.facebook.net/en_US/all.js"></script> 
-<p align=left><b>Add New</b>
-    <a href="#"
-      onclick="sendRequestToManyRecipients()"
-      value="Find More" align=left><font color ="black"></nt>Manage Current Dojo</font></a>
-   
-    </p>
-  
-    <script>
-      FB.init({
-        appId  : '232592880122189',
-        status : true,
-        cookie : true,
-        oauth: true
-      });
-
-    
-   
-      function sendRequestToManyRecipients() {
-	  window.fbAsyncInit = function() {
-  FB.init({appId: 'XXXXXXXXX', status: true, cookie: true, xfbml: true});
-  FB.Canvas.setSize({ width:760,height:1000 });
-};
-
-(function() {
-  var e = document.createElement('script');
-  e.type = 'text/javascript';
-  e.src = document.location.protocol +
-    '//connect.facebook.net/en_US/all.js';
-  e.async = true;
-  document.getElementById('fb-root').appendChild(e);
-
-        FB.ui({method: 'apprequests',
-          message: 'My Great Request',
-        }, requestCallback);
-		
-
-      }
-      
-      function requestCallback(response) {
-        // Handle callback here
-      }
-
-
-    </script>	</p>
- 	</div><div id="fb-root">
-
-<script src="http://connect.facebook.net/en_US/all.js"></script>
-    <table width=450px style="background:white; border: 1px;  border-width:1px;
-  border-style:solid;
-  border-color:black">
-
-    	<tr bgcolor=white>
-
-    		<td width=400px style="background:white; border: 1px;  border-width:1px;
-  border-style:solid;
-  border-color:black">
-<input type="text" value="User ID" name="user_id" />
-</td>
-      <td width=50px style="background:white; border: 1px;  border-width:1px;
-  border-style:solid;
-  border-color:black">
-<input type="button"
-        onclick="sendRequestToOneRecipient(); return false;"
-        value="ADD" align="right"
-      />
-	  
-</td>
-      
-    </tr>
-	<tr bgcolor=white >
-    		<td width=400px bgcolor=white style="background:white; border: 1px;  border-width:1px;
-  border-style:solid;
-  border-color:black"><input type="text" value="User ID" name="user_id" /></td>
-      <td width=50px style="background:white; border: 1px;  border-width:1px;
-  border-style:solid;
-  border-color:black"><input type="button"
-        onclick="sendRequestToOneRecipient(); return false;"
-        value="ADD" align="right"
-      /></td>
-      
-    </tr>
-	<tr bgcolor=white>
-    		<td width=400px bgcolor=white style="background:white; border: 1px;  border-width:1px;
-  border-style:solid;
-  border-color:black"><input type="text" value="User ID" name="user_id" /></td>
-      <td width=50px style="background:white; border: 1px;  border-width:1px;
-  border-style:solid;
-  border-color:black"> <input type="button"
-        onclick="sendRequestToOneRecipient(); return false;"
-        value="ADD" align="right"
-      /></td>
-      
-    </tr>
-	<tr bgcolor=white>
-    		<td width=400px style="background:white; border: 1px;  border-width:1px;
-  border-style:solid;
-  border-color:black">
-<input type="text" value="User ID" name="user_id" />
-</td>
-      <td width=50px style="background:white; border: 1px;  border-width:1px;
-  border-style:solid;
-  border-color:black">
-<input type="button"
-        onclick="sendRequestToOneRecipient(); return false;"
-        value="ADD" align="right"
-      />
-</td>
-      
-    </tr>
-	</table>
-   
-    
-    <script>
-    
-// to send request to single friend use this function 
-      function sendRequestToOneRecipient() {
-        var user_id = document.getElementsByName("user_id")[0].value;
-        FB.ui({method: 'apprequests',
-          message: 'My Great Request',
-          to: user_id, 
-        }, requestCallback);
-      }
-// to send request to many friends use this function
-      function sendRequestToManyRecipients() {
-        FB.ui({method: 'apprequests',
-          message: 'My Great Request',
-        }, requestCallback);
-      }
-      
-      function requestCallback(response) {
-        // Handle callback here
-      }
-    </script>
-
-
-	
-</div><div id=fb-root" style="width: 500px; height: 50px; ">
-<script src="http://connect.facebook.net/en_US/all.js"></script>
-
-    <p>
-    <input type="button"
-      onclick="sendRequestToManyRecipients(); return false;"
-      value="Find More"
-    />
-    </p>
-
-  
-    <script>
-FB.Canvas.setSize({ width: 640, height: 480 });
-	
-      FB.init({
-        appId  : '232592880122189',
-        status : true,
-        cookie : true,
-        oauth: true
-      });
-
-     
-   
-      function sendRequestToManyRecipients() {
-
-        FB.ui({method: 'apprequests',
-          message: 'My Great Request',
-		  maximum: '50',
-        }, requestCallback);
-         /*FB.ui({
-         // method: 'send',
-        //  name: 'My dojitsu challenge',
-         // link: 'http://dev.dojitsu.com/',
-          });*/
-		  
-		
-      }
-      
-
-      function requestCallback(response) {
-        console.log(response);
- 
-      }
-
-   
-    </script>
-</div> 
-</div>
-</div>
-<div id="email_section_id" class="email_section">
-<label class="mfs_email_title">Invite by E-mail Address:
-</label>
-Use commas to separate e-mails<div id="email-tokenizer">
-<div tabindex="-1" id="ids" class="clearfix tokenizer">
-<span class="tokenizer_stretcher">
-</span>
-<span class="tab_stop">
-<input type="text">
-</span></div></div>
-</div>
-<ul class="pagerpro" id="mfs_pag_nav_links">
-</ul><div class="buttons">
-<input value="Send Dojitsu.com Request" name="send" onclick='return PlatformInvite.sendInvitation(null, null, "", true, {"request_form":"req_form_4e9bc58c8ccee9292747108","app_id":"232592880122189","request_type":"Dojitsu request for acceptance","invite":false,"is_multi":true,"prefill":"","is_in_canvas":false,"include_ci":false});' class="inputbutton request_form_submit" type="button">
-<input class="inputbutton inputaux" onclick="(new Image()).src = '/ajax/ct.php?app_id=232592880122189&amp;action_type=9&amp;post_form_id=d7bf000416d023be092164cc77d7ac47&amp;position=0&amp;' + Math.random(); fs.skip(&quot;_parent&quot;);" id="skip_top" name="skip_top" value="Skip" type="button">
-</div></div>
-
-</body>
-</html>
-
-
-
-
-
-
-
+						
+    </script>	

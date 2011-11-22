@@ -5,13 +5,13 @@
 
 <%= form_for @challenge do |f| %>
 <div id="ch_main_div2">
-			<table width="100%" border="1" bgcolor=#f4f4f4 id="mytable" >
+<table width="100%" border="1" bgcolor=#f4f4f4 >
 				<tr bgcolor=#f5f5f5>
 					<th width="85%">
 						<h3 align="left"><font color="#8c8c8c"><b>Total : <%= @challenge.tasks.count %></b></font></h3>
 					</th>
 					<th width="3%">
-						<%= image_tag("btn_add_up.png", :class => "addComment") %>
+						<%= link_to image_tag("btn_add_up.png", :style =>"margin-top:3px;" ), add_task_link_challenges_path(:id => @challenge), :class => "addComment add_task_popup" %>
 					</th>
 					<th width="12%">
 						<div align="left"><font color="#8c8c8c">ADD A TASK</font> </div>
@@ -19,7 +19,7 @@
 				</tr>
 				<tr bgcolor=#D7D7D7>
 					<td width="85%">
-						<h4 style="margin-top:15px;"><font color="#999999"  style="margin-top:15px;"><b>POINT(s)</b></font> <%= image_tag("icon_slash.png") %> <font color="#999999"><b>TASKS</b></font></h4>
+						<h4 style="margin-top:15px;"><font color="#999999"  style="margin-top:15px;"><b>POINT(s)</b></font> <%= image_tag("icon_slash.png", :height => '12', :width => '5') %> <font color="#999999"><b>TASKS</b></font></h4>
 					</td>
 					<td>
 					</td>
@@ -31,17 +31,21 @@
 				<% total_score_count = 0 %>
 				<% @challenge.tasks.each do |aTask| %>
 				<tr bgcolor=#ffffff>
-					<td colspan="3">
-						<hr/ width=400px>
+					<td colspan="3"  id="mytable" >
 						<% if aTask.is_complete.to_i == 0 %>
-							<h4 style="margin-top:15px;"><p style="float:left; color:#999999;"><b><%= aTask.score %> <%= image_tag("icon_slash.png")%></b></p></h4><h4 style="margin-top:15px;"><p style="float:left; color:#999999;  margin-left:5px;"><b><%= aTask.name %></b></p></h4>
-							<div class="showperscore_0"><%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score) ,:class=>"task_update_popup", :style => "text-decoration: underline;" %></div>
+							<div id="task_list">
+								<p style="float:left; margin-top:15px;"><%= aTask.score %> <%= image_tag("icon_slash.png", :height => '10', :width => '5')%></p><p style="float:left;  margin-top:15px; margin-left:5px;"><%= aTask.name %></p>
+								<div class="showperscore_0"><%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => "text-decoration: underline;" %></div>
+							</div>
 						<% else %>	
-							<% total_score_count +=1 %>
-							<h4 style="margin-top:15px;"><p style="float:left; color:#999999;"><b><%= aTask.score %> <%= image_tag("icon_slash.png", :style=>"margin-top:10px;")%></b></p></h4><h4 style="margin-top:22px;"><p style="float:left; color:#999999;  margin-left:5px; text-decoration:line-through;"><b><%= aTask.name %></b></p></h4>
-							<div class="showperscore"><%= aTask.score %></div>
-							<% total_score += aTask.score.to_i %>
-						<% end %>	
+							<div id="task_list">
+								<% total_score_count +=1 %>
+								<p style="float:left; margin-top:15px;"><%= aTask.score %> <%= image_tag("icon_slash.png", :height => '10', :width => '5')%></p><p style="float:left; margin-top:15px; margin-left:5px; text-decoration:line-through;"><%= aTask.name %></p>
+								<div class="showperscore"><%= aTask.score %></div>
+								<% total_score += aTask.score.to_i %>
+							</div>
+						<% end %>
+						<hr/ width=400px>																																	
 					</td>
 				</tr>
 				<% end %>
@@ -72,6 +76,7 @@
 					</td>
 				</tr>
 			</table>
+		  </div >
 		</div >
 	</tr>		
 </table>	
@@ -89,6 +94,7 @@
 <script>
 	
 	$('.task_update_popup').colorbox();
+	$('.add_task_popup').colorbox();
 	
 // execute your scripts when the DOM is ready. this is a good habit
 $(function() {
@@ -108,6 +114,8 @@ $(function() {
 	});	
 });
 </script>
+
+
 
 
 
