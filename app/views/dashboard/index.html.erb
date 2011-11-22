@@ -40,7 +40,7 @@
 									<tr>
 										<td id="content1">
 											<% title = userChallenge.title %>
-											<font size=3><b><%= link_to "#{title}",show_per_challenges_path(:id => userChallenge)%><%#= userChallenge.title %></b></font><br><font size=2>by <%= userChallenge.user_id %></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
+											<font size=3><b><%= link_to "#{title}",show_per_challenges_path(:id => userChallenge)%><%#= userChallenge.title %></b></font><br><font size=2>by <b><%= @org_name.first_name %></b></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
 											<%if ( userChallenge.child_challenges.size <2 ) %> 
 												<%= userChallenge.child_challenges.size %> Contestant<br>
 											<% else %>
@@ -137,6 +137,11 @@
 			<% @all_new_challenge.each do |anc| %>
 				<div id="contentbox">
 					<table width="100%" border="1">
+						<!--
+						<tr>
+							<td colspan="2"><%= image_tag("new.PNG") %></td>
+						</tr>
+						-->
 						<tr>
 							<td width="60%"><font size="3px;" style="font-weight:bold"><%= anc.title%></font></td>
 							<td width="40%">
@@ -144,7 +149,10 @@
 							</td>
 						</tr>
 					    <tr>
-							<td colspan="2">by<b><%= anc.user_id%></b></td>
+							<td colspan="2">					
+								<% fname= Authentication.where(:uid => anc.user_id).first %>								
+								by<b> <%= fname.first_name %></b>
+							</td>
 						</tr>
 						<tr>
 							<td colspan="2"><%= anc.start_point.value.strftime("%b %m, %Y")%> - <%= anc.end_point.value.strftime("%b %m, %Y")%></td>
@@ -153,7 +161,7 @@
 							<td colspan="2"><%= anc.child_challenges.size%> contestants</td>
 						</tr>
 					</table>
-					<p><%= anc.description%></p>
+					<p><%= anc.description%></p><p style="float:right"><%= link_to "VIEW"%></p>
 				</div>
 			<% end %>
 			<!--
