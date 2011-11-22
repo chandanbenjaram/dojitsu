@@ -130,42 +130,14 @@ class ChallengesController < ApplicationController
   end
   
   def message
-
- render :partial => 'challenges/message'
-  end
-  
-  
-  	def status
-	     @ch = Challenge.find(params[:id])
-		 @id = params[:id]
-         render :text=> "accepted"
-		 #Challenge.find(@id).social_type.update(:status => "1")
-		 #Challenge.find(@id).social_type.save
-		 #redirect_to :action => "show_soc" and return 
-
-		#render :text => Challenge.find(@id).social_type.status
-	#redirect_to show_soc_challenges_path(:id => params[:id]) and return
-	  end
-	  
-	  
-	def decline
-	@ch = Challenge.find(params[:id])
-
-	@status = @ch.social_type
-	@status.update_attribute(:status,"-1")
-     if @status.status != 1 or @status.status!= 0
-	 render:text=> "declined"
-	end
-	#render :text => @status 
-	#@ch.social_type.where(:status => params[:status]).update(:status => 1)
-	  end
-	  
+	render :partial => 'challenges/message'
+  end  
 	  
   def task_update
     @id = params[:id]
     @name = params[:name]
-	 @score = params[:score]
-	 @score_by = params[:score_by]
+	@score = params[:score]
+	@score_by = params[:score_by]
     render :layout => false
   end
   
@@ -209,7 +181,7 @@ class ChallengesController < ApplicationController
 	@challenge_date = Challenge.find(params[:id])
 	@date = @challenge_date.end_point.value 
 	render :layout => false
-  end 
+  end
 
   protected
 
