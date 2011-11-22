@@ -1109,7 +1109,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	margin-bottom:10px;
 	margin-left:10px;
 	margin-right:10px;
-	height:auto;
+	height:230px;
 	background:#F4F4F4;
 	overflow:hidden;
 }

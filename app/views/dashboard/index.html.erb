@@ -129,7 +129,7 @@
 	<td valign=top>
 		<div class="dashboardsidebar2">
 			<div class="whatsnew">
-					WHATS NEW 
+					WHAT'S NEW 
 				<div id="viewall">
 					VIEW ALL
 				</div>
@@ -151,13 +151,17 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2"><%= anc.start_point.value.strftime("%b %m, %Y")%> - <%= anc.end_point.value.strftime("%b %m, %Y")%></td>
+							<td colspan="2"><%= anc.start_point.value.strftime("%b %d, %Y")%> - <%= anc.end_point.value.strftime("%b %d, %Y")%></td>
 						</tr>
 						<tr>
 							<td colspan="2"><%= anc.child_challenges.size%> contestants</td>
 						</tr>
 						<tr>
-							<td colspan="2"><p style="text-transform:none;"><%= anc.description%></p><p style="float:right"><%= link_to "VIEW" , "#"%></td>
+							<td colspan="2">
+								<p style="text-transform:none;">
+									<%=h truncate(anc.description, :length => 128) %>....<%= link_to "VIEW" , "#"%>									
+								</p>								
+							</td>
 						</tr>
 					</table>
 				</div>
