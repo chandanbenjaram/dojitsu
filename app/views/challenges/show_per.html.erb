@@ -140,9 +140,9 @@
 						</div>
 						<script type="text/javascript">
 								$(function() {
-								$("#taskprogress").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });							
-								$("<p>").attr("id", "check").text($("#taskprogress").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress");
-											});
+									$("#taskprogress").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });							
+									$("<p>").attr("id", "check").text($("#taskprogress").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress");
+								});
 						</script>
 					
 					</div>
