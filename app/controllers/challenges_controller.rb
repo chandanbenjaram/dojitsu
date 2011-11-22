@@ -36,6 +36,7 @@ class ChallengesController < ApplicationController
   end
 
   def create
+        debugger
     #raise params[:invitees].inspect
     @ch = Challenge.new(params[:challenge])
     #raise @ch.id.inspect

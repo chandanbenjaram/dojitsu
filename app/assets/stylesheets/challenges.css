@@ -7,3 +7,12 @@
 
 div.ui-dialog-titlebar{
 }
+
+
+.hidden {
+    display: hidden;
+}             
+
+.floatleft {
+	float: left;
+}
