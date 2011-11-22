@@ -13,6 +13,43 @@
   }); 
 
 jQuery(document).ready(function($) {
+		
+	$('#start_point_type').change(function() {
+		var sel_val = $(this).val();
+		if ($(this).val() == "startPointDate")
+		{
+			$('#startPointDate').show();
+			$('#startPointNumber').hide();
+			$('#st_nv').val("");
+			$('#st_nl').val("");
+		}
+		else
+		{
+			$("#startPointNumber").show();
+			$('#startPointDate').hide();
+			$('#st_dv').val("");
+		}
+
+	});
+
+	$('#end_point_type').change(function() {
+		var sel_val = $(this).val();
+		if ($(this).val() == "endPointDate")
+		{
+			$('#endPointDate').show();
+			$('#endPointNumber').hide();
+			$('#ed_nv').val("");
+			$('#ed_nl').val("");	
+		}
+		else
+		{
+			$('#endPointNumber').show();
+			$('#endPointDate').hide();
+			$('#ed_dv').val("");
+		}
+
+	});
+	
 	$('ul.tabs li').click(function(event){
 		var ty = event.target.id;
 		if( ty == "soc")
@@ -54,51 +91,6 @@ jQuery(document).ready(function($) {
 
 	$('#download_now').cluetip({attribute: 'id'});
 	
-	
-	$('#ch_st_date').change(function() {
-		var sel_val = $(this).val();
-	
-		if ($(this).val() == "#ch_st_dat")
-		{
-		
-			$(sel_val).show();
-			$('#ch_st_num').hide();
-			$('#st_nv').val("");
-			$('#st_nl').val("");
-		}
-		else
-		{
-	
-			$(sel_val).show();
-			$('#ch_st_dat').hide();
-			$('#st_dv').val("");
-		}
-
-	});
-	
-
-	$('#ch_ed_date').change(function() {
-		var sel_val = $(this).val();
-
-		if ($(this).val() == "#ch_ed_dat")
-		{
-		
-			$(sel_val).show();
-			$('#ch_ed_num').hide();
-			$('#ed_nv').val("");
-			$('#ed_nl').val("");	
-		}
-		else
-		{
-			
-			$(sel_val).show();
-			$('#ch_ed_dat').hide();
-			$('#ed_dv').val("");
-		}
-
-	});
-	
-	
 	$('.reset_password_popup').colorbox();
 
 });
@@ -120,17 +112,17 @@ jQuery(document).ready(function($) {
 			return false;
 		}
 		
-		if(document.challenge_form.ch_st_date.value=="")
+		if(document.challenge_form.start_point_type.value=="")
 		{
 			document.getElementById("st_point").innerHTML="<font color=\"#FF0000\">Date or Number must be selected!</font>";
-			document.challenge_form.ch_st_date.focus();
+			document.challenge_form.start_point_type.focus();
 			return false;
 		}
 		
-		if(document.challenge_form.ch_ed_date.value=="")
+		if(document.challenge_form.end_point_type.value=="")
 		{
 			document.getElementById("ed_point").innerHTML="<font color=\"#FF0000\">Date or Number must be selected!</font>";
-			document.challenge_form.ch_ed_date.focus();
+			document.challenge_form.end_point_type.focus();
 			return false;
 		}
 		
