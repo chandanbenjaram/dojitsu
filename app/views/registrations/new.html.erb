@@ -1,25 +1,187 @@
-<h2>Sign up</h2>
-<%= form_for(resource, :as => resource_name,:validate => true, :url => registration_path(resource_name)) do |f| %>
-<!--
-<%= devise_error_messages! %>
--->
-<p><%= f.label :email %><br />
-	<%= f.text_field :email, :class => "textfield_effect", :id => "on_focus_textfield" %></p>
-	
-	<%= f.label :fname,"First Name" %><br />
-	<%= f.text_field :fname, :class => "textfield_effect", :id => "on_focus_textfield" %></p>
-	
-	<%= f.label :lname, "Last Name" %><br />
-	<%= f.text_field :lname, :class => "textfield_effect", :id => "on_focus_textfield" %></p>
+<div>
+	<div class="registration">
+		<div class="regdetails">
+			<font color="#F8981D" size=4>REGISTER TO DOJITSU!</font>
+				<form name="regform" action="http://google.com">
+						<table >
+							<tr >
+								<td width="25%" >
+									<lable class="reglable">FIRST NAME</lable>
+								</td>
+								<td width="75%">
+									<input class="reginput" type="text" name="fname" required>
+									
+								</td>
+								
+							</tr>
 
-	<% if @user.password_required? %> 
-	<p><%= f.label :password %><br />
-		<%= f.password_field :password , :class => "textfield_effect", :id => "on_focus_textfield"%></p>
+							<tr>
+								<td >
+									<lable  class="reglable" >LAST NAME</lable>
+								</td>
+								<td>
+									<input class="reginput" type="text" name="lname" required>
+								</td>
+							</tr>
 
-		<p><%= f.label :password_confirmation %><br />
-			<%= f.password_field :password_confirmation , :class => "textfield_effect", :id => "on_focus_textfield"%></p>
-			<% end %>
-			<p><%= f.submit "Register" %></p>
-			<% end %>
+							<tr>
+								<td>
+									<lable  class="reglable" >EMAIL ADDRESS</lable>
+								</td>
+								<td>
+									<input class="reginput" type="email" name="email" required>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<lable class="reglable">PASSWORD</lable>
+									<%= image_tag("btn_questionmark_up.png")%></b>
+								</td>
+								<td>
+									<input class="reginput" type="password" name="password" required>
+								<i class="reglable">6 character minimum</i>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<lable  class="reglable" >CONFIRM PASSWORD</lable>
+								</td>
+								<td>
+									<input class="reginput" type="password" name="confirmpass" required>
+								</td>
+							</tr>
+						</table>
+						<div class="buttons">
+							<input class="register" type="submit" value="REGISTER">
+							<input class="cancel" type="button" value="CANCEL">
+						</div>
+				</form>
+			</div>
+</div>
 
-			<%= render :partial => "devise/shared/links" %>
+<div class="regmessage">
+
+	<div class="msgtitle">
+		<h2><font color="#AAA9A9" size=4>WHAT'S NEW</font></h2>
+		<div class="viewall">
+			<font size=2><b>VIEWALL</b></font>
+		</div>
+	</div>
+	<table>
+		<td>
+			<tr>
+				<div class="messagereg">
+					Message1
+				</div>
+				<br>
+			</tr>
+			<tr>
+				<div class="messagereg">
+					Message2
+				</div>
+			</tr>
+			<tr>
+				<div class="messagereg">
+					Message3
+				</div>
+			</tr>
+		</td>
+		<td>
+		
+		<div class="regdojitsu1">
+		
+		</div>
+		</td>
+	</table>
+</div>
+
+
+<style>
+.regdojitsu
+{
+
+top:38px;
+float:left;
+left:630px;
+position:absolute;
+}
+.viewall
+{
+padding-top:2px;
+float:left;
+left:530px;
+bottom:37px;
+position:relative;
+width:70px;
+height:22px;
+background:#F8981D;
+color:#fff;
+}
+.messagereg
+{
+
+width:600px;
+height:100px;
+background:#F9F7F7;
+color:#000;
+border:2px solid #DDDDDD;
+}
+.regmessage
+{
+position:relative;
+float:left;
+left:10px;
+margin-top:20px;
+}
+.registration
+{
+margin-top:10px;
+border:7px solid #DDDDDD;
+width:940px;
+height:400px;
+}
+.regdetails
+{
+width:650px;
+height:400px;
+
+float:left;
+left:160px;
+top:20px;
+position:relative;
+}
+.reglable
+{
+color:#636363;
+
+}
+.reginput
+{
+
+height:25px;
+width:470px;
+background:#FCF9F9;
+border:1px solid #636363;
+}
+.buttons
+{
+float:left;
+left:490px;
+position:relative;
+}
+.register {
+	background: #F8981D; 
+	width: 82px;
+	height: 22px;
+	color:#ffffff;
+
+}
+.cancel{
+background: #A5A5A5; 
+	width: 58px;
+	height: 22px;
+	color:#ffffff;
+}
+
+
+</style>

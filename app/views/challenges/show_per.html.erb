@@ -1,7 +1,7 @@
 
-<%= stylesheet_link_tag('simple-tabs','datePicker', 'colorbox')%>
+<%= stylesheet_link_tag('simple-tabs','datePicker', 'colorbox','jquery-ui', 'ui.core','ui.progressbar','ui.theme', 'main')%>
 <%= javascript_include_tag :defaults %>
-<%= javascript_include_tag('simple-tabs','jquery.colorbox-min','jquery.table.addrow','jquery.datePicker','date','jquery.editable-1.3.3','on_the_spot','jquery.ezpz_tooltip','jquery.ezpz_tooltip.min.js','jquery.tools.min')%>
+<%= javascript_include_tag('simple-tabs','ui.progressbar','jquery.colorbox-min','jquery.table.addrow','jquery.datePicker','date','jquery.editable-1.3.3','on_the_spot','jquery.ezpz_tooltip','jquery.ezpz_tooltip.min.js','jquery.tools.min')%>
 <%= render 'layouts/loggedinbody'%>
 
 <div id="ch_main_div">
@@ -33,7 +33,7 @@
 					<b><font color=	#909090>START POINT</font></b>
 				</td>
 				<td class="editable">
-					<% if @challenge.start_point.type.to_s == "PointDateType" %>		
+					<% if @challenge.start_point.instance_of?PointDateType %>		
 						<%= @challenge.start_point.value.strftime("%b %d, %Y") %>
 					<% else %>							
 						<%= @challenge.start_point.value %>
@@ -49,7 +49,7 @@
 				<td width=120px>
 					<b><font color=	#909090>END POINT</font></b></td>
 				<td class="editable">
-					<% if @challenge.end_point.type.to_s == "PointDateType" %>		
+					<% if @challenge.end_point.instance_of?PointDateType %>		
 						<%= @challenge.end_point.value.strftime("%b %d, %Y") %>
 					<% else %>							
 						<%= @challenge.end_point.value %>
@@ -91,9 +91,11 @@
 				</tr>
 				<% total_score = 0 %>
 				<% total_score_count = 0 %>
+				<% total = 0 %>
 				<% @challenge.tasks.each do |aTask| %>
+				<% total += aTask.score.to_i %>
 				<tr bgcolor=#ffffff>
-					<td colspan="3"  id="mytable" >
+					<td colspan="3" id="mytable" >
 						<% if aTask.is_complete.to_i == 0 %>
 							<div id="task_list">
 								<p style="float:left; margin-top:15px;"><%= aTask.score %> <%= image_tag("icon_slash.png", :height => '10', :width => '5')%></p><p style="float:left;  margin-top:15px; margin-left:5px;"><%= aTask.name %></p>
@@ -110,39 +112,48 @@
 						<hr/ width=400px>																																	
 					</td>
 				</tr>
+				
 				<% end %>
 				<tr bgcolor=#f4f4f4>
 					<td colspan="3"></td>
 				</tr>
 			</table>
-			<table bgcolor=#f4f4f4>
-				<tr bgcolor=#ffffff>
-					<td colspan="2" >
-					  My Dojitsu score: <br>					  
-					  <b><h4><font color="green"><%= total_score_count %></b></font> <font color="black"><b>completed,</b></font>
-				      <b><font color="orange"><%= @challenge.tasks.count.to_i-total_score_count.to_i %></b></font> <font color="black"><b>remaining</b></font></h4>
-					</td>
-					<td width="13%">
-						<div class="showperscore"><%= total_score %></div>						
-					</td>
-				</tr>
-				<tr bgcolor=#ffffff>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr bgcolor=#f4f4f4>
-					<td></td>
-					<td colspan="2">
-						<%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"%>
-					</td>
-				</tr>
-			</table>
+			<div>
+			
+			My Dojitsu score: <br>
+					 <div class="task" id="taskprogress"></div><div class="showperscore1"><%= total_score %></div>	
+					 <style>
+					 .task
+					 {
+					  width:700px;
+					 {
+					 </style>
+					<div id="check2">
+					
+						<div class="completedtask1"> 
+								<%= total_score %> points (<%= total_score_count %> &nbsp; tasks)
+						</div>
+						<div class="notcompleted1">
+									<font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="#fff"><%= (total-total_score) %> points (<%= @challenge.tasks.count.to_i-total_score_count.to_i %>&nbsp; tasks)</font>
+						</div>
+						<script type="text/javascript">
+								$(function() {
+									$("#taskprogress").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });							
+									$("<p>").attr("id", "check").text($("#taskprogress").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress");
+								});
+						</script>
+					
+					</div>
+					
+				</div>
+				
 		  </div >
 		</div >
 	</tr>		
 </table>	
+
 <% end %>	
+
 </div>
 </div>
 
@@ -150,6 +161,9 @@
 <div id="tooltip" class="tooltip">
 	
 </div>
+
+
+
 
 <script type="text/javascript" language="JavaScript">
 function changeVal(str,score) {
