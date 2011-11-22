@@ -136,12 +136,10 @@
 			</div>
 			<% @all_new_challenge.each do |anc| %>
 				<div id="contentbox">
-					<table width="100%" border="1">
-						<!--
+					<table width="100%" style="margin-top:-2px; margin-left:-2px;">
 						<tr>
-							<td colspan="2"><%= image_tag("new.PNG") %></td>
+							<td colspan="2"><%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:0px;") %></td>
 						</tr>
-						-->
 						<tr>
 							<td width="60%"><font size="3px;" style="font-weight:bold"><%= anc.title%></font></td>
 							<td width="40%">

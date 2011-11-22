@@ -1,5 +1,6 @@
 Dojitsu::Application.routes.draw do   
   resources :validatiions
+ 
 
   get "dashboard/index"
 
@@ -11,6 +12,7 @@ Dojitsu::Application.routes.draw do
   match '/aboutus', :to=>'static#aboutus'
   match '/contactus', :to=>'static#contactus'
   match '/aboutus', :to=>'static#aboutus'  
+  
 
   resources :authentications
   resources :usermails
@@ -37,6 +39,7 @@ Dojitsu::Application.routes.draw do
   resources :user_connections
   resources :messages
   resources :usermail
+  resources :registrations
 
   # root page
   root :to=>'static#home'
