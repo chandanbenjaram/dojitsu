@@ -68,10 +68,10 @@ class ChallengesController < ApplicationController
 
         if !params[:invitees].nil?
           params[:invitees].split(",").each do |invitee|
-            if @ch_st_date == "#ch_st_dat" and  @ch_ed_date == "#ch_ed_dat"
+            if @ch_st_date == "startPointDate" and  @ch_ed_date == "endPointDate"
               new_challenge.child_challenges.build(:user_id => invitee, :title => @ch.title, :description => @ch.description, \
-              :start_point => PointDateType.new(:value => @st_p_val1), \
-              :end_point => PointDateType.new(:value => @ed_p_val1), \
+              :start_point => PointDateType.new(:value => @st_p_val), \
+              :end_point => PointDateType.new(:value => @ed_p_val), \
               :personal_type => ChallengePersonalType.new(:who_win => @pr_who_win), \
               :tasks => @ch.task_attributes)
             else 
