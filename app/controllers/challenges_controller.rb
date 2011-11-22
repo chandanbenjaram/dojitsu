@@ -41,14 +41,14 @@ class ChallengesController < ApplicationController
     @ch = Challenge.new(params[:challenge])
     #raise @ch.id.inspect
     @ch_st_date = params[:start_point_type]
-    @st_p_val1 = params[:st_value1]
-    @st_p_val = params[:st_value]
-    @st_p_leb = params[:st_label]
+    @st_p_val = params[:start_point_value]
+    #@st_p_val = params[:start_point_label]
+    @st_p_leb = params[:start_point_label]
 
     @ch_ed_date = params[:end_point_type]
-    @ed_p_val1 = params[:ed_value1]
-    @ed_p_val = params[:ed_value]
-    @ed_p_leb = params[:ed_label]
+    @ed_p_val = params[:end_point_value]
+    #@ed_p_val = params[:ed_value]
+    @ed_p_leb = params[:end_point_label]
 
     @so_who_win = params[:soc_who_win]
     @so_how_many_winner = params[:soc_how_many_winner]
@@ -59,8 +59,8 @@ class ChallengesController < ApplicationController
       @challenge = Challenge.new(:user_id => (current_user.fbauth.uid rescue current_user.id), :title => @ch.title, :description => @ch.description, \
       :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner)) do |new_challenge|
         if @ch_st_date == "startPointDate" and  @ch_ed_date == "endPointDate"
-          new_challenge.start_point =  PointDateType.new(:value => @st_p_val1)
-          new_challenge.end_point = PointDateType.new(:value => @ed_p_val1) 
+          new_challenge.start_point =  PointDateType.new(:value => @st_p_val)
+          new_challenge.end_point = PointDateType.new(:value => @ed_p_val) 
         else
           new_challenge.start_point =  PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb)
           new_challenge.end_point = PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb) 
@@ -90,8 +90,8 @@ class ChallengesController < ApplicationController
       @challenge = Challenge.new(:user_id => (current_user.fbauth.uid rescue current_user.id), :title => @ch.title, :description => @ch.description, \
       :personal_type => ChallengePersonalType.new(:who_win => @pr_who_win)) do |new_challenge|
         if @ch_st_date == "startPointDate" and  @ch_ed_date == "endPointDate"
-          new_challenge.start_point =  PointDateType.new(:value => @st_p_val1)
-          new_challenge.end_point = PointDateType.new(:value => @ed_p_val1) 
+          new_challenge.start_point =  PointDateType.new(:value => @st_p_val)
+          new_challenge.end_point = PointDateType.new(:value => @ed_p_val) 
         else
           new_challenge.start_point =  PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb)
           new_challenge.end_point = PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb) 
