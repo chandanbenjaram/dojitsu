@@ -301,11 +301,25 @@ nav .menu #check :hover {
 	background:#f8981d url("btn_add_up.png") no-repeat left center ;	
 }
 
-.new_button1 {
+.facebook {
 	background: url("loginbutton.png") no-repeat left center ; 
-	width: 68px;
-	height: 24px;
+	width: 136px;
+	height: 22px;
 	color: #FFFFFF;
+}
+.register1{
+		background: url("register.PNG") no-repeat left center ; 
+	width: 97px;
+	height: 22px;
+	color: #FFFFFF;
+
+}
+.login1{
+background: url("login.PNG") no-repeat left center ; 
+	width: 58px;
+	height: 22px;
+	color: #FFFFFF;
+
 }
 .new_button :hover{
 	color: #FFFFFF;

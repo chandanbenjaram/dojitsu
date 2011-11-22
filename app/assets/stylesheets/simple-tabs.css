@@ -6,7 +6,7 @@ ul.tabs {
 	height: 32px; /*--Set height of tabs--*/
 	border-bottom: 1px solid #999;
 	border-left: 1px solid #999;
-	width: 85%;
+	width: 97%;
 	background :#f4f4f4;
 }
 
@@ -80,7 +80,7 @@ color:orange;
 	border-top: none;
 	overflow: hidden;
 	clear: both;
-	float: left; width: 85%;
+	float: left; width: 97%;
 	background: #fff;
 }
 .tab_content {
