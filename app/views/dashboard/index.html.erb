@@ -40,11 +40,11 @@
 									<tr>
 										<td id="content1">
 											<% title = userChallenge.title %>
-											<font size=3><b><%= link_to "#{title}",show_per_challenges_path(:id => userChallenge)%><%#= userChallenge.title %></b></font><br><font size=2>by <b><%= @org_name.first_name %></b></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
+											<font size=3><b><%= link_to "#{title}",show_per_challenges_path(:id => userChallenge)%></b></font><br><font size=2>by <b><%= @org_name.first_name %></b></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
 											<%if ( userChallenge.child_challenges.size <2 ) %> 
-												<%= userChallenge.child_challenges.size %> Contestant<br>
+												<%= userChallenge.child_challenges.size >0 ? userChallenge.child_challenges.size : 1  %> contestant<br>
 											<% else %>
-												<%= userChallenge.child_challenges.size %> Contestants<br>
+												<%= userChallenge.child_challenges.size %> contestants<br>
 											<% end %>
 										</td>
 										<td id="content2">					
@@ -150,7 +150,7 @@
 						</tr>
 						<tr>
 							<td colspan="2">
-								<% if anc.start_point.type.to_s == "PointDateType" %>
+								<% if anc.start_point.instance_of?PointDateType %>
 									<%= anc.start_point.value.strftime("%b %d, %Y")%> - <%= anc.end_point.value.strftime("%b %d, %Y")%>
 								<% else %>
 									<%= anc.start_point.value %> - <%= anc.end_point.value%>
@@ -162,12 +162,12 @@
 						</tr>
 						<tr>
 							<td colspan="2">
-								<% if anc.personal_type.type.to_s == "ChallengePersonalType"%>
+								<% if anc.personal_type.instance_of?ChallengePersonalType%>
 									<p style="text-transform:none;">
 										<%=h truncate(anc.description, :length => 128) %>....<%= link_to "VIEW" , show_per_challenges_path(:id => anc.id) %>									
 									</p>
 								<% end %>
-								<% if anc.social_type.type.to_s == "ChallengeSocialType"%>
+								<% if anc.social_type.instance_of?ChallengeSocialType%>
 									<p style="text-transform:none;">
 										<%=h truncate(anc.description, :length => 128) %>....<%= link_to "VIEW" , show_soc_challenges_path(:id => anc.id) %>									
 									</p>

@@ -1,3 +1,16 @@
+/* app global placeholder properties */
+::-webkit-textarea-placeholder, ::-webkit-input-placeholder { 
+	color: #c6c6c6;
+	font-weight: normal;
+	font-size: 12px;
+}
+
+textarea:-moz-placeholder, input:-moz-placeholder { 
+	color: #c6c6c6; 
+	font-weight: normal;
+	font-size: 12px;
+}
+
 .appLogo {
 	height: 50px;
 	margin:0px;
@@ -308,14 +321,14 @@ nav .menu #check :hover {
 	color: #FFFFFF;
 }
 .register1{
-		background: url("register.PNG") no-repeat left center ; 
+	background: url("register.PNG") no-repeat left center ; 
 	width: 97px;
 	height: 22px;
 	color: #FFFFFF;
 
 }
 .login1{
-background: url("login.PNG") no-repeat left center ; 
+	background: url("login.PNG") no-repeat left center ; 
 	width: 58px;
 	height: 22px;
 	color: #FFFFFF;
@@ -1052,7 +1065,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	height:60px;
 	width:760px;
 	background:#000000;
-    margin-top:20px;
+	margin-top:20px;
 }
 #check
 {
@@ -1083,12 +1096,12 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 .dashboardsidebar1{
 
 	width: 645px;
-	
+
 
 }
 .dashboardsidebar2 {
 	position:relative;
-    top:10px;
+	top:10px;
 	width:280px;
 	height:auto;
 	border: 2px solid #BEBEBE;
@@ -1149,56 +1162,56 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 
 .completedtask
 {
-color:#fff;
-left:60px;
-position:relative;
+	color:#fff;
+	left:60px;
+	position:relative;
 }
 .remainedtask
 {
 
-color:#Ffffff;
+	color:#Ffffff;
 
 }
 
 .notcompleted
 {
-float:left;
-left:3px;
-position:relative;
-color:#fff;
+	float:left;
+	left:3px;
+	position:relative;
+	color:#fff;
 }
 
 .completedtask1
 {
-color:#fff;
-left:150px;
-position:relative;
+	color:#fff;
+	left:150px;
+	position:relative;
 }
 
 
 .notcompleted1
 {
-float:left;
-left:95px;
-position:relative;
-color:#fff;
+	float:left;
+	left:95px;
+	position:relative;
+	color:#fff;
 }
 
 #points
 {
-position:relative;
-top:-35px;
-width:40px;
-height:25px;
-background:#DDEFCE;
-color:#7AC142;
+	position:relative;
+	top:-35px;
+	width:40px;
+	height:25px;
+	background:#DDEFCE;
+	color:#7AC142;
 }
 
 .checking
 {
-width:60px;
-height:40px;
-border:2px solid #a52a2a;
+	width:60px;
+	height:40px;
+	border:2px solid #a52a2a;
 }
 
 #task_list{
@@ -1212,28 +1225,28 @@ border:2px solid #a52a2a;
 .showperscore
 {
 	background: none repeat scroll 0 0 #ABD6AD;
-    color: green;
-    float: right;
-    font-size: 15px;
-    font-weight: bold;
-    height: 35px;
-    padding-top: 15px;
-    text-align: center;
-    width: 50px;
-	
-	
+	color: green;
+	float: right;
+	font-size: 15px;
+	font-weight: bold;
+	height: 35px;
+	padding-top: 15px;
+	text-align: center;
+	width: 50px;
+
+
 }
 .showperscore1
 {
 	background: none repeat scroll 0 0 #ABD6AD;
-    color: green;
-    float: right;
-    font-size: 15px;
-    font-weight: bold;
-    height: 35px;
-    padding-top: 15px;
-    text-align: center;
-    width: 50px;
+	color: green;
+	float: right;
+	font-size: 15px;
+	font-weight: bold;
+	height: 35px;
+	padding-top: 15px;
+	text-align: center;
+	width: 50px;
 	top:-37px;
 	position:relative;
 	right:5px;
@@ -1252,4 +1265,19 @@ border:2px solid #a52a2a;
 	right:50px;
 	font-weight:bold;
 	padding-top:15px;
+}
+
+.pageTitle {
+	font-size:20px; 
+	color:#f9a943;
+	margin-left:10px;
+	margin-top:10px; 
+	font-weight:bold;
+}
+
+.pageContainer {
+	border-color: #F4F4F4;
+	border-radius: 5px 5px 5px 5px;
+	border-style: solid;
+	border-width: 10px;
 }

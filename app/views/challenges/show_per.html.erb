@@ -21,8 +21,6 @@
 				</td>
 				<td class="editable" valign="top">
 					<%= on_the_spot_edit @challenge, :description, :type => :textarea %>
-				
-
 				</td>
 			</tr>
 		</table>
@@ -35,7 +33,7 @@
 					<b><font color=	#909090>START POINT</font></b>
 				</td>
 				<td class="editable">
-					<% if @challenge.start_point.type.to_s == "PointDateType" %>		
+					<% if @challenge.start_point.instance_of?PointDateType %>		
 						<%= @challenge.start_point.value.strftime("%b %d, %Y") %>
 					<% else %>							
 						<%= @challenge.start_point.value %>
@@ -51,7 +49,7 @@
 				<td width=120px>
 					<b><font color=	#909090>END POINT</font></b></td>
 				<td class="editable">
-					<% if @challenge.end_point.type.to_s == "PointDateType" %>		
+					<% if @challenge.end_point.instance_of?PointDateType %>		
 						<%= @challenge.end_point.value.strftime("%b %d, %Y") %>
 					<% else %>							
 						<%= @challenge.end_point.value %>
