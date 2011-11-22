@@ -1,4 +1,7 @@
 Dojitsu::Application.routes.draw do   
+  resources :validatiions
+ 
+
   get "dashboard/index"
 
   # user registration & 3rd party logins
@@ -9,6 +12,7 @@ Dojitsu::Application.routes.draw do
   match '/aboutus', :to=>'static#aboutus'
   match '/contactus', :to=>'static#contactus'
   match '/aboutus', :to=>'static#aboutus'  
+  
 
   resources :authentications
   resources :usermails
@@ -23,6 +27,11 @@ Dojitsu::Application.routes.draw do
       get "challenge_comp"
 	    get "task_update_c"
       get "date_update"
+	    get "message"
+      get "add_task_link"
+      get "add_task_fun"
+	    get "status"
+	  get "decline"
       put :update_attribute_on_the_spot
     end
   end
@@ -30,6 +39,7 @@ Dojitsu::Application.routes.draw do
   resources :user_connections
   resources :messages
   resources :usermail
+  resources :registrations
 
   # root page
   root :to=>'static#home'
