@@ -31,7 +31,7 @@
 		</tr>	
 		<tr  bgcolor="#f5faf0">
 			<td>
-				<font size="4px;"><%= @score%> <%= image_tag("icon_multiply.png")%><%= text_field_tag 'no_of_task', nil %> 1 mark as complete</font>
+				<font size="4px;"><%= @score%> <%= image_tag("icon_multiply.png")%><%= text_field_tag 'no_of_task', nil, :onKeyup=>"cal('hi',@score)" %> 1 mark as complete</font>
 			</td>
 			<td colspan="2">
 				<%= image_tag("icon_equal.png")%><font size="4px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @score%></font>
