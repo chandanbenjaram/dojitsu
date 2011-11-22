@@ -43,8 +43,10 @@ class User < ActiveRecord::Base
   def challenges 
     #debugger
     #Challenge.where({:user_id=>self.id}).all
-    #Challenge.all 
-     Challenge.all(:conditions => { :user_id => self.id, :user_id => fbauth.uid })
+    #Challenge.all   
+    #debugger
+    Challenge.all(:conditions => {:user_id => fbauth.uid })
+    #raise Challenge.child_challenges.all(:conditions => {:user_id => fbauth.uid }).inspect
   end
   
   def facebook

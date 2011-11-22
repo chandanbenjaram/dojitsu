@@ -22,8 +22,8 @@ class ChallengesController < ApplicationController
 
   def show_per
     @challenge = Challenge.find(params[:id])
-    ch = @challenge.social_type.type 
-    if ch == ChallengeSocialType and ch!= ChallengeType and ch!=ChallengePersonalType
+    
+    if (@challenge.social_type.instance_of? ChallengeSocialType rescue false)
       render "show_soc" and return 
     else 
       render "show_per"
@@ -36,7 +36,10 @@ class ChallengesController < ApplicationController
   end
 
   def create
+        debugger
+    #raise params[:invitees].inspect
     @ch = Challenge.new(params[:challenge])
+    #raise @ch.id.inspect
     @ch_st_date = params[:ch_st_date]
     @st_p_val1 = params[:st_value1]
     @st_p_val = params[:st_value]
@@ -125,35 +128,16 @@ class ChallengesController < ApplicationController
     raise "aaaaaaaaa"
   end
   
-  def task_update
-    @id = params[:id]
-    @name = params[:name]
-	 @score = params[:score]
-	 @score_by = params[:score_by]
-    render :layout => false
+  def message
+
+ render :partial => 'challenges/message'
   end
   
-  def task_update_c
-	@ch_ts_update = Challenge.find(params[:id])
-	@name = params[:name]
-	@ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1)
-	redirect_to show_per_challenges_path(:id => params[:id])
-  end
-
-  	  
-	def status
-	
+  
+  	def status
 	     @ch = Challenge.find(params[:id])
 		 @id = params[:id]
-		 #@ch .tasks.where(:name => "taskname").update(:is_complete => 1)
-		 
-		if @ch.social_type
-	
-		 if  @ch.social_type.type != "ChallengeSocialType" 
-			
-		        @ch.social_type.update(:status => 1)
-				end
-				end
+         render :text=> "accepted"
 		 #Challenge.find(@id).social_type.update(:status => "1")
 		 #Challenge.find(@id).social_type.save
 		 #redirect_to :action => "show_soc" and return 
@@ -174,8 +158,24 @@ class ChallengesController < ApplicationController
 	#render :text => @status 
 	#@ch.social_type.where(:status => params[:status]).update(:status => 1)
 	  end
-	    
+	  
+	  
+  def task_update
+    @id = params[:id]
+    @name = params[:name]
+	 @score = params[:score]
+	 @score_by = params[:score_by]
+    render :layout => false
+  end
   
+  def task_update_c
+	raise params.inspect
+	@ch_ts_update = Challenge.find(params[:id])
+	@name = params[:name]
+	@ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1)
+	redirect_to show_per_challenges_path(:id => params[:id])
+  end
+
   def challenge_comp
 	  @sdf = Challenge.where(:_id => params[:id]).update(:is_complete => 1)
 	  redirect_to :action => "index"
@@ -213,5 +213,7 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.all
   end
 
+  
+  
 end
 

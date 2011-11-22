@@ -14,8 +14,11 @@
 				<%= current_user.authentications[0].name rescue current_user.fname%></br>
 				<%= link_to "Log out", destroy_user_session_path %>								
 		</div>
-	<% else %>
+	<% else %>        
+		<%= link_to "Login", new_user_session_path, :style => "float:right" %>
+		<!--
 		<%= button_to "", "/users/auth/facebook", :class=> "new_button1", :style => "float:right" %>
+		-->
     <% end %>
 	</div>
 </div>

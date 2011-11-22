@@ -60,6 +60,13 @@ li.active, html ul.tabs li.active a:hover  { /*--Makes sure that the active tab 
 	border-bottom: 1px solid #fff; /*--Makes the active tab look like it's connected with its content--*/
 }
 
+.user
+{
+font-size:20px;
+text-transform:uppercase;
+color:orange;
+}
+
 .tab_container1 {
 	border: 1px solid #999;
 	border-top: none;
@@ -79,4 +86,5 @@ li.active, html ul.tabs li.active a:hover  { /*--Makes sure that the active tab 
 .tab_content {
 	padding: 20px;
 	font-size: 1.2em;
+	
 }

@@ -3,13 +3,95 @@
 <%= render 'layouts/loggedinbody'%>
 
 <div class="topbar">
-<table>
-<tr><td width="470px"></td><td><%= image_tag("invite.PNG")%>&nbsp;&nbsp;&nbsp;<font color="gray"><b  id="image"></b></font></td><td></td></tr>
-</table>
+
+			<table>
+					<tr>
+						<td width="470px">
+						</td>
+						<td>
+							<%= image_tag("invite.PNG")%>&nbsp;&nbsp;&nbsp;<font color="gray"><b  id="image"></b></font>
+						</td>
+						<td>
+						</td>
+					</tr>
+			</table>
 </div>
 
+		<div id="ch_main_div3">
+				<p class="user"><font color="orange">sreeream</font></p>
+		
+		  <table border="1px">
+				<tr width="600px">
+					<td width="100px" height="200px" id="image1" align="left">
+					
+					</td>
+					<td width="350px" height="200px">
+						<table border =5 bordercolor=#f4f4f4>
+							<tr>
+								<td width="100px">
+								<font color="gray"><b>TROPHIES</b></font></td>
+								</td>
+								<td align="left">
+								 No of trophies
+								</td>
+							</tr>
+					        <tr>
+								<td width="100px">
+								<font color="gray"><b>MEMBER SINCE</b></font></td>
+								</td>
+								<td align="left">
+								<%=  %>
+								</td>
+							</tr>
+							<tr>
+								<td width="100px">
+								<font color="gray"><b> CURRENT CITY</b></font></td>
+								</td>
+								<td align="left">
+								<%=  %>
+								</td>
+							</tr>
+							<tr>
+								<td width="100px">
+								<font color="gray"><b>HOME CITY</b></font></td>
+								</td>
+								<td align="left">
+								<%=  %>
+								</td>
+							</tr>
+							<tr>
+								<td width="100px">
+								<font color="gray"><b> SEX</b></font></td>
+								</td>
+								<td align="left"  id="image2">
+								<%=  %>
+								</td>
+							</tr>
+							<tr>
+								<td width="100px">
+								<font color="gray"><b>BIRTH DAY</b></font></td>
+								</td>
+								<td align="left" id="image3">
+								<%=  %>
+								</td>
+							</tr>
+							<tr>
+								<td width="100px">
+								<font color="gray"><b>ABOUT ME</b></font></td>
+								</td>
+								<td align="left">
+								<%=  %>
+								</td>
+							</tr>
+					</table>
+					</td>
+				</tr>
+		  </table>
 
+</div>
   
+
+
 <script type="text/javascript" src="../includes/js/jquery.min.js"></script>  
 <script src="http://connect.facebook.net/en_US/all.js"></script>  
 <div id="fb-root"></div> 	
@@ -20,20 +102,35 @@
          cookie : true, // enable cookies to allow the server to access the session 
          xfbml  : true  // parse XFBML 
          });
-    FB.getLoginStatus(function(response) { 
-                 if (response.session)
+		  FB.getLoginStatus(function(response) { 
+             if (response.session)
             { 
                        globaluserid=response.session["uid"]; 
 					   name=globaluserid;
-			
-					  
-						}
-						}
-						);
-						FB.api('/me', function(response) {
-var user = response.name
-  $("#image").append(user);
-});
-
-						
+					    
+                      FB.api( 
+                                    { 
+                                    method: 'fql.query',
+                                    query: 'SELECT uid1 FROM friend WHERE uid2='+globaluserid
+                                    },
+                                    function(response)
+                                    {
+									FB.api({
+														method: 'fql.query',
+                                                         query: 'SELECT name,pic_square,sex,birthday FROM user WHERE uid=' + name
+                                                        }, function(response){                                                               
+                                                                htmlcontent = '<img src=' + response[0].pic_square+ ' />';
+																htmlcontent1=response[0].name
+																htmlcontent2=response[0].sex
+																htmlcontent3=response[0].birthday
+																alert(htmlcontent3);
+																$("#image").append(htmlcontent1);   
+                                                                $("#image1").append(htmlcontent);   
+																$("#image2").append(htmlcontent2);   
+																$("#image3").append(htmlcontent3);   
+                                                        }); 
+                                    } 
+                        ); 
+            }
+    }); 					
     </script>	

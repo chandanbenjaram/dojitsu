@@ -661,7 +661,17 @@ h2{
 	border-width:10px;
 	border-style:solid;
 	border-color:#f4f4f4;
+	margin-top:20px;
+	-moz-border-radius:    5px;
+	-webkit-border-radius: 5px;
+	border-radius:         5px;
+}
+#ch_main_div3{
+	border-width:0px;
+	border-style:solid;
+	border-color:#ffffff;
 	margin-top:35px;
+	padding :40px;
 	-moz-border-radius:    5px;
 	-webkit-border-radius: 5px;
 	border-radius:         5px;
@@ -808,7 +818,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 
 
 .ip-input{
-	float:right
+	float:right;
 	margin: 0px;
 }
 
@@ -1138,7 +1148,7 @@ color:#7AC142;
 {
 width:60px;
 height:40px;
-border:2px solid #a52a2a:
+border:2px solid #a52a2a;
 }
 
 #task_list{
