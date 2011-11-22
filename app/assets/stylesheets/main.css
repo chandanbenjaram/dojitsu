@@ -546,6 +546,18 @@ input.radio {
 	width: 130px;
 }
 
+.ds_view_all {
+	background: none repeat scroll 0 0 #f9a943;
+	border-radius: 3px 3px 3px 3px;
+	display: block;
+	font-size: 10px;
+	margin: 2px 15px 2px 2px;
+	padding: 5px;
+	text-align: center;
+	text-transform: uppercase;
+	width: 60px;
+}
+
 .links_invite_p {
 	background: none repeat scroll 0 0 #f9a943;
 	border-radius: 3px 3px 3px 3px;
@@ -1035,6 +1047,13 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	background:#000000;
 
 }
+#check2
+{
+	height:60px;
+	width:760px;
+	background:#000000;
+    margin-top:20px;
+}
 #check
 {
 	color:#7AC142;
@@ -1069,7 +1088,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 }
 .dashboardsidebar2 {
 	position:relative;
-top:10px;
+    top:10px;
 	width:280px;
 	height:auto;
 	border: 2px solid #BEBEBE;
@@ -1088,7 +1107,7 @@ top:10px;
 	-moz-border-radius-bottomright: 0px;
 	-moz-border-radius-bottomleft: 0px;
 	-webkit-border-radius: 5px 5px 0px 0px;
-	border-radius: 5px 5px 0px 0px; 
+	border-radius: 5px 5px 0px 0px;
 }
 #viewall
 {
@@ -1109,9 +1128,9 @@ top:10px;
 	margin-bottom:10px;
 	margin-left:10px;
 	margin-right:10px;
-	height:200px;
+	height:230px;
 	background:#F4F4F4;
-
+	overflow:hidden;
 }
 
 .hidden {
@@ -1127,6 +1146,7 @@ top:10px;
 	position:absolute; 
 	border:1px solid black;	
 }
+
 .completedtask
 {
 color:#fff;
@@ -1144,6 +1164,22 @@ color:#Ffffff;
 {
 float:left;
 left:3px;
+position:relative;
+color:#fff;
+}
+
+.completedtask1
+{
+color:#fff;
+left:150px;
+position:relative;
+}
+
+
+.notcompleted1
+{
+float:left;
+left:95px;
 position:relative;
 color:#fff;
 }
@@ -1184,7 +1220,25 @@ border:2px solid #a52a2a;
     padding-top: 15px;
     text-align: center;
     width: 50px;
+	
+	
 }
+.showperscore1
+{
+	background: none repeat scroll 0 0 #ABD6AD;
+    color: green;
+    float: right;
+    font-size: 15px;
+    font-weight: bold;
+    height: 35px;
+    padding-top: 15px;
+    text-align: center;
+    width: 50px;
+	top:-37px;
+	position:relative;
+	right:5px;
+}
+
 
 .showperscore_0
 {

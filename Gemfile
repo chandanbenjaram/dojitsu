@@ -54,6 +54,7 @@ group :development, :test do
 	gem 'annotate'
 	#gem 'ruby-debug'
 	#gem "mongrel"   
+	
 end       
 
 # Gems used only for assets and not required
@@ -62,6 +63,7 @@ group :assets do
   gem 'sass-rails', "~> 3.1.0.rc"
   gem 'coffee-rails', "~> 3.1.0.rc"
   gem 'execjs'
+ 
   gem 'uglifier'
 end
 
