@@ -129,17 +129,41 @@
 	<td valign=top>
 		<div class="dashboardsidebar2">
 			<div class="whatsnew">
-				WHATS NEW
+					WHATS NEW 
 				<div id="viewall">
-					&nbsp;&nbsp;VIEW ALL
+					VIEW ALL
 				</div>
 			</div>
+			<% @all_new_challenge.each do |anc| %>
+				<div id="contentbox">
+					<table width="100%" border="1">
+						<tr>
+							<td width="60%"><font size="3px;" style="font-weight:bold"><%= anc.title%></font></td>
+							<td width="40%">
+								<%= time_ago_in_words  anc.created_at%>
+							</td>
+						</tr>
+					    <tr>
+							<td colspan="2">by<b><%= anc.user_id%></b></td>
+						</tr>
+						<tr>
+							<td colspan="2"><%= anc.start_point.value.strftime("%b %m, %Y")%> - <%= anc.end_point.value.strftime("%b %m, %Y")%></td>
+						</tr>
+						<tr>
+							<td colspan="2"><%= anc.child_challenges.size%> contestants</td>
+						</tr>
+					</table>
+					<p><%= anc.description%></p>
+				</div>
+			<% end %>
+			<!--
 			<div id="contentbox">
+				new challenge 2222
 			</div>
 			<div id="contentbox">
+				new challenge 3333
 			</div>
-			<div id="contentbox">
-			</div>
+			-->
 		</div>
 	</td>
 </table>
