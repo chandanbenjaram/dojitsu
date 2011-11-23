@@ -78,30 +78,73 @@
 
 						<% @challenge.tasks.each_with_index do |task, index| %>      
 						<%= f.fields_for "task_attributes[]", task do |task_fields| %>
+						
+						
+						
+						
 						<tr>
-							<td class="taskSelection">
-								<%= task_fields.select :score_by, options_for_select([
-									["Choose", ""],
-									["Check box:1 for checking off the task", "Check box:1 for checking off the task"],	 
-									["Self-report number","Self-report number"]														
-									])%>	
-								</td>
-								<td align="center" class="taskIcon"><%= image_tag("icon_multiply.png")%></td>
-								<td>
-									<%= task_fields.text_field :score, :class => "textfield_effect_nw_tk_add", :placeholder=>"enter task point(s) here" %></td>
+		<td class="taskSelection">
+			<%= task_fields.select :score_by, options_for_select([
+			["Choose", ""],
+			["Check box:1 for checking off the task", "Check box:1 for checking off the task"],	 
+			["Self-report number","Self-report number"]														
+			])%>	
+		</td>
+		<td align="center" class="taskIcon"><%= image_tag("icon_multiply.png")%></td>
+		<td align="center">     
+			<%= task_fields.text_field :score, :class => "textfield_effect_nw_tk_add", :placeholder=>"enter task point(s) here" %></td>
 									<td align="center" class="taskIcon"><%= image_tag("icon_slash.png")%></td>
 									<td align="center">     
 										<%= task_fields.text_field :name, :class => "textfield_effect_nw_tk", :required => "required",  :placeholder=>"enter task name here"%>
-										<% if(index == (@challenge.tasks.size-1))%>
-										<%= image_tag("btn_add_up.png",  :class => "alternativeRow", :style => "float:right;") %>
-										<%else%>
-										<%= image_tag("btn_delete_up.png", :class => "delRow") %>												
-										<%end%>
+									</td>				
+									<td>
+										<%= image_tag("btn_delete_up.png" ,:class => "delRow") %>	
+									
+										
 									</td>
-								</tr>
+		</tr>
+		<tr>
+		<td>
+		</td>
+		<td>
+		</td>
+		<td>
+		</td>
+		<td>
+		</td>
+		<td>
+		</td>
+		<td align="right">
+		<%= image_tag("btn_add_up.png", :class => "addRow")%>
+			
+				<style>
+										  .addRow
+										  {
+										     position:relative;
+											 top:-41px;
+										  }
+										</style>
+		</td>
+	</tr>
 
+
+
+<script type="text/javascript">
+(function($){
+	$(document).ready(function(){
+		$(".addRow").btnAddRow();
+		$(".delRow").btnDelRow();
+});
+})(jQuery);
+
+
+</script>	
+								
+								
+								
 								<% end %> 
 								<% end %>
+								
 
 								<tr>
 									<td colspan="6">
