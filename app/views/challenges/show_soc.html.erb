@@ -6,10 +6,15 @@
 										<div class="challange"> 
 												<%= on_the_spot_edit @challenge,:title%>
 										</div> 
-<% if @challenge.social_type.status ==1 || @challenge.social_type.status == -1 %>
-			<p>&nbsp;</p>
-<% else %>
-					<div>
+									<% t=0 %>
+
+							<% @challenge.child_challenges.each do |aTask| %>
+								<% if aTask.user_id == @challenge.user_id %>
+									<% t+=1 %>
+								<%end%>
+							<%end%>
+							<% if t != 1 %>
+							<div>
 							<table>
 									<tr >
 										<td width="20px" >  
@@ -24,7 +29,9 @@
 									</tr>
 							</table>	
 						</div>
-<%end%>
+						<% else %>
+					
+						<% end %> 
 			
 						<div>
 							<table >
@@ -44,7 +51,7 @@
 												<td width="100px" class="titles">
 													<b><font color= #909090>ORGANIZER</font></b>
 												</td>
-												<td id="username">
+												<td id="user">
 												</td>
 												<td>
 												<%=link_to image_tag("btn_msg_up.png"), message_challenges_path(:id => @challenge) %>
@@ -126,7 +133,7 @@
 															<% if @challenge.social_type.status ==0 %>
 					<%= render :partial=> "challenges/tasks" %>
 					<% else %>
-					<%#= render :partial=> "challenges/tasks" %>
+					<%#= render :partial=> "challenges/tasks2" %>
 					<%end%>
 																		
 															
@@ -170,7 +177,7 @@
 																				<% @challenge.child_challenges.each do |aTask| %>
 																				<tr> 
 																					<td align="left" id="image"> 
-													               
+																						
 																					</td> 
 																					<td align = right>
 																							<p align=right>
@@ -212,11 +219,16 @@
             { 
                        globaluserid=response.session["uid"]; 
 					   name=globaluserid;
-					    $("#username").append(name);
+					    
 						}
 						}
 						);
-						 <% @challenge.child_challenges.each do |aTask| %>
+						FB.api('/me', function(response) {
+  var user = response.name;
+  $("#user").append(user);
+});
+
+<% @challenge.child_challenges.each do |aTask| %>
 						 var len = <%= @challenge.child_challenges.length %>
 		var img = <%= aTask.user_id %>
 	
@@ -247,6 +259,9 @@
                                                         });
 
 	 <%end %>
+				
+					
+
 </script>
 
 

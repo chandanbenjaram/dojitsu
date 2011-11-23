@@ -7,7 +7,7 @@ defaults: &defaults
   use_object_ids: false
 
 development:
-  <<: *defaults
+
   host: localhost
   database: dojitsu_development
 
