@@ -675,7 +675,17 @@ h2{
 	border-width:10px;
 	border-style:solid;
 	border-color:#f4f4f4;
+	margin-top:20px;
+	-moz-border-radius:    5px;
+	-webkit-border-radius: 5px;
+	border-radius:         5px;
+}
+#ch_main_div3{
+	border-width:0px;
+	border-style:solid;
+	border-color:#ffffff;
 	margin-top:35px;
+	padding :40px;
 	-moz-border-radius:    5px;
 	-webkit-border-radius: 5px;
 	border-radius:         5px;
@@ -1066,7 +1076,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 }
 .dashboardsidebar2 {
 	position:relative;
-top:10px;
+    top:10px;
 	width:280px;
 	height:auto;
 	border: 2px solid #BEBEBE;
@@ -1085,7 +1095,7 @@ top:10px;
 	-moz-border-radius-bottomright: 0px;
 	-moz-border-radius-bottomleft: 0px;
 	-webkit-border-radius: 5px 5px 0px 0px;
-	border-radius: 5px 5px 0px 0px; 
+	border-radius: 5px 5px 0px 0px;
 }
 #viewall
 {
@@ -1106,9 +1116,9 @@ top:10px;
 	margin-bottom:10px;
 	margin-left:10px;
 	margin-right:10px;
-	height:200px;
+	height:230px;
 	background:#F4F4F4;
-
+	overflow:hidden;
 }
 
 .hidden {

@@ -129,11 +129,15 @@ class ChallengesController < ApplicationController
     raise "aaaaaaaaa"
   end
   
+  def message
+	render :partial => 'challenges/message'
+  end  
+	  
   def task_update
     @id = params[:id]
     @name = params[:name]
-	 @score = params[:score]
-	 @score_by = params[:score_by]
+	@score = params[:score]
+	@score_by = params[:score_by]
     render :layout => false
   end
   
@@ -177,7 +181,7 @@ class ChallengesController < ApplicationController
 	@challenge_date = Challenge.find(params[:id])
 	@date = @challenge_date.end_point.value 
 	render :layout => false
-  end 
+  end
 
   protected
 
@@ -185,5 +189,7 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.all
   end
 
+  
+  
 end
 

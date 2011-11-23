@@ -3,166 +3,177 @@
 
 <%= render 'layouts/loggedinbody'%>
 <div class="challange">
-												my dashboard
-											</div>
-											<% as= current_user.challenges.size %>
-											
-												
+	my dashboard
+</div>
+<%#= session[:facebook_id] %>
+
+<% as= current_user.challenges.size %>
 <table>
 	<td>
-		<content>
-				
-				<table>
-					<td>
-						<tr>
-							<td>
-									<div class="dashboardsidebar">
-											
-										
-											<div class="mychallenge">
-													<div id="titlechallenge">
-														<div id="title">
-															MY CHALLENGES ( <%= as %> ) 
-														</div>
-														<div class="second_titlechallenge">
-															<%= button_to "NEW", new_challenge_url, :class => "new_challenge_button", :method => :get%>
-														</div>
-													</div>
-											
-													<div id="subbar">
-														<div id="name">
-															NAME
-														</div>
-														<div id="score">
-															MY DOJITSU SCORE
-														</div>
+	<content>		
+	<table>
+		<td>
+			<tr>
+				<td>
+					<div class="dashboardsidebar">
+						<div class="mychallenge">
+							<div id="titlechallenge">
+								<div id="title">
+									MY CHALLENGES ( <%= as %> ) 
+								</div>
+								<div class="second_titlechallenge">
+									<%= button_to "NEW", new_challenge_url, :class => "new_challenge_button", :method => :get%>
+								</div>
+							</div>						
+							<div id="subbar">
+								<div id="name">
+									NAME
+								</div>
+								<div id="score">
+									MY DOJITSU SCORE
+								</div>				
+							</div>
+							<div style="overflow :auto;  height : 440px;" id="challengedetails">
+								<% t=1 %>
+								<table>
+									<% current_user.challenges.each do |userChallenge| %>
+									<tr>
+										<td id="content1">
+											<% title = userChallenge.title %>
+											<font size=3><b><%= link_to "#{title}",show_per_challenges_path(:id => userChallenge)%><%#= userChallenge.title %></b></font><br><font size=2>by <b><%= @org_name.first_name %></b></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
+											<%if ( userChallenge.child_challenges.size <2 ) %> 
+												<%= userChallenge.child_challenges.size %> Contestant<br>
+											<% else %>
+												<%= userChallenge.child_challenges.size %> Contestants<br>
+											<% end %>
+										</td>
+										<td id="content2">					
+											<div id="taskprogress<%= t %>">
+											</div><br/>
+											<div id="check1">
+												<% x=0 %>
+												<% y=0 %>
+												<% a= 0 %>
+												<% b= 0 %>
+												<% userChallenge.tasks.each do |aTask| %>
+													<% if (aTask.is_complete == 1 ) %>
+														<% a+=Integer(aTask.score) %>
+														<% x+=1 %>
+													<% else %>
+														<% b += aTask.score.to_i %>
+														<% y+=1 %>
+													<% end %>
+												<% end %>
 												
-													</div>
-													
-													<div style="overflow :auto;  height : 440px;" id="challengedetails">
-												
-														
-															<% t=1 %>
-																<table>
-															<% current_user.challenges.each do |userChallenge| %>
-															 <hr width:100%>
-														                <tr>
-																	<td id="content1">
-																		<% title = userChallenge.title %>
-																		<font size=3><b><%= link_to "#{title}",show_per_challenges_path(:id => userChallenge)%><%#= userChallenge.title %></b></font><br><font size=2>by <%= userChallenge.user_id %></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %> 
-																		<br><%if ( userChallenge.child_challenges.size <2 ) %> 
-																		<%= userChallenge.child_challenges.size %> Contestant<br>
-																		    <% else %>
-																			 <%= userChallenge.child_challenges.size %> Contestants<br>
-																			 <% end %>
-																	</td>
-																	<td id="content2">
-																	
-																			<div id="taskprogress<%= t %>">
-																			</div>
-																			<br/>
-																			<div id="check1">
-																				<% x=0 %>
-																				<% y=0 %>
-																				<% a= 0 %>
-																				<% b= 0 %>
-																				<% userChallenge.tasks.each do |aTask| %>
-																					<% if (aTask.is_complete == 1 ) %>
-																						<% a+=Integer(aTask.score) %>
-																						<% x+=1 %>
-																					<% else %>
-																						<% b += aTask.score.to_i %>
-																						<% y+=1 %>
-																					<% end %>
-																					<% end %>
-												
-																					<div class="update">
-																					<%= link_to image_tag("FDFDG.gif", :alt => "Update"),show_per_challenges_path(:id => userChallenge)%>
-																						
-																					</div>
-																					<div class="completedtask"> 
-																						<%= a %> points (<%= x %> &nbsp; tasks)
-																					</div>
-																					<div class="notcompleted">
-																						<font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="white"><%= b %> points (<%= y %>&nbsp; tasks)</font>
-																					</div>
-																					<script type="text/javascript">
-																						$(function() {
-																							$("#taskprogress<%= t %>").progressbar({ value: Math.round(((<%= a %>/<%= (a+b) %>)*100)) });
-																							$("<p>").attr("id", "check").text($("#taskprogress<%= t %>").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress<%= t %>");
-																						});
-																					</script>
-																			</div>
+											<div class="update">
+												<%= link_to image_tag("FDFDG.gif", :alt => "Update"),show_per_challenges_path(:id => userChallenge)%>												
+											</div>
+											<div class="completedtask"> 
+												<%= a %> points (<%= x %> &nbsp; tasks)
+											</div>
+											<div class="notcompleted">
+												<font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="white"><%= b %> points (<%= y %>&nbsp; tasks)</font>
+											</div>
+												<script type="text/javascript">
+													$(function() {
+														$("#taskprogress<%= t %>").progressbar({ value: Math.round(((<%= a %>/<%= (a+b) %>)*100)) });
+														$("<p>").attr("id", "check").text($("#taskprogress<%= t %>").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress<%= t %>");
+													});
+												</script>
+											</div>
 																		
-																	</td>
-																	<td>
-																			<div id="points">
-																				&nbsp;&nbsp;<font size=4><b><%= a %></b></font>
-																			</div>
-																	</td>
-																
-																
-																<% t+=1 %>
-															
-															 
-															
-															  </tr>
-															   
-															<% end %>
-															</table>
-														
-													</div>
-												</div>
-										</div>
+										</td>
+										<td>
+											<div id="points">
+												&nbsp;&nbsp;<font size=4><b><%= a %></b></font>
+											</div>
+										</td>																		
+										<% t+=1 %>																
+										<hr width:100%>
+									</tr>
+									<% end %>
+								</table>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>	
+					<div class="dashboardsidebar1">
+						<div class="mychallenge">
+							<div id="titlechallenge">
+								<div id="title">
+									NEW MESSAGES 
+								</div>
+								<div class="second_titlechallenge">
+									<%= button_to "NEW", new_challenge_url, :class => "new_challenge_button", :method => :get%>
+								</div>
+							</div>
+							<div id="subbar">
+								<div id="name">
+									FROM
+								</div>
+								<div id="score">
+									TIME
+								</div>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</td>
+	</table>
+	</content>
+    </td>
+	<td valign=top>
+		<div class="dashboardsidebar2">
+			<div class="whatsnew">
+					WHAT'S NEW 
+				<div id="viewall">
+					VIEW ALL
+				</div>
+			</div>
+			<% @all_new_challenge.each do |anc| %>
+				<div id="contentbox">
+					<%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:0px;") %>
+					<table width="100%" style="margin-top:-10px;">
+						<tr>
+							<td width="60%"><font size="3px;" style="font-weight:bold"><%= anc.title%></font></td>
+							<td width="40%">
+								<%= time_ago_in_words  anc.created_at%>
+							</td>
+						</tr>
+					    <tr>
+							<td colspan="2">					
+								<% fname= Authentication.where(:uid => anc.user_id).first %>								
+								by<b> <%= fname.first_name %></b>
 							</td>
 						</tr>
 						<tr>
-							<td>	
-								<div class="dashboardsidebar1">
-											<div class="mychallenge">
-														<div id="titlechallenge">
-															<div id="title">
-																NEW MESSAGES 
-															</div>
-															<div class="second_titlechallenge">
-																<%= button_to "NEW", new_challenge_url, :class => "new_challenge_button", :method => :get%>
-															</div>
-														</div>
-												
-														<div id="subbar">
-															<div id="name">
-																FROM
-															</div>
-															<div id="score">
-																TIME
-															</div>
-													
-														</div>
-												
-												</div>
-									</div>
-								</td>
+							<td colspan="2"><%= anc.start_point.value.strftime("%b %d, %Y")%> - <%= anc.end_point.value.strftime("%b %d, %Y")%></td>
 						</tr>
-				</td>
-				
-				</table>
-	
-				</content>
-      </td>
-	  <td valign=top>
-			<div class="dashboardsidebar2">
-							<div class="whatsnew">
-									WHATS NEW
-										<div id="viewall">
-											&nbsp;&nbsp;VIEW ALL
-										</div>
-								</div>
-								<div id="contentbox">
-								</div>
-								<div id="contentbox">
-								</div>
-								<div id="contentbox">
-								</div>
+						<tr>
+							<td colspan="2"><%= anc.child_challenges.size%> contestants</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<p style="text-transform:none;">
+									<%=h truncate(anc.description, :length => 128) %>....<%= link_to "VIEW" , "#"%>									
+								</p>								
+							</td>
+						</tr>
+					</table>
+				</div>
+			<% end %>
+			<!--
+			<div id="contentbox">
+				new challenge 2222
 			</div>
+			<div id="contentbox">
+				new challenge 3333
+			</div>
+			-->
+		</div>
 	</td>
 </table>
