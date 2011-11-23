@@ -1,8 +1,6 @@
 class DashboardController < ApplicationController
   def index
 	@all_new_challenge = Challenge.desc("created_at").limit(3)
-	
-	
 	#@org_name = Authentication.find(:all, :conditions => ["uid=?",session[:f_id]]).first
 	#@auth_details = Authentication.find(:all, :conditions => ["uid=?",session[:f_id]]).first
     #@ch_ts_update = Challenge.find("4ec8aed8192b880ac8000017")
