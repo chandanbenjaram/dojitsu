@@ -8,18 +8,22 @@ $(document).ready(function($) {
 		$('.startPointNumber').empty();
 
 		if($(this).val()){
-			var div_tag = $('<div></div>');		
+			var div_tag = $('<div id="space"></div>');		
 			if($(this).val() === "startPointNumber") {  
 				$(div_tag).append($('<input id="start_point_value"  name="start_point_value" class="textfield_effect" type="text" required="required" placeholder="enter number here">'));								
+			    
+				$(div_tag).append('&nbsp;&nbsp;');
 				$(div_tag).append($('<input id="start_point_label" name="start_point_label" class="textfield_effect" type="text" placeholder="enter label here" >'));				
 			}else{
 				$(div_tag).append('<input id="start_point_value"  name="start_point_value" class="textfield_effect datepicker" type="text" required="required" placeholder="enter date here">');				
+				
 			}
+			$(".textfield_effect datepicker").append('&nbsp;&nbsp;');
 
 			$( '.'+$(this).val()).append(div_tag).fadeIn('500'); 
 			$('.datepicker').datepicker({ 
 				showOn: "button",
-				buttonImage: '<%= asset_path("calendar.gif") %>',
+				buttonImage: '<%= asset_path("icon_calendar.png") %>',
 				showOn: "button",
 				buttonImageOnly: true,
 			});
@@ -33,6 +37,7 @@ $(document).ready(function($) {
 			var div_tag = $('<div></div>');		
 			if($(this).val() === "endPointNumber") {  
 				$(div_tag).append($('<input id="end_point_value" name="end_point_value" class="textfield_effect" type="text" required="required" placeholder="enter number here">'));								
+				$(div_tag).append('&nbsp;&nbsp;');
 				$(div_tag).append($('<input id="end_point_label"  name="end_point_label" class="textfield_effect" type="text" placeholder="enter label here">'));				
 			}else{
 				$(div_tag).append('<input id="end_point_value" name="end_point_value" class="textfield_effect datepicker" type="text" required="required" placeholder="enter date here">');				
@@ -42,7 +47,7 @@ $(document).ready(function($) {
               
 			$('.datepicker').datepicker({ 
 				showOn: "button",
-				buttonImage: '<%= asset_path("calendar.gif") %>',
+				buttonImage: '<%= asset_path("icon_calendar.png") %>',
 				showOn: "button",
 				buttonImageOnly: true,
 			});
