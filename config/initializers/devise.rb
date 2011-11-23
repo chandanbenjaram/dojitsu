@@ -80,7 +80,7 @@ Devise.setup do |config|
 
   # If true, uses the password salt as remember token. This should be turned
   # to false if you are not using database authenticatable.
-  config.use_salt_as_remember_token = true
+  config.use_salt_as_remember_token = false
 
   # ==> Configuration for :validatable
   # Range for password length. Default is 6..20.
@@ -178,7 +178,8 @@ Devise.setup do |config|
   ########## FACEBOOK call backs #####################
   ### UNCOMMENT FOLLOWING BLOCK BASED ON YOUR ENVIRONMENT
   ### localhost:4000 callback
-    config.omniauth :facebook, "232592880122189", "7d7557a9be33907cffda2aa02173a03c",:client_options => { :ssl => { :ca_file => "#{Rails.root}/config/ca-bundle.crt" } }
+  ##  config.omniauth :facebook, '232592880122189', '7d7557a9be33907cffda2aa02173a03c', :scope => 'offline_access, email'
+  config.omniauth :facebook, '232592880122189', '7d7557a9be33907cffda2aa02173a03c'  
   ### dev.dojitsu.com callback
   ##config.omniauth :facebook, "286703391348668", "0fe402e8b7f9a4655319e81a0bf595c1"
   ############################################################
