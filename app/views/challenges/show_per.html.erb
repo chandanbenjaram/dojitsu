@@ -95,7 +95,7 @@
 				<% @challenge.tasks.each do |aTask| %>
 				<% total += aTask.score.to_i %>
 				<tr bgcolor=#ffffff>
-					<td colspan="3" id="mytable" >
+					<td colspan="3" id="mytable" >						
 						<% if aTask.is_complete.to_i == 0 %>
 							<div id="task_list">
 								<p style="float:left; margin-top:15px;"><%= aTask.score %> <%= image_tag("icon_slash.png", :height => '10', :width => '5')%></p><p style="float:left;  margin-top:15px; margin-left:5px;"><%= aTask.name %></p>
