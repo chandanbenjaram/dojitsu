@@ -27,7 +27,7 @@ class Challenge
   # challenge status
   field :is_complete, :default => 0
   
-  # validates :title, :presence => true
+  #validates :title, :presence => true
 
   # RDBMS associations
   field :user_id, :type=>String

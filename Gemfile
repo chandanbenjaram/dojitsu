@@ -24,12 +24,14 @@ gem "bson_ext", "~> 1.5.0.rc0"
 
            
 # authentication specifics
-gem 'devise', '1.4.9'
-gem "oa-oauth", :require => "omniauth/oauth"
+gem 'devise', '1.5'
+#gem "oa-oauth", :require => "omniauth/oauth"
+gem "omniauth-facebook"
 
 # helpers
 gem 'json'
 gem 'fb_graph', '2.1.12'
+
 gem 'jquery-rails'
 #gem 'prototype-rails'
 

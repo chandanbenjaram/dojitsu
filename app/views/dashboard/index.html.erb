@@ -5,7 +5,6 @@
 <div class="challange">
 	my dashboard
 </div>
-<%#= session[:facebook_id] %>
 
 <% as= current_user.challenges.size %>
 <table>
@@ -40,7 +39,7 @@
 									<tr>
 										<td id="content1">
 											<% title = userChallenge.title %>
-											<font size=3><b><%= link_to "#{title}",show_per_challenges_path(:id => userChallenge)%></b></font><br><font size=2>by <b><%= @org_name.first_name %></b></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
+											<font size=3><b><%= link_to "#{title}",show_per_challenges_path(:id => userChallenge)%></b></font><br><font size=2>by <b><%= userChallenge.user_id %></b></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
 											<%if ( userChallenge.child_challenges.size <2 ) %> 
 												<%= userChallenge.child_challenges.size >0 ? userChallenge.child_challenges.size : 1  %> contestant<br>
 											<% else %>
@@ -145,7 +144,7 @@
 					    <tr>
 							<td colspan="2">					
 								<% fname= Authentication.where(:uid => anc.user_id).first %>								
-								by<b> <%= fname.first_name %></b>
+								by<b> <%= fname %></b>
 							</td>
 						</tr>
 						<tr>
@@ -153,7 +152,7 @@
 								<% if anc.start_point.instance_of?PointDateType %>
 									<%= anc.start_point.value.strftime("%b %d, %Y")%> - <%= anc.end_point.value.strftime("%b %d, %Y")%>
 								<% else %>
-									<%= anc.start_point.value %> - <%= anc.end_point.value%>
+									<%= anc.start_point.value rescue 0%> - <%= anc.end_point.value rescue 0%>
 								<% end %>
 							</td>
 						</tr>
