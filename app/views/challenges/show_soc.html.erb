@@ -129,11 +129,15 @@
 
 										<div class="tab_container">
 												<div id="tab1" class="tab_content">
-															<% if @challenge.social_type.status ==0 %>
-					<%= render :partial=> "challenges/tasks" %>
-					<% else %>
-					<%= render :partial=> "challenges/tasks2" %>
-					<%end%>
+													<% if @challenge.social_type.status ==1 and @flg.to_s == "ed" %>
+														<%= render :partial=> "challenges/tasks_edit" %>
+													<% end %>
+													<% if @challenge.social_type.status == 1 %>
+														<%= render :partial=> "challenges/tasks" %>
+													<% end %>
+													<% if @challenge.social_type.status == 0 %>
+														<%= render :partial=> "challenges/tasks2" %>
+													<% end %>
 																		
 															
 												</div>
