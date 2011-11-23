@@ -1075,6 +1075,14 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	font-style:bold;
 	position:relative;
 }
+
+#soc_check2
+{
+	height:60px;
+	width:760px;
+	background:#000000;
+	margin-top:20px;
+}
 .taskcontent
 {
 }
