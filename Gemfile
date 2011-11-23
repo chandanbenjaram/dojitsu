@@ -24,12 +24,14 @@ gem "bson_ext", "~> 1.5.0.rc0"
 
            
 # authentication specifics
-gem 'devise', '1.4.9'
-gem "oa-oauth", :require => "omniauth/oauth"
+gem 'devise', '1.5'
+#gem "oa-oauth", :require => "omniauth/oauth"
+gem "omniauth-facebook"
 
 # helpers
 gem 'json'
 gem 'fb_graph', '2.1.12'
+
 gem 'jquery-rails'
 #gem 'prototype-rails'
 
@@ -54,6 +56,8 @@ group :development, :test do
 	gem 'annotate'
 	#gem 'ruby-debug'
 	#gem "mongrel"   
+	gem 'ruby-debug-base19', "0.11.24"
+  gem 'ruby-debug19', "0.11.6"
 end       
 
 # Gems used only for assets and not required
@@ -62,6 +66,7 @@ group :assets do
   gem 'sass-rails', "~> 3.1.0.rc"
   gem 'coffee-rails', "~> 3.1.0.rc"
   gem 'execjs'
+  gem 'therubyracer'
   gem 'uglifier'
 end
 
