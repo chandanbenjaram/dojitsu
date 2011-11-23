@@ -8,6 +8,9 @@ class ChallengesController < ApplicationController
     @title = "Challenges"
     @no_of_row = Challenge.all.count
     @challenges = current_user.challenges
+	#@ch =  @challenges.parent_challenge
+	#render :text => @ch
+    
   end
 
   def show       

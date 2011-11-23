@@ -18,10 +18,10 @@
 						<div class="mychallenge">
 							<div id="titlechallenge">
 								<div id="title">
-									MY CHALLENGES ( <%= as %> ) 
+									MY CHALLENGES <font color="white">( <%= as %> ) </font>
 								</div>
 								<div class="second_titlechallenge">
-									<%= button_to "NEW", new_challenge_url, :class => "new_challenge_button", :method => :get%>
+									<%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
 								</div>
 							</div>						
 							<div id="subbar">
@@ -58,6 +58,7 @@
 												<% a= 0 %>
 												<% b= 0 %>
 												<% userChallenge.tasks.each do |aTask| %>
+										
 													<% if (aTask.is_complete == 1 ) %>
 														<% a+=Integer(aTask.score) %>
 														<% x+=1 %>
@@ -108,7 +109,7 @@
 									NEW MESSAGES 
 								</div>
 								<div class="second_titlechallenge">
-									<%= button_to "NEW", new_challenge_url, :class => "new_challenge_button", :method => :get%>
+									<%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
 								</div>
 							</div>
 							<div id="subbar">
@@ -131,7 +132,8 @@
 		<div class="dashboardsidebar2">
 			<div class="whatsnew">	
 				<font style="float:left">WHAT'S NEW</font> 
-				<%= link_to "VIEW ALL", challenges_path, :style=>"float:right; text-decoration:none; color:#fff;", :class=>"ds_view_all" %>
+				<%= button_to "", new_challenge_url, :class => "ds_view_all", :method => :get%>
+				
 			</div>
 			<% @all_new_challenge.each do |anc| %>
 				<div id="contentbox">

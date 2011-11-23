@@ -83,7 +83,7 @@
 						
 						
 						<tr>
-		<td class="taskSelection">
+		<td width="30%" class="taskSelection">
 			<%= task_fields.select :score_by, options_for_select([
 			["Choose", ""],
 			["Check box:1 for checking off the task", "Check box:1 for checking off the task"],	 
@@ -181,15 +181,17 @@
 <style>
 .demo
 {
-width:650px;
+  width: 97%;
 }
 </style>
-<div class="demo">
 
-<div id="tabs">
+
+<div  id="tabs">
 	<ul>
-		<li><a href="#tabs-1"><b>Social</b></a></li>
-		<li><a href="#tabs-2"><b>Personal</b></a></li>
+		<li><a href="#tabs-1" id="soc" ><b>Social</b></a></li>
+		<li><a href="#tabs-2" id="per"><b>Personal</b></a></li>
+		
+	
 		
 	</ul>
 	<style>
@@ -209,6 +211,19 @@ width:650px;
 	
 	 
 	 </style>
+	 <script type="text/javascript"> 
+    $(document).ready(function(){
+        $tabs = $("#tabs").tabs({
+            select: function(event, ui) {
+                $('a', ui.tab).click(function() {
+                    $(ui.panel).load(this.href);
+                    return true;
+                });
+            }
+        });
+});
+</script>
+
 	<div id="tabs-1">
 	
 	
@@ -278,7 +293,7 @@ width:650px;
 	
 </div>
 
-</div><!-- End demo -->
+
 
 
 
