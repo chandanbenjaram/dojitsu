@@ -29,7 +29,7 @@
 			<tr>
 				<td><b class="color999">START POINT</b></td>
 				<td width="50px;">   
-					<%= select_tag "start_point_type", "<option value=''>Choose</option><option value='startPointDate'>Date</option><option value='startPointNumber'>Number</option>".html_safe %>
+					<%= select_tag "start_point_type", "<option value=''>Choose</option><option value='startPointDate'>Date</option><option value='startPointNumber'>Number</option>".html_safe , :required => "required" %>
 				</td>  
 				<td colspan="2">					
 					<div class="startPointDate">
@@ -46,7 +46,7 @@
 			<tr>  
 				<td><b class="color999">END POINT</b></td>
 				<td>  
-					<%= select_tag "end_point_type", "<option value=''>Choose</option><option value='endPointDate'>Date</option><option value='endPointNumber'>Number</option>".html_safe %>
+					<%= select_tag "end_point_type", "<option value=''>Choose</option><option value='endPointDate'>Date</option><option value='endPointNumber'>Number</option>".html_safe, :required => "required" %>
 				</td>  
 				<td colspan="2" style="float: left;">					
 					<div class="endPointDate">

@@ -7,12 +7,21 @@
 									<th width="85%">
 										<h3 align="left"><font color="#8c8c8c"><b>Total : <%= @challenge.tasks.count %></b></font></h3>
 									</th>
+									<% t=0 %>
+							<% @challenge.child_challenges.each do |aTask| %>
+							<% if aTask.user_id == @challenge.user_id %>
+												<% t+=1 %>
+											<%end%>
+							<%end%>
+						<% if t != 1 %>
 									<th width="3%">
 										<%= link_to image_tag("btn_add_up.png", :style =>"margin-top:3px;" ), add_task_link_challenges_path(:id => @challenge), :class => "addComment add_task_popup" %>
 									</th>
 									<th width="12%">
 										<div align="left"><font color="#8c8c8c">ADD A TASK</font> </div>
-												</th>
+									</th>
+						<% else %>
+						<% end %> 
 							</tr>
 							<tr bgcolor=#D7D7D7>
 									<td width="85%">
