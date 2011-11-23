@@ -2,7 +2,7 @@
 	<tr bgcolor="#f4f4f4">
 		<td colspan="3"><b>Edit my tasks (<%= @challenge.tasks.count %>)</b></td>		
 		<%#= submit_tag "DONE", :style => "width: 100px; float:right; margin-right:10px;", :class => "links" %>
-		<td colspan="4"><%= link_to "CANCEL",  show_soc_challenges_path(:id => @challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel"%><%= link_to "UPDATE",  task_update_c_challenges_path(:id => @id,:name =>@name), :style => "text-decoration: none; color:#fff; float:right; margin-right:5px;" ,:class => "task_links_cancel"%></td>
+		<td colspan="4"><%= link_to "CANCEL",  show_soc_challenges_path(:id => @challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel"%><%= link_to "DONE",  "#", :style => "text-decoration: none; color:#fff; float:right; margin-right:5px;" ,:class => "task_links_cancel"%></td>
 	</tr>
 	<tr bgcolor="#d7d7d7">
 		<td></td>
