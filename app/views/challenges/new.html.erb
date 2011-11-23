@@ -1,85 +1,63 @@
-
-<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css')%>
-<%= javascript_include_tag('simple-tabs','all','jquery.table.addrow','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.hoverIntent','jquery.cluetip','challenge_new')%>
+<%= stylesheet_link_tag('simple-tabs.css','jquery.cluetip.css')%>
+<%= javascript_include_tag('simple-tabs','all','jquery.table.addrow','jquery.cluetip','challenge_new')%>
 <%= render 'layouts/loggedinbody'%>
 
 <div id="ch_main_div">
 	<p style="font-size:20px; color:#f9a943;margin-left:10px;margin-top:10px; font-weight:bold;">CREATE NEW</p>
-	
+
 	<%= form_for :challenge, :url => {:controller=> "challenges",:action => "create"},:html=>{:multipart => true, :name => "challenge_form", :onSubmit => "return validate_form_fields(this);"} do |f| -%>
-	
+
 	<%#= form_for(@challenge, :as =>:challenge) do |f| %>
-		<table width="100%" border="0" style="margin-top:0px;">
-  			<tr>
-    			<td colspan="4">
-    				<p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title"  %><div id="title"></div></p>
-				</td>	
+	<table width="100%" border="0" style="margin-top:0px;">
+		<tr>
+			<td colspan="4">
+				<p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title"  %><div id="title"></div></p>
+			</td>	
+		</tr>
+		<tr>
+			<td colspan="4">
+				<hr style="color:#0066CC;width:98%; height:2px;">
+			</td>
+		</tr>
+		<tr>
+			<td valign="top" width="15%" style="color:#999999;"><%= f.label :description, "DESCRIPTION" %></td>
+			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea" %></td>
+		</tr>
+		<tr>
+			<td colspan="4">
+				<hr style="color:#0066CC;width:98%; height:2px;;">
+			</td>
+		</tr>
+		<tr>
+			<td><b style="color:#999999;">START POINT</b></td>
+			<td width="50px;">   
+				<%= select_tag "start_point_type", "<option value=''>Choose</option><option value='startPointDate'>Date</option><option value='startPointNumber'>Number</option>".html_safe %>
+			</td>  
+			<td colspan="2">					
+				<div class="startPointDate">
+				</div>
+				<div class="startPointNumber">
+				</div>				
+			</td>  
+
+		</tr>
+		<tr>
+			<td colspan="4">
+				<hr style="color:#0066CC;width:98%; height:2px;">
+			</td>
+		</tr>
+		<tr>  
+			<td><b style="color:#999999;">END POINT</b></td>
+			<td>  
+				<%= select_tag "end_point_type", "<option value=''>Choose</option><option value='endPointDate'>Date</option><option value='endPointNumber'>Number</option>".html_safe %>
+			</td>  
+			<td colspan="2" style="float: left;">					
+				<div class="endPointDate">
+				</div>
+				<div class="endPointNumber">
+				</div>				
+			</td>
 			</tr>
-			<tr>
-				<td colspan="4">
-					<hr style="color:#0066CC;width:98%; height:2px;">
-				</td>
-			</tr>
-			<tr>
-    			<td valign="top" width="15%" style="color:#999999;"><%= f.label :description, "DESCRIPTION" %></td>
-    			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea" %></td>
-			</tr>
-			<tr>
-				<td colspan="4">
-					<hr style="color:#0066CC;width:98%; height:2px;;">
-				</td>
-			</tr>
-			<tr>
-    			<td><b style="color:#999999;">START POINT</b></td>
-    			<td width="18%">
-					<%= select_tag "ch_st_date", options_for_select([
-						["Choose", ""],
-						["Date","#ch_st_dat"],	 
-						["Number","#ch_st_num"]														
-						]), :style => "width:197px"  
-					%>	
-					<div id="st_point"></div>			
-				</td>
-				<td width="60%">	
-					<div id="ch_st_dat" style="display:none;">
-						<%= text_field_tag :st_value1, nil, :class => "textfield_effect  date-pick", :id => "st_dv"   %></br>
-						<div id="st_nv_div"></div>
-					</div>
-					<div id="ch_st_num" style="display:none;">
-						<%= text_field_tag :st_value, nil , :class => "textfield_effect", :id => "st_nv" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<%= text_field_tag :st_label, nil , :class => "textfield_effect", :id => "st_nl"  %>
-						<div id="st_nl_div"></div>
-					</div>
-			   </td>
-  			</tr>
-			<tr>
-				<td colspan="4">
-					<hr style="color:#0066CC;width:98%; height:2px;">
-				</td>
-			</tr>
-			<tr>
-    			<td><b style="color:#999999;">END POINT</b></td>
-    			<td>
-					<%= select_tag "ch_ed_date", options_for_select([
-						["Choose", ""],							
-						["Date","#ch_ed_dat"],	 
-						["Number","#ch_ed_num"]														
-						]), :style => "width:197px" 
-					%>
-					<div id="ed_point"></div>				
-				</td>
-				<td>	
-					<div id="ch_ed_dat" style="display:none;">
-						<%= text_field_tag :ed_value1, nil, :class => "textfield_effect  date-pick", :id => "ed_dv"  %><div id="date_must_g"></div></br>
-						<div id="ed_nv_div"></div>
-					</div>
-					<div id="ch_ed_num" style="display:none;">
-						<%= text_field_tag :ed_value, nil , :class => "textfield_effect", :id => "ed_nv"   %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<%= text_field_tag :ed_label, nil , :class => "textfield_effect", :id => "ed_nl"  %>
-						<div id="ed_nl_div"></div>
-					</div>
-				</td>
-  			</tr>
 			<tr>
 				<td colspan="4">
 					<hr style="color:#0066CC;width:98%; height:2px;">
