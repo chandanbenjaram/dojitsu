@@ -184,6 +184,10 @@ class ChallengesController < ApplicationController
 	@date = @challenge_date.end_point.value 
 	render :layout => false
   end
+  
+  def update_task_soc
+	raise params.inspect
+  end
 
   protected
 
