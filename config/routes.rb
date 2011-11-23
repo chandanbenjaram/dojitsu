@@ -25,7 +25,7 @@ Dojitsu::Application.routes.draw do
       get "my_challenge"
       get "invitee_accepted_req"
       get "challenge_comp"
-	    get "task_update_c"
+	  get "task_update_c"
       get "date_update"
 	    get "message"
       get "add_task_link"

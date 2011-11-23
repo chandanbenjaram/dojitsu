@@ -22,8 +22,8 @@ class ChallengesController < ApplicationController
 
   def show_per
     @challenge = Challenge.find(params[:id])
-    ch = @challenge.social_type.type 
-    if ch == ChallengeSocialType and ch!= ChallengeType and ch!=ChallengePersonalType
+    
+    if (@challenge.social_type.instance_of? ChallengeSocialType rescue false)
       render "show_soc" and return 
     else 
       render "show_per"
@@ -36,7 +36,9 @@ class ChallengesController < ApplicationController
   end
 
   def create
+    #raise params[:invitees].inspect
     @ch = Challenge.new(params[:challenge])
+    #raise @ch.id.inspect
     @ch_st_date = params[:ch_st_date]
     @st_p_val1 = params[:st_value1]
     @st_p_val = params[:st_value]
@@ -134,37 +136,13 @@ class ChallengesController < ApplicationController
   end
   
   def task_update_c
+	raise params.inspect
 	@ch_ts_update = Challenge.find(params[:id])
 	@name = params[:name]
 	@ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1)
 	redirect_to show_per_challenges_path(:id => params[:id])
   end
 
-  	  
-	def status
-	@ch = Challenge.find(params[:id])
-	@status = @ch.social_type
-	@status.update_attribute(:status,"1")
-     
-	#render :text => @status 
-	#@ch.social_type.where(:status => params[:status]).update(:status => 1)
-	  end
-	  
-	  
-	def decline
-	@ch = Challenge.find(params[:id])
-	@status = @ch.social_type
-	@status.update_attribute(:status,"-1")
-     if @status.status != 1 or @status.status!= 0
-	 render:text=> "declined"
-	 else 
-	 render :text => "thinking"
-	end 
-	#render :text => @status 
-	#@ch.social_type.where(:status => params[:status]).update(:status => 1)
-	  end
-	    
-  
   def challenge_comp
 	  @sdf = Challenge.where(:_id => params[:id]).update(:is_complete => 1)
 	  redirect_to :action => "index"

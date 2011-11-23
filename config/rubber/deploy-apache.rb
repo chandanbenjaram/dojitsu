@@ -5,10 +5,14 @@ namespace :rubber do
   
     rubber.allow_optional_tasks(self)
 
-    after "rubber:install_packages", "rubber:apache:custom_install"
+    after "rubber:install_packages", "rubber:apache:custom_install", "rubber:apache:access_setup"
 
     task :custom_install, :roles => :apache do
       rsudo "a2dissite default"
+    end     
+    
+    task :access_setup, :roles => :apache do
+      #rsudo `htpasswd -nb #{user} #{pass}`
     end
 
     # serial_task can only be called after roles defined - not normally a problem, but

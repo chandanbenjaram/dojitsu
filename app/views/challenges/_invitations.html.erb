@@ -19,18 +19,27 @@
 	$j('.links_invite_p').live('click', function(){
 		$j( "#jfmfs-container-wrapper" ).dialog({
 			modal: true,
-			position: 'top',
+			resizable: false,
+			closeText: "",
+			position: 'center',
 			title: 'Invite Participants',
-			closeText: 'save',
 			width: '725px',
 			open: function(event, ui) { $j("#jfmfs-container").jfmfs(selectorObz); },
-			beforeClose: function(event, ui) {
-				var friendSelector = $("#jfmfs-container").data('jfmfs');
-				var selectedFriends = friendSelector.getSelectedIds();
-				$j('#invitees_id').val(selectedFriends);
+			buttons: {                                             
+                Cancel: function() {
+					$j("#jfmfs-container").data('jfmfs').clearSelected(); 
+					$j(this).dialog( "close" );
+				},
+				Save: function() {
+					var friendSelector = $j("#jfmfs-container").data('jfmfs');
+					var selectedFriends = friendSelector.getSelectedIds();
+					$j('#invitees_id').val(selectedFriends);
+
+					$j(this).dialog( "close" );
+				}
 			}
 		});
 	})          
-	
+
 	})(jQuery);                              
 	</script>	
