@@ -36,27 +36,26 @@
 						<div>
 							<table >
 									<tr>
-										<td width="100px" heigh="50px">
+										<td width="100px">
 											<b><font color= #909090>DESCRIPTION</font></b></td>
 										<td width="500px">
-										<%= on_the_spot_edit @challenge,:description , :type=>:textarea  %>
+										<b><%= on_the_spot_edit @challenge,:description , :type=>:textarea  %></b>
 										</td>
 									</tr>
 							</table>
 						</div>
 			
 						<div>
-								<table>
+								<table width="500px">
 											<tr>
-												<td width="100px" class="titles">
+												<td width="130px" class="titles">
 													<b><font color= #909090>ORGANIZER</font></b>
 												</td>
-												<td id="user">
+												<td ><b id="user"></b>
 												</td>
-												<td>
+												<td width="100px">
 												<%=link_to image_tag("btn_msg_up.png"), message_challenges_path(:id => @challenge) %>
 												<%#= link_to  render(:partial => 'challenges/message'), root_url %>
-												
 												</td>
 											</tr>
 											<tr>
@@ -72,11 +71,11 @@
 					<div>
 								<table>
 										<tr>
-											<td width=120px>
+											<td width=130px>
 													<b><font color= #909090>START POINT</font></b>
 											</td>
 											<td>
-												<%= @challenge.start_point.value%> 
+												<b><%= @challenge.start_point.value%> </b>
 											</td>
 											<td align="right">
 												<%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :align=>"right" %>
@@ -92,11 +91,11 @@
 					<div>
 							<table>
 								<tr> 
-									<td width=120px>
+									<td width=130px>
 										<b><font color= #909090>END POINT</font></b>
 									</td>
 									<td>
-										<%= @challenge.end_point.value %>
+										<b><%= @challenge.end_point.value %></b>
 									</td>
 									<td>
 									<%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :style => "text-decoration: underline;",:align=>"right" %>
@@ -111,11 +110,11 @@
 					
 			<table>
 				<tr>
-					<td width="100px" class="titles">
+					<td width="130px" class="titles">
 								<b><font color= #909090>PARTICIPANTS</b></font>
 					</td>
 					<td>
-							<%= @challenge.child_challenges.length %>
+							<b><%= @challenge.child_challenges.length %></b>
 					</td>
 				</tr>
 		</table>
@@ -133,74 +132,62 @@
 															<% if @challenge.social_type.status ==0 %>
 					<%= render :partial=> "challenges/tasks" %>
 					<% else %>
-					<%#= render :partial=> "challenges/tasks2" %>
+					<%= render :partial=> "challenges/tasks2" %>
 					<%end%>
 																		
 															
 												</div>
 												<div id="tab2" class="tab_content">
-														<table width="100%" border="0">
-																<tr>
-																			<td>
-																						<table bgcolor=#F4F4F4>
-																								<tr bgcolor=#F4F4F4>
-																									<td width="120px"><b  id="total">Total:<%= @challenge.child_challenges.length %></b>	<%=link_to image_tag("btn_msg_up.png"), message_challenges_path(:id => @challenge) %>
-																									</td>
-																									<td><input type="text">&nbsp;
-																													<select>
-																															<option value="volvo">ALL</option>
-																															<option value="saab">ACCEPTED</option>
-																															<option value="mercedes">PENDING</option>
-																															<option value="audi">DECLINED</option>
-																													</select> 
+														<table width="100%" border="0" height="40px">
+															<tr bgcolor=#F4F4F4>
+																							<td width="120px"><b  id="total">Total:<%= @challenge.child_challenges.length %></b>	<%=link_to image_tag("btn_msg_up.png"), message_challenges_path(:id => @challenge) %>
+																							</td>
+																							<td width = "400px"><input type="text">&nbsp;
+																											<select>
+																												<option value="volvo">ALL</option>
+																												<option value="saab">ACCEPTED</option>
+																												<option value="mercedes">PENDING</option>
+																												<option value="audi">DECLINED</option>
+																											</select> 
 																													&nbsp;
 																										<%= image_tag ("search_it.PNG") %>
-																									</td>
-																								</tr>
-																						</table>
-																			</td>
-																</tr>
+																								</td>
+															</tr>
 														</table>
-														
-														
-														<table  border="0"> 
-																			<tr bgcolor=#F4F4F4>
+														<table  border="0" height="20px" bgcolor="gray"> 
+																			<tr bgcolor=#D7D7D7>
 																					<td>
-																							NAME
+																							<b>NAME &nbsp;</b><%= image_tag ("down.PNG") %>
 																					</td>
-																					<td align="right">
-																						<p align=right>STATUS</p>
+																					<td width="80px">
+																						       <font color=#A8A8A8>STATUS</font>
 																					</td>
 																			</tr>
-															
+															</table>
+															          <table id="friendslist1">
+																	  <tr>
+																	  <td>
 																				<div id="friendslist">
-																				<% @challenge.child_challenges.each do |aTask| %>
-																				<tr> 
-																					<td align="left" id="image"> 
-																						
-																					</td> 
-																					<td align = right>
-																							<p align=right>
-																								<% if @challenge.social_type.status == 1 %>
-																											<%= image_tag ("icon_accept.png") %>
-																								<% else %>
-																								<% if @challenge.social_type.status == 0 %>
-																											<%= image_tag ("icon_thinking.png") %>
-																								<% else %>
-																											<%= image_tag("icon_decline.png") %>
-																								<% end %>
-																								<% end %>
-																							</p>				
+																				
+																				
+																					</div> <td>
+																					<td>
+																					<div id="friendsstatus">
+																					</div>
 																					</td>
-																				</tr> 
-																				<% end %>
-																					</div> 
-																	</table> 
-									
+																					</tr>
+																					</table>
+																					<style>
+																					#friendslist1
+																					{
+																					width:680px;
+																					background:#ffffff;
+																					}
+
+																					</style>
 																<script type="text/javascript" src="../includes/js/jquery.min.js"></script>  
 																<script src="http://connect.facebook.net/en_US/all.js"></script>  
 																<div id="fb-root"></div> 
-																	
 												</div>
 									 </div>
 									</td>
@@ -219,51 +206,70 @@
             { 
                        globaluserid=response.session["uid"]; 
 					   name=globaluserid;
-					    
 						}
 						}
 						);
-						FB.api('/me', function(response) {
-  var user = response.name;
-  $("#user").append(user);
-});
-
 <% @challenge.child_challenges.each do |aTask| %>
 						 var len = <%= @challenge.child_challenges.length %>
 		var img = <%= aTask.user_id %>
-	
 						  FB.api({
-                                                       
                                                             method: 'fql.query',
-                                                           
                                                             query: 'SELECT name,pic_square FROM user WHERE uid=' + img
-                                                       
                                                         }, function(response){
 														htmlcontent = '<img src=' + response[0].pic_square + ' />'+ response[0].name ;
-														   htmlcontent3='<table>';
-                                                                htmlcontent4='<td>';
-                                                                htmlcontent5='</td>';
-                                                                htmlcontent6='</table>'
-                                                                htmlcontent2 = '<hr/>';
-																htmlcontent2 = '<hr width="800px">';
-                                                               
-                                                                $("#image").append(htmlcontent3);
-                                                                $("#image").append(htmlcontent4);
-                                                                $("#image").append(htmlcontent);
-                                                               
-                                                            
-                                                                $("#image").append(htmlcontent5);
-																$("#image").append(htmlcontent2);
-                                                                $("#image").append(htmlcontent6);                                                      
-                                                       
+														 tableopen='<table>';
+														 tropen='<tr>';
+                                                         tdopen='<td >';
+                                                         tdclose='</td>';
+														 tdopen1='<td id="friendsstatus" >';
+                                                         tdclose1='</td>';
+														 trclose='<tr>';
+                                                         tableclose='</table>'
+                                                         hr = '<hr/>';
+														 $("#friendlist").append(tableopen);
+                                                                $("#friendslist").append(tropen);
+                                                                $("#friendslist").append(tdopen);
+                                                                 $("#friendslist").append(htmlcontent);
+                                                                 $("#friendslist").append(tdclose);
+																<% @challenge.child_challenges.each do |aTask| %>
+																					<% if aTask.user_id %>
+																						<% if aTask.social_type.status == 1  or  @challenge.user_id == aTask.user_id %>
+																										status='<%= image_tag ("icon_accept.png") %>';
+																							<% else %>
+																							<% if aTask.social_type.status == 0 %>
+																										status='<%= image_tag ("icon_thinking.png") %>';
+																							<% else %>
+																										status='<%= image_tag("icon_decline.png") %>';
+																							<% end %>
+																						<% end %>
+                                                                                    <%end%>
+																			<%end%>		
+																 $("#friendsstatus").append(tdopen1);
+																 $("#friendsstatus").append(status);
+																 $("#friendsstatus").append(tdclose1);
+																 $("#friendslist").append(trclose);
+																$("#friendslist").append(tropen);																
+																$("#friendslist").append(hr);  
+																$("#friendslist").append(trclose);
+                                                                 $("#friendslist").append(tableclose); 
                                                         });
+ <%end %>
+				var user = <%= @challenge.user_id %>
+					FB.api({
+                                                            method: 'fql.query',
+                                                            query: 'SELECT name FROM user WHERE uid=' +user
+                                                        }, function(response){
+														htmlcontent =response[0].name ;
+                                                                $("#user").append(htmlcontent);    
+                                                    });
 
-	 <%end %>
-				
-					
 
 </script>
 
+<style>
+.table{
 
-
+background:#ffffff;
+}
+</style>
 

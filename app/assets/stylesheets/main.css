@@ -837,10 +837,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	float: left; width: 90%;
 	background: #fff;
 }
-.tab_content {
-	padding: 0px;
-	/*font-size: 1.2em;*/
-}
+
 
 .ch_main_div {
 	border-color: #F4F4F4;
