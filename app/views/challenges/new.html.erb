@@ -9,7 +9,7 @@
 	<table width="100%" border="0" style="margin-top:0px;">
 		<tr>
 			<td colspan="4">
-				<p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :placeholder=>"enter challenge title here" %><div id="title"></div></p>
+				<p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :placeholder=>"enter challenge title here", :required => "required" %><div id="title"></div></p>
 			</td>	
 		</tr>
 		<tr>
@@ -136,11 +136,10 @@
 										<td>
 											<%= select_tag :soc_who_win, options_for_select([
 												["Choose", ""],							
-												["Add all milestones together","Add all milestones together"],
-												["1st person to reach End Point","1st person to reach End Point"],	 
-												["Highest milestone","Highest milestone"],	
-												["Lowest milestone","Lowest milestone"],	
-												["Participant reaches all milestones","Participant reaches all milestones"] 														
+												["Highest number of points","Highest number of points"],
+												["Lowest number of points","Lowest number of points"],	 
+												["1st person to reach End Point","1st person to reach End Point"],	
+												["Participant completes all tasks","Participant completes all tasks"]			 														
 												]), :id => "soc_wn", :style => "width:197px"
 												%>		
 											</td>
@@ -177,11 +176,8 @@
 												<td>
 													<%= select_tag :per_who_win, options_for_select([
 														["Choose", ""],							
-														["Add all milestones together","Add all milestones together"],
-														["1st person to reach End Point","1st person to reach End Point"],	 
-														["Highest milestone","Highest milestone"],	
-														["Lowest milestone","Lowest milestone"],	
-														["Participant reaches all milestones","Participant reaches all milestones"] 														
+														["Add all points together","Add all points together"],
+														["Reach all milestones","Reach all milestones"]														
 														]), :id => "per_wn", :style => "width:197px" 
 														%>
 													</td>
@@ -235,3 +231,4 @@
 		</tr>
 	</table>			
 </div>
+	

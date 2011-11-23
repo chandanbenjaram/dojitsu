@@ -32,7 +32,7 @@
 				<td width=120px>
 					<b><font color=	#909090>START POINT</font></b>
 				</td>
-				<td class="editable">
+				<td class="editable">					
 					<% if @challenge.start_point.instance_of?PointDateType %>		
 						<%= @challenge.start_point.value.strftime("%b %d, %Y") %>
 					<% else %>							
