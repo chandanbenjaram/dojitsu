@@ -1056,9 +1056,13 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 #check1
 {
 	height:50px;
-	width:410px;
+	width:100%;
 	background:#000000;
 
+}
+.taskprogress
+{
+width:90%;
 }
 #check2
 {
@@ -1200,9 +1204,10 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 #points
 {
 	position:relative;
-	top:-35px;
+	top:-95px;
 	width:40px;
 	height:25px;
+	left:420px;
 	background:#DDEFCE;
 	color:#7AC142;
 }
