@@ -18,6 +18,23 @@ ul.tabs {
 	top :-18px;
 }
 
+
+	#friendslist1
+																					{
+																					width:680px;
+																					background:#ffffff;
+																					}
+																					
+																					#state
+																					{
+																					float:right;
+																					margin-top:0px;
+																					}
+																					
+																					#ahref
+																					{
+																					color:#000000;
+																					}
 ul.tabs1 {
 	margin: 0;
 	padding: 0;
