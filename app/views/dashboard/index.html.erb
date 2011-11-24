@@ -40,11 +40,11 @@
 									<tr>
 										<td id="content1">
 											<% title = userChallenge.title %>
-											<font size=3><b><%= link_to "#{title}",show_per_challenges_path(:id => userChallenge)%><%#= userChallenge.title %></b></font><br><font size=2>by <b><%= @org_name.first_name %></b></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
+											<font size=3><b><%= link_to "#{title}",show_per_challenges_path(:id => userChallenge)%></b></font><br><font size=2>by <b><%= @org_name.first_name %></b></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
 											<%if ( userChallenge.child_challenges.size <2 ) %> 
-												<%= userChallenge.child_challenges.size %> Contestant<br>
+												<%= userChallenge.child_challenges.size >0 ? userChallenge.child_challenges.size : 1  %> contestant<br>
 											<% else %>
-												<%= userChallenge.child_challenges.size %> Contestants<br>
+												<%= userChallenge.child_challenges.size %> contestants<br>
 											<% end %>
 										</td>
 										<td id="content2">					
@@ -128,11 +128,9 @@
     </td>
 	<td valign=top>
 		<div class="dashboardsidebar2">
-			<div class="whatsnew">
-					WHAT'S NEW 
-				<div id="viewall">
-					VIEW ALL
-				</div>
+			<div class="whatsnew">	
+				<font style="float:left">WHAT'S NEW</font> 
+				<%= link_to "VIEW ALL", challenges_path, :style=>"float:right; text-decoration:none; color:#fff;", :class=>"ds_view_all" %>
 			</div>
 			<% @all_new_challenge.each do |anc| %>
 				<div id="contentbox">
@@ -151,16 +149,29 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2"><%= anc.start_point.value.strftime("%b %d, %Y")%> - <%= anc.end_point.value.strftime("%b %d, %Y")%></td>
+							<td colspan="2">
+								<% if anc.start_point.instance_of?PointDateType %>
+									<%= anc.start_point.value.strftime("%b %d, %Y")%> - <%= anc.end_point.value.strftime("%b %d, %Y")%>
+								<% else %>
+									<%= anc.start_point.value %> - <%= anc.end_point.value%>
+								<% end %>
+							</td>
 						</tr>
 						<tr>
 							<td colspan="2"><%= anc.child_challenges.size%> contestants</td>
 						</tr>
 						<tr>
 							<td colspan="2">
-								<p style="text-transform:none;">
-									<%=h truncate(anc.description, :length => 128) %>....<%= link_to "VIEW" , "#"%>									
-								</p>								
+								<% if anc.personal_type.instance_of?ChallengePersonalType%>
+									<p style="text-transform:none;">
+										<%=h truncate(anc.description, :length => 128) %>....<%= link_to "VIEW" , show_per_challenges_path(:id => anc.id) %>									
+									</p>
+								<% end %>
+								<% if anc.social_type.instance_of?ChallengeSocialType%>
+									<p style="text-transform:none;">
+										<%=h truncate(anc.description, :length => 128) %>....<%= link_to "VIEW" , show_soc_challenges_path(:id => anc.id) %>									
+									</p>
+								<% end %>								
 							</td>
 						</tr>
 					</table>

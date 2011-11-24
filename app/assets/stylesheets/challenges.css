@@ -16,3 +16,20 @@ div.ui-dialog-titlebar{
 .floatleft {
 	float: left;
 }
+
+
+td.taskScorebySelection select {
+	width: 100%;
+} 
+
+td.taskSelection select {
+	width: 100%;
+}
+
+.taskIcon {
+	width: 10px;
+}
+
+.color999 {
+	color:#999999;
+}

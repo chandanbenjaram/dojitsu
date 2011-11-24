@@ -30,6 +30,6 @@ production:
   encoding: utf8
   database: dojitsu_prod
   username: root
-  password: 
+  password:
   host: localhost
   timeout: 5000
