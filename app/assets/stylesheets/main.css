@@ -505,13 +505,12 @@ textarea:focus{
 }
 
 select {
-	-moz-border-radius: 4px;
-	-moz-box-shadow: 1px 1px 5px #cfcfcf inset;
 	border: 1px solid #cfcfcf;
 	vertical-align: middle;
 	width: 220px;
-	height: 25px;
+	height: 30px;
 	color:#f9a943;
+	background: transparent;
 }
 
 select:focus{
@@ -547,6 +546,23 @@ input.radio {
 	background-color:#ddd;
 	width:4em;
 	height:4em;
+}
+
+.styled-select select {
+   background: transparent;
+   width: 268px;
+   padding: 5px;
+   font-size: 16px;
+   border: 1px solid #ccc;
+   height: 34px;
+}
+.styled-select {
+   border: 0px solid #ddd;
+   top:-2px;
+   width: 240px;
+   height: 34px;
+   overflow: hidden;
+   background: url(icon_combobox_arrow_down.png) no-repeat right #ddd;
 }
 
 .links {

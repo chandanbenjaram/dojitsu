@@ -1,11 +1,12 @@
 
 <table width="100%">
+	<%= form_for(@challenge, :url => update_task_soc_challenges_path(:id =>@challenge))  do |f| %>
 	<tr bgcolor="#f4f4f4">
 		<td colspan="3"><b>Edit my tasks (<%= @challenge.tasks.count %>)</b></td>
 		<td colspan="4">
 			<%= link_to "CANCEL",  show_soc_challenges_path(:id => @challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel"%>
-			<%= button_to "DONE",  update_task_soc_challenges_path, :style => "text-decoration: none; color:#fff; float:right; margin-right:5px;" ,:class => "task_links_cancel"%>
-			<%#= submit_tag "DONE", :style => "width: 100px; float:right; margin-right:10px;", :class => "links" %>
+			<%#= button_to "DONE",  update_task_soc_challenges_path, :style => "text-decoration: none; color:#fff; float:right; margin-right:5px;" ,:class => "task_links_cancel"%>
+			<%= f.submit "DONE", :style => "width: 100px; float:right; margin-right:10px;", :class => "links" %>
 		</td>
 	</tr>
 	<tr bgcolor="#d7d7d7">
@@ -17,20 +18,19 @@
 		<td width="29%">TASK(NAME)</td>
 		<td width="5%"></td>
 	</tr>
-	<%= form_for @challenge do |f| %>
 	<% @challenge.tasks.each_with_index do |task, index| %>      
 	<%= f.fields_for "task_attributes[]", task do |task_fields| %>
-	<tr>
+	<tr bgcolor="#ffffff">
 		<td><%= image_tag("select_icon.png", :height => '20', :width => '20')%></td>
 		<td><%= task_fields.select :score_by, options_for_select([
-			[task.score_by, ""],
+			[task.score_by, task.score_by],
 			["Check box:1 for checking off the task", "Check box:1 for checking off the task"],	 
 			["Self-report number","Self-report number"]														
 			]), :style => "width:280px; position:relative; float:left;"
 		%></td>		
 		<td><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
 	
-		<td><%= task_fields.text_field :score, :id=> "sc", :size=> "12" %></td>
+		<td><%= task_fields.text_field :score, :size=> "12" %></td>
 		<td><%= image_tag("icon_slash.png", :height => '20', :width => '5')%></td>
 		<td><%= task_fields.text_field :name, :id=> "na", :size=> "24" %></td>
 		<td><%= image_tag("btn_delete_up.png", :height => '20', :width => '20', :class => "delRow")%></td>
@@ -43,7 +43,7 @@
 	<% end %>
 	<% end %>
 	<% end %>
-	<tr>
+	<tr bgcolor="#ffffff">
 		<td><%= image_tag("select_icon.png", :height => '20', :width => '20')%></td>
 		<td><%= select_tag "score_by", options_for_select([
 			["Choose", "0"],
@@ -55,7 +55,7 @@
 	
 		<td><%= text_field_tag "score", nil, :id=> "sc", :size=> "12" %></td>
 		<td><%= image_tag("icon_slash.png", :height => '20', :width => '5')%></td>
-		<td><%= text_field_tag "score", nil, :id=> "na", :size=> "24" %></td>
+		<td><%= text_field_tag "name", nil, :id=> "na", :size=> "24" %></td>
 		<td><%= image_tag("btn_add_up.png", :height => '20', :width => '20', :class => "addRow")%></td>
 	</tr>
 	<tr>
@@ -63,13 +63,13 @@
 			<hr/ width="100%">
 		</td>
 	</tr>
-	<tr>
+	<tr bgcolor="#ffffff">
 		<td colspan="7">
 			<b class="color999"><%= image_tag("icon_arrow_left.png")%>&nbsp;&nbsp;Do all tasks need to be complete before the challenge is marked complete?</b><br>
 			<%= radio_button_tag :task_comp, "soc", :class => "chall_type"%>
-			<font class="color999">Yes</font>
+			<font class="color999">No</font>
 			<%= radio_button_tag :task_comp, "soc", :class => "chall_type"%>
-			<font class="color999">No</font>							   
+			<font class="color999">Yes</font>
 		</td>
 	</tr>
 </table>

@@ -6,7 +6,7 @@ class Challenge
   # puts tree model on challenges
   recursively_embeds_many
   
-  #accepts_nested_attributes_for :point_types, :tasks
+  accepts_nested_attributes_for :tasks
   
   #callback for assign value1 to value in point_date_type
   
