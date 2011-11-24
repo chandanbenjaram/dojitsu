@@ -19,22 +19,26 @@ ul.tabs {
 }
 
 
-	#friendslist1
+#friendslist1
 																					{
 																					width:680px;
 																					background:#ffffff;
 																					}
-																					
+}																				
 																					#state
 																					{
 																					float:right;
 																					margin-top:0px;
-																					}
-																					
+}																					}
+
+																			 #span { 
+																						float: right;
+																						width: 40px;
+																				}
+}																																					
 																					#ahref
-																					{
-																					color:#000000;
-																					}
+																					{																		color:#000000;
+}																				}
 ul.tabs1 {
 	margin: 0;
 	padding: 0;
