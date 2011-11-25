@@ -148,6 +148,8 @@ class ChallengesController < ApplicationController
 
   def update
   
+	@challenge = Challenge.find(params[:id])
+	#raise ch = params[:challenge].inspect 
     if @challenge.update_attributes(params[:challenge])
       redirect_to :action => 'show', :id => @challenge
     else
