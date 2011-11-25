@@ -162,6 +162,8 @@
 						</tr>
 						<tr>
 							<td colspan="2">
+								<%= current_user.facebook.first_name%>
+								<%= current_user.facebook%>
 								<% if anc.personal_type.type.to_s == "ChallengePersonalType"%>
 									<p style="text-transform:none;">
 										<%=h truncate(anc.description, :length => 128) %>....<%= link_to "VIEW" , show_per_challenges_path(:id => anc.id) %>									
