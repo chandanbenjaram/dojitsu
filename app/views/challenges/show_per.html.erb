@@ -142,7 +142,7 @@
 									$("<p>").attr("id", "check").text($("#taskprogress").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress");
 								});
 						</script>
-					
+					<%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"%>
 					</div>
 					
 				</div>
