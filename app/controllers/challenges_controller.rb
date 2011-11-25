@@ -8,6 +8,9 @@ class ChallengesController < ApplicationController
     @title = "Challenges"
     @no_of_row = Challenge.all.count
     @challenges = current_user.challenges
+	#@ch =  @challenges.parent_challenge
+	#render :text => @ch
+    
   end
 
   def show       
@@ -15,6 +18,7 @@ class ChallengesController < ApplicationController
   end
 
   def show_soc
+	@flg = params[:flg]
     @challenge = Challenge.find(params[:id])
     @org = User.find(:all,:conditions => ["id=?",@challenge.user_id]).first
   end

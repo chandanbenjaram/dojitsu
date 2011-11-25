@@ -95,7 +95,7 @@
 				<% @challenge.tasks.each do |aTask| %>
 				<% total += aTask.score.to_i %>
 				<tr bgcolor=#ffffff>
-					<td colspan="3" id="mytable" >
+					<td colspan="3" id="mytable" >						
 						<% if aTask.is_complete.to_i == 0 %>
 							<div id="task_list">
 								<p style="float:left; margin-top:15px;"><%= aTask.score %> <%= image_tag("icon_slash.png", :height => '10', :width => '5')%></p><p style="float:left;  margin-top:15px; margin-left:5px;"><%= aTask.name %></p>
@@ -119,17 +119,16 @@
 				</tr>
 			</table>
 			<div>
-			
-			My Dojitsu score: <br>
-					 <div class="task" id="taskprogress"></div><div class="showperscore1"><%= total_score %></div>	
-					 <style>
-					 .task
-					 {
-					  width:700px;
-					 {
-					 </style>
+				My Dojitsu score: <br>
+				<div class="task" id="taskprogress"></div>
+				<div class="showperscore1"><%= total_score %></div>	
+				<style>
+					.task
+					{
+						width:700px;
+						{
+					</style>
 					<div id="check2">
-					
 						<div class="completedtask1"> 
 								<%= total_score %> points (<%= total_score_count %> &nbsp; tasks)
 						</div>
@@ -142,13 +141,11 @@
 									$("<p>").attr("id", "check").text($("#taskprogress").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress");
 								});
 						</script>
-					<%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"%>
+						<%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"%>
 					</div>
-					
 				</div>
-				
-		  </div >
-		</div >
+				</div >
+			</div >
 	</tr>		
 </table>	
 
@@ -163,6 +160,14 @@
 </div>
 
 
+<script type="text/javascript">
+(function($){
+	$(document).ready(function(){
+		$(".addRow").btnAddRow();
+		$(".delRow").btnDelRow();
+});
+})(jQuery);
+</script>
 
 
 <script type="text/javascript" language="JavaScript">
