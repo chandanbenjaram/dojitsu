@@ -1,26 +1,29 @@
-
 $(document).ready(function($) {                                               
+	
 	$(".alternativeRow").btnAddRow({oddRowCSS:"oddRow",evenRowCSS:"evenRow"});
 	$(".delRow").btnDelRow();
-
 
 	$('#start_point_type').live('change', function() {        
 		$('.startPointDate').empty();    
 		$('.startPointNumber').empty();
 
 		if($(this).val()){
-			var div_tag = $('<div></div>');		
+			var div_tag = $('<div id="space"></div>');		
 			if($(this).val() === "startPointNumber") {  
-				$(div_tag).append($('<input id="start_point_value"  name="start_point_value" class="textfield_effect" type="text" required="required" placeholder="enter number">'));								
-				$(div_tag).append($('<input id="start_point_label" name="start_point_label" class="textfield_effect" type="text" placeholder="enter label" >'));				
+				$(div_tag).append($('<input id="start_point_value"  name="start_point_value" class="textfield_effect" type="text" required="required" placeholder="enter number here">'));								
+			    
+				$(div_tag).append('&nbsp;&nbsp;');
+				$(div_tag).append($('<input id="start_point_label" name="start_point_label" class="textfield_effect" type="text" placeholder="enter label here" >'));				
 			}else{
-				$(div_tag).append('<input id="start_point_value"  name="start_point_value" class="textfield_effect datepicker" type="text" required="required" placeholder="enter date">');				
+				$(div_tag).append('<input id="start_point_value"  name="start_point_value" class="textfield_effect datepicker" type="text" required="required" placeholder="enter date here">');				
+				
 			}
+			$(".textfield_effect datepicker").append('&nbsp;&nbsp;');
 
 			$( '.'+$(this).val()).append(div_tag).fadeIn('500'); 
 			$('.datepicker').datepicker({ 
 				showOn: "button",
-				buttonImage: '<%= asset_path("calendar.gif") %>',
+				buttonImage: '<%= asset_path("icon_calendar.png") %>',
 				showOn: "button",
 				buttonImageOnly: true,
 			});
@@ -33,17 +36,18 @@ $(document).ready(function($) {
 		if($(this).val()){
 			var div_tag = $('<div></div>');		
 			if($(this).val() === "endPointNumber") {  
-				$(div_tag).append($('<input id="end_point_value" name="end_point_value" class="textfield_effect" type="text" required="required" placeholder="enter number">'));								
-				$(div_tag).append($('<input id="end_point_label"  name="end_point_label" class="textfield_effect" type="text" placeholder="enter label">'));				
+				$(div_tag).append($('<input id="end_point_value" name="end_point_value" class="textfield_effect" type="text" required="required" placeholder="enter number here">'));								
+				$(div_tag).append('&nbsp;&nbsp;');
+				$(div_tag).append($('<input id="end_point_label"  name="end_point_label" class="textfield_effect" type="text" placeholder="enter label here">'));				
 			}else{
-				$(div_tag).append('<input id="end_point_value" name="end_point_value" class="textfield_effect datepicker" type="text" required="required" placeholder="enter date">');				
+				$(div_tag).append('<input id="end_point_value" name="end_point_value" class="textfield_effect datepicker" type="text" required="required" placeholder="enter date here">');				
 			}
 
 			$( '.'+$(this).val()).append(div_tag).fadeIn('500'); 
               
 			$('.datepicker').datepicker({ 
 				showOn: "button",
-				buttonImage: '<%= asset_path("calendar.gif") %>',
+				buttonImage: '<%= asset_path("icon_calendar.png") %>',
 				showOn: "button",
 				buttonImageOnly: true,
 			});
@@ -53,7 +57,7 @@ $(document).ready(function($) {
 	$('#start_point_type').trigger('change');
 	$('#end_point_type').trigger('change');
 
-    $('b.load-local').cluetip({
+    $('.moreInfoTip').cluetip({
 		width:640,
 		height:225,
 		local:true, 
@@ -63,6 +67,7 @@ $(document).ready(function($) {
 	});
 
 	$('ul.tabs li').click(function(event){
+		
 		var ty    = event.target.id;
 		if( ty == "soc")
 		{
@@ -87,86 +92,10 @@ $(document).ready(function($) {
 		{
 			$("#challenge_cha_type_soc_div").show("fast");
 			$("#challenge_cha_type_per_div").hide("fast");
-			}});
+		}
+	});
+	
+});
 
-			function validate_form_fields()
-			{
-				if(document.challenge_form.challenge_title.value=="")
-				{
-					document.getElementById("title").innerHTML="<font color=\"#FF0000\">Please enter title!</font>";
-					document.challenge_form.challenge_title.focus();
-					return false;
-				}
-
-				if ((document.challenge_form.challenge_title.value.length < 1) || (document.challenge_form.challenge_title.value.length > 30))
-				{
-					document.getElementById("title").innerHTML="<font color=\"#FF0000\">Title must be between one and 30 characters</font>";
-					document.challenge_form.challenge_title.focus();
-					return false;
-				}
-
-				if(document.challenge_form.ch_st_date.value=="")
-				{
-					document.getElementById("st_point").innerHTML="<font color=\"#FF0000\">Date or Number must be selected!</font>";
-					document.challenge_form.ch_st_date.focus();
-					return false;
-				}
-
-				if(document.challenge_form.ch_ed_date.value=="")
-				{
-					document.getElementById("ed_point").innerHTML="<font color=\"#FF0000\">Date or Number must be selected!</font>";
-					document.challenge_form.ch_ed_date.focus();
-					return false;
-				}
-
-				if (Date.parse(document.challenge_form.st_dv.value) > Date.parse(document.challenge_form.ed_dv.value))
-				{
-					document.getElementById("date_must_g").innerHTML="<font color=\"#FF0000\">End point must be equal to or later than start point.!</font>";
-					document.challenge_form.ed_dv.focus();
-					return false;
-				}
-
-				if(isNaN(document.challenge_form.st_nv.value))
-				{
-					document.getElementById("st_nv_div").innerHTML="<font color=\"#FF0000\">Please enter a number in the Number field!</font>";
-					document.challenge_form.st_nv.focus();
-					return false;
-				}
-
-				if(isNaN(document.challenge_form.ed_nv.value))
-				{
-					document.getElementById("ed_nv_div").innerHTML="<font color=\"#FF0000\">Please enter a number in the Number field!</font>";
-					document.challenge_form.ed_nv.focus();
-					return false;
-				}
-
-				if(document.challenge_form.challenge_task_attributes__score.value=="")
-				{
-					document.getElementById("challenge_task_attributes__score_by_div").innerHTML="<font color=\"#FF0000\">Please add at least one task!</font>";
-					document.challenge_form.challenge_task_attributes__score.focus();
-					return false;
-				}
-
-				if (document.challenge_form.st_dv.value =="")
-				{
-					if ((document.challenge_form.st_nv.value == "") || (document.challenge_form.st_nl.value == "")) {
-						document.getElementById("st_nl_div").innerHTML = "<font color=\"#FF0000\">Please enter a number and label!</font>";
-						document.challenge_form.st_nl.focus();
-						return false;
-					}	
-				}
-
-				if (document.challenge_form.ed_dv.value =="")
-				{
-					if ((document.challenge_form.ed_nv.value == "") || (document.challenge_form.ed_nl.value == "")) {
-						document.getElementById("ed_nl_div").innerHTML = "<font color=\"#FF0000\">Please enter a number and label!</font>";
-						document.challenge_form.ed_nl.focus();
-						return false;
-					}	
-				}
-
-			}
-
-		});
 
 

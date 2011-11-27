@@ -6,7 +6,7 @@ ul.tabs {
 	height: 32px; /*--Set height of tabs--*/
 	border-bottom: 1px solid #999;
 	border-left: 1px solid #999;
-	width: 97%;
+	width: 82%;
 	background :#f4f4f4;
 }
 
@@ -18,6 +18,27 @@ ul.tabs {
 	top :-18px;
 }
 
+
+#friendslist1
+																					{
+																					width:680px;
+																					background:#ffffff;
+																					}
+}																				
+																					#state
+																					{
+																					float:right;
+																					margin-top:0px;
+}																					}
+
+																			 #span { 
+																						float: right;
+																						width: 40px;
+																				}
+}																																					
+																					#ahref
+																					{																		color:#000000;
+}																				}
 ul.tabs1 {
 	margin: 0;
 	padding: 0;
@@ -80,11 +101,114 @@ color:orange;
 	border-top: none;
 	overflow: hidden;
 	clear: both;
-	float: left; width: 97%;
+	float: left; width: 82%;
 	background: #fff;
 }
 .tab_content {
-	padding: 20px;
-	font-size: 1.2em;
-	
+	padding: 10px;
+	background:#f4f4f4;
+	/*font-size: 1.2em;*/
+}
+
+.atable{
+	border-collapse:collapse;
+	border:1px solid #AAA;
+	width:97%;
+}
+.topcalss {
+	background-color: gray;
+
+}
+.atable th{
+	border:1px solid #AAF;
+	background:#ADD8E6;
+	font-weight:bold;
+}
+
+.atable td{
+	padding:4px;
+	border:1px solid #AAF;
+}
+
+.oddRow{
+	background:#FFFFFF;
+}
+
+.evenRow{
+	background:#F0F8FF;
+}
+.allcaps {
+	font-variant: small-caps;
+	text-transform: uppercase;
+	font-family:"Gothem Book","Arial";
+	font-size:20px;
+}
+
+#ch_main_div {
+    border-color: #F4F4F4;
+    border-radius: 5px 5px 5px 5px;
+    border-style: solid;
+    border-width: 10px;
+    margin-top: 35px;
+}
+
+#ch_main_div1{
+	border-width:60px;
+  	border-style:solid;
+    border-radius: 15px 15px 15px 15px;
+  	border-color:#ffffff;
+	margin-top:10px;
+	-moz-border-radius:    5px;
+    -webkit-border-radius: 5px;
+    border-radius:         5px;
+}
+#ch_main_div2{
+	border-width:5px;
+  	border-style:solid;
+    border-radius: 15px 15px 15px 15px;
+  	border-color:#f4f4f4;
+	margin-top:10px;
+	-moz-border-radius:    5px;
+    -webkit-border-radius: 5px;
+    border-radius:         5px;
+	background-color:#fffff
+}
+
+div.htmltooltip{
+	position: absolute; /*leave this and next 3 values alone*/
+	z-index: 1000;
+	left: -1000px;
+	top: -1000px;
+	background: #272727;
+	border: 10px solid black;
+	color: white;
+	padding: 3px;
+	width: 250px; /*width of tooltip*/
+}
+
+ 
+/* Z-index of #mask must lower than #boxes .window */
+#mask {
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:9000;
+  background-color:#999999;
+  display:none;
+}
+#boxes .window {
+  position:absolute;
+  top:90px;
+  width:440px;
+  height:200px;
+  display:none;
+  z-index:9999;
+  padding:20px;
+}
+/* Customize your modal window here, you can add background image too */
+#boxes #dialog {
+  width:375px; 
+  height:203px;
+  padding:10px;
+  background-color:#ffffff;
 }

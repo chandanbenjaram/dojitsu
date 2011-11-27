@@ -8,6 +8,9 @@ class ChallengesController < ApplicationController
     @title = "Challenges"
     @no_of_row = Challenge.all.count
     @challenges = current_user.challenges
+	#@ch =  @challenges.parent_challenge
+	#render :text => @ch
+    
   end
 
   def show       
@@ -15,6 +18,7 @@ class ChallengesController < ApplicationController
   end
 
   def show_soc
+	@flg = params[:flg]
     @challenge = Challenge.find(params[:id])
     @org = User.find(:all,:conditions => ["id=?",@challenge.user_id]).first
   end
@@ -39,16 +43,15 @@ class ChallengesController < ApplicationController
     #debugger
     #raise params[:invitees].inspect
     @ch = Challenge.new(params[:challenge])
-    #raise @ch.id.inspect
     @ch_st_date = params[:start_point_type]
-    @st_p_val1 = params[:st_value1]
-    @st_p_val = params[:st_value]
-    @st_p_leb = params[:st_label]
+    @st_p_val = params[:start_point_value]
+    #@st_p_val = params[:start_point_label]
+    @st_p_leb = params[:start_point_label]
 
     @ch_ed_date = params[:end_point_type]
-    @ed_p_val1 = params[:ed_value1]
-    @ed_p_val = params[:ed_value]
-    @ed_p_leb = params[:ed_label]
+    @ed_p_val = params[:end_point_value]
+    #@ed_p_val = params[:ed_value]
+    @ed_p_leb = params[:end_point_label]
 
     @so_who_win = params[:soc_who_win]
     @so_how_many_winner = params[:soc_how_many_winner]
@@ -57,10 +60,10 @@ class ChallengesController < ApplicationController
     unless @so_who_win.blank?
       #raise "soc"
       @challenge = Challenge.new(:user_id => (current_user.fbauth.uid rescue current_user.id), :title => @ch.title, :description => @ch.description, \
-      :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner)) do |new_challenge|
+      :social_type => ChallengeSocialType.new(:status => 1,:who_win => @so_who_win, :how_many_winners => @so_how_many_winner)) do |new_challenge|
         if @ch_st_date == "startPointDate" and  @ch_ed_date == "endPointDate"
-          new_challenge.start_point =  PointDateType.new(:value => @st_p_val1)
-          new_challenge.end_point = PointDateType.new(:value => @ed_p_val1) 
+          new_challenge.start_point =  PointDateType.new(:value => Date.strptime(@st_p_val, '%m/%d/%Y'))
+          new_challenge.end_point = PointDateType.new(:value => Date.strptime(@ed_p_val, '%m/%d/%Y')) 
         else
           new_challenge.start_point =  PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb)
           new_challenge.end_point = PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb) 
@@ -70,15 +73,15 @@ class ChallengesController < ApplicationController
           params[:invitees].split(",").each do |invitee|
             if @ch_st_date == "startPointDate" and  @ch_ed_date == "endPointDate"
               new_challenge.child_challenges.build(:user_id => invitee, :title => @ch.title, :description => @ch.description, \
-              :start_point => PointDateType.new(:value => @st_p_val1), \
-              :end_point => PointDateType.new(:value => @ed_p_val1), \
-              :personal_type => ChallengePersonalType.new(:who_win => @pr_who_win), \
+              :start_point => PointDateType.new(:value => Date.strptime(@st_p_val, '%m/%d/%Y')), \
+              :end_point => PointDateType.new(:value => Date.strptime(@ed_p_val, '%m/%d/%Y')), \
+              :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner), \
               :tasks => @ch.task_attributes)
             else 
               new_challenge.child_challenges.build(:user_id => invitee, :title => @ch.title, :description => @ch.description, \
               :start_point => PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb), \
               :end_point => PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb), \
-              :personal_type => ChallengePersonalType.new(:who_win => @pr_who_win), \
+              :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner), \
               :tasks => @ch.task_attributes)
             end
           
@@ -89,9 +92,10 @@ class ChallengesController < ApplicationController
       #raise "per"
       @challenge = Challenge.new(:user_id => (current_user.fbauth.uid rescue current_user.id), :title => @ch.title, :description => @ch.description, \
       :personal_type => ChallengePersonalType.new(:who_win => @pr_who_win)) do |new_challenge|
-        if @ch_st_date == "startPointDate" and  @ch_ed_date == "endPointDate"
-          new_challenge.start_point =  PointDateType.new(:value => @st_p_val1)
-          new_challenge.end_point = PointDateType.new(:value => @ed_p_val1) 
+        if @ch_st_date == "startPointDate" and  @ch_ed_date == "endPointDate" 
+          #debugger
+          new_challenge.start_point =  PointDateType.new(:value => Date.strptime(@st_p_val, '%m/%d/%Y'))
+          new_challenge.end_point = PointDateType.new(:value => Date.strptime(@ed_p_val, '%m/%d/%Y')) 
         else
           new_challenge.start_point =  PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb)
           new_challenge.end_point = PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb) 
@@ -100,7 +104,8 @@ class ChallengesController < ApplicationController
     end
 
     @ch.task_attributes.each do |task_attr|
-      @challenge.tasks.build(task_attr)
+       #@challenge.tasks << Task.new(:name =>"testing")
+       @challenge.tasks.build(task_attr)
     end
 
     @challenge.save!
@@ -109,11 +114,44 @@ class ChallengesController < ApplicationController
 
   def edit
     @challenge = Challenge.find(params[:id])
-  end   
+  end
+
+  def update_task_soc
+	#raise params.inspect
+	@challenge = Challenge.find(params[:id])
+	#raise @new_ts = params[:challenge][:task_attributes].inspect
+	#raise new_ts.inspect
+	
+	@aw = [{"score_by"=>"Check box:1 for checking off the task", "score"=>"123", "name"=>"first task tasting1111"}, {"score_by"=>"Check box:1 for checking off the task", "score"=>"321", "name"=>"second  task tasting2222"}, {"score_by"=>"Self-report number", "score"=>"456", "name"=>"third task tasting3333"}]
+	
+	@aw.each do |ts|
+		@challenge.tasks.build(ts)
+	end 
+	
+	raise "aaaa"
+	
+	@challenge.tasks.build(@new_ts)
+	raise "aaaa"
+	
+	@challenge.task_attributes.each do |task_attr|
+       #@challenge.tasks << Task.new(:name =>"testing")
+       @challenge.tasks.build(task_attr)
+    end
+	
+	#@ch.task_attributes.each do |task_attr|
+       ##@challenge.tasks << Task.new(:name =>"testing")
+       #@challenge.tasks.build(task_attr)
+    #end
+	
+	raise "aaaa"
+  end
 
   def update
+  
+	@challenge = Challenge.find(params[:id])
+	#raise ch = params[:challenge].inspect 
     if @challenge.update_attributes(params[:challenge])
-      redirect_to :action => 'show', :id => @challenge
+      redirect_to :action => 'index', :id => @challenge
     else
       render :action => edit
     end

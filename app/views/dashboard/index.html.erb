@@ -5,7 +5,6 @@
 <div class="challange">
 	my dashboard
 </div>
-<%#= session[:facebook_id] %>
 
 <% as= current_user.challenges.size %>
 <table>
@@ -19,10 +18,10 @@
 						<div class="mychallenge">
 							<div id="titlechallenge">
 								<div id="title">
-									MY CHALLENGES ( <%= as %> ) 
+									MY CHALLENGES <font color="white">( <%= as %> ) </font>
 								</div>
 								<div class="second_titlechallenge">
-									<%= button_to "NEW", new_challenge_url, :class => "new_challenge_button", :method => :get%>
+									<%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
 								</div>
 							</div>						
 							<div id="subbar">
@@ -40,22 +39,26 @@
 									<tr>
 										<td id="content1">
 											<% title = userChallenge.title %>
-											<font size=3><b><%= link_to "#{title}",show_per_challenges_path(:id => userChallenge)%><%#= userChallenge.title %></b></font><br><font size=2>by <b><%= @org_name.first_name %></b></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
+											<font size=3><b><%= link_to "#{title}",show_per_challenges_path(:id => userChallenge)%></b></font><br><font size=2>by <b><%= userChallenge.user_id %></b></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
 											<%if ( userChallenge.child_challenges.size <2 ) %> 
-												<%= userChallenge.child_challenges.size %> Contestant<br>
+												<%= userChallenge.child_challenges.size >0 ? userChallenge.child_challenges.size : 1  %> contestant<br>
 											<% else %>
-												<%= userChallenge.child_challenges.size %> Contestants<br>
+												<%= userChallenge.child_challenges.size %> contestants<br>
 											<% end %>
 										</td>
 										<td id="content2">					
-											<div id="taskprogress<%= t %>">
-											</div><br/>
+											<div class="taskprogress" id="taskprogress<%= t %>">
+											</div>
+											
+											
+										<br/>
 											<div id="check1">
 												<% x=0 %>
 												<% y=0 %>
 												<% a= 0 %>
 												<% b= 0 %>
 												<% userChallenge.tasks.each do |aTask| %>
+										
 													<% if (aTask.is_complete == 1 ) %>
 														<% a+=Integer(aTask.score) %>
 														<% x+=1 %>
@@ -81,13 +84,12 @@
 													});
 												</script>
 											</div>
-																		
-										</td>
-										<td>
 											<div id="points">
 												&nbsp;&nbsp;<font size=4><b><%= a %></b></font>
 											</div>
-										</td>																		
+																		
+										</td>
+																												
 										<% t+=1 %>																
 										<hr width:100%>
 									</tr>
@@ -107,7 +109,7 @@
 									NEW MESSAGES 
 								</div>
 								<div class="second_titlechallenge">
-									<%= button_to "NEW", new_challenge_url, :class => "new_challenge_button", :method => :get%>
+									<%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
 								</div>
 							</div>
 							<div id="subbar">
@@ -130,7 +132,8 @@
 		<div class="dashboardsidebar2">
 			<div class="whatsnew">	
 				<font style="float:left">WHAT'S NEW</font> 
-				<%= link_to "VIEW ALL", challenges_path, :style=>"float:right; text-decoration:none; color:#fff;", :class=>"ds_view_all" %>
+				<%= button_to "", new_challenge_url, :class => "ds_view_all", :method => :get%>
+				
 			</div>
 			<% @all_new_challenge.each do |anc| %>
 				<div id="contentbox">
@@ -145,15 +148,15 @@
 					    <tr>
 							<td colspan="2">					
 								<% fname= Authentication.where(:uid => anc.user_id).first %>								
-								by<b> <%= fname.first_name %></b>
+								by<b> <%= fname %></b>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
-								<% if anc.start_point.type.to_s == "PointDateType" %>
+								<% if anc.start_point.instance_of?PointDateType %>
 									<%= anc.start_point.value.strftime("%b %d, %Y")%> - <%= anc.end_point.value.strftime("%b %d, %Y")%>
 								<% else %>
-									<%= anc.start_point.value %> - <%= anc.end_point.value%>
+									<%= anc.start_point.value rescue 0%> - <%= anc.end_point.value rescue 0%>
 								<% end %>
 							</td>
 						</tr>
@@ -162,14 +165,12 @@
 						</tr>
 						<tr>
 							<td colspan="2">
-								<%= current_user.facebook.first_name%>
-								<%= current_user.facebook%>
-								<% if anc.personal_type.type.to_s == "ChallengePersonalType"%>
+								<% if anc.personal_type.instance_of?ChallengePersonalType%>
 									<p style="text-transform:none;">
 										<%=h truncate(anc.description, :length => 128) %>....<%= link_to "VIEW" , show_per_challenges_path(:id => anc.id) %>									
 									</p>
 								<% end %>
-								<% if anc.social_type.type.to_s == "ChallengeSocialType"%>
+								<% if anc.social_type.instance_of?ChallengeSocialType%>
 									<p style="text-transform:none;">
 										<%=h truncate(anc.description, :length => 128) %>....<%= link_to "VIEW" , show_soc_challenges_path(:id => anc.id) %>									
 									</p>

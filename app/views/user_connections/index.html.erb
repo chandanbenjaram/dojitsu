@@ -9,7 +9,7 @@
 						<td width="470px">
 						</td>
 						<td>
-							<%= image_tag("invite.PNG")%>&nbsp;&nbsp;&nbsp;<font color="gray"><b  id="image"></b></font>
+							<%= image_tag("invite.PNG")%>&nbsp;&nbsp;&nbsp;<font color="gray"> <b  id="image"></b></font>
 						</td>
 						<td>
 						</td>
@@ -88,9 +88,73 @@
 				</tr>
 		  </table>
 
-</div>
-  
 
+  
+  <table width="100%" border="0" style="margin-top:0px;">
+  	
+  			
+			<tr>
+  			<td colspan="3">
+    				<ul class="tabs">
+    					<li><a href="#tab1"><b>MY DOJO</b></a></li>
+    					<li><a href="#tab2"><b>CHALLENGES</b></a></li>
+					</ul>
+
+					<div class="tab_container">
+    					<div id="tab1" class="tab_content">
+    						<table width="100%" border="0">
+  								<tr>
+    								<td>
+												<table bgcolor=#F4F4F4>
+													<tr bgcolor=#F4F4F4>
+														<td width="120px"><b  id="total">Total:<%#= @challenge.child_challenges.length %></b>	<%=link_to image_tag("btn_msg_up.png"), message_challenges_path(:id => @challenge) %>
+														</td>
+														<td><input type="text">&nbsp;
+															<select>
+															<option value="volvo">ALL</option>
+															<option value="saab">ACCEPTED</option>
+															<option value="mercedes">PENDING</option>
+															<option value="audi">DECLINED</option>
+															</select> 
+															</td>
+															<td>
+															<%= image_tag ("search.png") %>
+														</td>
+													</tr>
+												</table>
+									
+    									<script type="text/javascript" src="../includes/js/jquery.min.js"></script>  
+										<script src="http://connect.facebook.net/en_US/all.js"></script>  
+												<div id="fb-root"></div> 
+														<table  border="0"> 
+															<tr bgcolor=#F4F4F4>
+																			<td>
+																				NAME
+																			</td>
+																			<td align="right">
+																				<p align=right>STATUS</p>
+																			</td>
+															</tr>
+															
+															<div id="friendslist">
+															
+															<tr> 
+															
+																
+																</tr> 
+															  
+															</div> 
+														</table> 
+														</td>
+									
+									
+  								</tr>
+							</table>  
+    					</div>
+    					<div id="tab2" class="tab_content">
+       						
+  
+</div>
 
 <script type="text/javascript" src="../includes/js/jquery.min.js"></script>  
 <script src="http://connect.facebook.net/en_US/all.js"></script>  
@@ -123,6 +187,7 @@
 																htmlcontent1=response[0].name
 																htmlcontent2=response[0].sex
 																htmlcontent3=response[0].birthday
+
 																alert(htmlcontent3);
 																$("#image").append(htmlcontent1);   
                                                                 $("#image1").append(htmlcontent);   

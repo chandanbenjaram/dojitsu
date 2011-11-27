@@ -1,17 +1,15 @@
-<%= stylesheet_link_tag('simple-tabs.css','jquery.cluetip.css','datePicker')%>
-<%= javascript_include_tag('simple-tabs','all','jquery.table.addrow','jquery.cluetip','challenge_new','jquery.datePicker','date')%>
 <%= render 'layouts/loggedinbody'%>
+<%= stylesheet_link_tag('simple-tabs.css','jquery-ui.css','jquery.cluetip.css', 'challenges.css')%>
+<%= javascript_include_tag('simple-tabs','all','jquery.table.addrow','jquery.cluetip','challenge_new.js.erb')%>
 
-<div id="ch_main_div">
-	<p style="font-size:20px; color:#f9a943;margin-left:10px;margin-top:10px; font-weight:bold;">CREATE NEW</p>
+<div class="pageContainer">
+	<span class="pageTitle">CREATE NEW</span>
 
 	<%= form_for :challenge, :url => {:controller=> "challenges",:action => "create"},:html=>{:multipart => true, :name => "challenge_form", :onSubmit => "return validate_form_fields(this);"} do |f| -%>
-
-	<%#= form_for(@challenge, :as =>:challenge) do |f| %>
 	<table width="100%" border="0" style="margin-top:0px;">
 		<tr>
 			<td colspan="4">
-				<p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title"  %><div id="title"></div></p>
+				<p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :placeholder=>"enter challenge title here" , :required => "required"  %><div id="title"></div></p>
 			</td>	
 		</tr>
 		<tr>
@@ -20,54 +18,42 @@
 			</td>
 		</tr>
 		<tr>
-			<td valign="top" width="15%" style="color:#999999;"><%= f.label :description, "DESCRIPTION" %></td>
-			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea" %></td>
-		</tr>
-		<tr>
-			<td colspan="4">
-				<hr style="color:#0066CC;width:98%; height:2px;;">
-			</td>
-		</tr>
-		<tr>
-			<td><b style="color:#999999;">START POINT</b></td>
-			<td width="50px;">   
-				<%= select_tag "start_point_type", "<option value=''>Choose</option><option value='startPointDate'>Date</option><option value='startPointNumber'>Number</option>".html_safe %><div id="st_point"></div>
-			</td>  
-			<td colspan="2">					
-				<div id="startPointDate" style="display:none;">
-					<%= text_field_tag :st_value1, nil, :class => "textfield_effect  date-pick", :id => "st_dv"   %></br>
-					<div id="st_nv_div"></div>
-				</div>
-				<div id="startPointNumber" style="display:none;">
-					<%= text_field_tag :st_value, nil , :class => "textfield_effect", :id => "st_nv", :placeholder=> "enter number......" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<%= text_field_tag :st_label, nil , :class => "textfield_effect", :id => "st_nl", :placeholder=> "enter value......"  %>
-					<div id="st_nl_div"></div>
-				</div>				
-			</td>  
-
-		</tr>
-		<tr>
-			<td colspan="4">
-				<hr style="color:#0066CC;width:98%; height:2px;">
-			</td>
-		</tr>
-		<tr>  
-			<td><b style="color:#999999;">END POINT</b></td>
-			<td>  
-				<%= select_tag "end_point_type", "<option value=''>Choose</option><option value='endPointDate'>Date</option><option value='endPointNumber'>Number</option>".html_safe %><div id="ed_point"></div>
-			</td>  
-			<td colspan="2" style="float: left;">					
-				<div id="endPointDate" style="display:none;">
-					<%= text_field_tag :ed_value1, nil, :class => "textfield_effect  date-pick", :id => "ed_dv"  %></br>
-					<div id="ed_nv_div"></div>
-					<div id="date_must_g"></div>
-				</div>
-				<div id="endPointNumber" style="display:none;">
-					<%= text_field_tag :ed_value, nil , :class => "textfield_effect", :id => "ed_nv", :placeholder=> "enter number......"   %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<%= text_field_tag :ed_label, nil , :class => "textfield_effect", :id => "ed_nl", :placeholder=> "enter value......"  %>
-					<div id="ed_nl_div"></div>
-				</div>				
-			</td>
+			<td valign="top" class="color999"><%= f.label :description, "DESCRIPTION" %></td>
+			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea", :placeholder=>"enter challenge description here" %><div %></td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<hr style="color:#0066CC;width:98%; height:2px;;">
+				</td>
+			</tr>
+			<tr>
+				<td><b class="color999">START POINT</b></td>
+				<td width="50px;">   
+					<%= select_tag "start_point_type", "<option value=''>Choose</option><option value='startPointDate'>Date</option><option value='startPointNumber'>Number</option>".html_safe , :required => "required" %>
+				</td>  
+				<td colspan="2">					
+					<div class="startPointDate">
+					</div>
+					<div class="startPointNumber">
+					</div>				
+				</td>  
+			</tr>
+			<tr>
+				<td colspan="4">
+					<hr style="color:#0066CC;width:98%; height:2px;">
+				</td>
+			</tr>
+			<tr>  
+				<td><b class="color999">END POINT</b></td>
+				<td>  
+					<%= select_tag "end_point_type", "<option value=''>Choose</option><option value='endPointDate'>Date</option><option value='endPointNumber'>Number</option>".html_safe, :required => "required" %>
+				</td>  
+				<td colspan="2" style="float: left;">					
+					<div class="endPointDate">
+					</div>
+					<div class="endPointNumber">
+					</div>				
+				</td>
 			</tr>
 			<tr>
 				<td colspan="4">
@@ -75,180 +61,293 @@
 				</td>
 			</tr>
 			<tr>
-  				<td valign="top">
-  					<b id="load-local" class="load-local" href="" rel="#hidden"  style="color:#999999;" title="The score for each task will be added up to determin the winner(s).">CREATE TASK
-					<%= image_tag("btn_questionmark_up.png")%></b>
+				<td valign="top">
+					<b class="color999"> CREATE TASK</b> 
+					<span class="moreInfoTip color999" rel="#moreCreateTaskId" title="The score for each task will be added up to determin the winner(s).">
+						<%= image_tag("btn_questionmark_up.png")%>
+					</span>
 				</td>
 				<td colspan="3">
-    				<div id="new_tsk_field">		
-						<table border="1">
-							<tr>
-								<th colspan="2" style="color:#999999;">Score this task by</th>
-								<th colspan="2" style="color:#999999;">Point(s)</th>
-								<th colspan="2" style="color:#999999;">Task(name)
-								<%= image_tag("btn_add_up.png",  :class => "alternativeRow", :style => "float:right; margin-right:20px;") %>
+					<table border="1">
+						<tr>
+							<th colspan="2" class="color999">Score this task by</th>
+							<th colspan="2" class="color999">Point(s)</th>
+							<th colspan="2" class="color999">Task(name)
 							</th>
-						    </tr>
-	
-							<% if !@challenge.tasks.blank? %>
-							
-							
-							<% for task in @challenge.tasks %>
-							
-	 						<%= f.fields_for "task_attributes[]", task do |task_fields| %>
-								
-							
-							<tr valign="bottom">
-								<td width="112">
-									<%= task_fields.select :score_by, options_for_select([
-										["Choose", ""],
-										["Check box:1 for checking off the task", "Check box:1 for checking off the task"],	 
-										["Self-report number","Self-report number"]														
-										]), :style => "width:197px;"
-									%>								</td>
-								<td valign="middle" width="17"><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
-								<td width="69">
-									<%= task_fields.text_field :score , :class => "textfield_effect_nw_tk_add" %></td>
-								<td valign="middle" width="17"><%= image_tag("icon_slash.png", :height => '20', :width => '5')%></td>
-								<td valign="middle" width="385">
-									<%= task_fields.hidden_field :is_complete%>
-									<%= task_fields.text_field :name ,:class => "textfield_effect_nw_tk"  , :required => "required" %>
-									<%= image_tag("btn_delete_up.png", :class => "delRow", :style => "float:right; margin-top:8px;") %>								</td>
-								<td width="13">	</td>
-							</tr>
-							
-							<% end %> 
-	 						<% end %>       
-	 						<% end %>
-							
-							<tr>
-								<td colspan="6">
-									<b style="color:#999999;"><%= image_tag("icon_arrow_left.png")%>&nbsp;&nbsp;Do all tasks need to be complete before the challenge is marked complete?</b><br>
-									<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
-									<font style="color:#999999;"><%= f.label "Yes" %></font>
-									<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
-									<font style="color:#999999;"><%= f.label "No" %></font>								</td>
-							</tr>
-						</table>
-					</div>
-    			</td>
-  			</tr>
-			<tr>
-				<td colspan="4">
-					<hr style="color:#0066CC;width:98%; height:2px;">
-				</td>
-			</tr>
-			<tr>
-  				<td valign="top"><b style="color:#999999;">PRIVACY</b></td>
-    			<td colspan="3">
-    				<ul class="tabs">
-    					<li><a href="#tab1" id="soc">Social</a></li>
-    					<li><a href="#tab2" id="per">Personal</a></li>
-					</ul>
+						</tr>
 
-					<div class="tab_container">
-    					<div id="tab1" class="tab_content">
-    						<table width="100%" border="0">
-  								<tr>
-    								<td><b style="color:#999999;">Who wins</b></td>
+						<% @challenge.tasks.each_with_index do |task, index| %>      
+						<%= f.fields_for "task_attributes[]", task do |task_fields| %>
+						
+						
+						
+						
+						<tr>
+		<td width="30%" class="taskSelection">
+			<%= task_fields.select :score_by, options_for_select([
+			["Choose", ""],
+			["Check box:1 for checking off the task", "Check box:1 for checking off the task"],	 
+			["Self-report number","Self-report number"]														
+			])%>	
+		</td>
+		<td align="center" class="taskIcon"><%= image_tag("icon_multiply.png")%></td>
+		<td align="center">     
+			<%= task_fields.text_field :score, :class => "textfield_effect_nw_tk_add", :size=>"10px", :placeholder=>"enter task point(s)" %></td>
+									<td align="center" class="taskIcon"><%= image_tag("icon_slash.png")%></td>
+									<td align="center">     
+										<%= task_fields.text_field :name, :class => "textfield_effect_nw_tk", :required => "required",  :placeholder=>"enter task name here"%>
+									</td>				
 									<td>
-										<%= select_tag :soc_who_win, options_for_select([
-	    									["Choose", ""],							
-											["Add all milestones together","Add all milestones together"],
-											["1st person to reach End Point","1st person to reach End Point"],	 
-											["Highest milestone","Highest milestone"],	
-											["Lowest milestone","Lowest milestone"],	
-											["Participant reaches all milestones","Participant reaches all milestones"] 														
- 											]), :id => "soc_wn", :style => "width:197px"
- 										%>		
+										<%= image_tag("btn_delete_up.png" ,:class => "delRow") %>	
+									
+										
 									</td>
-  								</tr>
-  								<tr>
-    								<td><b style="color:#999999;">How many winners</b></td>
+									</tr>
+									<tr>
 									<td>
-										<%= select_tag :soc_how_many_winner, options_for_select([
-											["Choose", ""],
-    										["1", "1"],							
-											["3","3"],
-											["5","5"],	 
-											["All participants win","all"] 														
- 											]), :id => "soc_hm", :style => "width:197px"
- 										%>	
-										<div id="soc_how_many_winner_div"></div>	
 									</td>
-  								</tr>
+									<td>
+									</td>
+									<td>
+									</td>
+									<td>
+									</td>
+									<td>
+									</td>
+									<td align="right">
+									<%= image_tag("btn_add_up.png", :class => "addRow")%>
+										
+											<style>
+																	  .addRow
+																	  {
+																		 position:relative;
+																		 top:-41px;
+																	  }
+																	</style>
+									</td>
+								</tr>
+
+
+
+							<script type="text/javascript">
+							(function($){
+								$(document).ready(function(){
+									$(".addRow").btnAddRow();
+									$(".delRow").btnDelRow();
+							});
+							})(jQuery);
+
+
+							</script>	
+															
 								
-  								<tr>
-    								<td><b style="color:#999999;">Participants</b></td>
-									<td>
-										                         
-										<%= hidden_field_tag "myvar", 0%>					
-    					    			<%= render :partial => 'invitations', :locals => {:form => f} %>
+								
+								<% end %> 
+								<% end %>
+								
+
+								<tr>
+									<td colspan="6">
+										<b class="color999"><%= image_tag("icon_arrow_left.png")%>&nbsp;&nbsp;Do all tasks need to be complete before the challenge is marked complete?</b><br>
+										<%= f.radio_button :task_comp, "soc", :class => "chall_type" ,:checked =>"checked"%>
+										<font class="color999"><%= f.label "Yes" %></font>
+										<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
+										<font class="color999"><%= f.label "No" %></font>							   
 									</td>
-  								</tr>
-							</table>
-    					</div>
-    					<div id="tab2" class="tab_content">
-       						<table width="100%" border="0">
-  								<tr>
-    								<td><b style="color:#999999;">Who wins</b></td>
-									<td>
-										<%= select_tag :per_who_win, options_for_select([
-    										["Choose", ""],							
-											["Add all milestones together","Add all milestones together"],
-											["1st person to reach End Point","1st person to reach End Point"],	 
-											["Highest milestone","Highest milestone"],	
-											["Lowest milestone","Lowest milestone"],	
-											["Participant reaches all milestones","Participant reaches all milestones"] 														
- 											]), :id => "per_wn", :style => "width:197px" 
- 										%>
-									</td>
-				
-  								</tr>
-							</table>  
-    					</div>
-					</div>
-    			</td>
-  			</tr>
-			<tr>
-				<td colspan="4">
-					<hr style="color:#0066CC;width:98%; height:2px;">
-				</td>
+								</tr>    
+							</tr> 
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<hr style="color:#0066CC;width:98%; height:2px;">
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"><b class="color999">PRIVACY</b></td>
+					<td colspan="3">
+							
+		<style type="text/css">
+	
+	</style>
+<script>
+	$(function() {
+		$( "#tabs" ).tabs();
+	});
+	</script>
+
+
+<style>
+.demo
+{
+  width: 97%;
+}
+</style>
+
+
+<div  id="tabs">
+	<ul>
+		<li><a href="#tabs-1" id="soc" ><b>Social</b></a></li>
+		<li><a href="#tabs-2" id="per"><b>Personal</b></a></li>
+		
+	
+		
+	</ul>
+	<style>
+	.chall_type:focus
+	{ background:#000;}
+	 #tabs
+	 {
+	 width:100%;
+	 }
+	 #tabs ul li
+	 {
+	 width:150px;
+	 margin-top:-4px;
+	 margin-left:-5px;
+	
+	 }
+	
+	 
+	 </style>
+	 <script type="text/javascript"> 
+    $(document).ready(function(){
+        $tabs = $("#tabs").tabs({
+            select: function(event, ui) {
+                $('a', ui.tab).click(function() {
+                    $(ui.panel).load(this.href);
+                    return true;
+                });
+            }
+        });
+});
+</script>
+
+	<div id="tabs-1">
+	
+	
+	
+		
+		<table width="100%" border="0">
+		<tr>
+			<td><b class="color999">Who wins</b></td>
+			<td>
+				<%= select_tag :soc_who_win, options_for_select([
+					["Choose", ""],							
+					["Highest number of points","Highest number of points"],
+					["Lowest number of points","Lowest number of points"],	 
+					["1st person to reach End Point","1st person to reach End Point"],	
+					["Participant completes all tasks","Participant completes all tasks"]			 														
+					]), :id => "soc_wn", :style => "width:197px"
+					%>		
+			</td>
 			</tr>
-  			<tr>
-  				<td></td>
-    			<td></td>
-    			<td colspan="2">
-    				<%= link_to "CANCEL", challenges_path, :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel"%>
-    				<%= f.submit "DONE", :style => "width: 100px; float:right; margin-right:10px;", :class => "links" %>
-				</td>
-  			</tr> 
-		</table>
+			<tr>
+				<td><b class="color999">How many winners</b></td>
+				<td>
+					<%= select_tag :soc_how_many_winner, options_for_select([
+						["Choose", ""],
+						["1", "1"],							
+						["3","3"],
+						["5","5"],	 
+						["All participants win","all"] 														
+						]), :id => "soc_hm", :style => "width:197px"
+						%>	
+						<div id="soc_how_many_winner_div"></div>	
+					</td>
+				</tr>
+
+				<tr>
+					<td><b class="color999">Participants</b></td>
+					<td>
+						<div id="fb-root"></div>                            
+						<%= hidden_field_tag "myvar", 0%>					
+						<%= render :partial => 'invitations', :locals => {:form => f} %>
+					</td>
+				</tr>
+	</table>
+		
+	</div>
+	<div id="tabs-2">
+	
+	<table width="100%" border="0">
+											<tr>
+												<td><b class="color999">Who wins</b></td>
+												<td>
+													<%= select_tag :per_who_win, options_for_select([
+														["Choose", ""],							
+														["Add all points together","Add all points together"],
+														["Reach all milestones","Reach all milestones"]														
+														]), :id => "per_wn", :style => "width:197px" 
+														%>
+													</td>
+
+												</tr>
+											</table>  
+	
+	
+	
+		
+	</div>
+	
+</div>
+
+
+
+
+
+<div style="display: none;" class="demo-description">
+<p>Click tabs to swap between content that is broken into logical sections.</p>
+</div><!-- End demo-description -->
+	
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<hr style="color:#0066CC;width:98%; height:2px;">
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<%= link_to "CANCEL", challenges_path, :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel"%>
+						<%= f.submit "DONE", :style => "width: 100px; float:right; margin-right:10px;", :class => "links" %>
+					</td>
+				</tr> 
+			</table> 
+		</td>	
+	</tr>						
 	<% end %>	
 </div>
-
-<div id="hidden">
-		<table height="150">						
-			<tr>
-  		  	  <td width="43%"><p style="color:#f9a943; font-size:12px; margin-top:15px;"><b>check box:</b></p></td>
-		  	  <td width="17%"><input type="text" value="1(Check of the task)" size="18" /></td>
-	     	  	<td width="3%"><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
-		  	  <td width="13%"><input type="text" value="point(s) per task" size="14" /></td>
-  	     	  	<td width="3%"><%= image_tag("icon_equal.png", :height => '10', :width => '10')%></td>
-		  	  <td width="21%"><input type="text" value="Score" size="5" /></td>
-  			</tr>
-			<tr>
-  		 	  <td width="43%" height="36"><p style="color:#f9a943; font-size:12px; margin-top:15px;"><b>Self-reported Number:</b></p></td>
-	    	  <td width="17%"><input type="text" value="Number" size="18" /></td>
-				<td><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
-			  <td width="13%"><input type="text" value="point(s) per task" size="14" /></td>
-    			<td><%= image_tag("icon_equal.png", :height => '10', :width => '10')%></td>
-		      <td width="21%"><input type="text" value="Score" size="5" /></td>
-  			</tr>
-			<tr>	
-  				<td height="51"></td>
-    			<td colspan="5">e.g. reporting 10 miles for "run treadmill (2 points)" task scores 20 points</td>
-			</tr>
-		</table>			
+<div id="moreCreateTaskId">
+	<table height="150">						
+		<tr>
+			<td width="43%"><p style="color:#f9a943; font-size:12px; margin-top:15px;"><b>check box:</b></p></td>
+			<td width="17%"><input type="text" value="1(Check of the task)" size="18" /></td>
+			<td width="3%"><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
+			<td width="13%"><input type="text" value="point(s) per task" size="14" /></td>
+			<td width="3%"><%= image_tag("icon_equal.png", :height => '10', :width => '10')%></td>
+			<td width="21%"><input type="text" value="Score" size="5" /></td>
+		</tr>
+		<tr>
+			<td width="43%" height="36"><p style="color:#f9a943; font-size:12px; margin-top:15px;"><b>Self-reported Number:</b></p></td>
+			<td width="17%"><input type="text" value="Number" size="18" /></td>
+			<td><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
+			<td width="13%"><input type="text" value="point(s) per task" size="14" /></td>
+			<td><%= image_tag("icon_equal.png", :height => '10', :width => '10')%></td>
+			<td width="21%"><input type="text" value="Score" size="5" /></td>
+		</tr>
+		<tr>	
+			<td height="51"></td>
+			<td colspan="5">e.g. reporting 10 miles for "run treadmill (2 points)" task scores 20 points</td>
+		</tr>
+	</table>			
 </div>
 
+
+			
+			
+			
+
+			
+		
