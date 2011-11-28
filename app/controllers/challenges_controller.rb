@@ -117,26 +117,40 @@ class ChallengesController < ApplicationController
   end
 
   def update_task_soc
+	#raise "aaa"
 	#raise params.inspect
 	@challenge = Challenge.find(params[:id])
+	#raise params[:challenge].inspect
+	#@new_ts = params[:challenge][:tasks]
+	@challenge.update_attributes(params[:challenge])
+	raise "aaaa"
 	#raise @new_ts = params[:challenge][:task_attributes].inspect
 	#raise new_ts.inspect
 	
-	@aw = [{"score_by"=>"Check box:1 for checking off the task", "score"=>"123", "name"=>"first task tasting1111"}, {"score_by"=>"Check box:1 for checking off the task", "score"=>"321", "name"=>"second  task tasting2222"}, {"score_by"=>"Self-report number", "score"=>"456", "name"=>"third task tasting3333"}]
 	
-	@aw.each do |ts|
-		@challenge.tasks.build(ts)
-	end 
 	
-	raise "aaaa"
+	#tasks.reject(&:new_record?).each do |task|
+    #  attributes = @challenge[task.id.to_s]
+    #    task.attributes = attributes
+    #end
 	
-	@challenge.tasks.build(@new_ts)
-	raise "aaaa"
 	
-	@challenge.task_attributes.each do |task_attr|
-       #@challenge.tasks << Task.new(:name =>"testing")
-       @challenge.tasks.build(task_attr)
-    end
+	
+	
+	#@aw = [{"score_by"=>"Check box:1 for checking off the task", "score"=>"123", "name"=>"first task tasting1111"}, {"score_by"=>"Check box:1 for checking off the task", "score"=>"321", "name"=>"second  task tasting2222"}, {"score_by"=>"Self-report number", "score"=>"456", "name"=>"third task tasting3333"}]
+	
+	#@aw.each do |ts|
+	#	@challenge.tasks.build(ts)
+	#end 
+	
+	#raise "aaaa"
+	
+	
+	#tasks.reject(&:new_record?).each do |task|
+    #  attributes = tasks[task.id.to_s]
+    #    task.attributes = attributes
+    #end
+	#raise "aaa"
 	
 	#@ch.task_attributes.each do |task_attr|
        ##@challenge.tasks << Task.new(:name =>"testing")
@@ -147,7 +161,7 @@ class ChallengesController < ApplicationController
   end
 
   def update
-  
+	#raise params.inspect
 	@challenge = Challenge.find(params[:id])
 	#raise ch = params[:challenge].inspect 
     if @challenge.update_attributes(params[:challenge])
