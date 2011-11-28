@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css')%>
-<%= javascript_include_tag('simple-tabs','all','on_the_spot','jquery.table.addrow','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.hoverIntent','jquery.cluetip','challenge_new')%>
+
+<%= javascript_include_tag('simple-tabs','all','on_the_spot','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.cluetip','challenge_new')%>
 <%= render 'layouts/loggedinbody'%>
 <div id="ch_main_div"> 
 				<div id="ch_main_div1"> 
@@ -8,8 +9,8 @@
 										</div> 
 									<% t=0 %>
 
-							<% @challenge.child_challenges.each do |aTask| %>
-								<% if aTask.user_id == @challenge.user_id %>
+							<% @challenge.child_challenges.each do |aChildChallenge| %>
+								<% if aChildChallenge.user_id == @challenge.user_id %>
 									<% t+=1 %>
 								<%end%>
 							<%end%>
@@ -159,7 +160,7 @@
 														<table  border="0" height="20px" bgcolor="gray"> 
 																			<tr bgcolor=#D7D7D7>
 																					<td>
-																							<b>NAME &nbsp;</b><%= image_tag ("down.PNG") %>
+																							<b>NAME &nbsp;</b>
 																					</td>
 																					<td width="80px">
 																						       <font color=#A8A8A8>STATUS</font>
@@ -187,8 +188,7 @@
 																					}
 
 																					</style>
-																<script type="text/javascript" src="../includes/js/jquery.min.js"></script>  
-																<script src="http://connect.facebook.net/en_US/all.js"></script>  
+																
 																<div id="fb-root"></div> 
 												</div>
 									 </div>
@@ -274,4 +274,18 @@
 background:#ffffff;
 }
 </style>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+	
+		alert("hiiiiiiiiii");
+	
+		$(".addRow").btnAddRow();
+		$(".delRow").btnDelRow();
+		
+		$('.soc_add_task_popup').colorbox();
+});
+</script>
+
+
 

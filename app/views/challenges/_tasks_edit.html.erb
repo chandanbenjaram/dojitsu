@@ -1,6 +1,9 @@
+
 <table width="100%">
 	<tr bgcolor="#f4f4f4">
-		<td><div style="float:left; position:relative; left:550px;"><font color="#8c8c8c"><%= link_to image_tag("btn_add_up.png", :style=>"position:relative; top:5px;"), add_task_link_challenges_path(:id => @challenge), :class => "addComment add_task_popup" %>ADD A TASK</font></div></td>
+		<td><div style="float:left; position:relative; left:550px;"><font color="#8c8c8c">
+			<%= link_to image_tag("btn_add_up.png", :style=>"position:relative; top:5px;"), add_task_link_challenges_path(:id => @challenge), :class => "soc_add_task_popup" %>ADD A TASK</font></div>
+		</td>
 	</tr>
 </table>
 <table width="100%">
@@ -127,13 +130,14 @@
 	<% end %>
 </table>
 
+
 <script type="text/javascript">
-(function($){
 	$(document).ready(function(){
+		
 		$(".addRow").btnAddRow();
 		$(".delRow").btnDelRow();
 		
-		$('.add_task_popup').colorbox();
+		$('.soc_add_task_popup').colorbox();
 });
-})(jQuery);
 </script>
+
