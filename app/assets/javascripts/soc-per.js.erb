@@ -1,0 +1,215 @@
+$("document").ready(function(){
+		$(".addComment").btnAddRow({rowNumColumn:"rowNumber"}),
+		$(".delRow").btnDelRow()						
+	});
+	
+	// Jquery part
+	jQuery(document).ready(function($) {
+ 	// to get date on click
+	$(":date").dateinput({
+		format: 'dddd dd, mmmm yyyy',	// the format displayed for the user
+		selectors: true,             	// whether month/year dropdowns are shown
+		min: -100,                    // min selectable day (100 days backwards)
+		max: 100,                    	// max selectable day (100 days onwards)
+		offset: [10, 20],            	// tweak the position of the calendar
+		speed: 'fast',               	// calendar reveal speed
+		firstDay: 1                  	// which day starts a week. 0 = sunday, 1 = monday etc..
+	});
+
+	// edit a text on the spot 
+	$(".editable").editable("http://www.example.com/save.php", { 
+    	method : "PUT"
+	});
+
+	$(".editable").editable("http://www.example.com/save.php", { 
+    	settings.submit : '<button type="submit">Save</button>'
+	});
+
+	$(".editable").editable("http://www.example.com/save.php", { 
+    	settings.submit : 'Save'
+	});
+ 	
+	$('.editable1').editable({
+    	type:'text',
+    	submit:'update',
+    	cancel:'cancel',
+    	editClass:'resultItem',
+    	onSubmit:end
+    }); 
+	
+	// edit on spot 2 nd type
+	$('.editable2').editable({type:'textarea',submitBy:'dblclick'}).css('background-color','#39c');
+	
+	$(function(){
+    	$('.editable1').editable({onEdit:begin});
+    	function begin(){
+    		this.append('Click somewhere else to submit');
+    	}
+    }); 
+      
+	$('.editable3').editable({
+    	type:'text',
+    	submit:'save',
+    	onSubmit:end
+    }); 
+
+	$('div.editable').editable()
+	
+	$(function(){
+    	$('.editable1').editable({onEdit:begin});
+    	function begin(){
+    		this.append('Click somewhere else to submit');
+    	}
+    }); 
+	
+	// Add row for new task
+	//alert("hiiiiiiiii");
+	$(".alternativeRow").btnAddRow({oddRowCSS:"oddRow",evenRowCSS:"evenRow"});
+	$(".delRow").btnDelRow();
+	
+	// Date Picker scripting code
+	//alert("Date picker is working");
+	$('.date-pick').datePicker({startDate:'01/01/1996'});
+
+    $('#ch_st_date').change(function() {
+		console.debug('changed...' + $(this));
+
+	});
+	
+	$('#ch_ed_date').change(function() {
+		console.debug('changed...' + $(this));
+
+	});
+	
+	$('.chall_type').click(function(){
+		if ($(this).attr("id") == "challenge_cha_type_per")
+		{
+			//alert($(this).attr("id"));
+			$("#challenge_cha_type_per_div").show("fast");
+			$("#challenge_cha_type_soc_div").hide("fast");
+		}
+		else
+		{
+			//alert($(this).attr("id"));
+			$("#challenge_cha_type_soc_div").show("fast");
+			$("#challenge_cha_type_per_div").hide("fast");
+		}
+		//$("<div></div>").appendTo("div#new_tsk_field");
+	});
+	
+	/*
+	$('#ch_ed_date').change(function() {
+		var sel_val = $(this).val();
+		//alert("new"+sel_val);
+		//$('#ch_st_date').hide();
+		if ($(this).val() == "#ch_ed_dat")
+		{
+			//alert("date");
+			$(sel_val).show();
+			$('#ch_ed_num').hide();	
+		}
+		else
+		{
+			//alert("number");
+			$(sel_val).show();
+			$('#ch_ed_dat').hide();
+		}
+
+	});
+	
+	$('#ch_ed_date').change(function() {
+	var sel_val = $(this).val();
+	//alert(""+sel_val);
+	//$('#ch_ed_date').hide();
+	$(sel_val).show();
+	});
+	*/
+
+});
+$('.editable2').editable({type:'textarea',submitBy:'dblclick'}).css('background-color','#39c');
+
+$(document).ready(function() {  
+ 
+    //select all the a tag with name equal to modal
+    $('a[name=modal]').click(function(e) {
+        //Cancel the link behavior
+        e.preventDefault();
+        //Get the A tag
+        var id = $(this).attr('href');
+     
+        //Get the screen height and width
+        var maskHeight = $(document).height();
+        var maskWidth = $(window).width();
+     
+        //Set height and width to mask to fill up the whole screen
+        $('#mask').css({'width':maskWidth,'height':maskHeight});
+         
+        //transition effect     
+        $('#mask').fadeIn(1000);    
+        $('#mask').fadeTo("slow",0.8);  
+     
+        //Get the window height and width
+        var winH = $(window).height();
+        var winW = $(window).width();
+               
+        //Set the popup window to center
+        $(id).css('top',  winH/2-$(id).height()/2);
+        $(id).css('left', winW/2-$(id).width()/2);
+     
+        //transition effect
+        $(id).fadeIn(2000); 
+     
+    });
+     
+    //if close button is clicked
+    $('.window .close').click(function (e) {
+        //Cancel the link behavior
+        e.preventDefault();
+        $('#mask, .window').hide();
+    });     
+     
+    //if mask is clicked
+    $('#mask').click(function () {
+        $(this).hide();
+        $('.window').hide();
+    });   
+
+		
+		//id is the ID for the DIV you want to display it as modal window
+  launchWindow(id); 
+  
+  
+  $(document).keyup(function(e) {
+  if(e.keyCode == 13) {
+    $('#mask').hide();
+    $('.window').hide();
+  }
+});
+     
+});
+ function changeVal(str,score) {
+	var tot_score = str*score;
+	$("#tatal_s").val(tot_score);
+} 
+
+	
+	$('.task_update_popup').colorbox();
+	$('.add_task_popup').colorbox();
+	
+// execute your scripts when the DOM is ready. this is a good habit
+$(function() {
+	// setup tooltip for a single DIV element
+	$("#mytable a").tooltip({
+		// each trashcan image works as a trigger
+		tip: '#tooltip',
+
+		// custom positioning
+		position: 'center right',
+
+		// move tooltip a little bit to the right
+		offset: [0, 15],
+
+		// there is no delay when the mouse is moved away from the trigger
+		delay: 0
+	});	
+});

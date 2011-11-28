@@ -235,7 +235,7 @@
                                                                  $("#friendslist").append(tdclose);
 																<% @challenge.child_challenges.each do |aTask| %>
 																					<% if aTask.user_id %>
-																						<% if aTask.social_type.status == 1  or  @challenge.user_id == aTask.user_id %>
+																						<% if aTask.social_type.status == 1  ||  @challenge.user_id == aTask.user_id %>
 																										status='<%= image_tag ("icon_accept.png") %>';
 																							<% else %>
 																							<% if aTask.social_type.status == 0 %>
