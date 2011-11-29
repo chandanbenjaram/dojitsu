@@ -977,9 +977,13 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 }
 #challengedetails
 {
-	width:635px;
-	height:343px;
-	background:#fff;
+position:absolute;
+	background: none repeat scroll 0 0 #FFFFFF;
+   
+    height: 343px;
+    margin-top: -1px;
+    position: absolute;
+    width: 635px;
 	-moz-border-radius-topleft: 0px;
 	-moz-border-radius-topright: 0px;
 	-moz-border-radius-bottomright: 5px;
@@ -1060,7 +1064,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	postion:absolute;
 	padding-left:20px;
 	width:120px;
-
+height:auto;
 }
 #content2
 {
@@ -1068,6 +1072,8 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	postion:absolute;
 	padding-left:10px;
 	width:400px;
+	height:auto;
+	 text-align: right;
 }
 #check1
 {

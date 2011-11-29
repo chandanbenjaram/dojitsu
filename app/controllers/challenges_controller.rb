@@ -195,6 +195,15 @@ class ChallengesController < ApplicationController
   def add_task_fun
     @chall_ref = Challenge.find(params[:challenge_id]) 
     @chall_ref.tasks.push(Task.new(:name => params[:name], :score => params[:score], :score_by => params[:score_by]))
+	
+	
+	@chall_ref.child_challenges.each do |ts|
+		#ts.tasks.destroy
+		#ts.update_attributes(params[:challenge])
+		ts.tasks.push(Task.new(:name => params[:name], :score => params[:score], :score_by => params[:score_by]))
+	end
+	
+	
     #@chall_ref.child_challenges.build(:tasks => Task.new(:name => params[:name], :score => params[:score], :score_by => params[:score_by]))
     redirect_to show_per_challenges_path(:id => params[:challenge_id])
   end
