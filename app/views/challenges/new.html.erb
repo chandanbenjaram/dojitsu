@@ -77,58 +77,40 @@
 						</tr>
 
 						<% @challenge.tasks.each_with_index do |task, index| %>      
-						<%= f.fields_for "task_attributes[]", task do |task_fields| %>
-						
-						
-						
-						
+						<%= f.fields_for "task_attributes[]", task do |task_fields| %>						
 						<tr>
-		<td width="30%" class="taskSelection">
-			<%= task_fields.select :score_by, options_for_select([
-			["Choose", ""],
-			["Check box:1 for checking off the task", "Check box:1 for checking off the task"],	 
-			["Self-report number","Self-report number"]														
-			])%>	
-		</td>
-		<td align="center" class="taskIcon"><%= image_tag("icon_multiply.png")%></td>
-		<td align="center">     
-			<%= task_fields.text_field :score, :class => "textfield_effect_nw_tk_add", :size=>"10px", :placeholder=>"enter task point(s)" %></td>
-									<td align="center" class="taskIcon"><%= image_tag("icon_slash.png")%></td>
-									<td align="center">     
-										<%= task_fields.text_field :name, :class => "textfield_effect_nw_tk", :required => "required",  :placeholder=>"enter task name here"%>
-									</td>				
-									<td>
-										<%= image_tag("btn_delete_up.png" ,:class => "delRow") %>	
-									
-										
-									</td>
-									</tr>
-									<tr>
-									<td>
-									</td>
-									<td>
-									</td>
-									<td>
-									</td>
-									<td>
-									</td>
-									<td>
-									</td>
-									<td align="right">
-									<%= image_tag("btn_add_up.png", :class => "addRow")%>
-										
-											<style>
-																	  .addRow
-																	  {
-																		 position:relative;
-																		 top:-41px;
-																	  }
-																	</style>
-									</td>
-								</tr>
-
-
-
+							<td width="30%" class="taskSelection">
+								<%= task_fields.select :score_by, options_for_select([
+								["Choose", ""],
+								["Check box:1 for checking off the task", "Check box:1 for checking off the task"],	 
+								["Self-report number","Self-report number"]														
+								])%>	
+							</td>
+							<td align="center" class="taskIcon"><%= image_tag("icon_multiply.png")%></td>
+							<td align="center">     
+								<%= task_fields.text_field :score, :class => "textfield_effect_nw_tk_add", :size=>"10px", :placeholder=>"enter task point(s)" %>
+							</td>
+							<td align="center" class="taskIcon"><%= image_tag("icon_slash.png")%></td>
+							<td align="center">     
+								<%= task_fields.text_field :name, :class => "textfield_effect_nw_tk", :required => "required",  :placeholder=>"enter task name here"%>
+							</td>				
+							<td>
+								<%= image_tag("btn_delete_up.png" ,:class => "delRow") %>			
+							</td>
+						</tr>
+						<tr>
+							<td colspan="5"></td>									
+							<td align="right">
+							<%= image_tag("btn_add_up.png", :class => "addRow")%>
+								<style>
+								  .addRow
+								  {
+									 position:relative;
+									 top:-41px;
+								  }
+								</style>
+							</td>
+						</tr>
 							<script type="text/javascript">
 							(function($){
 								$(document).ready(function(){
@@ -136,28 +118,21 @@
 									$(".delRow").btnDelRow();
 							});
 							})(jQuery);
-
-
 							</script>	
-															
-								
-								
-								<% end %> 
-								<% end %>
-								
-
-								<tr>
-									<td colspan="6">
-										<b class="color999"><%= image_tag("icon_arrow_left.png")%>&nbsp;&nbsp;Do all tasks need to be complete before the challenge is marked complete?</b><br>
-										<%= f.radio_button :task_comp, "soc", :class => "chall_type" ,:checked =>"checked"%>
-										<font class="color999"><%= f.label "Yes" %></font>
-										<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
-										<font class="color999"><%= f.label "No" %></font>							   
-									</td>
-								</tr>    
-							</tr> 
-						</table>
-					</td>
+						<% end %> 
+						<% end %>
+						<tr>
+							<td colspan="6">
+								<b class="color999"><%= image_tag("icon_arrow_left.png")%>&nbsp;&nbsp;Do all tasks need to be complete before the challenge is marked complete?</b><br>
+								<%= f.radio_button :task_comp, "soc", :class => "chall_type" ,:checked =>"checked"%>
+								<font class="color999"><%= f.label "Yes" %></font>
+								<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
+								<font class="color999"><%= f.label "No" %></font>							   
+							</td>
+						</tr>    
+					</tr> 
+					</table>
+				</td>
 				</tr>
 				<tr>
 					<td colspan="4">

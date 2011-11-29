@@ -18,6 +18,8 @@ class ChallengesController < ApplicationController
   end
 
   def show_soc
+	@chall = Challenge.new
+	1.times {@chall.tasks.build}
 	@flg = params[:flg]
     @challenge = Challenge.find(params[:id])
     @org = User.find(:all,:conditions => ["id=?",@challenge.user_id]).first
@@ -117,37 +119,20 @@ class ChallengesController < ApplicationController
   end
 
   def update_task_soc
-	#raise params.inspect
+	#raise params[:challenge].inspect
 	@challenge = Challenge.find(params[:id])
-	#raise @new_ts = params[:challenge][:task_attributes].inspect
-	#raise new_ts.inspect
-	
-	@aw = [{"score_by"=>"Check box:1 for checking off the task", "score"=>"123", "name"=>"first task tasting1111"}, {"score_by"=>"Check box:1 for checking off the task", "score"=>"321", "name"=>"second  task tasting2222"}, {"score_by"=>"Self-report number", "score"=>"456", "name"=>"third task tasting3333"}]
-	
-	@aw.each do |ts|
-		@challenge.tasks.build(ts)
-	end 
-	
-	raise "aaaa"
-	
-	@challenge.tasks.build(@new_ts)
-	raise "aaaa"
-	
-	@challenge.task_attributes.each do |task_attr|
-       #@challenge.tasks << Task.new(:name =>"testing")
-       @challenge.tasks.build(task_attr)
-    end
-	
-	#@ch.task_attributes.each do |task_attr|
-       ##@challenge.tasks << Task.new(:name =>"testing")
-       #@challenge.tasks.build(task_attr)
-    #end
-	
-	raise "aaaa"
+	@challenge.tasks.destroy
+	@challenge.child_challenges.each do |ts|
+		ts.tasks.destroy
+		ts.update_attributes(params[:challenge])
+	end
+	@challenge.update_attributes(params[:challenge])
+	redirect_to show_soc_challenges_path(:id => @challenge)
+	#raise "aaa"
   end
 
   def update
-  
+	#raise params.inspect
 	@challenge = Challenge.find(params[:id])
 	#raise ch = params[:challenge].inspect 
     if @challenge.update_attributes(params[:challenge])

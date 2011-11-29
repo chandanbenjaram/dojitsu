@@ -2,11 +2,13 @@ class Challenge
   include Mongoid::Document 
   include Mongoid::Timestamps::Created
   include Mongoid::Timestamps::Updated
-                         
+  
+  # TASKS
+  embeds_many :tasks
+  accepts_nested_attributes_for :tasks
+  
   # puts tree model on challenges
   recursively_embeds_many
-  
-  accepts_nested_attributes_for :tasks
   
   #callback for assign value1 to value in point_date_type
   
@@ -41,6 +43,4 @@ class Challenge
   embeds_one :social_type, :class_name => "ChallengeType"
   embeds_one :personal_type, :class_name => "ChallengeType"
   
-  # TASKS
-  embeds_many :tasks
 end                
