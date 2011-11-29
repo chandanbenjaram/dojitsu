@@ -1,18 +1,21 @@
-class Challenge
+class Challenge    
+  include Rails.application.routes.url_helpers
   include Mongoid::Document 
   include Mongoid::Timestamps::Created
   include Mongoid::Timestamps::Updated
-  
+
+  has_many :child_challenges, :class_name => "ChildChallenge"
+    
   # TASKS
   embeds_many :tasks
-  accepts_nested_attributes_for :tasks
+  accepts_nested_attributes_for :tasks, :child_challenges
   
   # puts tree model on challenges
-  recursively_embeds_many
+  #recursively_embeds_many
   
   #callback for assign value1 to value in point_date_type
   
-  #attr_accessible :title, :description, :start_point, :end_point, :tasks, :task_comp, :social_challenge, :personal_challenge, :name
+  attr_accessible :title, :description, :start_point, :end_point, :tasks, :task_comp, :social_challenge, :personal_challenge, :child_challenges
   #attr_reader :ch_st_date, :ch_ed_date
   
   #validation for challenge creation
@@ -42,5 +45,7 @@ class Challenge
   # CHALLENGE TYPE SOCIAL & PERSONAL
   embeds_one :social_type, :class_name => "ChallengeType"
   embeds_one :personal_type, :class_name => "ChallengeType"
+  
+
   
 end                
