@@ -45,6 +45,8 @@
 						<div class="showperscore_0">
 							<% if @challenge.social_type.status == 1 %>
 								<%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => "text-decoration: underline;" %>
+							<% else %>
+								<font style="color:black">0</font>
 							<% end %>
 						</div>
 					</div>
