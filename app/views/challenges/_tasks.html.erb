@@ -42,7 +42,11 @@
 						<p style="float:left;  margin-top:15px; margin-left:5px;">
 							<%= aTask.name %>
 						</p>
-						<div class="showperscore_0"><%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => "text-decoration: underline;" %></div>
+						<div class="showperscore_0">
+							<% if @challenge.social_type.status == 1 %>
+								<%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => "text-decoration: underline;" %>
+							<% end %>
+						</div>
 					</div>
 				<% else %>	
 					<div id="task_list">

@@ -6,7 +6,7 @@ ul.tabs {
 	height: 32px; /*--Set height of tabs--*/
 	border-bottom: 1px solid #999;
 	border-left: 1px solid #999;
-	width: 82%;
+	width: 100%;
 	background :#f4f4f4;
 }
 
@@ -47,7 +47,7 @@ ul.tabs1 {
 	height: 32px; /*--Set height of tabs--*/
 	border-bottom: 1px solid #999;
 	border-left: 1px solid #999;
-	width: 97%;
+	width: 100%;
 }
 ul.tabs li {
 	float: left;
@@ -101,7 +101,7 @@ color:orange;
 	border-top: none;
 	overflow: hidden;
 	clear: both;
-	float: left; width: 82%;
+	float: left; width: 100%;
 	background: #fff;
 }
 .tab_content {
@@ -113,7 +113,7 @@ color:orange;
 .atable{
 	border-collapse:collapse;
 	border:1px solid #AAA;
-	width:97%;
+	width:100%;
 }
 .topcalss {
 	background-color: gray;

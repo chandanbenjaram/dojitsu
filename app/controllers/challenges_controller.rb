@@ -10,7 +10,6 @@ class ChallengesController < ApplicationController
     @challenges = current_user.challenges
     #@ch =  @challenges.parent_challenge
     #render :text => @ch
-
   end
 
   def show       
@@ -198,15 +197,11 @@ class ChallengesController < ApplicationController
   def add_task_fun
     @chall_ref = Challenge.find(params[:challenge_id]) 
     @chall_ref.tasks.push(Task.new(:name => params[:name], :score => params[:score], :score_by => params[:score_by]))
-
-
     @chall_ref.child_challenges.each do |ts|
       #ts.tasks.destroy
       #ts.update_attributes(params[:challenge])
       ts.tasks.push(Task.new(:name => params[:name], :score => params[:score], :score_by => params[:score_by]))
     end
-
-
     #@chall_ref.child_challenges.build(:tasks => Task.new(:name => params[:name], :score => params[:score], :score_by => params[:score_by]))
     redirect_to show_per_challenges_path(:id => params[:challenge_id])
   end
@@ -215,6 +210,22 @@ class ChallengesController < ApplicationController
     @challenge_date = Challenge.find(params[:id])
     @date = @challenge_date.end_point.value 
     render :layout => false
+  end
+  
+  def invitee_status
+	#raise "aaa"
+	@inviteeStatusUpdate = Challenge.find(params[:id])
+	#raise @inviteeStatusUpdate.social_type.status.inspect
+	@inviteeStatusUpdate.social_type.status = 1
+	@inviteeStatusUpdate.social_type.save!
+	 @inviteeStatusUpdate.social_type.update_attribute(:status, '10')
+	@inviteeStatusUpdate.social_type.save
+	@inviteeStatusUpdate.save
+	#raise @inviteeStatusUpdate.social_type.inspect 	
+
+	#@ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1)
+	#raise Challenge.social_type.update(:status=>1).where(:_id=>params[:id]).inspect
+	redirect_to show_soc_challenges_path(:id => params[:id])
   end
 
   protected
