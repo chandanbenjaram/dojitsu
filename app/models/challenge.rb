@@ -15,7 +15,7 @@ class Challenge
   
   #callback for assign value1 to value in point_date_type
   
-  attr_accessible :title, :description, :start_point, :end_point, :tasks, :task_comp, :social_challenge, :personal_challenge, :child_challenges
+  #attr_accessible :title, :description, :start_point, :end_point, :tasks, :task_comp, :social_challenge, :personal_challenge, :child_challenges, :user_id, 
   #attr_reader :ch_st_date, :ch_ed_date
   
   #validation for challenge creation
