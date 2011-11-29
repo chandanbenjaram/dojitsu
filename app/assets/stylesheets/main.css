@@ -364,7 +364,7 @@ a .selected {
 	border-width: 1px;
 	border-style: solid;
 	border-color: #f4f4f4;
-	background-image: url("text-shadow.png");
+	
 	background-repeat: repeat-x;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 15px;
@@ -394,7 +394,7 @@ a .selected {
 	border-width: 1px;
 	border-style: solid;
 	border-color: #999999;
-	background-image: url("text-shadow.png");
+	
 	background-repeat: repeat-x;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -417,7 +417,7 @@ a .selected {
 	border-width: 1px;
 	border-style: solid;
 	border-color: #999999;
-	background-image: url("text-shadow.png");
+	
 	background-repeat: repeat-x;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 15px;
@@ -442,7 +442,7 @@ a .selected {
 	border-width: 1px;
 	border-style: solid;
 	border-color: #999999;
-	background-image: url("text-shadow.png");
+	
 	background-repeat: repeat-x;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -455,7 +455,7 @@ a .selected {
 	border-width: 1px;
 	border-style: solid;
 	border-color: #999999;
-	background-image: url("text-shadow.png");
+	
 	background-repeat: repeat-x;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 20px;
@@ -484,7 +484,7 @@ textarea {
 	border-width: 1px;
 	border-style: solid;
 	border-color: #999999;
-	background-image: url("text-shadow.png");
+	
 	background-repeat: repeat-x;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -1317,3 +1317,4 @@ width:90%;
 	border-style: solid;
 	border-width: 10px;
 }
+
