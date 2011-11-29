@@ -35,8 +35,23 @@ class User < ActiveRecord::Base
     #Challenge.where({:user_id=>self.id}).all
     #Challenge.all   
     #debugger
-    Challenge.all(:conditions => {:user_id => fbauth.uid })
-    #raise Challenge.child_challenges.all(:conditions => {:user_id => fbauth.uid }).inspect
+	Challenge.all(:conditions => {:user_id => fbauth.uid })
+	
+	#@challengesArray = Array.new
+	#Challenge.all(:conditions => {:user_id => fbauth.uid }).each do |possibleUserChallenge|
+	#	if possibleUserChallenge.user_id == fbauth.uid
+	#		@challengesArray.push(possibleUserChallenge)
+	#	end
+	#end
+	#Challenge.only(:child_challenges).each do |possibleUserChaildChallenge|
+	#	possibleUserChaildChallenge.child_challenges.each do |aPossibleUserChaildChallenge|
+	#		if aPossibleUserChaildChallenge.user_id == fbauth.uid
+	#			@challengesArray.push(aPossibleUserChaildChallenge)
+	#		end
+	#	end
+	#end
+	
+	
   end
   
   def facebook

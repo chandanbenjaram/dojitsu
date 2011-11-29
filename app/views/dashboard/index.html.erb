@@ -39,7 +39,8 @@
 									<tr>
 										<td id="content1">
 											<% title = userChallenge.title %>
-											<font size=3><b><%= link_to "#{title}",show_per_challenges_path(:id => userChallenge)%></b></font><br><font size=2>by <b><%= userChallenge.user_id %></b></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
+											<%= userChallenge.title %>
+											<font size=3><b><%= link_to "#{title}",show_per_challenges_path(:id => userChallenge)%></b></font><br><font size=2>by <b><%= userChallenge.user_id %></b></font><br><%= userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
 											<%if ( userChallenge.child_challenges.size <2 ) %> 
 												<%= userChallenge.child_challenges.size >0 ? userChallenge.child_challenges.size : 1  %> contestant<br>
 											<% else %>
@@ -48,9 +49,7 @@
 										</td>
 										<td id="content2">					
 											<div class="taskprogress" id="taskprogress<%= t %>">
-											</div>
-											
-											
+											</div>	
 										<br/>
 											<div id="check1">
 												<% x=0 %>
