@@ -21,6 +21,7 @@ $(document).ready(function($) {
 			$(".textfield_effect datepicker").append('&nbsp;&nbsp;');
 
 			$( '.'+$(this).val()).append(div_tag).fadeIn('500'); 
+			
 			$('.datepicker').datepicker({ 
 				showOn: "button",
 				buttonImage: '<%= asset_path("icon_calendar.png") %>',
