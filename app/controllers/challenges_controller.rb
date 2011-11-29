@@ -125,9 +125,9 @@ class ChallengesController < ApplicationController
     #raise params[:challenge].inspect
     @challenge = Challenge.find(params[:id])
     @challenge.tasks.destroy
-    @challenge.child_challenges.each do |ts|
-      ts.tasks.destroy
-      ts.update_attributes(params[:challenge])
+    @challenge.child_challenges.each do |eachChildChallenge|
+      eachChildChallenge.tasks.destroy
+      eachChildChallenge.update_attributes(params[:challenge])
     end
     @challenge.update_attributes(params[:challenge])
     redirect_to show_soc_challenges_path(:id => @challenge)
@@ -222,8 +222,6 @@ class ChallengesController < ApplicationController
   def find_challenge
     @challenge = Challenge.all
   end
-
-
 
 end
 
