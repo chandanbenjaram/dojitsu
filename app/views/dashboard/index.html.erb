@@ -37,7 +37,7 @@
 									<tr style="CURSOR: pointer; cursor: hand;" onclick="location.href='<%= show_per_challenges_path(:id => userChallenge)  %>'" >
 										<td >
 											
-											<font size=4><b><%= userChallenge.title %></b></font><br><font size=2>by <b><%= userChallenge.user_id %></b></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
+											<font size=4><b><%= userChallenge.title %></b></font><br><font size=2>by <b><%= current_user.facebook.first_name %></b></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
 											<%if ( userChallenge.child_challenges.size <2 ) %> 
 												<%= userChallenge.child_challenges.size >0 ? userChallenge.child_challenges.size : 1  %> contestant<br>
 											<% else %>
@@ -146,9 +146,8 @@
 							</td>
 						</tr>
 					    <tr>
-							<td colspan="2">					
-								<% fname= Authentication.where(:uid => anc.user_id).first %>								
-								by<b> <%= fname %></b>
+							<td colspan="2">													
+								by<b> <%= current_user.facebook.first_name %></b>
 							</td>
 						</tr>
 						<tr>
