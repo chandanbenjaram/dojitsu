@@ -142,68 +142,14 @@
 				<tr>
 					<td valign="top"><b class="color999">PRIVACY</b></td>
 					<td colspan="3">
-							
-		<style type="text/css">
-	
-	</style>
-<script>
-	$(function() {
-		$( "#tabs" ).tabs();
-	});
-	</script>
+						<ul class="tabs">
+    					<li><a href="#tab1" id="soc">Social</a></li>
+    					<li><a href="#tab2" id="per">Personal</a></li>
+					</ul>
 
-
-<style>
-.demo
-{
-  width: 97%;
-}
-</style>
-
-
-<div  id="tabs">
-	<ul>
-		<li><a href="#tabs-1" id="soc" ><b>Social</b></a></li>
-		<li><a href="#tabs-2" id="per"><b>Personal</b></a></li>
-		
-	
-		
-	</ul>
-	<style>
-	.chall_type:focus
-	{ background:#000;}
-	 #tabs
-	 {
-	 width:100%;
-	 }
-	 #tabs ul li
-	 {
-	 width:150px;
-	 margin-top:-4px;
-	 margin-left:-5px;
-	
-	 }
-	
-	 
-	 </style>
-	 <script type="text/javascript"> 
-    $(document).ready(function(){
-        $tabs = $("#tabs").tabs({
-            select: function(event, ui) {
-                $('a', ui.tab).click(function() {
-                    $(ui.panel).load(this.href);
-                    return true;
-                });
-            }
-        });
-});
-</script>
-
-	<div id="tabs-1">
-	
-	
-	
-		
+					<div class="tab_container">
+    					<div id="tab1" class="tab_content">
+    						
 		<table width="100%" border="0">
 		<tr>
 			<td><b class="color999">Who wins</b></td>
@@ -242,39 +188,27 @@
 					</td>
 				</tr>
 	</table>
+    					</div>
+    					<div id="tab2" class="tab_content">
+       						<table width="100%" border="0">
+  								<tr>
+    								<td><b style="color:#999999;">Who wins</b></td>
+									<td>
+										<%= select_tag :per_who_win, options_for_select([
+    										["Choose", ""],							
+											["Add all milestones together","Add all milestones together"],
+											["1st person to reach End Point","1st person to reach End Point"],	 
+											["Highest milestone","Highest milestone"],	
+											["Lowest milestone","Lowest milestone"],	
+											["Participant reaches all milestones","Participant reaches all milestones"] 														
+ 											]), :id => "per_wn", :style => "width:197px" 
+ 										%>
+									</td>
+  								</tr>
+							</table>  
+    					</div>
+					</div>	
 		
-	</div>
-	<div id="tabs-2">
-	
-	<table width="100%" border="0">
-											<tr>
-												<td><b class="color999">Who wins</b></td>
-												<td>
-													<%= select_tag :per_who_win, options_for_select([
-														["Choose", ""],							
-														["Add all points together","Add all points together"],
-														["Reach all milestones","Reach all milestones"]														
-														]), :id => "per_wn", :style => "width:197px" 
-														%>
-													</td>
-
-												</tr>
-											</table>  
-	
-	
-	
-		
-	</div>
-	
-</div>
-
-
-
-
-
-<div style="display: none;" class="demo-description">
-<p>Click tabs to swap between content that is broken into logical sections.</p>
-</div><!-- End demo-description -->
 	
 					</td>
 				</tr>

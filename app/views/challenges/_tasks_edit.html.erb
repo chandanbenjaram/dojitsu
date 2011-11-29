@@ -1,19 +1,14 @@
+<%= javascript_include_tag('jquery.table.addrow')%>
 
 <table width="100%">
-	<tr bgcolor="#f4f4f4">
-		<td><div style="float:left; position:relative; left:550px;"><font color="#8c8c8c">
-			<%= link_to image_tag("btn_add_up.png", :style=>"position:relative; top:5px;"), add_task_link_challenges_path(:id => @challenge), :class => "soc_add_task_popup" %>ADD A TASK</font></div>
-		</td>
-	</tr>
-</table>
-<table width="100%">
 	<%= form_for(@challenge, :url => update_task_soc_challenges_path(:id =>@challenge))  do |f| %>
-	<tr bgcolor="#f4f4f4">
-		<td colspan="3"><b>Edit my tasks (<%= @challenge.tasks.count %>)</b></td>
-		<td colspan="4">
+	<tr  bgcolor="#f4f4f4">
+		<div><b>Edit my tasks (<%= @challenge.tasks.count %>)</b></div>
+		<div style="position:relative; margin-top:-40px; margin-bottom:-15px; float:left; left:400px; ">
 			<%= link_to "CANCEL",  show_soc_challenges_path(:id => @challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel"%>
 			<%#= button_to "DONE",  update_task_soc_challenges_path, :style => "text-decoration: none; color:#fff; float:right; margin-right:5px;" ,:class => "task_links_cancel"%>
-			<%= f.submit "DONE", :style => "width: 100px; float:right; margin-right:10px;", :class => "links" %>		</td>
+			<%= f.submit "DONE", :style => "width: 100px; float:right; margin-right:10px;", :class => "links" %>	
+			</div>
 	</tr>
 	<tr bgcolor="#d7d7d7">
 		<td width="4%"></td>
@@ -119,17 +114,35 @@
 		<td  colspan="7">
 			<hr/ width="100%">		</td>
 	</tr>
+	
+		
 	<tr bgcolor="#ffffff">
 		<td colspan="7">
 			<b class="color999"><%= image_tag("icon_arrow_left.png")%>&nbsp;&nbsp;Do all tasks need to be complete before the challenge is marked complete?</b><br>
 			<%= radio_button_tag :task_comp, "soc", :class => "chall_type"%>
 			<font class="color999">No</font>
 			<%= radio_button_tag :task_comp, "soc", :class => "chall_type"%>
-			<font class="color999">Yes</font>		</td>
+			<font class="color999">Yes</font>		
+	
+		<td>
+			<div class="addbutton_soc">
+				<%= link_to image_tag("btn_add_up.png", :style=>"position:relative; top:5px;"), add_task_link_challenges_path(:id => @challenge), :class => "soc_add_task_popup" %>
+			</div>
+		</td>
+			
 	</tr>
 	<% end %>
 </table>
+<style>
+   .addbutton_soc
+   {
+   position:relative;
+  bottom:72px;
+  float:right;
+  right:29px;
+   }
 
+   </style>
 
 <script type="text/javascript">
 	$(document).ready(function(){
