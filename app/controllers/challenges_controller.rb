@@ -18,8 +18,6 @@ class ChallengesController < ApplicationController
   end
 
   def show_soc
-    @chall = Challenge.new
-    1.times {@chall.tasks.build}
     @flg = params[:flg]
     @challenge = Challenge.find(params[:id])
     @org = User.find(:all,:conditions => ["id=?",@challenge.user_id]).first

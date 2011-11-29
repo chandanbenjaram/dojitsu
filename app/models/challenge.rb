@@ -45,7 +45,5 @@ class Challenge
   # CHALLENGE TYPE SOCIAL & PERSONAL
   embeds_one :social_type, :class_name => "ChallengeType"
   embeds_one :personal_type, :class_name => "ChallengeType"
-  
-
-  
+    
 end                
