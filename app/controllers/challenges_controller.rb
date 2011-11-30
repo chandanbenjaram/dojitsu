@@ -34,6 +34,7 @@ class ChallengesController < ApplicationController
 
   def show_per
     # debugger
+	#raise params[:id].inspect
     @challenge = Challenge.find(params[:id])
 	@is_complete_status = 0 
 	@challenge.tasks.each do |checkingTaskStatus|
@@ -130,9 +131,11 @@ class ChallengesController < ApplicationController
         end      
       end  
     end    
-
-
-    redirect_to :action => "index", :notice => "Challenge created!"   
+	
+	
+	redirect_to show_per_challenges_path(:id => @challenge), :notice => "Challenge created!"
+	
+	
   end
 
   def edit
