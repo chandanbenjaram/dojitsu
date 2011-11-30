@@ -84,7 +84,11 @@
 													<b><font color= #909090>START POINT</font></b>
 											</td>
 											<td>
-												<b><%= @challenge.start_point.value%> </b>
+												<% if @challenge.start_point.instance_of?PointDateType %>		
+													 <b><%= @challenge.start_point.value.strftime("%b %d, %Y") %> </b>
+												<% else %>							
+													<b><%= @challenge.start_point.value.to_i %></b>
+												<% end %>
 											</td>
 											<td align="right">
 												<%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :align=>"right" %>
@@ -104,7 +108,11 @@
 										<b><font color= #909090>END POINT</font></b>
 									</td>
 									<td>
-										<b><%= @challenge.end_point.value %></b>
+										<% if @challenge.end_point.instance_of?PointDateType %>		
+											<b><%= @challenge.end_point.value.strftime("%b %d, %Y") %></b>
+										<% else %>							
+											<b><%= @challenge.end_point.value.to_i %></b>
+										<% end %>
 									</td>
 									<td>
 									<%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :style => "text-decoration: underline;",:align=>"right" %>

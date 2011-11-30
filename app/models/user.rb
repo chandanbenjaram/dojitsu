@@ -31,19 +31,32 @@ class User < ActiveRecord::Base
   end
 
   def challenges 
-    #debugger
-    #Challenge.where({:user_id=>self.id}).all
-    #Challenge.all   
-    #debugger
-    Challenge.all(:conditions => {:user_id => fbauth.uid })
-    #raise Challenge.child_challenges.all(:conditions => {:user_id => fbauth.uid }).inspect
+    challenges = []
+
+    Challenge.any_of({:user_id => fbauth.uid }, {"child_challenges.user_id" => fbauth.uid}).each do |aChallenge|
+      addUserOnlyChallenge challenges, aChallenge
+    end
+
+    return challenges
   end
-  
+
+
   def facebook
     FbGraph::User.new('me', :access_token => self.fbauth.token).fetch
   end
 
   def fbauth
-      self.authentications.find_by_provider('facebook')
+    self.authentications.find_by_provider('facebook')
+  end
+
+  private
+  def addUserOnlyChallenge(challenges, aChallenge) 
+    if aChallenge.user_id == fbauth.uid
+      challenges.push(aChallenge)
+    end             
+
+    aChallenge.child_challenges.each do |aChallengeChild|
+      addUserOnlyChallenge challenges, aChallengeChild
+    end
   end
 end
