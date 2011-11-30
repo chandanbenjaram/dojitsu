@@ -82,12 +82,14 @@
 		<td></td>
 		<td></td>
 	</tr>
-	<tr bgcolor=#f4f4f4>
-		<td></td>
-		<td colspan="2">
-			<%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"%>
-		</td>
-	</tr>
+	<% unless @challenge.is_complete == 1 %>
+		<tr bgcolor=#f4f4f4>
+			<td></td>
+			<td colspan="2">
+				<%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"%>
+			</td>
+		</tr>
+	<% end %>
 </table>
 
 <div id="tooltip" class="tooltip">

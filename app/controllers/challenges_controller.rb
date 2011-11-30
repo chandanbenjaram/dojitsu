@@ -19,13 +19,32 @@ class ChallengesController < ApplicationController
   def show_soc
     @flg = params[:flg]
     @challenge = Challenge.find(params[:id])
+	@is_complete_status = 0 
+	@challenge.tasks.each do |checkingTaskStatus|
+		unless checkingTaskStatus.is_complete == 1
+			@is_complete_status = 1
+			next
+		end
+	end
+	if @is_complete_status == 0
+		Challenge.where(:_id => params[:id]).update(:is_complete => 1)
+	end
     @org = User.find(:all,:conditions => ["id=?",@challenge.user_id]).first
   end
 
   def show_per
     # debugger
     @challenge = Challenge.find(params[:id])
-
+	@is_complete_status = 0 
+	@challenge.tasks.each do |checkingTaskStatus|
+		unless checkingTaskStatus.is_complete == 1
+			@is_complete_status = 1
+			next
+		end
+	end
+	if @is_complete_status == 0
+		Challenge.where(:_id => params[:id]).update(:is_complete => 1)
+	end
     if (@challenge.social_type.instance_of? ChallengeSocialType rescue false)
       render "show_soc" and return 
     else 
@@ -218,7 +237,7 @@ class ChallengesController < ApplicationController
 	#raise @inviteeStatusUpdate.social_type.status.inspect
 	@inviteeStatusUpdate.social_type.status = 1
 	@inviteeStatusUpdate.social_type.save!
-	 @inviteeStatusUpdate.social_type.update_attribute(:status, '10')
+	@inviteeStatusUpdate.social_type.update_attribute(:status, '10')
 	@inviteeStatusUpdate.social_type.save
 	@inviteeStatusUpdate.save
 	#raise @inviteeStatusUpdate.social_type.inspect 	
