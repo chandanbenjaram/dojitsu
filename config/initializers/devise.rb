@@ -179,7 +179,7 @@ Devise.setup do |config|
   ### UNCOMMENT FOLLOWING BLOCK BASED ON YOUR ENVIRONMENT
   ### localhost:4000 callback
   ##  config.omniauth :facebook, '232592880122189', '7d7557a9be33907cffda2aa02173a03c', :scope => 'offline_access, email'
-  config.omniauth :facebook, '232592880122189', '7d7557a9be33907cffda2aa02173a03c'  , :client_options => { :ssl => { :ca_file => "#{Rails.root}/config/ca-bundle.crt" } }
+  config.omniauth :facebook, '232592880122189', '7d7557a9be33907cffda2aa02173a03c', :scope => 'offline_access, email, read_friendlists, manage_notifications, manage_pages', :client_options => { :ssl => { :ca_file => "#{Rails.root}/config/ca-bundle.crt" } }  
   ### dev.dojitsu.com callback
   ##config.omniauth :facebook, "286703391348668", "0fe402e8b7f9a4655319e81a0bf595c1"
   ############################################################

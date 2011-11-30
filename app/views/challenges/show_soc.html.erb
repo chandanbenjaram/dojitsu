@@ -1,7 +1,26 @@
 <%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css')%>
 
-<%= javascript_include_tag('simple-tabs','all','on_the_spot','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.cluetip','challenge_new')%>
+<%= javascript_include_tag('simple-tabs','all','on_the_spot','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.cluetip','challenge_new', 'jquery.table.addrow','messages')%>
 <%= render 'layouts/loggedinbody'%>
+
+
+<% if !@challenge.child_challenges.blank? && userIds = []%>
+<% for aChild in @challenge.child_challenges %>
+<% if aChild.social_type.status.nil?%>
+	<% userIds.push(aChild.user_id)  %>
+
+<% end %>
+<% end %>
+<% if !userIds.empty? %>
+
+<script type="text/javascript" charset="utf-8">
+$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+userIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>);	
+</script>
+<% end %>
+
+<% end %>   
+
+
 <div id="ch_main_div"> 
 	<div id="ch_main_div1"> 
 		<div class="challange"> 

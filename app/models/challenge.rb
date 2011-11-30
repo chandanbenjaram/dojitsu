@@ -43,7 +43,7 @@ class Challenge
   embeds_one :end_point, :class_name => "PointType"
   
   # CHALLENGE TYPE SOCIAL & PERSONAL
-  embeds_one :social_type, :class_name => "ChallengeType"
-  embeds_one :personal_type, :class_name => "ChallengeType"
+  embeds_one :personal_type, :class_name => "ChallengePersonalType"
+  embeds_one :social_type, :class_name => "ChallengeSocialType"       
     
 end                
