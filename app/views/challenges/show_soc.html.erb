@@ -314,7 +314,6 @@ $(function() {
 	}
 	
 	$('#thinking_abt').blur(function() {
-		alert("hii");
 		jQuery.support.cors = true;
 		console.log($(this).val());
 		$.get('/challenges/update_status_af_meg', 
