@@ -9,11 +9,19 @@
 										</div> 
 									<% t=0 %>
 
+
 							<% @challenge.child_challenges.each do |aChildChallenge| %>
-								<% if aChildChallenge.user_id == @challenge.user_id %>
-									<% t+=1 %>
+							
+							<% if aChildChallenge.user_id == @challenge.user_id %>
+							
+								<% t+=1 %>
 								<%end%>
 							<%end%>
+							
+
+
+							
+							
 							<% if t != 1 %>
 							<div>
 							<table>

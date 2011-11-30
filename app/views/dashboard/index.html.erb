@@ -24,17 +24,17 @@
 									<%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
 								</div>
 							</div>						
-							
+							<fb:name uid="219770" />
 							<div style="overflow :auto;  height : 440px;" id="challengedetails">
 								<% t=1 %>
 								<script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> </script>
 								<table class="sortable">
 								<thead>
-								  <tr><th id="content1">NAME</th><th id="content2">MY DOJITSU SCORE</th></tr>
+								  <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">NAME</th><th style="CURSOR: pointer; cursor: hand;" id="content2">MY DOJITSU SCORE</th></tr>
 								</thead>
 								<tbody>
 									<% current_user.challenges.each do |userChallenge| %>
-									<tr  onclick="location.href='<%= show_per_challenges_path(:id => userChallenge)  %>'" >
+									<tr style="CURSOR: pointer; cursor: hand;" onclick="location.href='<%= show_per_challenges_path(:id => userChallenge)  %>'" >
 										<td >
 											
 											<font size=4><b><%= userChallenge.title %></b></font><br><font size=2>by <b><%= userChallenge.user_id %></b></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
