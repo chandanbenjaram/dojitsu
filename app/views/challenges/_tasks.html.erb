@@ -1,98 +1,92 @@
-<%= form_for @challenge do |f| %>
-		<table width="100%" border="1" bgcolor=#f4f4f4 >
-							<tr bgcolor=#f5f5f5>
-									<th width="85%">
-										<h3 align="left"><font color="#8c8c8c"><b>Total : <%= @challenge.tasks.count %></b></font></h3>
-									</th>
-									<% t=0 %>
-							<% @challenge.child_challenges.each do |aTask| %>
-							<% if aTask.user_id == @challenge.user_id %>
-												<% t+=1 %>
-											<%end%>
-							<%end%>
-						<% if t != 1 %>
-									<th width="3%">
-										
-									</th>
-									<th width="12%">
-										<%= link_to image_tag("icon_edit.png", :style =>"margin-top:3px; float:right" ), show_soc_challenges_path(:id => @challenge, :flg => "ed") %>
-									</th>
-						<% else %>
-						<% end %> 
-							</tr>
-							<tr bgcolor=#D7D7D7>
-									<td width="85%">
-											<h4 style="margin-top:15px;"><font color="#999999"  style="margin-top:15px;"><b>POINT(s)</b></font> <%= image_tag("icon_slash.png", :height => '12', :width => '5') %> <font color="#999999"><b>TASKS</b></font></h4>
-									</td>
-									<td>
-									</td>
-									<td width="15%">
-											<h4 style="margin-top:15px;"><p style="float:right; color:#999999;"><b>SCORE</b> </p></h4>
-									</td>
-							</tr>
-								<% total_score = 0 %>
-								<% total_score_count = 0 %>
-						<% @challenge.tasks.each do |aTask| %>
-							<tr bgcolor=#ffffff>
-									<td colspan="3"  id="mytable" >
-										<% if aTask.is_complete.to_i == 0 %>
-													<div id="task_list">
-														<p style="float:left; margin-top:15px;">
-														<%= aTask.score %> 
-														<%= image_tag("icon_slash.png", :height => '10', :width => '5')%>
-														</p>
-														<p style="float:left;  margin-top:15px; margin-left:5px;">
-														<%= aTask.name %>
-														</p>
-														<div class="showperscore_0"><%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => "text-decoration: underline;" %></div>
-													</div>
-										<% else %>	
-											<div id="task_list">
-															<% total_score_count +=1 %>
-																<p style="float:left; margin-top:15px;"><%= aTask.score %> <%= image_tag("icon_slash.png", :height => '10', :width => '5')%></p><p style="float:left; margin-top:15px; margin-left:5px; text-decoration:line-through;"><%= aTask.name %></p>
-											<div class="showperscore"><%= aTask.score %></div>
-														<% total_score += aTask.score.to_i %>
-											</div>
-										<% end %>
-										<hr/ width=400px>																																	
-									</td>
-								</tr>
-						<% end %>
-								<tr bgcolor=#f4f4f4>
-									<td colspan="3"></td>
-								</tr>
-		</table>
-		<table bgcolor=#f4f4f4>
-				<tr bgcolor=#ffffff>
-						<td colspan="2" >
-								My Dojitsu score: <br>					  
-								<b><h4><font color="green"><%= total_score_count %></b></font> <font color="black"><b>completed,</b></font>
-								<b><font color="orange"><%= @challenge.tasks.count.to_i-total_score_count.to_i %></b></font> <font color="black"><b>remaining</b></font></h4>
-						</td>
-						<td width="13%">
-							<div class="showperscore"><%= total_score %></div>						
-						</td>
-				</tr>
-				<tr bgcolor=#ffffff>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr bgcolor=#f4f4f4>
-					<td></td>
-					<td colspan="2">
-						<%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"%>
-					</td>
-				</tr>
-		</table>
-<% end %>
 
-
+<table width="100%" border="1" bgcolor=#f4f4f4 >
+	<tr bgcolor=#f5f5f5>
+		<th width="85%">
+			<h3 align="left"><font color="#8c8c8c"><b>Total : <%= @challenge.tasks.count %></b></font></h3>
+		</th>
+		<% t=0 %>
+		<% @challenge.child_challenges.each do |aTask| %>
+			<% if aTask.user_id == @challenge.user_id %>
+				<% t+=1 %>
+			<%end%>
+		<%end%>
+		<% if t != 1 %>
+			<th width="3%">	</th>
+			<th width="12%">
+				<% if @challenge.social_type.status == 1 %>
+					<%= link_to image_tag("icon_edit.png", :style =>"margin-top:3px; float:right" ), show_soc_challenges_path(:id => @challenge, :flg => "ed") %>
+				<% end %>	
+			</th>
+		<% end %> 
+	</tr>
+	<tr bgcolor=#D7D7D7>
+		<td width="85%">
+			<h4 style="margin-top:15px;"><font color="#999999"  style="margin-top:15px;"><b>POINT(s)</b></font> <%= image_tag("icon_slash.png", :height => '12', :width => '5') %> <font color="#999999"><b>TASKS</b></font></h4>
+		</td>
+		<td></td>
+		<td width="15%">
+			<h4 style="margin-top:15px;"><p style="float:right; color:#999999;"><b>SCORE</b> </p></h4>
+		</td>
+	</tr>
+	<% total_score = 0 %>
+	<% total_score_count = 0 %>
+	<% @challenge.tasks.each do |aTask| %>
+		<tr bgcolor=#ffffff>
+			<td colspan="3"  id="mytable" >
+				<% if aTask.is_complete.to_i == 0 %>
+					<div id="task_list">
+						<p style="float:left; margin-top:15px;">
+							<%= aTask.score %> 
+							<%= image_tag("icon_slash.png", :height => '10', :width => '5')%>
+						</p>
+						<p style="float:left;  margin-top:15px; margin-left:5px;">
+							<%= aTask.name %>
+						</p>
+						<div class="showperscore_0"><%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => "text-decoration: underline;" %></div>
+					</div>
+				<% else %>	
+					<div id="task_list">
+						<% total_score_count +=1 %>
+						<p style="float:left; margin-top:15px;"><%= aTask.score %> <%= image_tag("icon_slash.png", :height => '10', :width => '5')%></p><p style="float:left; margin-top:15px; margin-left:5px; text-decoration:line-through;"><%= aTask.name %></p>
+					<div class="showperscore"><%= aTask.score %></div>
+						<% total_score += aTask.score.to_i %>
+					</div>
+				<% end %>
+				<hr/ width=400px>																																	
+			</td>
+		</tr>
+	<% end %>
+	<tr bgcolor=#f4f4f4>
+		<td colspan="3"></td>
+	</tr>
+</table>
+<table bgcolor=#f4f4f4>
+	<tr bgcolor=#ffffff>
+		<td colspan="2" >
+			My Dojitsu score: <br>					  
+			<b><h4><font color="green"><%= total_score_count %></b></font> <font color="black"><b>completed,</b></font>
+			<b><font color="orange"><%= @challenge.tasks.count.to_i-total_score_count.to_i %></b></font> <font color="black"><b>remaining</b></font></h4>
+		</td>
+		<td width="13%">
+			<div class="showperscore"><%= total_score %></div>						
+		</td>
+	</tr>
+	<tr bgcolor=#ffffff>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr bgcolor=#f4f4f4>
+		<td></td>
+		<td colspan="2">
+			<%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"%>
+		</td>
+	</tr>
+</table>
 
 <div id="tooltip" class="tooltip">
 </div>
 <script>
-	
 	$('.task_update_popup').colorbox();
 	$('.add_task_popup').colorbox();
 	
@@ -113,176 +107,4 @@ $(function() {
 		delay: 0
 	});	
 });
-
-
 </script>
-
-<script type="text/javascript">
-	$("document").ready(function(){
-		$(".addComment").btnAddRow({rowNumColumn:"rowNumber"}),
-		$(".delRow").btnDelRow()						
-	});
-	
-	// Jquery part
-	jQuery(document).ready(function($) {
- 	// to get date on click
-	$(":date").dateinput({
-		format: 'dddd dd, mmmm yyyy',	// the format displayed for the user
-		selectors: true,             	// whether month/year dropdowns are shown
-		min: -100,                    // min selectable day (100 days backwards)
-		max: 100,                    	// max selectable day (100 days onwards)
-		offset: [10, 20],            	// tweak the position of the calendar
-		speed: 'fast',               	// calendar reveal speed
-		firstDay: 1                  	// which day starts a week. 0 = sunday, 1 = monday etc..
-	});
-
-	// edit a text on the spot 
-	$(".editable").editable("http://www.example.com/save.php", { 
-    	method : "PUT"
-	});
-
-	$(".editable").editable("http://www.example.com/save.php", { 
-    	settings.submit : '<button type="submit">Save</button>'
-	});
-
-	$(".editable").editable("http://www.example.com/save.php", { 
-    	settings.submit : 'Save'
-	});
- 	
-	$('.editable1').editable({
-    	type:'text',
-    	submit:'update',
-    	cancel:'cancel',
-    	editClass:'resultItem',
-    	onSubmit:end
-    }); 
-	
-	// edit on spot 2 nd type
-	$('.editable2').editable({type:'textarea',submitBy:'dblclick'}).css('background-color','#39c');
-	
-	$(function(){
-    	$('.editable1').editable({onEdit:begin});
-    	function begin(){
-    		this.append('Click somewhere else to submit');
-    	}
-    }); 
-      
-	$('.editable3').editable({
-    	type:'text',
-    	submit:'save',
-    	onSubmit:end
-    }); 
-
-	$('div.editable').editable()
-	
-	$(function(){
-    	$('.editable1').editable({onEdit:begin});
-    	function begin(){
-    		this.append('Click somewhere else to submit');
-    	}
-    }); 
-	
-	// Add row for new task
-	//alert("hiiiiiiiii");
-	$(".alternativeRow").btnAddRow({oddRowCSS:"oddRow",evenRowCSS:"evenRow"});
-	$(".delRow").btnDelRow();
-	
-	// Date Picker scripting code
-	//alert("Date picker is working");
-	$('.date-pick').datePicker({startDate:'01/01/1996'});
-
-    $('#ch_st_date').change(function() {
-		console.debug('changed...' + $(this));
-
-	});
-	
-	$('#ch_ed_date').change(function() {
-		console.debug('changed...' + $(this));
-
-	});
-	
-	$('.chall_type').click(function(){
-		if ($(this).attr("id") == "challenge_cha_type_per")
-		{
-			//alert($(this).attr("id"));
-			$("#challenge_cha_type_per_div").show("fast");
-			$("#challenge_cha_type_soc_div").hide("fast");
-		}
-		else
-		{
-			//alert($(this).attr("id"));
-			$("#challenge_cha_type_soc_div").show("fast");
-			$("#challenge_cha_type_per_div").hide("fast");
-		}
-		//$("<div></div>").appendTo("div#new_tsk_field");
-	});
-	
-	
-
-});
-$('.editable2').editable({type:'textarea',submitBy:'dblclick'}).css('background-color','#39c');
-</script>
-
-<script>
-$(document).ready(function() {  
- 
-    //select all the a tag with name equal to modal
-    $('a[name=modal]').click(function(e) {
-        //Cancel the link behavior
-        e.preventDefault();
-        //Get the A tag
-        var id = $(this).attr('href');
-     
-        //Get the screen height and width
-        var maskHeight = $(document).height();
-        var maskWidth = $(window).width();
-     
-        //Set height and width to mask to fill up the whole screen
-        $('#mask').css({'width':maskWidth,'height':maskHeight});
-         
-        //transition effect     
-        $('#mask').fadeIn(1000);    
-        $('#mask').fadeTo("slow",0.8);  
-     
-        //Get the window height and width
-        var winH = $(window).height();
-        var winW = $(window).width();
-               
-        //Set the popup window to center
-        $(id).css('top',  winH/2-$(id).height()/2);
-        $(id).css('left', winW/2-$(id).width()/2);
-     
-        //transition effect
-        $(id).fadeIn(2000); 
-     
-    });
-     
-    //if close button is clicked
-    $('.window .close').click(function (e) {
-        //Cancel the link behavior
-        e.preventDefault();
-        $('#mask, .window').hide();
-    });     
-     
-    //if mask is clicked
-    $('#mask').click(function () {
-        $(this).hide();
-        $('.window').hide();
-    });   
-
-		
-		//id is the ID for the DIV you want to display it as modal window
-  launchWindow(id); 
-  
-  
-  $(document).keyup(function(e) {
-  if(e.keyCode == 13) {
-    $('#mask').hide();
-    $('.window').hide();
-  }
-});
-     
-});
- 
-</script>
-
