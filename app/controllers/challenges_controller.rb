@@ -232,13 +232,12 @@ class ChallengesController < ApplicationController
   end
   
 
-  def invitee_status
-  	  
-  	  aChallenge = Challenge.find(params[:id])
-  	  socialType = aChallenge.social_type
-  	  socialType.update_attributes(:status => 0)       
+  def update_status
+  	aChallenge = Challenge.find(params[:id])
+  	socialType = aChallenge.social_type
+  	socialType.update_attributes(:status => params[:status])       
 
-  	  redirect_to show_soc_challenges_path(:id => params[:id])
+  	redirect_to show_soc_challenges_path(:id => params[:id])
   end
 
   protected
