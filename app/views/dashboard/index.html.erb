@@ -36,8 +36,8 @@
 									<% current_user.challenges.each do |userChallenge| %>
 									<tr  onclick="location.href='<%= show_per_challenges_path(:id => userChallenge)  %>'" >
 										<td >
-											<% title = userChallenge.title %>
-											<font size=3><b><%= link_to "#{title}",show_per_challenges_path(:id => userChallenge)%></b></font><br><font size=2>by <b><%= userChallenge.user_id %></b></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
+											
+											<font size=4><b><%= userChallenge.title %></b></font><br><font size=2>by <b><%= userChallenge.user_id %></b></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
 											<%if ( userChallenge.child_challenges.size <2 ) %> 
 												<%= userChallenge.child_challenges.size >0 ? userChallenge.child_challenges.size : 1  %> contestant<br>
 											<% else %>
@@ -67,7 +67,7 @@
 												<% end %>
 												
 											<div class="update">
-												<%= link_to image_tag("FDFDG.gif", :alt => "Update"),show_per_challenges_path(:id => userChallenge)%>												
+												<%= image_tag("FDFDG.gif", :alt => "Update")%>												
 											</div>
 											<div class="completedtask"> 
 												<%= a %> points (<%= x %> &nbsp; tasks)
