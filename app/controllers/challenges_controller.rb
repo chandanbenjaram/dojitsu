@@ -242,6 +242,17 @@ class ChallengesController < ApplicationController
 
   	redirect_to show_soc_challenges_path(:id => params[:id])
   end
+  
+  def update_status_af_meg
+	#params[:thinking_abt] = "4ed6163954b5300874000079"
+	#raise Challenge.where(:_id => params[:thinking_abt] ).first.inspect
+	Challenge.where(:_id => params[:thinking_abt] ).all.each do |aChallenge|
+		aChallenge.child_challenges.each do |aChildChallenge|
+			socialType = aChildChallenge.social_type
+			socialType.update_attributes(:status => "null")
+		end
+	end
+  end
 
   protected
 
