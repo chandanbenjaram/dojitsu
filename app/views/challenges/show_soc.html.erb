@@ -3,299 +3,261 @@
 <%= javascript_include_tag('simple-tabs','all','on_the_spot','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.cluetip','challenge_new')%>
 <%= render 'layouts/loggedinbody'%>
 <div id="ch_main_div"> 
-				<div id="ch_main_div1"> 
-										<div class="challange"> 
-												<%= on_the_spot_edit @challenge,:title%>
-										</div> 
-									<% t=0 %>
-
-
-							<% @challenge.child_challenges.each do |aChildChallenge| %>
-							
-							<% if aChildChallenge.user_id == @challenge.user_id %>
-							
-								<% t+=1 %>
-								<%end%>
-							<%end%>
-							
-
-
-							
-							
-							<% if t != 1 %>
-							<div>
-							<table>
-									<tr >
-										<td width="20px" >  
-										<%= link_to image_tag("accepted.png"), status_challenges_path(:id => @challenge) %>
-										</td> 
-										<td width="20px" >
-											<%= link_to(image_tag("declane.png"), decline_challenges_path(:id => @challenge))%>
-										</td>
-										<td >
-											<%= image_tag("thinkbutton.png") %>
-										</td>
-									</tr>
-							</table>	
+	<div id="ch_main_div1"> 
+		<div class="challange"> 
+			<%= on_the_spot_edit @challenge,:title%>
+		</div> 
+		<% current_user.challenges.each do |aChallenge| %>
+			<% unless aChallenge.social_type.status? %>
+				<table>
+					<tr >
+						<td width="20px" >  
+						<%= link_to image_tag("accepted.png"), status_challenges_path(:id => @challenge) %>
+						</td> 
+						<td width="20px" >
+							<%= link_to(image_tag("declane.png"), decline_challenges_path(:id => @challenge))%>
+						</td>
+						<td >
+							<%= image_tag("thinkbutton.png") %>
+						</td>
+					</tr>
+				</table>
+			<% else %>
+				 
+			<% end %>
+		<% end %>							
+		<div>
+			<table >
+				<tr>
+					<td width="100px">
+						<b><font color= #909090>DESCRIPTION</font></b></td>
+					<td width="500px">
+						<b><%= on_the_spot_edit @challenge,:description , :type=>:textarea  %></b>
+					</td>
+				</tr>
+			</table>
+		</div>	
+		<div>
+			<table width="500px">
+				<tr>
+					<td width="130px" class="titles">
+						<b><font color= #909090>ORGANIZER</font></b>
+					</td>
+					<td >
+						<b id="user"></b>
+					</td>
+					<td width="100px">
+						<%=link_to image_tag("btn_msg_up.png"), message_challenges_path(:id => @challenge) %>
+						<%#= link_to  render(:partial => 'challenges/message'), root_url %>
+					</td>
+				</tr>
+				<tr>
+					<hr/>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<hr/>
+		</div>
+		<div>
+			<table>
+				<tr>
+					<td width=130px>
+						<b><font color= #909090>START POINT</font></b>
+					</td>
+					<td>
+						<% if @challenge.start_point.instance_of?PointDateType %>		
+							 <b><%= @challenge.start_point.value.strftime("%b %d, %Y") %> </b>
+						<% else %>							
+							<b><%= @challenge.start_point.value.to_i %></b>
+						<% end %>
+					</td>
+					<td align="right">
+						<%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :align=>"right" %>
+					</td>
+				</tr>
+			</table>
+		</div>			
+		<div>
+			<hr/>
+		</div>
+		<div>
+			<table>
+				<tr> 
+					<td width=130px>
+						<b><font color= #909090>END POINT</font></b>
+					</td>
+					<td>
+						<% if @challenge.end_point.instance_of?PointDateType %>		
+							<b><%= @challenge.end_point.value.strftime("%b %d, %Y") %></b>
+						<% else %>							
+							<b><%= @challenge.end_point.value.to_i %></b>
+						<% end %>
+					</td>
+					<td>
+						<%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :style => "text-decoration: underline;",:align=>"right" %>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<hr/>
+		</div>	
+		<table>
+			<tr>
+				<td width="130px" class="titles">
+					<b><font color= #909090>PARTICIPANTS</b></font>
+				</td>
+				<td>
+					<b><%= @challenge.child_challenges.length %></b>
+				</td>
+			</tr>
+		</table>
+		<table width="100%" border="0" style="margin-top:0px;">
+			<tr>
+				<td colspan="3">
+					<ul class="tabs">
+						<li><a href="#tab1"><b>TASKS</b></a></li>
+						<li><a href="#tab2"><b>PEOPLE</b></a></li>
+					</ul>
+					<div class="tab_container">
+						<div id="tab1" class="tab_content">
+							<% if @challenge.social_type.status ==1 and @flg.to_s == "ed" %>
+								<%= render :partial=> "challenges/tasks_edit" %>
+							<% elsif @challenge.social_type.status == 1 %>
+								<%= render :partial=> "challenges/tasks" %>													
+							<% else %>
+								<%= render :partial=> "challenges/tasks2" %>
+							<% end %>	
 						</div>
-						<% else %>
-					
-						<% end %> 
-			
-						<div>
-							<table >
-									<tr>
-										<td width="100px">
-											<b><font color= #909090>DESCRIPTION</font></b></td>
-										<td width="500px">
-										<b><%= on_the_spot_edit @challenge,:description , :type=>:textarea  %></b>
+						<div id="tab2" class="tab_content">
+							<table width="100%" border="0" height="40px">
+								<tr bgcolor=#F4F4F4>
+									<td width="120px"><b  id="total">Total:<%= @challenge.child_challenges.length %></b><%=link_to image_tag("btn_msg_up.png"), message_challenges_path(:id => @challenge) %></td>
+									<td width = "400px"><input type="text">&nbsp;
+										<select>
+											<option value="volvo">ALL</option>
+											<option value="saab">ACCEPTED</option>
+											<option value="mercedes">PENDING</option>
+											<option value="audi">DECLINED</option>
+										</select> 
+											&nbsp;
+											<%= image_tag ("search_it.PNG") %>
 										</td>
-									</tr>
+								</tr>
 							</table>
-						</div>
-			
-						<div>
-								<table width="500px">
-											<tr>
-												<td width="130px" class="titles">
-													<b><font color= #909090>ORGANIZER</font></b>
-												</td>
-												<td ><b id="user"></b>
-												</td>
-												<td width="100px">
-												<%=link_to image_tag("btn_msg_up.png"), message_challenges_path(:id => @challenge) %>
-												<%#= link_to  render(:partial => 'challenges/message'), root_url %>
-												</td>
-											</tr>
-											<tr>
-												<hr/>
-											</tr>
-								</table>
-						</div>
-			
-					<div>
-						<hr/>
-					</div>
-			
-					<div>
-								<table>
-										<tr>
-											<td width=130px>
-													<b><font color= #909090>START POINT</font></b>
-											</td>
-											<td>
-												<% if @challenge.start_point.instance_of?PointDateType %>		
-													 <b><%= @challenge.start_point.value.strftime("%b %d, %Y") %> </b>
-												<% else %>							
-													<b><%= @challenge.start_point.value.to_i %></b>
-												<% end %>
-											</td>
-											<td align="right">
-												<%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :align=>"right" %>
-											</td>
-										</tr>
-								</table>
-					</div>
-			
-					<div>
-						<hr/>
-					</div>
-			
-					<div>
-							<table>
-								<tr> 
-									<td width=130px>
-										<b><font color= #909090>END POINT</font></b>
-									</td>
+							<table  border="0" height="20px" bgcolor="gray"> 
+								<tr bgcolor=#D7D7D7>
 									<td>
-										<% if @challenge.end_point.instance_of?PointDateType %>		
-											<b><%= @challenge.end_point.value.strftime("%b %d, %Y") %></b>
-										<% else %>							
-											<b><%= @challenge.end_point.value.to_i %></b>
-										<% end %>
+										<b>NAME &nbsp;</b>
 									</td>
+									<td width="80px">
+										<font color=#A8A8A8>STATUS</font>
+									</td>
+								</tr>
+								</table>
+								<table id="friendslist1">
+								<tr>
 									<td>
-									<%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :style => "text-decoration: underline;",:align=>"right" %>
+										<div id="friendslist"></div> 
+									<td>
+									<td>
+										<div id="friendsstatus"></div>
 									</td>
 								</tr>
 							</table>
+							<style>
+								#friendslist1
+								{
+									width:680px;
+									background:#ffffff;
+								}
+							</style>													
+							<div id="fb-root"></div> 
+						</div>
 					</div>
-			
-					<div>
-						<hr/>
-					</div>
-					
-			<table>
-				<tr>
-					<td width="130px" class="titles">
-								<b><font color= #909090>PARTICIPANTS</b></font>
-					</td>
-					<td>
-							<b><%= @challenge.child_challenges.length %></b>
-					</td>
-				</tr>
-		</table>
-	
-		<table width="100%" border="0" style="margin-top:0px;">
-				<tr>
-						<td colspan="3">
-								<ul class="tabs">
-									<li><a href="#tab1"><b>TASKS</b></a></li>
-									<li><a href="#tab2"><b>PEOPLE</b></a></li>
-								</ul>
-
-										<div class="tab_container">
-												<div id="tab1" class="tab_content">
-													<% if @challenge.social_type.status ==1 and @flg.to_s == "ed" %>
-														<%= render :partial=> "challenges/tasks_edit" %>
-													<% elsif @challenge.social_type.status == 1 %>
-														<%= render :partial=> "challenges/tasks" %>													
-													<% else %>
-														<%= render :partial=> "challenges/tasks2" %>
-													<% end %>
-																		
-															
-												</div>
-												<div id="tab2" class="tab_content">
-														<table width="100%" border="0" height="40px">
-															<tr bgcolor=#F4F4F4>
-																							<td width="120px"><b  id="total">Total:<%= @challenge.child_challenges.length %></b>	<%=link_to image_tag("btn_msg_up.png"), message_challenges_path(:id => @challenge) %>
-																							</td>
-																							<td width = "400px"><input type="text">&nbsp;
-																											<select>
-																												<option value="volvo">ALL</option>
-																												<option value="saab">ACCEPTED</option>
-																												<option value="mercedes">PENDING</option>
-																												<option value="audi">DECLINED</option>
-																											</select> 
-																													&nbsp;
-																										<%= image_tag ("search_it.PNG") %>
-																								</td>
-															</tr>
-														</table>
-														<table  border="0" height="20px" bgcolor="gray"> 
-																			<tr bgcolor=#D7D7D7>
-																					<td>
-																							<b>NAME &nbsp;</b>
-																					</td>
-																					<td width="80px">
-																						       <font color=#A8A8A8>STATUS</font>
-																					</td>
-																			</tr>
-															</table>
-															          <table id="friendslist1">
-																	  <tr>
-																	  <td>
-																				<div id="friendslist">
-																				
-																				
-																					</div> <td>
-																					<td>
-																					<div id="friendsstatus">
-																					</div>
-																					</td>
-																					</tr>
-																					</table>
-																					<style>
-																					#friendslist1
-																					{
-																					width:680px;
-																					background:#ffffff;
-																					}
-
-																					</style>
-																
-																<div id="fb-root"></div> 
-												</div>
-									 </div>
-									</td>
-				</tr>
+				</td>
+			</tr>
 		</table>  
-</div>							
-    <script> 
-	     FB.init({ 
-         appId  : '232592880122189', 
-         status : true, // check login status 
-         cookie : true, // enable cookies to allow the server to access the session 
-         xfbml  : true  // parse XFBML 
-         }); 
-		          FB.getLoginStatus(function(response) { 
-                 if (response.session)
-            { 
-                       globaluserid=response.session["uid"]; 
-					   name=globaluserid;
-						}
-						}
-						);
+	</div>							
+
+	<script> 
+	    FB.init({ 
+			 appId  : '232592880122189', 
+			 status : true, // check login status 
+			 cookie : true, // enable cookies to allow the server to access the session 
+			 xfbml  : true  // parse XFBML 
+        }); 
+		FB.getLoginStatus(function(response) { 
+		if (response.session)
+        { 
+		   globaluserid=response.session["uid"]; 
+		   name=globaluserid;
+		}
+		}
+		);
 <% @challenge.child_challenges.each do |aTask| %>
 						 var len = <%= @challenge.child_challenges.length %>
 		var img = <%= aTask.user_id %>
 						  FB.api({
-                                                            method: 'fql.query',
-                                                            query: 'SELECT name,pic_square FROM user WHERE uid=' + img
-                                                        }, function(response){
-														htmlcontent = '<img src=' + response[0].pic_square + ' />'+ response[0].name ;
-														 tableopen='<table>';
-														 tropen='<tr>';
-                                                         tdopen='<td >';
-                                                         tdclose='</td>';
-														 tdopen1='<td id="friendsstatus" >';
-                                                         tdclose1='</td>';
-														 trclose='<tr>';
-                                                         tableclose='</table>'
-                                                         hr = '<hr/>';
-														 $("#friendlist").append(tableopen);
-                                                                $("#friendslist").append(tropen);
-                                                                $("#friendslist").append(tdopen);
-                                                                 $("#friendslist").append(htmlcontent);
-                                                                 $("#friendslist").append(tdclose);
-																<% @challenge.child_challenges.each do |aTask| %>
-																					<% if aTask.user_id %>
-																						<% if aTask.social_type.status == 1  ||  @challenge.user_id == aTask.user_id %>
-																										status='<%= image_tag ("icon_accept.png") %>';
-																							<% else %>
-																							<% if aTask.social_type.status == 0 %>
-																										status='<%= image_tag ("icon_thinking.png") %>';
-																							<% else %>
-																										status='<%= image_tag("icon_decline.png") %>';
-																							<% end %>
-																						<% end %>
-                                                                                    <%end%>
-																			<%end%>		
-																 $("#friendsstatus").append(tdopen1);
-																 $("#friendsstatus").append(status);
-																 $("#friendsstatus").append(tdclose1);
-																 $("#friendslist").append(trclose);
-																$("#friendslist").append(tropen);																
-																$("#friendslist").append(hr);  
-																$("#friendslist").append(trclose);
-                                                                 $("#friendslist").append(tableclose); 
-                                                        });
+				method: 'fql.query',
+				query: 'SELECT name,pic_square FROM user WHERE uid=' + img
+			}, function(response){
+			htmlcontent = '<img src=' + response[0].pic_square + ' />'+ response[0].name ;
+			 tableopen='<table>';
+			 tropen='<tr>';
+			 tdopen='<td >';
+			 tdclose='</td>';
+			 tdopen1='<td id="friendsstatus" >';
+			 tdclose1='</td>';
+			 trclose='<tr>';
+			 tableclose='</table>'
+			 hr = '<hr/>';
+			 $("#friendlist").append(tableopen);
+					$("#friendslist").append(tropen);
+					$("#friendslist").append(tdopen);
+					 $("#friendslist").append(htmlcontent);
+					 $("#friendslist").append(tdclose);
+					<% @challenge.child_challenges.each do |aTask| %>
+						<% if aTask.user_id %>
+							<% if aTask.social_type.status == 1  ||  @challenge.user_id == aTask.user_id %>
+											status='<%= image_tag ("icon_accept.png") %>';
+								<% else %>
+								<% if aTask.social_type.status == 0 %>
+											status='<%= image_tag ("icon_thinking.png") %>';
+								<% else %>
+											status='<%= image_tag("icon_decline.png") %>';
+								<% end %>
+							<% end %>
+						<%end%>
+								<%end%>		
+					 $("#friendsstatus").append(tdopen1);
+					 $("#friendsstatus").append(status);
+					 $("#friendsstatus").append(tdclose1);
+					 $("#friendslist").append(trclose);
+					$("#friendslist").append(tropen);																
+					$("#friendslist").append(hr);  
+					$("#friendslist").append(trclose);
+					 $("#friendslist").append(tableclose); 
+			});
  <%end %>
 				var user = <%= @challenge.user_id %>
 					FB.api({
-                                                            method: 'fql.query',
-                                                            query: 'SELECT name FROM user WHERE uid=' +user
-                                                        }, function(response){
-														htmlcontent =response[0].name ;
-                                                                $("#user").append(htmlcontent);    
-                                                    });
-
-
+						method: 'fql.query',
+					query: 'SELECT name FROM user WHERE uid=' +user
+				}, function(response){
+				htmlcontent =response[0].name ;
+						$("#user").append(htmlcontent);    
+			});
 </script>
 
 <style>
-.table{
-
-background:#ffffff;
-}
+	.table{
+		background:#ffffff;
+	}
 </style>
-
 <script type="text/javascript">
 	$(document).ready(function(){
-	
-		
-	
 		$(".addRow").btnAddRow();
 		$(".delRow").btnDelRow();
 		
