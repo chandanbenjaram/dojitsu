@@ -5,6 +5,6 @@ class ChallengeSocialType < ChallengeType
   
   field :how_many_winners
   # status can take 3 arguments, ACCEPTED, DECLINED, PENDING
-  field :status, :type => Hash
+  field :status, :type => Integer
   
 end
