@@ -162,11 +162,11 @@ function fbCallback(response){
 						<div id="tab2" class="tab_content">
 														<table width="100%" border="0" height="40px">
 															<tr bgcolor=#F4F4F4>
-																							<td width="120px"><b  id="total">Total:<%= @challenge.child_challenges.length %></b>	<%=link_to image_tag("btn_msg_up.png"), message_challenges_path(:id => @challenge) %>
+																							<td width="20%"><b  id="total">Total:<%= @challenge.child_challenges.length %></b>	<%=link_to image_tag("btn_msg_up.png"), message_challenges_path(:id => @challenge) %>
 																							</td>
-																							<td width = "100px" id="search">
+																							<td width = "15%" id="search" style="height:30px;">
 																						    </td>
-																							<td width="240px">
+																							<td width="20%">
 																							
 																							&nbsp;
 																											<select name="catSelect" id="catSelect" bgcolor="white"> 
@@ -195,26 +195,33 @@ function fbCallback(response){
 																	<table bgcolor="white">
 																			<tr>
 																					<td id="list">
+																					<%if @challenge.parent .nil? %>
+																								<% childChallenges =  @challenge.child_challenges %>
+																					 <%else%>
+																								<%childChallenges =  @challenge.parent.child_challenges %>
+																							<% end %>
+																								
+																		<% childChallenges.each do |aChildChallenge| %>
+
+																								<p><%=image_tag FbGraph::User.new(aChildChallenge.user_id).fetch.picture %> <a href="#"  id="ahref"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></a>
+																							<span id="status_icon">
 																						
-																						<% @challenge.child_challenges.each do |aTask| %>
-																								<p><%=image_tag FbGraph::User.new(aTask.user_id).fetch.picture %> <a href="#"  id="ahref"><%= FbGraph::User.new(aTask.user_id).fetch.name %></a>
-																							<span id="span">
-																						
-																								<% if aTask.user_id %>
-																										<% if aTask.social_type.status == 1  or  @challenge.user_id == aTask.user_id %>
-																														 <%= image_tag  "icon_accept.png"  %>
-																											<% else %>
-																												<% if aTask.social_type.status == 0 %>
-																														 <%= image_tag  "icon_thinking.png"  %>
-																												<% else %>
-																														 <%= image_tag "icon_decline.png"  %>
-																												<% end %>
-																										<% end %>
-																								 <%end%>	
+																							
+
+																							<% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 %>
+																										<%= image_tag  "icon_thinking.png"  %>
+																									<% elsif aChildChallenge.social_type.status == 1 %>
+																										 <%= image_tag  "icon_accept.png"  %>
+																								   <% else %>
+																										<%= image_tag "icon_decline.png"  %>
+																								 <% end %>
+																		 <% end %>
+														
+																
 																
 																							</span>
 																						</p>
-																				<%end%>
+																			
 																				</td>
 																			</tr>	
 																	 </table>
@@ -242,7 +249,7 @@ $(document).ready(function()
 																
 																
 <style type="text/css">
-#span
+#status_icon
 { 
 float: right;
 width: 40px;
