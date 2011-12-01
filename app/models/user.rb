@@ -42,13 +42,13 @@ class User < ActiveRecord::Base
 
 
   def facebook
-  
     FbGraph::User.new('me', :access_token => self.fbauth.token).fetch
-	
+
   end
   
  def facebookmsg
-  
+    
+  debugger
     FbGraph::Message.new('me', :access_token => self.fbauth.token).fetch
 	
   end
