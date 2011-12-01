@@ -180,7 +180,12 @@ function fbCallback(response){
 						<div id="tab2" class="tab_content">
 							<table width="100%" border="0" height="40px">
 								<tr bgcolor=#F4F4F4>
-									<td width="120px"><b  id="total">Total: <%= @challenge.child_challenges.length %></b><%= image_tag("btn_msg_up.png", :style=>"margin-left:10px; position:relative; top:5px;" ,:onclick=>"contactToInvitee()")%></td>
+									<td width="120px">
+										<b  id="total">Total: <%= @challenge.child_challenges.length %></b>
+										<% if @challenge.class.to_s == "Challenge" %>
+											<%= image_tag("btn_msg_up.png", :style=>"margin-left:10px; position:relative; top:5px;" ,:onclick=>"contactToInvitee()")%>
+										<% end %>
+									</td>
 									<td width = "400px"><input type="text">&nbsp;
 										<select>
 											<option value="volvo">ALL</option>
@@ -339,16 +344,28 @@ $(function() {
 </script>
 <% end %>
 
-<% if !@challenge.child_challenges.blank? && inviteeIds = []%>
-<% for aChild in @challenge.child_challenges %>
-	<% inviteeIds.push(aChild.user_id)  %>
-	<script>
-		function contactToInvitee()
-		{
-			$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+inviteeIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>);		
-		}
-	</script>
+<!--
+<% if @challenge.class.to_s == "ChildChallenge" %>
+	<%= parentId = @challenge.user_id %>
+	<% inviteeChildIds = [] %>
+	<% for aParentChild in @challenge.parent.child_challenges %>
+		<%= inviteeChildIds.push(aParentChild.user_id) %>
+		<%= inviteeChildIds.pop(1) %>
+	<% end %>
 <% end %>
+-->
+<% if !@challenge.child_challenges.blank? && inviteeIds = []%>
+	<% for aChild in @challenge.child_challenges %>
+		<% inviteeIds.push(aChild.user_id)  %>
+		<script>
+			function contactToInvitee()
+			{
+				$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+inviteeIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>);		
+			}
+		</script>
+	<% end %>
+<% else %>
+	
 <% end %>
 
 <script type="text/javascript">
