@@ -75,10 +75,20 @@ function fbCallback(response){
 						<b><font color= #909090>ORGANIZER</font></b>
 					</td>
 					<td >
-						<b id="user"></b>
+						<% if @challenge.class.to_s == "ChildChallenge" %>
+							<%  @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
+							<script>
+								var ordId = <%=  orgId = @parentChallenge.user_id %>
+							</script>
+							<b><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
+						<% else %>	
+							<b id="user"></b>
+						<% end %>	
 					</td>
 					<td width="100px">
-						<%=link_to image_tag("btn_msg_up.png"), message_challenges_path(:id => @challenge) %>
+						<% if @challenge.class.to_s == "ChildChallenge" %>
+							<%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(ordId)" ) %>
+						<% end %>
 					</td>
 				</tr>
 				<tr>
@@ -162,7 +172,7 @@ function fbCallback(response){
 						<div id="tab2" class="tab_content">
 							<table width="100%" border="0" height="40px">
 								<tr bgcolor=#F4F4F4>
-									<td width="120px"><b  id="total">Total:<%= @challenge.child_challenges.length %></b><%=link_to image_tag("btn_msg_up.png"), message_challenges_path(:id => @challenge) %></td>
+									<td width="120px"><b  id="total">Total:<%= @challenge.child_challenges.length %></b><%= image_tag("btn_msg_up.png", :onclick=>"contactToInvitee()")%></td>
 									<td width = "400px"><input type="text">&nbsp;
 										<select>
 											<option value="volvo">ALL</option>
@@ -209,7 +219,7 @@ function fbCallback(response){
 			</tr>
 		</table>  
 	</div>							
-
+<% orgIds = "" %>
 	<script> 
 	    FB.init({ 
 			 appId  : '232592880122189', 
@@ -307,19 +317,41 @@ $(function() {
 });
 </script>
 
-
-
 <style>
 	.table{
 		background:#ffffff;
 	}
 </style>
+<% if @challenge.class.to_s == "ChildChallenge" %>
+<script>
+	function contactToOrganizer(orgId)
+	{
+		$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+orgId+"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenge_url(@challenge) +"'"%>);	
+	}
+</script>
+<% end %>
+
+
+
+
+<% if !@challenge.child_challenges.blank? && inviteeIds = []%>
+<% for aChild in @challenge.child_challenges %>
+	<% inviteeIds.push(aChild.user_id)  %>
+	<script>
+		function contactToInvitee()
+		{
+			$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+inviteeIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>);		
+		}
+	</script>
+<% end %>
+<% end %>
+
 <script type="text/javascript">
 	function changeVal(str,score) {
 		var tot_score = str*score;
 		$("#tatal_s").val(tot_score);
 	}
-
+	
 	$(document).ready(function(){
 		$(".addRow").btnAddRow();
 		$(".delRow").btnDelRow();
@@ -328,6 +360,3 @@ $(function() {
 		
 });
 </script>
-
-
-
