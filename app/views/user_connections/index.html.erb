@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css')%>
-<%= javascript_include_tag('simple-tabs','all','jquery.table.addrow','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.hoverIntent','jquery.cluetip','challenge_new')%>
+<%= javascript_include_tag('simple-tabs','all','jquery.table.addrow','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.cluetip','challenge_new')%>
 <%= render 'layouts/loggedinbody'%>
 
 <div class="topbar">
@@ -9,7 +9,12 @@
 						<td width="470px">
 						</td>
 						<td>
-							<%= image_tag("invite.PNG")%>&nbsp;&nbsp;&nbsp;<font color="gray"> <b  id="image"></b></font>
+						<div id="fb-root"></div>      
+<%#= form_for :challenge, :url => {:controller=> "challenges",:action => "create"},:html=>{:multipart => true, :name => "challenge_form", :onSubmit => "return validate_form_fields(this);"} do |f| -%>						
+						<%#= hidden_field_tag "myvar", 0%>					
+						<%#= render :partial => 'invitations'%>
+							<%= image_tag("invite.PNG")%>&nbsp;&nbsp;&nbsp;<font color="gray"> </font>
+	
 						</td>
 						<td>
 						</td>
@@ -25,62 +30,89 @@
 					<td width="100px" height="200px" id="image1" align="left">
 					
 					</td>
-					<td width="350px" height="200px">
+					<td width="570px" height="200px">
 						<table border =5 bordercolor=#f4f4f4>
 							<tr>
 								<td width="100px">
-								<font color="gray"><b>TROPHIES</b></font></td>
+								<!--<font color="#999999"><b>TROPHIES</b></font>--></td>
 								</td>
 								<td align="left">
-								 No of trophies
+								 <!--<font color="gray">No of trophies</font>-->
 								</td>
 							</tr>
+							</table>
+							
+							<table>
 					        <tr>
 								<td width="100px">
-								<font color="gray"><b>MEMBER SINCE</b></font></td>
+								<font color="#999999"><b>MEMBER SINCE</b></font></td>
 								</td>
 								<td align="left">
-								<%= current_user.created_at  %>
+								<%  user = User.find(:all)%>
+								<%=%>
 								</td>
 							</tr>
+							</table>
+							<hr/>
+							<table height="10px">
+							<tr height="10px">
+								<td width="100px" height="10px">
+								<font color="#999999"><b> CURRENT CITY</b></font></td>
+								</td>
+								<td align="left" height="10px">
+								<p id="location"></p>
+								</td>
+							</tr>
+							</table>
+							<hr/>
+							<table>
 							<tr>
 								<td width="100px">
-								<font color="gray"><b> CURRENT CITY</b></font></td>
+								<font color="#999999"><b>HOME CITY</b></font></td>
 								</td>
 								<td align="left">
-								<%=  FbGraph::User.new(100000018823471).fetch.hometown %>
+								<p id="hometown"></p>
 								</td>
 							</tr>
+							</table>
+							<hr/>
+							<table>
 							<tr>
 								<td width="100px">
-								<font color="gray"><b>HOME CITY</b></font></td>
-								</td>
-								<td align="left">
-								<%=  %>
-								</td>
-							</tr>
-							<tr>
-								<td width="100px">
-								<font color="gray"><b> SEX</b></font></td>
+								<font color="#999999"><b> SEX</b></font></td>
 								</td>
 								<td align="left"  id="image2">
 								<%=  %>
 								</td>
 							</tr>
+							</table>
+							<hr/>
+							<table>
 							<tr>
 								<td width="100px">
-								<font color="gray"><b>BIRTH DAY</b></font></td>
+								<font color="#999999"><b>BIRTH DAY</b></font></td>
 								</td>
 								<td align="left" id="image3">
-								<%=  %>
+								<%= current_user.facebook.birthday %>
+								<% if current_user.facebook.birthday == nil %>
+								<% dob = "01-jan-1986" %>
+								<%= dob %>
+								<% end %>
 								</td>
 							</tr>
+							</table>
+							<hr/>
+							<table>
 							<tr>
 								<td width="100px">
-								<font color="gray"><b>ABOUT ME</b></font></td>
+								<font color="#999999"><b>ABOUT ME</b></font></td>
 								</td>
 								<td align="left">
-								<%=  %>
+							     <%= current_user.facebook.about %>
+								<% if current_user.facebook.about == nil %>
+								<% about = "about your self #{current_user.facebook.name}"%>
+								<%= about %>
+								<% end %>
 								</td>
 							</tr>
 					</table>
@@ -107,19 +139,19 @@
     								<td>
 												<table bgcolor=#F4F4F4>
 													<tr bgcolor=#F4F4F4>
-														<td width="120px"><b  id="total">Total:<%#= @challenge.child_challenges.length %></b>	<%=link_to image_tag("btn_msg_up.png"), message_challenges_path(:id => @challenge) %>
+														<td width="420px"><b  id="total">Total:<b id="invitee_count"></b>	<%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(orgId)" ) %>
+														
 														</td>
-														<td><input type="text">&nbsp;
+														<td width="450px"><input type="text">&nbsp;
 															<select>
 															<option value="volvo">ALL</option>
 															<option value="saab">ACCEPTED</option>
 															<option value="mercedes">PENDING</option>
 															<option value="audi">DECLINED</option>
 															</select> 
+															<%= image_tag ("search_it.PNG") %>
 															</td>
-															<td>
-															<%= image_tag ("search.png") %>
-														</td>
+															
 													</tr>
 												</table>
 									
@@ -127,7 +159,7 @@
 										<script src="http://connect.facebook.net/en_US/all.js"></script>  
 												<div id="fb-root"></div> 
 														<table  border="0"> 
-															<tr bgcolor=#F4F4F4>
+															<tr bgcolor=#d7d7d7>
 																			<td>
 																				NAME
 																			</td>
@@ -135,15 +167,63 @@
 																				<p align=right>STATUS</p>
 																			</td>
 															</tr>
-															
-															<div id="friendslist">
-															
-															<tr> 
-															
-																
-																</tr> 
-															  
-															</div> 
+															</table>
+															<table bgcolor="white">
+															<tr>
+															<td>
+															<div id="wrap">
+																	<h1 id="header"></h1>
+																	<table bgcolor="white">
+																			<tr>
+																					<td id="list">
+																			
+																						<% loop=current_user.challenges.length %>
+																								<% i=0 %>
+																									<% for  i  in  0..loop %>
+																											<%current_user.challenges.each do|user|%>
+																											   <% user.child_challenges. each do |id|%>
+																											   <% title=id.title %>
+																											   	   
+																											   <table width="720px">
+																											   <tr>
+																											   <td width="600px">
+																											    
+																											     <%id.user_id%>																												 
+																											
+																												<%=image_tag(FbGraph::User.new(id.user_id).fetch.picture) %>
+																												 <b><%= FbGraph::User.new(id.user_id).fetch.name %></b>
+																												 </td>
+																												 <td width="120px">
+																												 <%= image_tag("btn_msg_up.png")%>
+																												<script>
+																														var orgId =  '<%=id.user_id%>';
+																													     
+																													</script>
+																													<% if  id.user_id %>
+																													
+																												<% else %>	
+																													<b id="user"></b>
+																									              <% end %>														
+																												 <%= image_tag("btn_delete_up.png") %>
+																												 </td>
+																												 </tr>
+																												 <tr>
+																												 <hr/>
+																												 </tr>
+																												 </table>
+																												 <% end %>
+																									<% end %>
+																									<% end %>
+																									<%#= userId %>
+																									
+																				</td>
+																			</tr>	
+																	 </table>
+																</div> 
+															</td>
+															<td>
+															</td>
+															</tr>
 														</table> 
 														</td>
 									
@@ -151,10 +231,97 @@
   								</tr>
 							</table>  
     					</div>
-    					<div id="tab2" class="tab_content">
-       						
-  
+						
+						
+							<div id="tab2" class="tab_content">
+       						gggggggggggggggg	  
 </div>
+	</div>															
+																
+<script>
+$(document).ready(function() 
+{ 
+    $("#btnFilter").click(function() 
+    { 
+        var selection = $("#catSelect").val(); 
+         if (selection == "all") 
+        { 
+            $(".item").show(); 
+        } 
+        else 
+        { 
+            $(".item").hide(); 
+            $("."+selection).show(); 
+        } 
+    }); 
+});
+
+
+</script>											
+																				
+<script>
+	function contactToOrganizer(orgId)
+	{
+		 $.dojitsu.renderSendBox (<%= "'"+title + "'" %>, fbCallback);	
+	}
+	</script>													
+																
+																
+<style type="text/css">
+#status_icon
+{ 
+float: right;
+width: 40px;
+} 
+ #ahref
+{					
+color:#000000;
+}
+</style>
+
+
+
+	
+
+																
+<script src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+<script>
+	(function ($) {
+	  jQuery.expr[':'].Contains = function(a,i,m){
+		  return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+	  };
+
+	  function listFilter(header, list) {
+		var form = $("<form>").attr({"class":"filterform","action":"#"}),
+			input = $("<input>").attr({"class":"filterinput","type":"text"});
+		$("#search").append($(form).appendTo(header));
+
+		$(input)
+		  .change( function () {
+			var filter = $(this).val();
+			if(filter) {
+			  $(list).find("a:not(:Contains(" + filter + "))").parent().slideUp();
+			  $(list).find("a:Contains(" + filter + ")").parent().slideDown();
+			} else {
+			  $(list).find("p").slideDown();
+			}
+			return false;
+		  })
+		.keyup( function () {
+			$(this).change();
+		});
+	  }
+
+	  $(function () {
+		listFilter($("#header"), $("#list"));
+	  });
+	}(jQuery));
+	
+
+</script> 					
+						
+    				
+
 
 <script type="text/javascript" src="../includes/js/jquery.min.js"></script>  
 <script src="http://connect.facebook.net/en_US/all.js"></script>  
@@ -187,15 +354,33 @@
 																htmlcontent1=response[0].name
 																htmlcontent2=response[0].sex
 																htmlcontent3=response[0].birthday
+																length=response.length
+																$("#invitee_count").append(length);   
 
 
 																$("#image").append(htmlcontent1);   
                                                                 $("#image1").append(htmlcontent);   
 																$("#image2").append(htmlcontent2);   
 																$("#image3").append(htmlcontent3);   
+
                                                         }); 
                                     } 
                         ); 
+		FB.api('/me', function(response) {
+    var location = response.location.name;
+	$("#location").append(location);
+});
+	FB.api('/me', function(response) {
+    var hometown = response.hometown.name;
+$("#hometown").append(hometown);
+
+});
+FB.api('/me', function(response) {
+    var birthday = response.birthday;
+	
+//$("#image3").append(birthday);
+//alert(birthday);
+});
             }
     }); 					
     </script>	

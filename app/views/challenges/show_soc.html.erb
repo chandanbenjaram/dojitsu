@@ -162,6 +162,7 @@ function fbCallback(response){
 						<div id="tab2" class="tab_content">
 														<table width="100%" border="0" height="40px">
 															<tr bgcolor=#F4F4F4>
+															
 																							<td width="20%"><b  id="total">Total:<%= @challenge.child_challenges.length %></b>	<%=link_to image_tag("btn_msg_up.png"), message_challenges_path(:id => @challenge) %>
 																							</td>
 																							<td width = "15%" id="search" style="height:30px;">
@@ -205,9 +206,6 @@ function fbCallback(response){
 
 																								<p><%=image_tag FbGraph::User.new(aChildChallenge.user_id).fetch.picture %> <a href="#"  id="ahref"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></a>
 																							<span id="status_icon">
-																						
-																							
-
 																							<% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 %>
 																										<%= image_tag  "icon_thinking.png"  %>
 																									<% elsif aChildChallenge.social_type.status == 1 %>
