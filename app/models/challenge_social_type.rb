@@ -1,13 +1,10 @@
 class ChallengeSocialType < ChallengeType
   include Mongoid::Document
+
+  embedded_in :challenge, :inverse_of => :social_type
   
   field :how_many_winners
-
-  # challenge invitations ONLY FOR MOTHER CHALLENGE
-  # every NON-MOTHER challenge should ignore this filed
-  # has_many :challenge_invitations 
-  
   # status can take 3 arguments, ACCEPTED, DECLINED, PENDING
-  field :status, :type =>Integer, :default => 'null'
+  field :status, :type => Hash
   
 end

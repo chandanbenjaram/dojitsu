@@ -19,13 +19,32 @@ class ChallengesController < ApplicationController
   def show_soc
     @flg = params[:flg]
     @challenge = Challenge.find(params[:id])
+	@is_complete_status = 0 
+	@challenge.tasks.each do |checkingTaskStatus|
+		unless checkingTaskStatus.is_complete == 1
+			@is_complete_status = 1
+			next
+		end
+	end
+	if @is_complete_status == 0
+		Challenge.where(:_id => params[:id]).update(:is_complete => 1)
+	end
     @org = User.find(:all,:conditions => ["id=?",@challenge.user_id]).first
   end
 
   def show_per
     # debugger
     @challenge = Challenge.find(params[:id])
-
+	@is_complete_status = 0 
+	@challenge.tasks.each do |checkingTaskStatus|
+		unless checkingTaskStatus.is_complete == 1
+			@is_complete_status = 1
+			next
+		end
+	end
+	if @is_complete_status == 0
+		Challenge.where(:_id => params[:id]).update(:is_complete => 1)
+	end
     if (@challenge.social_type.instance_of? ChallengeSocialType rescue false)
       render "show_soc" and return 
     else 
@@ -212,20 +231,14 @@ class ChallengesController < ApplicationController
     render :layout => false
   end
   
-  def invitee_status
-	#raise "aaa"
-	@inviteeStatusUpdate = Challenge.find(params[:id])
-	#raise @inviteeStatusUpdate.social_type.status.inspect
-	@inviteeStatusUpdate.social_type.status = 1
-	@inviteeStatusUpdate.social_type.save!
-	 @inviteeStatusUpdate.social_type.update_attribute(:status, '10')
-	@inviteeStatusUpdate.social_type.save
-	@inviteeStatusUpdate.save
-	#raise @inviteeStatusUpdate.social_type.inspect 	
 
-	#@ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1)
-	#raise Challenge.social_type.update(:status=>1).where(:_id=>params[:id]).inspect
-	redirect_to show_soc_challenges_path(:id => params[:id])
+  def invitee_status
+  	  
+  	  aChallenge = Challenge.find(params[:id])
+  	  socialType = aChallenge.social_type
+  	  socialType.update_attributes(:status => 0)       
+
+  	  redirect_to show_soc_challenges_path(:id => params[:id])
   end
 
   protected
