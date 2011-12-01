@@ -2,17 +2,7 @@
 	
      $('.task_update_popup').colorbox();
 	 
-    FB.init({ 
-     
-    appId  : '232592880122189', 
-     
-    status : true, // check login status 
-     
-    cookie : true, // enable cookies to allow the server to access the session 
-     
-    xfbml  : true  // parse XFBML 
-     
-    }); 
+    window.fbAsyncInit();
      
     FB.getLoginStatus(function(response) { 
      

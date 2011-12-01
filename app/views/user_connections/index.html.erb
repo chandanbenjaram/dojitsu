@@ -123,9 +123,7 @@
 													</tr>
 												</table>
 									
-    									<script type="text/javascript" src="../includes/js/jquery.min.js"></script>  
-										<script src="http://connect.facebook.net/en_US/all.js"></script>  
-												<div id="fb-root"></div> 
+
 														<table  border="0"> 
 															<tr bgcolor=#F4F4F4>
 																			<td>
@@ -156,16 +154,8 @@
   
 </div>
 
-<script type="text/javascript" src="../includes/js/jquery.min.js"></script>  
-<script src="http://connect.facebook.net/en_US/all.js"></script>  
-<div id="fb-root"></div> 	
     <script>
-      FB.init({ 
-         appId  : '232592880122189', 
-         status : true, // check login status 
-         cookie : true, // enable cookies to allow the server to access the session 
-         xfbml  : true  // parse XFBML 
-         });
+      window.fbAsyncInit();
 		  FB.getLoginStatus(function(response) { 
              if (response.session)
             { 
