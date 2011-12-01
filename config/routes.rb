@@ -31,7 +31,13 @@ Dojitsu::Application.routes.draw do
   match '/contactus', :to=>'static#contactus'
   match '/aboutus', :to=>'static#aboutus'  
   resources :user_connections
-  resources :messages
+  
+  resources :messages do
+	collection do
+		get "storemessage"
+	end	
+  end 
+  
 
   # root page
   root :to=>'static#home'
