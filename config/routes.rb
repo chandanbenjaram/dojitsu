@@ -20,7 +20,7 @@ Dojitsu::Application.routes.draw do
       get "add_task_link"
       get "add_task_fun"
       get "update_status"
-      get "decline"
+      get "update_status_af_meg"
 	  put "update_task_soc"
       put :update_attribute_on_the_spot
     end

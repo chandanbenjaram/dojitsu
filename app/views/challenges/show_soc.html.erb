@@ -20,7 +20,8 @@ function fbCallback(response){
 		console.info('dont update child challenges');
 	} else
 	{
-		console.info('update child challenges from nil to 0 (thinking abt it)');		
+		console.info('update child challenges from nil to 0 (thinking abt it)');
+		
 	}
 }
 </script>
@@ -28,6 +29,7 @@ function fbCallback(response){
 
 <% end %>
 
+<input type="text" name="thinking_abt" id="thinking_abt" >
 
 <div id="ch_main_div"> 
 	<div id="ch_main_div1"> 
@@ -310,12 +312,25 @@ $(function() {
 		var tot_score = str*score;
 		$("#tatal_s").val(tot_score);
 	}
+	
+	$('#thinking_abt').blur(function() {
+		alert("hii");
+		jQuery.support.cors = true;
+		console.log($(this).val());
+		$.get('/challenges/update_status_af_meg', 
+			{thinking_abt:$(this).val()},
+			function(data) {
+
+			}, 'script'
+		);
+	});
 
 	$(document).ready(function(){
 		$(".addRow").btnAddRow();
 		$(".delRow").btnDelRow();
 		
 		$('.soc_add_task_popup').colorbox();
+		
 });
 </script>
 

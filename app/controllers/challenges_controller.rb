@@ -34,6 +34,7 @@ class ChallengesController < ApplicationController
 
   def show_per
     # debugger
+	#raise params[:id].inspect
     @challenge = Challenge.find(params[:id])
 	@is_complete_status = 0 
 	@challenge.tasks.each do |checkingTaskStatus|
@@ -130,9 +131,11 @@ class ChallengesController < ApplicationController
         end      
       end  
     end    
-
-
-    redirect_to :action => "index", :notice => "Challenge created!"   
+	
+	
+	redirect_to show_per_challenges_path(:id => @challenge), :notice => "Challenge created!"
+	
+	
   end
 
   def edit
@@ -238,6 +241,17 @@ class ChallengesController < ApplicationController
   	socialType.update_attributes(:status => params[:status])       
 
   	redirect_to show_soc_challenges_path(:id => params[:id])
+  end
+  
+  def update_status_af_meg
+	#params[:thinking_abt] = "4ed6163954b5300874000079"
+	#raise Challenge.where(:_id => params[:thinking_abt] ).first.inspect
+	Challenge.where(:_id => params[:thinking_abt] ).all.each do |aChallenge|
+		aChallenge.child_challenges.each do |aChildChallenge|
+			socialType = aChildChallenge.social_type
+			socialType.update_attributes(:status => "null")
+		end
+	end
   end
 
   protected
