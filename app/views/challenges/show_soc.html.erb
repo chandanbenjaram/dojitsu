@@ -3,7 +3,6 @@
 <%= javascript_include_tag('simple-tabs','all','on_the_spot','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.cluetip','challenge_new', 'jquery.table.addrow','messages')%>
 <%= render 'layouts/loggedinbody'%>
 
-
 <% if !@challenge.child_challenges.blank? && userIds = []%>
 <% for aChild in @challenge.child_challenges %>
 <% if aChild.social_type.status.nil?%>
@@ -14,11 +13,20 @@
 <% if !userIds.empty? %>
 
 <script type="text/javascript" charset="utf-8">
-$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+userIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>);	
+$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+userIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>, fbCallback);	
+
+function fbCallback(response){
+	if(response == null){
+		console.info('dont update child challenges');
+	} else
+	{
+		console.info('update child challenges from nil to 0 (thinking abt it)');		
+	}
+}
 </script>
 <% end %>
 
-<% end %>   
+<% end %>
 
 
 <div id="ch_main_div"> 
@@ -63,7 +71,6 @@ $.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+userIds.join(
 					</td>
 					<td width="100px">
 						<%=link_to image_tag("btn_msg_up.png"), message_challenges_path(:id => @challenge) %>
-						<%#= link_to  render(:partial => 'challenges/message'), root_url %>
 					</td>
 				</tr>
 				<tr>
@@ -285,6 +292,9 @@ $(function() {
 		// there is no delay when the mouse is moved away from the trigger
 		delay: 0
 	});	
+	     
+	document.getElementById('feedform_user_message').live('click', function(){alert($(this))});
+
 });
 </script>
 

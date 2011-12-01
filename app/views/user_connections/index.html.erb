@@ -18,7 +18,7 @@
 </div>
 
 		<div id="ch_main_div3">
-				<p class="user"><font color="orange">sreeream</font></p>
+				<p class="user"><font color="orange"><%=current_user.facebook.name%></font></p>
 		
 		  <table border="1px">
 				<tr width="600px">
@@ -188,7 +188,7 @@
 																htmlcontent2=response[0].sex
 																htmlcontent3=response[0].birthday
 
-																alert(htmlcontent3);
+
 																$("#image").append(htmlcontent1);   
                                                                 $("#image1").append(htmlcontent);   
 																$("#image2").append(htmlcontent2);   
