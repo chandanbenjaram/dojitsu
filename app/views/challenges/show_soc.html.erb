@@ -149,7 +149,15 @@ function fbCallback(response){
 					<b><font color= #909090>PARTICIPANTS</b></font>
 				</td>
 				<td>
-					<b><%= @challenge.child_challenges.length %></b>
+					<% if @challenge.social_type.status == 1 &&  @challenge.class.to_s == "ChildChallenge" %>
+						<b><%= @challenge.parent.child_challenges.length %></b>
+					<% else %>
+						<% if @challenge.social_type.status == 1 %>
+							<b><%= @challenge.child_challenges.length %></b>
+						<% else %>
+							<b><%= @challenge.parent.child_challenges.length %></b>
+						<% end %>
+					<% end %>
 				</td>
 			</tr>
 		</table>
@@ -172,7 +180,7 @@ function fbCallback(response){
 						<div id="tab2" class="tab_content">
 							<table width="100%" border="0" height="40px">
 								<tr bgcolor=#F4F4F4>
-									<td width="120px"><b  id="total">Total:<%= @challenge.child_challenges.length %></b><%= image_tag("btn_msg_up.png", :onclick=>"contactToInvitee()")%></td>
+									<td width="120px"><b  id="total">Total: <%= @challenge.child_challenges.length %></b><%= image_tag("btn_msg_up.png", :style=>"margin-left:10px; position:relative; top:5px;" ,:onclick=>"contactToInvitee()")%></td>
 									<td width = "400px"><input type="text">&nbsp;
 										<select>
 											<option value="volvo">ALL</option>
@@ -330,9 +338,6 @@ $(function() {
 	}
 </script>
 <% end %>
-
-
-
 
 <% if !@challenge.child_challenges.blank? && inviteeIds = []%>
 <% for aChild in @challenge.child_challenges %>
