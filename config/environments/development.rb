@@ -30,8 +30,8 @@ Dojitsu::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-  
+
   # Slim configuration
   # 1. DEV MODE DO PRETTY PRINT
-  Slim::Engine.set_default_options :pretty => true  
+  Slim::Engine.set_default_options :pretty => true
 end

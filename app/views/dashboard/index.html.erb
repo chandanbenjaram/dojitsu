@@ -106,7 +106,7 @@
 						<div class="mychallenge">
 							<div id="titlechallenge">
 								<div id="title">
-									NEW MESSAGES 
+									NEW MESSAGES <font style="color:#fff">( <%= current_user.inbox.count %> )</font>
 								</div>
 								<div class="second_titlechallenge">
 									<%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
@@ -121,10 +121,24 @@
 								</div>
 							</div>
 							<div>
-									
-											
-										
-											
+								<table width="100%">
+									<% current_user.inbox.each do |userMessage| %>
+									<tr>
+										<td width="10%">
+											<%=image_tag(FbGraph::User.new(userMessage.from).fetch.picture) %>																			
+										</td>
+										<td width="88%">
+											<font size="3px" style="float:right"><%= time_ago_in_words userMessage.created_at %></font>
+											<font size="4px" style="font-weight:bold"><%= userMessage.subject %></font></br>
+											<font size="3px"><%=h truncate(userMessage.body, :length => 55) %>..</font></br>										</td>
+									</tr>
+									<tr>
+										<td colspan="2">
+											<hr/ width="100%" >
+										</td>
+									</tr>
+									<% end %>
+								</table>		
 							</div>
 						</div>
 						
@@ -142,7 +156,7 @@
 				<%= button_to "", new_challenge_url, :class => "ds_view_all", :method => :get%>
 				
 			</div>
-			<% @all_new_challenge.each do |anc| %>
+			<% current_user.allChallenges.each do |anc| %>
 				<div id="contentbox">
 					<%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:0px;") %>
 					<table width="100%" style="margin-top:-10px;">

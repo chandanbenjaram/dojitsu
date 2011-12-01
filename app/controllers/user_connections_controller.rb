@@ -4,8 +4,7 @@ class UserConnectionsController < ApplicationController
 
   def index
     @user_connections = Challenge.all;
-
-	 
+	#raise current_user.facebook.uid.inspect
     #@user_connections = FbGraph::User.me(AAAAAAITEghMBAGwEqIvywCnasJzScTAZAIKgx1mzI0SE8wWbEe78FmLF2DsrZBwnZBqQZB5hubkGq8ZAT9zYEJDeEMsYlQiZBSujBZBip28ZCNrxtAQ7JJPp)
     #friendslist = @user_connections.friends
   end
