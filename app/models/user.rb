@@ -25,7 +25,11 @@ class User < ActiveRecord::Base
   def apply_omniauth(omniauth)      
     authentications.build(:provider => omniauth[:provider], :uid => omniauth[:uid], :email => omniauth[:email], :name => omniauth[:name], :first_name => omniauth[:first_name], :last_name => omniauth[:last_name], :token =>omniauth[:token])
   end
-
+  
+  def allChallenges
+	Challenge.desc("DISTINCT(created_at)").limit(3)
+  end	
+	
   def password_required?
     (authentications.empty? || !password.blank?) && super
   end
