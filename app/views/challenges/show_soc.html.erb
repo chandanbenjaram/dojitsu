@@ -160,48 +160,137 @@ function fbCallback(response){
 							<% end %>
 						</div>
 						<div id="tab2" class="tab_content">
-							<table width="100%" border="0" height="40px">
-								<tr bgcolor=#F4F4F4>
-									<td width="120px"><b  id="total">Total:<%= @challenge.child_challenges.length %></b><%=link_to image_tag("btn_msg_up.png"), message_challenges_path(:id => @challenge) %></td>
-									<td width = "400px"><input type="text">&nbsp;
-										<select>
-											<option value="volvo">ALL</option>
-											<option value="saab">ACCEPTED</option>
-											<option value="mercedes">PENDING</option>
-											<option value="audi">DECLINED</option>
-										</select> 
-											&nbsp;
-											<%= image_tag ("search_it.PNG") %>
-										</td>
-								</tr>
-							</table>
-							<table  border="0" height="20px" bgcolor="gray"> 
-								<tr bgcolor=#D7D7D7>
-									<td>
-										<b>NAME &nbsp;</b>
-									</td>
-									<td width="80px">
-										<font color=#A8A8A8>STATUS</font>
-									</td>
-								</tr>
-								</table>
-								<table id="friendslist1">
-								<tr>
-									<td>
-										<div id="friendslist"></div> 
-									<td>
-									<td>
-										<div id="friendsstatus"></div>
-									</td>
-								</tr>
-							</table>
-							<style>
-								#friendslist1
-								{
-									width:680px;
-									background:#ffffff;
-								}
-							</style>													
+														<table width="100%" border="0" height="40px">
+															<tr bgcolor=#F4F4F4>
+																							<td width="120px"><b  id="total">Total:<%= @challenge.child_challenges.length %></b>	<%=link_to image_tag("btn_msg_up.png"), message_challenges_path(:id => @challenge) %>
+																							</td>
+																							<td width = "100px" id="search">
+																						    </td>
+																							<td width="240px">
+																							
+																							&nbsp;
+																											<select name="catSelect" id="catSelect" bgcolor="white"> 
+																												<option value="all"><b>All</b></option> 
+																												<option value="accepted"><b>Accpeted</b></option> 
+																												<option value="declined"><b>Declined</b></option> 
+																												<option value="pending"><b>Pending</b></option> 
+																											</select> 
+																													&nbsp;
+																										<input type="button" id="btnFilter" value="Filter"> 
+																								</td>
+															</tr>
+														</table>
+														<table  border="0" height="20px" bgcolor="gray"> 
+																			<tr bgcolor=#D7D7D7>
+																					<td>
+																							<b>NAME &nbsp;</b><%= image_tag ("down.PNG") %>
+																					</td>
+																					<td width="80px">
+																						       <font color=#A8A8A8>STATUS</font>
+																					</td>
+																			</tr>
+															</table>
+																				<div id="wrap">
+																	<h1 id="header"></h1>
+																	<table bgcolor="white">
+																			<tr>
+																					<td id="list">
+																						
+																						<% @challenge.child_challenges.each do |aTask| %>
+																								<p><%=image_tag FbGraph::User.new(aTask.user_id).fetch.picture %> <a href="#"  id="ahref"><%= FbGraph::User.new(aTask.user_id).fetch.name %></a>
+																							<span id="span">
+																						
+																								<% if aTask.user_id %>
+																										<% if aTask.social_type.status == 1  or  @challenge.user_id == aTask.user_id %>
+																														 <%= image_tag  "icon_accept.png"  %>
+																											<% else %>
+																												<% if aTask.social_type.status == 0 %>
+																														 <%= image_tag  "icon_thinking.png"  %>
+																												<% else %>
+																														 <%= image_tag "icon_decline.png"  %>
+																												<% end %>
+																										<% end %>
+																								 <%end%>	
+																
+																							</span>
+																						</p>
+																				<%end%>
+																				</td>
+																			</tr>	
+																	 </table>
+																</div> 
+<script>
+$(document).ready(function() 
+{ 
+    $("#btnFilter").click(function() 
+    { 
+        var selection = $("#catSelect").val(); 
+         if (selection == "all") 
+        { 
+            $(".item").show(); 
+        } 
+        else 
+        { 
+            $(".item").hide(); 
+            $("."+selection).show(); 
+        } 
+    }); 
+});
+</script>											
+																					
+																
+																
+																
+<style type="text/css">
+#span
+{ 
+float: right;
+width: 40px;
+} 
+ #ahref
+{					
+color:#000000;
+}
+</style>
+
+
+
+	
+
+																
+<script src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+<script>
+	(function ($) {
+	  jQuery.expr[':'].Contains = function(a,i,m){
+		  return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+	  };
+
+	  function listFilter(header, list) {
+		var form = $("<form>").attr({"class":"filterform","action":"#"}),
+			input = $("<input>").attr({"class":"filterinput","type":"text"});
+		$("#search").append($(form).append(input).appendTo(header));
+
+		$(input)
+		  .change( function () {
+			var filter = $(this).val();
+			if(filter) {
+			  $(list).find("a:not(:Contains(" + filter + "))").parent().slideUp();
+			  $(list).find("a:Contains(" + filter + ")").parent().slideDown();
+			} else {
+			  $(list).find("p").slideDown();
+			}
+			return false;
+		  })
+		.keyup( function () {
+			$(this).change();
+		});
+	  }
+
+	  $(function () {
+		listFilter($("#header"), $("#list"));
+	  });
+	}(jQuery));
+</script> 
 							<div id="fb-root"></div> 
 						</div>
 					</div>
