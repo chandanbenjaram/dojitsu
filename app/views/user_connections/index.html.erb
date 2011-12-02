@@ -9,7 +9,12 @@
 						<td width="470px">
 						</td>
 						<td>
-							<%= image_tag("invite.PNG")%>&nbsp;&nbsp;&nbsp;<font color="gray"> <b id="image"></b></font>
+						<div id="fb-root"></div>      
+<%#= form_for :challenge, :url => {:controller=> "challenges",:action => "create"},:html=>{:multipart => true, :name => "challenge_form", :onSubmit => "return validate_form_fields(this);"} do |f| -%>						
+						<%#= hidden_field_tag "myvar", 0%>					
+						<%#= render :partial => 'invitations'%>
+							<%= image_tag("invite.PNG")%>&nbsp;&nbsp;&nbsp;<font color="gray"> </font>
+	
 						</td>
 						<td>
 						</td>
@@ -29,21 +34,22 @@
 						<table border =5 bordercolor=#f4f4f4>
 							<tr>
 								<td width="100px">
-								<font color="#999999"><b>TROPHIES</b></font></td>
+								<!--<font color="#999999"><b>TROPHIES</b></font>--></td>
 								</td>
 								<td align="left">
-								 <font color="gray">No of trophies</font>
+								 <!--<font color="gray">No of trophies</font>-->
 								</td>
 							</tr>
 							</table>
-							<hr/>
+							
 							<table>
 					        <tr>
 								<td width="100px">
 								<font color="#999999"><b>MEMBER SINCE</b></font></td>
 								</td>
 								<td align="left">
-								<%= current_user.created_at  %>
+								<%  user = User.find(:all)%>
+								<%=%>
 								</td>
 							</tr>
 							</table>
@@ -87,7 +93,7 @@
 								<font color="#999999"><b>BIRTH DAY</b></font></td>
 								</td>
 								<td align="left" id="image3">
-								<%=  %>
+								<%= current_user.facebook.birthday %>
 								</td>
 							</tr>
 							</table>
@@ -98,7 +104,7 @@
 								<font color="#999999"><b>ABOUT ME</b></font></td>
 								</td>
 								<td align="left">
-								
+							
 								</td>
 							</tr>
 					</table>
@@ -125,7 +131,8 @@
     								<td>
 												<table bgcolor=#F4F4F4>
 													<tr bgcolor=#F4F4F4>
-														<td width="420px"><b  id="total">Total:<b id="invitee_count"></b>	<%=link_to image_tag("btn_msg_up.png"), message_challenges_path(:id => @challenge) %>
+														<td width="420px"><b  id="total">Total:<b id="invitee_count"></b>	<%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(orgId)" ) %>
+														
 														</td>
 														<td width="450px"><input type="text">&nbsp;
 															<select>
@@ -140,57 +147,11 @@
 													</tr>
 												</table>
 									
-<<<<<<< HEAD
     									<script type="text/javascript" src="../includes/js/jquery.min.js"></script>  
 										<script src="http://connect.facebook.net/en_US/all.js"></script>  
-											<div id="fb-root"></div> 
-												<table  border="0"> 
-													<tr bgcolor=#d7d7d7>
-														<td>
-															NAME
-														</td>
-														<td align="right">
-															<p align=right>STATUS</p>
-														</td>
-													</tr>
-													</table>
-													<table bgcolor="white">
-														<tr>
-														<td>
-														<div id="wrap">
-															<h1 id="header"></h1>
-															<table bgcolor="white">
-																<tr>
-																	<td id="list">                   
-																	  <% loop=current_user.challenges.length %>
-																		<% i=0 %>
-																		 <% for  i  in  0..loop %>
-																		   <%current_user.challenges.each do|user|%>
-																			  <% user.child_challenges. each do |id|%>
-																			  <table>
-																			  <tr>
-																			  <td>
-																				<%#=id.user_id %>
-																			  <%=image_tag(FbGraph::User.new(id.user_id).fetch.picture) %>
-																			 <b><%= FbGraph::User.new(id.user_id).fetch.name %></b>
-																			 </td>
-																			 </tr>
-																			 <tr>
-																			 <hr/>
-																			 </tr>
-																			 </table>
-																			 <% end %>
-																		 <% end %>
-																		 <% end %>
-																		 <%#= userId %>
-																		 
-																	</td>
-																</tr>	
-															 </table>
-=======
-
+												<div id="fb-root"></div> 
 														<table  border="0"> 
-															<tr bgcolor=#F4F4F4>
+															<tr bgcolor=#d7d7d7>
 																			<td>
 																				NAME
 																			</td>
@@ -198,28 +159,76 @@
 																				<p align=right>STATUS</p>
 																			</td>
 															</tr>
-															
-															<div id="friendslist">
-															
-															<tr> 
-															
-																
-																</tr> 
-															  
->>>>>>> e22c8aaf355ad54d79e8c8eae79fd5ea6a3c08ec
-															</div> 
+															</table>
+															<table bgcolor="white">
+															<tr>
+															<td>
+															<div id="wrap">
+																	<h1 id="header"></h1>
+																	<table bgcolor="white">
+																			<tr>
+																					<td id="list">
+																			
+																						<% loop=current_user.challenges.length %>
+																								<% i=0 %>
+																									<% for  i  in  0..loop %>
+																											<%current_user.challenges.each do|user|%>
+																											   <% user.child_challenges. each do |id|%>
+																											    <% title=id.title %>
+																											   <table width="720px">
+																											   <tr>
+																											   <td width="600px">
+																											    
+																											     <p><%id.user_id%></p>
+																												 <% user_ids= []  %> 
+																													<% user_ids<< id.user_id %>
+																												<%=image_tag(FbGraph::User.new(id.user_id).fetch.picture) %>
+																												 <b><%= FbGraph::User.new(id.user_id).fetch.name %></b>
+																												 </td>
+																												 <td width="120px">
+																												 <%= image_tag("btn_msg_up.png")%>
+																												<script>
+																														var orgId =  '<%=id.user_id%>';
+																													     
+																													</script>
+																													<% if  id.user_id %>
+																													
+																												<% else %>	
+																													<b id="user"></b>
+																									              <% end %>														
+																												 <%= image_tag("btn_delete_up.png") %>
+																												 </td>
+																												 </tr>
+																												 <tr>
+																												 <hr/>
+																												 </tr>
+																												 </table>
+																												 <% end %>
+																									<% end %>
+																									<% end %>
+																									<%#= userId %>
+																									
+																				</td>
+																			</tr>	
+																	 </table>
+																</div> 
+															</td>
+															<td>
+															</td>
+															</tr>
+														</table> 
 														</td>
-														<td>
-														</td>
-														</tr>
-													</table> 
-													</td>
-								
-								
-							</tr>
-						</table>  
-					</div>
-																
+									
+									
+  								</tr>
+							</table>  
+    					</div>
+						
+						
+							<div id="tab2" class="tab_content">
+       						gggggggggggggggg	  
+</div>
+	</div>															
 																
 <script>
 $(document).ready(function() 
@@ -238,9 +247,16 @@ $(document).ready(function()
         } 
     }); 
 });
+
+
 </script>											
-																					
-																
+																				
+<script>
+	function contactToOrganizer(orgId)
+	{
+		 $.dojitsu.renderSendBox (<%= "'"+title + "'" %>, fbCallback);	
+	}
+	</script>													
 																
 																
 <style type="text/css">
@@ -292,15 +308,23 @@ color:#000000;
 		listFilter($("#header"), $("#list"));
 	  });
 	}(jQuery));
+	
+
 </script> 					
 						
-    					<div id="tab2" class="tab_content">
-       						
-  
-</div>
+    				
 
+
+<script type="text/javascript" src="../includes/js/jquery.min.js"></script>  
+<script src="http://connect.facebook.net/en_US/all.js"></script>  
+<div id="fb-root"></div> 	
     <script>
-      window.fbAsyncInit();
+      FB.init({ 
+         appId  : '232592880122189', 
+         status : true, // check login status 
+         cookie : true, // enable cookies to allow the server to access the session 
+         xfbml  : true  // parse XFBML 
+         });
 		  FB.getLoginStatus(function(response) { 
              if (response.session)
             { 
@@ -346,6 +370,7 @@ $("#hometown").append(hometown);
 FB.api('/me', function(response) {
     var birthday = response.birthday;
 //$("#hometown").append(hometown);
+//alert(birthday);
 });
             }
     }); 					
