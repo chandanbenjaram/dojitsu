@@ -37,7 +37,25 @@
 									<tr style="CURSOR: pointer; cursor: hand;" onclick="location.href='<%= show_per_challenges_path(:id => userChallenge)  %>'" >
 										<td >
 											
-											<font size=4><b><%= userChallenge.title %></b></font><br><font size=2>by <b><%= current_user.facebook.first_name %></b></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
+											<font size=4><b><%= userChallenge.title %></b></font><br><font size=2>by 
+											
+											
+											
+											<% if userChallenge.instance_of?ChildChallenge %>
+											   <% @parentChallenge = Challenge.where(:_id => userChallenge.challenge_id).first%>
+											   <script>
+												var ordId = <%=  orgId = @parentChallenge.user_id %>
+											   </script>
+											   <b><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
+											<% else %>
+												<b><%= current_user.facebook.name %></b>
+											<% end %>
+											
+											
+											
+											
+											
+											</font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
 											<%if ( userChallenge.child_challenges.size <2 ) %> 
 												<%= userChallenge.child_challenges.size >0 ? userChallenge.child_challenges.size : 1  %> contestant<br>
 											<% else %>
@@ -164,7 +182,19 @@
 						</tr>
 					    <tr>
 							<td colspan="2">													
-								by<b> <%= current_user.facebook.first_name %></b>
+								by
+								
+								<% if anc.instance_of?ChildChallenge %>
+								   <% @parentChallenge = Challenge.where(:_id => anc.challenge_id).first%>
+								   <script>
+									var ordId = <%=  orgId = @parentChallenge.user_id %>
+								   </script>
+								   <b><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
+								<% else %>
+									<b><%= current_user.facebook.name %></b>
+								<% end %>
+								
+								
 							</td>
 						</tr>
 						<tr>
