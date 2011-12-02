@@ -1,12 +1,9 @@
 <html xmlns:fb="http://www.facebook.com/2008/fbml">
   <body>
  <%= javascript_include_tag('all')%>
-	
-	
-    <div id="fb-root"></div>
-    <script>
+	<script>
       // assume we are already logged in
-      FB.init({appId: '232592880122189', xfbml: true, cookie: true});
+       window.fbAsyncInit();
 
       FB.ui({
           method: 'send',

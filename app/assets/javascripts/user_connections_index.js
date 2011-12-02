@@ -39,12 +39,7 @@
 	  
 	  FB.Canvas.setSize({ width: 640, height: 480 });
 	
-      FB.init({
-        appId  : '232592880122189',
-        status : true,
-        cookie : true,
-        oauth: true
-      });
+     window.fbAsyncInit();
 
      
    

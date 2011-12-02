@@ -13,39 +13,5 @@
 //= require jquery-ui
 
 function dojoFBLogout(e){ 
-   	FB.logout();
+	FB.logout();
 };
-
-
-/*
-window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '232592880122189', // App ID
-      status     : true, // check login status
-      cookie     : true, // enable cookies to allow the server to access the session
-      oauth      : true, // enable OAuth 2.0
-      xfbml      : true  // parse XFBML
-    });
-
-    // Additional initialization code here
-	/* All the events registered */
-   /* FB.Event.subscribe('auth.login', function(response) {
-           // do something with response    
-   alert('loggedin...');
-           login();
-       });
-       FB.Event.subscribe('auth.logout', function(response) {
-           // do something with response                     
-   		alert('loggedOUT...');
-           logout();
-       });
-
-       FB.getLoginStatus(function(response) {
-           if (response.session) {
-   			alert('loggedinSESSION...');
-               // logged in and connected user, someone you know
-               login();
-   		}
-      });
-     };           
-*/
