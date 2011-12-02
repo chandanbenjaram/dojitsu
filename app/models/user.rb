@@ -33,6 +33,10 @@ class User < ActiveRecord::Base
   def password_required?
     (authentications.empty? || !password.blank?) && super
   end
+  
+  def inbox 
+    Message.all(conditions: { :to => fbauth.uid }, limit: 6).desc("created_at")
+  end
 
   def challenges 
     challenges = []

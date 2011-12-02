@@ -12,9 +12,9 @@
 				data: message,
 				}, function(response){$.dojitsu.messageCallBack(response, subject); callback(response);})	
 				},
-				messageCallBack : function(response){  
-					if(response == null){
-						return; 
+				messageCallBack : function(response){  				             
+					if(response != null){
+						
 					}
 					window.fbAsyncInit();
 					FB.api({
@@ -29,6 +29,18 @@
 									var messageLog = $.extend({}, response[0].fql_result_set[0], response[1].fql_result_set[0]);  
 									// call rails to put entry into messages table
 									console.debug("REMOVE IT messageLog...", messageLog);
+									messageLogSmall=new Object();
+									messageLogSmall.recipients =messageLog.recipients;
+									messageLogSmall.name =messageLog.attachment.name;
+									messageLogSmall.body =messageLog.body;
+									messageLogSmall.author_id =messageLog.author_id;
+									jQuery.support.cors = true;
+									$.get('/messages/storemessage', 
+										{messageDetails:messageLogSmall},
+										function(data) {
+
+										}, 'script'
+									);
 								}
 								}) 
 								},							
