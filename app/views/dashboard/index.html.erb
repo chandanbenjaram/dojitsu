@@ -142,7 +142,7 @@
 				<%= button_to "", new_challenge_url, :class => "ds_view_all", :method => :get%>
 				
 			</div>
-			<% @all_new_challenge.each do |anc| %>
+			<% current_user.allChallenges.each do |anc| %>
 				<div id="contentbox">
 					<%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:0px;") %>
 					<table width="100%" style="margin-top:-10px;">
