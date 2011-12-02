@@ -112,16 +112,32 @@
 									<%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
 								</div>
 							</div>
-							<div id="subbar">
-								<div id="name">
-									FROM
-								</div>
-								<div id="score">
-									TIME
-								</div>
+							<div id="challengedetails">
+								
+							<div>
+								<table class="sortable">
+								<thead>
+								  <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">FROM</th><th style="CURSOR: pointer; cursor: hand;" id="content2">TIME</th></tr>
+								</thead>
+								<tbody>
+									<% current_user.inbox.each do |userMessage| %>
+									<tr>
+										<td width="10%">
+											<%=image_tag(FbGraph::User.new(userMessage.from).fetch.picture) %>																			
+										</td>
+										<td width="88%">
+											<font size="3px" style="float:right"><%= time_ago_in_words userMessage.created_at %></font>
+											<font size="4px" style="font-weight:bold"><%= userMessage.subject %></font></br>
+											<font size="3px"><%=h truncate(userMessage.body, :length => 55) %>..</font></br>										</td>
+									</td>
+									</tr>
+									
+									<% end %>
+									</tbody>
+								</table>		
 							</div>
-							<%= render :partial => "messages/message" %>
 						</div>
+						
 					</div>
 				</td>
 			</tr>

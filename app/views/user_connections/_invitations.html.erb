@@ -1,6 +1,5 @@
 <%= stylesheet_link_tag('3rdparty/jquery.facebook.multifriend.select.css', '3rdparty/jquery-ui-1.8.16.custom.css', 'challenges.css')%>
 <%= javascript_include_tag('jquery.facebook.multifriend.select') %>
-<%= form_for :challenge, :url => {:controller=> "challenges",:action => "create"},:html=>{:multipart => true, :name => "challenge_form", :onclick=> "return validate_form_fields(this);"} do |f| -%>
 <p>            
 	<input id = "inviteBtn" type="button" value="INVITE PARTICIPANTS" class="links_invite_p"/>
 	<%= text_field_tag :invitees, nil , :id => "invitees_id", :class=> "hidden" %>
@@ -9,7 +8,7 @@
 		</div>
 	</div>
 </p>                             
-<% end %>
+
 <script type="text/javascript" charset="utf-8">        
 (function($j) { 
 	var selectorObz = {    
@@ -43,5 +42,6 @@
 			}
 		});
 	})          
-})(jQuery);                              
-</script>	
+
+	})(jQuery);                              
+	</script>	

@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css')%>
-<%= javascript_include_tag('simple-tabs','all','jquery.table.addrow','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.hoverIntent','jquery.cluetip','challenge_new')%>
+<%= javascript_include_tag('simple-tabs','all','jquery.table.addrow','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.cluetip','challenge_new')%>
 <%= render 'layouts/loggedinbody'%>
 
 <div class="topbar">
@@ -94,6 +94,10 @@
 								</td>
 								<td align="left" id="image3">
 								<%= current_user.facebook.birthday %>
+								<% if current_user.facebook.birthday == nil %>
+								<% dob = "01-jan-1986" %>
+								<%= dob %>
+								<% end %>
 								</td>
 							</tr>
 							</table>
@@ -104,7 +108,11 @@
 								<font color="#999999"><b>ABOUT ME</b></font></td>
 								</td>
 								<td align="left">
-							
+							     <%= current_user.facebook.about %>
+								<% if current_user.facebook.about == nil %>
+								<% about = "about your self #{current_user.facebook.name}"%>
+								<%= about %>
+								<% end %>
 								</td>
 							</tr>
 					</table>
@@ -147,8 +155,8 @@
 													</tr>
 												</table>
 									
-    									<script type="text/javascript" src="../includes/js/jquery.min.js"></script>  
-										<script src="http://connect.facebook.net/en_US/all.js"></script>  
+    									 
+								 
 												<div id="fb-root"></div> 
 														<table  border="0"> 
 															<tr bgcolor=#d7d7d7>
@@ -174,14 +182,14 @@
 																									<% for  i  in  0..loop %>
 																											<%current_user.challenges.each do|user|%>
 																											   <% user.child_challenges. each do |id|%>
-																											    <% title=id.title %>
+																											   <% title=id.title %>
+																											   	   
 																											   <table width="720px">
 																											   <tr>
 																											   <td width="600px">
 																											    
-																											     <p><%id.user_id%></p>
-																												 <% user_ids= []  %> 
-																													<% user_ids<< id.user_id %>
+																											     <%id.user_id%>																												 
+																											
 																												<%=image_tag(FbGraph::User.new(id.user_id).fetch.picture) %>
 																												 <b><%= FbGraph::User.new(id.user_id).fetch.name %></b>
 																												 </td>
@@ -226,7 +234,7 @@
 						
 						
 							<div id="tab2" class="tab_content">
-       						gggggggggggggggg	  
+       						challenges tab.........	  
 </div>
 	</div>															
 																
@@ -315,8 +323,7 @@ color:#000000;
     				
 
 
-<script type="text/javascript" src="../includes/js/jquery.min.js"></script>  
-<script src="http://connect.facebook.net/en_US/all.js"></script>  
+ 
 <div id="fb-root"></div> 	
     <script>
       FB.init({ 
@@ -369,7 +376,8 @@ $("#hometown").append(hometown);
 });
 FB.api('/me', function(response) {
     var birthday = response.birthday;
-//$("#hometown").append(hometown);
+	
+//$("#image3").append(birthday);
 //alert(birthday);
 });
             }
