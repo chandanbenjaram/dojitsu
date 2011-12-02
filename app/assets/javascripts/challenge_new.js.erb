@@ -11,22 +11,20 @@ $(document).ready(function($) {
 			var div_tag = $('<div id="space"></div>');		
 			if($(this).val() === "startPointNumber") {  
 				$(div_tag).append($('<input id="start_point_value"  name="start_point_value" class="textfield_effect" type="text" required="required" placeholder="enter number here">'));								
-<<<<<<< HEAD
-			   
-=======
 
->>>>>>> e22c8aaf355ad54d79e8c8eae79fd5ea6a3c08ec
+			   
+
 				$(div_tag).append('&nbsp;&nbsp;');
 				$(div_tag).append($('<input id="start_point_label" name="start_point_label" class="textfield_effect" type="text" placeholder="enter label here" >'));				
 				$('#end_point_type option[value="endPointNumber"]').attr('selected','selected').trigger('change');    
 			}else{
 				$(div_tag).append('<input id="start_point_value"  name="start_point_value" class="textfield_effect datepicker" type="text" required="required" placeholder="enter date here">');				
-<<<<<<< HEAD
+
 				$('#end_point_type option[value="endPointDate"]').attr('selected','selected').trigger('change');    
 				
-=======
 
->>>>>>> e22c8aaf355ad54d79e8c8eae79fd5ea6a3c08ec
+
+
 			}
 			$(".textfield_effect datepicker").append('&nbsp;&nbsp;');
 
