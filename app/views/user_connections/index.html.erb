@@ -40,7 +40,7 @@
 								<font color="gray"><b>MEMBER SINCE</b></font></td>
 								</td>
 								<td align="left">
-								<%=  %>
+								<%= current_user.created_at  %>
 								</td>
 							</tr>
 							<tr>
@@ -48,7 +48,7 @@
 								<font color="gray"><b> CURRENT CITY</b></font></td>
 								</td>
 								<td align="left">
-								<%=  %>
+								<%=  FbGraph::User.new(100000018823471).fetch.hometown %>
 								</td>
 							</tr>
 							<tr>
@@ -181,9 +181,9 @@
                                     {
 									FB.api({
 														method: 'fql.query',
-                                                         query: 'SELECT name,pic_square,sex,birthday FROM user WHERE uid=' + name
+                                                         query: 'SELECT name,pic_big,sex,birthday FROM user WHERE uid=' + name
                                                         }, function(response){                                                               
-                                                                htmlcontent = '<img src=' + response[0].pic_square+ ' />';
+                                                                htmlcontent = '<img src=' + response[0].pic_big+ ' />';
 																htmlcontent1=response[0].name
 																htmlcontent2=response[0].sex
 																htmlcontent3=response[0].birthday
