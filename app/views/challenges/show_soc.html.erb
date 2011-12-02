@@ -139,7 +139,12 @@ function fbCallback(response){
 					<b><font color= #909090>PARTICIPANTS</b></font>
 				</td>
 				<td>
+				<% if @challenge.social_type.status == 1 %>
 					<b><%= @challenge.child_challenges.length %></b>
+				<% else %>
+						<b><%= @challenge.parent.child_challenges.length %></b>
+					<% end %>
+					
 				</td>
 			</tr>
 		</table>
