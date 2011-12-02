@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css')%>
 
-<%= javascript_include_tag('simple-tabs','all','on_the_spot','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.cluetip','challenge_new', 'jquery.table.addrow','messages')%>
+<%= javascript_include_tag('simple-tabs','on_the_spot','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.cluetip','challenge_new', 'jquery.table.addrow','messages')%>
 <%= render 'layouts/loggedinbody'%>
 
 <% if !@challenge.child_challenges.blank? && userIds = []%>
@@ -17,7 +17,6 @@ $.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+userIds.join(
 
 function fbCallback(response){
 	if(response == null){
-		console.info('dont update child challenges');
 	} else
 	{
 		var srt = '<%= params[:id] %>';
@@ -75,7 +74,7 @@ function fbCallback(response){
 						<b><font color= #909090>ORGANIZER</font></b>
 					</td>
 					<td >
-						<% if @challenge.class.to_s == "ChildChallenge" %>
+						<% if @challenge.instance_of?ChildChallenge %>
 							<%  @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
 							<script>
 								var ordId = <%=  orgId = @parentChallenge.user_id %>
@@ -86,7 +85,7 @@ function fbCallback(response){
 						<% end %>	
 					</td>
 					<td width="100px">
-						<% if @challenge.class.to_s == "ChildChallenge" %>
+						<% if @challenge.instance_of?ChildChallenge %>
 							<%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(ordId)" ) %>
 						<% end %>
 					</td>
@@ -151,7 +150,7 @@ function fbCallback(response){
 				<td>
 
 				
-				<% if @challenge.social_type.status == 1 &&  @challenge.class.to_s == "ChildChallenge" %>
+				<% if @challenge.social_type.status == 1 and  (@challenge.instance_of?ChildChallenge)%>
 						<b><%= @challenge.parent.child_challenges.length %></b>
 					<% else %>
 							<% if @challenge.social_type.status == 1 %>
@@ -187,7 +186,7 @@ function fbCallback(response){
 								<tr bgcolor=#F4F4F4>
 									<td width="120px">
 										<b  id="total">Total: <%= @challenge.child_challenges.length %></b>
-										<% if @challenge.class.to_s == "Challenge" %>
+										<% if @challenge.instance_of?Challenge %>
 											<%= image_tag("btn_msg_up.png", :style=>"margin-left:10px; position:relative; top:5px;" ,:onclick=>"contactToInvitee()")%>
 										<% end %>
 									</td>
@@ -412,7 +411,7 @@ $(function() {
 		background:#ffffff;
 	}
 </style>
-<% if @challenge.class.to_s == "ChildChallenge" %>
+<% if @challenge.instance_of?ChildChallenge %>
 <script>
 	function contactToOrganizer(orgId)
 	{
@@ -422,7 +421,7 @@ $(function() {
 <% end %>
 
 <!--
-<% if @challenge.class.to_s == "ChildChallenge" %>
+<% if @challenge.instance_of?ChildChallenge %>
 	<%= parentId = @challenge.user_id %>
 	<% inviteeChildIds = [] %>
 	<% for aParentChild in @challenge.parent.child_challenges %>
