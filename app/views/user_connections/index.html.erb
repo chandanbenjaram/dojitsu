@@ -10,10 +10,7 @@
 						</td>
 						<td>
 						<div id="fb-root"></div>      
-<%#= form_for :challenge, :url => {:controller=> "challenges",:action => "create"},:html=>{:multipart => true, :name => "challenge_form", :onSubmit => "return validate_form_fields(this);"} do |f| -%>						
-						<%#= hidden_field_tag "myvar", 0%>					
-						<%#= render :partial => 'invitations'%>
-							<%= image_tag("invite.PNG")%>&nbsp;&nbsp;&nbsp;<font color="gray"> </font>
+							<%= image_tag("invite.PNG")%>&nbsp;&nbsp;&nbsp;<font color="gray"> <b  id="image"></b></font>
 	
 						</td>
 						<td>
@@ -139,10 +136,10 @@
     								<td>
 												<table bgcolor=#F4F4F4>
 													<tr bgcolor=#F4F4F4>
-														<td width="420px"><b  id="total">Total:<b id="invitee_count"></b>	<%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(orgId)" ) %>
+														<td width="220px"><b >Total:	<b id="total"></b><%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(orgId)" ) %>
 														
 														</td>
-														<td width="450px"><input type="text">&nbsp;
+														<td width="550px"><input class="text_field" type="text">&nbsp;
 															<select>
 															<option value="volvo">ALL</option>
 															<option value="saab">ACCEPTED</option>
@@ -151,7 +148,13 @@
 															</select> 
 															<%= image_tag ("search_it.PNG") %>
 															</td>
-															
+															<style>
+															.text_field
+															{
+															width :200px;
+															height:25px;
+															}
+															</style>
 													</tr>
 												</table>
 									
@@ -175,35 +178,37 @@
 																	<h1 id="header"></h1>
 																	<table bgcolor="white">
 																			<tr>
-																					<td id="list">
-																			
+																					
+																			          <% arr = Array.new %>
 																						<% loop=current_user.challenges.length %>
 																								<% i=0 %>
 																									<% for  i  in  0..loop %>
 																											<%current_user.challenges.each do|user|%>
+																											 
 																											   <% user.child_challenges. each do |id|%>
 																											   <% title=id.title %>
-																											   	   
-																											   <table width="720px">
+																											     <%id.user_id%>	
+																											   	   <% length = id.user_id.length %>
+																												      <% arr.push(id.user_id) %>
+																													   		 <% end %>
+																												
+																									<% end %>
+																											   																									    
+																									<% end %>																							 
+																										<% arr.uniq! %>
+																										<script>
+																												 total= '<%=arr.length %>';
+																												 $("#total").append(total);
+																												</script>
+																										<% arr.each do|x|  %>
+																												<table width="720px">
 																											   <tr>
-																											   <td width="600px">
-																											    
-																											     <%id.user_id%>																												 
-																											
-																												<%=image_tag(FbGraph::User.new(id.user_id).fetch.picture) %>
-																												 <b><%= FbGraph::User.new(id.user_id).fetch.name %></b>
-																												 </td>
+																											   <td width="600px">		
+																												<%=image_tag(FbGraph::User.new(x).fetch.picture) %>
+																												 <b><%= FbGraph::User.new(x).fetch.name %></b>
+																												</td>
 																												 <td width="120px">
-																												 <%= image_tag("btn_msg_up.png")%>
-																												<script>
-																														var orgId =  '<%=id.user_id%>';
-																													     
-																													</script>
-																													<% if  id.user_id %>
-																													
-																												<% else %>	
-																													<b id="user"></b>
-																									              <% end %>														
+																												 <%= image_tag("btn_msg_up.png")%>  																											  
 																												 <%= image_tag("btn_delete_up.png") %>
 																												 </td>
 																												 </tr>
@@ -211,11 +216,7 @@
 																												 <hr/>
 																												 </tr>
 																												 </table>
-																												 <% end %>
-																									<% end %>
-																									<% end %>
-																									<%#= userId %>
-																									
+																										<% end %>																
 																				</td>
 																			</tr>	
 																	 </table>
@@ -354,8 +355,8 @@ color:#000000;
 																htmlcontent1=response[0].name
 																htmlcontent2=response[0].sex
 																htmlcontent3=response[0].birthday
-																length=response.length
-																$("#invitee_count").append(length);   
+																
+																  
 
 
 																$("#image").append(htmlcontent1);   
