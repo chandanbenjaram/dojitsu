@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   end
   
   def allChallenges
-	Challenge.desc("DISTINCT(created_at)").limit(3)
+	Challenge.find(:all).desc("created_at").limit(3)
   end	
 	
   def password_required?

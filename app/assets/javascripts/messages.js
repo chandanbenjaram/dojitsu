@@ -10,16 +10,19 @@
 				text: message,
 				message: message,
 				data: message,
-				}, function(response){$.dojitsu.messageCallBack(response, subject); callback(response);})	
+				}, function(response){
+					$.dojitsu.messageCallBack(response, subject); 
+					if(callback && typeof callback === 'function'){
+						alert('call back is a function');
+						callback(response);
+						};
+					})	
 				},
 				messageCallBack : function(response){  				             
-					if(response != null){
-						
-					}
 					window.fbAsyncInit();
 					FB.api({
 						method: 'fql.multiquery',
- 						return_ssl_resources: 1,
+						return_ssl_resources: 1,
 						queries: {
 							"mThreadQ" : "SELECT thread_id, recipients, subject, snippet FROM thread WHERE folder_id = 1 order by updated_time desc limit 1", 
 							"mMessageQ": "SELECT author_id, created_time, body, attachment FROM message WHERE viewer_id = me() and thread_id IN (SELECT thread_id from #mThreadQ)"
@@ -28,7 +31,6 @@
 								if(response && response[0] && response[1]){
 									var messageLog = $.extend({}, response[0].fql_result_set[0], response[1].fql_result_set[0]);  
 									// call rails to put entry into messages table
-									console.debug("REMOVE IT messageLog...", messageLog);
 									messageLogSmall=new Object();
 									messageLogSmall.recipients =messageLog.recipients;
 									messageLogSmall.name =messageLog.attachment.name;
@@ -36,27 +38,27 @@
 									messageLogSmall.author_id =messageLog.author_id;
 									jQuery.support.cors = true;
 									$.get('/messages/storemessage', 
-										{messageDetails:messageLogSmall},
-										function(data) {
+									{messageDetails:messageLogSmall},
+									function(data) {
 
 										}, 'script'
-									);
-								}
-								}) 
-								},							
+										);
+									}
+									}) 
+									},							
 
-								renderAppReqBox : function(name, to, link, message){
-									window.fbAsyncInit();
-									FB.ui({
-										method: 'apprequest',  
-										to: to,
-										name: name,
-										link: link,
-										text: message,
-										message: message,
-										data: message		
-										});	
-										},
-									};
+									renderAppReqBox : function(name, to, link, message){
+										window.fbAsyncInit();
+										FB.ui({
+											method: 'apprequest',  
+											to: to,
+											name: name,
+											link: link,
+											text: message,
+											message: message,
+											data: message		
+											});	
+											},
+										};
 
-									})(jQuery);				
+										})(jQuery);				
