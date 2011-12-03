@@ -37,7 +37,25 @@
 									<tr style="CURSOR: pointer; cursor: hand;" onclick="location.href='<%= show_per_challenges_path(:id => userChallenge)  %>'" >
 										<td >
 											
-											<font size=4><b><%= userChallenge.title %></b></font><br><font size=2>by <b><%= current_user.facebook.first_name %></b></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
+											<font size=4><b><%= userChallenge.title %></b></font><br><font size=2>by 
+											
+											
+											
+											<% if userChallenge.instance_of?ChildChallenge %>
+											   <% @parentChallenge = Challenge.where(:_id => userChallenge.challenge_id).first%>
+											   <script>
+												var ordId = <%=  orgId = @parentChallenge.user_id %>
+											   </script>
+											   <b><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
+											<% else %>
+												<b><%= current_user.facebook.name %></b>
+											<% end %>
+											
+											
+											
+											
+											
+											</font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
 											<%if ( userChallenge.child_challenges.size <2 ) %> 
 												<%= userChallenge.child_challenges.size >0 ? userChallenge.child_challenges.size : 1  %> contestant<br>
 											<% else %>
@@ -106,25 +124,35 @@
 						<div class="mychallenge">
 							<div id="titlechallenge">
 								<div id="title">
-									NEW MESSAGES 
+									NEW MESSAGES <font style="color:#fff">( <%= current_user.inbox.count %> )</font>
 								</div>
 								<div class="second_titlechallenge">
 									<%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
 								</div>
 							</div>
-							<div id="subbar">
-								<div id="name">
-									FROM
-								</div>
-								<div id="score">
-									TIME
-								</div>
-							</div>
+							<div id="challengedetails">
+								
 							<div>
+								<table class="sortable">
+								<thead>
+								  <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">FROM</th><th style="CURSOR: pointer; cursor: hand;" id="content2">TIME</th></tr>
+								</thead>
+								<tbody>
+									<% current_user.inbox.each do |userMessage| %>
+									<tr>
+										<td width="10%">
+											<%=image_tag(FbGraph::User.new(userMessage.from).fetch.picture) %>																			
+										</td>
+										<td width="88%">
+											<font size="3px" style="float:right"><%= time_ago_in_words userMessage.created_at %></font>
+											<font size="4px" style="font-weight:bold"><%= userMessage.subject %></font></br>
+											<font size="3px"><%=h truncate(userMessage.body, :length => 55) %>..</font></br>										</td>
+									</td>
+									</tr>
 									
-											
-										
-											
+									<% end %>
+									</tbody>
+								</table>		
 							</div>
 						</div>
 						
@@ -142,7 +170,7 @@
 				<%= button_to "", new_challenge_url, :class => "ds_view_all", :method => :get%>
 				
 			</div>
-			<% @all_new_challenge.each do |anc| %>
+			<% current_user.allChallenges.each do |anc| %>
 				<div id="contentbox">
 					<%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:0px;") %>
 					<table width="100%" style="margin-top:-10px;">
@@ -154,7 +182,19 @@
 						</tr>
 					    <tr>
 							<td colspan="2">													
-								by<b> <%= current_user.facebook.first_name %></b>
+								by
+								
+								<% if anc.instance_of?ChildChallenge %>
+								   <% @parentChallenge = Challenge.where(:_id => anc.challenge_id).first%>
+								   <script>
+									var ordId = <%=  orgId = @parentChallenge.user_id %>
+								   </script>
+								   <b><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
+								<% else %>
+									<b><%= current_user.facebook.name %></b>
+								<% end %>
+								
+								
 							</td>
 						</tr>
 						<tr>

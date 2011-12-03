@@ -1,23 +1,36 @@
 
+<%= stylesheet_link_tag('jquery-ui', 'ui.core','ui.progressbar','ui.theme', 'main')%>
+
+<%= javascript_include_tag('ui.progressbar','soc-per')%>
+
+<%= javascript_include_tag('ui.progressbar')%>
+<%= stylesheet_link_tag('jquery-ui', 'ui.core','ui.progressbar','ui.theme', 'main')%>
+
+
+
 <table width="100%" border="1" bgcolor=#f4f4f4 >
 	<tr bgcolor=#f5f5f5>
 		<th width="85%">
 			<h3 align="left"><font color="#8c8c8c"><b>Total : <%= @challenge.tasks.count %></b></font></h3>
 		</th>
 		<% t=0 %>
+		
 		<% @challenge.child_challenges.each do |aTask| %>
 			<% if aTask.user_id == @challenge.user_id %>
 				<% t+=1 %>
 			<%end%>
 		<%end%>
+		
+		
 		<% if t != 1 %>
 			<th width="3%">	</th>
 			<th width="12%">
-				<% if @challenge.social_type.status == 1 %>
+				<% if @challenge.social_type.status == 1 and !(@challenge.instance_of?ChildChallenge)%>
 					<%= link_to image_tag("icon_edit.png", :style =>"margin-top:3px; float:right" ), show_soc_challenges_path(:id => @challenge, :flg => "ed") %>
 				<% end %>	
 			</th>
 		<% end %> 
+		
 	</tr>
 	<tr bgcolor=#D7D7D7>
 		<td width="85%">
@@ -30,10 +43,14 @@
 	</tr>
 	<% total_score = 0 %>
 	<% total_score_count = 0 %>
+	<% total = 0 %>
 	<% @challenge.tasks.each do |aTask| %>
+	<% total += aTask.score.to_i %>
 		<tr bgcolor=#ffffff>
 			<td colspan="3"  id="mytable" >
+			
 				<% if aTask.is_complete.to_i == 0 %>
+				
 					<div id="task_list">
 						<p style="float:left; margin-top:15px;">
 							<%= aTask.score %> 
@@ -42,53 +59,135 @@
 						<p style="float:left;  margin-top:15px; margin-left:5px;">
 							<%= aTask.name %>
 						</p>
+						
 						<div class="showperscore_0">
+						
 							<% if @challenge.social_type.status == 1 %>
-								<%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => "text-decoration: underline;" %>
+								<%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => " text-decoration: underline;" %>
 							<% else %>
 								<font style="color:black">0</font>
 							<% end %>
 						</div>
 					</div>
+					
+					
 				<% else %>	
+				
 					<div id="task_list">
 						<% total_score_count +=1 %>
 						<p style="float:left; margin-top:15px;"><%= aTask.score %> <%= image_tag("icon_slash.png", :height => '10', :width => '5')%></p><p style="float:left; margin-top:15px; margin-left:5px; text-decoration:line-through;"><%= aTask.name %></p>
 					<div class="showperscore"><%= aTask.score %></div>
 						<% total_score += aTask.score.to_i %>
 					</div>
+					
 				<% end %>
+				
 				<hr/ width=400px>																																	
 			</td>
 		</tr>
 	<% end %>
+	
 	<tr bgcolor=#f4f4f4>
 		<td colspan="3"></td>
 	</tr>
 </table>
+
 <table bgcolor=#f4f4f4>
-	<tr bgcolor=#ffffff>
-		<td colspan="2" >
-			My Dojitsu score: <br>					  
-			<b><h4><font color="green"><%= total_score_count %></b></font> <font color="black"><b>completed,</b></font>
-			<b><font color="orange"><%= @challenge.tasks.count.to_i-total_score_count.to_i %></b></font> <font color="black"><b>remaining</b></font></h4>
-		</td>
-		<td width="13%">
-			<div class="showperscore"><%= total_score %></div>						
-		</td>
-	</tr>
-	<tr bgcolor=#ffffff>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<% unless @challenge.is_complete == 1 %>
+	
+	<% if @challenge.social_type.status == 1 %>
+	
 		<tr bgcolor=#f4f4f4>
-			<td></td>
-			<td colspan="2">
-				<%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"%>
-			</td>
+				<div>
+				My Dojitsu score: <br>
+				<div class="task" id="taskprogress"></div>
+				<div class="showperscore1"><%= total_score %></div>	
+				<style>
+					.task
+					{
+						width:625px;
+						}
+					</style>
+					<div id="check3">
+						<div class="completedtask1"> 
+								<%= total_score %> points (<%= total_score_count %> &nbsp; tasks)
+						</div>
+						<div class="notcompleted1">
+									<font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="#fff"><%= (total-total_score) %> points (<%= @challenge.tasks.count.to_i-total_score_count.to_i %>&nbsp; tasks)</font>
+						</div>
+						
+						<script type="text/javascript">
+								$(function() {
+									$("#taskprogress").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });							
+									$("<p>").attr("id", "check5").text($("#taskprogress").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress");
+								});
+						</script>
+						<style>
+											#check5 {
+						color: #7AC142;
+						font-size: 15px;
+						position: relative;
+						top: 20px;
+							}
+							.challenge_mark_as_c1 {
+								background: none repeat scroll 0 0 #999999;
+								display: block;
+								font-size: 12px;
+								left: 30px;
+								padding: 5px;
+								position: relative;
+								text-align: center;
+								text-transform: uppercase;
+								width: 175px;
+							}
+						</style>
+						<%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c1"%>
+					</div>
 		</tr>
+	<% else %>
+	<tr bgcolor=#f4f4f4>
+				<div>
+				My Dojitsu score: <br>
+				<div class="task" id="taskprogress"></div>
+				<div class="showperscore1"><%= total_score %></div>	
+				<style>
+					.task
+					{
+						width:625px;
+						}
+					</style>
+					<div id="check3">
+						
+						
+						<script type="text/javascript">
+								$(function() {
+									$("#taskprogress").progressbar({ value: 0});							
+									$("<p>").attr("id", "check6").text( "A good start is half done.let's get this started!   ").appendTo("#taskprogress");
+								});
+						</script>
+						<style>
+											#check6 {
+						color: #fff;
+						font-size: 15px;
+						position: relative;
+						top: 40px;
+						left:10px;
+						font-weight:bold;
+							}
+							.acceptimage
+							{
+							position:relative;
+							left:595px;
+							top:15px;
+							}
+							
+						</style>
+						<div class="acceptimage">
+						<%= link_to image_tag("accepted.png"), update_status_challenges_path(:id => @challenge, :status=> 1) %>
+						</div>
+					</div>
+		</tr>
+	  
+	
 	<% end %>
 </table>
 

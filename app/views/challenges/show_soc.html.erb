@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css')%>
 
-<%= javascript_include_tag('simple-tabs','all','on_the_spot','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.cluetip','challenge_new', 'jquery.table.addrow','messages')%>
+<%= javascript_include_tag('simple-tabs','on_the_spot','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.cluetip','challenge_new', 'jquery.table.addrow','messages')%>
 <%= render 'layouts/loggedinbody'%>
 
 <% if !@challenge.child_challenges.blank? && userIds = []%>
@@ -17,7 +17,6 @@ $.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+userIds.join(
 
 function fbCallback(response){
 	if(response == null){
-		console.info('dont update child challenges');
 	} else
 	{
 		var srt = '<%= params[:id] %>';
@@ -75,10 +74,20 @@ function fbCallback(response){
 						<b><font color= #909090>ORGANIZER</font></b>
 					</td>
 					<td >
-						<b id="user"></b>
+						<% if @challenge.instance_of?ChildChallenge %>
+							<%  @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
+							<script>
+								var ordId = <%=  orgId = @parentChallenge.user_id %>
+							</script>
+							<b><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
+						<% else %>	
+							<b id="user"></b>
+						<% end %>	
 					</td>
 					<td width="100px">
-						<%=link_to image_tag("btn_msg_up.png"), message_challenges_path(:id => @challenge) %>
+						<% if @challenge.instance_of?ChildChallenge %>
+							<%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(ordId)" ) %>
+						<% end %>
 					</td>
 				</tr>
 				<tr>
@@ -139,7 +148,20 @@ function fbCallback(response){
 					<b><font color= #909090>PARTICIPANTS</b></font>
 				</td>
 				<td>
-					<b><%= @challenge.child_challenges.length %></b>
+
+				
+				<% if @challenge.social_type.status == 1 and  (@challenge.instance_of?ChildChallenge)%>
+						<b><%= @challenge.parent.child_challenges.length %></b>
+					<% else %>
+							<% if @challenge.social_type.status == 1 %>
+								<b><%= @challenge.child_challenges.length %></b>
+							<% else %>
+								<b><%= @challenge.parent.child_challenges.length %></b>
+							<% end %>
+				<% end %>
+					
+
+
 				</td>
 			</tr>
 		</table>
@@ -162,8 +184,15 @@ function fbCallback(response){
 						<div id="tab2" class="tab_content">
 							<table width="100%" border="0" height="40px">
 								<tr bgcolor=#F4F4F4>
-									<td width="120px"><b  id="total">Total:<%= @challenge.child_challenges.length %></b><%=link_to image_tag("btn_msg_up.png"), message_challenges_path(:id => @challenge) %></td>
-									<td width = "400px"><input type="text">&nbsp;
+									<td width="120px">
+										<b  id="total">Total: <%= @challenge.child_challenges.length %></b>
+										<% if @challenge.instance_of?Challenge %>
+											<%= image_tag("btn_msg_up.png", :style=>"margin-left:10px; position:relative; top:5px;" ,:onclick=>"contactToInvitee()")%>
+										<% end %>
+									</td>
+									<td width = "100px" id="search">
+									</td>
+									<td width="300px">
 										<select>
 											<option value="volvo">ALL</option>
 											<option value="saab">ACCEPTED</option>
@@ -175,6 +204,13 @@ function fbCallback(response){
 										</td>
 								</tr>
 							</table>
+													<style>
+															.filterinput
+															{
+															width :200px;
+															height:25px;
+															}
+															</style>
 							<table  border="0" height="20px" bgcolor="gray"> 
 								<tr bgcolor=#D7D7D7>
 									<td>
@@ -185,38 +221,101 @@ function fbCallback(response){
 									</td>
 								</tr>
 								</table>
-								<table id="friendslist1">
-								<tr>
-									<td>
-										<div id="friendslist"></div> 
-									<td>
-									<td>
-										<div id="friendsstatus"></div>
-									</td>
-								</tr>
-							</table>
-							<style>
-								#friendslist1
-								{
-									width:680px;
-									background:#ffffff;
-								}
-							</style>													
-							<div id="fb-root"></div> 
-						</div>
-					</div>
-				</td>
-			</tr>
-		</table>  
-	</div>							
+								<div id="wrap">
+																	<h1 id="header"></h1>
+																	<table bgcolor="white">
+																			<tr>
+																					<td id="list">
+																						<%if @challenge.parent .nil? %>
+																							<% childChallenges =  @challenge.child_challenges %>
+																							<%else%>
+																								<%childChallenges =  @challenge.parent.child_challenges %>
+																					     <%end%>                      
+																			<% childChallenges.each do |aChildChallenge| %>
+																				<p><%=image_tag FbGraph::User.new(aChildChallenge.user_id).fetch.picture %> <a href="#"  id="ahref"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></a>
+																			<span id="status_icon"> 
+																						<% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 %>
+																								<%= image_tag  "icon_thinking.png"  %>
+																						<% elsif aChildChallenge.social_type.status == 1 %>
+																								<%= image_tag  "icon_accept.png"  %>
+																						<% else %>
+																									<%= image_tag "icon_decline.png"  %>
+																						<% end %>
+																						<% end %>                    
+																				</span> 
+																						</p>
+																				
+																				</td>
+																			</tr>	
+																	 </table>
+																</div> 
+													</div>	
+<script>
+$(document).ready(function() 
+{ 
+    $("#btnFilter").click(function() 
+    { 
+        var selection = $("#catSelect").val(); 
+         if (selection == "all") 
+        { 
+            $(".item").show(); 
+        } 
+        else 
+        { 
+            $(".item").hide(); 
+            $("."+selection).show(); 
+        } 
+    }); 
+});
+</script>																											
+<style type="text/css">
+#status_icon
+{ 
+float: right;
+width: 40px;
+} 
+ #ahref
+{					
+color:#000000;
+}
+</style>																
+<script src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+<script>
+	(function ($) {
+	  jQuery.expr[':'].Contains = function(a,i,m){
+		  return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+	  };
 
+	  function listFilter(header, list) {
+		var form = $("<form>").attr({"class":"filterform","action":"#"}),
+			input = $("<input>").attr({"class":"filterinput","type":"text"});
+		$("#search").append($(form).append(input).appendTo(header));
+
+		$(input)
+		  .change( function () {
+			var filter = $(this).val();
+			if(filter) {
+			  $(list).find("a:not(:Contains(" + filter + "))").parent().slideUp();
+			  $(list).find("a:Contains(" + filter + ")").parent().slideDown();
+			} else {
+			  $(list).find("p").slideDown();
+			}
+			return false;
+		  })
+		.keyup( function () {
+			$(this).change();
+		});
+	  }
+
+	  $(function () {
+		listFilter($("#header"), $("#list"));
+	  });
+	}(jQuery));
+</script> 
+						
+<% orgIds = "" %>
 	<script> 
-	    FB.init({ 
-			 appId  : '232592880122189', 
-			 status : true, // check login status 
-			 cookie : true, // enable cookies to allow the server to access the session 
-			 xfbml  : true  // parse XFBML 
-        }); 
+		window.fbAsyncInit();
 		FB.getLoginStatus(function(response) { 
 		if (response.session)
         { 
@@ -307,19 +406,50 @@ $(function() {
 });
 </script>
 
-
-
 <style>
 	.table{
 		background:#ffffff;
 	}
 </style>
+<% if @challenge.instance_of?ChildChallenge %>
+<script>
+	function contactToOrganizer(orgId)
+	{
+		$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+orgId+"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenge_url(@challenge) +"'"%>);	
+	}
+</script>
+<% end %>
+
+<!--
+<% if @challenge.instance_of?ChildChallenge %>
+	<%= parentId = @challenge.user_id %>
+	<% inviteeChildIds = [] %>
+	<% for aParentChild in @challenge.parent.child_challenges %>
+		<%= inviteeChildIds.push(aParentChild.user_id) %>
+		<%= inviteeChildIds.pop(1) %>
+	<% end %>
+<% end %>
+-->
+<% if !@challenge.child_challenges.blank? && inviteeIds = []%>
+	<% for aChild in @challenge.child_challenges %>
+		<% inviteeIds.push(aChild.user_id)  %>
+		<script>
+			function contactToInvitee()
+			{
+				$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+inviteeIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>);		
+			}
+		</script>
+	<% end %>
+<% else %>
+	
+<% end %>
+
 <script type="text/javascript">
 	function changeVal(str,score) {
 		var tot_score = str*score;
 		$("#tatal_s").val(tot_score);
 	}
-
+	
 	$(document).ready(function(){
 		$(".addRow").btnAddRow();
 		$(".delRow").btnDelRow();
@@ -328,6 +458,3 @@ $(function() {
 		
 });
 </script>
-
-
-
