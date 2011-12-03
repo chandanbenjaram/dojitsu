@@ -25,10 +25,10 @@
 	<div id="fb-root" />
 </div>
 
-<script>                         
+<script>         
   window.fbAsyncInit = function() {
     FB.init({     
-	  appId      : '181761375220642', // App ID
+	  appId      : '<%= Rails.application.config.fb_app_id%>', // App ID
       //channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
       status     : true, // check login status
       cookie     : true, // enable cookies to allow the server to access the session
