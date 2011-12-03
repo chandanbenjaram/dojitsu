@@ -21,6 +21,7 @@ $(document).ready(function($) {
 			$(".textfield_effect datepicker").append('&nbsp;&nbsp;');
 
 			$( '.'+$(this).val()).append(div_tag).fadeIn('500'); 
+			
 			$('.datepicker').datepicker({ 
 				showOn: "button",
 				buttonImage: '<%= asset_path("icon_calendar.png") %>',
@@ -65,10 +66,29 @@ $(document).ready(function($) {
 		arrows: true,
 		cluetipClass: 'jtip'		
 	});
+	$(document).ready(function() {
+
+	
+	$(".tab_content").hide();
+	$("ul.tabs li:first").addClass("active").show(); 
+	$(".tab_content:first").show(); 
+
+	
+	$("ul.tabs li").click(function() {
+
+		$("ul.tabs li").removeClass("active"); 
+		$(this).addClass("active"); 
+		$(".tab_content").hide(); 
+
+		var activeTab = $(this).find("a").attr("href"); 
+		$(activeTab).fadeIn();
+		return false;
+	});
+});
 
 	$('ul.tabs li').click(function(event){
 		
-		var ty    = event.target.id;
+		var ty = event.target.id;
 		if( ty == "soc")
 		{
 			$('#soc_wn').val("");

@@ -24,29 +24,27 @@
 									<%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
 								</div>
 							</div>						
-							<div id="subbar">
-								<div id="name">
-									NAME
-								</div>
-								<div id="score">
-									MY DOJITSU SCORE
-								</div>				
-							</div>
+							
 							<div style="overflow :auto;  height : 440px;" id="challengedetails">
 								<% t=1 %>
-								<table>
+								<script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> </script>
+								<table class="sortable">
+								<thead>
+								  <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">NAME</th><th style="CURSOR: pointer; cursor: hand;" id="content2">MY DOJITSU SCORE</th></tr>
+								</thead>
+								<tbody>
 									<% current_user.challenges.each do |userChallenge| %>
-									<tr>
-										<td id="content1">
-											<% title = userChallenge.title %>
-											<font size=3><b><%= link_to "#{title}",show_per_challenges_path(:id => userChallenge)%></b></font><br><font size=2>by <b><%= userChallenge.user_id %></b></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
+									<tr style="CURSOR: pointer; cursor: hand;" onclick="location.href='<%= show_per_challenges_path(:id => userChallenge)  %>'" >
+										<td >
+											
+											<font size=4><b><%= userChallenge.title %></b></font><br><font size=2>by <b><%= current_user.facebook.first_name %></b></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
 											<%if ( userChallenge.child_challenges.size <2 ) %> 
 												<%= userChallenge.child_challenges.size >0 ? userChallenge.child_challenges.size : 1  %> contestant<br>
 											<% else %>
 												<%= userChallenge.child_challenges.size %> contestants<br>
 											<% end %>
 										</td>
-										<td id="content2">					
+										<td >					
 											<div class="taskprogress" id="taskprogress<%= t %>">
 											</div>
 											
@@ -69,7 +67,7 @@
 												<% end %>
 												
 											<div class="update">
-												<%= link_to image_tag("FDFDG.gif", :alt => "Update"),show_per_challenges_path(:id => userChallenge)%>												
+												<%= image_tag("FDFDG.gif", :alt => "Update")%>												
 											</div>
 											<div class="completedtask"> 
 												<%= a %> points (<%= x %> &nbsp; tasks)
@@ -91,9 +89,11 @@
 										</td>
 																												
 										<% t+=1 %>																
-										<hr width:100%>
+										
 									</tr>
 									<% end %>
+								</tbody>
+
 								</table>
 							</div>
 						</div>
@@ -120,7 +120,14 @@
 									TIME
 								</div>
 							</div>
+							<div>
+									
+											
+										
+											
+							</div>
 						</div>
+						
 					</div>
 				</td>
 			</tr>
@@ -146,9 +153,8 @@
 							</td>
 						</tr>
 					    <tr>
-							<td colspan="2">					
-								<% fname= Authentication.where(:uid => anc.user_id).first %>								
-								by<b> <%= fname %></b>
+							<td colspan="2">													
+								by<b> <%= current_user.facebook.first_name %></b>
 							</td>
 						</tr>
 						<tr>

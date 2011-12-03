@@ -39,7 +39,7 @@
 		<tr  bgcolor="#ABD6AD">
 			<td>
 				<script>
-					var sd = <%= @score%>	
+					var sd = <%= @score%>
 				</script>
 				<font size="4px;"><%= @score %><%= image_tag("icon_multiply.png")%><%= text_field_tag 'no_of_task', nil, :size => 10 ,:onkeyup=>"changeVal(this.value,sd)" %> 1 mark as complete</font>
 			</td>

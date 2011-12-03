@@ -8,9 +8,8 @@ class ChallengesController < ApplicationController
     @title = "Challenges"
     @no_of_row = Challenge.all.count
     @challenges = current_user.challenges
-	#@ch =  @challenges.parent_challenge
-	#render :text => @ch
-    
+    #@ch =  @challenges.parent_challenge
+    #render :text => @ch
   end
 
   def show       
@@ -18,14 +17,35 @@ class ChallengesController < ApplicationController
   end
 
   def show_soc
-	@flg = params[:flg]
+    @flg = params[:flg]
     @challenge = Challenge.find(params[:id])
+	@is_complete_status = 0 
+	@challenge.tasks.each do |checkingTaskStatus|
+		unless checkingTaskStatus.is_complete == 1
+			@is_complete_status = 1
+			next
+		end
+	end
+	if @is_complete_status == 0
+		Challenge.where(:_id => params[:id]).update(:is_complete => 1)
+	end
     @org = User.find(:all,:conditions => ["id=?",@challenge.user_id]).first
   end
 
   def show_per
+    # debugger
+	#raise params[:id].inspect
     @challenge = Challenge.find(params[:id])
-    
+	@is_complete_status = 0 
+	@challenge.tasks.each do |checkingTaskStatus|
+		unless checkingTaskStatus.is_complete == 1
+			@is_complete_status = 1
+			next
+		end
+	end
+	if @is_complete_status == 0
+		Challenge.where(:_id => params[:id]).update(:is_complete => 1)
+	end
     if (@challenge.social_type.instance_of? ChallengeSocialType rescue false)
       render "show_soc" and return 
     else 
@@ -39,7 +59,7 @@ class ChallengesController < ApplicationController
   end
 
   def create
-	#raise params.inspect
+    #raise params.inspect
     #debugger
     #raise params[:invitees].inspect
     @ch = Challenge.new(params[:challenge])
@@ -68,25 +88,6 @@ class ChallengesController < ApplicationController
           new_challenge.start_point =  PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb)
           new_challenge.end_point = PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb) 
         end
-
-        if !params[:invitees].nil?
-          params[:invitees].split(",").each do |invitee|
-            if @ch_st_date == "startPointDate" and  @ch_ed_date == "endPointDate"
-              new_challenge.child_challenges.build(:user_id => invitee, :title => @ch.title, :description => @ch.description, \
-              :start_point => PointDateType.new(:value => Date.strptime(@st_p_val, '%m/%d/%Y')), \
-              :end_point => PointDateType.new(:value => Date.strptime(@ed_p_val, '%m/%d/%Y')), \
-              :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner), \
-              :tasks => @ch.task_attributes)
-            else 
-              new_challenge.child_challenges.build(:user_id => invitee, :title => @ch.title, :description => @ch.description, \
-              :start_point => PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb), \
-              :end_point => PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb), \
-              :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner), \
-              :tasks => @ch.task_attributes)
-            end
-          
-          end      
-        end        
       end
     else
       #raise "per"
@@ -104,12 +105,37 @@ class ChallengesController < ApplicationController
     end
 
     @ch.task_attributes.each do |task_attr|
-       #@challenge.tasks << Task.new(:name =>"testing")
-       @challenge.tasks.build(task_attr)
+      #@challenge.tasks << Task.new(:name =>"testing")
+      @challenge.tasks.build(task_attr)
     end
 
     @challenge.save!
-    redirect_to :action => "index", :notice => "Challenge created!"   
+     
+    unless @so_who_win.blank?
+    # referenced documents can only be saved when parent exists
+      if !params[:invitees].nil?
+        params[:invitees].split(",").each do |invitee|
+          if @ch_st_date == "startPointDate" and  @ch_ed_date == "endPointDate"
+            @challenge.child_challenges.create!(:user_id => invitee, :title => @ch.title, :description => @ch.description, \
+            :start_point => PointDateType.new(:value => Date.strptime(@st_p_val, '%m/%d/%Y')), \
+            :end_point => PointDateType.new(:value => Date.strptime(@ed_p_val, '%m/%d/%Y')), \
+            :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner), \
+            :tasks => @ch.task_attributes)
+          else 
+            @challenge.child_challenges.create!(:user_id => invitee, :title => @ch.title, :description => @ch.description, \
+            :start_point => PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb), \
+            :end_point => PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb), \
+            :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner), \
+            :tasks => @ch.task_attributes)
+          end
+        end      
+      end  
+    end    
+	
+	
+	redirect_to show_per_challenges_path(:id => @challenge), :notice => "Challenge created!"
+	
+	
   end
 
   def edit
@@ -117,39 +143,22 @@ class ChallengesController < ApplicationController
   end
 
   def update_task_soc
-	#raise params.inspect
-	@challenge = Challenge.find(params[:id])
-	#raise @new_ts = params[:challenge][:task_attributes].inspect
-	#raise new_ts.inspect
-	
-	@aw = [{"score_by"=>"Check box:1 for checking off the task", "score"=>"123", "name"=>"first task tasting1111"}, {"score_by"=>"Check box:1 for checking off the task", "score"=>"321", "name"=>"second  task tasting2222"}, {"score_by"=>"Self-report number", "score"=>"456", "name"=>"third task tasting3333"}]
-	
-	@aw.each do |ts|
-		@challenge.tasks.build(ts)
-	end 
-	
-	raise "aaaa"
-	
-	@challenge.tasks.build(@new_ts)
-	raise "aaaa"
-	
-	@challenge.task_attributes.each do |task_attr|
-       #@challenge.tasks << Task.new(:name =>"testing")
-       @challenge.tasks.build(task_attr)
+    #raise params[:challenge].inspect
+    @challenge = Challenge.find(params[:id])
+    @challenge.tasks.destroy
+    @challenge.child_challenges.each do |eachChildChallenge|
+      eachChildChallenge.tasks.destroy
+      eachChildChallenge.update_attributes(params[:challenge])
     end
-	
-	#@ch.task_attributes.each do |task_attr|
-       ##@challenge.tasks << Task.new(:name =>"testing")
-       #@challenge.tasks.build(task_attr)
-    #end
-	
-	raise "aaaa"
+    @challenge.update_attributes(params[:challenge])
+    redirect_to show_soc_challenges_path(:id => @challenge)
+    #raise "aaa"
   end
 
   def update
-  
-	@challenge = Challenge.find(params[:id])
-	#raise ch = params[:challenge].inspect 
+    #raise params.inspect
+    @challenge = Challenge.find(params[:id])
+    #raise ch = params[:challenge].inspect 
     if @challenge.update_attributes(params[:challenge])
 		#raise "aaa"
       redirect_to :action => 'index', :id => @challenge
@@ -166,33 +175,33 @@ class ChallengesController < ApplicationController
   def invitee_accepted_req
     raise "aaaaaaaaa"
   end
-  
+
   def message
-	render :partial => 'challenges/message'
+    render :partial => 'challenges/message'
   end  
-	  
+
   def task_update
     @id = params[:id]
     @name = params[:name]
-	@score = params[:score]
-	@score_by = params[:score_by]
+    @score = params[:score]
+    @score_by = params[:score_by]
     render :layout => false
   end
-  
+
   def task_update_c
-	#raise params.inspect
-	@ch_ts_update = Challenge.find(params[:id])
-	unless params[:tatal_s]
-		@ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1)
-	else
-		@ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1, :score => params[:tatal_s])
-	end 
-	redirect_to show_per_challenges_path(:id => params[:id])
+    #raise params.inspect
+    @ch_ts_update = Challenge.find(params[:id])
+    unless params[:tatal_s]
+      @ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1)
+    else
+      @ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1, :score => params[:tatal_s])
+    end 
+    redirect_to show_per_challenges_path(:id => params[:id])
   end
 
   def challenge_comp
-	  @sdf = Challenge.where(:_id => params[:id]).update(:is_complete => 1)
-	  redirect_to :action => "index"
+    @sdf = Challenge.where(:_id => params[:id]).update(:is_complete => 1)
+    redirect_to :action => "index"
   end
 
   def my_challenge
@@ -202,23 +211,46 @@ class ChallengesController < ApplicationController
       @org = User.find(:all,:conditions =>["id = ?",sd.user_id]).first
     end
   end
-  
+
   def add_task_link
     @ch_id = params[:id]
     render :layout => false
   end
-  
+
   def add_task_fun
     @chall_ref = Challenge.find(params[:challenge_id]) 
     @chall_ref.tasks.push(Task.new(:name => params[:name], :score => params[:score], :score_by => params[:score_by]))
+    @chall_ref.child_challenges.each do |ts|
+      #ts.tasks.destroy
+      #ts.update_attributes(params[:challenge])
+      ts.tasks.push(Task.new(:name => params[:name], :score => params[:score], :score_by => params[:score_by]))
+    end
     #@chall_ref.child_challenges.build(:tasks => Task.new(:name => params[:name], :score => params[:score], :score_by => params[:score_by]))
     redirect_to show_per_challenges_path(:id => params[:challenge_id])
   end
-  
+
   def date_update
-	@challenge_date = Challenge.find(params[:id])
-	@date = @challenge_date.end_point.value 
-	render :layout => false
+    @challenge_date = Challenge.find(params[:id])
+    @date = @challenge_date.end_point.value 
+    render :layout => false
+  end
+  
+
+  def update_status
+  	aChallenge = Challenge.find(params[:id])
+  	socialType = aChallenge.social_type
+  	socialType.update_attributes(:status => params[:status])       
+
+  	redirect_to show_soc_challenges_path(:id => params[:id])
+  end
+  
+  def update_status_af_meg
+	Challenge.where(:_id => params[:thinking_abt] ).all.each do |aChallenge|
+		aChallenge.child_challenges.each do |aChildChallenge|
+			socialType = aChildChallenge.social_type
+			socialType.update_attributes(:status => "null")
+		end
+	end
   end
 
   protected
@@ -227,7 +259,5 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.all
   end
 
-  
-  
 end
 
