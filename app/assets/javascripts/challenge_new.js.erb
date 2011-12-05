@@ -1,4 +1,5 @@
-$(document).ready(function($) {                                               
+var calendarImagePath = <%= "'" + asset_path("icon_calendar.png") +"'"%>;
+$(document).ready(function($) { 
 
 	$(".alternativeRow").btnAddRow({oddRowCSS:"oddRow",evenRowCSS:"evenRow"});
 	$(".delRow").btnDelRow();
@@ -11,8 +12,6 @@ $(document).ready(function($) {
 			var div_tag = $('<div id="space"></div>');		
 			if($(this).val() === "startPointNumber") {  
 				$(div_tag).append($('<input id="start_point_value"  name="start_point_value" class="textfield_effect" type="text" required="required" placeholder="enter number here">'));								
-
-			   
 
 				$(div_tag).append('&nbsp;&nbsp;');
 				$(div_tag).append($('<input id="start_point_label" name="start_point_label" class="textfield_effect" type="text" placeholder="enter label here" >'));				
@@ -32,7 +31,7 @@ $(document).ready(function($) {
 
 			$('.datepicker').datepicker({ 
 				showOn: "button",
-				buttonImage: '<%= asset_path("icon_calendar.png") %>',
+				buttonImage: calendarImagePath,
 				showOn: "button",
 				buttonImageOnly: true,
 			});
@@ -58,7 +57,7 @@ $(document).ready(function($) {
 
 			$('.datepicker').datepicker({ 
 				showOn: "button",
-				buttonImage: '<%= asset_path("icon_calendar.png") %>',
+				buttonImage: calendarImagePath,
 				showOn: "button",
 				buttonImageOnly: true,
 			});

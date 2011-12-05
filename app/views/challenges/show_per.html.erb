@@ -1,13 +1,10 @@
-
 <%= stylesheet_link_tag('simple-tabs','datePicker', 'colorbox','jquery-ui', 'ui.core','ui.progressbar','ui.theme', 'main','soc-per')%>
-
-<%= javascript_include_tag('simple-tabs','ui.progressbar','jquery.colorbox-min','jquery.table.addrow','jquery.datePicker','date','on_the_spot','jquery.tools.min','soc-per')%>
+<%= javascript_include_tag('simple-tabs','ui.progressbar','jquery.colorbox-min', 'jquery.cluetip.js','jquery.table.addrow','jquery.datePicker','date','on_the_spot','jquery.tools.min','soc-per')%>
 <%= render 'layouts/loggedinbody'%>
 
 <div id="ch_main_div">
 <div id="ch_main_div1">
 <%= form_for @challenge do |f| %>
-<%#= debug @challenge %>
 <table width="100%" border="0" border cellspacing=12px>
 	<tr>
 		<div class="title">
@@ -159,30 +156,15 @@
 	
 </div>
 
-<script type="text/javascript">
-	
-	function cal(str, strr)
-	{
-		alert("enter value=="+str);
-		alert("enter value=="+strr);
-	}
-
-</script>
 
 
 
 
 <script>
-
-function changeVal(str,score) {
-	var tot_score = str*score;
-	$("#tatal_s").val(tot_score);
-} 
-
-	
-	$('.task_update_popup').colorbox();
-	$('.add_task_popup').colorbox();
-
+	function changeVal(str,score) {
+		var tot_score = str*score;
+		$("#tatal_s").val(tot_score);
+	} 
 // execute your scripts when the DOM is ready. this is a good habit
 $(function() {
 	// setup tooltip for a single DIV element
@@ -199,11 +181,9 @@ $(function() {
 		// there is no delay when the mouse is moved away from the trigger
 		delay: 0
 	});	
+	
+		$('.task_update_popup').colorbox();
+		$('.add_task_popup').colorbox();
+	
 });
 </script>
-
-
-
-
-
-

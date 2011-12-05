@@ -13,7 +13,6 @@
 				}, function(response){
 					$.dojitsu.messageCallBack(response, subject); 
 					if(callback && typeof callback === 'function'){
-						alert('call back is a function');
 						callback(response);
 						};
 					})	
@@ -24,8 +23,8 @@
 						method: 'fql.multiquery',
 						return_ssl_resources: 1,
 						queries: {
-							"mThreadQ" : "SELECT thread_id, recipients, subject, snippet FROM thread WHERE folder_id = 1 order by updated_time desc limit 1", 
-							"mMessageQ": "SELECT author_id, created_time, body, attachment FROM message WHERE viewer_id = me() and thread_id IN (SELECT thread_id from #mThreadQ)"
+							"mThreadQ" : "SELECT thread_id, recipients, subject, snippet,updated_time,viewer_id FROM thread WHERE folder_id = 1 order by updated_time asc limit 1", 
+							"mMessageQ": "SELECT author_id, created_time, body, attachment,viewer_id FROM message WHERE thread_id IN (SELECT thread_id from #mThreadQ)  order by created_time desc limit 1"
 							},
 							}, function(response){
 								if(response && response[0] && response[1]){
@@ -36,7 +35,8 @@
 									messageLogSmall.name =messageLog.attachment.name;
 									messageLogSmall.body =messageLog.body;
 									messageLogSmall.author_id =messageLog.author_id;
-									jQuery.support.cors = true;
+									jQuery.support.cors = true;     
+									console.debug('storing...', messageLogSmall);
 									$.get('/messages/storemessage', 
 									{messageDetails:messageLogSmall},
 									function(data) {

@@ -1,1 +1,401 @@
-<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css')%><%= javascript_include_tag('simple-tabs','on_the_spot','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.cluetip','challenge_new', 'jquery.table.addrow','messages')%><%= render 'layouts/loggedinbody'%><% if !@challenge.child_challenges.blank? && userIds = []%><% for aChild in @challenge.child_challenges %><% if aChild.social_type.status.nil?%>	<% userIds.push(aChild.user_id)  %><% end %><% end %><% if !userIds.empty? %><script type="text/javascript" charset="utf-8">$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+userIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>, fbCallback);	function fbCallback(response){	if(response == null){	} else	{		var srt = '<%= params[:id] %>';		console.info('update child challenges from nil to 0 (thinking abt it)');		jQuery.support.cors = true;		$.get('/challenges/update_status_af_meg', 			{thinking_abt:srt},			function(data) {			}, 'script'		);	}}</script><% end %><% end %><div id="ch_main_div"> 	<div id="ch_main_div1"> 		<div class="challange"> 			<%= on_the_spot_edit @challenge,:title%>		</div> 		<% unless @challenge.social_type.status.to_i == 1 %>			<table>				<tr >					<td width="20px" >  					<%= link_to image_tag("accepted.png"), update_status_challenges_path(:id => @challenge, :status=> 1) %>					</td> 					<td width="20px" >						<%= link_to(image_tag("declane.png"), update_status_challenges_path(:id => @challenge, :status=> -1))%>					</td>					<td >						<%= image_tag("thinkbutton.png") %>					</td>				</tr>			</table>		<% end %>									<div>			<table >				<tr>					<td width="100px">						<b><font color= #909090>DESCRIPTION</font></b></td>					<td width="500px">						<b><%= on_the_spot_edit @challenge,:description , :type=>:textarea  %></b>					</td>				</tr>			</table>		</div>			<div>			<table width="500px">				<tr>					<td width="130px" class="titles">						<b><font color= #909090>ORGANIZER</font></b>					</td>					<td >						<% if @challenge.instance_of?ChildChallenge %>							<%  @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>							<script>								var ordId = <%=  orgId = @parentChallenge.user_id %>							</script>							<b><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>						<% else %>								<b id="user"></b>						<% end %>						</td>					<td width="100px">						<% if @challenge.instance_of?ChildChallenge %>							<%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(ordId)" ) %>						<% end %>					</td>				</tr>				<tr>					<hr/>				</tr>			</table>		</div>		<div>			<hr/>		</div>		<div>			<table>				<tr>					<td width=130px>						<b><font color= #909090>START POINT</font></b>					</td>					<td>						<% if @challenge.start_point.instance_of?PointDateType %>									 <b><%= @challenge.start_point.value.strftime("%b %d, %Y") %> </b>						<% else %>														<b><%= @challenge.start_point.value.to_i %></b>						<% end %>					</td>					<td align="right">						<%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :align=>"right" %>					</td>				</tr>			</table>		</div>					<div>			<hr/>		</div>		<div>			<table>				<tr> 					<td width=130px>						<b><font color= #909090>END POINT</font></b>					</td>					<td>						<% if @challenge.end_point.instance_of?PointDateType %>									<b><%= @challenge.end_point.value.strftime("%b %d, %Y") %></b>						<% else %>														<b><%= @challenge.end_point.value.to_i %></b>						<% end %>					</td>					<td>						<%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :style => "text-decoration: underline;",:align=>"right" %>					</td>				</tr>			</table>		</div>		<div>			<hr/>		</div>			<table>			<tr>				<td width="130px" class="titles">					<b><font color= #909090>PARTICIPANTS</b></font>				</td>				<td>				<% if @challenge.social_type.status == 1 and  (@challenge.instance_of?ChildChallenge)%>						<b><%= @challenge.parent.child_challenges.length %></b>					<% else %>							<% if @challenge.social_type.status == 1 %>								<b><%= @challenge.child_challenges.length %></b>							<% else %>								<b><%= @challenge.parent.child_challenges.length %></b>							<% end %>				<% end %>				</td>			</tr>		</table>		<input type="hidden" name="thinking_abt" id="thinking_abt" value="<%= @challenge.id %>"> 		<table width="100%" border="0" style="margin-top:0px;">			<tr>				<td colspan="3">					<ul class="tabs">						<li><a href="#tab1"><b>TASKS</b></a></li>						<li><a href="#tab2"><b>PEOPLE</b></a></li>					</ul>					<div class="tab_container">						<div id="tab1" class="tab_content">							<% if(@challenge.social_type.status? and @flg.to_s == "ed") %>								<%= render :partial=> "challenges/tasks_edit" %>							<% else %>								<%= render :partial=> "challenges/tasks" %>																																	<% end %>						</div>						<div id="tab2" class="tab_content">							<table width="100%" border="0" height="40px">								<tr bgcolor=#F4F4F4>									<td width="120px">										<b  id="total">Total: <%= @challenge.child_challenges.length %></b>										<% if @challenge.instance_of?Challenge %>											<%= image_tag("btn_msg_up.png", :style=>"margin-left:10px; position:relative; top:5px;" ,:onclick=>"contactToInvitee()")%>										<% end %>									</td>									<td width = "100px" id="search">									</td>									<td width="300px">										<select>											<option value="volvo">ALL</option>											<option value="saab">ACCEPTED</option>											<option value="mercedes">PENDING</option>											<option value="audi">DECLINED</option>										</select> 											&nbsp;											<%= image_tag ("search_it.PNG") %>										</td>								</tr>							</table>													<style>															.filterinput															{															width :200px;															height:25px;															}															</style>							<table  border="0" height="20px" bgcolor="gray"> 								<tr bgcolor=#D7D7D7>									<td>										<b>NAME &nbsp;</b>									</td>									<td width="80px">										<font color=#A8A8A8>STATUS</font>									</td>								</tr>								</table>								<div id="wrap">																	<h1 id="header"></h1>																	<table bgcolor="white">																			<tr>																					<td id="list">																						<%if @challenge.parent .nil? %>																							<% childChallenges =  @challenge.child_challenges %>																							<%else%>																								<%childChallenges =  @challenge.parent.child_challenges %>																					     <%end%>                      																			<% childChallenges.each do |aChildChallenge| %>																				<p><%=image_tag FbGraph::User.new(aChildChallenge.user_id).fetch.picture %> <a href="#"  id="ahref"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></a>																			<span id="status_icon"> 																						<% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 %>																								<%= image_tag  "icon_thinking.png"  %>																						<% elsif aChildChallenge.social_type.status == 1 %>																								<%= image_tag  "icon_accept.png"  %>																						<% else %>																									<%= image_tag "icon_decline.png"  %>																						<% end %>																						<% end %>                    																				</span> 																						</p>																				</td>																			</tr>																		 </table>																</div> 													</div>	<script>$(document).ready(function() {     $("#btnFilter").click(function()     {         var selection = $("#catSelect").val();          if (selection == "all")         {             $(".item").show();         }         else         {             $(".item").hide();             $("."+selection).show();         }     }); });</script>																											<style type="text/css">#status_icon{ float: right;width: 40px;}  #ahref{					color:#000000;}</style>																<script src="http://code.jquery.com/jquery-1.4.2.min.js"></script><script>	(function ($) {	  jQuery.expr[':'].Contains = function(a,i,m){		  return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;	  };	  function listFilter(header, list) {		var form = $("<form>").attr({"class":"filterform","action":"#"}),			input = $("<input>").attr({"class":"filterinput","type":"text"});		$("#search").append($(form).append(input).appendTo(header));		$(input)		  .change( function () {			var filter = $(this).val();			if(filter) {			  $(list).find("a:not(:Contains(" + filter + "))").parent().slideUp();			  $(list).find("a:Contains(" + filter + ")").parent().slideDown();			} else {			  $(list).find("p").slideDown();			}			return false;		  })		.keyup( function () {			$(this).change();		});	  }	  $(function () {		listFilter($("#header"), $("#list"));	  });	}(jQuery));</script> <% orgIds = "" %>	<script> 		window.fbAsyncInit();		FB.getLoginStatus(function(response) { 		if (response.session)        { 		   globaluserid=response.session["uid"]; 		   name=globaluserid;		}		}		);<% @challenge.child_challenges.each do |aTask| %>						 var len = <%= @challenge.child_challenges.length %>		var img = <%= aTask.user_id %>						  FB.api({				method: 'fql.query',				query: 'SELECT name,pic_square FROM user WHERE uid=' + img			}, function(response){			htmlcontent = '<img src=' + response[0].pic_square + ' />'+ response[0].name ;			 tableopen='<table>';			 tropen='<tr>';			 tdopen='<td >';			 tdclose='</td>';			 tdopen1='<td id="friendsstatus" >';			 tdclose1='</td>';			 trclose='<tr>';			 tableclose='</table>'			 hr = '<hr/>';			 $("#friendlist").append(tableopen);					$("#friendslist").append(tropen);					$("#friendslist").append(tdopen);					 $("#friendslist").append(htmlcontent);					 $("#friendslist").append(tdclose);					<% @challenge.child_challenges.each do |aTask| %>						<% if aTask.user_id %>							<% if aTask.social_type.status == 1  ||  @challenge.user_id == aTask.user_id %>											status='<%= image_tag ("icon_accept.png") %>';								<% else %>								<% if aTask.social_type.status == 0 %>											status='<%= image_tag ("icon_thinking.png") %>';								<% else %>											status='<%= image_tag("icon_decline.png") %>';								<% end %>							<% end %>						<%end%>								<%end%>							 $("#friendsstatus").append(tdopen1);					 $("#friendsstatus").append(status);					 $("#friendsstatus").append(tdclose1);					 $("#friendslist").append(trclose);					$("#friendslist").append(tropen);																					$("#friendslist").append(hr);  					$("#friendslist").append(trclose);					 $("#friendslist").append(tableclose); 			}); <%end %>				var user = <%= @challenge.user_id %>					FB.api({						method: 'fql.query',					query: 'SELECT name FROM user WHERE uid=' +user				}, function(response){				htmlcontent =response[0].name ;						$("#user").append(htmlcontent);    			});</script><script>	$('.task_update_popup').colorbox();	$('.add_task_popup').colorbox();// execute your scripts when the DOM is ready. this is a good habit$(function() {	// setup tooltip for a single DIV element	$("#mytable a").tooltip({		// each trashcan image works as a trigger		tip: '#tooltip',		// custom positioning		position: 'center right',		// move tooltip a little bit to the right		offset: [0, 15],		// there is no delay when the mouse is moved away from the trigger		delay: 0	});		document.getElementById('feedform_user_message').live('click', function(){alert($(this))});});</script><style>	.table{		background:#ffffff;	}</style><% if @challenge.instance_of?ChildChallenge %><script>	function contactToOrganizer(orgId)	{		$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+orgId+"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenge_url(@challenge) +"'"%>);		}</script><% end %><!--<% if @challenge.instance_of?ChildChallenge %>	<%= parentId = @challenge.user_id %>	<% inviteeChildIds = [] %>	<% for aParentChild in @challenge.parent.child_challenges %>		<%= inviteeChildIds.push(aParentChild.user_id) %>		<%= inviteeChildIds.pop(1) %>	<% end %><% end %>--><% if !@challenge.child_challenges.blank? && inviteeIds = []%>	<% for aChild in @challenge.child_challenges %>		<% inviteeIds.push(aChild.user_id)  %>		<script>			function contactToInvitee()			{				$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+inviteeIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>);					}		</script>	<% end %><% else %><% end %><script type="text/javascript">	function changeVal(str,score) {		var tot_score = str*score;		$("#tatal_s").val(tot_score);	}	$(document).ready(function(){		$(".addRow").btnAddRow();		$(".delRow").btnDelRow();		$('.soc_add_task_popup').colorbox();});</script>
+<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css')%>
+
+<%= javascript_include_tag('simple-tabs','all','on_the_spot','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.cluetip','challenge_new', 'jquery.table.addrow','messages')%>
+<%= render 'layouts/loggedinbody'%>
+
+<% if !@challenge.child_challenges.blank? && userIds = []%>
+<% for aChild in @challenge.child_challenges %>
+<% if aChild.social_type.status.nil?%>
+	<% userIds.push(aChild.user_id)  %>
+
+<% end %>
+<% end %>
+<% if !userIds.empty? %>
+
+<script type="text/javascript" charset="utf-8">
+$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+userIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>, fbCallback);	
+
+function fbCallback(response){
+	if(response == null){
+		console.info('dont update child challenges');
+	} else
+	{
+		var srt = '<%= params[:id] %>';
+		console.info('update child challenges from nil to 0 (thinking abt it)');
+		jQuery.support.cors = true;
+		$.get('/challenges/update_status_af_meg', 
+			{thinking_abt:srt},
+			function(data) {
+
+			}, 'script'
+		);
+		
+	}
+}
+</script>
+<% end %>
+
+<% end %>
+
+<div id="ch_main_div"> 
+	<div id="ch_main_div1"> 
+		<div class="challange"> 
+			<%= on_the_spot_edit @challenge,:title%>
+		</div> 
+		<% unless @challenge.social_type.status.to_i == 1 %>
+			<table>
+				<tr >
+					<td width="20px" >  
+					<%= link_to image_tag("accepted.png"), update_status_challenges_path(:id => @challenge, :status=> 1) %>
+					</td> 
+					<td width="20px" >
+						<%= link_to(image_tag("declane.png"), update_status_challenges_path(:id => @challenge, :status=> -1))%>
+					</td>
+					<td >
+						<%= image_tag("thinkbutton.png") %>
+					</td>
+				</tr>
+			</table>
+		<% end %>							
+		<div>
+			<table >
+				<tr>
+					<td width="100px">
+						<b><font color= #909090>DESCRIPTION</font></b></td>
+					<td width="500px">
+						<b><%= on_the_spot_edit @challenge,:description , :type=>:textarea  %></b>
+					</td>
+				</tr>
+			</table>
+		</div>	
+		<div>
+			<table width="500px">
+				<tr>
+					<td width="130px" class="titles">
+						<b><font color= #909090>ORGANIZER</font></b>
+					</td>
+					<td >
+						<% if @challenge.class.to_s == "ChildChallenge" %>
+							<%  @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
+							<script>
+								var ordId = <%=  orgId = @parentChallenge.user_id %>
+							</script>
+							<b><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
+						<% else %>	
+							<b id="user"></b>
+						<% end %>	
+					</td>
+					<td width="100px">
+						<% if @challenge.class.to_s == "ChildChallenge" %>
+							<%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(ordId)" ) %>
+						<% end %>
+					</td>
+				</tr>
+				<tr>
+					<hr/>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<hr/>
+		</div>
+		<div>
+			<table>
+				<tr>
+					<td width=130px>
+						<b><font color= #909090>START POINT</font></b>
+					</td>
+					<td>
+						<% if @challenge.start_point.instance_of?PointDateType %>		
+							 <b><%= @challenge.start_point.value.strftime("%b %d, %Y") %> </b>
+						<% else %>							
+							<b><%= @challenge.start_point.value.to_i %></b>
+						<% end %>
+					</td>
+					<td align="right">
+						<%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :align=>"right" %>
+					</td>
+				</tr>
+			</table>
+		</div>			
+		<div>
+			<hr/>
+		</div>
+		<div>
+			<table>
+				<tr> 
+					<td width=130px>
+						<b><font color= #909090>END POINT</font></b>
+					</td>
+					<td>
+						<% if @challenge.end_point.instance_of?PointDateType %>		
+							<b><%= @challenge.end_point.value.strftime("%b %d, %Y") %></b>
+						<% else %>							
+							<b><%= @challenge.end_point.value.to_i %></b>
+						<% end %>
+					</td>
+					<td>
+						<%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :style => "text-decoration: underline;",:align=>"right" %>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<hr/>
+		</div>	
+		<table>
+			<tr>
+				<td width="130px" class="titles">
+					<b><font color= #909090>PARTICIPANTS</b></font>
+				</td>
+				<td>
+
+				
+				<% if @challenge.social_type.status == 1 &&  @challenge.class.to_s == "ChildChallenge" %>
+						<b><%= @challenge.parent.child_challenges.length %></b>
+					<% else %>
+							<% if @challenge.social_type.status == 1 %>
+								<b><%= @challenge.child_challenges.length %></b>
+							<% else %>
+								<b><%= @challenge.parent.child_challenges.length %></b>
+							<% end %>
+				<% end %>
+					
+
+
+				</td>
+			</tr>
+		</table>
+		<input type="hidden" name="thinking_abt" id="thinking_abt" value="<%= @challenge.id %>"> 
+		<table width="100%" border="0" style="margin-top:0px;">
+			<tr>
+				<td colspan="3">
+					<ul class="tabs">
+						<li><a href="#tab1"><b>TASKS</b></a></li>
+						<li><a href="#tab2"><b>PEOPLE</b></a></li>
+					</ul>
+					<div class="tab_container">
+						<div id="tab1" class="tab_content">
+							<% if(@challenge.social_type.status? and @flg.to_s == "ed") %>
+								<%= render :partial=> "challenges/tasks_edit" %>
+							<% else %>
+								<%= render :partial=> "challenges/tasks" %>																										
+							<% end %>
+						</div>
+						<div id="tab2" class="tab_content">
+							<table width="100%" border="0" height="40px">
+								<tr bgcolor=#F4F4F4>
+									<td width="120px">
+										<b  id="total">Total: <%= @challenge.child_challenges.length %></b>
+										<% if @challenge.class.to_s == "Challenge" %>
+											<%= image_tag("btn_msg_up.png", :style=>"margin-left:10px; position:relative; top:5px;" ,:onclick=>"contactToInvitee()")%>
+										<% end %>
+									</td>
+									<td width = "400px"><input type="text", id="search">&nbsp;
+										<select>
+											<option value="volvo">ALL</option>
+											<option value="saab">ACCEPTED</option>
+											<option value="mercedes">PENDING</option>
+											<option value="audi">DECLINED</option>
+										</select> 
+											&nbsp;
+											<%= image_tag ("search_it.PNG") %>
+										</td>
+								</tr>
+							</table>
+							<table  border="0" height="20px" bgcolor="gray"> 
+								<tr bgcolor=#D7D7D7>
+									<td>
+										<b>NAME &nbsp;</b>
+									</td>
+									<td width="80px">
+										<font color=#A8A8A8>STATUS</font>
+									</td>
+								</tr>
+								</table>
+								<div id="wrap">
+								 <h1 id="header"></h1>
+								 <table bgcolor="white">
+								   <tr>
+									 <td id="list">
+									  <%if @challenge.parent .nil? %>
+									   <% childChallenges =  @challenge.child_challenges %>
+									   <%else%>
+										<%childChallenges =  @challenge.parent.child_challenges %>
+										  <%end%>                      
+								   <% childChallenges.each do |aChildChallenge| %>
+									<p><%=image_tag FbGraph::User.new(aChildChallenge.user_id).fetch.picture %> <a href="#"  id="ahref"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></a>
+								   <span id="status_icon"> 
+									  <% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 %>
+										<%= image_tag  "icon_decline.png"  %>
+									  <% elsif aChildChallenge.social_type.status == 1 %>
+										<%= image_tag  "icon_accept.png"  %>
+									  <% else %>
+										 <%= image_tag "icon_decline.png"  %>
+									  <% end %>
+									  <% end %>                     
+									</span> 
+									  </p>
+									
+									</td>
+								   </tr> 
+								  </table>
+								</div>
+							<style>
+								#friendslist1
+								{
+									width:680px;
+									background:#ffffff;
+								}
+							</style>													
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>  
+	</div>		
+<% orgIds = "" %>
+	<script> 
+		window.fbAsyncInit();
+		FB.getLoginStatus(function(response) { 
+		if (response.session)
+        { 
+		   globaluserid=response.session["uid"]; 
+		   name=globaluserid;
+		}
+		}
+		);
+<% @challenge.child_challenges.each do |aTask| %>
+						 var len = <%= @challenge.child_challenges.length %>
+		var img = <%= aTask.user_id %>
+						  FB.api({
+				method: 'fql.query',
+				query: 'SELECT name,pic_square FROM user WHERE uid=' + img
+			}, function(response){
+			htmlcontent = '<img src=' + response[0].pic_square + ' />'+ response[0].name ;
+			 tableopen='<table>';
+			 tropen='<tr>';
+			 tdopen='<td >';
+			 tdclose='</td>';
+			 tdopen1='<td id="friendsstatus" >';
+			 tdclose1='</td>';
+			 trclose='<tr>';
+			 tableclose='</table>'
+			 hr = '<hr/>';
+			 $("#friendlist").append(tableopen);
+					$("#friendslist").append(tropen);
+					$("#friendslist").append(tdopen);
+					 $("#friendslist").append(htmlcontent);
+					 $("#friendslist").append(tdclose);
+					<% @challenge.child_challenges.each do |aTask| %>
+						<% if aTask.user_id %>
+							<% if aTask.social_type.status == 1  ||  @challenge.user_id == aTask.user_id %>
+											status='<%= image_tag ("icon_accept.png") %>';
+								<% else %>
+								<% if aTask.social_type.status == 0 %>
+											status='<%= image_tag ("icon_thinking.png") %>';
+								<% else %>
+											status='<%= image_tag("icon_decline.png") %>';
+								<% end %>
+							<% end %>
+						<%end%>
+								<%end%>		
+					 $("#friendsstatus").append(tdopen1);
+					 $("#friendsstatus").append(status);
+					 $("#friendsstatus").append(tdclose1);
+					 $("#friendslist").append(trclose);
+					$("#friendslist").append(tropen);																
+					$("#friendslist").append(hr);  
+					$("#friendslist").append(trclose);
+					 $("#friendslist").append(tableclose); 
+			});
+ <%end %>
+				var user = <%= @challenge.user_id %>
+					FB.api({
+						method: 'fql.query',
+					query: 'SELECT name FROM user WHERE uid=' +user
+				}, function(response){
+				htmlcontent =response[0].name ;
+						$("#user").append(htmlcontent);    
+			});
+</script>
+
+
+<script>
+	$('.task_update_popup').colorbox();
+	$('.add_task_popup').colorbox();
+	
+// execute your scripts when the DOM is ready. this is a good habit
+$(function() {
+	// setup tooltip for a single DIV element
+	$("#mytable a").tooltip({
+		// each trashcan image works as a trigger
+		tip: '#tooltip',
+
+		// custom positioning
+		position: 'center right',
+
+		// move tooltip a little bit to the right
+		offset: [0, 15],
+
+		// there is no delay when the mouse is moved away from the trigger
+		delay: 0
+	});	
+	     
+	document.getElementById('feedform_user_message').live('click', function(){alert($(this))});
+
+});
+</script>
+
+<style>
+	.table{
+		background:#ffffff;
+	}
+</style>
+<% if @challenge.class.to_s == "ChildChallenge" %>
+<script>
+	function contactToOrganizer(orgId)
+	{
+		$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+orgId+"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenge_url(@challenge) +"'"%>);	
+	}
+</script>
+<% end %>
+
+<!--
+<% if @challenge.class.to_s == "ChildChallenge" %>
+	<%= parentId = @challenge.user_id %>
+	<% inviteeChildIds = [] %>
+	<% for aParentChild in @challenge.parent.child_challenges %>
+		<%= inviteeChildIds.push(aParentChild.user_id) %>
+		<%= inviteeChildIds.pop(1) %>
+	<% end %>
+<% end %>
+-->
+<% if !@challenge.child_challenges.blank? && inviteeIds = []%>
+	<% for aChild in @challenge.child_challenges %>
+		<% inviteeIds.push(aChild.user_id)  %>
+		<script>
+			function contactToInvitee()
+			{
+				$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+inviteeIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>);		
+			}
+		</script>
+	<% end %>
+<% else %>
+	
+<% end %>
+
+<script type="text/javascript">
+	function changeVal(str,score) {
+		var tot_score = str*score;
+		$("#tatal_s").val(tot_score);
+	}
+	
+	$(document).ready(function(){
+		$(".addRow").btnAddRow();
+		$(".delRow").btnDelRow();
+		
+		$('.soc_add_task_popup').colorbox();
+		
+});
+</script>

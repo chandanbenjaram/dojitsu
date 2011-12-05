@@ -42,7 +42,7 @@ module Dojitsu
         :address => "smtp.gmail.com",
         :port => 587,
         :domain => 'localhost:4000',
-        :user_name => 'sriram.in20@gmail.com',
+        :user_name => 'chandan.benjaram@gmail.com',
         :password => 'password',
         :authentication => 'plain',
         :enable_starttls_auto => true 
