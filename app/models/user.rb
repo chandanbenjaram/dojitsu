@@ -34,9 +34,7 @@ class User < ActiveRecord::Base
     (authentications.empty? || !password.blank?) && super
   end
   
-  def inbox 
-    Message.all(conditions: { :to => fbauth.uid }, limit: 6).desc("created_at")
-  end
+  
 
   def challenges 
     challenges = []
