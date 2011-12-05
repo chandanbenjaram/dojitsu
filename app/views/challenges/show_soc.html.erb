@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css')%>
 
-<%= javascript_include_tag('simple-tabs','on_the_spot','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.cluetip','challenge_new', 'jquery.table.addrow','messages')%>
+<%= javascript_include_tag('simple-tabs','jquery.datePicker.js','jquery.table.addrow','date','jquery.colorbox-min','jquery.tools.min','jquery.cluetip.js','challenge_new', 'jquery.table.addrow.js', 'on_the_spot','messages')%>
 <%= render 'layouts/loggedinbody'%>
 
 <% if !@challenge.child_challenges.blank? && userIds = []%>
@@ -20,7 +20,6 @@ function fbCallback(response){
 	} else
 	{
 		var srt = '<%= params[:id] %>';
-		console.info('update child challenges from nil to 0 (thinking abt it)');
 		jQuery.support.cors = true;
 		$.get('/challenges/update_status_af_meg', 
 			{thinking_abt:srt},
@@ -165,8 +164,8 @@ function fbCallback(response){
 				</td>
 			</tr>
 		</table>
-		<input type="hidden" name="thinking_abt" id="thinking_abt" value="<%= @challenge.id %>"> 
-		<table width="100%" border="0" style="margin-top:0px;">
+		<input type="hidden" name="thinking_abt" id="thinking_abt" value="<%= @challenge.id %>">
+		<table border="0" style="margin-top:0px;">
 			<tr>
 				<td colspan="3">
 					<ul class="tabs">
@@ -250,6 +249,7 @@ function fbCallback(response){
 																	 </table>
 																</div> 
 													</div>	
+																	 </table>
 <script>
 $(document).ready(function() 
 { 
@@ -279,7 +279,6 @@ width: 40px;
 color:#000000;
 }
 </style>																
-<script src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
 <script>
 	(function ($) {
 	  jQuery.expr[':'].Contains = function(a,i,m){
@@ -379,33 +378,6 @@ color:#000000;
 			});
 </script>
 
-
-<script>
-	$('.task_update_popup').colorbox();
-	$('.add_task_popup').colorbox();
-	
-// execute your scripts when the DOM is ready. this is a good habit
-$(function() {
-	// setup tooltip for a single DIV element
-	$("#mytable a").tooltip({
-		// each trashcan image works as a trigger
-		tip: '#tooltip',
-
-		// custom positioning
-		position: 'center right',
-
-		// move tooltip a little bit to the right
-		offset: [0, 15],
-
-		// there is no delay when the mouse is moved away from the trigger
-		delay: 0
-	});	
-	     
-	document.getElementById('feedform_user_message').live('click', function(){alert($(this))});
-
-});
-</script>
-
 <style>
 	.table{
 		background:#ffffff;
@@ -420,16 +392,6 @@ $(function() {
 </script>
 <% end %>
 
-<!--
-<% if @challenge.instance_of?ChildChallenge %>
-	<%= parentId = @challenge.user_id %>
-	<% inviteeChildIds = [] %>
-	<% for aParentChild in @challenge.parent.child_challenges %>
-		<%= inviteeChildIds.push(aParentChild.user_id) %>
-		<%= inviteeChildIds.pop(1) %>
-	<% end %>
-<% end %>
--->
 <% if !@challenge.child_challenges.blank? && inviteeIds = []%>
 	<% for aChild in @challenge.child_challenges %>
 		<% inviteeIds.push(aChild.user_id)  %>
@@ -445,16 +407,33 @@ $(function() {
 <% end %>
 
 <script type="text/javascript">
-	function changeVal(str,score) {
-		var tot_score = str*score;
-		$("#tatal_s").val(tot_score);
-	}
-	
 	$(document).ready(function(){
 		$(".addRow").btnAddRow();
 		$(".delRow").btnDelRow();
 		
 		$('.soc_add_task_popup').colorbox();
+		$('.task_update_popup').colorbox();
+		$('.add_task_popup').colorbox();
+
+		function changeVal(str,score) {
+			var tot_score = str*score;
+			$("#tatal_s").val(tot_score);
+		}
 		
-});
+		// setup tooltip for a single DIV element
+		$("#mytable a").tooltip({
+			// each trashcan image works as a trigger
+			tip: '#tooltip',
+
+			// custom positioning
+			position: 'center right',
+
+			// move tooltip a little bit to the right
+			offset: [0, 15],
+
+			// there is no delay when the mouse is moved away from the trigger
+			delay: 0
+		});	
+	});  	
+
 </script>

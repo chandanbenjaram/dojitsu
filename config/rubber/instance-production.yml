@@ -1,7 +1,7 @@
 --- 
 - !ruby/object:Rubber::Configuration::InstanceItem 
   domain: dojitsu.com
-  external_host: ec2-107-20-19-126.compute-1.amazonaws.com
+  external_host: ec2-50-19-123-249.compute-1.amazonaws.com
   external_ip: 50.19.123.249
   image_id: ami-fd589594
   image_type: m1.large
