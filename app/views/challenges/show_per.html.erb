@@ -161,6 +161,10 @@
 
 
 <script>
+	function changeVal(str,score) {
+		var tot_score = str*score;
+		$("#tatal_s").val(tot_score);
+	} 
 // execute your scripts when the DOM is ready. this is a good habit
 $(function() {
 	// setup tooltip for a single DIV element
@@ -178,11 +182,6 @@ $(function() {
 		delay: 0
 	});	
 	
-
-	function changeVal(str,score) {
-		var tot_score = str*score;
-		$("#tatal_s").val(tot_score);
-	} 
 		$('.task_update_popup').colorbox();
 		$('.add_task_popup').colorbox();
 	

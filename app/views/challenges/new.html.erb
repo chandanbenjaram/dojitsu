@@ -100,6 +100,7 @@
 								<%= image_tag("btn_delete_up.png" ,:class => "delRow") %>			
 							</td>
 						</tr>
+						
 						<tr>
 							<td colspan="5"></td>									
 							<td align="right">
@@ -198,11 +199,8 @@
 									<td>
 										<%= select_tag :per_who_win, options_for_select([
     										["Choose", ""],							
-											["Add all milestones together","Add all milestones together"],
-											["1st person to reach End Point","1st person to reach End Point"],	 
-											["Highest milestone","Highest milestone"],	
-											["Lowest milestone","Lowest milestone"],	
-											["Participant reaches all milestones","Participant reaches all milestones"] 														
+											["Add all points together","Add all points together"],
+											["Reach all milestones","Reach all milestones"]
  											]), :id => "per_wn", :style => "width:197px" 
  										%>
 									</td>
