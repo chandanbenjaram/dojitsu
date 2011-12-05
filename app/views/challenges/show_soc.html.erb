@@ -191,7 +191,7 @@ function fbCallback(response){
 											<%= image_tag("btn_msg_up.png", :style=>"margin-left:10px; position:relative; top:5px;" ,:onclick=>"contactToInvitee()")%>
 										<% end %>
 									</td>
-									<td width = "400px"><input type="text">&nbsp;
+									<td width = "400px"><input type="text", id="search">&nbsp;
 										<select>
 											<option value="volvo">ALL</option>
 											<option value="saab">ACCEPTED</option>
@@ -213,16 +213,34 @@ function fbCallback(response){
 									</td>
 								</tr>
 								</table>
-								<table id="friendslist1">
-								<tr>
-									<td>
-										<div id="friendslist"></div> 
-									<td>
-									<td>
-										<div id="friendsstatus"></div>
+								<div id="wrap">
+								 <h1 id="header"></h1>
+								 <table bgcolor="white">
+								   <tr>
+									 <td id="list">
+									  <%if @challenge.parent .nil? %>
+									   <% childChallenges =  @challenge.child_challenges %>
+									   <%else%>
+										<%childChallenges =  @challenge.parent.child_challenges %>
+										  <%end%>                      
+								   <% childChallenges.each do |aChildChallenge| %>
+									<p><%=image_tag FbGraph::User.new(aChildChallenge.user_id).fetch.picture %> <a href="#"  id="ahref"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></a>
+								   <span id="status_icon"> 
+									  <% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 %>
+										<%= image_tag  "icon_decline.png"  %>
+									  <% elsif aChildChallenge.social_type.status == 1 %>
+										<%= image_tag  "icon_accept.png"  %>
+									  <% else %>
+										 <%= image_tag "icon_decline.png"  %>
+									  <% end %>
+									  <% end %>                     
+									</span> 
+									  </p>
+									
 									</td>
-								</tr>
-							</table>
+								   </tr> 
+								  </table>
+								</div>
 							<style>
 								#friendslist1
 								{
@@ -235,7 +253,7 @@ function fbCallback(response){
 				</td>
 			</tr>
 		</table>  
-	</div>							
+	</div>		
 <% orgIds = "" %>
 	<script> 
 		window.fbAsyncInit();
