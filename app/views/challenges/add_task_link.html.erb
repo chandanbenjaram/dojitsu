@@ -8,12 +8,14 @@
 	<tr>
 		<td width="66" >
 			<%= hidden_field_tag :challenge_id, @ch_id %>
+			<div class="styled-select">
 			<%= select_tag "score_by", options_for_select([
 				["Choose", "0"],
 				["Check box:1 for checking off the task", "Check box:1 for checking off the task"],	 
 				["Self-report number","Self-report number"]														
-				]), :style => "width:197px;"
-			%>		
+				]), :style => "width:222px;"
+			%>
+			</div>	
 		</td>
 		<td width="17"><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
 		<td width="100">

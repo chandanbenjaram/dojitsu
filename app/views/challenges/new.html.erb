@@ -76,7 +76,7 @@
 				<td colspan="3">
 					<table border="1">
 						<tr>
-							<th colspan="2" class="color999">Score this task by</th>
+							<th colspan="2" class="color999" valign="buttom">Score this task by</th>
 							<th colspan="2" class="color999">Point(s)</th>
 							<th colspan="2" class="color999">Task(name)
 							</th>
@@ -91,12 +91,12 @@
 								["Choose", ""],
 								["Check box:1 for checking off the task", "Check box:1 for checking off the task"],	 
 								["Self-report number","Self-report number"]														
-								]), :style => "width:300px"%>	
+								]), :required => "required" ,:style => "width:300px"%>	
 							</td>
 							</div>
 							<td align="center" class="taskIcon"><%= image_tag("icon_multiply.png")%></td>
 							<td align="center">     
-								<%= task_fields.text_field :score, :class => "textfield_effect_nw_tk_add", :size=>"10px", :placeholder=>"enter task point(s)" %>
+								<%= task_fields.text_field :score, :class => "textfield_effect_nw_tk_add", :size=>"10px", :required => "required", :placeholder=>"enter task point(s)" %>
 							</td>
 							<td align="center" class="taskIcon"><%= image_tag("icon_slash.png")%></td>
 							<td align="center">     
@@ -132,9 +132,9 @@
 						<tr>
 							<td colspan="6">
 								<b class="color999"><%= image_tag("icon_arrow_left.png")%>&nbsp;&nbsp;Do all tasks need to be complete before the challenge is marked complete?</b><br>
-								<%= f.radio_button :task_comp, "soc", :class => "chall_type" ,:checked =>"checked"%>
+								<%= f.radio_button :canCompleteBeforeTasks, "1", :class => "chall_type" ,:checked =>"checked"%>
 								<font class="color999"><%= f.label "Yes" %></font>
-								<%= f.radio_button :task_comp, "soc", :class => "chall_type"%>
+								<%= f.radio_button :canCompleteBeforeTasks, "0", :class => "chall_type"%>
 								<font class="color999"><%= f.label "No" %></font>							   
 							</td>
 						</tr>    
@@ -150,6 +150,7 @@
 				<tr>
 					<td valign="top"><b class="color999">PRIVACY</b></td>
 					<td colspan="3">
+					<div id="select_challenge_div"></div>
 					<ul class="tabs">
     					<li><a href="#tab1" id="soc">Social</a></li>
     					<li><a href="#tab2" id="per">Personal</a></li>
@@ -160,7 +161,7 @@
     						
 		<table width="100%" border="0">
 		<tr>
-			<td><b class="color999">Who wins</b></td>
+			<td width="25%"><b class="color999">Who wins</b></td>
 			<td>
 				<div class="styled-select">
 				<%= select_tag :soc_who_win, options_for_select([
@@ -204,7 +205,7 @@
     					<div id="tab2" class="tab_content">
        						<table width="100%" border="0">
   								<tr>
-    								<td><b style="color:#999999;">Who wins</b></td>
+    								<td  width="20%"><b style="color:#999999;">Who wins</b></td>
 									<td>
 										<div class="styled-select">
 										<%= select_tag :per_who_win, options_for_select([
@@ -264,7 +265,9 @@
 	</table>			
 </div>
 
-
+<script>
+	
+</script>
 			
 			
 			
