@@ -510,9 +510,11 @@ textarea:focus{
 }
 
 select {
-	border: 1px solid #cfcfcf;
-	vertical-align: middle;
-	width: 220px;
+	border: 0px solid #cfcfcf;
+	vertical-align: top;
+	position:relative;
+	top:-3px;
+	width: 180px;
 	height: 30px;
 	color:#f9a943;
 	background: transparent;
@@ -555,19 +557,19 @@ input.radio {
 
 .styled-select select {
    background: transparent;
-   width: 268px;
-   padding: 5px;
+   width: 240px;
+   padding: 0px;
    font-size: 16px;
-   border: 1px solid #ccc;
+   border: 0px solid #ccc;
    height: 34px;
 }
 .styled-select {
-   border: 0px solid #ddd;
+   border: 1px solid #ddd;
    top:-2px;
-   width: 240px;
+   width: 200px;
    height: 34px;
    overflow: hidden;
-   background: url(icon_combobox_arrow_down.png) no-repeat right #ddd;
+   background: url(icon_combobox_arrow_down.png) no-repeat right  #fff;
 }
 
 .links {
@@ -606,6 +608,23 @@ input.radio {
 	text-align: center;
 	text-transform: uppercase;
 	width: 195px;
+}
+.invitees {
+	background: none repeat scroll 0 0 #f9a943;
+	border-radius: 3px 3px 3px 3px;
+	color: #FFFFFF;
+	display: block;
+	font-size: 12px;
+	margin: -18px 0;
+	padding: 0px;
+	text-align: center;
+	text-transform: uppercase;
+	width: 85px;
+}
+#topbar
+{
+position:relative;
+margin: -16px;
 }
 
 .links_cancel {
@@ -741,13 +760,9 @@ h2{
 }
 
 #ch_main_div1{
-	border-width:60px;
-	border-style:solid;
-	border-color:#ffffff;
-	margin-top:35px;
-	-moz-border-radius:    5px;
-	-webkit-border-radius: 5px;
-	border-radius:         5px;
+	 border-style: solid;
+    margin-top: 10px;
+    padding-left: 20px;
 }
 
 /* tooltip styling 
@@ -781,9 +796,10 @@ opacity: 0.95;
 
 /*edit personal challenge*/
 .challange{
-	text-transform: uppercase;
-	color: #f8981d;
-	font-size:20px;
+	color: #F8981D;
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
 
 
 }
@@ -1262,15 +1278,16 @@ width:90%;
 	border-style: solid;
 	border-width: 10px;
 }
-	input:required {
-		-moz-box-shadow: none;
-		-webkit-box-shadow: none;
-		}
+input:required {
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
 #check3 {
     background: none repeat scroll 0 0 #000000;
     height: 60px;
     margin-top: 20px;
-    width: 795px;
+    width: 860px;
 }
 
 .filterinput

@@ -1,6 +1,7 @@
-<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css')%>
+<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css','jquery-ui','ui.progressbar','ui.theme', 'main')%>
 
-<%= javascript_include_tag('simple-tabs','all','on_the_spot','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.cluetip','challenge_new', 'jquery.table.addrow','messages')%>
+<%= javascript_include_tag('simple-tabs','ui.progressbar.js','soc-per','on_the_spot','jquery.colorbox-min','jquery.tools.min','messages')%>
+
 <%= render 'layouts/loggedinbody'%>
 
 <% if !@challenge.child_challenges.blank? && userIds = []%>
@@ -39,7 +40,7 @@ function fbCallback(response){
 
 <div id="ch_main_div"> 
 	<div id="ch_main_div1"> 
-		<div class="challange"> 
+		<div style=" font-size: 25px; font-weight: bold;" class="challange"> 
 			<%= on_the_spot_edit @challenge,:title%>
 		</div> 
 		<% unless @challenge.social_type.status.to_i == 1 %>
@@ -60,8 +61,8 @@ function fbCallback(response){
 		<div>
 			<table >
 				<tr>
-					<td width="100px">
-						<b><font color= #909090>DESCRIPTION</font></b></td>
+					<td width="80px">
+						<b><font color= #999999>DESCRIPTION</font></b></td>
 					<td width="500px">
 						<b><%= on_the_spot_edit @challenge,:description , :type=>:textarea  %></b>
 					</td>
@@ -72,7 +73,7 @@ function fbCallback(response){
 			<table width="500px">
 				<tr>
 					<td width="130px" class="titles">
-						<b><font color= #909090>ORGANIZER</font></b>
+						<b><font color= #999999>ORGANIZER</font></b>
 					</td>
 					<td >
 						<% if @challenge.class.to_s == "ChildChallenge" %>
@@ -103,7 +104,7 @@ function fbCallback(response){
 			<table>
 				<tr>
 					<td width=130px>
-						<b><font color= #909090>START POINT</font></b>
+						<b><font color= #999999>START POINT</font></b>
 					</td>
 					<td>
 						<% if @challenge.start_point.instance_of?PointDateType %>		
@@ -125,7 +126,7 @@ function fbCallback(response){
 			<table>
 				<tr> 
 					<td width=130px>
-						<b><font color= #909090>END POINT</font></b>
+						<b><font color= #999999>END POINT</font></b>
 					</td>
 					<td>
 						<% if @challenge.end_point.instance_of?PointDateType %>		
@@ -146,7 +147,7 @@ function fbCallback(response){
 		<table>
 			<tr>
 				<td width="130px" class="titles">
-					<b><font color= #909090>PARTICIPANTS</b></font>
+					<b><font color= #999999>PARTICIPANTS</b></font>
 				</td>
 				<td>
 
@@ -175,14 +176,14 @@ function fbCallback(response){
 						<li><a href="#tab2"><b>PEOPLE</b></a></li>
 					</ul>
 					<div class="tab_container">
-						<div id="tab1" class="tab_content">
+						<div id="tab1" style="background:#F5F5F5;" class="tab_content">
 							<% if(@challenge.social_type.status? and @flg.to_s == "ed") %>
 								<%= render :partial=> "challenges/tasks_edit" %>
 							<% else %>
 								<%= render :partial=> "challenges/tasks" %>																										
 							<% end %>
 						</div>
-						<div id="tab2" class="tab_content">
+						<div id="tab2" style="background:#F5F5F5;" class="tab_content">
 							<table width="100%" border="0" height="40px">
 								<tr bgcolor=#F4F4F4>
 									<td width="120px">
@@ -399,3 +400,4 @@ $(function() {
 		
 });
 </script>
+

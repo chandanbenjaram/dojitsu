@@ -1,5 +1,5 @@
 <%= javascript_include_tag('ui.progressbar')%>
-<%= stylesheet_link_tag('jquery-ui', 'ui.core','ui.progressbar','ui.theme', 'main')%>
+<%= stylesheet_link_tag('jquery-ui', 'ui.progressbar','ui.theme', 'main')%>
 
 <%= render 'layouts/loggedinbody'%>
 <div class="challange">
@@ -18,26 +18,26 @@
 						<div class="mychallenge">
 							<div id="titlechallenge">
 								<div id="title">
-									MY CHALLENGES <font color="white">( <%= as %> ) </font>
+									MY CHALLENGES <font color="white"><b>( <%= as %> ) </b></font>
 								</div>
 								<div class="second_titlechallenge">
 									<%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
 								</div>
 							</div>						
 							
-							<div style="overflow :auto;  height : 440px;" id="challengedetails">
+							<div style="overflow-y: auto; overflow-x: hidden;  height : 465px;" id="challengedetails">
 								<% t=1 %>
 								<script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> </script>
-								<table class="sortable">
+								<table  class="sortable">
 								<thead>
 								  <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">NAME</th><th style="CURSOR: pointer; cursor: hand;" id="content2">MY DOJITSU SCORE</th></tr>
 								</thead>
 								<tbody>
 									<% current_user.challenges.each do |userChallenge| %>
-									<tr style="CURSOR: pointer; cursor: hand;" onclick="location.href='<%= show_per_challenges_path(:id => userChallenge)  %>'" >
+									<tr id="challengetr" style=" width:100%; CURSOR: pointer; cursor: hand;" onclick="location.href='<%= show_per_challenges_path(:id => userChallenge)  %>'" >
 										<td >
 											
-											<font size=4><b><%= userChallenge.title %></b></font><br><font size=2>by 
+											<font family="Arial" color="#666666" size=3"><b><%= userChallenge.title %></b></font><br><font size=2>by </font>
 											
 											
 											
@@ -61,6 +61,7 @@
 											<% else %>
 												<%= userChallenge.child_challenges.size %> contestants<br>
 											<% end %>
+										
 										</td>
 										<td >					
 											<div class="taskprogress" id="taskprogress<%= t %>">
@@ -109,6 +110,8 @@
 										<% t+=1 %>																
 										
 									</tr>
+							
+									
 									<% end %>
 								</tbody>
 
@@ -130,7 +133,7 @@
 									<%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
 								</div>
 							</div>
-							<div id="challengedetails">
+							<div style="overflow-y: auto; overflow-x: hidden;" id="challengedetails">
 								
 							<div>
 								<table class="sortable">
