@@ -19,33 +19,33 @@ class ChallengesController < ApplicationController
   def show_soc
     @flg = params[:flg]
     @challenge = Challenge.find(params[:id])
-	@is_complete_status = 0 
-	@challenge.tasks.each do |checkingTaskStatus|
-		unless checkingTaskStatus.is_complete == 1
-			@is_complete_status = 1
-			next
-		end
-	end
-	if @is_complete_status == 0
-		Challenge.where(:_id => params[:id]).update(:is_complete => 1)
-	end
+    @is_complete_status = 0 
+    @challenge.tasks.each do |checkingTaskStatus|
+      unless checkingTaskStatus.is_complete == 1
+        @is_complete_status = 1
+        next
+      end
+    end
+    if @is_complete_status == 0
+      Challenge.where(:_id => params[:id]).update(:is_complete => 1)
+    end
     @org = User.find(:all,:conditions => ["id=?",@challenge.user_id]).first
   end
 
   def show_per
     # debugger
-	#raise params[:id].inspect
+    #raise params[:id].inspect
     @challenge = Challenge.find(params[:id])
-	@is_complete_status = 0 
-	@challenge.tasks.each do |checkingTaskStatus|
-		unless checkingTaskStatus.is_complete == 1
-			@is_complete_status = 1
-			next
-		end
-	end
-	if @is_complete_status == 0
-		Challenge.where(:_id => params[:id]).update(:is_complete => 1)
-	end
+    @is_complete_status = 0 
+    @challenge.tasks.each do |checkingTaskStatus|
+      unless checkingTaskStatus.is_complete == 1
+        @is_complete_status = 1
+        next
+      end
+    end
+    if @is_complete_status == 0
+      Challenge.where(:_id => params[:id]).update(:is_complete => 1)
+    end
     if (@challenge.social_type.instance_of? ChallengeSocialType rescue false)
       render "show_soc" and return 
     else 
@@ -110,9 +110,9 @@ class ChallengesController < ApplicationController
     end
 
     @challenge.save!
-     
+
     unless @so_who_win.blank?
-    # referenced documents can only be saved when parent exists
+      # referenced documents can only be saved when parent exists
       if !params[:invitees].nil?
         params[:invitees].split(",").each do |invitee|
           if @ch_st_date == "startPointDate" and  @ch_ed_date == "endPointDate"
@@ -131,11 +131,9 @@ class ChallengesController < ApplicationController
         end      
       end  
     end    
-	
-	
-	redirect_to show_per_challenges_path(:id => @challenge), :notice => "Challenge created!"
-	
-	
+
+    redirect_to show_per_challenges_path(:id => @challenge), :notice => "Challenge created!"
+
   end
 
   def edit
@@ -233,23 +231,23 @@ class ChallengesController < ApplicationController
     @date = @challenge_date.end_point.value 
     render :layout => false
   end
-  
+
 
   def update_status
-  	aChallenge = Challenge.find(params[:id])
-  	socialType = aChallenge.social_type
-  	socialType.update_attributes(:status => params[:status])       
+    aChallenge = Challenge.find(params[:id])
+    socialType = aChallenge.social_type
+    socialType.update_attributes(:status => params[:status])       
 
-  	redirect_to show_soc_challenges_path(:id => params[:id])
+    redirect_to show_soc_challenges_path(:id => params[:id])
   end
-  
+
   def update_status_af_meg
-	Challenge.where(:_id => params[:thinking_abt] ).all.each do |aChallenge|
-		aChallenge.child_challenges.each do |aChildChallenge|
-			socialType = aChildChallenge.social_type
-			socialType.update_attributes(:status => "null")
-		end
-	end
+    Challenge.where(:_id => params[:thinking_abt] ).all.each do |aChallenge|
+      aChallenge.child_challenges.each do |aChildChallenge|
+        socialType = aChildChallenge.social_type
+        socialType.update_attributes(:status => "null")
+      end
+    end
   end
 
   protected

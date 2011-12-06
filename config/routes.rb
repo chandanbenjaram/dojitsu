@@ -21,7 +21,7 @@ Dojitsu::Application.routes.draw do
       get "add_task_fun"
       get "update_status"
       get "update_status_af_meg"
-	  put "update_task_soc"
+      put "update_task_soc"
       put :update_attribute_on_the_spot
     end
   end
@@ -29,15 +29,13 @@ Dojitsu::Application.routes.draw do
   # static pages
   match '/aboutus', :to=>'static#aboutus'
   match '/contactus', :to=>'static#contactus'
-  match '/aboutus', :to=>'static#aboutus'  
-  resources :user_connections
-  
+  resources :user_connections  
   resources :messages do
-	collection do
-		get "storemessage"
-	end	
+    collection do
+      get "storemessage"
+    end	
   end 
-  
+
 
   # root page
   root :to=>'static#home'
