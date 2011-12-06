@@ -28,7 +28,8 @@ class Challenge
 
   field :title, :type=>String
   field :description, :type=>String
-  field :task_comp
+  field :canCompleteBeforeTasks,:type=>Boolean
+  
   # challenge status
   field :is_complete, :default => 0
 
