@@ -783,8 +783,11 @@ opacity: 0.95;
 .challange{
 	text-transform: uppercase;
 	color: #f8981d;
-	font-size:20px;
-
+	 font-family: Gothem Book;
+    font-size: 20px;
+    font-weight: bold;
+    position:relative;
+	left:10px;
 
 }
 
@@ -1119,7 +1122,7 @@ width:90%;
 	margin-bottom:10px;
 	margin-left:10px;
 	margin-right:10px;
-	height:230px;
+	height:180px;
 	background:#F4F4F4;
 	overflow:hidden;
 }
@@ -1181,7 +1184,7 @@ width:90%;
 	top:-95px;
 	width:40px;
 	height:25px;
-	left:415px;
+    float:right;
 	background:#DDEFCE;
 	color:#7AC142;
 }
@@ -1277,4 +1280,18 @@ width:90%;
 {
 	width :200px;
 	height:25px;
+}
+
+#title {
+    color: #666666;
+    font-family: "Gotham Bold";
+    font-size: 13px;
+    font-weight: bold;
+}
+.whatsnew
+{
+color: #666666;
+    font-family: "Gotham Bold";
+    font-size: 13px;
+    font-weight: bold;
 }
