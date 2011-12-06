@@ -59,8 +59,18 @@ class ChallengesController < ApplicationController
   end
 
   def create
-    #raise params.inspect
-    #debugger
+  
+	#raise current_user.fbauth.uid.inspect
+  
+	#if !params[:invitees].nil?
+	#	params[:invitees].split(",").each do |aFBId|
+	#		current_user.user_connections.find_or_create_by_target_id(:user_id => current_user.fbauth.uid, :target_id => aFBId )
+	#	end
+	#end	
+	#raise "aaaa"
+	
+	
+	#debugger
     #raise params[:invitees].inspect
     @ch = Challenge.new(params[:challenge])
     @ch_st_date = params[:start_point_type]
@@ -110,6 +120,16 @@ class ChallengesController < ApplicationController
     end
 
     @challenge.save!
+	
+	unless @so_who_win.blank?
+		# referenced documents can only be saved when parent exists
+		if !params[:invitees].nil?
+			params[:invitees].split(",").each do |aFBId|
+				current_user.user_connections.find_or_create_by_target_id(:target_id => aFBId )
+			end
+		end
+	end
+		
 
     unless @so_who_win.blank?
       # referenced documents can only be saved when parent exists

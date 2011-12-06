@@ -56,8 +56,8 @@ group :development, :test do
 	gem 'annotate'
 	#gem 'ruby-debug'
 	#gem "mongrel"
-	gem 'ruby-debug-base19', "0.11.24"
-  gem 'ruby-debug19', "0.11.6"  
+	#gem 'ruby-debug-base19', "0.11.24"
+	#gem 'ruby-debug19', "0.11.6"  
 end       
 
 # Gems used only for assets and not required
@@ -67,7 +67,7 @@ group :assets do
   gem 'coffee-rails', "~> 3.1.0.rc"
   gem 'execjs'
   gem 'uglifier'
-  gem 'therubyracer'   
+  #gem 'therubyracer'   
 end
 
 # Deployment stuff
