@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag('3rdparty/jquery.facebook.multifriend.select.css', '3rdparty/jquery-ui-1.8.16.custom.css', 'challenges.css')%>
 <%= javascript_include_tag('jquery.facebook.multifriend.select') %>
 <p>            
-	<input id = "inviteBtn" type="button" value="INVITE PARTICIPANTS" class="links_invite_p"/>
+	<%= image_tag("invite.PNG", :id => "inviteBtn",   :class=>"invitees" )%>
 	<%= text_field_tag :invitees, nil , :id => "invitees_id", :class=> "hidden" %>
 	<div id="jfmfs-container-wrapper" style="display: none">
 		<div id="jfmfs-container">
