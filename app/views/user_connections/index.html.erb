@@ -56,6 +56,27 @@
 							</tr>
 							</table>
 							<hr/>
+							<table border =5 bordercolor=#f4f4f4>
+							<tr>
+								<td width="100px">
+
+								<font color="#999999"><b>ACHIEVEMENTS</b></font>
+								</td>
+								<td align="left">
+								<% sum=0 %>
+								<% current_user.challenges.each  do |ch| %>
+								<% t= 0 %>
+								<% ch.tasks.each do |tasks| %>
+								<% t = t+1 %>
+								<% end %>
+								<% sum = sum + t %>
+							   <% end %>
+								
+								 <font color="gray"><b><%= current_user.challenges.length %>&nbsp;Challenges&nbsp;and&nbsp;<%= sum%>&nbsp;tasks</b></font>
+								</td>
+							</tr>
+							</table>
+							<hr/>
 							<table height="10px">
 							<tr height="10px">
 								<td width="100px" height="10px">
