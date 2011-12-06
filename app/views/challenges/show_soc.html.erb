@@ -1,5 +1,7 @@
-<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css')%>
-<%= javascript_include_tag('simple-tabs','all','on_the_spot','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.cluetip','challenge_new', 'jquery.table.addrow','messages')%>
+<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css','jquery-ui','ui.progressbar','ui.theme', 'main')%>
+
+<%= javascript_include_tag('simple-tabs','ui.progressbar.js','soc-per','on_the_spot','jquery.colorbox-min','jquery.tools.min','messages')%>
+
 <%= render 'layouts/loggedinbody'%>
 
 <% if !@challenge.child_challenges.blank? && userIds = []%>
@@ -398,3 +400,4 @@ $(function() {
 		
 });
 </script>
+

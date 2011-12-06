@@ -1,5 +1,6 @@
-<%= stylesheet_link_tag('jquery-ui', 'ui.core','ui.progressbar','ui.theme', 'main')%>
-<%= javascript_include_tag('ui.progressbar','jquery.colorbox-min','soc-per')%>
+
+
+
 
 <table width="100%" border="1" bgcolor=#f4f4f4 >
 	<tr bgcolor=#f5f5f5>
@@ -87,7 +88,7 @@
 
 <table bgcolor=#f4f4f4>
 	
-	<% if @challenge.social_type.status == 1 %>
+	<% if @challenge.social_type.status == 1%>
 	
 		<tr bgcolor=#f4f4f4>
 				<div>
@@ -97,7 +98,7 @@
 				<style>
 					.task
 					{
-						width:625px;
+						width: 690px;
 						}
 					</style>
 					<div id="check3">
@@ -145,7 +146,7 @@
 				<style>
 					.task
 					{
-						width:625px;
+						width: 690px;
 						}
 					</style>
 					<div id="check3">
@@ -169,7 +170,7 @@
 							.acceptimage
 							{
 							position:relative;
-							left:595px;
+							left:655px;
 							top:15px;
 							}
 							
@@ -187,12 +188,11 @@
 <div id="tooltip" class="tooltip">
 </div>
 <script>
-
-// execute your scripts when the DOM is ready. this is a good habit
-$(function() {                               
 	$('.task_update_popup').colorbox();
 	$('.add_task_popup').colorbox();
 	
+// execute your scripts when the DOM is ready. this is a good habit
+$(function() {
 	// setup tooltip for a single DIV element
 	$("#mytable a").tooltip({
 		// each trashcan image works as a trigger
