@@ -378,6 +378,11 @@ a .selected {
 	border-width: 1px;
 }
 
+#challenge_title:hover{
+	border-color: #4ccbda;
+	border-width: 1px;
+}
+
 .textfield_effect:focus    {
 	border-color: #64acd8;
 	border-width: 1px;
