@@ -76,22 +76,22 @@
 				<td colspan="3">
 					<table border="1">
 						<tr>
-							<th colspan="2" class="color999" valign="buttom">Score this task by</th>
-							<th colspan="2" class="color999">Point(s)</th>
-							<th colspan="2" class="color999">Task(name)
+							<th colspan="2" class="color999" valign="bottom">Score this task by</th>
+							<th colspan="2" class="color999" valign="bottom">Point(s)</th>
+							<th colspan="2" class="color999" valign="bottom">Task(name)
 							</th>
 						</tr>
 
 						<% @challenge.tasks.each_with_index do |task, index| %>      
 						<%= f.fields_for "task_attributes[]", task do |task_fields| %>						
 						<tr>
-							<td width="30%" class="taskSelection">
+							<td width="25%" class="taskSelection">
 							<div class="styled-select">
 								<%= task_fields.select :score_by, options_for_select([
 								["Choose", ""],
 								["Check box:1 for checking off the task", "Check box:1 for checking off the task"],	 
 								["Self-report number","Self-report number"]														
-								]), :required => "required" ,:style => "width:300px"%>	
+								]), :style => "width:300px", :required => "required"%>	
 							</td>
 							</div>
 							<td align="center" class="taskIcon"><%= image_tag("icon_multiply.png")%></td>

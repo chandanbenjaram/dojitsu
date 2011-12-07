@@ -1,16 +1,14 @@
 <%= stylesheet_link_tag('3rdparty/jquery.facebook.multifriend.select.css', '3rdparty/jquery-ui-1.8.16.custom.css', 'challenges.css')%>
 <%= javascript_include_tag('jquery.facebook.multifriend.select') %>
-<%= form_for :challenge, :url => {:controller=> "challenges",:action => "create"},:html=>{:multipart => true, :name => "challenge_form", :onclick=> "return validate_form_fields(this);"} do |f| -%>
 <p>            
-	<%= image_tag("invite.PNG", :id => "inviteBtn",   :class=>"links_invite_p" )%>
-	
+	<%= image_tag("invite.PNG", :id => "inviteBtn",   :class=>"invitees" )%>
 	<%= text_field_tag :invitees, nil , :id => "invitees_id", :class=> "hidden" %>
 	<div id="jfmfs-container-wrapper" style="display: none">
 		<div id="jfmfs-container">
 		</div>
 	</div>
 </p>                             
-<% end %>
+
 <script type="text/javascript" charset="utf-8">        
 (function($j) { 
 	var selectorObz = {    
@@ -18,7 +16,7 @@
 		friend_fields: "id,name,last_name&access_token="+'<%= current_user.facebook.access_token%>'
 	}
 
-	$j('.links_invite_p').live('click', function(){
+	$j('.invitees').live('click', function(){
 		$j( "#jfmfs-container-wrapper" ).dialog({
 			modal: true,
 			resizable: false,
@@ -44,10 +42,6 @@
 			}
 		});
 	})          
-})(jQuery);                              
-</script>	
-<style>
-button{
-background:url('invite.PNG');
-}
-</style>
+
+	})(jQuery);                              
+	</script>	

@@ -609,6 +609,23 @@ input.radio {
 	text-transform: uppercase;
 	width: 195px;
 }
+.invitees {
+	background: none repeat scroll 0 0 #f9a943;
+	border-radius: 3px 3px 3px 3px;
+	color: #FFFFFF;
+	display: block;
+	font-size: 12px;
+	margin: -18px 0;
+	padding: 0px;
+	text-align: center;
+	text-transform: uppercase;
+	width: 85px;
+}
+#topbar
+{
+position:relative;
+margin: -16px;
+}
 
 .links_cancel {
 	background: none repeat scroll 0 0 #999999;
@@ -1270,7 +1287,7 @@ input:required {
     background: none repeat scroll 0 0 #000000;
     height: 60px;
     margin-top: 20px;
-    width: 760px;
+    width: 860px;
 }
 
 .filterinput
