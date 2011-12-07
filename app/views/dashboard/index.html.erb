@@ -1,11 +1,17 @@
 <%= javascript_include_tag('ui.progressbar')%>
-<%= stylesheet_link_tag('jquery-ui', 'ui.core','ui.progressbar','ui.theme', 'main')%>
+<%= stylesheet_link_tag('jquery-ui', 'ui.progressbar','ui.theme', 'main')%>
 
 <%= render 'layouts/loggedinbody'%>
 <div class="challange">
 	my dashboard
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+ 
+    $('#challengetr').after("<hr/>");
 
+});
+</script>
 <% as= current_user.challenges.size %>
 <table>
 	<td>
@@ -34,10 +40,10 @@
 								</thead>
 								<tbody>
 									<% current_user.challenges.each do |userChallenge| %>
-									<tr style=" width:100%; border-bottom: 1px solid #CECECE;  CURSOR: pointer; cursor: hand;" onclick="location.href='<%= show_per_challenges_path(:id => userChallenge)  %>'" >
+									<tr id="challengetr" style=" width:100%; CURSOR: pointer; cursor: hand;" onclick="location.href='<%= show_per_challenges_path(:id => userChallenge)  %>'" >
 										<td >
 											
-											<font family="Arial" color="#666666" size=3"><b><%= userChallenge.title %></b></font><br><font size=2>by 
+											<font family="Arial" color="#666666" size=3"><b><%= userChallenge.title %></b></font><br><font size=2>by </font>
 											
 											
 											
@@ -61,6 +67,7 @@
 											<% else %>
 												<%= userChallenge.child_challenges.size %> contestants<br>
 											<% end %>
+										
 										</td>
 										<td >					
 											<div class="taskprogress" id="taskprogress<%= t %>">
@@ -108,8 +115,8 @@
 																												
 										<% t+=1 %>																
 										
-									<span><hr/> </span></tr>
-								
+									</tr>
+							
 									
 									<% end %>
 								</tbody>

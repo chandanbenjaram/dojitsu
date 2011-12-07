@@ -30,7 +30,7 @@
 			</tr>
 			<tr>
 				<td width="13%"><b class="color999">START POINT</b></td>
-				<td width="50px;">   
+				<td width="50px;"> 
 					<%= select_tag "start_point_type", "<option value=''>Choose</option><option value='startPointDate'>Date</option><option value='startPointNumber'>Number</option>".html_safe , :required => "required" %>
 				</td>  
 				<td colspan="2">					
@@ -198,11 +198,8 @@
 									<td>
 										<%= select_tag :per_who_win, options_for_select([
     										["Choose", ""],							
-											["Add all milestones together","Add all milestones together"],
-											["1st person to reach End Point","1st person to reach End Point"],	 
-											["Highest milestone","Highest milestone"],	
-											["Lowest milestone","Lowest milestone"],	
-											["Participant reaches all milestones","Participant reaches all milestones"] 														
+											["Add all points together","Add all points together"],
+											["Reach all milestones","Reach all milestones"]
  											]), :id => "per_wn", :style => "width:197px" 
  										%>
 									</td>
