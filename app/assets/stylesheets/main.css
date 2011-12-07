@@ -1505,10 +1505,21 @@ color: #FFFFFF;
  background: none repeat scroll 0 0 #DDEFCE;
     color: #7AC142;
     height: 35px;
-    left: 570px;
+    left: 620px;
     position: relative;
     top: -105px;
     width: 40px;
+}
+.new_challenge_button4 {
+    background: url("new1.PNG") no-repeat scroll left center #F8981D;
+    float: left;
+    font-family: arial;
+    height: 25px;
+    left: 150px;
+    min-width: 70px;
+    position: relative;
+    text-align: right;
+    top: -10px;
 }
 #challange_mydojo
 {
