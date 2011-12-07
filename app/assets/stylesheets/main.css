@@ -510,9 +510,11 @@ textarea:focus{
 }
 
 select {
-	border: 1px solid #cfcfcf;
-	vertical-align: middle;
-	width: 220px;
+	border: 0px solid #cfcfcf;
+	vertical-align: top;
+	position:relative;
+	top:-3px;
+	width: 180px;
 	height: 30px;
 	color:#f9a943;
 	background: transparent;
@@ -555,19 +557,19 @@ input.radio {
 
 .styled-select select {
    background: transparent;
-   width: 268px;
-   padding: 5px;
+   width: 240px;
+   padding: 0px;
    font-size: 16px;
-   border: 1px solid #ccc;
+   border: 0px solid #ccc;
    height: 34px;
 }
 .styled-select {
-   border: 0px solid #ddd;
+   border: 1px solid #ddd;
    top:-2px;
-   width: 240px;
+   width: 200px;
    height: 34px;
    overflow: hidden;
-   background: url(icon_combobox_arrow_down.png) no-repeat right #ddd;
+   background: url(icon_combobox_arrow_down.png ) no-repeat right  #fff;
 }
 
 .links {
@@ -783,11 +785,8 @@ opacity: 0.95;
 .challange{
 	text-transform: uppercase;
 	color: #f8981d;
-	 font-family: Gothem Book;
-    font-size: 20px;
-    font-weight: bold;
-    position:relative;
-	left:10px;
+	font-size:20px;
+
 
 }
 
@@ -1122,7 +1121,7 @@ width:90%;
 	margin-bottom:10px;
 	margin-left:10px;
 	margin-right:10px;
-	height:180px;
+	height:230px;
 	background:#F4F4F4;
 	overflow:hidden;
 }
@@ -1184,7 +1183,7 @@ width:90%;
 	top:-95px;
 	width:40px;
 	height:25px;
-    float:right;
+	left:415px;
 	background:#DDEFCE;
 	color:#7AC142;
 }
@@ -1265,10 +1264,11 @@ width:90%;
 	border-style: solid;
 	border-width: 10px;
 }
-	input:required {
-		-moz-box-shadow: none;
-		-webkit-box-shadow: none;
-		}
+input:required {
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
 #check3 {
     background: none repeat scroll 0 0 #000000;
     height: 60px;
@@ -1280,18 +1280,4 @@ width:90%;
 {
 	width :200px;
 	height:25px;
-}
-
-#title {
-    color: #666666;
-    font-family: "Gotham Bold";
-    font-size: 13px;
-    font-weight: bold;
-}
-.whatsnew
-{
-color: #666666;
-    font-family: "Gotham Bold";
-    font-size: 13px;
-    font-weight: bold;
 }

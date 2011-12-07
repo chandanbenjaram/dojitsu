@@ -31,7 +31,9 @@
 			<tr>
 				<td width="13%"><b class="color999">START POINT</b></td>
 				<td width="50px;"> 
+				    <div class="styled-select">
 					<%= select_tag "start_point_type", "<option value=''>Choose</option><option value='startPointDate'>Date</option><option value='startPointNumber'>Number</option>".html_safe , :required => "required" %>
+					</div>
 				</td>  
 				<td colspan="2">					
 					<div class="startPointDate">
@@ -48,7 +50,9 @@
 			<tr>  
 				<td><b class="color999">END POINT</b></td>
 				<td>  
+					<div class="styled-select">
 					<%= select_tag "end_point_type", "<option value=''>Choose</option><option value='endPointDate'>Date</option><option value='endPointNumber'>Number</option>".html_safe, :required => "required" %>
+					</div>
 				</td>  
 				<td colspan="2" style="float: left;">					
 					<div class="endPointDate">
@@ -72,7 +76,7 @@
 				<td colspan="3">
 					<table border="1">
 						<tr>
-							<th colspan="2" class="color999">Score this task by</th>
+							<th colspan="2" class="color999" valign="buttom">Score this task by</th>
 							<th colspan="2" class="color999">Point(s)</th>
 							<th colspan="2" class="color999">Task(name)
 							</th>
@@ -82,15 +86,17 @@
 						<%= f.fields_for "task_attributes[]", task do |task_fields| %>						
 						<tr>
 							<td width="30%" class="taskSelection">
+							<div class="styled-select">
 								<%= task_fields.select :score_by, options_for_select([
 								["Choose", ""],
 								["Check box:1 for checking off the task", "Check box:1 for checking off the task"],	 
 								["Self-report number","Self-report number"]														
-								])%>	
+								]), :required => "required" ,:style => "width:300px"%>	
 							</td>
+							</div>
 							<td align="center" class="taskIcon"><%= image_tag("icon_multiply.png")%></td>
 							<td align="center">     
-								<%= task_fields.text_field :score, :class => "textfield_effect_nw_tk_add", :size=>"10px", :placeholder=>"enter task point(s)" %>
+								<%= task_fields.text_field :score, :class => "textfield_effect_nw_tk_add", :size=>"10px", :required => "required", :placeholder=>"enter task point(s)" %>
 							</td>
 							<td align="center" class="taskIcon"><%= image_tag("icon_slash.png")%></td>
 							<td align="center">     
@@ -126,9 +132,9 @@
 						<tr>
 							<td colspan="6">
 								<b class="color999"><%= image_tag("icon_arrow_left.png")%>&nbsp;&nbsp;Do all tasks need to be complete before the challenge is marked complete?</b><br>
-								<%= f.radio_button :canCompleteBeforeTasks, "soc", :class => "chall_type" ,:checked =>"checked"%>
+								<%= f.radio_button :canCompleteBeforeTasks, "1", :class => "chall_type" ,:checked =>"checked"%>
 								<font class="color999"><%= f.label "Yes" %></font>
-								<%= f.radio_button :canCompleteBeforeTasks, "soc", :class => "chall_type"%>
+								<%= f.radio_button :canCompleteBeforeTasks, "0", :class => "chall_type"%>
 								<font class="color999"><%= f.label "No" %></font>							   
 							</td>
 						</tr>    
@@ -144,6 +150,7 @@
 				<tr>
 					<td valign="top"><b class="color999">PRIVACY</b></td>
 					<td colspan="3">
+					<div id="select_challenge_div"></div>
 					<ul class="tabs">
     					<li><a href="#tab1" id="soc">Social</a></li>
     					<li><a href="#tab2" id="per">Personal</a></li>
@@ -154,29 +161,33 @@
     						
 		<table width="100%" border="0">
 		<tr>
-			<td><b class="color999">Who wins</b></td>
+			<td width="25%"><b class="color999">Who wins</b></td>
 			<td>
+				<div class="styled-select">
 				<%= select_tag :soc_who_win, options_for_select([
 					["Choose", ""],							
 					["Highest number of points","Highest number of points"],
 					["Lowest number of points","Lowest number of points"],	 
 					["1st person to reach End Point","1st person to reach End Point"],	
 					["Participant completes all tasks","Participant completes all tasks"]			 														
-					]), :id => "soc_wn", :style => "width:197px"
+					]), :id => "soc_wn", :style => "width:222px"
 					%>		
+				</div>	
 			</td>
 			</tr>
 			<tr>
 				<td><b class="color999">How many winners</b></td>
 				<td>
+					<div class="styled-select">
 					<%= select_tag :soc_how_many_winner, options_for_select([
 						["Choose", ""],
 						["1", "1"],							
 						["3","3"],
 						["5","5"],	 
 						["All participants win","all"] 														
-						]), :id => "soc_hm", :style => "width:197px"
-						%>	
+						]), :id => "soc_hm", :style => "width:222px"
+						%>
+					</div>		
 						<div id="soc_how_many_winner_div"></div>	
 					</td>
 				</tr>
@@ -194,14 +205,16 @@
     					<div id="tab2" class="tab_content">
        						<table width="100%" border="0">
   								<tr>
-    								<td><b style="color:#999999;">Who wins</b></td>
+    								<td  width="20%"><b style="color:#999999;">Who wins</b></td>
 									<td>
+										<div class="styled-select">
 										<%= select_tag :per_who_win, options_for_select([
     										["Choose", ""],							
 											["Add all points together","Add all points together"],
 											["Reach all milestones","Reach all milestones"]
- 											]), :id => "per_wn", :style => "width:197px" 
+ 											]), :id => "per_wn", :style => "width:222px" 
  										%>
+										</div>
 									</td>
   								</tr>
 							</table>  
@@ -251,7 +264,6 @@
 		</tr>
 	</table>			
 </div>
-
 
 			
 			
