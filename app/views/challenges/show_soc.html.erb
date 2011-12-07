@@ -46,7 +46,7 @@ function fbCallback(response){
 <div id="ch_main_div"> 
 	<div id="ch_main_div1"> 
 		<div style=" font-size: 25px; font-weight: bold;" class="challange"> 
-			<%= on_the_spot_edit @challenge,:title, :ok_text => "update"%>
+			<%= on_the_spot_edit @challenge,:title%>
 		</div> 
 		<% unless @challenge.social_type.status.to_i == 1 %>
 			<table>
@@ -69,21 +69,7 @@ function fbCallback(response){
 					<td width="80px">
 						<b><font color= #999999>DESCRIPTION</font></b></td>
 					<td width="500px">
-						<b><%= on_the_spot_edit @challenge,:description ,:id => "desc_soc" ,:ok_text => "update", :type=>:textarea  %></b>
-						<style>
-						button {
-						background:#F8981D;
-						width:80px;
-						height:25px;
-						border:1px solid #D7D7D7;
-						color: #ffffff;
-						margin-left:10px;
-						font-weight:bold;
-						}
-						
-						
-						
-						</style>
+						<b><%= on_the_spot_edit @challenge,:description , :type=>:textarea  %></b>
 					</td>
 				</tr>
 			</table>
@@ -206,69 +192,62 @@ function fbCallback(response){
 							<% end %>
 						</div>
 						<div id="tab2" style="background:#F5F5F5;" class="tab_content">
-							
-							
-							<table bgcolor=#F4F4F4 width="100%" border="0" height="10px"  style="position: relative; top: -20px;">
-								
-									<td width="50%"  >
-										<% if  @challenge.class.to_s == "Challenge" %>
-											<font size="4" color="#8c8c8c"><b  id="total">Total: <%= @challenge.child_challenges.length %></b></font>
-										<%else %>
-											<font size="4" color="#8c8c8c"> <b  id="total">Total: <%= @challenge.parent.child_challenges.length %></b></font>
+							<table width="100%" border="0" height="40px">
+								<tr bgcolor=#F4F4F4>
+									<td width="120px">
+										<b  id="total">Total: <%= @challenge.child_challenges.length %></b>
+										<% if @challenge.class.to_s == "Challenge" %>
+											<%= image_tag("btn_msg_up.png", :style=>"margin-left:10px; position:relative; top:5px;" ,:onclick=>"contactToInvitee()")%>
 										<% end %>
-											
-												<%= image_tag("btn_msg_up.png", :style=>"margin-left:10px; position:relative; top:5px;" ,:onclick=>"contactToInvitee()")%>
-											
 									</td>
-									<td>
-										<input type="text", id="search">&nbsp;
-									</td>
-									<td  >
-									
-										<select id="search">
+									<td width = "400px"><input type="text", id="search">&nbsp;
+										<select>
 											<option value="volvo">ALL</option>
 											<option value="saab">ACCEPTED</option>
 											<option value="mercedes">PENDING</option>
 											<option value="audi">DECLINED</option>
 										</select> 
 											&nbsp;
-											<%= image_tag("search_it.PNG", :style=>"width:25px; height:25px; position:relative; top:5px;" ,:onclick=>"contactToInvitee()")%>
-									</td>
-								
+											<%= image_tag ("search_it.PNG") %>
+										</td>
+								</tr>
 							</table>
-							 <%if @challenge.parent .nil? %>
-									<% childChallenges =  @challenge.child_challenges %>
-							<%else%>
-									<%childChallenges =  @challenge.parent.child_challenges %>
-							<%end%> 
-							
-							
-							<script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> </script>
-								<table id="tableshow_soc" class="sortable">
-								<thead>
-								  <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">NAME</th><th style="CURSOR: pointer; cursor: hand;" id="content2">STATUS</th></tr>
-								</thead>
-								<tbody>
-								 <% childChallenges.each do |aChildChallenge| %>
-										<tr>
-											<td width="92%" id="list">
-											<p><%=image_tag FbGraph::User.new(aChildChallenge.user_id).fetch.picture %> <a href="#"  id="ahref"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></a></p>
-										  
-										   </td>
-										   <td width="8%">
-										   <span id="status_icon"> 
-											  <% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 %>
-												<%= image_tag  "icon_thinking.png"  %>
-											  <% elsif aChildChallenge.social_type.status == 1 %>
-												<%= image_tag  "icon_accept.png"  %>
-											  <% else %>
-												 <%= image_tag "icon_decline.png"  %>
-											  <% end %>
-									           </span> 
-											</td>
-											</tr> 
-											 <% end %> 
-											 </tbody>
+							<table  border="0" height="20px" bgcolor="gray"> 
+								<tr bgcolor=#D7D7D7>
+									<td>
+										<b>NAME &nbsp;</b>
+									</td>
+									<td width="80px">
+										<font color=#A8A8A8>STATUS</font>
+									</td>
+								</tr>
+								</table>
+								<div id="wrap">
+								 <h1 id="header"></h1>
+								 <table bgcolor="white">
+								   <tr>
+									 <td id="list">
+									  <%if @challenge.parent .nil? %>
+									   <% childChallenges =  @challenge.child_challenges %>
+									   <%else%>
+										<%childChallenges =  @challenge.parent.child_challenges %>
+										  <%end%>                      
+								   <% childChallenges.each do |aChildChallenge| %>
+									<p><%=image_tag FbGraph::User.new(aChildChallenge.user_id).fetch.picture %> <a href="#"  id="ahref"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></a>
+								   <span id="status_icon"> 
+									  <% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 %>
+										<%= image_tag  "icon_decline.png"  %>
+									  <% elsif aChildChallenge.social_type.status == 1 %>
+										<%= image_tag  "icon_accept.png"  %>
+									  <% else %>
+										 <%= image_tag "icon_decline.png"  %>
+									  <% end %>
+									  <% end %>                     
+									</span> 
+									  </p>
+									
+									</td>
+								   </tr> 
 								  </table>
 								</div>
 							<style>
