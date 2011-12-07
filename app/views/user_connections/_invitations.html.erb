@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag('jquery.facebook.multifriend.select.css','challenges.css')%>
-<%= javascript_include_tag('jquery.facebook.multifriend.select') %>
+
 <%= form_for :challenge, :url => {:controller=> "challenges",:action => "create"},:html=>{:multipart => true, :name => "challenge_form", :onclick=> "return validate_form_fields(this);"} do |f| -%>
 <p>            
  <%= image_tag("invite.PNG", :id => "inviteBtn",   :class=>"invitees" )%>

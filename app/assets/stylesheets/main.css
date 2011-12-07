@@ -1327,16 +1327,9 @@ input:required {
  border:10px solid #FF0000;
  
 }
- #ahref{
-	color: #000000;
-	font-weight: bold;
-	left: 10px;
-	position: relative;
-	text-decoration: none;
-	top: -20px;
-}
+
 #search{
- border: 1px solid #BEBEBE;
+ border: 0px solid #BEBEBE;
     height: 25px;
     width: 180px;
 }
@@ -1382,3 +1375,123 @@ input:required {
     top: -31px;
     width: 30px;
 }
+.invitee_list
+					{
+					 margin-top: -25px;
+   
+    position: relative;
+					}
+#icon
+{ 
+			
+		    margin-left: 610px;
+    margin-right: -50px;
+    margin-top: -10px;
+    position: relative;
+			
+			} 
+			
+				#names
+			{ 
+			float: left;
+			width: 660px;
+			} 
+		
+			
+		 #ahref{
+	color: #000000;
+	font-weight: bold;
+	left: 10px;
+	position: relative;
+	text-decoration: none;
+	top:0px;
+}
+			#name_list
+			{
+			
+			color: #000000;
+    padding-left: 5px;
+    position: relative;
+    top: -15px;
+			
+			
+			}
+			.private_msg
+			{
+			position:relative;
+			left:-50px;
+			top:-5px;
+			}
+			.private_msg1
+			{
+			position:relative;
+			left:0px;
+			top:-5px;
+			}
+			.bottom_border
+			{
+			
+			}
+			#percentage_mydojo
+{
+  color: #7AC142;
+    font-size: 16px;
+    font-weight: bold;
+    left: 2px;
+    position: relative;
+    top: 22px;
+}
+.completedtask_mydojo
+{
+color: #FFFFFF;
+    left: 170px;
+    position: relative;
+}
+.notcompleted_mydojo
+{
+ color: #FFFFFF;
+    float: left;
+    left: 105px;
+    position: relative;
+}
+#points_mydojo
+{
+ background: none repeat scroll 0 0 #DDEFCE;
+    color: #7AC142;
+    height: 35px;
+    left: 570px;
+    position: relative;
+    top: -105px;
+    width: 40px;
+}
+#challange_mydojo
+{
+position:relative;
+}
+.filterform {
+	 left: 17px;
+position: relative;
+top: -12px;
+					}
+					
+.filterinput {
+	width :200px;
+	height:25px;
+	position :relative;
+	top: 15px;
+					}
+					
+.text_field {
+	width :200px;
+	height:25px;
+					}
+					
+.user {
+	font-size :20px;
+	text-transform: uppercase;
+			}
+			
+.invite {
+position :relative;
+	top: 15px;
+		}
