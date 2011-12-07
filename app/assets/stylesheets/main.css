@@ -187,6 +187,18 @@ ul.homenavbar > li.selected > a {
 	left:10px;
 	font-family: arial;
 }
+.new_challenge_button1 {
+	background: #f8981d url("new1.PNG") no-repeat left center;	
+	text-align: right;
+	min-width: 70px;
+	height:25px;
+	top:-25px;
+	right:-125px;
+	position:relative;
+	float:left;
+	left:10px;
+	font-family: arial;
+}
 
 /* User show page */
 table.profile {
@@ -904,6 +916,7 @@ ul.tabs1 {
 	-moz-border-radius: 6px;
 	border-radius: 6px; 
 }
+
 #titlechallenge
 {
 	width:635px;

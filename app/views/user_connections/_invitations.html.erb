@@ -1,13 +1,17 @@
-
+<%= stylesheet_link_tag('jquery.facebook.multifriend.select.css','challenges.css')%>
+<%= javascript_include_tag('jquery.facebook.multifriend.select') %>
 
 <p>            
 	<%= image_tag("invite.PNG", :id => "inviteBtn",   :class=>"invitees" )%>
+	 
 	<%= text_field_tag :invitees, nil , :id => "invitees_id", :class=> "hidden" %>
+
 	<div id="jfmfs-container-wrapper" style="display: none">
 		<div id="jfmfs-container">
 		</div>
 	</div>
 </p>                             
+
 
 <script type="text/javascript" charset="utf-8">        
 (function($j) { 
@@ -35,13 +39,17 @@
 					var friendSelector = $j("#jfmfs-container").data('jfmfs');
 					var selectedFriends = friendSelector.getSelectedIds();
 					$j('#invitees_id').val(selectedFriends);
-				   	$j('#inviteBtn').val("INVITE PARTICIPANTS (" + selectedFriends.length + ")");                                 
-
-					$j(this).dialog( "close" );
-				}
+				   	$j('#inviteBtn').val("INVITE PARTICIPANTS (" + selectedFriends.length + ")");   
+				$j(this).dialog( "close" );					
+                   alert(selectedFriends);
+					}
+					
 			}
+			
 		});
 	})          
 
 	})(jQuery);                              
 	</script>	
+	<% selectedFriends = Array.new %>
+	<%#= raise selectedFriends.inspect %>
