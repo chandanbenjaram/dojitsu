@@ -80,7 +80,7 @@
 				</tr>
 			<tr bgcolor=#D7D7D7>
   				<td width="90%">
-   					<font color="#999999"  ><b>POINT(s)</b></font> <%= image_tag("icon_slash.png", :height => '12', :width => '5') %> <font color="#999999"><b>TASKS</b></font>
+   					<font color="#999999"  ><b>POINT(S)</b></font> <%= image_tag("icon_slash.png", :height => '12', :width => '5') %> <font color="#999999"><b>TASKS</b></font>
   						</td>
   						<td></td>
   							<td width="15%" style="font-weight:bold;  color:#999999;">
@@ -95,12 +95,12 @@
 				<tr bgcolor=#ffffff >
 					<td id="task_list" colspan="3" >						
 						<% if aTask.is_complete.to_i == 0 %>
-							<div id="task_list">
+							<div>
 								<div style="float:left; margin-top:15px;"><%= aTask.score %> <%= image_tag("icon_slash.png", :height => '10', :width => '5')%></div><div style="float:left;  margin-top:15px; margin-left:5px;"><%= aTask.name %></div>
 								<div class="showperscore_0"><%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => "text-decoration: underline; color:#F9AB47;" %></div>
 							</div>
 						<% else %>	
-							<div id="task_list">
+							<div>
 								<% total_score_count +=1 %>
 								<div style="float:left; margin-top:15px;"><%= aTask.score %> <%= image_tag("icon_slash.png", :height => '10', :width => '5')%></div><p style="float:left; margin-top:15px; margin-left:5px; text-decoration:line-through;"><%= aTask.name %></p>
 								<div class="showperscore"><%= aTask.score %></div>
