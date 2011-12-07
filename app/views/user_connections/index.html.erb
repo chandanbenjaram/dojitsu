@@ -1,32 +1,38 @@
-<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css')%>
-<%= javascript_include_tag('simple-tabs','all','jquery.table.addrow','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.cluetip.js','challenge_new')%>
+<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css','jquery-ui', 'ui.core','ui.progressbar','3rdparty/jquery.ui.all','ui.theme', 'main')%>
+<%= javascript_include_tag('simple-tabs','all','ui.progressbar','on_the_spot','jquery.table.addrow','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.cluetip','challenge_new')%>
 <%= render 'layouts/loggedinbody'%>
-
+<% as= current_user.challenges.size %>
 <div class="topbar">
-
-			<table>
+				<table>
 					<tr>
 						<td width="470px">
 						</td>
-						<td>
+						<td  width="100px">
+						<%= render :partial => 'invitations' %>
 						<div id="fb-root"></div>      
-							<%= image_tag("invite.PNG")%>&nbsp;&nbsp;&nbsp;<font color="gray"> <b  id="image"></b></font>
-	
+					 <%= hidden_field_tag "myvar", 0%>			
+						</td>
+						<td width="200px" class="profile_name">
+						<font color="gray"> <b  id="image" ></b></font>
+						<style>
+						.profile_name
+						{
+						position:relative;
+						top: -10px;
+						}
+						</style>
 						</td>
 						<td>
 						</td>
 					</tr>
 			</table>
 </div>
-
-		<div id="ch_main_div3">
+<div id="ch_main_div3">
 				<p class="user"><font color="orange"><%=current_user.facebook.name%></font></p>
-		
-		  <table border="1px">
+		<table border="1px">
 				<tr width="600px">
 					<td width="100px" height="200px" id="image1" align="left">
-					
-					</td>
+				</td>
 					<td width="570px" height="200px">
 						<table border =5 bordercolor=#f4f4f4>
 							<tr>
@@ -38,15 +44,14 @@
 								</td>
 							</tr>
 							</table>
-							
-							<table>
+						<table>
 					        <tr>
 								<td width="100px">
 								<font color="#999999"><b>MEMBER SINCE</b></font></td>
 								</td>
 								<td align="left">
 								<%  user = User.find(:all)%>
-								<%=%>
+								<%= current_user.created_at%>
 								</td>
 							</tr>
 							</table>
@@ -91,9 +96,10 @@
 								</td>
 								<td align="left" id="image3">
 								<%= current_user.facebook.birthday %>
+								
 								<% if current_user.facebook.birthday == nil %>
 								<% dob = "01-jan-1986" %>
-								<%= dob %>
+								<%#= dob %>
 								<% end %>
 								</td>
 							</tr>
@@ -105,10 +111,11 @@
 								<font color="#999999"><b>ABOUT ME</b></font></td>
 								</td>
 								<td align="left">
-							     <%= current_user.facebook.about %>
+							     <%  about_me = current_user.facebook.bio %>
+								 <%= about_me %>
 								<% if current_user.facebook.about == nil %>
 								<% about = "about your self #{current_user.facebook.name}"%>
-								<%= about %>
+								<%#= about %>
 								<% end %>
 								</td>
 							</tr>
@@ -116,70 +123,23 @@
 					</td>
 				</tr>
 		  </table>
-
-
-  
-  <table width="100%" border="0" style="margin-top:0px;">
-  	
-  			
-			<tr>
+	<table width="100%" border="0" style="margin-top:0px;">
+		<tr>
   			<td colspan="3">
     				<ul class="tabs">
     					<li><a href="#tab1"><b>MY DOJO</b></a></li>
     					<li><a href="#tab2"><b>CHALLENGES</b></a></li>
 					</ul>
-
 					<div class="tab_container">
-    					<div id="tab1" class="tab_content">
-    						<table width="100%" border="0">
+    					<div id="tab1" class="tab_content2">
+    					<table width="100%" border="0">
   								<tr>
     								<td>
-												<table bgcolor=#F4F4F4>
+											<table bgcolor=#F4F4F4>
 													<tr bgcolor=#F4F4F4>
-														<td width="220px"><b >Total:	<b id="total"></b><%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(orgId)" ) %>
-														
-														</td>
-														<td width="550px"><input class="text_field" type="text">&nbsp;
-															<select>
-															<option value="volvo">ALL</option>
-															<option value="saab">ACCEPTED</option>
-															<option value="mercedes">PENDING</option>
-															<option value="audi">DECLINED</option>
-															</select> 
-															<%= image_tag ("search_it.PNG") %>
-															</td>
-															<style>
-															.text_field
-															{
-															width :200px;
-															height:25px;
-															}
-															</style>
-													</tr>
-												</table>
-									
-    									 
-								 
-												<div id="fb-root"></div> 
-														<table  border="0"> 
-															<tr bgcolor=#d7d7d7>
-																			<td>
-																				NAME
-																			</td>
-																			<td align="right">
-																				<p align=right>STATUS</p>
-																			</td>
-															</tr>
-															</table>
-															<table bgcolor="white">
-															<tr>
-															<td>
-															<div id="wrap">
-																	<h1 id="header"></h1>
-																	<table bgcolor="white">
-																			<tr>
-																					
-																			          <% arr = Array.new %>
+													
+													
+													<% arr = Array.new %>
 																						<% loop=current_user.challenges.length %>
 																								<% i=0 %>
 																									<% for  i  in  0..loop %>
@@ -191,83 +151,150 @@
 																											   	   <% length = id.user_id.length %>
 																												      <% arr.push(id.user_id) %>
 																													   		 <% end %>
-																												
 																									<% end %>
-																											   																									    
+																									<% end %>																							 
+																										<% arr.uniq! %>
+																										
+																				<% arr.each do|x|  %>
+																						<div id="fb-root"></div>
+																							<script>
+																							function contactToInvitee()
+																							  {
+																							 var contact = '<%= arr.join(",") %>';
+																								window.fbAsyncInit();
+																							FB.ui({
+																								  method: 'send',
+																								  to:contact,
+																								  name: 'Facebook Dialogs',
+																								  link: 'https://developers.facebook.com/docs/reference/dialogs/'
+																								  });										 
+																						
+																							 }
+																								
+																							 </script>			
+																				<% end %>	
+													
+													
+													
+													
+													
+													
+														<td width="420px"><b >Total:	<b id="total"></b><%= image_tag("btn_msg_up.png", :onclick=>"contactToInvitee()") %>
+													
+														</td>
+														<td width="150px"  id="search">&nbsp;
+																</td>
+																<td>
+																<%= image_tag ("search_it.PNG") %>
+															</td>
+															<td>
+																<%= render :partial => 'invitations' %>
+																<div id="fb-root"></div>      
+																<%= hidden_field_tag "myvar", 0%>	
+															</td>
+																	<style>
+																	.filterform
+																	{
+																	position :relative;
+																	top: -10px;
+																	}
+																.filterinput
+																	{
+																	width :200px;
+																	height:25px;
+																	}
+																	</style>
+													</tr>
+											</table>
+									  
+	 
+												<div id="fb-root"></div> 
+														<table  border="0"> 
+															<tr bgcolor=#d7d7d7>
+																	<td>
+																		NAME
+																	</td>
+																	<td align="right">
+																			<p align=right>STATUS</p>
+																	</td>
+															</tr>
+														</table>
+														<table bgcolor="white">
+															<tr>
+																<td>
+																	<div id="wrap">
+																		<h1 id="header"></h1>
+																		<table bgcolor="white">
+																			<tr>
+																					<% arr = Array.new %>
+																						<% loop=current_user.challenges.length %>
+																								<% i=0 %>
+																									<% for  i  in  0..loop %>
+																											<%current_user.challenges.each do|user|%>
+																											 
+																											   <% user.child_challenges. each do |id|%>
+																											   <% title=id.title %>
+																											     <%id.user_id%>	
+																											   	   <% length = id.user_id.length %>
+																												      <% arr.push(id.user_id) %>
+																													   		 <% end %>
+																									<% end %>
 																									<% end %>																							 
 																										<% arr.uniq! %>
 																										<script>
 																												 total= '<%=arr.length %>';
+																											
 																												 $("#total").append(total);
+																												 
+																										</script>
+																												<% arr.each do|x|  %>
+																												<script>
+																												var contact = <%= arr %> 
+																												alert( <%= arr %> );
 																												</script>
-																										<% arr.each do|x|  %>
-																												<table width="720px">
-																											   <tr>
-																											   <td width="600px">		
-																												<%=image_tag(FbGraph::User.new(x).fetch.picture) %>
-																												 <b><%= FbGraph::User.new(x).fetch.name %></b>
+																					<table width="720px">
+																							 <tr>
+																											   <td width="670px">		
+																														<%=image_tag(FbGraph::User.new(x).fetch.picture) %>
+																														 <b><a href="#"  id="ahref"><%= FbGraph::User.new(x).fetch.name %></a></b>
 																												</td>
-																												 <td width="120px">
-																												 <%= image_tag("btn_msg_up.png")%>  																											  
-																												 <%= image_tag("btn_delete_up.png") %>
-																												 </td>
-																												 </tr>
-																												 <tr>
-																												 <hr/>
-																												 </tr>
-																												 </table>
-																										<% end %>																
-																				</td>
-																			</tr>	
-																	 </table>
-																</div> 
-															</td>
-															<td>
-															</td>
-															</tr>
-														</table> 
-														</td>
-									
-									
-  								</tr>
-							</table>  
-    					</div>
-						
-						
-							<div id="tab2" class="tab_content">
-       						challenges tab.........	  
-</div>
-	</div>															
-																
-<script>
-$(document).ready(function() 
-{ 
-    $("#btnFilter").click(function() 
-    { 
-        var selection = $("#catSelect").val(); 
-         if (selection == "all") 
-        { 
-            $(".item").show(); 
-        } 
-        else 
-        { 
-            $(".item").hide(); 
-            $("."+selection).show(); 
-        } 
-    }); 
-});
-
-
-</script>											
-																				
-<script>
-	function contactToOrganizer(orgId)
-	{
-		 $.dojitsu.renderSendBox (<%= "'"+title + "'" %>, fbCallback);	
-	}
-	</script>													
-																
-																
+																												 <td width="50px">
+																														 <script>
+																														 var user_id= <%= x %>
+																														 </script>
+																														 <%= image_tag('btn_msg_up.png',:onclick =>"testing(user_id);")%>  
+																													   <%= image_tag("btn_delete_up.png") %>
+																												</td>
+																								</tr>
+																								<tr>
+																									 <hr/>
+																								 </tr>
+																					 </table>
+																												
+																						<div id="fb-root"></div>
+																							<script>
+																							function testing(user_id)
+																							  {
+																							 var myFriends =user_id;
+																									window.fbAsyncInit();
+																							FB.ui({
+																								  method: 'send',
+																								  to:myFriends,
+																								  name: 'Facebook Dialogs',
+																								  link: 'https://developers.facebook.com/docs/reference/dialogs/'
+																								  });
+																								  }
+																							 </script>			
+																				<% end %>	
+																</td>
+															</tr>	
+														</table>
+												</div> 
+										</td>
+									</tr>
+						</table> 
+					</div>
+					
 <style type="text/css">
 #status_icon
 { 
@@ -278,14 +305,7 @@ width: 40px;
 {					
 color:#000000;
 }
-</style>
-
-
-
-	
-
-																
-<script src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+</style>			
 <script>
 	(function ($) {
 	  jQuery.expr[':'].Contains = function(a,i,m){
@@ -317,22 +337,114 @@ color:#000000;
 		listFilter($("#header"), $("#list"));
 	  });
 	}(jQuery));
-	
+</script> 									
+					
+					
+					
+					
+					
+					<div id="tab2" class="tab_content2">
+							<div class="dashboardsidebar">
+						<div style=" width:770px; " class="mychallenge">
+							<div style="  width:770px; "   id="titlechallenge">
+								<div id="title">
+									TOTAL:<font color="black"><%= as %></font>
 
-</script> 					
+								</div>
+								<div style=" float: left;  left: 670px; " class="second_titlechallenge">
+									<%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
+								</div>
+							</div>						
+							
+							<div style="overflow -y:auto; overflow-x:hidden; width:770px;  height : 440px;" id="challengedetails">
+								<% t=1 %>
+								<script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> </script>
+								<table class="sortable">
+								<thead>
+								  <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">NAME</th><th style="CURSOR: pointer; cursor: hand;" id="content2">MY DOJITSU SCORE</th></tr>
+								</thead>
+								<tbody>
+									<% current_user.challenges.each do |userChallenge| %>
+									<tr style="CURSOR: pointer; cursor: hand;" onclick="location.href='<%= show_per_challenges_path(:id => userChallenge)  %>'" >
+										<td >
+											
+											<font size=4><b><%= userChallenge.title %></b></font><br><font size=2>by <b><%= current_user.facebook.first_name %></b></font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
+											<%if ( userChallenge.child_challenges.size <2 ) %> 
+												<%= userChallenge.child_challenges.size >0 ? userChallenge.child_challenges.size : 1  %> contestant<br>
+											<% else %>
+												<%= userChallenge.child_challenges.size %> contestants<br>
+											<% end %>
+										</td>
+										<td >					
+											<div class="taskprogress" id="taskprogress<%= t %>">
+											</div>
+											
+											
+										<br/>
+											<div id="check1">
+												<% x=0 %>
+												<% y=0 %>
+												<% a= 0 %>
+												<% b= 0 %>
+												<% userChallenge.tasks.each do |aTask| %>
+										
+													<% if (aTask.is_complete == 1 ) %>
+														<% a+=Integer(aTask.score) %>
+														<% x+=1 %>
+													<% else %>
+														<% b += aTask.score.to_i %>
+														<% y+=1 %>
+													<% end %>
+												<% end %>
+												
+											
+											<div class="completedtask"> 
+												<%= a %> points (<%= x %> &nbsp; tasks)
+											</div>
+											<div class="notcompleted">
+												<font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="white"><%= b %> points (<%= y %>&nbsp; tasks)</font>
+											</div>
+												<script type="text/javascript">
+													$(function() {
+														$("#taskprogress<%= t %>").progressbar({ value: Math.round(((<%= a %>/<%= (a+b) %>)*100)) });
+														$("<p>").attr("id", "check").text($("#taskprogress<%= t %>").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress<%= t %>");
+													});
+												</script>
+											</div>
+											<div id="points">
+												&nbsp;&nbsp;<font size=4><b><%= a %></b></font>
+											</div>
+																		
+										</td>
+																												
+										<% t+=1 %>																
+										
+									</tr>
+									<% end %>
+								</tbody>
+
+								</table>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					</div>
+			</div>			
+		</td>
+	</tr>
+</table>	
+
 						
     				
 
 
- 
+<script type="text/javascript" src="../includes/js/jquery.min.js"></script>  
+<script src="http://connect.facebook.net/en_US/all.js"></script>  
 <div id="fb-root"></div> 	
     <script>
-      FB.init({ 
-         appId  : '232592880122189', 
-         status : true, // check login status 
-         cookie : true, // enable cookies to allow the server to access the session 
-         xfbml  : true  // parse XFBML 
-         });
+      		window.fbAsyncInit();
 		  FB.getLoginStatus(function(response) { 
              if (response.session)
             { 
@@ -350,37 +462,111 @@ color:#000000;
 														method: 'fql.query',
                                                          query: 'SELECT name,pic_big,sex,birthday FROM user WHERE uid=' + name
                                                         }, function(response){                                                               
-                                                                htmlcontent = '<img src=' + response[0].pic_big+ ' />';
+                                                                htmlcontent = '<img src=' + response[0].pic_big+ ' />';																
 																htmlcontent1=response[0].name
 																htmlcontent2=response[0].sex
-																htmlcontent3=response[0].birthday
-																
-																  
-
-
+															
+																htmlcontent3=response[0].birthday														
 																$("#image").append(htmlcontent1);   
                                                                 $("#image1").append(htmlcontent);   
 																$("#image2").append(htmlcontent2);   
 																$("#image3").append(htmlcontent3);   
-
                                                         }); 
                                     } 
                         ); 
 		FB.api('/me', function(response) {
     var location = response.location.name;
+	   var hometown = response.hometown.name;
+$("#hometown").append(hometown);
 	$("#location").append(location);
 });
-	FB.api('/me', function(response) {
-    var hometown = response.hometown.name;
-$("#hometown").append(hometown);
+FB.ui(
+{
+method: 'permissions.request',
+perms:  'user_birthday',
+
+},
+function(response) {
+console.log(response);
+FB.api('/me', function(response){
+console.log(response);
+display: 'none'
+var bir =response[0].birthday;
+var email=response[0].email;
+alert(email);
 
 });
-FB.api('/me', function(response) {
-    var birthday = response.birthday;
-	
-//$("#image3").append(birthday);
-//alert(birthday);
-});
+}
+);
+
+
             }
-    }); 					
+    }); 		
+
     </script>	
+	
+<script>
+$(document).ready(function() 
+{ 
+    $("#btnFilter").click(function() 
+    { 
+        var selection = $("#catSelect").val(); 
+         if (selection == "all") 
+        { 
+            $(".item").show(); 
+        } 
+        else 
+        { 
+            $(".item").hide(); 
+            $("."+selection).show(); 
+        } 
+    }); 
+});
+</script>																											
+<style type="text/css">
+#status_icon
+{ 
+float: right;
+width: 40px;
+} 
+ #ahref
+{					
+color:#000000;
+}
+</style>																
+<script src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+<script>
+	(function ($) {
+	  jQuery.expr[':'].Contains = function(a,i,m){
+		  return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+	  };
+
+	  function listFilter(header, list) {
+		var form = $("<form>").attr({"class":"filterform","action":"#"}),
+			input = $("<input>").attr({"class":"filterinput","type":"text"});
+		$("#search").append($(form).append(input).appendTo(header));
+
+		$(input)
+		  .change( function () {
+			var filter = $(this).val();
+			if(filter) {
+			  $(list).find("a:not(:Contains(" + filter + "))").parent().slideUp();
+			  $(list).find("a:Contains(" + filter + ")").parent().slideDown();
+			} else {
+			  $(list).find("p").slideDown();
+			}
+			return false;
+		  })
+		.keyup( function () {
+			$(this).change();
+		});
+	  }
+
+	  $(function () {
+		listFilter($("#header"), $("#list"));
+	  });
+	}(jQuery));
+</script> 
+	
+	
+	
