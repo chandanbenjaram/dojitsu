@@ -744,10 +744,11 @@ h2{
 	border-width:60px;
 	border-style:solid;
 	border-color:#ffffff;
-	margin-top:35px;
+	margin:5px;
 	-moz-border-radius:    5px;
 	-webkit-border-radius: 5px;
 	border-radius:         5px;
+	
 }
 
 /* tooltip styling 
@@ -1033,17 +1034,23 @@ width:90%;
 #check2
 {
 	height:60px;
-	width:760px;
+	width:840px;
 	background:#000000;
-	margin-top:20px;
+	margin-top:10px;
+	padding-left:10px;
+	
 }
 #check
 {
 	color:#7AC142;
-	top:17px;
+	top:10px;
 	font-size:15px;
 	font-style:bold;
 	position:relative;
+	padding-left:20px;
+
+	
+
 }
 
 #soc_check2
@@ -1195,7 +1202,7 @@ width:90%;
 
 #task_list{
 	width:100%;
-	height:50px;
+	height:35px;
 	font-weight:bold;
 	font-size: 15px;
 	color:#999999;
@@ -1203,12 +1210,12 @@ width:90%;
 
 .showperscore
 {
-	background: none repeat scroll 0 0 #ABD6AD;
+	background: none repeat scroll 0 0 #F5FAF0;
 	color: green;
 	float: right;
 	font-size: 15px;
 	font-weight: bold;
-	height: 35px;
+	height: 45px;
 	padding-top: 15px;
 	text-align: center;
 	width: 50px;
@@ -1217,15 +1224,16 @@ width:90%;
 }
 .showperscore1
 {
-	background: none repeat scroll 0 0 #ABD6AD;
+	background: none repeat scroll 0 0 #DDEFCE;
 	color: green;
 	float: right;
 	font-size: 15px;
 	font-weight: bold;
-	height: 35px;
-	padding-top: 15px;
-	text-align: center;
-	width: 50px;
+	height: 25px;
+	padding-top: 10px;
+	text-align: 20;
+	padding-left:15px;
+	width: 30px;
 	top:-37px;
 	position:relative;
 	right:5px;
@@ -1237,7 +1245,7 @@ width:90%;
 	width:50px;
 	height:35px;
 	background:none repeat scroll 0 0 #FEF7ED;
-	color:#F8981D;
+	color:#F9AB47;
 	font-size:15px;
 	text-align:center;
 	float:right;
@@ -1246,6 +1254,7 @@ width:90%;
 	padding-top:15px;
 	text-decoration:none;
 }
+
 
 .pageTitle {
 	font-size:20px; 
@@ -1278,3 +1287,4 @@ width:90%;
 	width :200px;
 	height:25px;
 }
+
