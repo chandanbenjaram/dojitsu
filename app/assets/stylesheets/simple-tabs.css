@@ -21,16 +21,18 @@ ul.tabs li {
 	overflow: hidden;
 	position: relative;
 	background: #e0e0e0;
+	
 }                   
 
 ul.tabs li a {
-	text-decoration: none;
-	color:#fff;
-	display: block;
-	font-size: 1.2em;
-	padding: 0 86px;
-	border: 1px solid #fff; /*--Gives the bevel look with a 1px white border inside the list item--*/
-	outline: none;
+	 border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    display: block;
+    font-size: 1.2em;
+    outline: medium none;
+    padding-left: 40px;
+    text-decoration: none;
+    width: 100px;
 }
 
 
