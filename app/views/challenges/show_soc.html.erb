@@ -4,6 +4,11 @@
 
 <%= render 'layouts/loggedinbody'%>
 
+
+<%#= @challenge.user_id %></br>
+<%#= current_user.fbauth.uid %>
+
+
 <% if !@challenge.child_challenges.blank? && userIds = []%>
 <% for aChild in @challenge.child_challenges %>
 <% if aChild.social_type.status.nil?%>
@@ -11,7 +16,7 @@
 
 <% end %>
 <% end %>
-<% if !userIds.empty? %>
+<% if !userIds.empty? and @challenge.user_id == current_user.fbauth.uid%>
 
 <script type="text/javascript" charset="utf-8">
 $.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+userIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>, fbCallback);	
@@ -84,10 +89,13 @@ function fbCallback(response){
 							<b><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
 						<% else %>	
 							<b id="user"></b>
+							<script>
+								var ordId = <%=  orgId = @challenge.user_id %>
+							</script>
 						<% end %>	
 					</td>
 					<td width="100px">
-						<% if @challenge.class.to_s == "ChildChallenge" %>
+						<% if @challenge.class.to_s == "ChildChallenge" || @challenge.user_id != current_user.fbauth.uid %>
 							<%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(ordId)" ) %>
 						<% end %>
 					</td>
@@ -155,11 +163,11 @@ function fbCallback(response){
 				<% if @challenge.social_type.status == 1 &&  @challenge.class.to_s == "ChildChallenge" %>
 						<b><%= @challenge.parent.child_challenges.length %></b>
 					<% else %>
-							<% if @challenge.social_type.status == 1 %>
-								<b><%= @challenge.child_challenges.length %></b>
-							<% else %>
-								<b><%= @challenge.parent.child_challenges.length %></b>
-							<% end %>
+						<% if @challenge.social_type.status == 1 %>
+							<b><%= @challenge.child_challenges.length %></b>
+						<% else %>
+							<b><%= @challenge.parent.child_challenges.length %></b>
+						<% end %>
 				<% end %>
 					
 
@@ -177,7 +185,7 @@ function fbCallback(response){
 					</ul>
 					<div class="tab_container">
 						<div id="tab1" style="background:#F5F5F5;" class="tab_content">
-							<% if(@challenge.social_type.status? and @flg.to_s == "ed") %>
+							<% if @challenge.social_type.status == 1 and @flg.to_s == "ed" %>
 								<%= render :partial=> "challenges/tasks_edit" %>
 							<% else %>
 								<%= render :partial=> "challenges/tasks" %>																										
@@ -353,7 +361,7 @@ $(function() {
 		background:#ffffff;
 	}
 </style>
-<% if @challenge.class.to_s == "ChildChallenge" %>
+<% if @challenge.class.to_s == "ChildChallenge" || @challenge.user_id != current_user.fbauth.uid %>
 <script>
 	function contactToOrganizer(orgId)
 	{

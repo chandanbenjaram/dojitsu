@@ -170,8 +170,7 @@
 		<div class="dashboardsidebar2">
 			<div class="whatsnew">	
 				<font style="float:left">WHAT'S NEW</font> 
-				<%= button_to "", new_challenge_url, :class => "ds_view_all", :method => :get%>
-				
+				<%= button_to "", challenges_url, :class => "ds_view_all", :method => :get%>
 			</div>
 			<% current_user.allChallenges.each do |anc| %>
 				<div id="contentbox">
@@ -194,7 +193,7 @@
 								   </script>
 								   <b><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
 								<% else %>
-									<b><%= current_user.facebook.name %></b>
+									<b><%= FbGraph::User.new(anc.user_id).fetch.name %></b>
 								<% end %>
 								
 								
