@@ -299,11 +299,11 @@ nav .menu li {
 }
 
 nav .menu #check {
-	display: block;
-	text-decoration: none;
-	color: #F5F5DC;
-	padding: 0 25px;
-	line-height: 38px;
+	 color: #7AC142;
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+    top: 17px;
 }
 
 nav .menu #check :hover {
@@ -1147,9 +1147,10 @@ width:90%;
 	margin-bottom:10px;
 	margin-left:10px;
 	margin-right:10px;
-	height:230px;
+	 height: 180px;
 	background:#F4F4F4;
 	overflow:hidden;
+	 border: 1px solid #BEBEBE;
 }
 
 .hidden {
@@ -1209,7 +1210,7 @@ width:90%;
 	top:-95px;
 	width:40px;
 	height:25px;
-	left:415px;
+	left:425px;
 	background:#DDEFCE;
 	color:#7AC142;
 }
@@ -1306,4 +1307,65 @@ input:required {
 {
 	width :200px;
 	height:25px;
+}
+
+.challengerow{
+
+ border:10px solid #FF0000;
+ 
+}
+ #ahref{
+	color: #000000;
+	font-weight: bold;
+	left: 10px;
+	position: relative;
+	text-decoration: none;
+	top: -20px;
+}
+#search{
+ border: 1px solid #BEBEBE;
+    height: 25px;
+    width: 180px;
+}
+#tableshow_soc
+{
+    margin-bottom: 1.4em;
+    position: relative;
+    top: -47px;
+    width: 100%;
+}
+#status_icon {
+    left: 30px;
+    position: relative;
+}
+#percentage_personal
+{
+	  color: #7AC142;
+    font-size: 15px;
+    font-weight: bold;
+    padding-left: 20px;
+    position: relative;
+    top: 10px;
+}
+#blackbox_personal
+{
+	height:60px;
+	width:835px;
+	background:#000000;
+	margin-top:10px;
+	padding-left:10px;
+}
+.showperscore_personal
+{ background: none repeat scroll 0 0 #DDEFCE;
+    color: green;
+    float: right;
+    font-size: 15px;
+    font-weight: bold;
+    height: 25px;
+    padding-left: 18px;
+    padding-top: 6px;
+    position: relative;
+    right: 5px;
+    top: -31px;
+    width: 30px;
 }
