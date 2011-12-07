@@ -1369,3 +1369,39 @@ input:required {
     top: -31px;
     width: 30px;
 }
+#percentage_mydojo
+{
+ color: #7AC142;
+    font-size: 15px;
+    font-weight: bold;
+    left: 20px;
+    position: relative;
+    top: 17px;
+}
+.completedtask_mydojo
+{
+color: #FFFFFF;
+    left: 170px;
+    position: relative;
+}
+.notcompleted_mydojo
+{
+ color: #FFFFFF;
+    float: left;
+    left: 105px;
+    position: relative;
+}
+#points_mydojo
+{
+background: none repeat scroll 0 0 #DDEFCE;
+    color: #7AC142;
+    height: 25px;
+    left: 580px;
+    position: relative;
+    top: -95px;
+    width: 40px;
+}
+#challange_mydojo
+{
+position:relative;
+}

@@ -141,7 +141,7 @@
 			<td colspan="3">
     			<ul class="tabs">
     				<li><a href="#tab1"><b>MY DOJO</b></a></li>
-    				<li><a href="#tab2"><b>CHALLENGES</b></a></li>
+    				<li><a id="challange_mydojo" href="#tab2"><b >CHALLENGES</b></a></li>
 				</ul>
 	<div class="tab_container">
     	<div id="tab1" class="tab_content2">
@@ -356,20 +356,20 @@
 																<% y+=1 %>
 															<% end %>
 														<% end %>
-														<div class="completedtask"> 
+														<div class="completedtask_mydojo"> 
 															<%= a %> points (<%= x %> &nbsp; tasks)
 														</div>
-														<div class="notcompleted">
+														<div class="notcompleted_mydojo">
 															<font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="white"><%= b %> points (<%= y %>&nbsp; tasks)</font>
 														</div>
 														<script type="text/javascript">
 															$(function() {
 																$("#taskprogress<%= t %>").progressbar({ value: Math.round(((<%= a %>/<%= (a+b) %>)*100)) });
-																$("<p>").attr("id", "check").text($("#taskprogress<%= t %>").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress<%= t %>");
+																$("<p>").attr("id", "percentage_mydojo").text($("#taskprogress<%= t %>").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress<%= t %>");
 															});
 														</script>
 													</div>
-													<div id="points">
+													<div id="points_mydojo">
 														&nbsp;&nbsp;<font size=4><b><%= a %></b></font>
 													</div>
 												</td>
