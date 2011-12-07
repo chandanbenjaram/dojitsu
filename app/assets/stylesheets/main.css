@@ -1054,7 +1054,7 @@ width:90%;
 	margin-top:10px;
 	padding-left:10px;
 }
-#check3
+#check4
 {
 	color:#7AC142;
 	top:10px;
@@ -1067,11 +1067,11 @@ width:90%;
 #check
 {
 	color:#7AC142;
-	top:10px;
+	top:17px;
 	font-size:15px;
 	font-style:bold;
 	position:relative;
-	padding-left:20px;
+	padding-left:5px;
 
 }
 
@@ -1253,11 +1253,11 @@ width:90%;
 	font-size: 15px;
 	font-weight: bold;
 	height: 25px;
-	padding-top: 10px;
+	padding-top: 6px;
 	text-align: 20;
 	padding-left:15px;
-	width: 30px;
-	top:-37px;
+	width: 25px;
+	top:-31px;
 	position:relative;
 	right:5px;
 }
