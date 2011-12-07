@@ -20,16 +20,6 @@
 		</tr>
 	</table>
 </div>
-<style>
-	.profile_name
-			{
-				position:relative;
-				top: -10px;
-			}
-			#topbar{
-			margin-top:0px;
-						   }
-</style>
 
 
 <div id="ch_main_div3">
@@ -178,8 +168,8 @@
 									<p class="invite"><%= link_to ( image_tag ("search_it.PNG") , :class=>"image_tag") %><p>
 								</td>
 								<td  height="40px" width="50px">
-									<p class="invite"><%#= render :partial => 'invitations' %>
-									<%= image_tag("invite.PNG", :width=> "100px" , :height => "30px" )%>
+									<p ><%#= render :partial => 'invitations_private' %>
+									<%= image_tag("invite.PNG",:width=> "100px" , :height => "30px"  )%>
   
 									<%= hidden_field_tag "myvar", 0%>	
 									</p>
@@ -406,21 +396,7 @@ var hometown = response.hometown.name;
 $("#hometown").append(hometown);
 $("#location").append(location);
 });
-FB.api(
-{
-method: 'permissions.request',
-perms: 'user_birthday',
-},
-function(response) {
-console.log(response);
-FB.api('/me', function(response){
-console.log(response);
-display: 'none'
-var bir =response[0].birthday;
-var email=response[0].email;
-});
-}
-);
+
             }
     });
  </script> 
