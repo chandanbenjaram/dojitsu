@@ -19,8 +19,10 @@
 		<% if t != 1 %>
 			<th width="3%">	</th>
 			<th width="12%">
-				<% if @challenge.social_type.status == 1 and !(@challenge.instance_of?ChildChallenge)%>
-					<%= link_to image_tag("icon_edit.png", :style =>"margin-top:3px; float:right" ), show_soc_challenges_path(:id => @challenge, :flg => "ed") %>
+				<% if @challenge.user_id == current_user.fbauth.uid %>
+					<% if @challenge.social_type.status == 1 and !(@challenge.instance_of?ChildChallenge)%>				    
+						<%= link_to image_tag("icon_edit.png", :style =>"margin-top:3px; float:right" ), show_soc_challenges_path(:id => @challenge, :flg => "ed") %>
+				    <% end %>
 				<% end %>	
 			</th>
 		<% end %> 
@@ -56,12 +58,15 @@
 						</p>
 						
 						<div class="showperscore_0">
-						
-							<% if @challenge.social_type.status == 1 %>
-								<%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => " text-decoration: underline; color:#F9AB47;" %>
+							<% if @challenge.user_id == current_user.fbauth.uid %>
+								<% if @challenge.social_type.status == 1 %>
+									<%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => " text-decoration: underline; color:#F9AB47;" %>
+								<% else %>
+									<font style="color:black">0</font>
+								<% end %>
 							<% else %>
-								<font style="color:black">0</font>
-							<% end %>
+									<font style="color:black">0</font>	
+							<% end %>	
 						</div>
 					</div>
 					

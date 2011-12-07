@@ -609,6 +609,18 @@ input.radio {
 	font-family: arial;
 }
 
+.non_login_view_all {
+	background: #f8981d url("viewall.PNG") no-repeat left center;	
+	text-align: right;
+	min-width: 78px;
+	height:25px;
+	top:3px;
+	position:relative;
+	float:right;
+	left:0px;
+	font-family: arial;
+}
+
 .links_invite_p {
 	background: none repeat scroll 0 0 #f9a943;
 	border-radius: 3px 3px 3px 3px;
