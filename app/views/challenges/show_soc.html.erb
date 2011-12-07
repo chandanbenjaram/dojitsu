@@ -23,11 +23,10 @@ $.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+userIds.join(
 
 function fbCallback(response){
 	if(response == null){
-		console.info('dont update child challenges');
+	
 	} else
 	{
 		var srt = '<%= params[:id] %>';
-		console.info('update child challenges from nil to 0 (thinking abt it)');
 		jQuery.support.cors = true;
 		$.get('/challenges/update_status_af_meg', 
 			{thinking_abt:srt},
