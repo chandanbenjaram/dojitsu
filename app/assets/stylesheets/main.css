@@ -569,7 +569,7 @@ input.radio {
    width: 200px;
    height: 34px;
    overflow: hidden;
-   background: url(icon_combobox_arrow_down.png ) no-repeat right  #fff;
+   background: url(icon_combobox_arrow_down.png) no-repeat right  #fff;
 }
 
 .links {
@@ -760,13 +760,9 @@ h2{
 }
 
 #ch_main_div1{
-	border-width:60px;
-	border-style:solid;
-	border-color:#ffffff;
-	margin-top:35px;
-	-moz-border-radius:    5px;
-	-webkit-border-radius: 5px;
-	border-radius:         5px;
+	 border-style: solid;
+    margin-top: 10px;
+    padding-left: 20px;
 }
 
 /* tooltip styling 
@@ -800,9 +796,10 @@ opacity: 0.95;
 
 /*edit personal challenge*/
 .challange{
-	text-transform: uppercase;
-	color: #f8981d;
-	font-size:20px;
+	color: #F8981D;
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
 
 
 }
@@ -1290,7 +1287,7 @@ input:required {
     background: none repeat scroll 0 0 #000000;
     height: 60px;
     margin-top: 20px;
-    width: 760px;
+    width: 860px;
 }
 
 .filterinput

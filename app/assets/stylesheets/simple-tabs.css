@@ -25,7 +25,7 @@ ul.tabs li {
 
 ul.tabs li a {
 	text-decoration: none;
-	color: #000;
+	color:#fff;
 	display: block;
 	font-size: 1.2em;
 	padding: 0 86px;
@@ -33,13 +33,16 @@ ul.tabs li a {
 	outline: none;
 }
 
-ul.tabs li a:hover {
-	background: #ccc;
-}      
 
+ul.tabs li a:hover {
+	background: #F8981D;
+	color:#fff;
+}      
+ 
 html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that the active tab does not listen to the hover properties--*/
-	background: #fff;
+	background:#F8981D;
 	border-bottom: 1px solid #fff; /*--Makes the active tab look like it's connected with its content--*/
+	
 }
 
 .tab_container {

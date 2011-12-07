@@ -1,5 +1,5 @@
-<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css','jquery-ui', 'ui.core','ui.progressbar','3rdparty/jquery.ui.all','ui.theme', 'main')%>
-<%= javascript_include_tag('simple-tabs','all','ui.progressbar','on_the_spot','jquery.table.addrow','jquery.datePicker','date','jquery.colorbox-min','jquery.tools.min','jquery.cluetip','challenge_new')%>
+<%= stylesheet_link_tag('challenges.css','simple-tabs','jquery-ui', 'ui.core','ui.progressbar','ui.theme', 'main')%>
+<%= javascript_include_tag('jquery.facebook.multifriend.select','simple-tabs','ui.progressbar','on_the_spot')%>
 <%= render 'layouts/loggedinbody'%>
 <% as= current_user.challenges.size %>
 <div class="topbar" bgcolor=#f4f4f4>
@@ -9,7 +9,7 @@
 						</td>
 						<td  width="100px">
 						<%= render :partial => 'invitations' %>
-						<div id="fb-root"></div>      
+						      
 					 <%= hidden_field_tag "myvar", 0%>			
 						</td>
 						<td width="200px" class="profile_name">
@@ -177,7 +177,7 @@
 																										<% arr.uniq! %>
 																										
 																				<% arr.each do|x|  %>
-																						<div id="fb-root"></div>
+																						
 																							<script>
 																							function contactToInvitee()
 																							  {
@@ -203,14 +203,14 @@
 														<td width="420px"><b >Total:	<b id="total"></b><%= image_tag("btn_msg_up.png", :onclick=>"contactToInvitee()") %>
 													
 														</td>
-														<td width = "100px" id="search">
-														</td>
+														<td width="150px"  id="search">&nbsp;
+																</td>
 																<td>
 																<%= image_tag ("search_it.PNG") %>
 															</td>
 															<td>
 																<%= render :partial => 'invitations' %>
-																<div id="fb-root"></div>      
+																      
 																<%= hidden_field_tag "myvar", 0%>	
 															</td>
 																	<style>
@@ -229,7 +229,7 @@
 											</table>
 									  
 	 
-												<div id="fb-root"></div> 
+												
 														<table  border="0"> 
 															<tr bgcolor=#d7d7d7>
 																	<td>
@@ -247,67 +247,88 @@
 																		<h1 id="header"></h1>
 																		<table bgcolor="white">
 																			<tr>
-																					<% arr = Array.new %>
-																						<% loop=current_user.challenges.length %>
-																								<% i=0 %>
-																									<% for  i  in  0..loop %>
-																											<%current_user.challenges.each do|user|%>
-																											 
-																											   <% user.child_challenges. each do |id|%>
-																											   <% title=id.title %>
-																											     <%id.user_id%>	
-																											   	   <% length = id.user_id.length %>
-																												      <% arr.push(id.user_id) %>
-																													   		 <% end %>
-																									<% end %>
-																									<% end %>																							 
-																										<% arr.uniq! %>
-																										<script>
-																												 total= '<%=arr.length %>';
-																											
-																												 $("#total").append(total);
-																												 
-																										</script>
-																												<% arr.each do|x|  %>
-																												<script>
-																												var contact = <%= arr %> 
-																												alert( <%= arr %> );
-																												</script>
-																					<table width="720px">
-																							 <tr>
-																											   <td width="670px" id="list">		
-																														<p><%=image_tag(FbGraph::User.new(x).fetch.picture) %>
-																														 <b><a href="#"  id="ahref"><%= FbGraph::User.new(x).fetch.name %></a></b>
-																										<span id="status_icon">
-																														 <script>
-																														 var user_id= <%= x %>
-																														 </script>
-																														 <%= image_tag('btn_msg_up.png',:onclick =>"testing(user_id);")%>  
-																													   <%= image_tag("btn_delete_up.png") %>
-																										</span>
-																													   </p>
-																												</td>
-																								</tr>
-																								<tr>
-																									 <hr/>
-																								 </tr>
-																					 </table>
-																												
-																						<div id="fb-root"></div>
-																							<script>
-																							function testing(user_id)
-																							  {
-																							 var myFriends =user_id;
-																									window.fbAsyncInit();
-																							FB.ui({
-																								  method: 'send',
-																								  to:myFriends,
-																								  name: 'Facebook Dialogs',
-																								  link: 'https://developers.facebook.com/docs/reference/dialogs/'
-																								  });
-																								  }
-																							 </script>			
-																				<% end %>	
+			
+			
+			
+			
+			<%#= current_user.id %>
+			<% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
+			<% allConnections.each  do |eachConnection| %>
+				<%#= eachConnection.target_id %></br>
+				<%#= eachConnection.id %>
+				<table width="720px">
+					<tr>
+					   <td width="670px">		
+							<%=image_tag(FbGraph::User.new(eachConnection.target_id).fetch.picture) %>
+							 <b><a href="#"  id="ahref"><%= FbGraph::User.new(eachConnection.target_id).fetch.name %></a></b>
+						</td>
+						<td width="50px">
+							<script>
+								var user_id= <%= eachConnection.target_id %>
+							</script>
+							<%= image_tag('btn_msg_up.png',:onclick =>"testing(user_id);")%>
+							<script>
+								function testing(user_id)
+								  {
+								 var myFriends =user_id;
+										window.fbAsyncInit();
+								FB.ui({
+									  method: 'send',
+									  to:myFriends,
+									  name: 'Facebook Dialogs',
+									  link: 'https://developers.facebook.com/docs/reference/dialogs/'
+									  });
+									  }
+								 </script>
+							<%#= link_to image_tag("btn_delete_up.png"), "#" %>
+							<%= link_to image_tag("btn_delete_up.png"), user_connection_path(eachConnection.id), :confirm => 'Are you sure?', :method => :delete %>
+						</td>
+					</tr>
+					<tr>
+						 <hr/>
+					 </tr>
+				</table>
+			<% end %>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 																</td>
 															</tr>	
 														</table>
@@ -321,45 +342,14 @@
 #status_icon
 { 
 float: right;
-width: 80px;
+width: 40px;
 } 
  #ahref
 {					
 color:#000000;
 }
 </style>			
-<script>
-	(function ($) {
-	  jQuery.expr[':'].Contains = function(a,i,m){
-		  return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
-	  };
-
-	  function listFilter(header, list) {
-		var form = $("<form>").attr({"class":"filterform","action":"#"}),
-			input = $("<input>").attr({"class":"filterinput","type":"text"});
-		$("#search").append($(form).append(input).appendTo(header));
-
-		$(input)
-		  .change( function () {
-			var filter = $(this).val();
-			if(filter) {
-			  $(list).find("a:not(:Contains(" + filter + "))").parent().slideUp();
-			  $(list).find("a:Contains(" + filter + ")").parent().slideDown();
-			} else {
-			  $(list).find("p").slideDown();
-			}
-			return false;
-		  })
-		.keyup( function () {
-			$(this).change();
-		});
-	  }
-
-	  $(function () {
-		listFilter($("#header"), $("#list"));
-	  });
-	}(jQuery));
-</script> 									
+							
 					
 					
 					
@@ -462,10 +452,15 @@ color:#000000;
     				
 
 
-<script type="text/javascript" src="../includes/js/jquery.min.js"></script>  
-<script src="http://connect.facebook.net/en_US/all.js"></script>  
-<div id="fb-root"></div> 	
+
+ 	
     <script>
+	
+	
+	
+	
+	
+	
       		window.fbAsyncInit();
 		  FB.getLoginStatus(function(response) { 
              if (response.session)

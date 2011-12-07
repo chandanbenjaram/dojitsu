@@ -1,0 +1,138 @@
+(function ($) {
+	  jQuery.expr[':'].Contains = function(a,i,m){
+		  return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+	  };
+
+	  function listFilter(header, list) {
+		var form = $("<form>").attr({"class":"filterform","action":"#"}),
+			input = $("<input>").attr({"class":"filterinput","type":"text"});
+		$("#search").append($(form).appendTo(header));
+
+		$(input)
+		  .change( function () {
+			var filter = $(this).val();
+			if(filter) {
+			  $(list).find("a:not(:Contains(" + filter + "))").parent().slideUp();
+			  $(list).find("a:Contains(" + filter + ")").parent().slideDown();
+			} else {
+			  $(list).find("p").slideDown();
+			}
+			return false;
+		  })
+		.keyup( function () {
+			$(this).change();
+		});
+	  }
+
+	  $(function () {
+		listFilter($("#header"), $("#list"));
+	  });
+	}(jQuery));
+	
+	window.fbAsyncInit();
+		  FB.getLoginStatus(function(response) { 
+             if (response.session)
+            { 
+                       globaluserid=response.session["uid"]; 
+					   name=globaluserid;
+					    
+                      FB.api( 
+                                    { 
+                                    method: 'fql.query',
+                                    query: 'SELECT uid1 FROM friend WHERE uid2='+globaluserid
+                                    },
+                                    function(response)
+                                    {
+									FB.api({
+														method: 'fql.query',
+                                                         query: 'SELECT name,pic_big,sex,birthday FROM user WHERE uid=' + name
+                                                        }, function(response){                                                               
+                                                                htmlcontent = '<img src=' + response[0].pic_big+ ' />';																
+																htmlcontent1=response[0].name
+																htmlcontent2=response[0].sex
+															
+																htmlcontent3=response[0].birthday														
+																$("#image").append(htmlcontent1);   
+                                                                $("#image1").append(htmlcontent);   
+																$("#image2").append(htmlcontent2);   
+																$("#image3").append(htmlcontent3);   
+                                                        }); 
+                                    } 
+                        ); 
+		FB.api('/me', function(response) {
+    var location = response.location.name;
+	   var hometown = response.hometown.name;
+$("#hometown").append(hometown);
+	$("#location").append(location);
+});
+FB.ui(
+{
+method: 'permissions.request',
+perms:  'user_birthday',
+
+},
+function(response) {
+console.log(response);
+FB.api('/me', function(response){
+console.log(response);
+display: 'none'
+var bir =response[0].birthday;
+var email=response[0].email;
+
+
+});
+}
+);
+
+
+            }
+    }); 		
+	
+	
+	$(document).ready(function() 
+{ 
+    $("#btnFilter").click(function() 
+    { 
+        var selection = $("#catSelect").val(); 
+         if (selection == "all") 
+        { 
+            $(".item").show(); 
+        } 
+        else 
+        { 
+            $(".item").hide(); 
+            $("."+selection).show(); 
+        } 
+    }); 
+});
+
+(function ($) {
+	  jQuery.expr[':'].Contains = function(a,i,m){
+		  return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+	  };
+
+	  function listFilter(header, list) {
+		var form = $("<form>").attr({"class":"filterform","action":"#"}),
+			input = $("<input>").attr({"class":"filterinput","type":"text"});
+		$("#search").append($(form).append(input).appendTo(header));
+
+		$(input)
+		  .change( function () {
+			var filter = $(this).val();
+			if(filter) {
+			  $(list).find("a:not(:Contains(" + filter + "))").parent().slideUp();
+			  $(list).find("a:Contains(" + filter + ")").parent().slideDown();
+			} else {
+			  $(list).find("p").slideDown();
+			}
+			return false;
+		  })
+		.keyup( function () {
+			$(this).change();
+		});
+	  }
+
+	  $(function () {
+		listFilter($("#header"), $("#list"));
+	  });
+	}(jQuery));
