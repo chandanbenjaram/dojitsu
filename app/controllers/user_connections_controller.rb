@@ -19,4 +19,11 @@ class UserConnectionsController < ApplicationController
   
   def connections_selection
   end
+  
+  def destroy
+    @useconnection = UserConnection.find(params[:id])
+    @useconnection.destroy
+	redirect_to :action => 'index'
+  end
+  
 end

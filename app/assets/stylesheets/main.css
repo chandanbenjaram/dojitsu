@@ -510,9 +510,11 @@ textarea:focus{
 }
 
 select {
-	border: 1px solid #cfcfcf;
-	vertical-align: middle;
-	width: 220px;
+	border: 0px solid #cfcfcf;
+	vertical-align: top;
+	position:relative;
+	top:-3px;
+	width: 180px;
 	height: 30px;
 	color:#f9a943;
 	background: transparent;
@@ -555,19 +557,19 @@ input.radio {
 
 .styled-select select {
    background: transparent;
-   width: 268px;
-   padding: 5px;
+   width: 240px;
+   padding: 0px;
    font-size: 16px;
-   border: 1px solid #ccc;
+   border: 0px solid #ccc;
    height: 34px;
 }
 .styled-select {
-   border: 0px solid #ddd;
+   border: 1px solid #ddd;
    top:-2px;
-   width: 240px;
+   width: 200px;
    height: 34px;
    overflow: hidden;
-   background: url(icon_combobox_arrow_down.png) no-repeat right #ddd;
+   background: url(icon_combobox_arrow_down.png) no-repeat right  #fff;
 }
 
 .links {
@@ -606,6 +608,23 @@ input.radio {
 	text-align: center;
 	text-transform: uppercase;
 	width: 195px;
+}
+.invitees {
+	background: none repeat scroll 0 0 #f9a943;
+	border-radius: 3px 3px 3px 3px;
+	color: #FFFFFF;
+	display: block;
+	font-size: 12px;
+	margin: -18px 0;
+	padding: 0px;
+	text-align: center;
+	text-transform: uppercase;
+	width: 85px;
+}
+#topbar
+{
+position:relative;
+margin: -16px;
 }
 
 .links_cancel {
@@ -741,14 +760,9 @@ h2{
 }
 
 #ch_main_div1{
-	border-width:60px;
-	border-style:solid;
-	border-color:#ffffff;
-	margin:5px;
-	-moz-border-radius:    5px;
-	-webkit-border-radius: 5px;
-	border-radius:         5px;
-	
+	 border-style: solid;
+    margin-top: 10px;
+    padding-left: 20px;
 }
 
 /* tooltip styling 
@@ -782,9 +796,10 @@ opacity: 0.95;
 
 /*edit personal challenge*/
 .challange{
-	text-transform: uppercase;
-	color: #f8981d;
-	font-size:20px;
+	color: #F8981D;
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
 
 
 }
@@ -1034,23 +1049,17 @@ width:90%;
 #check2
 {
 	height:60px;
-	width:840px;
+	width:760px;
 	background:#000000;
-	margin-top:10px;
-	padding-left:10px;
-	
+	margin-top:20px;
 }
 #check
 {
 	color:#7AC142;
-	top:10px;
+	top:17px;
 	font-size:15px;
 	font-style:bold;
 	position:relative;
-	padding-left:20px;
-
-	
-
 }
 
 #soc_check2
@@ -1202,7 +1211,7 @@ width:90%;
 
 #task_list{
 	width:100%;
-	height:35px;
+	height:50px;
 	font-weight:bold;
 	font-size: 15px;
 	color:#999999;
@@ -1210,12 +1219,12 @@ width:90%;
 
 .showperscore
 {
-	background: none repeat scroll 0 0 #F5FAF0;
+	background: none repeat scroll 0 0 #ABD6AD;
 	color: green;
 	float: right;
 	font-size: 15px;
 	font-weight: bold;
-	height: 45px;
+	height: 35px;
 	padding-top: 15px;
 	text-align: center;
 	width: 50px;
@@ -1224,16 +1233,15 @@ width:90%;
 }
 .showperscore1
 {
-	background: none repeat scroll 0 0 #DDEFCE;
+	background: none repeat scroll 0 0 #ABD6AD;
 	color: green;
 	float: right;
 	font-size: 15px;
 	font-weight: bold;
-	height: 25px;
-	padding-top: 10px;
-	text-align: 20;
-	padding-left:15px;
-	width: 30px;
+	height: 35px;
+	padding-top: 15px;
+	text-align: center;
+	width: 50px;
 	top:-37px;
 	position:relative;
 	right:5px;
@@ -1245,7 +1253,7 @@ width:90%;
 	width:50px;
 	height:35px;
 	background:none repeat scroll 0 0 #FEF7ED;
-	color:#F9AB47;
+	color:#F8981D;
 	font-size:15px;
 	text-align:center;
 	float:right;
@@ -1254,7 +1262,6 @@ width:90%;
 	padding-top:15px;
 	text-decoration:none;
 }
-
 
 .pageTitle {
 	font-size:20px; 
@@ -1271,15 +1278,16 @@ width:90%;
 	border-style: solid;
 	border-width: 10px;
 }
-	input:required {
-		-moz-box-shadow: none;
-		-webkit-box-shadow: none;
-		}
+input:required {
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
 #check3 {
     background: none repeat scroll 0 0 #000000;
     height: 60px;
     margin-top: 20px;
-    width: 695px;
+    width: 860px;
 }
 
 .filterinput
@@ -1287,4 +1295,3 @@ width:90%;
 	width :200px;
 	height:25px;
 }
-

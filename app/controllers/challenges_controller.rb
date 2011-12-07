@@ -59,8 +59,18 @@ class ChallengesController < ApplicationController
   end
 
   def create
-    #raise params.inspect
-    #debugger
+  
+	#raise current_user.fbauth.uid.inspect
+  
+	#if !params[:invitees].nil?
+	#	params[:invitees].split(",").each do |aFBId|
+	#		current_user.user_connections.find_or_create_by_target_id(:user_id => current_user.fbauth.uid, :target_id => aFBId )
+	#	end
+	#end	
+	#raise "aaaa"
+	
+	
+	#debugger
     #raise params[:invitees].inspect
     @ch = Challenge.new(params[:challenge])
     @ch_st_date = params[:start_point_type]
@@ -79,7 +89,7 @@ class ChallengesController < ApplicationController
 
     unless @so_who_win.blank?
       #raise "soc"
-      @challenge = Challenge.new(:user_id => (current_user.fbauth.uid rescue current_user.id), :title => @ch.title, :description => @ch.description, \
+      @challenge = Challenge.new(:user_id => (current_user.fbauth.uid rescue current_user.id), :title => @ch.title, :description => @ch.description, :canCompleteBeforeTasks => @ch.canCompleteBeforeTasks, \
       :social_type => ChallengeSocialType.new(:status => 1,:who_win => @so_who_win, :how_many_winners => @so_how_many_winner)) do |new_challenge|
         if @ch_st_date == "startPointDate" and  @ch_ed_date == "endPointDate"
           new_challenge.start_point =  PointDateType.new(:value => Date.strptime(@st_p_val, '%m/%d/%Y'))
@@ -91,7 +101,7 @@ class ChallengesController < ApplicationController
       end
     else
       #raise "per"
-      @challenge = Challenge.new(:user_id => (current_user.fbauth.uid rescue current_user.id), :title => @ch.title, :description => @ch.description, \
+      @challenge = Challenge.new(:user_id => (current_user.fbauth.uid rescue current_user.id), :title => @ch.title, :description => @ch.description, :canCompleteBeforeTasks => @ch.canCompleteBeforeTasks, \
       :personal_type => ChallengePersonalType.new(:who_win => @pr_who_win)) do |new_challenge|
         if @ch_st_date == "startPointDate" and  @ch_ed_date == "endPointDate" 
           #debugger
@@ -110,19 +120,29 @@ class ChallengesController < ApplicationController
     end
 
     @challenge.save!
+	
+	unless @so_who_win.blank?
+		# referenced documents can only be saved when parent exists
+		if !params[:invitees].nil?
+			params[:invitees].split(",").each do |aFBId|
+				current_user.user_connections.find_or_create_by_target_id(:target_id => aFBId )
+			end
+		end
+	end
+		
 
     unless @so_who_win.blank?
       # referenced documents can only be saved when parent exists
       if !params[:invitees].nil?
         params[:invitees].split(",").each do |invitee|
           if @ch_st_date == "startPointDate" and  @ch_ed_date == "endPointDate"
-            @challenge.child_challenges.create!(:user_id => invitee, :title => @ch.title, :description => @ch.description, \
+            @challenge.child_challenges.create!(:user_id => invitee, :title => @ch.title, :description => @ch.description, :canCompleteBeforeTasks => @ch.canCompleteBeforeTasks, \
             :start_point => PointDateType.new(:value => Date.strptime(@st_p_val, '%m/%d/%Y')), \
             :end_point => PointDateType.new(:value => Date.strptime(@ed_p_val, '%m/%d/%Y')), \
             :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner), \
             :tasks => @ch.task_attributes)
           else 
-            @challenge.child_challenges.create!(:user_id => invitee, :title => @ch.title, :description => @ch.description, \
+            @challenge.child_challenges.create!(:user_id => invitee, :title => @ch.title, :description => @ch.description, :canCompleteBeforeTasks => @ch.canCompleteBeforeTasks, \
             :start_point => PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb), \
             :end_point => PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb), \
             :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner), \
