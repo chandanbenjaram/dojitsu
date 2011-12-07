@@ -40,8 +40,7 @@
      var selectedFriends = friendSelector.getSelectedIds();
      $j('#invitees_id').val(selectedFriends);
         $j('#inviteBtn').val("INVITE PARTICIPANTS (" + selectedFriends.length + ")");   
-    $j(this).dialog( "close" );     
-        alert(selectedFriends);
+    $j(this).dialog( "close" );
 		jQuery.support.cors = true;
 		$.get('/user_connections/sendInvitation', 
 			{inviteIds:selectedFriends},
