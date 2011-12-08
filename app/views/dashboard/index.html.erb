@@ -172,7 +172,10 @@
 				<font style="float:left">WHAT'S NEW</font> 
 				<%= button_to "", challenges_url, :class => "ds_view_all", :method => :get%>
 			</div>
-			<% current_user.allChallenges.each do |anc| %>
+			<% if current_user.allChallenges.count == 0 %>
+				<p align="center">No challenges found</p>
+			<% else %>
+				<% current_user.allChallenges.each do |anc| %>
 				<div id="contentbox">
 					<%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:0px;") %>
 					<table width="100%" style="margin-top:-10px;">
@@ -227,6 +230,7 @@
 						</tr>
 					</table>
 				</div>
+			<% end %>
 			<% end %>
 			<!--
 			<div id="contentbox">
