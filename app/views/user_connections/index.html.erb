@@ -193,46 +193,26 @@
 											
 												<% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
 												<% allConnections.each  do |eachConnection| %>
-																
-															
-																	<tr  class="bottom_border" >
-																	
-																	   <td  width="100%">	
-																				
-																					<a href="#"  id="ahref"><%=image_tag(FbGraph::User.new(eachConnection.target_id).fetch.picture) %></a>
-																					 <b id="name_list"><%= FbGraph::User.new(eachConnection.target_id).fetch.name %></b>
-																			
-																				<span id="icon"> 
-																		
-																					<%= link_to image_tag("btn_delete_up.png" , :class =>"private_msg1"), user_connection_path(eachConnection.id), :confirm => 'Are you sure?', :method => :delete %>
-																							<%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>
-																					
-																					
-																					</span>
-																						
-																							
-																		</td>
-																		
-																	</tr>
-																	
-																
+													<tr  class="bottom_border" >
+													   <td  width="100%">																	
+															<a href="#"  id="ahref"><%=image_tag(FbGraph::User.new(eachConnection.target_id).fetch.picture) %></a>
+															<b id="name_list"><%= FbGraph::User.new(eachConnection.target_id).fetch.name %></b>													
+																<span id="icon"> 														
+																	<%= link_to image_tag("btn_delete_up.png" , :class =>"private_msg1"), user_connection_path(eachConnection.id), :confirm => 'Are you sure?', :method => :delete %>
+																	<%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>														
+																</span>																																					
+														</td>														
+													</tr>															
 												<% end %>
 												<script>
 													$(document).ready(function() {
-
 														$(".private_msg").click(function(event) {
-															var ty = event.target.id;
-															window.fbAsyncInit();
-															FB.ui({
-																method: 'send',
-																to:ty,
-																name: 'Facebook Dialogs',
-																link: 'https://developers.facebook.com/docs/reference/dialogs/'
-														  });
+															var targetId = event.target.id;
+															alert(targetId);
+															$.dojitsu.renderSendBox("Testing", <%= "'+targetId+'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenges_url() +"'"%>);
 														});
 													});
-												</script>
-												
+												</script>												
 										</table>
 									</div> 
 								</td>
