@@ -62,7 +62,7 @@ module Dojitsu
     end
     
     # FACEBOOK GLOBALS
-    config.fb_scopes = 'offline_access, email, read_friendlists,user_birthday,manage_notifications, read_mailbox,' 
+    config.fb_scopes = 'offline_access, email, read_friendlists,user_birthday,manage_notifications, read_mailbox' 
     # fallback used for development, test. prod differs
 	
     config.fb_app_id = '181761375220642' 
