@@ -4,25 +4,19 @@
 <% as= current_user.challenges.size %>
 
 
-<div style="margin-top:0px;",class="topbar" bgcolor=#f4f4f4>
-	<table bgcolor=#f4f4f4>
-		<tr>
-			<td width="470px">
-			</td>
-			<td  width="100px">
-				<%= render :partial => 'invitations' %>
-			</td>
-			<td width="200px" class="profile_name">
-				<font color="gray"> <b  id="image" ></b></font>
-			</td>
-			<td>
-			</td>
-		</tr>
-	</table>
+<div bgcolor="#f4f4f4" ,class="topbar" style="margin-top: 0px; width: 100%; height: 30px; background: none repeat scroll 0% 0% rgb(244, 244, 244); top: -20px; position: relative;">
+	
+				<div class="invitee_button" ><%= render :partial => 'invitations' %></div>
+			
+			<div class="profile_name">
+				<b  id="image" > </b>
+			</div>
+		
 </div>
 
 
-<div id="ch_main_div3">
+
+<div id="ch_main_div5">
 	<p class="user"><font color="orange"><%=current_user.facebook.name%></font></p>
 	<table border="1px">
 		<tr width="600px">
@@ -168,8 +162,8 @@
 									<p class="invite"><%= link_to ( image_tag ("search_it.PNG") , :class=>"image_tag") %><p>
 								</td>
 								<td  height="40px" width="50px">
-									<p ><%#= render :partial => 'invitations_private' %>
-									<%= image_tag("invite.PNG",:width=> "100px" , :height => "30px"  )%>
+									<p class="invite"><%#= render :partial => 'invitations' %>
+									<%= image_tag("invite.PNG", :width=> "100px" , :height => "30px" )%>
   
 									<%= hidden_field_tag "myvar", 0%>	
 									</p>
@@ -200,38 +194,25 @@
 												<% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
 												<% allConnections.each  do |eachConnection| %>
 													<tr  class="bottom_border" >
-													   <td  width="100%">	
-																
-															<a href="#"  id="ahref"><%=image_tag(FbGraph::User.new(eachConnection.target_id).fetch.picture) %>
-															<b id="name_list"><%= FbGraph::User.new(eachConnection.target_id).fetch.name %></b>
-													
-															<span id="icon"> 
-												
-															<%= link_to image_tag("btn_delete_up.png" , :class =>"private_msg1"), user_connection_path(eachConnection.id), :confirm => 'Are you sure?', :method => :delete %>
-															<%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>
-															
-	
-															</span>
-															</a>				
+													   <td  width="100%">																	
+															<a href="#"  id="ahref"><%=image_tag(FbGraph::User.new(eachConnection.target_id).fetch.picture) %></a>
+															<b id="name_list"><%= FbGraph::User.new(eachConnection.target_id).fetch.name %></b>													
+																<span id="icon"> 														
+																	<%= link_to image_tag("btn_delete_up.png" , :class =>"private_msg1"), user_connection_path(eachConnection.id), :confirm => 'Are you sure?', :method => :delete %>
+																	<%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>														
+																</span>																																					
 														</td>														
-													</tr>
+													</tr>															
 												<% end %>
 												<script>
 													$(document).ready(function() {
-
 														$(".private_msg").click(function(event) {
-															var ty = event.target.id;
-															window.fbAsyncInit();
-															FB.ui({
-																method: 'send',
-																to:ty,
-																name: 'Do your best',
-																link: 'http://www.dojitsu.com'
-														  });
+															var targetId = event.target.id;
+															alert(targetId);
+															$.dojitsu.renderSendBox("Testing", <%= "'+targetId+'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenges_url() +"'"%>);
 														});
 													});
-												</script>
-												
+												</script>												
 										</table>
 									</div> 
 								</td>
@@ -279,19 +260,19 @@
 </script> 			
 		<div id="tab2" class="tab_content2">
 <div class="dashboardsidebar">
-<div style=" width:860px; " class="mychallenge">
-<div style=" width:860px; " id="titlechallenge">
+<div style=" width:930px; " class="mychallenge3">
+<div style=" width:930px; " id="titlechallenge3">
 <div id="title">
 TOTAL:<font color="black"><%= as %></font>
 </div>
 <div style=" float: left; left: 670px; " class="second_titlechallenge">
-<%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
+<%= button_to "", new_challenge_url, :class => "new_challenge_button4", :method => :get%>
 </div>
 </div>
-<div style="overflow -y:auto; overflow-x:hidden; width:860px; height : 440px;" id="challengedetails">
+<div style="overflow -y:auto; overflow-x:hidden; width:940px; height : 450px;" id="challengedetails">
 <% t=1 %>
 <script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> </script>
-<table class="sortable">
+<table   class="sortable">
 <thead>
 <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">NAME</th><th style="CURSOR: pointer; cursor: hand;" id="content2">MY DOJITSU SCORE</th></tr>
 </thead>
@@ -405,7 +386,21 @@ var hometown = response.hometown.name;
 $("#hometown").append(hometown);
 $("#location").append(location);
 });
-
+FB.api(
+{
+method: 'permissions.request',
+perms: 'user_birthday',
+},
+function(response) {
+console.log(response);
+FB.api('/me', function(response){
+console.log(response);
+display: 'none'
+var bir =response[0].birthday;
+var email=response[0].email;
+});
+}
+);
             }
     });
  </script> 

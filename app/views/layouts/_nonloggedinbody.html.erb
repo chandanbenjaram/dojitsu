@@ -19,8 +19,10 @@
 			  </tr>
 			</table>
 		</div>
-		
-		<% Challenge.where(:_type.exists => false).desc("created_at").limit(3).each do |anc| %>
+		<% if Challenge.where(:_type.exists => false).desc("created_at").limit(3).count == 0 %>
+			<p align="center">No challenges found</p>
+		<% else %>
+			<% Challenge.where(:_type.exists => false).desc("created_at").limit(3).each do |anc| %>
 		<div class="messagereg">
 			<%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:-2px;") %>
 			<table width="100%" style="margin-top:-10px;">
@@ -51,6 +53,7 @@
 			  </tr>
 			</table>
 		</div>
+		<% end %>
 		<% end %>
 	
 		<div class="regdojitsu">	

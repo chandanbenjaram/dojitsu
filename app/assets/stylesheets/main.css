@@ -328,6 +328,19 @@ nav .menu #check :hover {
 .fb-login-button {
 	background:#f8981d url("btn_add_up.png") no-repeat left center ;	
 }
+  
+.authnav ul {
+	float: right;
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+}  
+
+.authnav li {
+	float: left;
+	margin: 2;
+} 
+
 
 .facebook {
 	background: url("loginbutton.png") no-repeat left center ; 
@@ -1464,15 +1477,15 @@ input:required {
 			}
 			.private_msg
 			{
-			position:relative;
-			left:-50px;
-			top:-5px;
-			}
+			 left: 40px;
+    position: relative;
+    top: -5px;
+}
 			.private_msg1
 			{
-			position:relative;
-			left:0px;
-			top:-5px;
+			 left: 38px;
+    position: relative;
+    top: -5px;
 			}
 			.bottom_border
 			{
