@@ -56,7 +56,22 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	background: #fff;
 }         
 
+.tab_container1 {
+	border: 1px solid #999;
+	border-top: none;
+	overflow: hidden;
+	clear: both;
+	float: left; width: 100%;
+	background: #f4f4f4;
+} 
 .tab_content {
 	padding: 20px;
+	font-size: 1.2em;
+}
+.tab_content2 {
+	margin-top:0px;
+	margin-left:5px;
+	margin-bottom:4px;
+	margin-right:5px;
 	font-size: 1.2em;
 }
