@@ -634,21 +634,42 @@ input.radio {
 	width: 195px;
 }
 .invitees {
-	background: none repeat scroll 0 0 #f9a943;
-	border-radius: 3px 3px 3px 3px;
-	color: #FFFFFF;
-	display: block;
-	font-size: 12px;
-	margin: -18px 0;
-	padding: 0px;
-	text-align: center;
-	text-transform: uppercase;
-	width: 85px;
+	 background: none repeat scroll 0 0 #F9A943;
+    border-radius: 3px 3px 3px 3px;
+    color: #FFFFFF;
+    display: block;
+    font-size: 12px;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    top: 8px;
+    width: 85px;
 }
-#topbar
+.topbar
 {
-position:relative;
-margin: -16px;
+ background: none repeat scroll 0 0 #F4F4F4;
+    height: 30px;
+    margin-top: 0;
+    position: relative;
+    top: -20px;
+    width: 100%;
+
+}
+.invitee_button {
+    left: 450px;
+    position: relative;
+    top: -8px;
+}
+.profile_name
+{
+  left: 580px;
+    position: relative;
+    top: -35px;
+}
+#ch_main_div3 {
+  
+    padding: 40px;
 }
 
 .links_cancel {
@@ -1327,19 +1348,44 @@ input:required {
  border:10px solid #FF0000;
  
 }
-
+#search1 {
+    border: 1px solid #BEBEBE;
+    height: 25px;
+    width: 180px;
+}
 #search{
- border: 0px solid #BEBEBE;
+  border: 0px solid #BEBEBE;
     height: 25px;
     width: 180px;
 }
 #tableshow_soc
 {
-    margin-bottom: 1.4em;
+      margin-bottom: 1.4em;
     position: relative;
-    top: -47px;
+    top: -27px;
     width: 100%;
+
 }
+#titlechallenge3 {
+  
+    width:635px;
+	border: 1px solid #BEBEBE;
+	background:#BEBEBE;
+	height:30px;
+	
+   
+}
+
+.mychallenge3 {
+ float:left;
+	height:500px;
+	width:635px;
+	border: 2px solid #BEBEBE;
+	
+  
+}
+
+
 #status_icon {
     left: 30px;
     position: relative;
@@ -1494,4 +1540,12 @@ top: -12px;
 .invite {
 position :relative;
 	top: 15px;
+		}
+		.nav_shadow_mydojo
+		{
+		height: 25px;
+    margin-bottom: 0.1em;
+    position: relative;
+    top: -18px;
+    width: 100%;
 		}
