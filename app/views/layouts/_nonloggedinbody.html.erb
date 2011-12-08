@@ -5,59 +5,92 @@
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-<div>
-  <div class="regmessage">
 
-	<div class="msgtitle">
-		<h2><font color="#AAA9A9" size=4>WHAT'S NEW</font></h2>
-		<div class="viewall">
-			<font size=2><b>VIEWALL</b></font>
+<table width="100%">
+	<td width="60%" class="divone">
+		<div class="regmessage">
+			<div class="msgtitle">
+				<table>
+				  <tr>
+					<td><font color="#AAA9A9" size=4><b>WHAT'S NEW</b></font></td>
+					<td>
+						
+						<p style="float:left"><%= button_to "", "#", :class => "non_login_view_all", :method => :get%></p></td>
+						
+					</tr>
+				</table>
+			</div>
+			
+		<% if Challenge.where(:_type.exists => false).desc("created_at").limit(3).count == 0 %>
+		<p align="center">No challenges found</p>
+		<% else %>
+			<% Challenge.where(:_type.exists => false).desc("created_at").limit(3).each do |anc| %>
+		<div class="messagereg">
+			<%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:-2px;") %>
+			<table width="100%" style="margin-top:-10px;">
+			  <tr>
+				<td width="30%">
+					<font size="3px;" style="font-weight:bold"><%= anc.title%></font></br>
+					by  <b><%= FbGraph::User.new(anc.user_id).fetch.name %></b></br>
+					<% if anc.start_point.instance_of?PointDateType %>
+						<%= anc.start_point.value.strftime("%b %d, %Y")%> - <%= anc.end_point.value.strftime("%b %d, %Y")%>
+					<% else %>
+						<%= anc.start_point.value rescue 0%> - <%= anc.end_point.value rescue 0%>
+					<% end %>
+					<%= anc.child_challenges.size%> contestants
+				</td>
+				<td width="70%">
+					<p style="float:right; margin-right:20px;"><%= time_ago_in_words  anc.created_at%></p></br></br>
+					<% if anc.personal_type.instance_of?ChallengePersonalType%>
+						<p style="text-transform:none;">
+							<%=h truncate(anc.description, :length => 128) %>....<%= link_to "VIEW" , show_per_challenges_path(:id => anc.id) %>									
+						</p>
+					<% end %>
+					<% if anc.social_type.instance_of?ChallengeSocialType%>
+						<p style="text-transform:none;">
+							<%=h truncate(anc.description, :length => 190) %>....<%= link_to "VIEW" , "#" %>									
+						</p>
+					<% end %>
+				</td>
+			  </tr>
+			</table>
 		</div>
-	</div>
-	<table>
-		<td>
-			<tr>
-				<div class="messagereg">
-					Message1
-				</div>
-				<br>
-			</tr>
-			<tr>
-				<div class="messagereg">
-					Message2
-				</div>
-			</tr>
-			<tr>
-				<div class="messagereg">
-					Message3
-				</div>
-			</tr>
-		</td>
-		<td>
-		
-		<div class="regdojitsu">
-			
-			<div class="fb-like-box" data-href="http://www.facebook.com/pages/Dojitsu/295711967114330" data-width="350" data-height="180" data-show-faces="true" data-stream="false" data-header="false"></div>
-			
-			<div class="dourbest">
-			<%= image_tag("dourbest.PNG" ,:size => "350x195", :alt => "Do YOur Best")%>
-			<div class="reg">
-			<%= link_to(image_tag("regwelcome.PNG" ,:size => "90x25", :alt => "Do YOur Best"),new_user_registration_path) %>
-			
-			</div>
-			<div class="seetutorial">
-			<%= image_tag("seetutorial.PNG" ,:size => "75x21", :alt => "See Tutorial")%>
-			</div>
-			</div>
-	</div>
-		</td>
-	</table>
-</div>
-  </div>
-  
-</div>
+		<% end %>
+		<% end %>
+	</td>
+	<td width="40%">
+									<div class="regdojitsu">	
+									<div class="fb-like-box" data-href="http://www.facebook.com/pages/Dojitsu/295711967114330" data-width="350" data-height="180" data-show-faces="true" data-stream="false" data-header="false"></div>
+									<div class="dourbest">
+										<%= image_tag("dourbest.PNG" ,:size => "350x195", :alt => "Do YOur Best")%>
+										<div class="reg">
+											<%= link_to(image_tag("regwelcome.PNG" ,:size => "90x25", :alt => "Do Your Best"),"#") %>
+										</div>
+										<div class="seetutorial">
+											<%= image_tag("seetutorial.PNG" ,:size => "75x21", :alt => "See Tutorial")%>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+	</td>
+</table>
+
+
 <style>
 
+.divone{
+	vertical-align:top;
+}
+.messagereg
+{
+	width:550px;
+	height:130px;
+	background:#F9F7F7;
+	color:#000;
+	border:1px solid #000;
+	margin-top:10px;
+}
 .reg
 {
 float: left;
@@ -72,23 +105,16 @@ float: left;
     position: relative;
     top: -32px;
 }
-
-.dourbest
-{
-position: relative;
-    bottom: 26px;
-
-}
 .facebooklike
 {
  background: none repeat scroll 0 0 #FFFFFF;
-  color:#486197;
+    color:#486197;
     float: left;
     height: 50px;
     left: 20px;
     position: relative;
     top: 5px;
-    width: 180px;
+    
 }
 .dojitstuimage
 {
@@ -101,107 +127,24 @@ border:1px solid #000;
 float:left;
 left:10px;
 }
-.liked
+.dojitstuimage
 {
-position:absolute;
-top:75px;
-width:335px;
-height:70px;
+position:relative;
+top:5px;
+width:45px;
+height:45px;
 background:#fff;
+border:1px solid #000;
 float:left;
 left:10px;
-  border: 1px solid #000000;
-}
-.regdojitsu
-{
-
-top:8px;
-float:left;
-left:580px;
-position:absolute;
-background:#ffffff;
-
-width:355px;
-height:340px;
-}
-.viewall
-{
-padding-top:2px;
-float:left;
-left:480px;
-bottom:37px;
-position:relative;
-width:70px;
-height:22px;
-background:#F8981D;
-color:#fff;
 }
 .messagereg
 {
-
-width:550px;
-height:100px;
-background:#F9F7F7;
-color:#000;
-border:1px solid #000;
-
+	width:550px;
+	height:130px;
+	background:#F9F7F7;
+	color:#000;
+	border:1px solid #000;
+	margin-top:10px;
 }
-.regmessage
-{
-position:relative;
-float:left;
-left:10px;
-margin-top:20px;
-}
-.registration
-{
-margin-top:10px;
-border:7px solid #DDDDDD;
-width:940px;
-height:400px;
-}
-.regdetails
-{
-width:650px;
-height:400px;
-
-float:left;
-left:160px;
-top:20px;
-position:relative;
-}
-.reglable
-{
-color:#636363;
-
-}
-.reginput
-{
-
-height:25px;
-width:470px;
-background:#FCF9F9;
-border:1px solid #636363;
-}
-.buttons
-{
-float:left;
-left:490px;
-position:relative;
-}
-.register {
-	background: #F8981D; 
-	width: 82px;
-	height: 22px;
-	color:#ffffff;
-
-}
-.cancel{
-background: #A5A5A5; 
-	width: 58px;
-	height: 22px;
-	color:#ffffff;
-}
-
-
 </style>

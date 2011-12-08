@@ -36,7 +36,6 @@
 									messageLogSmall.body =messageLog.body;
 									messageLogSmall.author_id =messageLog.author_id;
 									jQuery.support.cors = true;     
-									console.debug('storing...', messageLogSmall);
 									$.get('/messages/storemessage', 
 									{messageDetails:messageLogSmall},
 									function(data) {

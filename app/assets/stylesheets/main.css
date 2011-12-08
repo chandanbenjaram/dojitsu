@@ -9,6 +9,7 @@ textarea:-moz-placeholder, input:-moz-placeholder {
 	color: #c6c6c6; 
 	font-weight: normal;
 	font-size: 12px;
+	height:32px;
 }
 
 .appLogo {
@@ -187,6 +188,18 @@ ul.homenavbar > li.selected > a {
 	left:10px;
 	font-family: arial;
 }
+.new_challenge_button1 {
+	background: #f8981d url("new1.PNG") no-repeat left center;	
+	text-align: right;
+	min-width: 70px;
+	height:25px;
+	top:-25px;
+	right:-125px;
+	position:relative;
+	float:left;
+	left:10px;
+	font-family: arial;
+}
 
 /* User show page */
 table.profile {
@@ -299,11 +312,11 @@ nav .menu li {
 }
 
 nav .menu #check {
-	display: block;
-	text-decoration: none;
-	color: #F5F5DC;
-	padding: 0 25px;
-	line-height: 38px;
+	 color: #7AC142;
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+    top: 17px;
 }
 
 nav .menu #check :hover {
@@ -316,6 +329,19 @@ nav .menu #check :hover {
 .fb-login-button {
 	background:#f8981d url("btn_add_up.png") no-repeat left center ;	
 }
+  
+.authnav ul {
+	float: right;
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+}  
+
+.authnav li {
+	float: left;
+	margin: 2;
+} 
+
 
 .facebook {
 	background: url("loginbutton.png") no-repeat left center ; 
@@ -510,14 +536,14 @@ textarea:focus{
 }
 
 select {
-	border: 0px solid #cfcfcf;
-	vertical-align: top;
-	position:relative;
-	top:-3px;
-	width: 180px;
-	height: 30px;
-	color:#f9a943;
-	background: transparent;
+border: none;
+vertical-align: top;
+position: relative;
+width: 220px;
+height: 25px;
+color: #F9A943;
+background: transparent;
+top: -3px;
 }
 
 select:focus{
@@ -555,21 +581,13 @@ input.radio {
 	height:4em;
 }
 
-.styled-select select {
-   background: transparent;
-   width: 240px;
-   padding: 0px;
-   font-size: 16px;
-   border: 0px solid #ccc;
-   height: 34px;
-}
+
 .styled-select {
-   border: 1px solid #ddd;
-   top:-2px;
-   width: 200px;
-   height: 34px;
-   overflow: hidden;
-   background: url(icon_combobox_arrow_down.png) no-repeat right  #fff;
+ background: url("icon_combobox_arrow_down.png") no-repeat scroll 180px 50% white;
+    border: 1px solid #BBBBBB;
+    height: 32px;
+    overflow: hidden;
+    width: 200px;
 }
 
 .links {
@@ -597,6 +615,18 @@ input.radio {
 	font-family: arial;
 }
 
+.non_login_view_all {
+	background: #f8981d url("viewall.PNG") no-repeat left center;	
+	text-align: right;
+	min-width: 78px;
+	height:25px;
+	top:3px;
+	position:relative;
+	float:right;
+	left:0px;
+	font-family: arial;
+}
+
 .links_invite_p {
 	background: none repeat scroll 0 0 #f9a943;
 	border-radius: 3px 3px 3px 3px;
@@ -610,21 +640,42 @@ input.radio {
 	width: 195px;
 }
 .invitees {
-	background: none repeat scroll 0 0 #f9a943;
-	border-radius: 3px 3px 3px 3px;
-	color: #FFFFFF;
-	display: block;
-	font-size: 12px;
-	margin: -18px 0;
-	padding: 0px;
-	text-align: center;
-	text-transform: uppercase;
-	width: 85px;
+	 background: none repeat scroll 0 0 #F9A943;
+    border-radius: 3px 3px 3px 3px;
+    color: #FFFFFF;
+    display: block;
+    font-size: 12px;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    top: 8px;
+    width: 85px;
 }
-#topbar
+.topbar
 {
-position:relative;
-margin: -16px;
+ background: none repeat scroll 0 0 #F4F4F4;
+    height: 30px;
+    margin-top: 0;
+    position: relative;
+    top: -20px;
+    width: 100%;
+
+}
+.invitee_button {
+    left: 450px;
+    position: relative;
+    top: -8px;
+}
+.profile_name
+{
+  left: 580px;
+    position: relative;
+    top: -35px;
+}
+#ch_main_div3 {
+  
+    padding: 40px;
 }
 
 .links_cancel {
@@ -904,6 +955,7 @@ ul.tabs1 {
 	-moz-border-radius: 6px;
 	border-radius: 6px; 
 }
+
 #titlechallenge
 {
 	width:635px;
@@ -1135,9 +1187,10 @@ width:90%;
 	margin-bottom:10px;
 	margin-left:10px;
 	margin-right:10px;
-	height:230px;
+	 height: 180px;
 	background:#F4F4F4;
 	overflow:hidden;
+	 border: 1px solid #BEBEBE;
 }
 
 .hidden {
@@ -1197,7 +1250,7 @@ width:90%;
 	top:-95px;
 	width:40px;
 	height:25px;
-	left:415px;
+	left:425px;
 	background:#DDEFCE;
 	color:#7AC142;
 }
@@ -1281,6 +1334,7 @@ width:90%;
 input:required {
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
+	height: 30px;
 }
 
 #check3 {
@@ -1295,3 +1349,221 @@ input:required {
 	width :200px;
 	height:25px;
 }
+
+.challengerow{
+
+ border:10px solid #FF0000;
+ 
+}
+#search1 {
+    border: 1px solid #BEBEBE;
+    height: 25px;
+    width: 180px;
+}
+#search{
+  border: 0px solid #BEBEBE;
+    height: 25px;
+    width: 180px;
+}
+#tableshow_soc
+{
+      margin-bottom: 1.4em;
+    position: relative;
+    top: -27px;
+    width: 100%;
+
+}
+#titlechallenge3 {
+  
+    width:635px;
+	border: 1px solid #BEBEBE;
+	background:#BEBEBE;
+	height:30px;
+	
+   
+}
+
+.mychallenge3 {
+ float:left;
+	height:500px;
+	width:635px;
+	border: 2px solid #BEBEBE;
+	
+  
+}
+
+
+#status_icon {
+    left: 30px;
+    position: relative;
+}
+#percentage_personal
+{
+	  color: #7AC142;
+    font-size: 15px;
+    font-weight: bold;
+    padding-left: 20px;
+    position: relative;
+    top: 10px;
+}
+#blackbox_personal
+{
+	height:60px;
+	width:835px;
+	background:#000000;
+	margin-top:10px;
+	padding-left:10px;
+}
+.showperscore_personal
+{ background: none repeat scroll 0 0 #DDEFCE;
+    color: green;
+    float: right;
+    font-size: 15px;
+    font-weight: bold;
+    height: 25px;
+    padding-left: 18px;
+    padding-top: 6px;
+    position: relative;
+    right: 5px;
+    top: -31px;
+    width: 30px;
+}
+.invitee_list
+					{
+					 margin-top: -25px;
+   
+    position: relative;
+					}
+#icon
+{ 
+			
+		    margin-left: 610px;
+    margin-right: -50px;
+    margin-top: -10px;
+    position: relative;
+			
+			} 
+			
+				#names
+			{ 
+			float: left;
+			width: 660px;
+			} 
+		
+			
+		 #ahref{
+	color: #000000;
+	font-weight: bold;
+	left: 10px;
+	position: relative;
+	text-decoration: none;
+	top:0px;
+}
+			#name_list
+			{
+			
+			color: #000000;
+    padding-left: 5px;
+    position: relative;
+    top: -15px;
+			
+			
+			}
+			.private_msg
+			{
+			 left: 40px;
+    position: relative;
+    top: -5px;
+}
+			.private_msg1
+			{
+			 left: 38px;
+    position: relative;
+    top: -5px;
+			}
+			.bottom_border
+			{
+			
+			}
+			#percentage_mydojo
+{
+  color: #7AC142;
+    font-size: 16px;
+    font-weight: bold;
+    left: 2px;
+    position: relative;
+    top: 22px;
+}
+.completedtask_mydojo
+{
+color: #FFFFFF;
+    left: 170px;
+    position: relative;
+}
+.notcompleted_mydojo
+{
+ color: #FFFFFF;
+    float: left;
+    left: 105px;
+    position: relative;
+}
+#points_mydojo
+{
+ background: none repeat scroll 0 0 #DDEFCE;
+    color: #7AC142;
+    height: 35px;
+    left: 620px;
+    position: relative;
+    top: -105px;
+    width: 40px;
+}
+.new_challenge_button4 {
+    background: url("new1.PNG") no-repeat scroll left center #F8981D;
+    float: left;
+    font-family: arial;
+    height: 25px;
+    left: 150px;
+    min-width: 70px;
+    position: relative;
+    text-align: right;
+    top: -10px;
+}
+#challange_mydojo
+{
+position:relative;
+}
+.filterform {
+	 left: 17px;
+position: relative;
+top: -12px;
+					}
+					
+.filterinput {
+	width :200px;
+	height:25px;
+	position :relative;
+	top: 15px;
+					}
+					
+.text_field {
+	width :200px;
+	height:25px;
+					}
+					
+.user {
+	font-size :20px;
+	text-transform: uppercase;
+			}
+			
+.invite {
+position :relative;
+	top: 15px;
+		}
+		.nav_shadow_mydojo
+		{
+		height: 25px;
+    margin-bottom: 0.1em;
+    position: relative;
+    top: -18px;
+    width: 100%;
+		}

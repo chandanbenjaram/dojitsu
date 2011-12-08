@@ -96,7 +96,7 @@
 							</div>
 							<td align="center" class="taskIcon"><%= image_tag("icon_multiply.png")%></td>
 							<td align="center">     
-								<%= task_fields.text_field :score, :class => "textfield_effect_nw_tk_add", :size=>"10px", :required => "required", :placeholder=>"enter task point(s)" %>
+								<%= task_fields.text_field :score, :class => "textfield_effect_nw_tk_add", :size=>"10px",:required => "required", :placeholder=>"enter task point(s)" %>
 							</td>
 							<td align="center" class="taskIcon"><%= image_tag("icon_slash.png")%></td>
 							<td align="center">     
@@ -150,7 +150,6 @@
 				<tr>
 					<td valign="top"><b class="color999">PRIVACY</b></td>
 					<td colspan="3">
-					<div id="select_challenge_div"></div>
 					<ul class="tabs">
     					<li><a href="#tab1" id="soc">Social</a></li>
     					<li><a href="#tab2" id="per">Personal</a></li>
@@ -173,6 +172,7 @@
 					]), :id => "soc_wn", :style => "width:222px"
 					%>		
 				</div>	
+				<div id="select_challenge_div"></div>
 			</td>
 			</tr>
 			<tr>

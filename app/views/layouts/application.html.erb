@@ -7,6 +7,8 @@
     <%= render 'layouts/javascripts'%>
     <%= javascript_include_tag "application" %>
 	<%= javascript_include_tag "rails.validations" %>
+	
+	
   </head>
   <body>
     <div class="container" >
@@ -20,6 +22,7 @@
           <div class="flash <%= key %>"><%= val %></div>
         <% end %>
         <%= yield %>
+		
       </div>
 	  
 	 

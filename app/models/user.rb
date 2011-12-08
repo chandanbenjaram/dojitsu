@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   end
   
   def allChallenges
-	Challenge.find(:all).desc("created_at").limit(3)
+	Challenge.where(:_type.exists => false).desc("created_at").limit(3)
   end	
 	
   def password_required?

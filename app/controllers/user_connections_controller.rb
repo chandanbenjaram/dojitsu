@@ -13,7 +13,14 @@ class UserConnectionsController < ApplicationController
     prsofile ||= FbGraph::User.me(self.authentications.find_by_provider('facebook').token).fetch
   end
 
-
+  def sendInvitation	
+	if !params[:inviteIds].nil?
+		params[:inviteIds].each do |inviteId|
+			current_user.user_connections.find_or_create_by_target_id(:target_id => inviteId )
+		end
+	end
+  end
+  
   def dashbord
   end
   

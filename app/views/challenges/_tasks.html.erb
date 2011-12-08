@@ -19,8 +19,10 @@
 		<% if t != 1 %>
 			<th width="3%">	</th>
 			<th width="12%">
-				<% if @challenge.social_type.status == 1 and !(@challenge.instance_of?ChildChallenge)%>
-					<%= link_to image_tag("icon_edit.png", :style =>"margin-top:3px; float:right" ), show_soc_challenges_path(:id => @challenge, :flg => "ed") %>
+				<% if @challenge.user_id == current_user.fbauth.uid %>
+					<% if @challenge.social_type.status == 1 and !(@challenge.instance_of?ChildChallenge)%>				    
+						<%= link_to image_tag("icon_edit.png", :style =>"margin-top:3px; float:right" ), show_soc_challenges_path(:id => @challenge, :flg => "ed") %>
+				    <% end %>
 				<% end %>	
 			</th>
 		<% end %> 
@@ -29,7 +31,7 @@
 	
 	<tr bgcolor=#D7D7D7>
 		<td width="90%">
-			<font color="#999999"  ><b>POINT(s)</b></font> <%= image_tag("icon_slash.png", :height => '12', :width => '5') %> <font color="#999999"><b>TASKS</b></font>
+			<font color="#999999"  ><b>POINT(S)</b></font> <%= image_tag("icon_slash.png", :height => '12', :width => '5') %> <font color="#999999"><b>TASKS</b></font>
 		</td>
 		<td></td>
 		<td width="15%" style="font-weight:bold;  color:#999999;">
@@ -56,12 +58,15 @@
 						</p>
 						
 						<div class="showperscore_0">
-						
-							<% if @challenge.social_type.status == 1 %>
-								<%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => " text-decoration: underline; color:#F9AB47;" %>
+							<% if @challenge.user_id == current_user.fbauth.uid %>
+								<% if @challenge.social_type.status == 1 %>
+									<%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => " text-decoration: underline; color:#F9AB47;" %>
+								<% else %>
+									<font style="color:black">0</font>
+								<% end %>
 							<% else %>
-								<font style="color:black">0</font>
-							<% end %>
+									<font style="color:black">0</font>	
+							<% end %>	
 						</div>
 					</div>
 					
@@ -100,6 +105,7 @@
 					.task
 					{
 						width: 795px;
+						background:url("perf_tracker_bg.png") repeat ;
 						}
 					</style>
 					<div id="check3">
@@ -137,7 +143,35 @@
 								width: 175px;
 							}
 						</style>
-						<%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c1"%>
+						
+						<% if @challenge.user_id == current_user.fbauth.uid %>
+							<% allTaskComplete = 0 %>
+							<% if @challenge.canCompleteBeforeTasks? %>
+								<% @challenge.tasks.each do |aTask| %>
+									<% if aTask.is_complete == 0 %>
+										<% allTaskComplete = 1 %>			
+									<% end %>
+								<% end %>
+								<% if allTaskComplete == 1 %>
+									<%= link_to "MARK AS COMPLETED",  "#", :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c1"%>
+								<% else %>
+									<%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c1"%>
+								<% end %>
+							<% else %>
+									<%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c1"%>
+							<% end %>
+						<% else %>
+							<%= link_to "MARK AS COMPLETED",  "#", :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c1"%>
+						<% end %>
+						
+						
+						
+						
+						
+						
+						
+						
+						
 					</div>
 		</tr>
 	<% else %>
