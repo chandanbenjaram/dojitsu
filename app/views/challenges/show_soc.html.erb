@@ -87,7 +87,7 @@ function fbCallback(response){
 							</script>
 							<b><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
 						<% else %>	
-							<b id="user"></b>
+							<b id="user_name"></b>
 							<script>
 								var ordId = <%=  orgId = @challenge.user_id %>
 							</script>
@@ -331,7 +331,7 @@ function fbCallback(response){
 					query: 'SELECT name FROM user WHERE uid=' +user
 				}, function(response){
 				htmlcontent =response[0].name ;
-						$("#user").append(htmlcontent);    
+						$("#user_name").append(htmlcontent);    
 			});
 </script>
 

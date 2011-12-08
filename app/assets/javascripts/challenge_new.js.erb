@@ -14,7 +14,7 @@ $(document).ready(function($) {
 				$(div_tag).append($('<input id="start_point_value"  name="start_point_value" class="textfield_effect" type="text" required="required" placeholder="enter number here">'));								
 
 				$(div_tag).append('&nbsp;&nbsp;');
-				$(div_tag).append($('<input id="start_point_label" name="start_point_label" class="textfield_effect" type="text" placeholder="enter label here" >'));				
+				$(div_tag).append($('<input id="start_point_label" name="start_point_label" class="textfield_effect" type="text" required="required" placeholder="enter label here" >'));				
 				$('#end_point_type option[value="endPointNumber"]').attr('selected','selected').trigger('change');    
 			}else{
 				$(div_tag).append('<input id="start_point_value"  name="start_point_value" class="textfield_effect datepicker" type="text" required="required" placeholder="enter date here">');				
@@ -46,7 +46,7 @@ $(document).ready(function($) {
 			if($(this).val() === "endPointNumber") {  
 				$(div_tag).append($('<input id="end_point_value" name="end_point_value" class="textfield_effect" type="text" required="required" placeholder="enter number here">'));								
 				$(div_tag).append('&nbsp;&nbsp;');
-				$(div_tag).append($('<input id="end_point_label"  name="end_point_label" class="textfield_effect" type="text" placeholder="enter label here">'));				
+				$(div_tag).append($('<input id="end_point_label"  name="end_point_label" class="textfield_effect" type="text" required="required" placeholder="enter label here">'));				
 				 
 			}else{
 				$(div_tag).append('<input id="end_point_value" name="end_point_value" class="textfield_effect datepicker" type="text" required="required" placeholder="enter date here">');				
@@ -158,9 +158,17 @@ function validate_form_fields(str)
 	{
 		if ((document.challenge_form.soc_who_win.value == "") && (document.challenge_form.per_who_win.value == "")) 
 		{
-			document.getElementById("select_challenge_div").innerHTML = "<font color=\"#FF0000\">Please choose challenge as personal OR social!</font>";
+			document.getElementById("select_challenge_div").innerHTML = "<font color=\"#FF0000\">Please select who wins</font>";
 			document.challenge_form.soc_who_win.focus();
 			return false;
-		}		
+		}
+
+		if ((document.challenge_form.soc_who_win.value != "") && (document.challenge_form.soc_how_many_winner.value == "")) 
+		{
+			document.getElementById("soc_how_many_winner_div").innerHTML = "<font color=\"#FF0000\">Please select how many winners</font>";
+			document.challenge_form.soc_who_win.focus();
+			return false;
+		}
+		
 	}
 
