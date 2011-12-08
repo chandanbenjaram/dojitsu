@@ -158,9 +158,17 @@ function validate_form_fields(str)
 	{
 		if ((document.challenge_form.soc_who_win.value == "") && (document.challenge_form.per_who_win.value == "")) 
 		{
-			document.getElementById("select_challenge_div").innerHTML = "<font color=\"#FF0000\">Please choose challenge as personal OR social!</font>";
+			document.getElementById("select_challenge_div").innerHTML = "<font color=\"#FF0000\">Please select who wins</font>";
 			document.challenge_form.soc_who_win.focus();
 			return false;
-		}		
+		}
+
+		if ((document.challenge_form.soc_who_win.value != "") && (document.challenge_form.soc_how_many_winner.value == "")) 
+		{
+			document.getElementById("soc_how_many_winner_div").innerHTML = "<font color=\"#FF0000\">Please select how many winners</font>";
+			document.challenge_form.soc_who_win.focus();
+			return false;
+		}
+		
 	}
 
