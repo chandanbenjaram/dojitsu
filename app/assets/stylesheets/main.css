@@ -1464,15 +1464,15 @@ input:required {
 			}
 			.private_msg
 			{
-			position:relative;
-			left:-50px;
-			top:-5px;
-			}
+			 left: 40px;
+    position: relative;
+    top: -5px;
+}
 			.private_msg1
 			{
-			position:relative;
-			left:0px;
-			top:-5px;
+			 left: 38px;
+    position: relative;
+    top: -5px;
 			}
 			.bottom_border
 			{
