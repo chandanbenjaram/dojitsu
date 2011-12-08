@@ -154,7 +154,7 @@
 										 }
 									</script>			
 								 <td width="440px" height="40px">
-									<font color="#8c8c8c"><b>Total:	<%= group.length %><%= image_tag("btn_msg_up.png", :onclick=>"contactToInvitee()") %></font><b >
+									<font color="#8c8c8c"><b><style="float: right;">Total:</style>	<%= group.length %><%= image_tag("btn_msg_up.png", :onclick=>"contactToInvitee()") %></font><b >
 								</td>
 							<td width = "80px" id="search"  height="40px">
 									</td>
@@ -278,19 +278,19 @@
 	  });
 	}(jQuery));
 </script> 			
-		<div id="tab2" class="tab_content2">
+		<div id="tab2" class="tab_content2"><br>
 <div class="dashboardsidebar">
-<div style=" width:930px; " class="mychallenge3">
-<div style=" width:930px; " id="titlechallenge3">
-<div id="title">
-TOTAL:<font color="black"><%= as %></font>
-</div>
-<div style=" float: left; left: 670px; " class="second_titlechallenge">
-<%= button_to "", new_challenge_url, :class => "new_challenge_button4", :method => :get%>
-</div>
-</div>
-<div style="overflow -y:auto; overflow-x:hidden; width:940px; height : 450px;" id="challengedetails">
-<% t=1 %>
+<div style=" width:940px; " class="mychallenge3">
+	<div style=" width:940px; " id="titlechallenge3">
+		<div id="title">
+			TOTAL:<font color="black"><%= as %></font>
+		</div>
+		<div style=" float: left; left: 670px; " class="second_titlechallenge">
+					<%= button_to "", new_challenge_url, :class => "new_challenge_button4", :method => :get%>
+		</div>
+	</div>
+		<div style="overflow -y:auto; overflow-x:hidden; width:940px; height : 450px;" id="challengedetails">
+		<% t=1 %>
 <script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> </script>
 <table   class="sortable">
 <thead>

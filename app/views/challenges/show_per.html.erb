@@ -8,53 +8,60 @@
 	<tr>
 		<div style="text-transform: uppercase; font-size:25px; margin:0px">
 			<font color="orange"><%= on_the_spot_edit @challenge, :title, :type=> :text %></font>
-		</div>
+		</div><br>
 		<tr>
-		<table width=500px height=10px bgcolor=white style="top:17px; position:relative; ">
-			<tr>
-				<td width=120px valign="top">
-					<b><font color=	#909090>DESCRIPTION</b>
-				</td>
-				<td class="editable" valign="top">
-					<%= on_the_spot_edit @challenge, :description, :type => :textarea %>
-				</td>
-			</tr>
-		</table>
+		<table >
+				<tr>
+					<td width="80px">
+						<b><font color= #999999>DESCRIPTION</font></b></td>
+					<td width="500px">
+						<b><%= on_the_spot_edit @challenge,:description , :type=>:textarea  %></b>
+					</td>
+				</tr>
+			</table>
 		<hr/ width=400px>
 	</tr>
 	<tr>
-		<table width=400px height=10px bgcolor=white style="top:10px; position:relative;">
-			<tr>
-				<td width=120px>
-					<b><font color=	#909090>START POINT</font></b>
-				</td>
-				<td class="editable">					
-					<% if @challenge.start_point.instance_of?PointDateType %>		
-						<%= @challenge.start_point.value.strftime("%b %d, %Y") %>
-					<% else %>							
-						<%= @challenge.start_point.value %>
-					<% end %>
-				</td>
-			</tr>
-		</table>
+		<table>
+				<tr>
+					<td width=120px>
+						<b><font color= #999999>START POINT</font></b>
+					</td>
+					<td>
+						<% if @challenge.start_point.instance_of?PointDateType %>		
+							 <b><%= @challenge.start_point.value.strftime("%b %d, %Y")%> </b>
+						<% else %>							
+							<b><%= @challenge.start_point.value.to_i %></b>
+						<% end %>
+					</td>
+					<td>
+						
+					</td>
+					<td align="right">
+						<%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :align=>"right" %>
+					</td>
+				</tr>
+			</table>
 		<hr/ width=400px>
 	</tr>
 	<tr>
-		<table  width=400px height=10px bgcolor=white style="top:10px;position:relative;">
-			<tr>
-				<td width=120px>
-					<b><font color=	#909090>END POINT</font></b></td>
-				<td class="editable">
-					<% if @challenge.end_point.instance_of?PointDateType %>		
-						<%= @challenge.end_point.value.strftime("%b %d, %Y") %>
-					<% else %>							
-						<%= @challenge.end_point.value %>
-					<% end %>										
-				</td>
-				
-			</tr>
-			
-		</table>
+		<table>
+				<tr> 
+					<td width=120px>
+						<b><font color= #999999>END POINT</font></b>
+					</td>
+					<td>
+						<% if @challenge.end_point.instance_of?PointDateType %>		
+							<b><div id="date"><%= @challenge.end_point.value.strftime("%b %d, %Y") %></div></b>
+						<% else %>							
+							<b><%= @challenge.end_point.value.to_i %></b>
+						<% end %>
+					</td>
+					<td>
+						<%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :style => "text-decoration: underline;",:align=>"right" %>
+					</td>
+				</tr>
+			</table>
 		<hr/ width=400px>	
 		<br><br>
 		<table bg color=#f4f4f4>
@@ -185,5 +192,15 @@ $(function() {
 		$('.task_update_popup').colorbox();
 		$('.add_task_popup').colorbox();
 	
+
+$("#date").dateinput({
+	format: 'dddd dd, mmmm yyyy',	// the format displayed for the user
+	selectors: true,             	// whether month/year dropdowns are shown
+	min: -100,                    // min selectable day (100 days backwards)
+	max: 100,                    	// max selectable day (100 days onwards)
+	offset: [10, 20],            	// tweak the position of the calendar
+	speed: 'fast',               	// calendar reveal speed
+	firstDay: 1                  	// which day starts a week. 0 = sunday, 1 = monday etc..
+});
 });
 </script>
