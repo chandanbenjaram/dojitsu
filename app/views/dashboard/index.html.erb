@@ -34,7 +34,7 @@
 								</thead>
 								<tbody>
 									<% current_user.challenges.each do |userChallenge| %>
-									<tr id="challengetr" style=" width:100%; CURSOR: pointer; cursor: hand;" onclick="location.href='<%= show_per_challenges_path(:id => userChallenge)  %>'" >
+									<tr valign="top" class="challengerow" onclick="location.href='<%= show_per_challenges_path(:id => userChallenge)  %>'" >
 										<td >
 											
 											<font family="Arial" color="#666666" size=3"><b><%= userChallenge.title %></b></font><br><font size=2>by </font>

@@ -12,6 +12,7 @@
 				<p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :placeholder=>"enter challenge title here" , :required => "required"  %><div id="title"></div></p>
 			</td>	
 		</tr>
+	
 		
 		<tr>
 			<td colspan="4">
@@ -95,7 +96,7 @@
 							</div>
 							<td align="center" class="taskIcon"><%= image_tag("icon_multiply.png")%></td>
 							<td align="center">     
-								<%= task_fields.text_field :score, :class => "textfield_effect_nw_tk_add", :size=>"10px", :required => "required", :placeholder=>"enter task point(s)" %>
+								<%= task_fields.number_field :score, :class => "textfield_effect_nw_tk_add", :size=>"10px",:required => "required", :placeholder=>"enter task point(s)" %>
 							</td>
 							<td align="center" class="taskIcon"><%= image_tag("icon_slash.png")%></td>
 							<td align="center">     

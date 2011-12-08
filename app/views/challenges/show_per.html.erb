@@ -119,14 +119,14 @@
 			<div style="width=30px">
 				My Dojitsu score: <br>
 				<div class="task" id="taskprogress"></div>
-				<div class="showperscore1"><%= total_score %></div>	
+				<div class="showperscore_personal"><%= total_score %></div>	
 				<style>
 					.task
 					{
 						width:790px;
 						}
 					</style>
-					<div id="check2">
+					<div id="blackbox_personal">
 						<div class="completedtask1"> 
 								<%= total_score %> points (<%= total_score_count %> &nbsp; tasks)
 						</div>
@@ -136,7 +136,7 @@
 						<script type="text/javascript">
 								$(function() {
 									$("#taskprogress").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });							
-									$("<p>").attr("id", "check4").text($("#taskprogress").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress");
+									$("<p>").attr("id", "percentage_personal").text($("#taskprogress").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress");
 								});
 						</script>
 						<%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"%>
