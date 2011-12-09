@@ -150,7 +150,6 @@
 				<tr>
 					<td valign="top"><b class="color999">PRIVACY</b></td>
 					<td colspan="3">
-					<div id="select_challenge_div"></div>
 					<ul class="tabs">
     					<li><a href="#tab1" id="soc">Social</a></li>
     					<li><a href="#tab2" id="per">Personal</a></li>
@@ -163,29 +162,30 @@
 		<tr>
 			<td width="25%"><b class="color999">Who wins</b></td>
 			<td>
-				<div class="styled-select">
+				<div class="styled-select1">
 				<%= select_tag :soc_who_win, options_for_select([
 					["Choose", ""],							
 					["Highest number of points","Highest number of points"],
 					["Lowest number of points","Lowest number of points"],	 
 					["1st person to reach End Point","1st person to reach End Point"],	
 					["Participant completes all tasks","Participant completes all tasks"]			 														
-					]), :id => "soc_wn", :style => "width:222px"
+					]), :id => "soc_wn", :style => "width:322px"
 					%>		
 				</div>	
+				<div id="select_challenge_div"></div>
 			</td>
 			</tr>
 			<tr>
 				<td><b class="color999">How many winners</b></td>
 				<td>
-					<div class="styled-select">
+					<div class="styled-select1">
 					<%= select_tag :soc_how_many_winner, options_for_select([
 						["Choose", ""],
 						["1", "1"],							
 						["3","3"],
 						["5","5"],	 
 						["All participants win","all"] 														
-						]), :id => "soc_hm", :style => "width:222px"
+						]), :id => "soc_hm", :style => "width:322px"
 						%>
 					</div>		
 						<div id="soc_how_many_winner_div"></div>	
@@ -207,12 +207,12 @@
   								<tr>
     								<td  width="20%"><b style="color:#999999;">Who wins</b></td>
 									<td>
-										<div class="styled-select">
+										<div class="styled-select1">
 										<%= select_tag :per_who_win, options_for_select([
     										["Choose", ""],							
 											["Add all points together","Add all points together"],
 											["Reach all milestones","Reach all milestones"]
- 											]), :id => "per_wn", :style => "width:222px" 
+ 											]), :id => "per_wn", :style => "width:322px" 
  										%>
 										</div>
 									</td>

@@ -148,13 +148,13 @@
 											FB.ui({
 											  method: 'send',
 											  to:contact,
-											  name: 'Facebook Dialogs',
-											  link: 'https://developers.facebook.com/docs/reference/dialogs/'
+											  name: 'Do your best',
+											  link: 'http://www.dojitsu.com'
 													 });										 
 										 }
 									</script>			
 								 <td width="440px" height="40px">
-									<font color="#8c8c8c"><b>Total:	<%= group.length %><%= image_tag("btn_msg_up.png", :onclick=>"contactToInvitee()") %></font><b >
+									<font color="#8c8c8c"><b><style="float: right;">Total:</style>	<%= group.length %><%= image_tag("btn_msg_up.png", :onclick=>"contactToInvitee()") %></font><b >
 								</td>
 							<td width = "80px" id="search"  height="40px">
 									</td>
@@ -178,7 +178,7 @@
 							<tr bgcolor=#d7d7d7>
 								<td>NAME
 								</td>
-								<td  width="200px">
+								<td  width="100px">
 									STATUS
 								</td>
 							</tr>
@@ -189,45 +189,43 @@
 								<td>
 									<div id="wrap">
 										<h1 id="header"></h1>
-									<table bgcolor="white">
-										<% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
-												
-											<tr>
-											<td id="list">				
-													
-												                      <% allConnections.each  do |eachConnection| %>
+										<table class="invitee_list "  id="list" bgcolor="white" >
 											
-													<p><a href="#"  id="ahref"><%=image_tag(FbGraph::User.new(eachConnection.target_id).fetch.picture) %>
-													<b><%= FbGraph::User.new(eachConnection.target_id).fetch.name %> </b>
-													<span id="status_icon"> 
-														<%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>
-													<%= link_to image_tag("btn_delete_up.png" , :class =>"private_msg1"), user_connection_path(eachConnection.id), :confirm => 'Are you sure?', :method => :delete %>
-																
-													
-														
-									                 
-												</span> </a>
-													</p>
-														<% end %>
-												</td>
-										</tr>	
-								
-									</table>
-							</div> 
-						</div>	
-																										
-<style type="text/css">
-#status_icon
-{ 
-float: right;
-width: 200px;
-} 
- #ahref
-{					
-color:#000000;
-}
-</style>																
-<script src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+												<% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
+												<% allConnections.each  do |eachConnection| %>
+													<tr  class="bottom_border" >
+													   <td  width="100%">																	
+															<a href="#"  id="ahref"><%=image_tag(FbGraph::User.new(eachConnection.target_id).fetch.picture) %></a>
+															<b id="name_list"><%= FbGraph::User.new(eachConnection.target_id).fetch.name %></b>													
+																<span id="icon"> 														
+																	<%= link_to image_tag("btn_delete_up.png" , :class =>"private_msg1"), user_connection_path(eachConnection.id), :confirm => 'Are you sure?', :method => :delete %>
+																	<%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>														
+																</span>																																					
+														</td>														
+													</tr>															
+												<% end %>
+												<script>
+													$(document).ready(function() {
+														$(".private_msg").click(function(event) {
+															var targetId = event.target.id;								
+															$.dojitsu.renderSendBox("Testing", <%= "'+targetId+'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenges_url() +"'"%>);
+														});
+													});
+												</script>												
+										</table>
+									</div> 
+								</td>
+							</tr>
+						</table> 
+						
+						
+						
+					</td>
+                </tr>
+            </table>				
+		</div>
+				
+
 <script>
 	(function ($) {
 	  jQuery.expr[':'].Contains = function(a,i,m){
@@ -246,7 +244,7 @@ color:#000000;
 			  $(list).find("a:not(:Contains(" + filter + "))").parent().slideUp();
 			  $(list).find("a:Contains(" + filter + ")").parent().slideDown();
 			} else {
-			  $(list).find("p").slideDown();
+			  $(list).find("tr").slideDown();
 			}
 			return false;
 		  })
@@ -254,28 +252,24 @@ color:#000000;
 			$(this).change();
 		});
 	  }
-
 	  $(function () {
 		listFilter($("#header"), $("#list"));
 	  });
 	}(jQuery));
-</script> 
-					
-	
 </script> 			
-		<div id="tab2" class="tab_content2">
+		<div id="tab2" class="tab_content2"><br>
 <div class="dashboardsidebar">
-<div style=" width:930px; " class="mychallenge3">
-<div style=" width:930px; " id="titlechallenge3">
-<div id="title">
-TOTAL:<font color="black"><%= as %></font>
-</div>
-<div style=" float: left; left: 670px; " class="second_titlechallenge">
-<%= button_to "", new_challenge_url, :class => "new_challenge_button4", :method => :get%>
-</div>
-</div>
-<div style="overflow -y:auto; overflow-x:hidden; width:940px; height : 450px;" id="challengedetails">
-<% t=1 %>
+<div style=" width:940px; " class="mychallenge3">
+	<div style=" width:940px; " id="titlechallenge3">
+		<div id="title">
+			TOTAL:<font color="black"><%= as %></font>
+		</div>
+		<div style=" float: left; left: 670px; " class="second_titlechallenge">
+					<%= button_to "", new_challenge_url, :class => "new_challenge_button4", :method => :get%>
+		</div>
+	</div>
+		<div style="overflow -y:auto; overflow-x:hidden; width:940px; height : 450px;" id="challengedetails">
+		<% t=1 %>
 <script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> </script>
 <table   class="sortable">
 <thead>

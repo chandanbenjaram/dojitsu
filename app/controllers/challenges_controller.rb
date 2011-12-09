@@ -55,7 +55,7 @@ class ChallengesController < ApplicationController
   end
 
   def create
-  
+    
     @ch = Challenge.new(params[:challenge])
     @ch_st_date = params[:start_point_type]
     @st_p_val = params[:start_point_value]
