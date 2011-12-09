@@ -5,18 +5,23 @@
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+<script type="text/javascript">
+		$(".fbConnectWidgetFooter").hide();
+</script>
 
 <table width="100%">
-	<td width="60%" class="divone">
+	<td width="50%" class="divone">
 		<div class="regmessage">
 			<div class="msgtitle">
 				<table>
 				  <tr>
 					<td><font color="#AAA9A9" size=4><b>WHAT'S NEW</b></font></td>
 					<td>
-						
-						<p style="float:left"><%= button_to "", "#", :class => "non_login_view_all", :method => :get%></p></td>
-						
+						<% if Challenge.where(:_type.exists => false).desc("created_at").limit(3).count == 0 %>
+					
+								<% else %>				
+								<%= button_to "", "#", :class => "non_login_view_all", :method => :get%> </td>
+						<% end %>
 					</tr>
 				</table>
 			</div>
@@ -58,7 +63,8 @@
 		<% end %>
 		<% end %>
 	</td>
-	<td width="40%">
+	<td class = "imagebackground"></td>
+	<td width="30%">
 									<div class="regdojitsu">	
 									<div class="fb-like-box" data-href="http://www.facebook.com/pages/Dojitsu/295711967114330" data-width="350" data-height="180" data-show-faces="true" data-stream="false" data-header="false"></div>
 									<div class="dourbest">

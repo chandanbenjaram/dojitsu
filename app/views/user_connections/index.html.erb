@@ -131,221 +131,70 @@
     				<li><a href="#tab1"><b>MY DOJO</b></a></li>
     				<li><a href="#tab2"><b>CHALLENGES</b></a></li>
 				</ul>
-	<div class="tab_container1">
-    	<div id="tab1" class="tab_content2">
-		<table bgcolor=#F4F4F4 height="30px">
-							<tr bgcolor=#F4F4F4>
-								<% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
-								<% group =Array.new %>
-								<% allConnections.each  do |eachConnection| %>
-									<% group.push(eachConnection.target_id) %>
-								<% end %>
-									<script>
-										function contactToInvitee() 
-										{
-										 var contact = '<%= group.join(",") %>';
-										 window.fbAsyncInit();
-											FB.ui({
-											  method: 'send',
-											  to:contact,
-											  name: 'Do your best',
-											  link: 'http://www.dojitsu.com'
-													 });										 
-										 }
-									</script>			
-								 <td width="440px" height="40px">
-									<font color="#8c8c8c"><b><style="float: right;">Total:</style>	<%= group.length %><%= image_tag("btn_msg_up.png", :onclick=>"contactToInvitee()") %></font><b >
-								</td>
-							<td width = "80px" id="search"  height="40px">
-									</td>
-								<td width="30px"  height="40px">
-									<p class="invite"><%= link_to ( image_tag ("search_it.PNG") , :class=>"image_tag") %><p>
-								</td>
-								<td  height="40px" width="50px">
-									<p class="invite"><%#= render :partial => 'invitations' %>
-									<%= image_tag("invite.PNG", :width=> "100px" , :height => "30px" )%>
-  
-									<%= hidden_field_tag "myvar", 0%>	
-									</p>
-								</td>
-							</tr>
-						</table>
-    		<table width="100%" border="0">
-  				<tr>
-    				<td>
+				<div class="tab_container1">
+					<div id="tab1" class="tab_content2">
+						<div id="myDojo"></div>
+					</div>
+				    <script>
+						$(document).ready(function(){
+							$.ajax({
+								url: "/user_connections/myDojo",
+								cache: false,
+								success: function(html){
+									$("#myDojo").append(html);
+								}
+							});
+						});
+					</script>
 					
-						<table  border="0"> 
-							<tr bgcolor=#d7d7d7>
-								<td>NAME
-								</td>
-								<td  width="100px">
-									STATUS
-								</td>
-							</tr>
-						</table>
-						
-						<table bgcolor="white">
-							<tr>
-								<td>
-									<div id="wrap">
-										<h1 id="header"></h1>
-										<table class="invitee_list "  id="list" bgcolor="white" >
-											
-												<% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
-												<% allConnections.each  do |eachConnection| %>
-													<tr  class="bottom_border" >
-													   <td  width="100%">																	
-															<a href="#"  id="ahref"><%=image_tag(FbGraph::User.new(eachConnection.target_id).fetch.picture) %></a>
-															<b id="name_list"><%= FbGraph::User.new(eachConnection.target_id).fetch.name %></b>													
-																<span id="icon"> 														
-																	<%= link_to image_tag("btn_delete_up.png" , :class =>"private_msg1"), user_connection_path(eachConnection.id), :confirm => 'Are you sure?', :method => :delete %>
-																	<%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>														
-																</span>																																					
-														</td>														
-													</tr>															
-												<% end %>
-												<script>
-													$(document).ready(function() {
-														$(".private_msg").click(function(event) {
-															var targetId = event.target.id;								
-															$.dojitsu.renderSendBox("Testing", <%= "'+targetId+'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenges_url() +"'"%>);
-														});
-													});
-												</script>												
-										</table>
-									</div> 
-								</td>
-							</tr>
-						</table> 
-						
-						
-						
-					</td>
-                </tr>
-            </table>				
-		</div>
-				
+					<script>
+						(function ($) {
+						  jQuery.expr[':'].Contains = function(a,i,m){
+							  return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+						  };
 
-<script>
-	(function ($) {
-	  jQuery.expr[':'].Contains = function(a,i,m){
-		  return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
-	  };
+						  function listFilter(header, list) {
+							var form = $("<form>").attr({"class":"filterform","action":"#"}),
+								input = $("<input>").attr({"class":"filterinput","type":"text"});
+							$("#search").append($(form).append(input).appendTo(header));
 
-	  function listFilter(header, list) {
-		var form = $("<form>").attr({"class":"filterform","action":"#"}),
-			input = $("<input>").attr({"class":"filterinput","type":"text"});
-		$("#search").append($(form).append(input).appendTo(header));
-
-		$(input)
-		  .change( function () {
-			var filter = $(this).val();
-			if(filter) {
-			  $(list).find("a:not(:Contains(" + filter + "))").parent().slideUp();
-			  $(list).find("a:Contains(" + filter + ")").parent().slideDown();
-			} else {
-			  $(list).find("tr").slideDown();
-			}
-			return false;
-		  })
-		.keyup( function () {
-			$(this).change();
-		});
-	  }
-	  $(function () {
-		listFilter($("#header"), $("#list"));
-	  });
-	}(jQuery));
-</script> 			
-		<div id="tab2" class="tab_content2"><br>
-<div class="dashboardsidebar">
-<div style=" width:940px; " class="mychallenge3">
-	<div style=" width:940px; " id="titlechallenge3">
-		<div id="title">
-			TOTAL:<font color="black"><%= as %></font>
-		</div>
-		<div style=" float: left; left: 670px; " class="second_titlechallenge">
-					<%= button_to "", new_challenge_url, :class => "new_challenge_button4", :method => :get%>
-		</div>
-	</div>
-		<div style="overflow -y:auto; overflow-x:hidden; width:940px; height : 450px;" id="challengedetails">
-		<% t=1 %>
-<script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> </script>
-<table   class="sortable">
-<thead>
-<tr><th style="CURSOR: pointer; cursor: hand;" id="content1">NAME</th><th style="CURSOR: pointer; cursor: hand;" id="content2">MY DOJITSU SCORE</th></tr>
-</thead>
-<tbody>
-<% current_user.challenges.each do |userChallenge| %>
-<tr style="CURSOR: pointer; cursor: hand;" onclick="location.href='<%= show_per_challenges_path(:id => userChallenge) %>'" >
-<td >
-<font size=4><b><%= userChallenge.title %></b></font><br><font size=2>by 
-<b>
-
-	<% if userChallenge.instance_of?ChildChallenge %>
-              <% @parentChallenge = Challenge.where(:_id => userChallenge.challenge_id).first%>
-              <script>
-            var ordId = <%=  orgId = @parentChallenge.user_id %>
-              </script>
-              <b><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
-           <% else %>
-            <b><%= current_user.facebook.name %></b>
-           <% end %>
-
-
-</b>
-</font><br><%= userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
-<%if ( userChallenge.child_challenges.size <2 ) %>
-<%= userChallenge.child_challenges.size >0 ? userChallenge.child_challenges.size : 1 %> contestant<br>
-<% else %>
-<%= userChallenge.child_challenges.size %> contestants<br>
-<% end %>
-</td>
-<td >
-<div class="taskprogress" id="taskprogress<%= t %>">
-</div>
-<br/>
-<div id="check1">
-<% x=0 %>
-<% y=0 %>
-<% a= 0 %>
-<% b= 0 %>
-<% userChallenge.tasks.each do |aTask| %>
-<% if (aTask.is_complete == 1 ) %>
-<% a+=Integer(aTask.score) %>
-<% x+=1 %>
-<% else %>
-<% b += aTask.score.to_i %>
-<% y+=1 %>
-<% end %>
-<% end %>
-<div class="completedtask_mydojo">
-<%= a %> points (<%= x %> &nbsp; tasks)
-</div>
-<div class="notcompleted_mydojo">
-<font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="white"><%= b %> points (<%= y %>&nbsp; tasks)</font>
-</div>
-<script type="text/javascript">
-$(function() {
-$("#taskprogress<%= t %>").progressbar({ value: Math.round(((<%= a %>/<%= (a+b) %>)*100)) });
-$("<p>").attr("id", "percentage_mydojo").text($("#taskprogress<%= t %>").progressbar("option", "value") + "% Completed: ").appendTo("#taskprogress<%= t %>");
-});
-</script>
-</div>
-<div id="points_mydojo">
-&nbsp;&nbsp;<font size=4><b><%= a %></b></font>
-</div>
-</td>
-<% t+=1 %>
-</tr>
-<% end %>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
+							$(input)
+							  .change( function () {
+								var filter = $(this).val();
+								if(filter) {
+								  $(list).find("a:not(:Contains(" + filter + "))").parent().slideUp();
+								  $(list).find("a:Contains(" + filter + ")").parent().slideDown();
+								} else {
+								  $(list).find("tr").slideDown();
+								}
+								return false;
+							  })
+							.keyup( function () {
+								$(this).change();
+							});
+						  }
+						  $(function () {
+							listFilter($("#header"), $("#list"));
+						  });
+						}(jQuery));
+					</script> 			
+		
+		
+		
+					<div id="tab2" class="tab_content2"><br>
+						<div id="people"></div>
+					</div>
+					<script>
+						$(document).ready(function(){
+							$.ajax({
+								url: "/user_connections/people",
+								cache: false,
+								success: function(html){
+									$("#people").append(html);
+								}
+							});
+						});
+					</script>
 </td>
 </tr>
 </table>

@@ -143,7 +143,7 @@ ul.homenavbar > li > a {
 	text-align: center;
 	color: #FFFFFF;
 	font-family: arial;
-	font-size: 13px;
+	font-size: 12px;
 	text-decoration: none;
 	height: 2em;
 	background-image: url(main_nav_bg_up.png);
@@ -392,7 +392,7 @@ a .selected {
 	border-color: #f4f4f4;
 	
 	background-repeat: repeat-x;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Arial;
 	font-size: 15px;
 	color: #000000;
 	width: 278px;
@@ -427,7 +427,7 @@ a .selected {
 	border-color: #999999;
 	
 	background-repeat: repeat-x;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Arial;
 	font-size: 12px;
 	color: #333333;
 	width: 100%;
@@ -450,7 +450,7 @@ a .selected {
 	border-color: #999999;
 	
 	background-repeat: repeat-x;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Arial;
 	font-size: 15px;
 	color: #333333;
 	width: 96%;
@@ -462,6 +462,7 @@ a .selected {
 .textarea_nw_tk:hover{
 	border-color: #4ccbda;
 	border-width: 1px;
+	height:60px;
 }
 
 .textarea_nw_tk:focus{
@@ -475,7 +476,7 @@ a .selected {
 	border-color: #999999;
 	
 	background-repeat: repeat-x;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Arial;
 	font-size: 12px;
 	color: #000000;
 	width: 100%;
@@ -488,7 +489,7 @@ a .selected {
 	border-color: #999999;
 	
 	background-repeat: repeat-x;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Arial;
 	font-size: 20px;
 	font-weight:bold;
 	color: #000000;
@@ -517,7 +518,7 @@ textarea {
 	border-color: #999999;
 	
 	background-repeat: repeat-x;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Arial;
 	font-size: 12px;
 	color: #333333;
 	width: 240px;
@@ -564,6 +565,7 @@ option {
 	height: 25px;
 }
 
+
 option:focus{
 	border-color: #4ccbda;
 	border-width: 1px;
@@ -584,12 +586,18 @@ input.radio {
 
 .styled-select {
  background: url("icon_combobox_arrow_down.png") no-repeat scroll 180px 50% white;
-    border: 1px solid #BBBBBB;
+    border: 1px solid #e9e9e9;
     height: 32px;
     overflow: hidden;
     width: 200px;
 }
-
+.styled-select1 {
+ background: url("icon_combobox_arrow_down.png") no-repeat scroll 280px 50% white;
+    border: 1px solid #BBBBBB;
+    height: 32px;
+    overflow: hidden;
+    width: 300px;
+}
 .links {
 	background: none repeat scroll 0 0 #f9a943;
 	border-radius: 3px 3px 3px 3px;
@@ -603,30 +611,43 @@ input.radio {
 	width: 130px;
 }
 
-.ds_view_all {
-	background: #f8981d url("viewall.PNG") no-repeat left center;	
-	text-align: right;
-	min-width: 78px;
-	height:25px;
-	top:3px;
+.ds_view_all{
+	 background: url("viewall.PNG") no-repeat; 
+     float: left;
+     font-family: Arial;
+     height: 27px;
+     left: 110px;
+     min-width: 78px;
+     position: relative;
+     text-align: right;
+     top: 1px;
+}
+.ds_view_all1 {
+	background: url("viewall.PNG") no-repeat right;	
+	width:80px;
 	position:relative;
-	float:left;
-	left:90px;
-	font-family: arial;
+	float:right;
+	right:20px;
+	height: 27px;
+	top: 2px;
+	
 }
 
 .non_login_view_all {
-	background: #f8981d url("viewall.PNG") no-repeat left center;	
-	text-align: right;
-	min-width: 78px;
-	height:25px;
-	top:3px;
+	background: url("viewall.PNG") no-repeat right;	
+	width:80px;
 	position:relative;
 	float:right;
-	left:0px;
-	font-family: arial;
+	height: 27px;
 }
-
+.non_login_view_all1 {
+	background: url("viewall.PNG") no-repeat right;	
+	width:80px;
+	position:relative;
+	float:right;
+	height: 27px;
+	top: -4px;
+}
 .links_invite_p {
 	background: none repeat scroll 0 0 #f9a943;
 	border-radius: 3px 3px 3px 3px;
@@ -966,6 +987,7 @@ ul.tabs1 {
 	-moz-border-radius-topright: 5px;
 	-moz-border-radius-bottomright: 0px;
 	-moz-border-radius-bottomleft: 0px;
+
 	-webkit-border-radius: 5px 5px 0px 0px;
 	border-radius: 5px 5px 0px 0px; 
 }
@@ -1182,15 +1204,14 @@ width:90%;
 }
 #contentbox
 {
-	width:260px;
-	margin-top:10px;
-	margin-bottom:10px;
-	margin-left:10px;
-	margin-right:10px;
-	 height: 180px;
-	background:#F4F4F4;
-	overflow:hidden;
-	 border: 1px solid #BEBEBE;
+	background: none repeat scroll 0 0 #F4F4F4;
+    border: 1px solid #BEBEBE;
+    height: 180px;
+    margin: 10px;
+    overflow: hidden;
+    position: relative;
+    top: 7px;
+    width: 260px;
 }
 
 .hidden {
@@ -1233,6 +1254,7 @@ width:90%;
 	color:#fff;
 	left:150px;
 	position:relative;
+	top:2px;
 }
 
 
@@ -1322,7 +1344,7 @@ width:90%;
 	margin-left:10px;
 	margin-top:10px; 
 	font-weight:bold;
-	font-family:"Gothem Book";
+	font-family: Arial;
 }
 
 .pageContainer {
@@ -1402,9 +1424,9 @@ input:required {
 	  color: #7AC142;
     font-size: 15px;
     font-weight: bold;
-    padding-left: 20px;
+    padding-left: 2px;
     position: relative;
-    top: 10px;
+    top: 8px;
 }
 #blackbox_personal
 {
@@ -1522,7 +1544,7 @@ color: #FFFFFF;
     float: left;
     font-family: arial;
     height: 25px;
-    left: 150px;
+    left: 100px;
     min-width: 70px;
     position: relative;
     text-align: right;
@@ -1567,3 +1589,21 @@ position :relative;
     top: -18px;
     width: 100%;
 		}
+		
+.imagebackground{
+ 	background: url("ui-bg_glass_75_dadada_1x400.png") no-repeat center;	
+	padding-left: 18px;
+	background-size: 8%;
+	
+}
+
+.mydojoscore
+  {
+    padding-right: 16px;
+    position: relative;
+  }
+   .time2
+  {
+    padding-right: 22px;
+    position: relative;
+  }

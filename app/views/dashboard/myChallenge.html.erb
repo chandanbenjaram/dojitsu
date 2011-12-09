@@ -3,8 +3,8 @@
 <div class="dashboardsidebar">
 						<div class="mychallenge">
 							<div id="titlechallenge">
-								<div style="padding-left:16px;">
-									MY CHALLENGES <font color="#ffffff"><b>( <%= as %> ) </b></font>
+								<div id="title">
+									MY CHALLENGES <font color="white"><b>( <%= as %> ) </b></font>
 								</div>
 								<div class="second_titlechallenge">
 									<%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
@@ -16,7 +16,7 @@
 								<script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> </script>
 								<table  class="sortable">
 								<thead>
-								  <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">NAME</th><th style="CURSOR: pointer; cursor: hand;" id="content2"><span class="mydojoscore">MY DOJITSU SCORE</span></th></tr>
+								  <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">NAME</th><th style="CURSOR: pointer; cursor: hand;" id="content2">MY DOJITSU SCORE</th></tr>
 								</thead>
 								<tbody>
 									<% current_user.challenges.each do |userChallenge| %>
@@ -78,7 +78,7 @@
 												<%= a %> points (<%= x %> &nbsp; tasks)
 											</div>
 											<div class="notcompleted">
-												<font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="#ffffff"><%= b %> points (<%= y %>&nbsp; tasks)</font>
+												<font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="white"><%= b %> points (<%= y %>&nbsp; tasks)</font>
 											</div>
 												<script type="text/javascript">
 													$(function() {

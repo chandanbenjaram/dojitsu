@@ -79,10 +79,14 @@
 						<h3 align="left"><font color="#8c8c8c"><b>Total : <%= @challenge.tasks.count %></b></font></h3>
 					</td>
 					<td>
-						<%= link_to image_tag("btn_add_up.png", :style =>"margin-top:3px;" ), add_task_link_challenges_path(:id => @challenge), :class => "addComment add_task_popup" %>
+						<% if @challenge.user_id == current_user.fbauth.uid%>
+							<%= link_to image_tag("btn_add_up.png", :style =>"margin-top:3px;" ), add_task_link_challenges_path(:id => @challenge), :class => "addComment add_task_popup" %>
+						<% end %>
 					</td>
 					<td  align="center">
-						<font color="#8c8c8c">ADD A TASK</font>
+						<% if @challenge.user_id == current_user.fbauth.uid %>
+							<font color="#8c8c8c">ADD A TASK</font>
+						<% end %>	
 					</td>
 				</tr>
 			<tr bgcolor=#D7D7D7>
@@ -134,7 +138,7 @@
 						}
 					</style>
 					<div id="blackbox_personal">
-						<div class="completedtask1">																
+						<div class="completedtask1">																	
 								<%= total_score %> points (<%= total_score_count %> &nbsp; tasks)
 						</div>
 						<div class="notcompleted1">
@@ -146,21 +150,7 @@
 									$("<p>").attr("id", "percentage_personal").text($("#taskprogress").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress");
 								});
 						</script>
-						<% allTaskComplete = 0 %>
-						<% if @challenge.canCompleteBeforeTasks? %>
-							<% @challenge.tasks.each do |aTask| %>
-								<% if aTask.is_complete == 0 %>
-									<% allTaskComplete = 1 %>			
-								<% end %>
-							<% end %>
-							<% if allTaskComplete == 1 %>
-								<%= link_to "MARK AS COMPLETED",  "#", :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"%>
-							<% else %>
-								<%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"%>
-							<% end %>
-						<% else %>
-								<%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"%>
-						<% end %>
+						<%= markAsComplete %>
 					</div><br>
 				</div>
 			

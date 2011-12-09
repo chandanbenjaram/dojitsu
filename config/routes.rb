@@ -1,5 +1,9 @@
 Dojitsu::Application.routes.draw do   
   get "dashboard/index"
+  get "dashboard/whatsNew"
+  get "dashboard/message"
+  get "dashboard/myChallenge"
+  get "dashboard/dashboardIndex"
 
   # user registration & 3rd party logins
   match 'users/auth/:provider/callback', :to=>'authentications#create'
@@ -32,6 +36,8 @@ Dojitsu::Application.routes.draw do
   resources :user_connections do
 	collection do
 		get "sendInvitation"
+		get "myDojo"
+		get "people"
 	end
   end
   resources :messages do
