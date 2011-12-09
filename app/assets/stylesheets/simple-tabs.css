@@ -62,7 +62,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	border-top: none;
 	
 	clear: both;
-	float: left; width: 80%;
+	float: left; width: 95%;
 	background: #f4f4f4;
 } 
 .tab_content {
