@@ -9,6 +9,7 @@ textarea:-moz-placeholder, input:-moz-placeholder {
 	color: #c6c6c6; 
 	font-weight: normal;
 	font-size: 12px;
+	height:32px;
 }
 
 .appLogo {
@@ -522,14 +523,14 @@ textarea:focus{
 }
 
 select {
-	border: 0px solid #cfcfcf;
-	vertical-align: top;
-	position:relative;
-	top:-3px;
-	width: 180px;
-	height: 30px;
-	color:#f9a943;
-	background: transparent;
+border: none;
+vertical-align: top;
+position: relative;
+width: 220px;
+height: 25px;
+color: #F9A943;
+background: transparent;
+top: -3px;
 }
 
 select:focus{
@@ -567,21 +568,13 @@ input.radio {
 	height:4em;
 }
 
-.styled-select select {
-   background: transparent;
-   width: 240px;
-   padding: 0px;
-   font-size: 16px;
-   border: 0px solid #ccc;
-   height: 34px;
-}
+
 .styled-select {
-   border: 1px solid #ddd;
-   top:-2px;
-   width: 200px;
-   height: 34px;
-   overflow: hidden;
-   background: url(icon_combobox_arrow_down.png) no-repeat right  #fff;
+ background: url("icon_combobox_arrow_down.png") no-repeat scroll 180px 50% white;
+    border: 1px solid #BBBBBB;
+    height: 32px;
+    overflow: hidden;
+    width: 200px;
 }
 
 .links {
@@ -1328,6 +1321,7 @@ width:90%;
 input:required {
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
+	height: 30px;
 }
 
 #check3 {
