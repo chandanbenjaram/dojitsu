@@ -9,7 +9,7 @@
 	<table width="100%" border="0" style="margin-top:0px;">
 		<tr>
 			<td colspan="4">
-				<p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :placeholder=>"enter challenge title here" , :required => "required"  %><div id="title"></div></p>
+				<p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :placeholder=>"Enter challenge title here" , :required => "required"  %><div id="title"></div></p>
 			</td>	
 		</tr>
 	
@@ -20,8 +20,8 @@
 			</td>
 		</tr>
 		<tr>
-			<td valign="top" class="color999"><%= f.label :description, "DESCRIPTION" %></td>
-			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea", :placeholder=>"enter challenge description here" %><div %></td>
+			<td valign="center" class="color999"><%= f.label :description, "DESCRIPTION" %></td>
+			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea", :placeholder=>"Enter challenge description here" %><div %></td>
 			</tr>
 			<tr>
 				<td colspan="4">
@@ -96,11 +96,11 @@
 							</div>
 							<td align="center" class="taskIcon"><%= image_tag("icon_multiply.png")%></td>
 							<td align="center">     
-								<%= task_fields.text_field :score, :class => "textfield_effect_nw_tk_add", :size=>"10px",:required => "required", :placeholder=>"enter task point(s)" %>
+								<%= task_fields.text_field :score, :class => "textfield_effect_nw_tk_add", :size=>"10px",:required => "required", :placeholder=>"Enter task point(s)" %>
 							</td>
 							<td align="center" class="taskIcon"><%= image_tag("icon_slash.png")%></td>
 							<td align="center">     
-								<%= task_fields.text_field :name, :class => "textfield_effect_nw_tk", :required => "required",  :placeholder=>"enter task name here"%>
+								<%= task_fields.text_field :name, :class => "textfield_effect_nw_tk", :required => "required",  :placeholder=>"Enter task name here"%>
 							</td>				
 							<td>
 								<%= image_tag("btn_delete_up.png" ,:class => "delRow") %>			
