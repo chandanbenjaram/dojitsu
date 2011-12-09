@@ -329,6 +329,19 @@ nav .menu #check :hover {
 .fb-login-button {
 	background:#f8981d url("btn_add_up.png") no-repeat left center ;	
 }
+  
+.authnav ul {
+	float: right;
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+}  
+
+.authnav li {
+	float: left;
+	margin: 2;
+} 
+
 
 .facebook {
 	background: url("loginbutton.png") no-repeat left center ; 
