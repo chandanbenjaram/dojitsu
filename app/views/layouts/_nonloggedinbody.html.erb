@@ -8,51 +8,55 @@
 
 <table width="100%">
 	<td width="60%" class="divone">
-							<div class="regmessage">
-								<div class="msgtitle">
-									<table>
-									  <tr>
-										<td><font color="#AAA9A9" size=4><b>WHAT'S NEW</b></font></td>
-										<td>
-											
-											<p style="float:left"><%= button_to "", "#", :class => "non_login_view_all", :method => :get%></p></td>
-											
-										</tr>
-									</table>
-								</div>
-								
-								<% Challenge.where(:_type.exists => false).desc("created_at").limit(3).each do |anc| %>
-								<div class="messagereg">
-									<%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:-2px;") %>
-									<table width="100%" style="margin-top:-10px;">
-									  <tr>
-										<td width="30%">
-											<font size="3px;" style="font-weight:bold"><%= anc.title%></font></br>
-											by  <b><%= FbGraph::User.new(anc.user_id).fetch.name %></b></br>
-											<% if anc.start_point.instance_of?PointDateType %>
-												<%= anc.start_point.value.strftime("%b %d, %Y")%> - <%= anc.end_point.value.strftime("%b %d, %Y")%>
-											<% else %>
-												<%= anc.start_point.value rescue 0%> - <%= anc.end_point.value rescue 0%>
-											<% end %>
-											<%= anc.child_challenges.size%> contestants
-											</td>
-										<td width="70%">
-											<p style="float:right; margin-right:20px;"><%= time_ago_in_words  anc.created_at%></p></br></br>
-											<% if anc.personal_type.instance_of?ChallengePersonalType%>
-												<p style="text-transform:none;">
-													<%=h truncate(anc.description, :length => 128) %>....<%= link_to "VIEW" , show_per_challenges_path(:id => anc.id) %>									
-												</p>
-											<% end %>
-											<% if anc.social_type.instance_of?ChallengeSocialType%>
-												<p style="text-transform:none;">
-													<%=h truncate(anc.description, :length => 190) %>....<%= link_to "VIEW" , "#" %>									
-												</p>
-											<% end %>
-										</td>
-			  						</tr>
-								</table>
-							</div>
-						<% end %>
+		<div class="regmessage">
+			<div class="msgtitle">
+				<table>
+				  <tr>
+					<td><font color="#AAA9A9" size=4><b>WHAT'S NEW</b></font></td>
+					<td>
+						
+						<p style="float:left"><%= button_to "", "#", :class => "non_login_view_all", :method => :get%></p></td>
+						
+					</tr>
+				</table>
+			</div>
+			
+		<% if Challenge.where(:_type.exists => false).desc("created_at").limit(3).count == 0 %>
+		<p align="center">No challenges found</p>
+		<% else %>
+			<% Challenge.where(:_type.exists => false).desc("created_at").limit(3).each do |anc| %>
+		<div class="messagereg">
+			<%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:-2px;") %>
+			<table width="100%" style="margin-top:-10px;">
+			  <tr>
+				<td width="30%">
+					<font size="3px;" style="font-weight:bold"><%= anc.title%></font></br>
+					by  <b><%= FbGraph::User.new(anc.user_id).fetch.name %></b></br>
+					<% if anc.start_point.instance_of?PointDateType %>
+						<%= anc.start_point.value.strftime("%b %d, %Y")%> - <%= anc.end_point.value.strftime("%b %d, %Y")%>
+					<% else %>
+						<%= anc.start_point.value rescue 0%> - <%= anc.end_point.value rescue 0%>
+					<% end %>
+					<%= anc.child_challenges.size%> contestants
+				</td>
+				<td width="70%">
+					<p style="float:right; margin-right:20px;"><%= time_ago_in_words  anc.created_at%></p></br></br>
+					<% if anc.personal_type.instance_of?ChallengePersonalType%>
+						<p style="text-transform:none;">
+							<%=h truncate(anc.description, :length => 128) %>....<%= link_to "VIEW" , show_per_challenges_path(:id => anc.id) %>									
+						</p>
+					<% end %>
+					<% if anc.social_type.instance_of?ChallengeSocialType%>
+						<p style="text-transform:none;">
+							<%=h truncate(anc.description, :length => 190) %>....<%= link_to "VIEW" , "#" %>									
+						</p>
+					<% end %>
+				</td>
+			  </tr>
+			</table>
+		</div>
+		<% end %>
+		<% end %>
 	</td>
 	<td width="40%">
 									<div class="regdojitsu">	
