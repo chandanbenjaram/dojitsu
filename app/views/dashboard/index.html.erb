@@ -22,11 +22,11 @@
 					<div class="dashboardsidebar1">
 						<div class="mychallenge">
 							<div id="titlechallenge">
-								<div id="title">
+								<div style="padding-left:16px;">
 									NEW MESSAGES <font style="color:#fff">( <%= current_user.inbox.count %> )</font>
 								</div>
 								<div class="second_titlechallenge">
-									<%= button_to "", "#", :class => "non_login_view_all1", :method => :get%>
+									<%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
 								</div>
 							</div>
 							<div style="overflow-y: auto; overflow-x: hidden;" id="challengedetails">
@@ -34,7 +34,7 @@
 							<div>
 								<table class="sortable">
 								<thead>
-								  <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">FROM</th><th style="CURSOR: pointer; cursor: hand;" id="content2">TIME</th></tr>
+								  <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">FROM</th><th style="CURSOR: pointer; cursor: hand;" id="content2"><span class="time2">TIME</span></th></tr>
 								</thead>
 								<tbody>
 									<% current_user.inbox.each do |userMessage| %>
@@ -64,9 +64,12 @@
     </td>
 	<td valign=top>
 		<div class="dashboardsidebar2">
-			<div class="whatsnew">	
-				<font style="float:left; left:-20px;">WHAT'S NEW</font> 
+			<div class="whatsnew" style="float:left; position: relative;">	
+			<div style="position:relative;  left: 16px; top:5px; ">WHAT'S NEW </div>
+			
+			<div class="viewall2">
 				<%= button_to "", challenges_url, :class => "ds_view_all", :method => :get%>
+			</div>
 			</div>
 			<% if current_user.allChallenges.count == 0 %>
 				<p align="center">No challenges found</p>
@@ -128,14 +131,7 @@
 				</div>
 			<% end %>
 			<% end %>
-			<!--
-			<div id="contentbox">
-				new challenge 2222
-			</div>
-			<div id="contentbox">
-				new challenge 3333
-			</div>
-			-->
+			
 		</div>
 	</td>
 </table>
