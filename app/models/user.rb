@@ -34,7 +34,9 @@ class User < ActiveRecord::Base
     (authentications.empty? || !password.blank?) && super
   end
   
-  
+  def inbox 
+    Message.where(:to => fbauth.uid).desc("created_at").limit(6)
+  end
 
   def challenges 
     challenges = []
