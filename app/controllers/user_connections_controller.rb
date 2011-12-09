@@ -27,6 +27,14 @@ class UserConnectionsController < ApplicationController
   def connections_selection
   end
   
+  def myDojo
+	render :layout => false
+  end
+  
+  def people
+	render :layout => false
+  end
+  
   def destroy
     @useconnection = UserConnection.find(params[:id])
     @useconnection.destroy

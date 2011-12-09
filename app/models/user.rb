@@ -26,10 +26,6 @@ class User < ActiveRecord::Base
     authentications.build(:provider => omniauth[:provider], :uid => omniauth[:uid], :email => omniauth[:email], :name => omniauth[:name], :first_name => omniauth[:first_name], :last_name => omniauth[:last_name], :token =>omniauth[:token])
   end
   
-  def allChallenges
-	Challenge.where(:_type.exists => false).desc("created_at").limit(3)
-  end	
-	
   def password_required?
     (authentications.empty? || !password.blank?) && super
   end
@@ -48,10 +44,8 @@ class User < ActiveRecord::Base
     return challenges
   end
 
-
   def facebook
     FbGraph::User.new('me', :access_token => self.fbauth.token).fetch
-
   end
   
  def facebookmsg

@@ -6,7 +6,6 @@
 	<%= link_to(image_tag("logo.png", :style => "float:left", :alt => "Home"), root_path) %>
 	<% end %> 
 
-
 	<div>
 		<% if !current_user.nil? %>
 		<div class="logo_globalheader">
@@ -14,7 +13,7 @@
 		</div>
 		<div class="popup_globalheader">	
 			<%= current_user.authentications[0].name rescue current_user.fname%></br>
-			<%= link_to "Log out", destroy_user_session_path %>								
+			<%= link_to "Log out", destroy_user_session_path%>								
 		</div>
 		<% else %>   
 		<div class="authnav">
