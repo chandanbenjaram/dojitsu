@@ -1463,7 +1463,7 @@ input:required {
 	left: 10px;
 	position: relative;
 	text-decoration: none;
-	top:0px;
+	top: -15px
 }
 			#name_list
 			{
@@ -1475,18 +1475,8 @@ input:required {
 			
 			
 			}
-			.private_msg
-			{
-			 left: 40px;
-    position: relative;
-    top: -5px;
-}
-			.private_msg1
-			{
-			 left: 38px;
-    position: relative;
-    top: -5px;
-			}
+			
+			
 			.bottom_border
 			{
 			

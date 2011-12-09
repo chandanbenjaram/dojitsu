@@ -178,7 +178,7 @@
 							<tr bgcolor=#d7d7d7>
 								<td>NAME
 								</td>
-								<td  width="100px">
+								<td  width="200px">
 									STATUS
 								</td>
 							</tr>
@@ -189,44 +189,45 @@
 								<td>
 									<div id="wrap">
 										<h1 id="header"></h1>
-										<table class="invitee_list "  id="list" bgcolor="white" >
+									<table bgcolor="white">
+										<% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
+												
+											<tr>
+											<td id="list">				
+													
+												                      <% allConnections.each  do |eachConnection| %>
 											
-												<% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
-												<% allConnections.each  do |eachConnection| %>
-													<tr  class="bottom_border" >
-													   <td  width="100%">																	
-															<a href="#"  id="ahref"><%=image_tag(FbGraph::User.new(eachConnection.target_id).fetch.picture) %></a>
-															<b id="name_list"><%= FbGraph::User.new(eachConnection.target_id).fetch.name %></b>													
-																<span id="icon"> 														
-																	<%= link_to image_tag("btn_delete_up.png" , :class =>"private_msg1"), user_connection_path(eachConnection.id), :confirm => 'Are you sure?', :method => :delete %>
-																	<%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>														
-																</span>																																					
-														</td>														
-													</tr>															
-												<% end %>
-												<script>
-													$(document).ready(function() {
-														$(".private_msg").click(function(event) {
-															var targetId = event.target.id;
-															alert(targetId);
-															$.dojitsu.renderSendBox("Testing", <%= "'+targetId+'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenges_url() +"'"%>);
-														});
-													});
-												</script>												
-										</table>
-									</div> 
-								</td>
-							</tr>
-						</table> 
-						
-						
-						
-					</td>
-                </tr>
-            </table>				
-		</div>
-				
-
+													<p><a href="#"  id="ahref"><%=image_tag(FbGraph::User.new(eachConnection.target_id).fetch.picture) %>
+													<b><%= FbGraph::User.new(eachConnection.target_id).fetch.name %> </b>
+													<span id="status_icon"> 
+														<%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>
+													<%= link_to image_tag("btn_delete_up.png" , :class =>"private_msg1"), user_connection_path(eachConnection.id), :confirm => 'Are you sure?', :method => :delete %>
+																
+													
+														
+									                 
+												</span> </a>
+													</p>
+														<% end %>
+												</td>
+										</tr>	
+								
+									</table>
+							</div> 
+						</div>	
+																										
+<style type="text/css">
+#status_icon
+{ 
+float: right;
+width: 200px;
+} 
+ #ahref
+{					
+color:#000000;
+}
+</style>																
+<script src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
 <script>
 	(function ($) {
 	  jQuery.expr[':'].Contains = function(a,i,m){
@@ -245,7 +246,7 @@
 			  $(list).find("a:not(:Contains(" + filter + "))").parent().slideUp();
 			  $(list).find("a:Contains(" + filter + ")").parent().slideDown();
 			} else {
-			  $(list).find("tr").slideDown();
+			  $(list).find("p").slideDown();
 			}
 			return false;
 		  })
@@ -253,10 +254,14 @@
 			$(this).change();
 		});
 	  }
+
 	  $(function () {
 		listFilter($("#header"), $("#list"));
 	  });
 	}(jQuery));
+</script> 
+					
+	
 </script> 			
 		<div id="tab2" class="tab_content2">
 <div class="dashboardsidebar">
