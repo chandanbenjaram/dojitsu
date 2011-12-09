@@ -26,7 +26,7 @@
 									NEW MESSAGES <font style="color:#fff">( <%= current_user.inbox.count %> )</font>
 								</div>
 								<div class="second_titlechallenge">
-									<%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
+									<%= button_to "", "#", :class => "non_login_view_all1", :method => :get%>
 								</div>
 							</div>
 							<div style="overflow-y: auto; overflow-x: hidden;" id="challengedetails">
@@ -65,7 +65,7 @@
 	<td valign=top>
 		<div class="dashboardsidebar2">
 			<div class="whatsnew">	
-				<font style="float:left">WHAT'S NEW</font> 
+				<font style="float:left; left:-20px;">WHAT'S NEW</font> 
 				<%= button_to "", challenges_url, :class => "ds_view_all", :method => :get%>
 			</div>
 			<% if current_user.allChallenges.count == 0 %>

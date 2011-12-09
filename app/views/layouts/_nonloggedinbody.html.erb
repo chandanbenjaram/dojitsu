@@ -17,7 +17,7 @@
 						<% if Challenge.where(:_type.exists => false).desc("created_at").limit(3).count == 0 %>
 					
 								<% else %>				
-								<p style="float:left"><%= button_to "", "#", :class => "non_login_view_all", :method => :get%></p></td>
+								<%= button_to "", "#", :class => "non_login_view_all", :method => :get%> </td>
 						<% end %>
 					</tr>
 				</table>
