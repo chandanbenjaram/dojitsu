@@ -189,30 +189,35 @@
 								<td>
 									<div id="wrap">
 										<h1 id="header"></h1>
-										<table class="invitee_list "  id="list" bgcolor="white" >
+							<table bgcolor="white">
+										<% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
+												
+											<tr>
+											<td id="list">				
+													
+												                      <% allConnections.each  do |eachConnection| %>
 											
-												<% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
-												<% allConnections.each  do |eachConnection| %>
-													<tr  class="bottom_border" >
-													   <td  width="100%">																	
-															<a href="#"  id="ahref"><%=image_tag(FbGraph::User.new(eachConnection.target_id).fetch.picture) %></a>
-															<b id="name_list"><%= FbGraph::User.new(eachConnection.target_id).fetch.name %></b>													
-																<span id="icon"> 														
-																	<%= link_to image_tag("btn_delete_up.png" , :class =>"private_msg1"), user_connection_path(eachConnection.id), :confirm => 'Are you sure?', :method => :delete %>
-																	<%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>														
-																</span>																																					
-														</td>														
-													</tr>															
-												<% end %>
-												<script>
+													<p><a href="#"  id="ahref"><%=image_tag(FbGraph::User.new(eachConnection.target_id).fetch.picture) %>
+													<b><%= FbGraph::User.new(eachConnection.target_id).fetch.name %> </b>
+													<span id="status_icon"> 
+														<%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>
+													<%= link_to image_tag("btn_delete_up.png" , :class =>"private_msg1"), user_connection_path(eachConnection.id), :confirm => 'Are you sure?', :method => :delete %>
+													 
+												</span> </a>
+													</p>
+														<% end %>
+												</td>
+										</tr>	
+								
+									</table>
+										<script>
 													$(document).ready(function() {
 														$(".private_msg").click(function(event) {
 															var targetId = event.target.id;								
 															$.dojitsu.renderSendBox("Testing", <%= "'+targetId+'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenges_url() +"'"%>);
 														});
 													});
-												</script>												
-										</table>
+												</script>				
 									</div> 
 								</td>
 							</tr>
@@ -258,94 +263,9 @@
 	}(jQuery));
 </script> 			
 		<div id="tab2" class="tab_content2"><br>
-<div class="dashboardsidebar">
-<div style=" width:940px; " class="mychallenge3">
-	<div style=" width:940px; " id="titlechallenge3">
-		<div id="title">
-			TOTAL:<font color="black"><%= as %></font>
+          <%= render :partial=> "dashboard/dashboardsidebar" %>						
 		</div>
-		<div style=" float: left; left: 670px; " class="second_titlechallenge">
-					<%= button_to "", new_challenge_url, :class => "new_challenge_button4", :method => :get%>
 		</div>
-	</div>
-		<div style="overflow -y:auto; overflow-x:hidden; width:940px; height : 450px;" id="challengedetails">
-		<% t=1 %>
-<script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> </script>
-<table   class="sortable">
-<thead>
-<tr><th style="CURSOR: pointer; cursor: hand;" id="content1">NAME</th><th style="CURSOR: pointer; cursor: hand;" id="content2">MY DOJITSU SCORE</th></tr>
-</thead>
-<tbody>
-<% current_user.challenges.each do |userChallenge| %>
-<tr style="CURSOR: pointer; cursor: hand;" onclick="location.href='<%= show_per_challenges_path(:id => userChallenge) %>'" >
-<td >
-<font size=4><b><%= userChallenge.title %></b></font><br><font size=2>by 
-<b>
-
-	<% if userChallenge.instance_of?ChildChallenge %>
-              <% @parentChallenge = Challenge.where(:_id => userChallenge.challenge_id).first%>
-              <script>
-            var ordId = <%=  orgId = @parentChallenge.user_id %>
-              </script>
-              <b><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
-           <% else %>
-            <b><%= current_user.facebook.name %></b>
-           <% end %>
-
-
-</b>
-</font><br><%= userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
-<%if ( userChallenge.child_challenges.size <2 ) %>
-<%= userChallenge.child_challenges.size >0 ? userChallenge.child_challenges.size : 1 %> contestant<br>
-<% else %>
-<%= userChallenge.child_challenges.size %> contestants<br>
-<% end %>
-</td>
-<td >
-<div class="taskprogress" id="taskprogress<%= t %>">
-</div>
-<br/>
-<div id="check1">
-<% x=0 %>
-<% y=0 %>
-<% a= 0 %>
-<% b= 0 %>
-<% userChallenge.tasks.each do |aTask| %>
-<% if (aTask.is_complete == 1 ) %>
-<% a+=Integer(aTask.score) %>
-<% x+=1 %>
-<% else %>
-<% b += aTask.score.to_i %>
-<% y+=1 %>
-<% end %>
-<% end %>
-<div class="completedtask_mydojo">
-<%= a %> points (<%= x %> &nbsp; tasks)
-</div>
-<div class="notcompleted_mydojo">
-<font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="white"><%= b %> points (<%= y %>&nbsp; tasks)</font>
-</div>
-<script type="text/javascript">
-$(function() {
-$("#taskprogress<%= t %>").progressbar({ value: Math.round(((<%= a %>/<%= (a+b) %>)*100)) });
-$("<p>").attr("id", "percentage_mydojo").text($("#taskprogress<%= t %>").progressbar("option", "value") + "% Completed: ").appendTo("#taskprogress<%= t %>");
-});
-</script>
-</div>
-<div id="points_mydojo">
-&nbsp;&nbsp;<font size=4><b><%= a %></b></font>
-</div>
-</td>
-<% t+=1 %>
-</tr>
-<% end %>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
 </td>
 </tr>
 </table>

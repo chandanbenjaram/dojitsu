@@ -973,6 +973,7 @@ ul.tabs1 {
 	-moz-border-radius-topright: 5px;
 	-moz-border-radius-bottomright: 0px;
 	-moz-border-radius-bottomleft: 0px;
+
 	-webkit-border-radius: 5px 5px 0px 0px;
 	border-radius: 5px 5px 0px 0px; 
 }
@@ -1529,7 +1530,7 @@ color: #FFFFFF;
     float: left;
     font-family: arial;
     height: 25px;
-    left: 150px;
+    left: 100px;
     min-width: 70px;
     position: relative;
     text-align: right;
