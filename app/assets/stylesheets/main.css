@@ -462,6 +462,7 @@ a .selected {
 .textarea_nw_tk:hover{
 	border-color: #4ccbda;
 	border-width: 1px;
+	height:60px;
 }
 
 .textarea_nw_tk:focus{
@@ -589,7 +590,13 @@ input.radio {
     overflow: hidden;
     width: 200px;
 }
-
+.styled-select1 {
+ background: url("icon_combobox_arrow_down.png") no-repeat scroll 280px 50% white;
+    border: 1px solid #BBBBBB;
+    height: 32px;
+    overflow: hidden;
+    width: 300px;
+}
 .links {
 	background: none repeat scroll 0 0 #f9a943;
 	border-radius: 3px 3px 3px 3px;
