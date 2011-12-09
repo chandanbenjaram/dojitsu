@@ -623,7 +623,7 @@ input.radio {
 	top:3px;
 	position:relative;
 	float:right;
-	left:0px;
+	left:1px;
 	font-family: arial;
 }
 
@@ -1567,3 +1567,10 @@ position :relative;
     top: -18px;
     width: 100%;
 		}
+		
+.imagebackground{
+ 	background: url("ui-bg_glass_75_dadada_1x400.png") no-repeat center;	
+	padding-left: 18px;
+	background-size: 8%;
+	
+}
