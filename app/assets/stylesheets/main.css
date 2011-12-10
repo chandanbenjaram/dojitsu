@@ -1288,6 +1288,7 @@ width:90%;
 	color:#fff;
 	left:150px;
 	position:relative;
+	top:2px;
 }
 
 
@@ -1383,8 +1384,8 @@ width:90%;
 .pageContainer {
 	border-color: #F4F4F4;
 	border-radius: 5px 5px 5px 5px;
-	border-style: solid;
-	border-width: 10px;
+	/*border-style: solid;
+	border-width: 10px;*/
 }
 input:required {
 	-moz-box-shadow: none;
@@ -1457,9 +1458,9 @@ input:required {
 	  color: #7AC142;
     font-size: 15px;
     font-weight: bold;
-    padding-left: 20px;
+    padding-left: 2px;
     position: relative;
-    top: 10px;
+    top: 8px;
 }
 #blackbox_personal
 {
@@ -1650,4 +1651,8 @@ position :relative;
   {
     padding-right: 22px;
     position: relative;
+  }
+  .taskIcon{
+float:right;
+right:10px;  	
   }
