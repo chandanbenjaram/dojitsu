@@ -176,10 +176,25 @@
 		var tot_score = str*score;
 		$("#tatal_s").val(tot_score);
 	} 
-// execute your scripts when the DOM is ready. this is a good habit
-$(function() {
+	// execute your scripts when the DOM is ready. this is a good habit
+	$(function() {	
+		
+		$('.task_update_popup').colorbox();
+		$('.add_task_popup').colorbox();
+		
+		$("#date").dateinput({
+			format: 'dddd dd, mmmm yyyy',	// the format displayed for the user
+			selectors: true,             	// whether month/year dropdowns are shown
+			min: -100,                    // min selectable day (100 days backwards)
+			max: 100,                    	// max selectable day (100 days onwards)
+			offset: [10, 20],            	// tweak the position of the calendar
+			speed: 'fast',               	// calendar reveal speed
+			firstDay: 1                  	// which day starts a week. 0 = sunday, 1 = monday etc..
+		});
+	});
+	
 	// setup tooltip for a single DIV element
-	$("#mytable a").tooltip({
+	$("#task_list a").tooltip({
 		// each trashcan image works as a trigger
 		tip: '#tooltip',
 
@@ -191,20 +206,6 @@ $(function() {
 
 		// there is no delay when the mouse is moved away from the trigger
 		delay: 0
-	});	
+	});
 	
-		$('.task_update_popup').colorbox();
-		$('.add_task_popup').colorbox();
-	
-
-$("#date").dateinput({
-	format: 'dddd dd, mmmm yyyy',	// the format displayed for the user
-	selectors: true,             	// whether month/year dropdowns are shown
-	min: -100,                    // min selectable day (100 days backwards)
-	max: 100,                    	// max selectable day (100 days onwards)
-	offset: [10, 20],            	// tweak the position of the calendar
-	speed: 'fast',               	// calendar reveal speed
-	firstDay: 1                  	// which day starts a week. 0 = sunday, 1 = monday etc..
-});
-});
 </script>
