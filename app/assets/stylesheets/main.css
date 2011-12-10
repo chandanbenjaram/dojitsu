@@ -684,15 +684,17 @@ input.radio {
 
 }
 .invitee_button {
-    left: 450px;
+	float:right;
+    right: 400px;
     position: relative;
-    top: -8px;
+    top: -6px;
 }
 .profile_name
 {
   left: 580px;
-    position: relative;
-    top: -35px;
+  position: relative;
+  top: 6px;
+  width:200px;
 }
 #ch_main_div3 {
   
@@ -1098,7 +1100,7 @@ position:absolute;
     background: none repeat scroll 0 0 #DDEFCE;
     color: #7AC142;
     height: 25px;
-    left: 620px;
+    left: 640px;
     position: relative;
     top: -95px;
     width: 40px;
@@ -1272,6 +1274,7 @@ width:90%;
 	color:#fff;
 	left:60px;
 	position:relative;
+	width:80%;
 }
 .remainedtask
 {
@@ -1311,7 +1314,7 @@ width:90%;
 	top:-93px;
 	width:40px;
 	height:25px;
-	left:400px;
+	left:425px;
 	background:#DDEFCE;
 	color:#7AC142;
 }
