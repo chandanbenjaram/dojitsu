@@ -616,11 +616,11 @@ input.radio {
      float: left;
      font-family: Arial;
      height: 27px;
-     left: 110px;
+     left: 177px;
      min-width: 78px;
      position: relative;
      text-align: right;
-     top: 1px;
+     top: -14px;
 }
 .ds_view_all1 {
 	background: url("viewall.PNG") no-repeat right;	
@@ -1182,7 +1182,7 @@ width:90%;
 	position:relative;
 
 	float:left;
-	left:370px;
+	left:290px;
 	top:10px;
 }
 .update1
@@ -1249,7 +1249,7 @@ width:90%;
     margin: 10px;
     overflow: hidden;
     position: relative;
-    top: 7px;
+    top: 1px;
     width: 260px;
 }
 
@@ -1308,10 +1308,10 @@ width:90%;
 #points
 {
 	position:relative;
-	top:-95px;
+	top:-93px;
 	width:40px;
 	height:25px;
-	left:425px;
+	left:400px;
 	background:#DDEFCE;
 	color:#7AC142;
 }
