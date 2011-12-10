@@ -1,10 +1,11 @@
 <% as= current_user.challenges.size %>
 
 <div class="dashboardsidebar">
-						<div style=" width:940px; "  class="mychallenge">
-							<div  style=" width:940px; "  id="titlechallenge">
+						<div style=" width:940px; "  class="mychallenge2">
+							<div  style=" width:940px; "  id="titlechallenge1">
 								<div style="padding-left:16px;">
-									MY CHALLENGES <font color="#ffffff"><b>( <%= as %> ) </b></font>
+									<font color="black"><b>Total :</b><b><%= as %> </b></font>
+									
 								</div>
 								<div  style=" width:940px; " class="second_titlechallenge">
 									<%= button_to "", new_challenge_url, :class => "new_challenge_button1", :method => :get%>
