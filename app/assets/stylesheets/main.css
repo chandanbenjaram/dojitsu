@@ -193,11 +193,11 @@ ul.homenavbar > li.selected > a {
 	text-align: right;
 	min-width: 70px;
 	height:25px;
-	top:-25px;
+	top:-10px;
 	right:-125px;
 	position:relative;
 	float:left;
-	left:10px;
+	left:30px;
 	font-family: arial;
 }
 
@@ -616,11 +616,11 @@ input.radio {
      float: left;
      font-family: Arial;
      height: 27px;
-     left: 110px;
+     left: 177px;
      min-width: 78px;
      position: relative;
      text-align: right;
-     top: 1px;
+     top: -14px;
 }
 .ds_view_all1 {
 	background: url("viewall.PNG") no-repeat right;	
@@ -684,15 +684,17 @@ input.radio {
 
 }
 .invitee_button {
-    left: 450px;
+	float:right;
+    right: 400px;
     position: relative;
-    top: -8px;
+    top: -6px;
 }
 .profile_name
 {
   left: 580px;
-    position: relative;
-    top: -35px;
+  position: relative;
+  top: 6px;
+  width:200px;
 }
 #ch_main_div3 {
   
@@ -976,6 +978,17 @@ ul.tabs1 {
 	-moz-border-radius: 6px;
 	border-radius: 6px; 
 }
+.mychallenge1
+{
+	float:left;
+	height:500px;
+	width:940px;
+	border: 2px solid #BEBEBE;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px; 
+
+}
 
 #titlechallenge
 {
@@ -991,6 +1004,9 @@ ul.tabs1 {
 	-webkit-border-radius: 5px 5px 0px 0px;
 	border-radius: 5px 5px 0px 0px; 
 }
+
+
+
 #subbar
 {
 	background:#D7D7D7;
@@ -1026,6 +1042,13 @@ position:absolute;
 	border-radius: 0px 0px 5px 5px; 
 }
 
+.mychallenge2 {
+    border: 0 solid #BEBEBE;
+    border-radius: 6px 6px 6px 6px;
+    float: left;
+    height: 500px;
+    width: 635px;
+}
 .mychallenge1
 {
 	position:absolute;
@@ -1042,15 +1065,15 @@ position:absolute;
 #titlechallenge1
 {
 	width:635px;
-	border: 1px solid #BEBEBE;
-	background:#BEBEBE;
+	border: 0px solid #BEBEBE;
+	background:#f4f4f4;
 	height:30px;
 	-moz-border-radius-topleft: 5px;
 	-moz-border-radius-topright: 5px;
 	-moz-border-radius-bottomright: 0px;
 	-moz-border-radius-bottomleft: 0px;
 	-webkit-border-radius: 5px 5px 0px 0px;
-	border-radius: 5px 5px 0px 0px; 
+	border-radius: 0px 0px 0px 0px; 
 }
 #subbar1
 {
@@ -1072,9 +1095,19 @@ position:absolute;
 	left:500px;
 	top:5px;
 }
+
+#points1 {
+    background: none repeat scroll 0 0 #DDEFCE;
+    color: #7AC142;
+    height: 25px;
+    left: 640px;
+    position: relative;
+    top: -95px;
+    width: 40px;
+}
 #challengedetails1
 {
-	width:635px;
+	width:940px;
 	height:343px;
 	background:#fff;
 	-moz-border-radius-topleft: 0px;
@@ -1151,7 +1184,15 @@ width:90%;
 	position:relative;
 
 	float:left;
-	left:370px;
+	left:290px;
+	top:10px;
+}
+.update1
+{
+	position:relative;
+
+	float:left;
+	left:590px;
 	top:10px;
 }
 .second_titlechallenge
@@ -1210,7 +1251,7 @@ width:90%;
     margin: 10px;
     overflow: hidden;
     position: relative;
-    top: 7px;
+    top: 1px;
     width: 260px;
 }
 
@@ -1233,6 +1274,7 @@ width:90%;
 	color:#fff;
 	left:60px;
 	position:relative;
+	width:80%;
 }
 .remainedtask
 {
@@ -1269,7 +1311,7 @@ width:90%;
 #points
 {
 	position:relative;
-	top:-95px;
+	top:-93px;
 	width:40px;
 	height:25px;
 	left:425px;
@@ -1350,8 +1392,8 @@ width:90%;
 .pageContainer {
 	border-color: #F4F4F4;
 	border-radius: 5px 5px 5px 5px;
-	border-style: solid;
-	border-width: 10px;
+	/*border-style: solid;
+	border-width: 10px;*/
 }
 input:required {
 	-moz-box-shadow: none;
@@ -1550,6 +1592,17 @@ color: #FFFFFF;
     text-align: right;
     top: -10px;
 }
+.new_challenge_button1 {
+    background: url("new1.PNG") no-repeat scroll left center #F8981D;
+    float: left;
+    font-family: arial;
+    height: 25px;
+    left: 332px;
+    min-width: 70px;
+    position: relative;
+    text-align: right;
+    top: -10px;
+}
 #challange_mydojo
 {
 position:relative;
@@ -1606,4 +1659,8 @@ position :relative;
   {
     padding-right: 22px;
     position: relative;
+  }
+  .taskIcon{
+float:right;
+right:10px;  	
   }

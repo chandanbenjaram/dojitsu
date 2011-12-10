@@ -6,7 +6,7 @@ ul.tabs {
 	height: 32px; /*--Set height of tabs--*/
 	border-bottom: 1px solid #999;
 	border-left: 1px solid #999;
-	width: 80%;
+	width: 100%;
 }
 
 
@@ -62,7 +62,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	border-top: none;
 	
 	clear: both;
-	float: left; width: 95%;
+	float: left; width: 100%;
 	background: #f4f4f4;
 } 
 .tab_content {

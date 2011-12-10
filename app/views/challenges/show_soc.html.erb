@@ -1,13 +1,6 @@
 <%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css','jquery-ui','ui.progressbar','ui.theme', 'main')%>
-
 <%= javascript_include_tag('simple-tabs','ui.progressbar.js','soc-per','on_the_spot','jquery.colorbox-min','jquery.tools.min','messages')%>
-
 <%= render 'layouts/loggedinbody'%>
-
-
-<%#= @challenge.user_id %></br>
-<%#= current_user.fbauth.uid %>
-
 
 <% if !@challenge.child_challenges.blank? && userIds = []%>
 <% for aChild in @challenge.child_challenges %>
@@ -182,15 +175,15 @@ function fbCallback(response){
 						<li><a href="#tab1"><b>TASKS</b></a></li>
 						<li><a href="#tab2"><b>PEOPLE</b></a></li>
 					</ul>
-					<div class="tab_container1">
-						<div id="tab1" class="tab_content">
+					<div class="tab_container">
+						<div id="tab1" style="background:#F5F5F5;" class="tab_content">
 							<% if(@challenge.social_type.status? and @flg.to_s == "ed") %>
 								<%= render :partial=> "challenges/tasks_edit" %>
 							<% else %>
 								<%= render :partial=> "challenges/tasks" %>																										
 							<% end %>
 						</div>
-						<div id="tab2" class="tab_content">
+						<div id="tab2" style="background:#F5F5F5;" class="tab_content">
 							<table width="100%" border="0" height="40px">
 								<tr bgcolor=#F4F4F4>
 									<td width="220px">
@@ -208,18 +201,18 @@ function fbCallback(response){
 											<option value="mercedes">PENDING</option>
 											<option value="audi">DECLINED</option>
 										</select> 
-											&nbsp;
-											<%= image_tag ("search_it.PNG") %>
-										</td>
+										&nbsp;
+										<%= image_tag ("search_it.PNG") %>
+									</td>
 								</tr>
 							</table>
-													<style>
-															.filterinput
-															{
-															width :200px;
-															height:25px;
-															}
-															</style>
+							<style>
+								.filterinput
+								{
+								width :200px;
+								height:25px;
+								}
+							</style>
 							<table  border="0" height="20px" bgcolor="gray"> 
 								<tr bgcolor=#D7D7D7>
 									<td>
@@ -229,102 +222,102 @@ function fbCallback(response){
 										<font color=#A8A8A8>STATUS</font>
 									</td>
 								</tr>
-								</table>
-								<div id="wrap">
-									<h1 id="header"></h1>
-									<table bgcolor="white">
-										<tr>
-											<td id="list">
-												<%if @challenge.parent .nil? %>
-													<% childChallenges =  @challenge.child_challenges %>
-												<%else%>
-													<%childChallenges =  @challenge.parent.child_challenges %>
-												 <%end%>                      
-												<% childChallenges.each do |aChildChallenge| %>
-													<p><%=image_tag FbGraph::User.new(aChildChallenge.user_id).fetch.picture %> <a href="#"  id="ahref"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></a>
-													<span id="status_icon"> 
-													<% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 %>
-														<%= image_tag  "icon_thinking.png"  %>
-													<% elsif aChildChallenge.social_type.status == 1 %>
-															<%= image_tag  "icon_accept.png"  %>
-													<% else %>
-																<%= image_tag "icon_decline.png"  %>
-													<% end %>
-												<% end %>                    
-												</span> 
-													</p>
-												</td>
-										</tr>	
-									</table>
+							</table>
+							<div id="wrap">
+									 <h1 id="header"></h1>
+									 <table bgcolor="white">
+									  <tr>
+									   <td id="list">
+										<%if @challenge.parent .nil? %>
+										 <% childChallenges =  @challenge.child_challenges %>
+										<%else%>
+										 <%childChallenges =  @challenge.parent.child_challenges %>
+										 <%end%>                      
+										<% childChallenges.each do |aChildChallenge| %>
+										 <p><%=image_tag FbGraph::User.new(aChildChallenge.user_id).fetch.picture %> <a href="#"  id="ahref"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></a>
+										 <span id="status_icon"> 
+										 <% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 %>
+										  <%= image_tag  "icon_thinking.png"  %>
+										 <% elsif aChildChallenge.social_type.status == 1 %>
+										   <%= image_tag  "icon_accept.png"  %>
+										 <% else %>
+											<%= image_tag "icon_decline.png"  %>
+										 <% end %>
+										<% end %>                    
+										</span> 
+										 </p>
+										</td>
+									  </tr> 
+									 </table>
+								   </div> 
 							</div> 
-						</div>	
-<script>
-$(document).ready(function() 
-{ 
-    $("#btnFilter").click(function() 
-    { 
-        var selection = $("#catSelect").val(); 
-         if (selection == "all") 
-        { 
-            $(".item").show(); 
-        } 
-        else 
-        { 
-            $(".item").hide(); 
-            $("."+selection).show(); 
-        } 
-    }); 
-});
-</script>																											
-<style type="text/css">
-#status_icon
-{ 
-float: right;
-width: 80px;
-} 
- #ahref
-{					
-color:#000000;
-}
-</style>																
-<script src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
-<script>
-	(function ($) {
-	  jQuery.expr[':'].Contains = function(a,i,m){
-		  return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
-	  };
+							<script>
+							$(document).ready(function() 
+							{ 
+								$("#btnFilter").click(function() 
+								{ 
+									var selection = $("#catSelect").val(); 
+									 if (selection == "all") 
+									{ 
+										$(".item").show(); 
+									} 
+									else 
+									{ 
+										$(".item").hide(); 
+										$("."+selection).show(); 
+									} 
+								}); 
+							});
+							</script>                           
+							<style type="text/css">
+							#status_icon
+							{ 
+							float: right;
+							width: 80px;
+							} 
+							 #ahref
+							{     
+							color:#000000;
+							}
+							</style>                
+							<script>
+							 (function (cash) {
+							   jQuery.expr[':'].Contains = function(a,i,m){
+								return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+							   };
 
-	  function listFilter(header, list) {
-		var form = $("<form>").attr({"class":"filterform","action":"#"}),
-			input = $("<input>").attr({"class":"filterinput","type":"text"});
-		$("#search").append($(form).append(input).appendTo(header));
+							   function listFilter(header, list) {
+							  var form = $("<form>").attr({"class":"filterform","action":"#"}),
+							   input = $("<input>").attr({"class":"filterinput","type":"text"});
+							  $("#search").append($(form).append(input).appendTo(header));
 
-		$(input)
-		  .change( function () {
-			var filter = $(this).val();
-			if(filter) {
-			  $(list).find("a:not(:Contains(" + filter + "))").parent().slideUp();
-			  $(list).find("a:Contains(" + filter + ")").parent().slideDown();
-			} else {
-			  $(list).find("p").slideDown();
-			}
-			return false;
-		  })
-		.keyup( function () {
-			$(this).change();
-		});
-	  }
+							  $(input)
+								.change( function () {
+							   var filter = $(this).val();
+							   if(filter) {
+								 $(list).find("a:not(:Contains(" + filter + "))").parent().slideUp();
+								 $(list).find("a:Contains(" + filter + ")").parent().slideDown();
+							   } else {
+								 $(list).find("p").slideDown();
+							   }
+							   return false;
+								})
+							  .keyup( function () {
+							   $(this).change();
+							  });
+							   }
 
-	  $(function () {
-		listFilter($("#header"), $("#list"));
-	  });
-	}(jQuery));
-</script> 
-					
-	
-	
-	
-	
+							   $(function () {
+							  listFilter($("#header"), $("#list"));
+							   });
+							 }(jQuery));
+							</script>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>  
+	</div>		
 <% orgIds = "" %>
 	<script> 
 		window.fbAsyncInit();

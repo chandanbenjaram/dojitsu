@@ -1,15 +1,4 @@
 (function($) {
-	// to get date on click
-	// $(".date").dateinput({
-	// 	format: 'dddd dd, mmmm yyyy',	// the format displayed for the user
-	// 	selectors: true,             	// whether month/year dropdowns are shown
-	// 	min: -100,                    // min selectable day (100 days backwards)
-	// 	max: 100,                    	// max selectable day (100 days onwards)
-	// 	offset: [10, 20],            	// tweak the position of the calendar
-	// 	speed: 'fast',               	// calendar reveal speed
-	// 	firstDay: 1                  	// which day starts a week. 0 = sunday, 1 = monday etc..
-	// });
-	//         
 	$('.editable1').editable({
 		type:'text',
 		submit:'update',
@@ -33,23 +22,6 @@
 	// Add row for new task
 	$(".alternativeRow").btnAddRow({oddRowCSS:"oddRow",evenRowCSS:"evenRow"});
 	$(".delRow").btnDelRow();
-
-	// Date Picker scripting code
-	$('.date-pick').datePicker({startDate:'01/01/1996'});
-
-	$('.chall_type').click(function(){
-		if ($(this).attr("id") == "challenge_cha_type_per")
-		{
-			$("#challenge_cha_type_per_div").show("fast");
-			$("#challenge_cha_type_soc_div").hide("fast");
-		}
-		else
-		{
-			$("#challenge_cha_type_soc_div").show("fast");
-			$("#challenge_cha_type_per_div").hide("fast");
-		}
-	});
-
 
 	//select all the a tag with name equal to modal
 	$('a[name=modal]').click(function(e) {
