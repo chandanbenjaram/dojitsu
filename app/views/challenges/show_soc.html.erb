@@ -2,10 +2,6 @@
 <%= javascript_include_tag('simple-tabs','ui.progressbar.js','soc-per','on_the_spot','jquery.colorbox-min','jquery.tools.min','messages')%>
 <%= render 'layouts/loggedinbody'%>
 
-
-<%#= @challenge.user_id %></br>
-<%#= current_user.fbauth.uid %>
-
 <% if !@challenge.child_challenges.blank? && userIds = []%>
 <% for aChild in @challenge.child_challenges %>
 <% if aChild.social_type.status.nil?%>
@@ -188,78 +184,7 @@ function fbCallback(response){
 							<% end %>
 						</div>
 						<div id="tab2" style="background:#F5F5F5;" class="tab_content">
-							
-							
-							<table bgcolor=#F4F4F4 width="100%" border="0" height="10px"  style="position: relative; top: -20px;">
-								
-									<td width="50%"  >
-										<% if  @challenge.class.to_s == "Challenge" %>
-											<font size="4" color="#8c8c8c"><b  id="total">Total: <%= @challenge.child_challenges.length %></b></font>
-										<%else %>
-											<font size="4" color="#8c8c8c"> <b  id="total">Total: <%= @challenge.parent.child_challenges.length %></b></font>
-										<% end %>
-											
-												<%= image_tag("btn_msg_up.png", :style=>"margin-left:10px; position:relative; top:5px;" ,:onclick=>"contactToInvitee()")%>
-											
-									</td>
-									<td>
-										<input type="text", id="search1">&nbsp;
-									</td>
-									<td  >
-									
-										<select id="search">
-											<option value="volvo">ALL</option>
-											<option value="saab">ACCEPTED</option>
-											<option value="mercedes">PENDING</option>
-											<option value="audi">DECLINED</option>
-										</select> 
-											&nbsp;
-											<%= image_tag("search_it.PNG", :style=>"width:25px; height:25px; position:relative; top:5px;" ,:onclick=>"contactToInvitee()")%>
-									</td>
-								
-							</table>
-							 <%if @challenge.parent .nil? %>
-									<% childChallenges =  @challenge.child_challenges %>
-							<%else%>
-									<%childChallenges =  @challenge.parent.child_challenges %>
-							<%end%> 
-							
-							
-							<script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> </script>
-								<table id="tableshow_soc" class="sortable">
-								<thead>
-								  <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">NAME</th><th style="CURSOR: pointer; cursor: hand;" id="content2">STATUS</th></tr>
-								</thead>
-								<tbody>
-								 <% childChallenges.each do |aChildChallenge| %>
-										<tr>
-											<td width="92%" id="list">
-											<p><%=image_tag FbGraph::User.new(aChildChallenge.user_id).fetch.picture %> <a href="#"  id="ahref"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></a></p>
-										  
-										   </td>
-										   <td width="8%">
-										   <span id="status_icon"> 
-											  <% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 %>
-												<%= image_tag  "icon_thinking.png"  %>
-											  <% elsif aChildChallenge.social_type.status == 1 %>
-												<%= image_tag  "icon_accept.png"  %>
-											  <% else %>
-												 <%= image_tag "icon_decline.png"  %>
-											  <% end %>
-									           </span> 
-											</td>
-											</tr> 
-											 <% end %> 
-											 </tbody>
-								  </table>
-								</div>
-							<style>
-								#friendslist1
-								{
-									width:680px;
-									background:#ffffff;
-								}
-							</style>													
+							<%= render :partial =>"challenges/socialPeople" %>	
 						</div>
 					</div>
 				</td>
