@@ -991,6 +991,22 @@ ul.tabs1 {
 	-webkit-border-radius: 5px 5px 0px 0px;
 	border-radius: 5px 5px 0px 0px; 
 }
+
+#titlechallenge1
+{
+	width:940px;
+	border: 1px solid #BEBEBE;
+	background:#BEBEBE;
+	height:30px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-bottomright: 0px;
+	-moz-border-radius-bottomleft: 0px;
+
+	-webkit-border-radius: 5px 5px 0px 0px;
+	border-radius: 5px 5px 0px 0px; 
+}
+#subbar
 #subbar
 {
 	background:#D7D7D7;
@@ -1072,9 +1088,19 @@ position:absolute;
 	left:500px;
 	top:5px;
 }
+
+#points1 {
+    background: none repeat scroll 0 0 #DDEFCE;
+    color: #7AC142;
+    height: 25px;
+    left: 620px;
+    position: relative;
+    top: -95px;
+    width: 40px;
+}
 #challengedetails1
 {
-	width:635px;
+	width:940px;
 	height:343px;
 	background:#fff;
 	-moz-border-radius-topleft: 0px;
@@ -1152,6 +1178,14 @@ width:90%;
 
 	float:left;
 	left:370px;
+	top:10px;
+}
+.update1
+{
+	position:relative;
+
+	float:left;
+	left:590px;
 	top:10px;
 }
 .second_titlechallenge
@@ -1544,6 +1578,17 @@ color: #FFFFFF;
     font-family: arial;
     height: 25px;
     left: 100px;
+    min-width: 70px;
+    position: relative;
+    text-align: right;
+    top: -10px;
+}
+.new_challenge_button1 {
+    background: url("new1.PNG") no-repeat scroll left center #F8981D;
+    float: left;
+    font-family: arial;
+    height: 25px;
+    left: 330px;
     min-width: 70px;
     position: relative;
     text-align: right;
