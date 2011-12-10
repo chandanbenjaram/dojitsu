@@ -239,6 +239,10 @@ class ChallengesController < ApplicationController
       end
     end
   end
+  
+  def socialPeople
+	render :layout => false
+  end
 
   protected
 
