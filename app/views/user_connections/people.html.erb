@@ -1,108 +1,19 @@
 <% as= current_user.challenges.size %>
 
 <div class="dashboardsidebar">
-						<div style=" width:940px; "  class="mychallenge2">
-							<div  style=" width:940px; "  id="titlechallenge1">
+						<div style=" width:100%; "  class="mychallenge2">
+							<div  style=" width:100%; "  id="titlechallenge1">
 								<div style="padding-left:16px;">
 									<font color="black"><b>Total :</b><b><%= as %> </b></font>
 									
 								</div>
-								<div  style=" width:940px; " class="second_titlechallenge">
+								<div  style=" width:100%; " class="second_titlechallenge">
 									<%= button_to "", new_challenge_url, :class => "new_challenge_button1", :method => :get%>
 								</div>
 							</div>						
 							
-							<div style="overflow-y: auto; overflow-x: width: 940px; hidden;  height : 450px;" id="challengedetails1">
-								<% t=1 %>
-								<script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> </script>
-								<table  class="sortable">
-								<thead>
-								  <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">NAME</th><th style="CURSOR: pointer; cursor: hand;" id="content2"><span class="mydojoscore">MY DOJITSU SCORE</span></th></tr>
-								</thead>
-								<tbody>
-									<% current_user.challenges.each do |userChallenge| %>
-									<tr valign="top" class="challengerow" onclick="location.href='<%= show_per_challenges_path(:id => userChallenge)  %>'" >
-										<td >
-											
-											<font family="Arial" color="#666666" size=3"><b><%= userChallenge.title %></b></font><br><font size=2>by </font>
-											
-											
-											
-											<% if userChallenge.instance_of?ChildChallenge %>
-											   <% @parentChallenge = Challenge.where(:_id => userChallenge.challenge_id).first%>
-											   <script>
-												var ordId = <%=  orgId = @parentChallenge.user_id %>
-											   </script>
-											   <b><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
-											<% else %>
-												<b><%= current_user.facebook.name %></b>
-											<% end %>
-											
-											
-											
-											
-											
-											</font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
-											<%if ( userChallenge.child_challenges.size <2 ) %> 
-												<%= userChallenge.child_challenges.size >0 ? userChallenge.child_challenges.size : 1  %> contestant<br>
-											<% else %>
-												<%= userChallenge.child_challenges.size %> contestants<br>
-											<% end %>
-										
-										</td>
-										<td >					
-											<div class="taskprogress" id="taskprogress<%= t %>">
-											</div>
-											
-											
-										<br/>
-											<div id="check1">
-												<% x=0 %>
-												<% y=0 %>
-												<% a= 0 %>
-												<% b= 0 %>
-												<% userChallenge.tasks.each do |aTask| %>
-										
-													<% if (aTask.is_complete == 1 ) %>
-														<% a+=Integer(aTask.score) %>
-														<% x+=1 %>
-													<% else %>
-														<% b += aTask.score.to_i %>
-														<% y+=1 %>
-													<% end %>
-												<% end %>
-												
-											<div class="update1">
-												<%= image_tag("FDFDG.gif", :alt => "Update")%>												
-											</div>
-											<div class="completedtask"> 
-												<%= a %> points (<%= x %> &nbsp; tasks)
-											</div>
-											<div class="notcompleted">
-												<font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="#ffffff"><%= b %> points (<%= y %>&nbsp; tasks)</font>
-											</div>
-												<script type="text/javascript">
-													$(function() {
-														$("#taskprogress<%= t %>").progressbar({ value: Math.round(((<%= a %>/<%= (a+b) %>)*100)) });
-														$("<p>").attr("id", "check").text($("#taskprogress<%= t %>").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress<%= t %>");
-													});
-												</script>
-											</div>
-											<div id="points1">
-												&nbsp;&nbsp;<font size=4><b><%= a %></b></font>
-											</div>
-																		
-										</td>
-																												
-										<% t+=1 %>																
-										
-									</tr>
-							
-									
-									<% end %>
-								</tbody>
-
-								</table>
+							<div style="overflow-y: auto; overflow-x: width: 1%; hidden;  height : 450px;" id="challengedetails1">
+								<%= render 'dashboard/challengeProgress' %>
 							</div>
 						</div>
 					</div>

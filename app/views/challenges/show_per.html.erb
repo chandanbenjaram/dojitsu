@@ -1,5 +1,5 @@
-<%= stylesheet_link_tag('simple-tabs','datePicker', 'colorbox','jquery-ui', 'ui.progressbar','ui.theme', 'main','soc-per')%>
-<%= javascript_include_tag('simple-tabs','ui.progressbar','jquery.colorbox-min', 'jquery.cluetip.js','jquery.table.addrow','jquery.datePicker','date','on_the_spot','jquery.tools.min','soc-per')%>
+<%= stylesheet_link_tag('simple-tabs','datePicker', 'colorbox','jquery-ui', 'ui.progressbar','ui.theme', 'main','soc-per','challenges.css')%>
+<%= javascript_include_tag('simple-tabs','ui.progressbar','jquery.colorbox-min', 'jquery.cluetip.js','jquery.table.addrow','jquery.datePicker','date','on_the_spot','jquery.tools.min','soc-per','challenge_new')%>
 <%= render 'layouts/loggedinbody'%>
 
 <div id="ch_main_div1">
@@ -15,7 +15,7 @@
 					<td width="80px">
 						<b><font color= #999999>DESCRIPTION</font></b></td>
 					<td width="500px">
-						<b><%= on_the_spot_edit @challenge,:description , :type=>:textarea  %></b>
+						<b><%= on_the_spot_edit @challenge,:description, :type=>:textarea  %></b>
 					</td>
 				</tr>
 			</table>
@@ -28,11 +28,34 @@
 						<b><font color= #999999>START POINT</font></b>
 					</td>
 					<td>
+					 <div id="Test" onclick="Testing();">
+
 						<% if @challenge.start_point.instance_of?PointDateType %>		
 							 <b><%= @challenge.start_point.value.strftime("%b %d, %Y")%> </b>
 						<% else %>							
-							<b><%= @challenge.start_point.value.to_i %></b>
+						       <%ch = @challenge.start_point  %>
+							
+							<b><%=  on_the_spot_edit ch,:value, :type=>:text %></b>
+						
 						<% end %>
+			
+						</div>
+						<div id="replaced">
+						
+					<%= render 'challenges/date_update' %>
+						</div>
+				
+						<script>
+						
+						$("#replaced").hide();
+						
+					    function Testing()
+						{
+						$("#Test").replaceWith($("#replaced").show());
+						}
+						
+						
+						</script>
 					</td>
 					<td>
 						
