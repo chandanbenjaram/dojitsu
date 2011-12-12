@@ -157,7 +157,13 @@ class ChallengesController < ApplicationController
       render :action => edit
     end
   end
-
+	
+  def date_update
+  	raise "venkat..."
+   @challenge = Challenge.find(params[:id])
+  end
+	
+  
   def destroy
     @challenge.destroy
     redirect_to :action => 'index'

@@ -1664,3 +1664,16 @@ position :relative;
 float:right;
 right:10px;  	
   }
+  
+  .hidebutton{
+   float: left;
+    height: 20px;
+    left: 90px;
+    position: relative;
+    top: -1px;
+    width: 20px;
+  }
+  
+  .fontstyle{
+  	font-color: #A0A0A0;
+  }
