@@ -3,6 +3,10 @@ class ChallengesController < ApplicationController
   before_filter :find_challenge, :only => [:show, :edit, :update, :destroy]
   #on_spot_edit  is the gem to edit the data on spot 
   can_edit_on_the_spot
+  
+  def paginationTest
+    @challenges = Challenge.all.paginate(:page =>params[:page], :per_page => 2)
+  end
 
   def index
     @title = "Challenges"

@@ -52,7 +52,7 @@ class Challenge
   end
   
   def self.whatsNew
-	where(:_type.exists => false).desc("created_at").limit(3)
+    where(:_type.exists => false).desc("created_at").limit(3)
   end
 
 end                
