@@ -24,7 +24,8 @@ Dojitsu::Application.routes.draw do
       get "add_task_link"
       get "add_task_fun"
       get "update_status"
-	  get "socialPeople"
+      get "socialPeople"
+      get "paginationTest"
       get "update_status_af_meg"
       put "update_task_soc"
 	

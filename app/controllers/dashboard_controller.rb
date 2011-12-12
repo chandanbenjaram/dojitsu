@@ -15,5 +15,5 @@ class DashboardController < ApplicationController
 	def dashboardIndex
 		render :layout => false
 	end
- 
+  
 end
