@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag('challenges.css','simple-tabs','jquery-ui', 'ui.core','ui.progressbar', 'main')%>
-<%= javascript_include_tag('jquery.facebook.multifriend.select','simple-tabs','ui.progressbar','on_the_spot')%>
+<%= javascript_include_tag('jquery.facebook.multifriend.select','simple-tabs','ui.progressbar','on_the_spot','ajaxPageLoad')%>
 <%= render 'layouts/loggedinbody'%>
 <% as= current_user.challenges.size %>
 
@@ -136,16 +136,8 @@
 						<div id="myDojo"></div>
 					</div>
 				    <script>
-						$(document).ready(function(){
-							$.ajax({
-								url: "/user_connections/myDojo",
-								cache: false,
-								success: function(html){
-									$("#myDojo").append(html);
-								}
-							});
-						});
-					</script>
+					$.dojitsu.renderAjaxPageLoad("/user_connections/myDojo","#myDojo");
+				    </script>
 					
 					<script>
 						(function ($) {
@@ -186,15 +178,7 @@
 						<div id="people"></div>
 					</div>
 					<script>
-						$(document).ready(function(){
-							$.ajax({
-								url: "/user_connections/people",
-								cache: false,
-								success: function(html){
-									$("#people").append(html);
-								}
-							});
-						});
+                                          $.dojitsu.renderAjaxPageLoad("/user_connections/people","#people");
 					</script>
 </td>
 </tr>

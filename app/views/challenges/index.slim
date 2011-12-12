@@ -5,8 +5,10 @@
 	.span-8
 		.span-4   &nbsp;
 		.span-2.right
-   			= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get
-    .span-12.font12.gray  MY CHALLENGES >> CREATE NEW
+   			= button_to "", new_challenge_url, :class => "new_challenge_button_new", :method => :get
+    
+	= link_to "MY CHALLENGES  ",challenges_url ,:class => "challenge_link" 
+
 	
 	
 - unless @challenges.empty?
