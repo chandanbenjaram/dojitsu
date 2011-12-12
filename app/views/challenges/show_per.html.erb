@@ -1,13 +1,21 @@
 <%= stylesheet_link_tag('simple-tabs', 'colorbox','jquery-ui', 'ui.progressbar','ui.theme', 'main','soc-per')%>
 <%= javascript_include_tag('simple-tabs','ui.progressbar','jquery.colorbox-min', 'jquery.table.addrow','on_the_spot','jquery.tools.min','soc-per')%>
 <%= render 'layouts/loggedinbody'%>
+<div class="challengeSubNav">
 
+   			<%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %>
+    
+	<%= link_to "MY CHALLENGES >> ",challenges_url ,:class => "challenge_link1" %>
+	
+	<%= link_to "#{@challenge.title}","#" ,:class => "challenge_link1" %> 
+
+</div>
 <div id="ch_main_div1">
 <%= form_for @challenge do |f| %>
 <table width="100%" border="0" border cellspacing=12px>
 	<tr>
 		<div style="text-transform: uppercase; font-size:25px; margin:0px">
-			<font color="orange"><%= on_the_spot_edit @challenge, :title, :type=> :text %></font>
+			<font color="#FFA500"><%= on_the_spot_edit @challenge, :title, :type=> :text %></font>
 		</div><br>
 		<tr>
 		<table >
@@ -56,8 +64,8 @@
 		<hr/ width=400px>	
 		<br><br>
 		<table bg color=#f4f4f4>
-			<tr bgcolor="orange">
-				<td bgcolor="orange"><font color="white"><b>&nbsp; &nbsp; &nbsp;TASKS</b></font></td>	
+			<tr bgcolor="#FFA500">
+				<td bgcolor="#FFA500"><font color="#FFFFFF"><b>&nbsp; &nbsp; &nbsp;TASKS</b></font></td>	
 			</tr>
 		</table>
 	</tr>

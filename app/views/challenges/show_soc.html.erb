@@ -1,6 +1,15 @@
 <%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css','jquery-ui','ui.progressbar','ui.theme', 'main')%>
 <%= javascript_include_tag('simple-tabs','ui.progressbar.js','soc-per','on_the_spot','jquery.colorbox-min','jquery.tools.min','messages')%>
 <%= render 'layouts/loggedinbody'%>
+<div class="challengeSubNav">
+
+   			<%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %>
+    
+	<%= link_to "MY CHALLENGES >> ",challenges_url ,:class => "challenge_link1" %>
+	
+	<%= link_to "#{@challenge.title}","#" ,:class => "challenge_link1" %> 
+
+</div>
 
 <% if !@challenge.child_challenges.blank? && userIds = []%>
 <% for aChild in @challenge.child_challenges %>
