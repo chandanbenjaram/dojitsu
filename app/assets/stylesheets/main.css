@@ -616,11 +616,11 @@ input.radio {
      float: left;
      font-family: Arial;
      height: 27px;
-     left: 177px;
+     left: 117px;
      min-width: 78px;
      position: relative;
      text-align: right;
-     top: -14px;
+     top: 0px;
 }
 .ds_view_all1 {
 	background: url("viewall.PNG") no-repeat right;	
@@ -1274,7 +1274,7 @@ width:90%;
 	color:#fff;
 	left:60px;
 	position:relative;
-	width:80%;
+	width:40%;
 }
 .remainedtask
 {

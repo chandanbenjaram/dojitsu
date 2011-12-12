@@ -1,13 +1,9 @@
-<div class="whatsnew">	
-	<font style="float:left">WHAT'S NEW</font> 
-	<%= button_to "", challenges_url, :class => "ds_view_all", :method => :get%>
-</div>
 <% if Challenge.whatsNew.count == 0 %>
 	<p align="center">No challenges found</p>
 <% else %>
 	<% Challenge.whatsNew.each do |aChallenge| %>
 	<div id="contentbox">
-		<%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:0px;") %>
+		<%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:-2px;") %>
 		<table width="100%" style="margin-top:-10px;">
 			<tr>
 				<td width="60%"><font size="3px;" style="font-weight:bold"><%= aChallenge.title%></font></td>
@@ -57,5 +53,5 @@
 			</tr>
 		</table>
 	</div>
-<% end %>
+	<% end %>
 <% end %>

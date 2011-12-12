@@ -1,28 +1,10 @@
 <%= javascript_include_tag('ui.progressbar')%>
 <%= stylesheet_link_tag('jquery-ui', 'ui.progressbar','ui.theme', 'main')%>
 <%= render 'layouts/loggedinbody'%>
-<div id="dashboardIndex"></div>
-<script>
-	$(document).ready(function(){	
-		$.ajax({
-			url: "/dashboard/dashboardIndex",
-			cache: false,
-			success: function(html){
-			  $("#dashboardIndex").append(html);
-			}
-		});
-	});
-</script>
-
-<!--
-<%= javascript_include_tag('ui.progressbar')%>
-<%= stylesheet_link_tag('jquery-ui', 'ui.progressbar','ui.theme', 'main')%>
-<%= render 'layouts/loggedinbody'%>
 <div class="challange">
 	my dashboard
 </div>
 
-<% as= current_user.challenges.size %>
 <table>
 	<td>
 	<content>		
@@ -30,13 +12,35 @@
 		<td>
 			<tr>
 				<td>
-					<div id="myChallenge"></div>						
+					<div class="dashboardsidebar">
+					<div class="mychallenge">
+						<div id="titlechallenge">
+							<div style="left: 16px; position: relative; top: 5px;">
+								MY CHALLENGES <font color="#ffffff"><b>( <%= current_user.challenges.size %> ) </b></font>
+							</div>
+							<div class="second_titlechallenge">
+								<%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
+							</div>
+						</div>
+						<div id="myChallenge"></div>
+					</div>
+					</div>	
 				</td>
 			</tr>
 			<tr>
 				<td>	
 					<div class="dashboardsidebar1">
-						<div id="message"></div>
+						<div class="mychallenge">
+							<div id="titlechallenge">
+								<div id="title" style="left: 16px; position: relative; top: 5px;">
+									NEW MESSAGES <font style="color:#fff">( <%= current_user.inbox.count %> )</font>
+								</div>
+								<div class="second_titlechallenge">
+									<%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
+								</div>
+							</div>
+							<div id="message"></div>
+						</div>	
 					</div>
 				</td>
 			</tr>
@@ -46,6 +50,10 @@
     </td>
 	<td valign=top>
 		<div class="dashboardsidebar2">
+		    <div class="whatsnew">	
+				<font style="float: left;left: 15px; position: relative; top:6px;">WHAT'S NEW</font> 
+				<%= button_to "", challenges_url, :class => "ds_view_all", :method => :get%>
+			</div> 
 			<div id="whatsNew"></div>
 		</div>
 	</td>
@@ -79,4 +87,3 @@
 		
 	});
 </script>
--->
