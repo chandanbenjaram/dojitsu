@@ -45,7 +45,7 @@
 					<%= anc.child_challenges.size%> contestants
 				</td>
 				<td width="70%">
-					<p style="float:right; margin-right:20px;"><%= time_ago_in_words  anc.created_at%></p></br></br>
+					<p style="float:right; margin-right:20px; color: #A9A8A8;"><%= time_ago_in_words  anc.created_at%></p></br></br>
 					<% if anc.personal_type.instance_of?ChallengePersonalType%>
 						<p style="text-transform:none;">
 							<%=h truncate(anc.description, :length => 128) %>....<%= link_to "VIEW" , show_per_challenges_path(:id => anc.id) %>									
@@ -88,15 +88,15 @@
 .divone{
 	vertical-align:top;
 }
-.messagereg
+/*.messagereg
 {
 	width:550px;
 	height:130px;
 	background:#F9F7F7;
 	color:#000;
-	border:1px solid #000;
+	border:1px solid #DCDCDC;
 	margin-top:10px;
-}
+}*/
 .reg
 {
 float: left;
@@ -150,7 +150,7 @@ left:10px;
 	height:130px;
 	background:#F9F7F7;
 	color:#000;
-	border:1px solid #000;
+	border:1px solid #DCDCDC;
 	margin-top:10px;
 }
 </style>
