@@ -36,6 +36,7 @@ class ChallengesController < ApplicationController
 
   def show_per
     @challenge = Challenge.find(params[:id])
+	
     @is_complete_status = 0 
     @challenge.tasks.each do |checkingTaskStatus|
       unless checkingTaskStatus.is_complete == 1
@@ -155,6 +156,7 @@ class ChallengesController < ApplicationController
 
   def update
     @challenge = Challenge.find(params[:id])
+	
     if @challenge.update_attributes(params[:challenge])
       redirect_to :action => 'index', :id => @challenge
     else
@@ -221,9 +223,14 @@ class ChallengesController < ApplicationController
   end
 
   def date_update
-    @challenge_date = Challenge.find(params[:id])
-    @date = @challenge_date.end_point.value 
-    render :layout => false
+ 
+   @challenge = Challenge.find(params[:id]) 
+
+   
+   raise @challenge.inspect
+   
+   
+
   end
 
 
@@ -253,6 +260,6 @@ class ChallengesController < ApplicationController
   def find_challenge
     @challenge = Challenge.all
   end
-
+  
 end
 

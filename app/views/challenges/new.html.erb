@@ -1,9 +1,9 @@
-<%= stylesheet_link_tag('simple-tabs.css','jquery-ui.css','jquery.cluetip.css','challenges.css')%>
+<%= stylesheet_link_tag('simple-tabs_new.css','jquery-ui.css','jquery.cluetip.css','challenges.css')%>
 <%= javascript_include_tag('simple-tabs','jquery.table.addrow.js','jquery.cluetip.js','challenge_new')%>
 <%= render 'layouts/loggedinbody'%>
 <div class="challengeSubNav">
 
-   			<%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %>
+   	<%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %>
     
 	<%= link_to "MY CHALLENGES >> ",challenges_url ,:class => "challenge_link1" %>
 	
@@ -25,19 +25,19 @@
 		
 		<tr>
 			<td colspan="4">
-				<hr style="color:#0066CC;width:98%; height:2px;">
+				<hr style="color:#0066CC;width:100%; height:2px;">
 			</td>
 		</tr>
 		<tr>
 			<td valign="center" class="color999"><%= f.label :description, "DESCRIPTION" %></td>
 			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea", :placeholder=>"Enter challenge description here" %><div %></td>
-			</tr>
-			<tr>
+		</tr>
+		<tr>
 				<td colspan="4">
-					<hr style="color:#0066CC;width:98%; height:2px;;">
+					<hr style="color:#0066CC;width:100%; height:2px;;">
 				</td>
-			</tr>
-			<tr>
+		</tr>
+		<tr>
 				<td width="13%"><b class="color999">START POINT</b></td>
 				<td width="50px;"> 
 				    <div class="styled-select">
@@ -50,13 +50,13 @@
 					<div class="startPointNumber">
 					</div>				
 				</td>  
-			</tr>
-			<tr>
+		</tr>
+		<tr>
 				<td colspan="4">
-					<hr style="color:#0066CC;width:98%; height:2px;">
+					<hr style="color:#0066CC;width:100%; height:2px;">
 				</td>
-			</tr>
-			<tr>  
+		</tr>
+		<tr>  
 				<td><b class="color999">END POINT</b></td>
 				<td>  
 					<div class="styled-select">
@@ -69,13 +69,13 @@
 					<div class="endPointNumber">
 					</div>				
 				</td>
-			</tr>
-			<tr>
+		</tr>
+		<tr>
 				<td colspan="4">
-					<hr style="color:#0066CC;width:98%; height:2px;">
+					<hr style="color:#0066CC;width:100%; height:2px;">
 				</td>
-			</tr>
-			<tr>
+		</tr>
+		<tr>
 				<td valign="top">
 					<b class="color999"> CREATE TASK</b> 
 					<span class="moreInfoTip color999" rel="#moreCreateTaskId" title="The score for each task will be added up to determin the winner(s).">
@@ -123,7 +123,8 @@
 								  .addRow
 								  {
 									 position:relative;
-									 top:-41px;
+									 top:-43px;
+									 left:25px;
 								  }
 								</style>
 							</td>
@@ -153,7 +154,7 @@
 				</tr>
 				<tr>
 					<td colspan="4">
-						<hr style="color:#0066CC;width:98%; height:2px;">
+						<hr style="color:#0066CC;width:100%; height:2px;">
 					</td>
 				</tr>
 				<tr>
@@ -235,7 +236,7 @@
 				</tr>
 				<tr>
 					<td colspan="4">
-						<hr style="color:#0066CC;width:98%; height:2px;">
+						<hr style="color:#0066CC;width:100%; height:2px;">
 					</td>
 				</tr>
 				<tr>
