@@ -15,7 +15,7 @@
 					<td width="80px">
 						<b><font color= #999999>DESCRIPTION</font></b></td>
 					<td width="500px">
-						<b><div class="fontstyle"><%= on_the_spot_edit @challenge,:description, :type=>:textarea  %><div><b>
+						<b><%= on_the_spot_edit @challenge,:description, :type=>:textarea  %></b>
 					</td>
 				</tr>
 			</table>
@@ -41,32 +41,21 @@
 			
 						</div>
 						<div id="replaced">
-					<%= form_for @challenge, :url => {:controller=> "challenges",:action => "date_update"} do |f| -%>
-							<table>
-							<tr>
-											<td width="50px;"> 
-												<div class="styled-select">
-												<%= select_tag "start_point_type", "<option value=''>Choose</option><option value='startPointDate'>Date</option><option value='startPointNumber'>Number</option>".html_safe , :required => "required" %>
-												</div>
-											</td>  
-											<td colspan="2">					
-												<div class="startPointDate">
-												</div>
-												<div class="startPointNumber">
-												</div>				
-											</td>  
-							</tr>
-							<tr>
-					<td colspan="4">
-					<%=%>
-					    <%= link_to "UPDATE", date_update_challenges_path( @challenge), :style => "width: 100px; float:right; margin-right:10px;", :class => "links" %>
 						
-						<%= link_to "CANCEL",  show_per_challenges_path(:id => @challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel"%>
-						</td>
-				</tr> 
-							</table>
-							<% end %>
+					<%= render 'challenges/date_update' %>
 						</div>
+				
+						<script>
+						
+						$("#replaced").hide();
+						
+					    function Testing()
+						{
+						$("#Test").replaceWith($("#replaced").show());
+						}
+						
+						
+						</script>
 					</td>
 					<td>
 						
@@ -242,11 +231,4 @@
 		delay: 0
 	});
 	
-	$("#replaced").hide();
-						
-    function Testing()
-	{
-			$("#Test").replaceWith($("#replaced").show());
-	}
-	$()
 </script>

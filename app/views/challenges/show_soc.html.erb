@@ -1,12 +1,20 @@
 <%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css','jquery-ui','ui.progressbar','ui.theme', 'main')%>
 <%= javascript_include_tag('simple-tabs','ui.progressbar.js','soc-per','on_the_spot','jquery.colorbox-min','jquery.tools.min','messages')%>
 <%= render 'layouts/loggedinbody'%>
+<div class="challengeSubNav">
+
+   			<%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %>
+    
+	<%= link_to "MY CHALLENGES >> ",challenges_url ,:class => "challenge_link1" %>
+	
+	<%= link_to "#{@challenge.title}","#" ,:class => "challenge_link1" %> 
+
+</div>
 
 <% if !@challenge.child_challenges.blank? && userIds = []%>
 <% for aChild in @challenge.child_challenges %>
 <% if aChild.social_type.status.nil?%>
 	<% userIds.push(aChild.user_id)  %>
-
 <% end %>
 <% end %>
 <% if !userIds.empty? and @challenge.user_id == current_user.fbauth.uid%>
@@ -16,7 +24,6 @@ $.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+userIds.join(
 
 function fbCallback(response){
 	if(response == null){
-	
 	} else
 	{
 		var srt = '<%= params[:id] %>';
@@ -27,12 +34,10 @@ function fbCallback(response){
 
 			}, 'script'
 		);
-		
 	}
 }
 </script>
 <% end %>
-
 <% end %>
 
 <div id="ch_main_div"> 
@@ -73,7 +78,7 @@ function fbCallback(response){
 						<b><font color= #999999>ORGANIZER</font></b>
 					</td>
 					<td >
-						<% if @challenge.class.to_s == "ChildChallenge" %>
+						<% if @challenge.instance_of?ChildChallenge%>
 							<%  @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
 							<script>
 								var ordId = <%=  orgId = @parentChallenge.user_id %>
@@ -87,7 +92,7 @@ function fbCallback(response){
 						<% end %>	
 					</td>
 					<td width="100px">
-						<% if @challenge.class.to_s == "ChildChallenge" || @challenge.user_id != current_user.fbauth.uid %>
+						<% if @challenge.instance_of?ChildChallenge || @challenge.user_id != current_user.fbauth.uid %>
 							<%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(ordId)" ) %>
 						<% end %>
 					</td>
@@ -113,9 +118,6 @@ function fbCallback(response){
 							<b><%= @challenge.start_point.value.to_i %></b>
 						<% end %>
 					</td>
-					<td align="right">
-						<%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :align=>"right" %>
-					</td>
 				</tr>
 			</table>
 		</div>			
@@ -135,9 +137,6 @@ function fbCallback(response){
 							<b><%= @challenge.end_point.value.to_i %></b>
 						<% end %>
 					</td>
-					<td>
-						<%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :style => "text-decoration: underline;",:align=>"right" %>
-					</td>
 				</tr>
 			</table>
 		</div>
@@ -150,8 +149,6 @@ function fbCallback(response){
 					<b><font color= #999999>PARTICIPANTS</b></font>
 				</td>
 				<td>
-
-				
 				<% if @challenge.social_type.status == 1 &&  @challenge.class.to_s == "ChildChallenge" %>
 						<b><%= @challenge.parent.child_challenges.length %></b>
 					<% else %>
@@ -161,9 +158,6 @@ function fbCallback(response){
 							<b><%= @challenge.parent.child_challenges.length %></b>
 						<% end %>
 				<% end %>
-					
-
-
 				</td>
 			</tr>
 		</table>
