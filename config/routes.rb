@@ -1,5 +1,9 @@
 Dojitsu::Application.routes.draw do   
   get "dashboard/index"
+  get "dashboard/whatsNew"
+  get "dashboard/message"
+  get "dashboard/myChallenge"
+  get "dashboard/dashboardIndex"
 
   # user registration & 3rd party logins
   match 'users/auth/:provider/callback', :to=>'authentications#create'
@@ -20,6 +24,7 @@ Dojitsu::Application.routes.draw do
       get "add_task_link"
       get "add_task_fun"
       get "update_status"
+	  get "socialPeople"
       get "update_status_af_meg"
       put "update_task_soc"
       put :update_attribute_on_the_spot
@@ -32,6 +37,8 @@ Dojitsu::Application.routes.draw do
   resources :user_connections do
 	collection do
 		get "sendInvitation"
+		get "myDojo"
+		get "people"
 	end
   end
   resources :messages do

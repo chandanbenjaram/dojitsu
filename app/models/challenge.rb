@@ -49,6 +49,10 @@ class Challenge
 
   def parent
     Challenge.find(self.challenge_id) rescue nil
-  end    
+  end
+  
+  def self.whatsNew
+	where(:_type.exists => false).desc("created_at").limit(3)
+  end
 
 end                

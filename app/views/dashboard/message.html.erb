@@ -1,0 +1,32 @@
+<div class="mychallenge">
+	<div id="titlechallenge">
+		<div id="title">
+			NEW MESSAGES <font style="color:#fff">( <%= current_user.inbox.count %> )</font>
+		</div>
+		<div class="second_titlechallenge">
+			<%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
+		</div>
+	</div>
+	<div style="overflow-y: auto; overflow-x: hidden;" id="challengedetails">	
+	<div>
+		<table class="sortable">
+		<thead>
+		  <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">FROM</th><th style="CURSOR: pointer; cursor: hand;" id="content2">TIME</th></tr>
+		</thead>
+		<tbody>
+			<% current_user.inbox.each do |userMessage| %>
+			<tr>
+				<td width="10%">
+					<%=image_tag(FbGraph::User.new(userMessage.from).fetch.picture) %>																			
+				</td>
+				<td width="88%">
+					<font size="3px" style="float:right"><%= time_ago_in_words userMessage.created_at %></font>
+					<font size="4px" style="font-weight:bold"><%= userMessage.subject %></font></br>
+					<font size="3px"><%=h truncate(userMessage.body, :length => 55) %>..</font></br>										</td>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+		</table>		
+	</div>
+</div>

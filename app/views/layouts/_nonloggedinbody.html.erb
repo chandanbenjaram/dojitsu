@@ -5,6 +5,9 @@
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+<script type="text/javascript">
+		$(".fbConnectWidgetFooter").hide();
+</script>
 
 <table width="100%">
 	<td width="50%" class="divone">
@@ -17,7 +20,7 @@
 						<% if Challenge.where(:_type.exists => false).desc("created_at").limit(3).count == 0 %>
 					
 								<% else %>				
-								<p style="float:left"><%= button_to "", "#", :class => "non_login_view_all", :method => :get%></p></td>
+								<%= button_to "", "#", :class => "non_login_view_all", :method => :get%> </td>
 						<% end %>
 					</tr>
 				</table>
@@ -62,19 +65,19 @@
 	</td>
 	<td class = "imagebackground"></td>
 	<td width="30%">
-									<div class="regdojitsu">	
-									<div class="fb-like-box" data-href="http://www.facebook.com/pages/Dojitsu/295711967114330" data-width="350" data-height="180" data-show-faces="true" data-stream="false" data-header="false"></div>
-									<div class="dourbest">
-										<%= image_tag("dourbest.PNG" ,:size => "350x195", :alt => "Do YOur Best")%>
-										<div class="reg">
-											<%= link_to(image_tag("regwelcome.PNG" ,:size => "90x25", :alt => "Do Your Best"),"#") %>
-										</div>
-										<div class="seetutorial">
-											<%= image_tag("seetutorial.PNG" ,:size => "75x21", :alt => "See Tutorial")%>
-										</div>
-									</div>
-								</div>
-							</div>
+	<div class="regdojitsu">	
+	<div class="fb-like-box" data-href="http://www.facebook.com/pages/Dojitsu/295711967114330" data-width="350" data-height="180" data-show-faces="true" data-stream="false" data-header="false"></div>
+	<div class="dourbest">
+		<%= image_tag("dourbest.PNG" ,:size => "350x195", :alt => "Do YOur Best")%>
+		<div class="reg">
+			<%= link_to(image_tag("regwelcome.PNG" ,:size => "90x25", :alt => "Do Your Best"),"#") %>
+		</div>
+		<div class="seetutorial">
+			<%= image_tag("seetutorial.PNG" ,:size => "75x21", :alt => "See Tutorial")%>
+		</div>
+	</div>
+</div>
+</div>
 						
 	</td>
 </table>

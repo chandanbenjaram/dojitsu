@@ -1,0 +1,126 @@
+<table bgcolor=#F4F4F4 height="30px">
+<tr bgcolor=#F4F4F4>
+	<% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
+	<% group =Array.new %>
+	<% allConnections.each  do |eachConnection| %>
+		<% group.push(eachConnection.target_id) %>
+	<% end %>
+		<script>
+			function contactToInvitee() 
+			{
+			 var contact = '<%= group.join(",") %>';
+			 window.fbAsyncInit();
+				FB.ui({
+				  method: 'send',
+				  to:contact,
+				  name: 'Do your best',
+				  link: 'http://www.dojitsu.com'
+						 });										 
+			 }
+		</script>			
+	 <td width="440px" height="40px">
+		<font color="#8c8c8c"><b><style="float: right;">Total:</style>	<%= group.length %><%= image_tag("btn_msg_up.png", :onclick=>"contactToInvitee()") %></font><b >
+	</td>
+<td width = "80px" id="search"  height="40px">
+		</td>
+	<td width="30px"  height="40px">
+		<p class="invite"><%= link_to ( image_tag ("search_it.PNG") , :class=>"image_tag") %><p>
+	</td>
+	<td  height="40px" width="50px">
+		<p class="invite"><%#= render :partial => 'invitations' %>
+		<%= image_tag("invite.PNG", :width=> "100px" , :height => "30px", :style => "top:10px;" )%>
+
+		<%= hidden_field_tag "myvar", 0%>	
+		</p>
+	</td>
+</tr>
+</table>
+<table width="100%" border="0">
+<tr>
+	<td>
+	
+		<table  border="0"> 
+			<tr bgcolor=#d7d7d7>
+				<td>NAME
+				</td>
+				<td  width="100px">
+					STATUS
+				</td>
+			</tr>
+		</table>
+		
+		<table bgcolor="white">
+			<tr>
+				<td>
+					<div id="wrap">
+						<h1 id="header"></h1>
+						<% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
+												
+											<tr>
+											<td id="list">				
+													
+												                      <% allConnections.each  do |eachConnection| %>
+											
+													<p><a href="#"  id="ahref"><%=image_tag(FbGraph::User.new(eachConnection.target_id).fetch.picture) %>
+													<b><%= FbGraph::User.new(eachConnection.target_id).fetch.name %> </b>
+													<span id="status_icon"> 
+														<%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>
+													<%= link_to image_tag("btn_delete_up.png" , :class =>"private_msg1"), user_connection_path(eachConnection.id), :confirm => 'Are you sure?', :method => :delete %>
+													 
+												</span> </a>
+													</p>
+														<% end %>
+												</td>
+										</tr>	
+								
+									</table>
+										<script>
+													$(document).ready(function() {
+														$(".private_msg").click(function(event) {
+															var targetId = event.target.id;								
+															$.dojitsu.renderSendBox("Testing", <%= "'+targetId+'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenges_url() +"'"%>);
+														});
+													});
+												</script>												
+						</table>
+					</div> 
+				</td>
+			</tr>
+		</table> 
+			<script>
+						(function ($) {
+						  jQuery.expr[':'].Contains = function(a,i,m){
+							  return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+						  };
+
+						  function listFilter(header, list) {
+							var form = $("<form>").attr({"class":"filterform","action":"#"}),
+								input = $("<input>").attr({"class":"filterinput","type":"text"});
+							$("#search").append($(form).append(input).appendTo(header));
+
+							$(input)
+							  .change( function () {
+								var filter = $(this).val();
+								if(filter) {
+								  $(list).find("a:not(:Contains(" + filter + "))").parent().slideUp();
+								  $(list).find("a:Contains(" + filter + ")").parent().slideDown();
+								} else {
+								  $(list).find("tr").slideDown();
+								}
+								return false;
+							  })
+							.keyup( function () {
+								$(this).change();
+							});
+						  }
+						  $(function () {
+							listFilter($("#header"), $("#list"));
+						  });
+						}(jQuery));
+					</script> 			
+		
+			
+			
+		</td>
+	</tr>
+</table>

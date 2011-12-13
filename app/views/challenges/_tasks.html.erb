@@ -1,7 +1,5 @@
 
 
-
-
 <table width="100%" border="1" bgcolor=#f4f4f4 >
 	<tr bgcolor=#f5f5f5>
 		<th width="85%">
@@ -143,36 +141,8 @@
 								width: 175px;
 								top:-6px;
 							}
-						</style>
-						
-						<% if @challenge.user_id == current_user.fbauth.uid %>
-							<% allTaskComplete = 0 %>
-							<% if @challenge.canCompleteBeforeTasks? %>
-								<% @challenge.tasks.each do |aTask| %>
-									<% if aTask.is_complete == 0 %>
-										<% allTaskComplete = 1 %>			
-									<% end %>
-								<% end %>
-								<% if allTaskComplete == 1 %>
-									<%= link_to "MARK AS COMPLETED",  "#", :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c1"%>
-								<% else %>
-									<%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c1"%>
-								<% end %>
-							<% else %>
-									<%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c1"%>
-							<% end %>
-						<% else %>
-							<%= link_to "MARK AS COMPLETED",  "#", :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c1"%>
-						<% end %>
-						
-						
-						
-						
-						
-						
-						
-						
-						
+						</style>						
+						<%= markAsComplete%>	
 					</div>
 		</tr>
 	<% else %>

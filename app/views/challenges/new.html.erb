@@ -1,6 +1,15 @@
 <%= stylesheet_link_tag('simple-tabs.css','jquery-ui.css','jquery.cluetip.css','challenges.css')%>
 <%= javascript_include_tag('simple-tabs','jquery.table.addrow.js','jquery.cluetip.js','challenge_new')%>
 <%= render 'layouts/loggedinbody'%>
+<div class="challengeSubNav">
+
+   			<%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %>
+    
+	<%= link_to "MY CHALLENGES >> ",challenges_url ,:class => "challenge_link1" %>
+	
+	<%= link_to "CREATE NEW ",new_challenge_url ,:class => "challenge_link1" %> 
+
+</div>
 
 <div class="pageContainer">
 	<span class="pageTitle">CREATE NEW</span>
@@ -9,7 +18,7 @@
 	<table width="100%" border="0" style="margin-top:0px;">
 		<tr>
 			<td colspan="4">
-				<p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :placeholder=>"enter challenge title here" , :required => "required"  %><div id="title"></div></p>
+				<p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :placeholder=>"Enter challenge title here" , :required => "required"  %><div id="title"></div></p>
 			</td>	
 		</tr>
 	
@@ -20,8 +29,8 @@
 			</td>
 		</tr>
 		<tr>
-			<td valign="top" class="color999"><%= f.label :description, "DESCRIPTION" %></td>
-			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea", :placeholder=>"enter challenge description here" %><div %></td>
+			<td valign="center" class="color999"><%= f.label :description, "DESCRIPTION" %></td>
+			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea", :placeholder=>"Enter challenge description here" %><div %></td>
 			</tr>
 			<tr>
 				<td colspan="4">
@@ -96,11 +105,11 @@
 							</div>
 							<td align="center" class="taskIcon"><%= image_tag("icon_multiply.png")%></td>
 							<td align="center">     
-								<%= task_fields.text_field :score, :class => "textfield_effect_nw_tk_add", :size=>"10px",:required => "required", :placeholder=>"enter task point(s)" %>
+								<%= task_fields.text_field :score, :class => "textfield_effect_nw_tk_add", :size=>"10px",:required => "required", :placeholder=>"Enter task point(s)" %>
 							</td>
 							<td align="center" class="taskIcon"><%= image_tag("icon_slash.png")%></td>
 							<td align="center">     
-								<%= task_fields.text_field :name, :class => "textfield_effect_nw_tk", :required => "required",  :placeholder=>"enter task name here"%>
+								<%= task_fields.text_field :name, :class => "textfield_effect_nw_tk", :required => "required",  :placeholder=>"Enter task name here"%>
 							</td>				
 							<td>
 								<%= image_tag("btn_delete_up.png" ,:class => "delRow") %>			

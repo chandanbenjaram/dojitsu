@@ -9,6 +9,7 @@ ul.tabs {
 	width: 100%;
 }
 
+
 ul.tabs li {
 	float: left;
 	margin: 0;
@@ -59,7 +60,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 .tab_container1 {
 	border: 1px solid #999;
 	border-top: none;
-	overflow: hidden;
+	
 	clear: both;
 	float: left; width: 100%;
 	background: #f4f4f4;

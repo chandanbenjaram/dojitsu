@@ -1,13 +1,15 @@
 <%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css','jquery-ui','ui.progressbar','ui.theme', 'main')%>
-
 <%= javascript_include_tag('simple-tabs','ui.progressbar.js','soc-per','on_the_spot','jquery.colorbox-min','jquery.tools.min','messages')%>
-
 <%= render 'layouts/loggedinbody'%>
+<div class="challengeSubNav">
 
+   			<%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %>
+    
+	<%= link_to "MY CHALLENGES >> ",challenges_url ,:class => "challenge_link1" %>
+	
+	<%= link_to "#{@challenge.title}","#" ,:class => "challenge_link1" %> 
 
-<%#= @challenge.user_id %></br>
-<%#= current_user.fbauth.uid %>
-
+</div>
 
 <% if !@challenge.child_challenges.blank? && userIds = []%>
 <% for aChild in @challenge.child_challenges %>
@@ -191,78 +193,134 @@ function fbCallback(response){
 							<% end %>
 						</div>
 						<div id="tab2" style="background:#F5F5F5;" class="tab_content">
-							
-							
-							<table bgcolor=#F4F4F4 width="100%" border="0" height="10px"  style="position: relative; top: -20px;">
-								
-									<td width="50%"  >
-										<% if  @challenge.class.to_s == "Challenge" %>
-											<font size="4" color="#8c8c8c"><b  id="total">Total: <%= @challenge.child_challenges.length %></b></font>
-										<%else %>
-											<font size="4" color="#8c8c8c"> <b  id="total">Total: <%= @challenge.parent.child_challenges.length %></b></font>
+							<table width="100%" border="0" height="40px">
+								<tr bgcolor=#F4F4F4>
+									<td width="220px">
+										<b  id="total">Total: <%= @challenge.child_challenges.length %></b>
+										<% if @challenge.instance_of?Challenge %>
+											<%= image_tag("btn_msg_up.png", :style=>"margin-left:10px; position:relative; top:5px;" ,:onclick=>"contactToInvitee()")%>
 										<% end %>
-											
-												<%= image_tag("btn_msg_up.png", :style=>"margin-left:10px; position:relative; top:5px;" ,:onclick=>"contactToInvitee()")%>
-											
 									</td>
-									<td>
-										<input type="text", id="search1">&nbsp;
+									<td width = "100px" id="search">
 									</td>
-									<td  >
-									
-										<select id="search">
+									<td width="300px">
+										<select>
 											<option value="volvo">ALL</option>
 											<option value="saab">ACCEPTED</option>
 											<option value="mercedes">PENDING</option>
 											<option value="audi">DECLINED</option>
 										</select> 
-											&nbsp;
-											<%= image_tag("search_it.PNG", :style=>"width:25px; height:25px; position:relative; top:5px;" ,:onclick=>"contactToInvitee()")%>
+										&nbsp;
+										<%= image_tag ("search_it.PNG") %>
 									</td>
-								
+								</tr>
 							</table>
-							 <%if @challenge.parent .nil? %>
-									<% childChallenges =  @challenge.child_challenges %>
-							<%else%>
-									<%childChallenges =  @challenge.parent.child_challenges %>
-							<%end%> 
-							
-							
-							<script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> </script>
-								<table id="tableshow_soc" class="sortable">
-								<thead>
-								  <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">NAME</th><th style="CURSOR: pointer; cursor: hand;" id="content2">STATUS</th></tr>
-								</thead>
-								<tbody>
-								 <% childChallenges.each do |aChildChallenge| %>
-										<tr>
-											<td width="92%" id="list">
-											<p><%=image_tag FbGraph::User.new(aChildChallenge.user_id).fetch.picture %> <a href="#"  id="ahref"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></a></p>
-										  
-										   </td>
-										   <td width="8%">
-										   <span id="status_icon"> 
-											  <% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 %>
-												<%= image_tag  "icon_thinking.png"  %>
-											  <% elsif aChildChallenge.social_type.status == 1 %>
-												<%= image_tag  "icon_accept.png"  %>
-											  <% else %>
-												 <%= image_tag "icon_decline.png"  %>
-											  <% end %>
-									           </span> 
-											</td>
-											</tr> 
-											 <% end %> 
-											 </tbody>
-								  </table>
-								</div>
 							<style>
-								#friendslist1
+								.filterinput
 								{
-									width:680px;
-									background:#ffffff;
+								width :200px;
+								height:25px;
 								}
-							</style>													
+							</style>
+							<table  border="0" height="20px" bgcolor="gray"> 
+								<tr bgcolor=#D7D7D7>
+									<td>
+										<b>NAME &nbsp;</b>
+									</td>
+									<td width="80px">
+										<font color=#A8A8A8>STATUS</font>
+									</td>
+								</tr>
+							</table>
+							<div id="wrap">
+									 <h1 id="header"></h1>
+									 <table bgcolor="white">
+									  <tr>
+									   <td id="list">
+										<%if @challenge.parent .nil? %>
+										 <% childChallenges =  @challenge.child_challenges %>
+										<%else%>
+										 <%childChallenges =  @challenge.parent.child_challenges %>
+										 <%end%>                      
+										<% childChallenges.each do |aChildChallenge| %>
+										 <p><%=image_tag FbGraph::User.new(aChildChallenge.user_id).fetch.picture %> <a href="#"  id="ahref"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></a>
+										 <span id="status_icon"> 
+										 <% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 %>
+										  <%= image_tag  "icon_thinking.png"  %>
+										 <% elsif aChildChallenge.social_type.status == 1 %>
+										   <%= image_tag  "icon_accept.png"  %>
+										 <% else %>
+											<%= image_tag "icon_decline.png"  %>
+										 <% end %>
+										<% end %>                    
+										</span> 
+										 </p>
+										</td>
+									  </tr> 
+									 </table>
+								   </div> 
+							</div> 
+							<script>
+							$(document).ready(function() 
+							{ 
+								$("#btnFilter").click(function() 
+								{ 
+									var selection = $("#catSelect").val(); 
+									 if (selection == "all") 
+									{ 
+										$(".item").show(); 
+									} 
+									else 
+									{ 
+										$(".item").hide(); 
+										$("."+selection).show(); 
+									} 
+								}); 
+							});
+							</script>                           
+							<style type="text/css">
+							#status_icon
+							{ 
+							float: right;
+							width: 80px;
+							} 
+							 #ahref
+							{     
+							color:#000000;
+							}
+							</style>                
+							<script>
+							 (function (cash) {
+							   jQuery.expr[':'].Contains = function(a,i,m){
+								return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+							   };
+
+							   function listFilter(header, list) {
+							  var form = $("<form>").attr({"class":"filterform","action":"#"}),
+							   input = $("<input>").attr({"class":"filterinput","type":"text"});
+							  $("#search").append($(form).append(input).appendTo(header));
+
+							  $(input)
+								.change( function () {
+							   var filter = $(this).val();
+							   if(filter) {
+								 $(list).find("a:not(:Contains(" + filter + "))").parent().slideUp();
+								 $(list).find("a:Contains(" + filter + ")").parent().slideDown();
+							   } else {
+								 $(list).find("p").slideDown();
+							   }
+							   return false;
+								})
+							  .keyup( function () {
+							   $(this).change();
+							  });
+							   }
+
+							   $(function () {
+							  listFilter($("#header"), $("#list"));
+							   });
+							 }(jQuery));
+							</script>
 						</div>
 					</div>
 				</td>
