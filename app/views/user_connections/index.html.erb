@@ -36,11 +36,11 @@
 				<table>
 					<tr>
 						<td width="100px">
-							<font color="#999999"><b>MEMBER SINCE</b></font></td>
+							<b><font color="#999999">MEMBER SINCE</font></b></td>
 						</td>
-						<td align="left">
-							<%  user = User.find(:all)%>
-							<%= current_user.created_at%>
+						<td align="left" style="color:#666666">
+							<b><%  user = User.find(:all)%>
+							<%= current_user.created_at%></b>
 						</td>
 					</tr>
 				</table>
@@ -50,8 +50,8 @@
 						<td width="100px">
 							<font color="#999999"><b>ACHIEVEMENTS</b></font>
 						</td>
-						<td align="left">
-							<% sum=0 %>
+						<td align="left" style="color:#666666;">
+						<b>	<% sum=0 %>
 							<% current_user.challenges.each  do |ch| %>
 								<% t= 0 %>
 								<% ch.tasks.each do |tasks| %>
@@ -59,7 +59,7 @@
 								<% end %>
 								<% sum = sum + t %>
 							 <% end %>
-							<font color="gray"><b><%= current_user.challenges.length %>&nbsp;Challenges&nbsp;and&nbsp;<%= sum%>&nbsp;tasks</b></font>
+							<b><%= current_user.challenges.length %>&nbsp;Challenges&nbsp;and&nbsp;<%= sum%>&nbsp;tasks</b>
 						</td>
 					</tr>
 				</table>
@@ -71,8 +71,8 @@
 						<td width="100px" height="10px">
 							<font color="#999999"><b> CURRENT CITY</b></font></td>
 						</td>
-						<td align="left" height="10px">
-							<p id="location"></p>
+						<td align="left" height="10px" style="color:#666666;">
+							<b><p id="location"></p></b>
 						</td>
 					</tr>
 				</table>
@@ -82,8 +82,8 @@
 						<td width="100px">
 							<font color="#999999"><b>HOME CITY</b></font></td>
 						</td>
-						<td align="left">
-							<p id="hometown"></p>
+						<td align="left" style="color:#666666;">
+						<b>	<p id="hometown"></p></b>
 						</td>
 					</tr>
 				</table>
@@ -93,8 +93,8 @@
 						<td width="100px">
 							<font color="#999999"><b> SEX</b></font></td>
 						</td>
-						<td align="left"  id="image2">
-							<%=  %>
+						<td style="align:left; color:#666666;"  id="image2"  >
+				
 						</td>
 					</tr>
 				</table>
@@ -104,7 +104,7 @@
 						<td width="100px">
 							<font color="#999999"><b>BIRTH DAY</b></font></td>
 						</td>
-						<td align="left" id="image3">
+						<td style="align: left; color: #666666;" id="image3">
 							<%#= current_user.facebook.birthday %>
 						</td>
 					</tr>
@@ -115,7 +115,7 @@
 						<td width="100px">
 							<font color="#999999"><b>ABOUT ME</b></font></td>
 						</td>
-						<td align="left">
+						<td style="align: left; color: #666666;" >
 							<%  about_me = current_user.facebook.bio %>
 							<%= about_me %>
 						</td>

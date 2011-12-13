@@ -194,7 +194,7 @@ ul.homenavbar > li.selected > a {
     left: 100px;
     position: relative;
     text-decoration: none;
-    top: 5px;
+    top: 7px;
 }
 
 .challenge_link{
@@ -447,7 +447,7 @@ position:relative;
 	background-repeat: repeat-x;
 	font-family: Arial;
 	font-size: 15px;
-	color: #000000;
+	color: #C6C6C6;
 	width: 299px;
 	height: 25px;
 }
@@ -1085,7 +1085,7 @@ ul.tabs1 {
 position:absolute;
 	background: none repeat scroll 0 0 #FFFFFF;
    
-    height: 343px;
+    height: 465px;
     margin-top: -1px;
     position: absolute;
     width: 635px;
@@ -1513,7 +1513,8 @@ input:required {
 
 
 #status_icon {
-    left: 30px;
+   	float:right;
+	 right: 110px;
     position: relative;
 }
 #percentage_personal
@@ -1590,15 +1591,16 @@ input:required {
 			}
 			.private_msg
 			{
-			 left: 40px;
-    position: relative;
-    top: -5px;
-}
+			 		left: 40px;
+    				position: relative;
+    				top: -5px;
+			}
 			.private_msg1
 			{
-			 left: 38px;
-    position: relative;
-    top: -5px;
+			 	float: right;
+			 	right: 20px;
+    			position: relative;
+    			top: -5px;
 			}
 			.bottom_border
 			{

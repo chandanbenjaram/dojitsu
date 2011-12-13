@@ -34,7 +34,7 @@
 			<%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:-2px;") %>
 			<table width="100%" style="margin-top:-10px;">
 			  <tr>
-				<td width="30%">
+				<td width="40%">
 					<font size="3px;" style="font-weight:bold"><%= anc.title%></font></br>
 					by  <b><%= FbGraph::User.new(anc.user_id).fetch.name %></b></br>
 					<% if anc.start_point.instance_of?PointDateType %>
@@ -42,9 +42,14 @@
 					<% else %>
 						<%= anc.start_point.value rescue 0%> - <%= anc.end_point.value rescue 0%>
 					<% end %>
-					<%= anc.child_challenges.size%> contestants
+					<br>
+					<% if anc.child_challenges.size==0 %>
+					 <%= anc.child_challenges.size%>&nbsp;&nbsp;contestant
+					 <%else%>
+					<%= anc.child_challenges.size%>&nbsp;&nbsp;contestants
+					<%end%>
 				</td>
-				<td width="70%">
+				<td width="60%">
 					<p style="float:right; margin-right:20px; color: #A9A8A8;"><%= time_ago_in_words  anc.created_at%></p></br></br>
 					<% if anc.personal_type.instance_of?ChallengePersonalType%>
 						<p style="text-transform:none;">
