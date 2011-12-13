@@ -176,12 +176,12 @@ ul.homenavbar > li.selected > a {
 	font-weight:bold;
 }   
 .new_challenge_button_new1 {
-    background: url("newbutton.PNG") no-repeat;
+    background: url("new1.PNG") no-repeat scroll left center #F8981D;
     float: left;
     font-family: arial;
     height: 25px;
     left: 90px;
-    min-width: 60px;
+    min-width: 70px;
     position: relative;
     text-align: right;
     top: 2px;
@@ -209,21 +209,21 @@ ul.homenavbar > li.selected > a {
 }
 .new_challenge_button_new
 {
- background: url("newbutton.PNG") no-repeat;
+ background: url("new1.PNG") no-repeat scroll left center #F8981D;
     float: left;
     font-family: arial;
     height: 25px;
     left: -140px;
-    min-width: 60px;
+    min-width: 70px;
     position: relative;
     text-align: right;
     top: 2px;
 }
 
 .new_challenge_button {
-	background: #f8981d url("newbutton.PNG") no-repeat left center;	
+	background: #f8981d url("new1.PNG") no-repeat left center;	
 	text-align: right;
-	min-width: 60px;
+	min-width: 70px;
 	height:25px;
 	top:-5px;
 	position:relative;
@@ -665,12 +665,12 @@ input.radio {
 }
 
 .ds_view_all{
-	 background: url("viewallbutton.PNG") no-repeat; 
+	 background: url("viewall.PNG") no-repeat; 
      float: left;
      font-family: Arial;
-     height: 26px;
+     height: 27px;
      left: 117px;
-     min-width: 69px;
+     min-width: 78px;
      position: relative;
      text-align: right;
      top: 0px;
@@ -719,7 +719,7 @@ input.radio {
     color: #FFFFFF;
     display: block;
     font-size: 12px;
-    left: -10px;
+    left: -375px;
     padding: 0;
     position: relative;
     text-align: center;
@@ -758,6 +758,7 @@ input.radio {
 
 .links_cancel {
 	background: none repeat scroll 0 0 #999999;
+	border-radius: 3px 3px 3px 3px;
 	text-color:white;
 	display: block;
 	font-size: 12px;
@@ -765,7 +766,7 @@ input.radio {
 	padding: 5px;
 	text-align: center;
 	text-transform: uppercase;
-	width: 70px;
+	width: 100px;
 }
 
 .task_links_cancel {
@@ -1234,11 +1235,17 @@ width:90%;
 {
 }
 .update
+
 {
-	float: left;
-    left: 320px;
+
+ float: left;
+
+    left: 80%;
+
     position: relative;
+
     top: 10px;
+
 }
 .update1
 {
@@ -1362,16 +1369,24 @@ width:90%;
 }
 
 #points
-{
-	position:relative;
-	top:-98px;
-	width:40px;
-	height:25px;
-	left:645px;
-	background:#DDEFCE;
-	color:#7AC142;
-}
 
+{
+
+ position:relative;
+
+ top: -93px;
+
+ width:40px;
+
+ height:25px;
+
+ left:92%;
+
+ background:#DDEFCE;
+
+ color:#7AC142;
+
+}
 .checking
 {
 	width:60px;
@@ -1513,7 +1528,7 @@ input:required {
 
 #status_icon {
    	float:right;
-	 right: 110px;
+	 right: 50px;
     position: relative;
 }
 #percentage_personal
@@ -1570,14 +1585,6 @@ input:required {
 			} 
 		
 			
-		 #ahref{
-	color: #666666;
-	font-weight: bold;
-	left: 10px;
-	position: relative;
-	text-decoration: none;
-	top:0px;
-}
 			#name_list
 			{
 			
@@ -1590,16 +1597,16 @@ input:required {
 			}
 			.private_msg
 			{
-			 		left: 40px;
-    				position: relative;
-    				top: -5px;
+			 		 left: 40px;
+    position: relative;
+    top: -5px;
 			}
 			.private_msg1
 			{
-			 	float: right;
-			 	right: 20px;
-    			position: relative;
-    			top: -5px;
+			 	 float: right;
+    position: relative;
+    right: 20px;
+    top: -5px;
 			}
 			.bottom_border
 			{
@@ -1638,7 +1645,7 @@ color: #FFFFFF;
     width: 40px;
 }
 .new_challenge_button4 {
-    background: url("newbutton.PNG") no-repeat;
+    background: url("new1.PNG") no-repeat scroll left center #F8981D;
     float: left;
     font-family: arial;
     height: 25px;
@@ -1646,7 +1653,7 @@ color: #FFFFFF;
     min-width: 70px;
     position: relative;
     text-align: right;
-    top: -9px;
+    top: -10px;
 }
 .new_challenge_button1 {
     background: url("new1.PNG") no-repeat scroll left center #F8981D;
