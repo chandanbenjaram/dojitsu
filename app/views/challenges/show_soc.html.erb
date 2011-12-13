@@ -5,9 +5,9 @@
 
    			<%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %>
     
-	<%= link_to "MY CHALLENGES >> ",challenges_url ,:class => "challenge_link1" %>
+	<%= link_to "MY CHALLENGES >> ", challenges_url , :style=> "text-decoration: none; color:#666666;", :class => "challenge_link1" %>
 	
-	<%= link_to "#{@challenge.title}","#" ,:class => "challenge_link1" %> 
+	<%= link_to "#{@challenge.title}","#" , :style=> "text-decoration: none; color:#666666;", :class => "challenge_link1" %> 
 
 </div>
 
@@ -59,42 +59,79 @@ function fbCallback(response){
 					</td>
 				</tr>
 			</table>
-		<% end %>							
+		<% end %>	
+		<script type="text/javascript">
+ 
+$(document).ready(function(){
+$("#image1").hide();
+$("#image2").hide();
+$("#image3").hide();
+$("#image4").hide();
+  $("#description").mouseover(function(){
+    $("#image1").show();
+     
+  });
+$("#organizer").mouseover(function(){
+    $("#image2").show();
+     
+  });
+    $("#startdate").mouseover(function(){
+    $("#image3").show();
+     
+  });
+$("#enddate").mouseover(function(){
+    $("#image4").show();
+     
+  });
+$(document).mouseout(function(){
+$("#image1").hide();
+$("#image2").hide();
+$("#image3").hide();
+$("#image4").hide();
+ });
+ });
+
+</script>
 		<div>
-			<table >
+			<table id="description">
 				<tr>
-					<td width="80px">
+					<td width="15%">
 						<b><font color= #999999>DESCRIPTION</font></b></td>
-					<td width="500px">
-						<b><%= on_the_spot_edit @challenge,:description , :type=>:textarea  %></b>
+					<td  width="73%">
+						<b style="color:#666666;"><%= on_the_spot_edit @challenge,:description , :type=>:textarea  %></b>
+					</td>
+					<td  width="12%">
+						<span id="image1"><%= image_tag("icon_edit.png") %></span>
 					</td>
 				</tr>
 			</table>
 		</div>	
 		<div>
-			<table width="500px">
+			<table id="organizer">
 				<tr>
-					<td width="130px" class="titles">
-						<b><font color= #999999>ORGANIZER</font></b>
+					<td width="15%" class="titles">
+						<b ><font color= #999999>ORGANIZER</font></b>
 					</td>
-					<td >
+					<td width="73%">
 						<% if @challenge.instance_of?ChildChallenge%>
 							<%  @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
 							<script>
 								var ordId = <%=  orgId = @parentChallenge.user_id %>
 							</script>
-							<b><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
+							<b style="color:#666666;"><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
 						<% else %>	
-							<b id="user_name"></b>
+							<b style="color:#666666;" id="user_name"></b>
 							<script>
 								var ordId = <%=  orgId = @challenge.user_id %>
 							</script>
 						<% end %>	
 					</td>
-					<td width="100px">
+					<td  width="12%">
+						<span id="image2">
 						<% if @challenge.instance_of?ChildChallenge || @challenge.user_id != current_user.fbauth.uid %>
 							<%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(ordId)" ) %>
 						<% end %>
+						</span>
 					</td>
 				</tr>
 				<tr>
@@ -106,17 +143,20 @@ function fbCallback(response){
 			<hr/>
 		</div>
 		<div>
-			<table>
+			<table id="startdate">
 				<tr>
-					<td width=130px>
+					<td width="15%">
 						<b><font color= #999999>START POINT</font></b>
 					</td>
-					<td>
+					<td width="73%">
 						<% if @challenge.start_point.instance_of?PointDateType %>		
-							 <b><%= @challenge.start_point.value.strftime("%b %d, %Y") %> </b>
+							 <b style="color:#666666;"><%= @challenge.start_point.value.strftime("%b %d, %Y") %> </b>
 						<% else %>							
-							<b><%= @challenge.start_point.value.to_i %></b>
+							<b style="color:#666666;"><%= @challenge.start_point.value.to_i %></b>
 						<% end %>
+					</td>
+					<td  width="12%">
+						<span id="image3"><%= image_tag("icon_edit.png") %></span>
 					</td>
 				</tr>
 			</table>
@@ -125,17 +165,20 @@ function fbCallback(response){
 			<hr/>
 		</div>
 		<div>
-			<table>
+			<table id="enddate">
 				<tr> 
 					<td width=130px>
 						<b><font color= #999999>END POINT</font></b>
 					</td>
 					<td>
 						<% if @challenge.end_point.instance_of?PointDateType %>		
-							<b><%= @challenge.end_point.value.strftime("%b %d, %Y") %></b>
+							<b style="color:#666666;"><%= @challenge.end_point.value.strftime("%b %d, %Y") %></b>
 						<% else %>							
-							<b><%= @challenge.end_point.value.to_i %></b>
+							<b style="color:#666666;"><%= @challenge.end_point.value.to_i %></b>
 						<% end %>
+					</td>
+					<td  width="12%">
+						<span id="image4"><%= image_tag("icon_edit.png") %></span>
 					</td>
 				</tr>
 			</table>
@@ -150,15 +193,16 @@ function fbCallback(response){
 				</td>
 				<td>
 				<% if @challenge.social_type.status == 1 &&  @challenge.class.to_s == "ChildChallenge" %>
-						<b><%= @challenge.parent.child_challenges.length %></b>
+						<b style="color:#666666;"><%= @challenge.parent.child_challenges.length %></b>
 					<% else %>
 						<% if @challenge.social_type.status == 1 %>
-							<b><%= @challenge.child_challenges.length %></b>
+							<b style="color:#666666;"><%= @challenge.child_challenges.length %></b>
 						<% else %>
-							<b><%= @challenge.parent.child_challenges.length %></b>
+							<b style="color:#666666;"><%= @challenge.parent.child_challenges.length %></b>
 						<% end %>
 				<% end %>
 				</td>
+				
 			</tr>
 		</table>
 		<input type="hidden" name="thinking_abt" id="thinking_abt" value="<%= @challenge.id %>"> 
