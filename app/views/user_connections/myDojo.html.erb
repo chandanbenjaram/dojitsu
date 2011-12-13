@@ -19,16 +19,16 @@
 			 }
 		</script>			
 	 <td width="440px" height="40px">
-		<font color="#8c8c8c"><b><style="float: right;">Total:</style>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= group.length %><%= image_tag("btn_msg_up.png", :onclick=>"contactToInvitee()") %></font><b >
+		<font color="#8c8c8c"><b><style="float: right;">Total:&nbsp;</style><%= group.length %><span style="position: relative; top: 5px;">&nbsp;<%= image_tag("btn_msg_up.png", :onclick=>"contactToInvitee()") %></span></font><b >
 	</td>
 <td width = "80px" id="search"  height="40px">
 		</td>
 	<td width="30px"  height="40px">
-		<p class="invite"><%= link_to ( image_tag ("search_it.PNG") , :class=>"image_tag") %><p>
+		<p class="invite"><%= link_to ( image_tag ("searchbutton.PNG") , :class=>"image_tag") %><p>
 	</td>
 	<td  height="40px" width="50px">
 		<p class="invite"><%#= render :partial => 'invitations' %>
-		<%= image_tag("invite.PNG", :width=> "100px" , :height => "30px", :style => "top:10px;" )%>
+		<%= image_tag("invitee.PNG", :width=> "100px" , :height => "30px", :style => "top:10px;" )%>
 
 		<%= hidden_field_tag "myvar", 0%>	
 		</p>

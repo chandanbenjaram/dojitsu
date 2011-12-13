@@ -310,7 +310,7 @@ ul.dojo-menu a:hover {
 }
 
 ul.dojo-menu a:selected {
-	color: #000;
+	color: #666666;
 	text-decoration: none;
 	background-color: #fff;
 	border-radius: 0px 0px 0px 0px;
@@ -415,7 +415,7 @@ nav .menu #check :hover {
 
 a .selected {
 	text-decoration: none;
-	color: #000;
+	color: #666666;
 	background-color: #fff;
 	border-radius: 5px 5px 0px 0px;
 }
@@ -1456,7 +1456,7 @@ input:required {
 }
 
 #check3 {
-    background: none repeat scroll 0 0 #000000;
+    background: none repeat scroll 0 0 #666666;
     height: 60px;
     margin-top: 20px;
     width: 860px;
@@ -1530,7 +1530,7 @@ input:required {
 {
 	height:60px;
 	width:835px;
-	background:#000000;
+	background:#666666;
 	margin-top:10px;
 	padding-left:10px;
 }
