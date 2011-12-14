@@ -12,19 +12,19 @@
 <table width="100%">
 	<td width="50%" class="divone">
 		<div class="regmessage">
-			<div class="msgtitle">
-				<table>
-				  <tr>
-					<td><font color="#AAA9A9" size=4><b>WHAT'S NEW</b></font></td>
-					<td>
-						<% if Challenge.where(:_type.exists => false).desc("created_at").limit(3).count == 0 %>
-					
-								<% else %>				
-								<%= button_to "", "#", :class => "non_login_view_all", :method => :get%> </td>
-						<% end %>
-					</tr>
-				</table>
-			</div>
+                    <div class="msgtitle">
+                        <table>
+                          <tr>
+                              <td><font color="#AAA9A9" size=4><b>WHAT'S NEW</b></font></td>
+                              <td>
+                                  <% if Challenge.where(:_type.exists => false).desc("created_at").limit(3).count == 0 %>
+                                  <% else %>				
+                                       <%= link_to "", nonLoginIndex_challenges_path, :class => "non_login_view_all", :method => :get%> </td>
+                                  <% end %>
+                              </td>    
+                              </tr>
+                        </table>
+                    </div>
 			
 		<% if Challenge.where(:_type.exists => false).desc("created_at").limit(3).count == 0 %>
 		<p align="center">No challenges found</p>

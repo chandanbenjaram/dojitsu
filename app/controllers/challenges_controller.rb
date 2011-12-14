@@ -1,5 +1,5 @@
 class ChallengesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:nonLoginShowPersonal, :nonLoginShowSocial]
+  before_filter :authenticate_user!, :except => [:nonLoginShowPersonal, :nonLoginShowSocial, :nonLoginIndex]
   before_filter :find_challenge, :only => [:show, :edit, :update, :destroy]
   #on_spot_edit  is the gem to edit the data on spot 
   can_edit_on_the_spot
@@ -16,10 +16,19 @@ class ChallengesController < ApplicationController
   
   def nonLoginShowPersonal
     @challenge = Challenge.find(params[:id])
+    if(@challenge.social_type.instance_of? ChallengeSocialType rescue false)
+      render "nonLoginShowSocial" and return
+    else
+      render "nonLoginShowPersonal"
+    end
   end
   
   def nonLoginShowSocial
     @challenge = Challenge.find(params[:id])
+  end
+  
+  def nonLoginIndex
+    @challenges = Challenge.where(:_type.exists => false).desc("created_at")
   end
 
   def index

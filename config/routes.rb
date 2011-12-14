@@ -27,6 +27,7 @@ Dojitsu::Application.routes.draw do
       get "socialPeople"
       get "nonLoginShowPersonal"
       get "nonLoginShowSocial"
+      get "nonLoginIndex"
       get "paginationTest"
       get "update_status_af_meg"
       put "update_task_soc"
