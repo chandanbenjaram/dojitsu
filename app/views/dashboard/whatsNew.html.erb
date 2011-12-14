@@ -35,18 +35,24 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><%= aChallenge.child_challenges.size%> contestants</td>
+				<td colspan="2"><% if aChallenge.child_challenges.size<2 %>
+					 <%= aChallenge.child_challenges.size%>&nbsp;&nbsp;contestant
+					 <%else%>
+					<%= aChallenge.child_challenges.size%>&nbsp;&nbsp;contestants
+					<%end%>
+					
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
 					<% if aChallenge.personal_type.instance_of?ChallengePersonalType%>
 						<p style="text-transform:none;">
-							<%=h truncate(aChallenge.description, :length => 128) %>....<%= link_to "VIEW" , show_per_challenges_path(:id => aChallenge.id) %>									
+							<%=h truncate(aChallenge.description, :length => 15) %>....<%= link_to "VIEW" , show_per_challenges_path(:id => aChallenge.id) %>									
 						</p>
 					<% end %>
 					<% if aChallenge.social_type.instance_of?ChallengeSocialType%>
 						<p style="text-transform:none;">
-							<%=h truncate(aChallenge.description, :length => 128) %>....<%= link_to "VIEW" , show_soc_challenges_path(:id => aChallenge.id) %>									
+							<%=h truncate(aChallenge.description, :length => 15) %>....<%= link_to "VIEW" , show_soc_challenges_path(:id => aChallenge.id) %>									
 						</p>
 					<% end %>								
 				</td>
