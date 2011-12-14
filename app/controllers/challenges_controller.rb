@@ -12,10 +12,12 @@ class ChallengesController < ApplicationController
     @title = "Challenges"
     @no_of_row = Challenge.all.count
     @challenges = current_user.challenges
+    
   end
 
   def show       
     @challenge = Challenge.find(params[:id])	
+    
   end
 
   def show_soc
