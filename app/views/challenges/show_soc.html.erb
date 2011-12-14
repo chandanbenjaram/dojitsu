@@ -92,7 +92,7 @@ function fbCallback(response){
 						<% end %>	
 					</td>
 					<td width="100px">
-						<% if @challenge.instance_of?ChildChallenge || @challenge.user_id != current_user.fbauth.uid %>
+						<% if @challenge.user_id != current_user.fbauth.uid %>
 							<%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(ordId)" ) %>
 						<% end %>
 					</td>

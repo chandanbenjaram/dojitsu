@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
-
+  before_filter :authenticate_user!, :except =>[:storemessage] 
+  
 	def storemessage
 		@name = params[:messageDetails][:name]
 		@to = params[:messageDetails][:recipients]

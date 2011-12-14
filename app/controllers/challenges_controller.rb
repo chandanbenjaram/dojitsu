@@ -1,11 +1,25 @@
 class ChallengesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index]
+  before_filter :authenticate_user!, :except => [:nonLoginShowPersonal, :nonLoginShowSocial]
   before_filter :find_challenge, :only => [:show, :edit, :update, :destroy]
   #on_spot_edit  is the gem to edit the data on spot 
   can_edit_on_the_spot
   
   def paginationTest
-    @challenges = Challenge.all.paginate(:page =>params[:page], :per_page => 2)
+    @challegnes = Challenge.where(:_type.exists => false)
+    #@users = Challenge.paginate(:page => params[:page])
+    # or, use an explicit "per page" limit:
+    @users = @challegnes.paginate(:page => params[:page], :per_page => 1)
+    #@users = Challenge.all.paginate(:per_page=>2, :page=>params[:page])
+    #@users = Message.paginate(:conditions=>{:to => '100002573213371'},:per_page=>2, :page=>params[:page])
+    #@users = Challenge.where(:_type.exists => false).paginate(:page =>params[:page], :per_page => 1)
+  end
+  
+  def nonLoginShowPersonal
+    @challenge = Challenge.find(params[:id])
+  end
+  
+  def nonLoginShowSocial
+    @challenge = Challenge.find(params[:id])
   end
 
   def index
@@ -145,6 +159,8 @@ class ChallengesController < ApplicationController
 
   def update_task_soc
     @challenge = Challenge.find(params[:id])
+    #@challenge.update_attributes(params[:challenge][:canCompleteBeforeTasks])
+    #raise params[:challenge][:canCompleteBeforeTasks].inspect
     @challenge.tasks.destroy
     @challenge.child_challenges.each do |eachChildChallenge|
       eachChildChallenge.tasks.destroy
@@ -166,10 +182,9 @@ class ChallengesController < ApplicationController
 	
   def date_update
   	raise "venkat..."
-   @challenge = Challenge.find(params[:id])
+    @challenge = Challenge.find(params[:id])
   end
 	
-  
   def destroy
     @challenge.destroy
     redirect_to :action => 'index'
