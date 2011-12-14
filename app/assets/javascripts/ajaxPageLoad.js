@@ -1,5 +1,5 @@
 (function($) {
-    $.dojitsu ={
+    $.dojitsuUtile ={
         renderAjaxPageLoad : function(aUrl,aDiv,callback){
             $.ajax({
               url: aUrl,
