@@ -15,6 +15,6 @@
 	table
 	  - for challenge in @challenges do
 	      tr
-	        td = link_to challenge.title, {:action => 'show_per', :id => challenge.id },:style=> "text-decoration: none; font-weight:bold; color:#666666;"
+	        td = link_to challenge.title, {:action => 'nonLoginShowPersonal', :id => challenge.id },:style=> "text-decoration: none; font-weight:bold; color:#666666;"
 - else
     p No Challenges found   

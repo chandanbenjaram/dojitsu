@@ -165,16 +165,59 @@ ul.homenavbar > li.selected > a {
 }
 
 .challengeSubNav {
-	background-color: #F0F0F0;
+	 background-color: #F0F0F0;
+    position: relative;
+    top: -17px;
+	height: 30px;
 }	
 
 .font12bold {
 	font-size: 12px; 
 	font-weight:bold;
 }   
+.new_challenge_button_new1 {
+    background: url("new1.PNG") no-repeat scroll left center #F8981D;
+    float: left;
+    font-family: arial;
+    height: 25px;
+    left: 90px;
+    min-width: 70px;
+    position: relative;
+    text-align: right;
+    top: 2px;
+}
+.challenge_link1 {
+    color: gray;
+    font-family: arial;
+    font-size: 12px;
+    font-weight: bold;
+    left: 100px;
+    position: relative;
+    text-decoration: none;
+    top: 7px;
+}
 
-.gray {
+.challenge_link{
 	color: gray;
+	 color: gray;
+    font-family: arial;
+    font-size: 12px;
+    font-weight: bold;
+    left: -140px;
+    position: relative;
+    top: 5px;
+}
+.new_challenge_button_new
+{
+ background: url("new1.PNG") no-repeat scroll left center #F8981D;
+    float: left;
+    font-family: arial;
+    height: 25px;
+    left: -140px;
+    min-width: 70px;
+    position: relative;
+    text-align: right;
+    top: 2px;
 }
 
 .new_challenge_button {
@@ -200,6 +243,7 @@ ul.homenavbar > li.selected > a {
 	left:30px;
 	font-family: arial;
 }
+
 
 /* User show page */
 table.profile {
@@ -266,7 +310,7 @@ ul.dojo-menu a:hover {
 }
 
 ul.dojo-menu a:selected {
-	color: #000;
+	color: #666666;
 	text-decoration: none;
 	background-color: #fff;
 	border-radius: 0px 0px 0px 0px;
@@ -371,7 +415,7 @@ nav .menu #check :hover {
 
 a .selected {
 	text-decoration: none;
-	color: #000;
+	color: #666666;
 	background-color: #fff;
 	border-radius: 5px 5px 0px 0px;
 }
@@ -385,6 +429,15 @@ a .selected {
 	padding-left: 5px;  
 	font-size: 12px;  
 } 
+#challenge_task_attributes__name
+{
+width:107%;
+}
+.delRow
+{
+left:25px;
+position:relative;
+}
 
 .textfield_effect{
 	border-width: 1px;
@@ -394,8 +447,8 @@ a .selected {
 	background-repeat: repeat-x;
 	font-family: Arial;
 	font-size: 15px;
-	color: #000000;
-	width: 278px;
+	color: #C6C6C6;
+	width: 299px;
 	height: 25px;
 }
 
@@ -453,10 +506,10 @@ a .selected {
 	font-family: Arial;
 	font-size: 15px;
 	color: #333333;
-	width: 96%;
+	
 	height: 25px;
-	max-width:300px;
-	min-width:96%;
+	
+	width:99%;
 }
 
 .textarea_nw_tk:hover{
@@ -493,7 +546,7 @@ a .selected {
 	font-size: 20px;
 	font-weight:bold;
 	color: #000000;
-	width: 97.5%;
+	width: 100%;
 	height: 25px;
 }
 
@@ -616,11 +669,11 @@ input.radio {
      float: left;
      font-family: Arial;
      height: 27px;
-     left: 177px;
+     left: 117px;
      min-width: 78px;
      position: relative;
      text-align: right;
-     top: -14px;
+     top: 0px;
 }
 .ds_view_all1 {
 	background: url("viewall.PNG") no-repeat right;	
@@ -661,11 +714,12 @@ input.radio {
 	width: 195px;
 }
 .invitees {
-	 background: none repeat scroll 0 0 #F9A943;
+    background: none repeat scroll 0 0 #F9A943;
     border-radius: 3px 3px 3px 3px;
     color: #FFFFFF;
     display: block;
     font-size: 12px;
+    left: -10px;
     padding: 0;
     position: relative;
     text-align: center;
@@ -691,10 +745,11 @@ input.radio {
 }
 .profile_name
 {
-  left: 580px;
-  position: relative;
-  top: 6px;
-  width:200px;
+   font-family: arial;
+    left: 200px;
+    position: relative;
+    top: 6px;
+    width: 200px;
 }
 #ch_main_div3 {
   
@@ -703,7 +758,6 @@ input.radio {
 
 .links_cancel {
 	background: none repeat scroll 0 0 #999999;
-	border-radius: 3px 3px 3px 3px;
 	text-color:white;
 	display: block;
 	font-size: 12px;
@@ -711,7 +765,7 @@ input.radio {
 	padding: 5px;
 	text-align: center;
 	text-transform: uppercase;
-	width: 100px;
+	width: 70px;
 }
 
 .task_links_cancel {
@@ -1030,7 +1084,7 @@ ul.tabs1 {
 position:absolute;
 	background: none repeat scroll 0 0 #FFFFFF;
    
-    height: 343px;
+    height: 465px;
     margin-top: -1px;
     position: absolute;
     width: 635px;
@@ -1180,12 +1234,17 @@ width:90%;
 {
 }
 .update
-{
-	position:relative;
 
-	float:left;
-	left:290px;
-	top:10px;
+{
+
+ float: left;
+
+    left: 80%;
+
+    position: relative;
+
+    top: 10px;
+
 }
 .update1
 {
@@ -1275,6 +1334,7 @@ width:90%;
 	left:60px;
 	position:relative;
 	width:80%;
+        top: 4px;
 }
 .remainedtask
 {
@@ -1309,16 +1369,24 @@ width:90%;
 }
 
 #points
-{
-	position:relative;
-	top:-93px;
-	width:40px;
-	height:25px;
-	left:425px;
-	background:#DDEFCE;
-	color:#7AC142;
-}
 
+{
+
+ position:relative;
+
+ top: -93px;
+
+ width:40px;
+
+ height:25px;
+
+ left:92%;
+
+ background:#DDEFCE;
+
+ color:#7AC142;
+
+}
 .checking
 {
 	width:60px;
@@ -1417,6 +1485,7 @@ input:required {
 .challengerow{
 
  border:10px solid #FF0000;
+
  
 }
 #search1 {
@@ -1425,7 +1494,7 @@ input:required {
     width: 180px;
 }
 #search{
-  border: 0px solid #BEBEBE;
+  border: 1px solid #BEBEBE;
     height: 25px;
     width: 180px;
 }
@@ -1458,7 +1527,8 @@ input:required {
 
 
 #status_icon {
-    left: 30px;
+   	float:right;
+	 right: 50px;
     position: relative;
 }
 #percentage_personal
@@ -1515,14 +1585,6 @@ input:required {
 			} 
 		
 			
-		 #ahref{
-	color: #000000;
-	font-weight: bold;
-	left: 10px;
-	position: relative;
-	text-decoration: none;
-	top:0px;
-}
 			#name_list
 			{
 			
@@ -1535,16 +1597,17 @@ input:required {
 			}
 			.private_msg
 			{
-			 left: 40px;
-    position: relative;
-    top: -5px;
-}
-			.private_msg1
-			{
-			 left: 38px;
+			 		 left: 0px;
     position: relative;
     top: -5px;
 			}
+			
+			.private_msg1 {
+			float:right;
+    position: relative;
+    right: 90px;
+    top: -5px;
+}
 			.bottom_border
 			{
 			
@@ -1664,3 +1727,20 @@ position :relative;
 float:right;
 right:10px;  	
   }
+  
+  .hidebutton{
+   float: left;
+    height: 20px;
+    left: 90px;
+    position: relative;
+    top: -1px;
+    width: 20px;
+  }
+  
+  .fontstyle{
+  	font-color: #A0A0A0;
+  }
+ .fbusername{
+	top:-20px;
+	position:relative;
+}

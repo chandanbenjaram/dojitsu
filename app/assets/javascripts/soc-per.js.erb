@@ -73,7 +73,22 @@
 			$('.window').hide();
 		}
 	});
+	
 	$(".addComment").btnAddRow({rowNumColumn:"rowNumber"});
 	$(".delRow").btnDelRow();
 
 })(jQuery);
+
+$(document).ready(function(){
+$("#image1").hide();
+
+  $("#description").mouseover(function(){
+    $("#image1").show();
+     
+  });
+
+$(document).mouseout(function(){
+$("#image1").hide();
+
+ });
+ });

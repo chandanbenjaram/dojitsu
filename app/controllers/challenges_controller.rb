@@ -1,5 +1,5 @@
 class ChallengesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index]
+  before_filter :authenticate_user!, :except => [:nonLoginShowPersonal, :nonLoginShowSocial, :nonLoginIndex]
   before_filter :find_challenge, :only => [:show, :edit, :update, :destroy]
   #on_spot_edit  is the gem to edit the data on spot 
   can_edit_on_the_spot
@@ -8,10 +8,12 @@ class ChallengesController < ApplicationController
     @title = "Challenges"
     @no_of_row = Challenge.all.count
     @challenges = current_user.challenges
+    
   end
 
   def show       
     @challenge = Challenge.find(params[:id])	
+    
   end
 
   def show_soc
@@ -32,6 +34,7 @@ class ChallengesController < ApplicationController
 
   def show_per
     @challenge = Challenge.find(params[:id])
+	
     @is_complete_status = 0 
     @challenge.tasks.each do |checkingTaskStatus|
       unless checkingTaskStatus.is_complete == 1
@@ -140,8 +143,10 @@ class ChallengesController < ApplicationController
 
   def update_task_soc
     @challenge = Challenge.find(params[:id])
+    Challenge.where(:_id => params[:id]).update(:canCompleteBeforeTasks => params[:challenge][:canCompleteBeforeTasks])
     @challenge.tasks.destroy
     @challenge.child_challenges.each do |eachChildChallenge|
+      eachChildChallenge.update_attributes(:canCompleteBeforeTasks => params[:challenge][:canCompleteBeforeTasks])
       eachChildChallenge.tasks.destroy
       eachChildChallenge.update_attributes(params[:challenge])
     end
@@ -151,6 +156,7 @@ class ChallengesController < ApplicationController
 
   def update
     @challenge = Challenge.find(params[:id])
+	
     if @challenge.update_attributes(params[:challenge])
 		#raise "aaa"
       redirect_to :action => 'index', :id => @challenge
@@ -158,7 +164,12 @@ class ChallengesController < ApplicationController
       render :action => edit
     end
   end
-
+	
+  def date_update
+  	raise "venkat..."
+    @challenge = Challenge.find(params[:id])
+  end
+	
   def destroy
     @challenge.destroy
     redirect_to :action => 'index'
@@ -218,11 +229,9 @@ class ChallengesController < ApplicationController
   end
 
   def date_update
-    @challenge_date = Challenge.find(params[:id])
-    @date = @challenge_date.end_point.value 
-    render :layout => false
+   @challenge = Challenge.find(params[:id]) 
+   raise @challenge.inspect
   end
-
 
   def update_status
     aChallenge = Challenge.find(params[:id])
@@ -241,8 +250,35 @@ class ChallengesController < ApplicationController
     end
   end
   
+  def paginationTest
+    #@challegnes = Challenge.where(:_type.exists => false)
+    #@users = Challenge.paginate(:page => params[:page])
+    # or, use an explicit "per page" limit:
+    #@users = @challegnes.paginate(:page => params[:page], :per_page => 1)
+    @users = UserConnection.paginate(:per_page=>2, :page=>params[:page])
+    #@users = Message.paginate(:conditions=>{:to => '100002573213371'},:per_page=>2, :page=>params[:page])
+    #@users = Challenge.where(:_type.exists => false).paginate(:page =>params[:page], :per_page => 1)
+  end
+  
+  def nonLoginShowPersonal
+    @challenge = Challenge.find(params[:id])
+    if(@challenge.social_type.instance_of? ChallengeSocialType rescue false)
+      render "nonLoginShowSocial" and return
+    else
+      render "nonLoginShowPersonal"
+    end
+  end
+  
+  def nonLoginShowSocial
+    @challenge = Challenge.find(params[:id])
+  end
+  
+  def nonLoginIndex
+    @challenges = Challenge.where(:_type.exists => false).desc("created_at")
+  end
+  
   def socialPeople
-	render :layout => false
+    render :layout => false
   end
 
   protected
@@ -250,6 +286,6 @@ class ChallengesController < ApplicationController
   def find_challenge
     @challenge = Challenge.all
   end
-
+  
 end
 

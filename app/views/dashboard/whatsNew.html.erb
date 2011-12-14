@@ -1,13 +1,9 @@
-<div class="whatsnew">	
-	<font style="float:left">WHAT'S NEW</font> 
-	<%= button_to "", challenges_url, :class => "ds_view_all", :method => :get%>
-</div>
 <% if Challenge.whatsNew.count == 0 %>
 	<p align="center">No challenges found</p>
 <% else %>
 	<% Challenge.whatsNew.each do |aChallenge| %>
 	<div id="contentbox">
-		<%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:0px;") %>
+		<%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:-2px;") %>
 		<table width="100%" style="margin-top:-10px;">
 			<tr>
 				<td width="60%"><font size="3px;" style="font-weight:bold"><%= aChallenge.title%></font></td>
@@ -39,23 +35,29 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><%= aChallenge.child_challenges.size%> contestants</td>
+				<td colspan="2"><% if aChallenge.child_challenges.size<2 %>
+					 <%= aChallenge.child_challenges.size%>&nbsp;&nbsp;contestant
+					 <%else%>
+					<%= aChallenge.child_challenges.size%>&nbsp;&nbsp;contestants
+					<%end%>
+					
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
 					<% if aChallenge.personal_type.instance_of?ChallengePersonalType%>
 						<p style="text-transform:none;">
-							<%=h truncate(aChallenge.description, :length => 128) %>....<%= link_to "VIEW" , show_per_challenges_path(:id => aChallenge.id) %>									
+							<%=h truncate(aChallenge.description, :length => 15) %>....<%= link_to "VIEW" , show_per_challenges_path(:id => aChallenge.id) %>									
 						</p>
 					<% end %>
 					<% if aChallenge.social_type.instance_of?ChallengeSocialType%>
 						<p style="text-transform:none;">
-							<%=h truncate(aChallenge.description, :length => 128) %>....<%= link_to "VIEW" , show_soc_challenges_path(:id => aChallenge.id) %>									
+							<%=h truncate(aChallenge.description, :length => 15) %>....<%= link_to "VIEW" , show_soc_challenges_path(:id => aChallenge.id) %>									
 						</p>
 					<% end %>								
 				</td>
 			</tr>
 		</table>
 	</div>
-<% end %>
+	<% end %>
 <% end %>

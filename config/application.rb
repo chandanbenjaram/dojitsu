@@ -66,6 +66,6 @@ module Dojitsu
     # fallback used for development, test. prod differs
 	
     config.fb_app_id = '181761375220642' 
-    config.fb_app_secret = '28dc6fdf9d4318d0a3ae0c91692b4005'    
+    config.fb_app_secret = '28dc6fdf9d4318d0a3ae0c91692b4005'  
   end
 end

@@ -1,16 +1,14 @@
 <%= stylesheet_link_tag('challenges.css','simple-tabs','jquery-ui', 'ui.core','ui.progressbar', 'main')%>
-<%= javascript_include_tag('jquery.facebook.multifriend.select','simple-tabs','ui.progressbar','on_the_spot')%>
+<%= javascript_include_tag('jquery.facebook.multifriend.select','simple-tabs','ui.progressbar','on_the_spot','ajaxPageLoad','messages')%>
 <%= render 'layouts/loggedinbody'%>
 <% as= current_user.challenges.size %>
 
 
-<div bgcolor="#f4f4f4" ,class="topbar" style="margin-top: 0px; width: 100%; height: 30px; background: none repeat scroll 0% 0% rgb(244, 244, 244); top: -20px; position: relative;">
+<div bgcolor="#f4f4f4" ,class="topbar" style="margin-top: 0px; width: 100%; height: 30px; background: none repeat scroll 0% 0% rgb(244, 244, 244); top: -18px; position: relative;">
 	
 				<div class="invitee_button" ><%= render :partial => 'invitations' %></div>
 			
-			<div class="profile_name">
-				<b  id="image" > </b>
-			</div>
+			
 		
 </div>
 
@@ -36,11 +34,11 @@
 				<table>
 					<tr>
 						<td width="100px">
-							<font color="#999999"><b>MEMBER SINCE</b></font></td>
+							<b><font color="#999999">MEMBER SINCE</font></b></td>
 						</td>
-						<td align="left">
-							<%  user = User.find(:all)%>
-							<%= current_user.created_at%>
+						<td align="left" style="color:#666666">
+							<b><%  user = User.find(:all)%>
+							<%= current_user.created_at%></b>
 						</td>
 					</tr>
 				</table>
@@ -50,8 +48,8 @@
 						<td width="100px">
 							<font color="#999999"><b>ACHIEVEMENTS</b></font>
 						</td>
-						<td align="left">
-							<% sum=0 %>
+						<td align="left" style="color:#666666;">
+						<b>	<% sum=0 %>
 							<% current_user.challenges.each  do |ch| %>
 								<% t= 0 %>
 								<% ch.tasks.each do |tasks| %>
@@ -59,7 +57,7 @@
 								<% end %>
 								<% sum = sum + t %>
 							 <% end %>
-							<font color="gray"><b><%= current_user.challenges.length %>&nbsp;Challenges&nbsp;and&nbsp;<%= sum%>&nbsp;tasks</b></font>
+							<b><%= current_user.challenges.length %>&nbsp;Challenges&nbsp;and&nbsp;<%= sum%>&nbsp;tasks</b>
 						</td>
 					</tr>
 				</table>
@@ -71,8 +69,8 @@
 						<td width="100px" height="10px">
 							<font color="#999999"><b> CURRENT CITY</b></font></td>
 						</td>
-						<td align="left" height="10px">
-							<p id="location"></p>
+						<td align="left" height="10px" style="color:#666666;">
+							<b><p id="location"></p></b>
 						</td>
 					</tr>
 				</table>
@@ -82,8 +80,8 @@
 						<td width="100px">
 							<font color="#999999"><b>HOME CITY</b></font></td>
 						</td>
-						<td align="left">
-							<p id="hometown"></p>
+						
+						<b>	<p id="hometown"></p></b>
 						</td>
 					</tr>
 				</table>
@@ -93,8 +91,8 @@
 						<td width="100px">
 							<font color="#999999"><b> SEX</b></font></td>
 						</td>
-						<td align="left"  id="image2">
-							<%=  %>
+						<td id="image2"  >
+				
 						</td>
 					</tr>
 				</table>
@@ -104,7 +102,7 @@
 						<td width="100px">
 							<font color="#999999"><b>BIRTH DAY</b></font></td>
 						</td>
-						<td align="left" id="image3">
+						<td  id="image3">
 							<%#= current_user.facebook.birthday %>
 						</td>
 					</tr>
@@ -115,7 +113,7 @@
 						<td width="100px">
 							<font color="#999999"><b>ABOUT ME</b></font></td>
 						</td>
-						<td align="left">
+						<td>
 							<%  about_me = current_user.facebook.bio %>
 							<%= about_me %>
 						</td>
@@ -136,16 +134,8 @@
 						<div id="myDojo"></div>
 					</div>
 				    <script>
-						$(document).ready(function(){
-							$.ajax({
-								url: "/user_connections/myDojo",
-								cache: false,
-								success: function(html){
-									$("#myDojo").append(html);
-								}
-							});
-						});
-					</script>
+					$.dojitsuUtile.renderAjaxPageLoad("/user_connections/myDojo","#myDojo");
+				    </script>
 					
 					<script>
 						(function ($) {
@@ -186,15 +176,7 @@
 						<div id="people"></div>
 					</div>
 					<script>
-						$(document).ready(function(){
-							$.ajax({
-								url: "/user_connections/people",
-								cache: false,
-								success: function(html){
-									$("#people").append(html);
-								}
-							});
-						});
+                                          $.dojitsuUtile.renderAjaxPageLoad("/user_connections/people","#people");
 					</script>
 </td>
 </tr>
@@ -253,3 +235,22 @@ var email=response[0].email;
             }
     });
  </script> 
+ <style>
+ .update {
+    float: left;
+    left: 87%;
+    position: relative;
+    top: 10px;
+}
+#points {
+    background: none repeat scroll 0 0 #DDEFCE;
+    color: #7AC142;
+    height: 30px;
+    left: 92%;
+    padding-left: 5px;
+    padding-top: 4px;
+    position: relative;
+    top: -100px;
+    width: 40px;
+}
+</style>
