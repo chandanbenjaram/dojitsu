@@ -1586,7 +1586,7 @@ input:required {
 		
 			
 		 #ahref{
-	color: #000000;
+	color: #666666;
 	font-weight: bold;
 	left: 10px;
 	position: relative;
@@ -1748,3 +1748,7 @@ right:10px;
   .fontstyle{
   	font-color: #A0A0A0;
   }
+ .fbusername{
+	top:-20px;
+	position:relative;
+}
