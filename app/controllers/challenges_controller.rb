@@ -3,33 +3,6 @@ class ChallengesController < ApplicationController
   before_filter :find_challenge, :only => [:show, :edit, :update, :destroy]
   #on_spot_edit  is the gem to edit the data on spot 
   can_edit_on_the_spot
-  
-  def paginationTest
-    @challegnes = Challenge.where(:_type.exists => false)
-    #@users = Challenge.paginate(:page => params[:page])
-    # or, use an explicit "per page" limit:
-    @users = @challegnes.paginate(:page => params[:page], :per_page => 1)
-    #@users = Challenge.all.paginate(:per_page=>2, :page=>params[:page])
-    #@users = Message.paginate(:conditions=>{:to => '100002573213371'},:per_page=>2, :page=>params[:page])
-    #@users = Challenge.where(:_type.exists => false).paginate(:page =>params[:page], :per_page => 1)
-  end
-  
-  def nonLoginShowPersonal
-    @challenge = Challenge.find(params[:id])
-    if(@challenge.social_type.instance_of? ChallengeSocialType rescue false)
-      render "nonLoginShowSocial" and return
-    else
-      render "nonLoginShowPersonal"
-    end
-  end
-  
-  def nonLoginShowSocial
-    @challenge = Challenge.find(params[:id])
-  end
-  
-  def nonLoginIndex
-    @challenges = Challenge.where(:_type.exists => false).desc("created_at")
-  end
 
   def index
     @title = "Challenges"
@@ -253,16 +226,9 @@ class ChallengesController < ApplicationController
   end
 
   def date_update
- 
    @challenge = Challenge.find(params[:id]) 
-
-   
    raise @challenge.inspect
-   
-   
-
   end
-
 
   def update_status
     aChallenge = Challenge.find(params[:id])
@@ -281,8 +247,35 @@ class ChallengesController < ApplicationController
     end
   end
   
+  def paginationTest
+    @challegnes = Challenge.where(:_type.exists => false)
+    #@users = Challenge.paginate(:page => params[:page])
+    # or, use an explicit "per page" limit:
+    @users = @challegnes.paginate(:page => params[:page], :per_page => 1)
+    #@users = Challenge.all.paginate(:per_page=>2, :page=>params[:page])
+    #@users = Message.paginate(:conditions=>{:to => '100002573213371'},:per_page=>2, :page=>params[:page])
+    #@users = Challenge.where(:_type.exists => false).paginate(:page =>params[:page], :per_page => 1)
+  end
+  
+  def nonLoginShowPersonal
+    @challenge = Challenge.find(params[:id])
+    if(@challenge.social_type.instance_of? ChallengeSocialType rescue false)
+      render "nonLoginShowSocial" and return
+    else
+      render "nonLoginShowPersonal"
+    end
+  end
+  
+  def nonLoginShowSocial
+    @challenge = Challenge.find(params[:id])
+  end
+  
+  def nonLoginIndex
+    @challenges = Challenge.where(:_type.exists => false).desc("created_at")
+  end
+  
   def socialPeople
-	render :layout => false
+    render :layout => false
   end
 
   protected
