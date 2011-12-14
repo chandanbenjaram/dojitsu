@@ -19,16 +19,19 @@
 			 }
 		</script>			
 	 <td width="440px" height="40px">
-		<font color="#8c8c8c"><b><style="float: right;">Total:&nbsp;</style><%= group.length %><span style="position: relative; top: 5px;">&nbsp;<%= image_tag("btn_msg_up.png", :onclick=>"contactToInvitee()") %></span></font><b >
+		<font color="#8c8c8c"><b><style="float: right;">Total:</style>	<%= group.length %><%= image_tag("btn_msg_up.png", :onclick=>"contactToInvitee()") %></font><b >
 	</td>
 <td width = "80px" id="search"  height="40px">
 		</td>
 	<td width="30px"  height="40px">
-		<p class="invite"><%= link_to ( image_tag ("searchbutton.PNG") , :class=>"image_tag") %><p>
+		<p class="invite"><%= link_to ( image_tag ("search_it.PNG") , :class=>"image_tag") %><p>
 	</td>
 	<td  height="40px" width="50px">
-		<p class="invite"><%#= render :partial => 'invitations' %>
-		<%= image_tag("invitee.PNG", :width=> "100px" , :height => "30px", :style => "top:10px;" )%>
+		<p class="invite">
+		
+		
+<%= render :template => 'user_connections/invite'  %>
+		<%#= image_tag("invite.PNG", :width=> "100px" , :height => "30px", :style => "top:10px;" )%>
 
 		<%= hidden_field_tag "myvar", 0%>	
 		</p>
@@ -62,9 +65,9 @@
 												                      <% allConnections.each  do |eachConnection| %>
 											
 													<p><a href="#"  id="ahref"><%=image_tag(FbGraph::User.new(eachConnection.target_id).fetch.picture) %>
-													<span class="fbusername"><%= FbGraph::User.new(eachConnection.target_id).fetch.name %></span>
+													<b><%= FbGraph::User.new(eachConnection.target_id).fetch.name %> </b>
 													<span id="status_icon"> 
-														<%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>
+														<%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}",:class =>"private_msg")%>
 													<%= link_to image_tag("btn_delete_up.png" , :class =>"private_msg1"), user_connection_path(eachConnection.id), :confirm => 'Are you sure?', :method => :delete %>
 													 
 												</span> </a>
@@ -77,11 +80,20 @@
 										<script>
 													$(document).ready(function() {
 														$(".private_msg").click(function(event) {
-															var targetId = event.target.id;								
-															$.dojitsu.renderSendBox("Testing", <%= "'+targetId+'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenges_url() +"'"%>);
-														});
+														var targetId = event.target.id;		
+														sendMessage(targetId);
+												
 													});
-												</script>												
+													});
+													function sendMessage(targetId)
+			{
+			var id=targetId;
+            alert(id);
+			$.dojitsu.renderSendBox("Testing", id, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenges_url(@challenge) +"'"%>);		
+	
+			}
+													
+									</script>												
 						</table>
 					</div> 
 				</td>
