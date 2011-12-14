@@ -9,13 +9,7 @@
 			function contactToInvitee() 
 			{
 			 var contact = '<%= group.join(",") %>';
-			 window.fbAsyncInit();
-				FB.ui({
-				  method: 'send',
-				  to:contact,
-				  name: 'Do your best',
-				  link: 'http://www.dojitsu.com'
-						 });										 
+			 	$.dojitsu.renderSendBox("Do your best", contact,"http://www.dojitsu.com", <%= "'"+ challenges_url() +"'"%>);										 
 			 }
 		</script>			
 	 <td width="440px" height="40px">
@@ -114,15 +108,7 @@
     $(document).ready(function() {
         $(".private_msg").click(function(event) {                                                                                                                  
             var targetId = event.target.id;
-            $.dojitsu.renderSendBox("Testing", targetId,"http://www.dojitsu.com", <%= "'"+ challenges_url() +"'"%>);	
+            $.dojitsu.renderSendBox("Do your best", targetId,"http://www.dojitsu.com", <%= "'"+ challenges_url() +"'"%>);	
         });
     });
  </script>
-
- <!--
- <script>
-        var str = 1;
-        alert("Testing="+str);
-        $.asd.renderSendBox("Testing", str, <%#= "'"+ challenges_url() +"'"%>);
-</script>
--->
