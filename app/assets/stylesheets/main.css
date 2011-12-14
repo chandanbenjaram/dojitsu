@@ -1380,7 +1380,7 @@ width:90%;
 
  height:25px;
 
- left:94%;
+ left:92%;
 
  background:#DDEFCE;
 
@@ -1597,16 +1597,16 @@ input:required {
 			}
 			.private_msg
 			{
-			 		left: 40px;
-    				position: relative;
-    				top: -5px;
+			 		 left: 40px;
+    position: relative;
+    top: -5px;
 			}
 			.private_msg1
 			{
-			 	float: right;
-			 	right: 20px;
-    			position: relative;
-    			top: -5px;
+			 	 float: right;
+    position: relative;
+    right: 20px;
+    top: -5px;
 			}
 			.bottom_border
 			{
