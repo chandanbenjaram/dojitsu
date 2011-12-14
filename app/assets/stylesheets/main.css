@@ -1596,14 +1596,14 @@ input:required {
 			
 			}
 			.private_msg
-   {
-       left: 0px;
+			{
+			 		 left: 0px;
     position: relative;
     top: -5px;
-   }
-   
-   .private_msg1 {
-   float:right;
+			}
+			
+			.private_msg1 {
+			float:right;
     position: relative;
     right: 90px;
     top: -5px;
