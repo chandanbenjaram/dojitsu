@@ -1,0 +1,20 @@
+= stylesheet_link_tag "colorbox"
+= javascript_include_tag "jquery.colorbox-min"
+= render partial="layouts/loggedinbody"
+.span-24.challengeSubNav
+	.span-8
+		.span-4   &nbsp;
+		.span-2.right
+   			= button_to "", new_challenge_url, :class => "new_challenge_button_new", :method => :get
+    
+	= link_to "MY CHALLENGES  ",challenges_url ,:class => "challenge_link" , :style=> "text-decoration: none; color:#666666;"
+
+	
+	
+- unless @challenges.empty?
+	table
+	  - for challenge in @challenges do
+	      tr
+	        td = link_to challenge.title, {:action => 'nonLoginShowPersonal', :id => challenge.id },:style=> "text-decoration: none; font-weight:bold; color:#666666;"
+- else
+    p No Challenges found   

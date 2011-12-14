@@ -19,7 +19,7 @@
 			 }
 		</script>			
 	 <td width="440px" height="40px">
-		<font color="#8c8c8c"><b><style="float: right;">Total:&nbsp;</style><%= group.length %><span style="position: relative; top: 5px;">&nbsp;<%= image_tag("btn_msg_up.png", :onclick=>"contactToInvitee()") %></span></font><b >
+		<font color="#8c8c8c"><b style="float: right;">Total:&nbsp;<%= group.length %><span style="position: relative; top: 5px;">&nbsp;<%= image_tag("btn_msg_up.png", :onclick=>"contactToInvitee()") %></span></font><b >
 	</td>
 <td width = "80px" id="search"  height="40px">
 		</td>
@@ -50,42 +50,30 @@
 		</table>
 		
 		<table bgcolor="white">
-			<tr>
-				<td>
-					<div id="wrap">
-						<h1 id="header"></h1>
-						<% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
-												
-											<tr>
-											<td id="list">				
-													
-												                      <% allConnections.each  do |eachConnection| %>
-											
-													<p><a href="#"  id="ahref"><%=image_tag(FbGraph::User.new(eachConnection.target_id).fetch.picture) %>
-													<span class="fbusername"><%= FbGraph::User.new(eachConnection.target_id).fetch.name %></span>
-													<span id="status_icon"> 
-														<%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>
-													<%= link_to image_tag("btn_delete_up.png" , :class =>"private_msg1"), user_connection_path(eachConnection.id), :confirm => 'Are you sure?', :method => :delete %>
-													 
-												</span> </a>
-													</p>
-														<% end %>
-												</td>
-										</tr>	
-								
-									</table>
-										<script>
-													$(document).ready(function() {
-														$(".private_msg").click(function(event) {
-															var targetId = event.target.id;								
-															$.dojitsu.renderSendBox("Testing", <%= "'+targetId+'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenges_url() +"'"%>);
-														});
-													});
-												</script>												
-						</table>
-					</div> 
-				</td>
-			</tr>
+                    <tr>
+                        <td>
+                            <div id="wrap">
+                                <h1 id="header"></h1>
+                                <% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
+                                    <tr>
+                                        <td id="list">				
+                                            <% allConnections.each  do |eachConnection| %>
+                                                <p><a href="#"  id="ahref"><%=image_tag(FbGraph::User.new(eachConnection.target_id).fetch.picture) %>
+                                                <span class="fbusername"><%= FbGraph::User.new(eachConnection.target_id).fetch.name %></span>
+                                                <span id="status_icon"> 
+                                                <%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>
+                                                <%= link_to image_tag("btn_delete_up.png" , :class =>"private_msg1"), user_connection_path(eachConnection.id), :confirm => 'Are you sure?', :method => :delete %></span> </a>
+                                                </p>
+                                            <% end %>
+                                        </td>
+                                    </tr>	
+
+               </table>
+
+                                </table>
+                            </div> 
+                        </td>
+                    </tr>
 		</table> 
 			<script>
 						(function ($) {
@@ -117,10 +105,25 @@
 							listFilter($("#header"), $("#list"));
 						  });
 						}(jQuery));
-					</script> 			
-		
-			
-			
+					</script> 				
 		</td>
 	</tr>
 </table>
+
+<script>
+    $(document).ready(function() {
+        $(".private_msg").click(function(event) {                                                                                                                  
+            var targetId = event.target.id;
+            alert(targetId);
+            $.dojitsu.renderSendBox("Testing", targetId, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenges_url() +"'"%>);	
+        });
+    });
+ </script>
+
+ <!--
+ <script>
+        var str = 1;
+        alert("Testing="+str);
+        $.asd.renderSendBox("Testing", str, <%#= "'"+ challenges_url() +"'"%>);
+</script>
+-->
