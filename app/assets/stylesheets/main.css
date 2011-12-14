@@ -1528,7 +1528,7 @@ input:required {
 
 #status_icon {
    	float:right;
-	 right: 110px;
+	 right: 50px;
     position: relative;
 }
 #percentage_personal
@@ -1585,14 +1585,6 @@ input:required {
 			} 
 		
 			
-		 #ahref{
-	color: #666666;
-	font-weight: bold;
-	left: 10px;
-	position: relative;
-	text-decoration: none;
-	top:0px;
-}
 			#name_list
 			{
 			
