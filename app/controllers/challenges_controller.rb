@@ -159,10 +159,10 @@ class ChallengesController < ApplicationController
 
   def update_task_soc
     @challenge = Challenge.find(params[:id])
-    #@challenge.update_attributes(params[:challenge][:canCompleteBeforeTasks])
-    #raise params[:challenge][:canCompleteBeforeTasks].inspect
+    Challenge.where(:_id => params[:id]).update(:canCompleteBeforeTasks => params[:challenge][:canCompleteBeforeTasks])
     @challenge.tasks.destroy
     @challenge.child_challenges.each do |eachChildChallenge|
+      eachChildChallenge.update_attributes(:canCompleteBeforeTasks => params[:challenge][:canCompleteBeforeTasks])
       eachChildChallenge.tasks.destroy
       eachChildChallenge.update_attributes(params[:challenge])
     end

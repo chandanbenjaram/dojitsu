@@ -52,9 +52,9 @@
 	<tr bgcolor="#ffffff">
 		<td colspan="7">
 			<b class="color999"><%= image_tag("icon_arrow_left.png")%>&nbsp;&nbsp;Do all tasks need to be complete before the challenge is marked complete?</b><br>
-                        <%= f.radio_button :canCompleteBeforeTasks, "1", :class => "chall_type" ,:checked =>"checked"%>
+                        <%= f.radio_button :canCompleteBeforeTasks, true, :class => "chall_type" ,:checked =>"checked"%>
                         <font class="color999"><%= f.label "Yes" %></font>
-                        <%= f.radio_button :canCompleteBeforeTasks, "0", :class => "chall_type"%>
+                        <%= f.radio_button :canCompleteBeforeTasks, false, :class => "chall_type"%>
                         <font class="color999"><%= f.label "No" %></font>		
 	
 		<td>
