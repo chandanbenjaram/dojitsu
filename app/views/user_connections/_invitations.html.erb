@@ -2,7 +2,7 @@
 
 <%= form_for :challenge, :url => {:controller=> "challenges",:action => "create"},:html=>{:multipart => true, :name => "challenge_form", :onclick=> "return validate_form_fields(this);"} do |f| -%>
 <p>            
- <%= image_tag("invite.PNG", :id => "inviteBtn",   :class=>"invitees" )%>
+ <%= image_tag("invitee.PNG", :id => "inviteBtn",   :class=>"invitees" )%>
   
  <%= text_field_tag :invitees, nil , :id => "invitees_id", :class=> "hidden" %>
 
@@ -12,7 +12,7 @@
  </div>
 </p>                             
 <% end %>
-
+<div style="position:relative; top:-30px; float:right; right:-90px; color:#999999; font-size: 12px;font-weight:bold;"><%=current_user.facebook.name%></div>
 <script type="text/javascript" charset="utf-8">        
 (function($j) { 
  var selectorObz = {    

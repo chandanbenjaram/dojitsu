@@ -194,7 +194,7 @@ ul.homenavbar > li.selected > a {
     left: 100px;
     position: relative;
     text-decoration: none;
-    top: 5px;
+    top: 7px;
 }
 
 .challenge_link{
@@ -310,7 +310,7 @@ ul.dojo-menu a:hover {
 }
 
 ul.dojo-menu a:selected {
-	color: #000;
+	color: #666666;
 	text-decoration: none;
 	background-color: #fff;
 	border-radius: 0px 0px 0px 0px;
@@ -415,7 +415,7 @@ nav .menu #check :hover {
 
 a .selected {
 	text-decoration: none;
-	color: #000;
+	color: #666666;
 	background-color: #fff;
 	border-radius: 5px 5px 0px 0px;
 }
@@ -447,7 +447,7 @@ position:relative;
 	background-repeat: repeat-x;
 	font-family: Arial;
 	font-size: 15px;
-	color: #000000;
+	color: #C6C6C6;
 	width: 299px;
 	height: 25px;
 }
@@ -719,7 +719,7 @@ input.radio {
     color: #FFFFFF;
     display: block;
     font-size: 12px;
-    left: -375px;
+    left: -10px;
     padding: 0;
     position: relative;
     text-align: center;
@@ -1085,7 +1085,7 @@ ul.tabs1 {
 position:absolute;
 	background: none repeat scroll 0 0 #FFFFFF;
    
-    height: 343px;
+    height: 465px;
     margin-top: -1px;
     position: absolute;
     width: 635px;
@@ -1235,11 +1235,17 @@ width:90%;
 {
 }
 .update
+
 {
-	float: left;
-    left: 380px;
+
+ float: left;
+
+    left: 80%;
+
     position: relative;
+
     top: 10px;
+
 }
 .update1
 {
@@ -1364,16 +1370,24 @@ width:90%;
 }
 
 #points
-{
-	position:relative;
-	top:-98px;
-	width:40px;
-	height:25px;
-	left:645px;
-	background:#DDEFCE;
-	color:#7AC142;
-}
 
+{
+
+ position:relative;
+
+ top: -93px;
+
+ width:40px;
+
+ height:25px;
+
+ left:92%;
+
+ background:#DDEFCE;
+
+ color:#7AC142;
+
+}
 .checking
 {
 	width:60px;
@@ -1457,7 +1471,7 @@ input:required {
 }
 
 #check3 {
-    background: none repeat scroll 0 0 #000000;
+    background: none repeat scroll 0 0 #666666;
     height: 60px;
     margin-top: 20px;
     width: 860px;
@@ -1514,7 +1528,8 @@ input:required {
 
 
 #status_icon {
-    left: 30px;
+   	float:right;
+	 right: 50px;
     position: relative;
 }
 #percentage_personal
@@ -1530,7 +1545,7 @@ input:required {
 {
 	height:60px;
 	width:835px;
-	background:#000000;
+	background:#666666;
 	margin-top:10px;
 	padding-left:10px;
 }
@@ -1571,14 +1586,6 @@ input:required {
 			} 
 		
 			
-		 #ahref{
-	color: #000000;
-	font-weight: bold;
-	left: 10px;
-	position: relative;
-	text-decoration: none;
-	top:0px;
-}
 			#name_list
 			{
 			
@@ -1591,14 +1598,15 @@ input:required {
 			}
 			.private_msg
 			{
-			 left: 40px;
+			 		 left: 40px;
     position: relative;
     top: -5px;
-}
+			}
 			.private_msg1
 			{
-			 left: 38px;
+			 	 float: right;
     position: relative;
+    right: 20px;
     top: -5px;
 			}
 			.bottom_border
@@ -1733,3 +1741,7 @@ right:10px;
   .fontstyle{
   	font-color: #A0A0A0;
   }
+ .fbusername{
+	top:-20px;
+	position:relative;
+}

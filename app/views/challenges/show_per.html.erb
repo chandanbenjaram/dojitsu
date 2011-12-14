@@ -1,7 +1,15 @@
 <%= stylesheet_link_tag('simple-tabs','datePicker', 'colorbox','jquery-ui', 'ui.progressbar','ui.theme', 'main','soc-per','challenges.css')%>
 <%= javascript_include_tag('simple-tabs','ui.progressbar','jquery.colorbox-min', 'jquery.cluetip.js','jquery.table.addrow','jquery.datePicker','date','on_the_spot','jquery.tools.min','soc-per','challenge_new')%>
 <%= render 'layouts/loggedinbody'%>
+<div class="challengeSubNav">
 
+   			<%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %>
+    
+	<%= link_to "MY CHALLENGES >> ", challenges_url , :style=> "text-decoration: none; color:#666666;", :class => "challenge_link1" %>
+	
+	<%= link_to "#{@challenge.title}","#" , :style=> "text-decoration: none; color:#666666;", :class => "challenge_link1" %> 
+
+</div>
 <div id="ch_main_div1">
 <%= form_for @challenge do |f| %>
 <table width="100%" border="0" border cellspacing=12px>
@@ -10,15 +18,18 @@
 			<font color="orange"><%= on_the_spot_edit @challenge, :title, :type=> :text %></font>
 		</div><br>
 		<tr>
-		<table >
+		<table id="description">
 				<tr>
-					<td width="80px">
+					<td width="15%">
 						<b><font color= #999999>DESCRIPTION</font></b></td>
-					<td width="500px">
-						<b><%= on_the_spot_edit @challenge,:description, :type=>:textarea  %></b>
+					<td  width="73%">
+						<b style="color:#666666;"><%= on_the_spot_edit @challenge,:description , :type=>:textarea  %></b>
+					</td>
+					<td  width="12%">
+						<span id="image1"><%= image_tag("icon_edit.png") %></span>
 					</td>
 				</tr>
-			</table>
+		</table>
 		<hr/ width=400px>
 	</tr>
 	<tr>
@@ -31,11 +42,11 @@
 					 <div id="Test" onclick="Testing();">
 
 						<% if @challenge.start_point.instance_of?PointDateType %>		
-							 <b><%= @challenge.start_point.value.strftime("%b %d, %Y")%> </b>
+							 <b style="color:#666666;"><%= @challenge.start_point.value.strftime("%b %d, %Y")%> </b>
 						<% else %>							
 						       <%ch = @challenge.start_point  %>
 							
-							<b><%=  on_the_spot_edit ch,:value, :type=>:text %></b>
+							<b style="color:#666666;"><%=  on_the_spot_edit ch,:value, :type=>:text %></b>
 						
 						<% end %>
 			
@@ -75,9 +86,9 @@
 					</td>
 					<td>
 						<% if @challenge.end_point.instance_of?PointDateType %>		
-							<b><div id="date"><%= @challenge.end_point.value.strftime("%b %d, %Y") %></div></b>
+							<b style="color:#666666;"><div id="date"><%= @challenge.end_point.value.strftime("%b %d, %Y") %></div></b>
 						<% else %>							
-							<b><%= @challenge.end_point.value.to_i %></b>
+							<b style="color:#666666;"><%= @challenge.end_point.value.to_i %></b>
 						<% end %>
 					</td>
 					<td>
