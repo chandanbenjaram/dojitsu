@@ -18,7 +18,7 @@
 	<p class="user"><font color="orange"><%=current_user.facebook.name%></font></p>
 	<table border="1px">
 		<tr width="600px">
-			<td width="100px" height="200px" id="image1" align="left">
+			<td id="image1" width="100px" height="200px" align="left">
 			</td>
 			<td width="570px" height="200px">
 				<table border =5 bordercolor=#f4f4f4>
@@ -91,7 +91,7 @@
 						<td width="100px">
 							<font color="#999999"><b> SEX</b></font></td>
 						</td>
-						<td style="align:left; color:#666666;"  id="image2"  >
+						<td id="image2" style="align:left; color:#666666;"    >
 				
 						</td>
 					</tr>
@@ -102,8 +102,8 @@
 						<td width="100px">
 							<font color="#999999"><b>BIRTH DAY</b></font></td>
 						</td>
-						<td style="align: left; color: #666666;" id="image3">
-							<%#= current_user.facebook.birthday %>
+						<td  id="image3"style="align: left; color: #666666;">
+							<%= current_user.facebook.birthday %>
 						</td>
 					</tr>
 				</table>
@@ -184,55 +184,41 @@
  <script>
 window.fbAsyncInit();
 FB.getLoginStatus(function(response) {
-             if (response.session)
+  if (response.session)
 {
-                   globaluserid=response.session["uid"];
+ globaluserid=response.session["uid"];
 name=globaluserid;
 FB.api(
-                     {
-                        method: 'fql.query',
-                         query: 'SELECT uid1 FROM friend WHERE uid2='+globaluserid
-                      },
-                    function(response)
-                      {
-FB.api({
-method: 'fql.query',
-query: 'SELECT name,pic_big,sex,birthday FROM user WHERE uid=' + name
-}, function(response){
-htmlcontent = '<img src=' + response[0].pic_big+ ' />';
-htmlcontent1=response[0].name
-htmlcontent2=response[0].sex
-htmlcontent3=response[0].birthday
-$("#image").append(htmlcontent1);
-$("#image1").append(htmlcontent);
-$("#image2").append(htmlcontent2);
-$("#image3").append(htmlcontent3);
-});
-}
+     {
+            method: 'fql.query',
+            query: 'SELECT uid1 FROM friend WHERE uid2='+globaluserid
+      },
+ function(response)
+      {
+				FB.api({
+						method: 'fql.query',
+						query: 'SELECT name,pic_big,sex,birthday FROM user WHERE uid=' + name
+				}, function(response){
+						htmlcontent = '<img src=' + response[0].pic_big+ ' />';
+						htmlcontent1=response[0].name
+						htmlcontent2=response[0].sex
+						htmlcontent3=response[0].birthday
+						$("#image").append(htmlcontent1);
+						$("#image1").append(htmlcontent);
+						$("#image2").append(htmlcontent2);
+						$("#image3").append(htmlcontent3);
+				});
+		}
                         );
 						
 FB.api('/me', function(response) {
-var location = response.location.name;
-var hometown = response.hometown.name;
-$("#hometown").append(hometown);
-$("#location").append(location);
+		var location = response.location.name;
+		var hometown = response.hometown.name;
+		$("#hometown").append(hometown);
+		$("#location").append(location);
 });
-FB.api(
-{
-method: 'permissions.request',
-perms: 'user_birthday',
-},
-function(response) {
-console.log(response);
-FB.api('/me', function(response){
-console.log(response);
-display: 'none'
-var bir =response[0].birthday;
-var email=response[0].email;
-});
-}
-);
-            }
+
+       }
     });
  </script> 
  <style>
@@ -254,3 +240,50 @@ var email=response[0].email;
     width: 40px;
 }
 </style>
+<div id="jfmfs-container-wrapper" style="display: none">
+  <div id="jfmfs-container">
+  </div>
+ </div>
+<script type="text/javascript" charset="utf-8">        
+(function($j) { 
+ var selectorObz = {    
+  filter_default: "Search By Name",
+  friend_fields: "id,name,last_name&access_token="+'<%= current_user.facebook.access_token%>'
+ }
+
+ $j('.invitees').live('click', function(){
+  $j( "#jfmfs-container-wrapper" ).dialog({
+   modal: true,
+   resizable: false,
+   closeText: "",
+   position: 'center',
+   title: 'Invite Participants',
+   width: '725px',
+   open: function(event, ui) { $j("#jfmfs-container").jfmfs(selectorObz); },
+   buttons: {                                             
+                Cancel: function() {
+     $j("#jfmfs-container").data('jfmfs').clearSelected(); 
+     $j('#inviteBtn').val("INVITE PARTICIPANTS");    
+     $j(this).dialog( "close" );
+    },
+    Save: function() {
+     var friendSelector = $j("#jfmfs-container").data('jfmfs');
+     var selectedFriends = friendSelector.getSelectedIds();
+     $j('#invitees_id').val(selectedFriends);
+        $j('#inviteBtn').val("INVITE PARTICIPANTS (" + selectedFriends.length + ")");   
+    $j(this).dialog( "close" );
+		jQuery.support.cors = true;
+		$.get('/user_connections/sendInvitation', 
+			{inviteIds:selectedFriends},
+			function(data) {
+
+			}, 'script'
+		);
+     } 
+   }
+   
+  });
+ })          
+
+ })(jQuery);                              
+ </script>
