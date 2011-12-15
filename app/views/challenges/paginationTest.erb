@@ -1,0 +1,10 @@
+<%= debug @users %>
+<% @users.each do |aChallenge| %>
+<table>
+  <tr>
+    <td><%= aChallenge.user_id %> </td>
+    <td><%= aChallenge.target_id %></td>
+  </tr>
+</table>
+<% end %>
+<%= will_paginate @users %>
