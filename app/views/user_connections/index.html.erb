@@ -19,6 +19,7 @@
 	<table border="1px">
 		<tr width="600px">
 			<td width="100px" height="200px" id="image1" align="left">
+	
 			</td>
 			<td width="570px" height="200px">
 				<table border =5 bordercolor=#f4f4f4>
@@ -37,7 +38,7 @@
 							<b><font color="#999999">MEMBER SINCE</font></b></td>
 						</td>
 						<td align="left" style="color:#666666">
-							<b><%  user = User.find(:all)%>
+							<b>
 							<%= current_user.created_at%></b>
 						</td>
 					</tr>
@@ -70,7 +71,7 @@
 							<font color="#999999"><b> CURRENT CITY</b></font></td>
 						</td>
 						<td align="left" height="10px" style="color:#666666;">
-							<b><p id="location"></p></b>
+							<b><p id="location"><%#= current_user.facebook.location.name %></p></b>
 						</td>
 					</tr>
 				</table>
@@ -80,8 +81,8 @@
 						<td width="100px">
 							<font color="#999999"><b>HOME CITY</b></font></td>
 						</td>
-						
-						<b>	<p id="hometown"></p></b>
+						<td>
+						<b>	<p id="hometown"></p><%#=  current_user.facebook.hometown.name %></b>
 						</td>
 					</tr>
 				</table>
@@ -92,7 +93,7 @@
 							<font color="#999999"><b> SEX</b></font></td>
 						</td>
 						<td id="image2"  >
-				
+				   <%= current_user.facebook.gender %>
 						</td>
 					</tr>
 				</table>
