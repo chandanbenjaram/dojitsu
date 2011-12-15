@@ -1333,7 +1333,7 @@ width:90%;
 	color:#fff;
 	left:60px;
 	position:relative;
-	width:40%;
+	width:80%;
         top: 4px;
 }
 .remainedtask
@@ -1597,17 +1597,17 @@ input:required {
 			}
 			.private_msg
 			{
-			 		 left: 40px;
+			 		 left: 0px;
     position: relative;
     top: -5px;
 			}
-			.private_msg1
-			{
-			 	 float: right;
+			
+			.private_msg1 {
+			float:right;
     position: relative;
-    right: 20px;
+    right: 90px;
     top: -5px;
-			}
+}
 			.bottom_border
 			{
 			

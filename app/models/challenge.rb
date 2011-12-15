@@ -13,7 +13,8 @@ class Challenge
   # puts tree model on challenges
   #recursively_embeds_many
 
-  #callback for assign value1 to value in point_date_type
+  #callback for Publish to FB when user creates a new challenge
+  after_save :publishToFb
 
   #attr_accessible :title, :description, :start_point, :end_point, :tasks, :task_comp, :social_challenge, :personal_challenge, :child_challenges, :user_id, 
   #attr_reader :ch_st_date, :ch_ed_date
@@ -53,6 +54,12 @@ class Challenge
   
   def self.whatsNew
     where(:_type.exists => false).desc("created_at").limit(3)
+  end
+  
+  private
+  
+  def publishToFb
+    logger.debug "Maisa Pride"
   end
 
 end                

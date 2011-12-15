@@ -237,6 +237,7 @@ class ChallengesController < ApplicationController
     socialType = aChallenge.social_type
     socialType.update_attributes(:status => params[:status])       
 
+	
     redirect_to show_soc_challenges_path(:id => params[:id])
   end
 
@@ -250,11 +251,11 @@ class ChallengesController < ApplicationController
   end
   
   def paginationTest
-    @challegnes = Challenge.where(:_type.exists => false)
+    #@challegnes = Challenge.where(:_type.exists => false)
     #@users = Challenge.paginate(:page => params[:page])
     # or, use an explicit "per page" limit:
-    @users = @challegnes.paginate(:page => params[:page], :per_page => 1)
-    #@users = Challenge.all.paginate(:per_page=>2, :page=>params[:page])
+    #@users = @challegnes.paginate(:page => params[:page], :per_page => 1)
+    @users = UserConnection.paginate(:per_page=>2, :page=>params[:page])
     #@users = Message.paginate(:conditions=>{:to => '100002573213371'},:per_page=>2, :page=>params[:page])
     #@users = Challenge.where(:_type.exists => false).paginate(:page =>params[:page], :per_page => 1)
   end

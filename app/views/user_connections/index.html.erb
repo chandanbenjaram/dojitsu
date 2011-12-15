@@ -6,7 +6,7 @@
 
 <div bgcolor="#f4f4f4" ,class="topbar" style="margin-top: 0px; width: 100%; height: 30px; background: none repeat scroll 0% 0% rgb(244, 244, 244); top: -18px; position: relative;">
 	
-				<div class="invitee_button" ><%= render :partial => 'invitations' %></div>
+				<div class="invitee_button" ><%= render :partial => 'invitations' %><div style="position:relative; top:-30px; float:right; right:-90px; color:#999999; font-size: 12px;font-weight:bold;"><%=current_user.facebook.name%></div></div>
 			
 			
 		
@@ -254,3 +254,51 @@ var email=response[0].email;
     width: 40px;
 }
 </style>
+<div id="jfmfs-container-wrapper" style="display: none">
+  <div id="jfmfs-container">
+  </div>
+ </div>
+<script type="text/javascript" charset="utf-8">        
+(function($j) { 
+ var selectorObz = {    
+  filter_default: "Search By Name",
+  friend_fields: "id,name,last_name&access_token="+'<%= current_user.facebook.access_token%>'
+ }
+
+ $j('.invitees').live('click', function(){
+  $j( "#jfmfs-container-wrapper" ).dialog({
+   modal: true,
+   resizable: false,
+   closeText: "",
+   position: 'center',
+   title: 'Invite Participants',
+   width: '725px',
+   open: function(event, ui) { $j("#jfmfs-container").jfmfs(selectorObz); },
+   buttons: {                                             
+                Cancel: function() {
+     $j("#jfmfs-container").data('jfmfs').clearSelected(); 
+     $j('#inviteBtn').val("INVITE PARTICIPANTS");    
+     $j(this).dialog( "close" );
+    },
+    Save: function() {
+     var friendSelector = $j("#jfmfs-container").data('jfmfs');
+     var selectedFriends = friendSelector.getSelectedIds();
+     $j('#invitees_id').val(selectedFriends);
+        $j('#inviteBtn').val("INVITE PARTICIPANTS (" + selectedFriends.length + ")");   
+    $j(this).dialog( "close" );
+		jQuery.support.cors = true;
+		$.get('/user_connections/sendInvitation', 
+			{inviteIds:selectedFriends},
+			function(data) {
+
+			}, 'script'
+		);
+     } 
+   }
+   
+  });
+ })          
+
+ })(jQuery);                              
+ </script>
+

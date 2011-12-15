@@ -1,6 +1,5 @@
-<table bgcolor=#F4F4F4 height="30px">
-<tr bgcolor=#F4F4F4>
-	<% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
+<script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> </script>
+<% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
 	<% group =Array.new %>
 	<% allConnections.each  do |eachConnection| %>
 		<% group.push(eachConnection.target_id) %>
@@ -17,98 +16,97 @@
 				  link: 'http://www.dojitsu.com'
 						 });										 
 			 }
-		</script>			
-	 <td width="440px" height="40px">
-		<font color="#8c8c8c"><b style="float: right;">Total:&nbsp;<%= group.length %><span style="position: relative; top: 5px;">&nbsp;<%= image_tag("btn_msg_up.png", :onclick=>"contactToInvitee()") %></span></font><b >
-	</td>
-<td width = "80px" id="search"  height="40px">
-		</td>
-	<td width="30px"  height="40px">
-		<p class="invite"><%= link_to ( image_tag ("searchbutton.PNG") , :class=>"image_tag") %><p>
-	</td>
-	<td  height="40px" width="50px">
-		<p class="invite"><%#= render :partial => 'invitations' %>
-		<%= image_tag("invitee.PNG", :width=> "100px" , :height => "30px", :style => "top:10px;" )%>
+		</script>
+
+			<div class="tables">
+
+				<table>
+					<td width="10%">
+							<label for="search">
+							<strong>
+
+							<font color="#8c8c8c"><b style="float: right;">Total:&nbsp;<%= group.length %><span style="position: relative; top: 5px;">&nbsp;<%= image_tag("btn_msg_up.png", :onclick=>"contactToInvitee()") %></span></font><b >
+															
+							</strong>
+
+							</label>
+					</td>
+					<td style="width:80%; padding-left: 56%;"><input type="text" id="search"/></td>
+					<td><%= image_tag ("searchbutton.PNG") %>
+						
+						
+					</td>
+					<td>
+					<p class="invite"><%= render :partial => 'invitations' %>
+		<%#= image_tag("invitee.PNG", :width=> "100px" , :height => "30px", :style => "top:10px;" )%>
 
 		<%= hidden_field_tag "myvar", 0%>	
 		</p>
-	</td>
-</tr>
-</table>
-<table width="100%" border="0">
-<tr>
-	<td>
-	
-		<table  border="0"> 
-			<tr bgcolor=#d7d7d7>
-				<td>NAME
-				</td>
-				<td  width="100px">
-					STATUS
-				</td>
-			</tr>
-		</table>
-		
-		<table bgcolor="white">
-                    <tr>
-                        <td>
-                            <div id="wrap">
-                                <h1 id="header"></h1>
-                                <% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
-                                    <tr>
-                                        <td id="list">				
-                                            <% allConnections.each  do |eachConnection| %>
-                                                <p><a href="#"  id="ahref"><%=image_tag(FbGraph::User.new(eachConnection.target_id).fetch.picture) %>
-                                                <span class="fbusername"><%= FbGraph::User.new(eachConnection.target_id).fetch.name %></span>
-                                                <span id="status_icon"> 
-                                                <%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>
-                                                <%= link_to image_tag("btn_delete_up.png" , :class =>"private_msg1"), user_connection_path(eachConnection.id), :confirm => 'Are you sure?', :method => :delete %></span> </a>
-                                                </p>
-                                            <% end %>
-                                        </td>
-                                    </tr>	
+					</td>
+				</table>
+				
 
-               </table>
 
-                                </table>
-                            </div> 
-                        </td>
-                    </tr>
-		</table> 
-			<script>
-						(function ($) {
-						  jQuery.expr[':'].Contains = function(a,i,m){
-							  return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
-						  };
+				<table width="100%" id="tblData" class="sortable" border=1>
+				<thead>
+				<tr>
 
-						  function listFilter(header, list) {
-							var form = $("<form>").attr({"class":"filterform","action":"#"}),
-								input = $("<input>").attr({"class":"filterinput","type":"text"});
-							$("#search").append($(form).append(input).appendTo(header));
-
-							$(input)
-							  .change( function () {
-								var filter = $(this).val();
-								if(filter) {
-								  $(list).find("a:not(:Contains(" + filter + "))").parent().slideUp();
-								  $(list).find("a:Contains(" + filter + ")").parent().slideDown();
-								} else {
-								  $(list).find("tr").slideDown();
-								}
-								return false;
-							  })
-							.keyup( function () {
-								$(this).change();
+				<th width="85%"><b style="position:relative; color:#666666; padding-left:20px; " >NAME</b></th>
+				<th width="15%"><b style=" color:#666666;  " >STATUS </b></th>
+				</tr>
+				</thead>
+				<tbody bgcolor="#ffffff">
+				<% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
+                    				
+					<% allConnections.each  do |eachConnection| %>
+						<tr>
+						<td>
+						<%=image_tag(FbGraph::User.new(eachConnection.target_id).fetch.picture) %>
+						<span class="fbusername"><%= FbGraph::User.new(eachConnection.target_id).fetch.name %></span>
+						<span > 
+						</td>
+						<td>
+						<%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>
+						<%= link_to image_tag("btn_delete_up.png" , :class =>"private_msg1"), user_connection_path(eachConnection.id), :confirm => 'Are you sure?', :method => :delete %></span> 
+						</td>
+						</tr>
+					<% end %>
+                                       
+				</tbody>
+				</table>
+				</div>
+				
+				<script type="text/javascript">
+							$(document).ready(function()
+							{
+								$('#search').keyup(function()
+								{
+									searchTable($(this).val());
+								});
 							});
-						  }
-						  $(function () {
-							listFilter($("#header"), $("#list"));
-						  });
-						}(jQuery));
-					</script> 				
-		</td>
-	</tr>
-</table>
+							function searchTable(inputVal)
+							{
+								var table = $('#tblData');
+								table.find('tr').each(function(index, row)
+								{
+									var allCells = $(row).find('td');
+									if(allCells.length > 0)
+									{
+										var found = false;
+										allCells.each(function(index, td)
+										{
+											var regExp = new RegExp(inputVal, 'i');
+											if(regExp.test($(td).text()))
+											{
+												found = true;
+												return false;
+											}
+										});
+										if(found == true)$(row).show();else $(row).hide();
+									}
+								});
+							}
+						</script>
 
 <script>
     $(document).ready(function() {
@@ -119,10 +117,4 @@
     });
  </script>
 
- <!--
- <script>
-        var str = 1;
-        alert("Testing="+str);
-        $.asd.renderSendBox("Testing", str, <%#= "'"+ challenges_url() +"'"%>);
-</script>
--->
+
