@@ -758,7 +758,6 @@ input.radio {
 
 .links_cancel {
 	background: none repeat scroll 0 0 #999999;
-	border-radius: 3px 3px 3px 3px;
 	text-color:white;
 	display: block;
 	font-size: 12px;
@@ -766,7 +765,7 @@ input.radio {
 	padding: 5px;
 	text-align: center;
 	text-transform: uppercase;
-	width: 100px;
+	width: 70px;
 }
 
 .task_links_cancel {
@@ -1334,7 +1333,8 @@ width:90%;
 	color:#fff;
 	left:60px;
 	position:relative;
-	width:40%;
+	width:80%;
+        top: 4px;
 }
 .remainedtask
 {
@@ -1470,7 +1470,7 @@ input:required {
 }
 
 #check3 {
-    background: none repeat scroll 0 0 #666666;
+    background: none repeat scroll 0 0 #000000;
     height: 60px;
     margin-top: 20px;
     width: 860px;
@@ -1494,7 +1494,7 @@ input:required {
     width: 180px;
 }
 #search{
-  border: 0px solid #BEBEBE;
+  border: 1px solid #BEBEBE;
     height: 25px;
     width: 180px;
 }
@@ -1544,7 +1544,7 @@ input:required {
 {
 	height:60px;
 	width:835px;
-	background:#666666;
+	background:#000000;
 	margin-top:10px;
 	padding-left:10px;
 }
@@ -1597,17 +1597,17 @@ input:required {
 			}
 			.private_msg
 			{
-			 		 left: 40px;
+			 		 left: 0px;
     position: relative;
     top: -5px;
 			}
-			.private_msg1
-			{
-			 	 float: right;
+			
+			.private_msg1 {
+			float:right;
     position: relative;
-    right: 20px;
+    right: 90px;
     top: -5px;
-			}
+}
 			.bottom_border
 			{
 			

@@ -12,19 +12,19 @@
 <table width="100%">
 	<td width="50%" class="divone">
 		<div class="regmessage">
-			<div class="msgtitle">
-				<table>
-				  <tr>
-					<td><font color="#AAA9A9" size=4><b>WHAT'S NEW</b></font></td>
-					<td>
-						<% if Challenge.where(:_type.exists => false).desc("created_at").limit(3).count == 0 %>
-					
-								<% else %>				
-								<%= button_to "", "#", :class => "non_login_view_all", :method => :get%> </td>
-						<% end %>
-					</tr>
-				</table>
-			</div>
+                    <div class="msgtitle">
+                        <table>
+                          <tr>
+                              <td><font color="#AAA9A9" size=4><b>WHAT'S NEW</b></font></td>
+                              <td>
+                                  <% if Challenge.where(:_type.exists => false).desc("created_at").limit(3).count == 0 %>
+                                  <% else %>				
+                                       <%= link_to "", nonLoginIndex_challenges_path, :class => "non_login_view_all", :method => :get%> </td>
+                                  <% end %>
+                              </td>    
+                              </tr>
+                        </table>
+                    </div>
 			
 		<% if Challenge.where(:_type.exists => false).desc("created_at").limit(3).count == 0 %>
 		<p align="center">No challenges found</p>
@@ -43,7 +43,7 @@
 						<%= anc.start_point.value rescue 0%> - <%= anc.end_point.value rescue 0%>
 					<% end %>
 					<br>
-					<% if anc.child_challenges.size<1 %>
+					<% if anc.child_challenges.size<2 %>
 					 <%= anc.child_challenges.size%>&nbsp;&nbsp;contestant
 					 <%else%>
 					<%= anc.child_challenges.size%>&nbsp;&nbsp;contestants
@@ -53,12 +53,12 @@
 					<p style="float:right; margin-right:20px; color: #A9A8A8;"><%= time_ago_in_words  anc.created_at%></p></br></br>
 					<% if anc.personal_type.instance_of?ChallengePersonalType%>
 						<p style="text-transform:none;">
-							<%=h truncate(anc.description, :length => 128) %>....<%= link_to "VIEW" , show_per_challenges_path(:id => anc.id) %>									
+							<%=h truncate(anc.description, :length => 128) %>....<%= link_to "VIEW" , nonLoginShowPersonal_challenges_path(:id => anc.id) %>									
 						</p>
 					<% end %>
 					<% if anc.social_type.instance_of?ChallengeSocialType%>
 						<p style="text-transform:none;">
-							<%=h truncate(anc.description, :length => 190) %>....<%= link_to "VIEW" , "#" %>									
+							<%=h truncate(anc.description, :length => 190) %>....<%= link_to "VIEW" , nonLoginShowSocial_challenges_path(:id =>anc.id) %>									
 						</p>
 					<% end %>
 				</td>
