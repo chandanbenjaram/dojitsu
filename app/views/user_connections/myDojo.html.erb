@@ -114,8 +114,7 @@
     $(document).ready(function() {
         $(".private_msg").click(function(event) {                                                                                                                  
             var targetId = event.target.id;
-            alert(targetId);
-            $.dojitsu.renderSendBox("Testing", targetId, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenges_url() +"'"%>);	
+            $.dojitsu.renderSendBox("Testing", targetId,"http://www.dojitsu.com", <%= "'"+ challenges_url() +"'"%>);	
         });
     });
  </script>

@@ -43,7 +43,7 @@
 						<%= anc.start_point.value rescue 0%> - <%= anc.end_point.value rescue 0%>
 					<% end %>
 					<br>
-					<% if anc.child_challenges.size<1 %>
+					<% if anc.child_challenges.size<2 %>
 					 <%= anc.child_challenges.size%>&nbsp;&nbsp;contestant
 					 <%else%>
 					<%= anc.child_challenges.size%>&nbsp;&nbsp;contestants

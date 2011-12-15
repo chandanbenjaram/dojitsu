@@ -1,10 +1,10 @@
 <%= stylesheet_link_tag('challenges.css','simple-tabs','jquery-ui', 'ui.core','ui.progressbar', 'main')%>
-<%= javascript_include_tag('jquery.facebook.multifriend.select','simple-tabs','ui.progressbar','on_the_spot','ajaxPageLoad')%>
+<%= javascript_include_tag('jquery.facebook.multifriend.select','simple-tabs','ui.progressbar','on_the_spot','ajaxPageLoad','messages')%>
 <%= render 'layouts/loggedinbody'%>
 <% as= current_user.challenges.size %>
 
 
-<div bgcolor="#f4f4f4" ,class="topbar" style="margin-top: 0px; width: 100%; height: 30px; background: none repeat scroll 0% 0% rgb(244, 244, 244); top: -20px; position: relative;">
+<div bgcolor="#f4f4f4" ,class="topbar" style="margin-top: 0px; width: 100%; height: 30px; background: none repeat scroll 0% 0% rgb(244, 244, 244); top: -18px; position: relative;">
 	
 				<div class="invitee_button" ><%= render :partial => 'invitations' %></div>
 			
@@ -80,7 +80,7 @@
 						<td width="100px">
 							<font color="#999999"><b>HOME CITY</b></font></td>
 						</td>
-						<td align="left" style="color:#666666;">
+						
 						<b>	<p id="hometown"></p></b>
 						</td>
 					</tr>
@@ -91,7 +91,7 @@
 						<td width="100px">
 							<font color="#999999"><b> SEX</b></font></td>
 						</td>
-						<td style="align:left; color:#666666;"  id="image2"  >
+						<td id="image2"  >
 				
 						</td>
 					</tr>
@@ -102,7 +102,7 @@
 						<td width="100px">
 							<font color="#999999"><b>BIRTH DAY</b></font></td>
 						</td>
-						<td style="align: left; color: #666666;" id="image3">
+						<td  id="image3">
 							<%#= current_user.facebook.birthday %>
 						</td>
 					</tr>
@@ -113,7 +113,7 @@
 						<td width="100px">
 							<font color="#999999"><b>ABOUT ME</b></font></td>
 						</td>
-						<td style="align: left; color: #666666;" >
+						<td>
 							<%  about_me = current_user.facebook.bio %>
 							<%= about_me %>
 						</td>
@@ -134,7 +134,7 @@
 						<div id="myDojo"></div>
 					</div>
 				    <script>
-					$.dojitsu.renderAjaxPageLoad("/user_connections/myDojo","#myDojo");
+					$.dojitsuUtile.renderAjaxPageLoad("/user_connections/myDojo","#myDojo");
 				    </script>
 					
 					<script>
@@ -176,7 +176,7 @@
 						<div id="people"></div>
 					</div>
 					<script>
-                                          $.dojitsu.renderAjaxPageLoad("/user_connections/people","#people");
+                                          $.dojitsuUtile.renderAjaxPageLoad("/user_connections/people","#people");
 					</script>
 </td>
 </tr>
