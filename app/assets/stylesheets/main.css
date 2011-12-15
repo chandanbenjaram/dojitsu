@@ -1470,7 +1470,7 @@ input:required {
 }
 
 #check3 {
-    background: none repeat scroll 0 0 #666666;
+    background: none repeat scroll 0 0 #000000;
     height: 60px;
     margin-top: 20px;
     width: 860px;
@@ -1544,7 +1544,7 @@ input:required {
 {
 	height:60px;
 	width:835px;
-	background:#666666;
+	background:#000000;
 	margin-top:10px;
 	padding-left:10px;
 }
