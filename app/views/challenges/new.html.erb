@@ -1,6 +1,8 @@
 <%= stylesheet_link_tag('simple-tabs_new.css','jquery-ui.css','jquery.cluetip.css','challenges.css')%>
 <%= javascript_include_tag('simple-tabs','jquery.table.addrow.js','jquery.cluetip.js','challenge_new')%>
+
 <%= render 'layouts/loggedinbody'%>
+
 <div class="challengeSubNav">
 
    	<%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %>
@@ -25,7 +27,7 @@
 		
 		<tr>
 			<td colspan="4">
-				<hr style="color:#0066CC;width:100%; height:2px;">
+				<hr id="all_hr">
 			</td>
 		</tr>
 		<tr>
@@ -34,7 +36,7 @@
 		</tr>
 		<tr>
 				<td colspan="4">
-					<hr style="color:#0066CC;width:100%; height:2px;;">
+					<hr id="all_hr">
 				</td>
 		</tr>
 		<tr>
@@ -53,7 +55,7 @@
 		</tr>
 		<tr>
 				<td colspan="4">
-					<hr style="color:#0066CC;width:100%; height:2px;">
+					<hr id="all_hr">
 				</td>
 		</tr>
 		<tr>  
@@ -72,7 +74,7 @@
 		</tr>
 		<tr>
 				<td colspan="4">
-					<hr style="color:#0066CC;width:100%; height:2px;">
+					<hr id="all_hr">
 				</td>
 		</tr>
 		<tr>
@@ -154,7 +156,7 @@
 				</tr>
 				<tr>
 					<td colspan="4">
-						<hr style="color:#0066CC;width:100%; height:2px;">
+						<hr id="all_hr">
 					</td>
 				</tr>
 				<tr>
@@ -236,13 +238,13 @@
 				</tr>
 				<tr>
 					<td colspan="4">
-						<hr style="color:#0066CC;width:100%; height:2px;">
+						<hr id="all_hr">
 					</td>
 				</tr>
 				<tr>
 					<td colspan="4">
-						<%= link_to "CANCEL", challenges_path, :style => "text-decoration: none; color:#fff; float:right; text-decoration: none; top: 2px;" ,:class => "links_cancel"%>
-						<%= f.submit "DONE", :style => "width: 70px; float:right; margin-right:10px;", :class => "links" %>
+						<%= link_to "CANCEL", challenges_path, :style => "color:#ffffff;" ,:class => "links_cancel"%>
+						<%= f.submit "DONE",  :class => "links" %>
 					</td>
 				</tr> 
 			</table> 
