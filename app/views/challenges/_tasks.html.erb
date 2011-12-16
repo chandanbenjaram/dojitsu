@@ -118,10 +118,7 @@
 								$(function() {
 									$("#taskprogress").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });							
 									$("<p>").attr("id", "check5").text($("#taskprogress").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress");
-									if (<%= @challenge.tasks.count %> == <%= total_score_count %>)
-  									{
-									  alert("hey i finish my challenge");
-									}
+									
 								});
 								
 						</script>
