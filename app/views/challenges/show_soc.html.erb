@@ -45,7 +45,7 @@
 			<table>
 				<tr >
 					<td width="20px" >  
-						<%= link_to image_tag("accepted.png"), update_status_challenges_path(:id => @challenge, :status=> 1), :onclick=>"return fun();" %>
+						<%= link_to image_tag("accepted.png"), update_status_challenges_path(:id => @challenge, :status=> 1), :onclick=>"fun();" %>
 					</td> 
 					<td width="20px" >
 						<%= link_to(image_tag("declane.png"), update_status_challenges_path(:id => @challenge, :status=> -1))%>
@@ -56,17 +56,12 @@
 				</tr>
 			</table>
 		<% end %>	
-		
-	
-
 		<script>
-        function fun()
+		function fun()
 		{
-		
-
-		window.fbAsyncInit();
-           
-              var obj = {
+		alert("opening");
+	window.fbAsyncInit();
+    var obj = {
           method: 'feed',
           link: 'https://dev.dojitsu.com/',
           picture: 'http://fbrell.com/f8.jpg',
@@ -80,10 +75,9 @@
         }
         
         FB.ui(obj, callback);
-
-		 }
+      }
 		</script>
-	
+		
 	
 		<script type="text/javascript">
 			 
@@ -483,7 +477,7 @@ $(function() {
 		delay: 0
 	});	
 	     
-	
+	document.getElementById('feedform_user_message').live('click', function(){alert($(this))});
 
 });
 </script>
