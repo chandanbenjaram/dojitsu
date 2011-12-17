@@ -39,7 +39,7 @@
 			<table width="100%" style="margin-top:-10px;">
 			  <tr>
 				<td width="40%">
-					<font size="3px;" style="font-weight:bold"><%= anc.title%></font></br>
+					<font size="3px;" style="font-weight:bold"><%=h truncate(anc.title, :length => 30) %></font></br>
 					by  <b><%= FbGraph::User.new(anc.user_id).fetch.name %></b></br>
 					<% if anc.start_point.instance_of?PointDateType %>
 						<%= anc.start_point.value.strftime("%b %d, %Y")%> - <%= anc.end_point.value.strftime("%b %d, %Y")%>
