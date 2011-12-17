@@ -224,7 +224,19 @@ class ChallengesController < ApplicationController
   def date_update
    @challenge = Challenge.find(params[:value][:myParams2])
    startPoint = @challenge.start_point
-   startPoint.update_attributes(:value => params[:value][:myParams1])
+   raise startPoint.update_attributes(:value => params[:value][:myParams1]).inspect
+  end
+  
+  def date_updateEnd
+   @challenge = Challenge.find(params[:value][:myParams2])
+   if params[:value][:myParams3]
+     endPoint = @challenge.end_point
+     endPoint.update_attributes(:value => params[:value][:myParams1], :label =>params[:value][:myParams3])
+   else
+     endPoint = @challenge.end_point
+     endPoint.update_attributes(:value => params[:value][:myParams1])
+     redirect_to challenges_path
+   end
   end
 
   def update_status
