@@ -771,7 +771,9 @@ input.radio {
 	text-decoration: none;
 	float:right; 
 	top: 2px;
+
 }
+
 
 .task_links_cancel {
 	background: none repeat scroll 0 0 #f9a943;
@@ -1754,4 +1756,12 @@ right:10px;
 	color:#0066CC;
 	width:100%;
 	height:2px;
+}
+
+.button_link{
+   float: right;
+    position: relative;
+    right: 170px;
+    top: 20px;
+    height: 33px;
 }

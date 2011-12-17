@@ -165,8 +165,11 @@ class ChallengesController < ApplicationController
   end
 	
   def date_update
-  	raise "venkat..."
-    @challenge = Challenge.find(params[:id])
+	#raise "Maisa"
+	raise params.inspect
+    @challenge.update_attributes(params[:id])
+    startPoint = aChallenge.start_point
+   	startPoint.update_attributes(:value => params[:value])
   end
 	
   def destroy
@@ -175,7 +178,7 @@ class ChallengesController < ApplicationController
   end  
 
   def invitee_accepted_req
-    raise "aaaaaaaaa"
+   
   end
 
   def message
@@ -225,11 +228,6 @@ class ChallengesController < ApplicationController
       ts.tasks.push(Task.new(:name => params[:name], :score => params[:score], :score_by => params[:score_by]))
     end
     redirect_to show_per_challenges_path(:id => params[:challenge_id])
-  end
-
-  def date_update
-   @challenge = Challenge.find(params[:id]) 
-   raise @challenge.inspect
   end
 
   def update_status
