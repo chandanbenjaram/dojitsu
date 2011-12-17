@@ -15,20 +15,20 @@
                   <td>
                       <div class="dashboardsidebar">
                       <div class="mychallenge">
-                          <div id="titlechallenge">
-                              <div style="left: 16px; position: relative; top: 5px;">
-                                 MY CHALLENGES <font color="#ffffff"><b>( <%= current_user.challenges.size %> ) </b></font>
-                              </div>
-                              <div class="second_titlechallenge">
-                                 <%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
-                              </div>
-                          </div>
-                          <div id="myChallenge"></div>
-                          <div id="myChallenge1" align="center"></div>
-                          <script>                         
-                            $.dojitsuAjaxPage.renderAjaxPageLoad("/dashboard/myChallenge","#myChallenge","#myChallenge1");
-                          </script>
-                      </div>
+			                      <div id="titlechallenge">
+			                          <div style="left: 16px; position: relative; top: 5px;">
+			                            <div class="shadow">my challenges<font color="#ffffff"><b>&nbsp;&nbsp;( <%= current_user.challenges.size %> ) </b></font></div>
+			                          </div>
+			                          <div class="second_titlechallenge">
+			                             <%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
+			                          </div>
+			                      </div>
+			                      <div id="myChallenge"></div>
+			                      <div id="myChallenge1" align="center"></div>
+			                      <script>                         
+			                        $.dojitsuAjaxPage.renderAjaxPageLoad("/dashboard/myChallenge","#myChallenge","#myChallenge1");
+			                      </script>
+			                  </div>
                       </div>	
                   </td>
               </tr>
@@ -38,7 +38,7 @@
                           <div class="mychallenge">
                               <div id="titlechallenge">
                                   <div id="title" style="left: 16px; position: relative; top: 5px;">
-                                     NEW MESSAGES <font style="color:#fff">( <%= current_user.inbox.count %> )</font>
+                                     <div class="shadow">new messages <font style="color:#fff">&nbsp;&nbsp;( <%= current_user.inbox.count %> )</font></div>
                                   </div>
                                   <div class="second_titlechallenge">
                                      <%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
@@ -60,7 +60,7 @@
 	<td valign=top>
             <div class="dashboardsidebar2">
                 <div class="whatsnew">	
-                    <font style="float: left;left: 15px; position: relative; top:6px;">WHAT'S NEW</font> 
+                    <font style="float: left;left: 15px; position: relative; top:6px;"><div class="shadow1">what's new</div></font> 
                     <%= button_to "", challenges_url, :class => "ds_view_all", :method => :get%>
                 </div> 
                 <div id="whatsNew"></div>
