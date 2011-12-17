@@ -42,8 +42,9 @@ GEM
       xml-simple
     bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
-    bson (1.5.1)
-    bson_ext (1.5.1)
+    bson (1.5.2)
+    bson_ext (1.5.2)
+      bson (= 1.5.2)
     builder (3.0.0)
     capistrano (2.9.0)
       highline
@@ -89,8 +90,8 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.17.2)
-    mongo (1.5.1)
-      bson (= 1.5.1)
+    mongo (1.5.2)
+      bson (= 1.5.2)
     mongoid (2.2.4)
       activemodel (~> 3.0)
       mongo (~> 1.3)

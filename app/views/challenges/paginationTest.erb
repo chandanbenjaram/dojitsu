@@ -1,3 +1,4 @@
+<%= javascript_include_tag('fbWallPost') %>
 <%= render 'layouts/loggedinbody'%>
 <%= debug @users %>
 <% @users.each do |aChallenge| %>
@@ -12,44 +13,6 @@
 
 <script> 
   
-      
-      window.fbAsyncInit();
-      var params = {};
-      params['message'] = 'Message';
-      params['name'] = 'Name';
-      params['description'] = 'Description';
-      params['link'] = 'http://apps.facebook.com/summer-mourning/';
-      params['picture'] = 'http://summer-mourning.zoocha.com/uploads/thumb.png';
-      params['caption'] = 'Caption';
-
-      FB.api('/me/feed', 'post', params, function(response) {
-        if (!response || response.error) {
-          alert('faild');
-        } else {
-          alert('Published to stream - you might want to delete it now!');
-        }
-      });
-      
-      alert("Maisa");
-      window.fbAsyncInit();
-      function postToFeed() 
-      {
-          alert("Pride");
-          // calling the API ...
-          var obj = {
-              method: 'feed',
-              link: 'http://www.dojitsu.com',
-              picture: 'http://www.dojitsu.com',
-              name: 'Dojitsu',
-              caption: 'Do your best',
-              description: 'Project management software for personal use in tracking the participants progress in social, athletic, personal or travel related tasks.'
-          };
-
-          function callback(response) 
-          {
-              document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
-          }
-
-          FB.ui(obj, callback);
-      }
-    </script>
+	$.dojitsuWallPost.renderFbWallPost();
+	
+</script>

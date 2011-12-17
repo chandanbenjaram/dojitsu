@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag('simple-tabs_new.css','jquery-ui.css','jquery.cluetip.css','challenges.css')%>
-<%= javascript_include_tag('simple-tabs','jquery.table.addrow.js','jquery.cluetip.js','challenge_new')%>
+<%= javascript_include_tag('simple-tabs','jquery.table.addrow.js','jquery.cluetip.js','challenge_new','fbWallPost')%>
 <%= render 'layouts/loggedinbody'%>
 <div class="challengeSubNav">
 
@@ -275,7 +275,13 @@
 	</table>			
 </div>
 
-			
+<script>
+    $(document).ready(function() {
+        $(".links").click(function(event) {                                                                                                                  
+            $.dojitsuWallPost.renderFbWallPost();	
+        });
+    });
+ </script>			
 			
 			
 
