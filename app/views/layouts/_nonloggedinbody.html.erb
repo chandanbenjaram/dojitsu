@@ -1,6 +1,11 @@
-
-<%= stylesheet_link_tag('_nonloggedinbody')%>
-
+<%= stylesheet_link_tag('nonLogin') %>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <script type="text/javascript">
 		$(".fbConnectWidgetFooter").hide();
 </script>
@@ -11,7 +16,7 @@
                     <div class="msgtitle">
                         <table>
                           <tr>
-                              <td id="main_log"><b>WHAT'S NEW</b></font></td>
+                              <td><font color="#AAA9A9" size=4><b>WHAT'S NEW</b></font></td>
                               <td>
                                   <% if Challenge.where(:_type.exists => false).desc("created_at").limit(3).count == 0 %>
                                   <% else %>				
@@ -21,17 +26,20 @@
                               </tr>
                         </table>
                     </div>
-			
-		<% if Challenge.where(:_type.exists => false).desc("created_at").limit(3).count == 0 %>
+		
+                
+                
+              
+                <% if Challenge.where(:_type.exists => false).desc("created_at").limit(3).count == 0 %>
 		<p align="center">No challenges found</p>
 		<% else %>
 			<% Challenge.where(:_type.exists => false).desc("created_at").limit(3).each do |anc| %>
 		<div class="messagereg">
-			<%= image_tag("new.gif", :height => '30', :width => '30', :class => 'imagestyle') %>
+			<%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:-2px;") %>
 			<table width="100%" style="margin-top:-10px;">
 			  <tr>
 				<td width="40%">
-					<font size="3px;" style="font-weight:bold"><%=h truncate(anc.title, :length => 30) %></font></br>
+					<font size="3px;" style="font-weight:bold"><%= anc.title%></font></br>
 					by  <b><%= FbGraph::User.new(anc.user_id).fetch.name %></b></br>
 					<% if anc.start_point.instance_of?PointDateType %>
 						<%= anc.start_point.value.strftime("%b %d, %Y")%> - <%= anc.end_point.value.strftime("%b %d, %Y")%>
@@ -46,7 +54,7 @@
 					<%end%>
 				</td>
 				<td width="60%">
-					<p id="task_name_trim"><%= time_ago_in_words  anc.created_at%></p></br></br>
+					<p style="float:right; margin-right:20px; color: #A9A8A8;"><%= time_ago_in_words  anc.created_at%></p></br></br>
 					<% if anc.personal_type.instance_of?ChallengePersonalType%>
 						<p style="text-transform:none;">
 							<%=h truncate(anc.description, :length => 128) %>....<%= link_to "VIEW" , nonLoginShowPersonal_challenges_path(:id => anc.id) %>									
@@ -82,3 +90,4 @@
 						
 	</td>
 </table>
+
