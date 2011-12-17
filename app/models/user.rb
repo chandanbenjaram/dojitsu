@@ -47,17 +47,7 @@ class User < ActiveRecord::Base
   def facebook
     FbGraph::User.new('me', :access_token => self.fbauth.token).fetch
   end
-  
- def facebookmsg
     
-  debugger
-    FbGraph::Message.new('me', :access_token => self.fbauth.token).fetch
-	
-  end
-   def fbauth
-    self.authentications.find_by_provider('facebookmsg')
-  end
-   
   def fbauth
     self.authentications.find_by_provider('facebook')
   end

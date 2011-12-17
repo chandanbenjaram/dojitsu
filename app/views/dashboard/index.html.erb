@@ -24,8 +24,9 @@
                               </div>
                           </div>
                           <div id="myChallenge"></div>
-                          <script>                            
-                            $.dojitsuUtile.renderAjaxPageLoad("/dashboard/myChallenge","#myChallenge");
+                          <div id="myChallenge1" align="center"></div>
+                          <script>                         
+                            $.dojitsuAjaxPage.renderAjaxPageLoad("/dashboard/myChallenge","#myChallenge","#myChallenge1");
                           </script>
                       </div>
                       </div>	
@@ -44,8 +45,9 @@
                                   </div>
                               </div>
                               <div id="message"></div>
+                              <div id="message1" align="center"></div>
                               <script>
-                                $.dojitsuUtile.renderAjaxPageLoad("/dashboard/message","#message");
+                                $.dojitsuAjaxPage.renderAjaxPageLoad("/dashboard/message","#message","#message1");
                               </script>
                           </div>	
                       </div>
@@ -62,8 +64,9 @@
                     <%= button_to "", challenges_url, :class => "ds_view_all", :method => :get%>
                 </div> 
                 <div id="whatsNew"></div>
+                <div id="whatsNew1" align="center"></div>
                 <script>
-                  $.dojitsuUtile.renderAjaxPageLoad("/dashboard/whatsNew","#whatsNew");
+                  $.dojitsuAjaxPage.renderAjaxPageLoad("/dashboard/whatsNew","#whatsNew","#whatsNew1");
                 </script>
             </div>
 	</td>
