@@ -14,104 +14,107 @@
 			<td width="100px" height="200px" id="image1" align="left">
 			</td>
 			<td width="570px" height="200px">
-				<table border =5 bordercolor=#f4f4f4>
-					<tr>
-						<td width="100px">
-							<!--<font color="#999999"><b>TROPHIES</b></font>--></td>
-						</td>
-						<td align="left">
-							<!--<font color="gray">No of trophies</font>-->
-						</td>
-					</tr>
-				</table>
 				<table>
 					<tr>
 						<td width="100px">
 							<b><font color="#999999">MEMBER SINCE</font></b></td>
 						</td>
 						<td align="left" style="color:#666666">
-							<b><%  user = User.find(:all)%>
-							<%= current_user.created_at%></b>
+							<%= current_user.created_at%>
 						</td>
-					</tr>
-				</table>
-				<hr/>
-				<table border =5 bordercolor=#f4f4f4>
+					</tr> 
+					<tr> 
+						<td colspan="2"> 
+							<hr/>
+						</td>
+					</tr>   
 					<tr>
 						<td width="100px">
 							<font color="#999999"><b>ACHIEVEMENTS</b></font>
 						</td>
 						<td align="left" style="color:#666666;">
-						<b>	<% sum=0 %>
-							<% current_user.challenges.each  do |ch| %>
-								<% t= 0 %>
-								<% ch.tasks.each do |tasks| %>
-								<% t = t+1 %>
+							<b>	<% totalTasks=0 %>
+								<% current_user.challenges.each  do |ch| %>
+									<% totalTasks+=ch.tasks.length%>
 								<% end %>
-								<% sum = sum + t %>
-							 <% end %>
-							<b><%= current_user.challenges.length %>&nbsp;Challenges&nbsp;and&nbsp;<%= sum%>&nbsp;tasks</b>
-						</td>
-					</tr>
-				</table>
-				
-				<hr/>
-				
-				<table height="10px">
-					<tr height="10px">
-						<td width="100px" height="10px">
-							<font color="#999999"><b> CURRENT CITY</b></font></td>
-						</td>
-						<td align="left" height="10px" style="color:#666666;">
-							<b><p id="location"></p></b>
-						</td>
-					</tr>
-				</table>
-					<hr/>
-				<table>
-					<tr>
-						<td width="100px">
-							<font color="#999999"><b>HOME CITY</b></font></td>
-						</td>
-						
-						<b>	<p id="hometown"></p></b>
-						</td>
-					</tr>
-				</table>
-				<hr/>
-				<table>
-					<tr>
-						<td width="100px">
-							<font color="#999999"><b> SEX</b></font></td>
-						</td>
-						<td id="image2"  >
-				
-						</td>
-					</tr>
-				</table>
-				<hr/>
-				<table>
-					<tr>
-						<td width="100px">
-							<font color="#999999"><b>BIRTH DAY</b></font></td>
-						</td>
-						<td  id="image3">
-							<%#= current_user.facebook.birthday %>
-						</td>
-					</tr>
-				</table>
-				<hr/>
-				<table>
-					<tr>
-						<td width="100px">
-							<font color="#999999"><b>ABOUT ME</b></font></td>
-						</td>
-						<td>
-							<%  about_me = current_user.facebook.bio %>
-							<%= about_me %>
-						</td>
-					</tr>
-				</table>
+								<b><%= current_user.challenges.length %>&nbsp;Challenges&nbsp;and&nbsp;<%= totalTasks%>&nbsp;tasks</b>
+							</td>
+						</tr>
+
+						<tr> 
+							<td colspan="2"> 
+								<hr/>
+							</td>
+						</tr>   
+
+						<tr>
+							<td width="100px" height="10px">
+								<font color="#999999"><b>CURRENT CITY</b></font></td>
+							</td>
+							<td align="left" height="10px" style="color:#666666;">
+								<b><%= current_user.facebook.location.name rescue 'N/A' %></b>
+							</td>
+						</tr>
+						<tr> 
+							<td colspan="2"> 
+								<hr/>
+							</td>
+						</tr>   
+
+						<tr>
+							<td width="100px">
+								<font color="#999999"><b>HOME CITY</b></font></td>
+							</td>
+							<td align="left" height="10px" style="color:#666666;">
+								<b><%= current_user.facebook.hometown.name rescue 'N/A' %></b>
+							</td>
+						</tr>
+						<tr> 
+							<td colspan="2"> 
+								<hr/>
+							</td>
+						</tr>   
+
+						<tr>
+							<td width="100px">
+								<font color="#999999"><b>SEX</b></font></td>
+							</td>
+							<td align="left" height="10px" style="color:#666666;">
+								<b><%= current_user.facebook.gender rescue 'N/A' %></b>
+							</td>
+						</tr>
+						<tr> 
+							<td colspan="2"> 
+								<hr/>
+							</td>
+						</tr>
+						<tr>
+							<td width="100px">
+								<font color="#999999"><b>BIRTH DAY</b></font></td>
+							</td>
+							<td align="left" height="10px" style="color:#666666;">
+								<b><%= current_user.facebook.birthday rescue 'N/A' %></b>
+							</td>
+						</tr>
+						<tr> 
+							<td colspan="2"> 
+								<hr/>
+							</td>
+						</tr>
+						<tr>
+							<td width="100px">
+								<font color="#999999"><b>ABOUT ME</b></font></td>
+							</td>
+							<td align="left" height="10px" style="color:#666666;">
+								<b><%= current_user.facebook.bio rescue 'N/A' %></b>
+							</td>						
+						</tr> 
+						<tr> 
+							<td colspan="2"> 
+								<hr/>
+							</td>
+						</tr>
+					</table>
 			</td>
 		</tr>
 	 </table>
