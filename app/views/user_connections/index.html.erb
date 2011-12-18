@@ -11,7 +11,13 @@
 	<p class="user"><font color="orange"><%=current_user.facebook.name%></font></p>
 	<table border="1px">
 		<tr width="600px">
-			<td width="100px" height="200px" id="image1" align="left">
+			<td width="100px" height="200px" align="left">      
+				<% picturePath = current_user.facebook.picture('large')%>
+				<% if picturePath.nil?   
+					 picturePath = current_user.facebook.picture
+				end%>
+				<%= image_tag picturePath %>   
+				
 			</td>
 			<td width="570px" height="200px">
 				<table>
@@ -300,3 +306,11 @@ var email=response[0].email;
  })(jQuery);                              
  </script>
 
+<style>
+					.ui-widget-header {
+    background: none repeat scroll 0 0 #7AC142;
+    border: 1px solid #AAAAAA;
+    color: #222222;
+    font-weight: bold;
+}
+					</style>
