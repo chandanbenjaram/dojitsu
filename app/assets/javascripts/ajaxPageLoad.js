@@ -5,6 +5,7 @@
               url: aUrl, 
               cache: false,
               beforeSend: function( ) {
+              
                 $(aDiv1).html("<img src='/assets/ajax-loader.gif' />");
               },
               success: function(html){

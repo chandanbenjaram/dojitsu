@@ -118,10 +118,12 @@
 								$(function() {
 									$("#taskprogress").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });							
 									$("<p>").attr("id", "check5").text($("#taskprogress").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress");
+									
 								});
+								
 						</script>
 						<style>
-											#check5 {
+					#check5 {
 						color: #7AC142;
 						font-size: 15px;
 						font-weight:bold;
