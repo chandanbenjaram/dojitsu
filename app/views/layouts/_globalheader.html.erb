@@ -1,4 +1,5 @@
 <%= stylesheet_link_tag('fb_logout')%>
+
 <div class="span-24 header first">&nbsp;</div>
 <div class="span-24">      
 	<% if !current_user.nil?%> 
@@ -43,7 +44,7 @@ $(document).ready(function () {
 		<div class="authnav">
 			<ul>
 				<li>
-					<%= link_to image_tag("loginbutton.png", :alt => "Connect Facebook"), user_omniauth_authorize_path(:facebook, :display=>"page"),  :title=>"Connect Facebook"%>		
+					<%=link_to image_tag("loginbutton.png"), user_omniauth_authorize_path(:facebook, :display=>"popup"), :class => "popup", :"data-width" => 600, :"data-height" => 400 , :isNewChallenge => "isNew"%>		
 				</li>
 				<!-- <li>                                                                                                                                         
 				<%= link_to image_tag("register.PNG", :alt => "Register"), new_user_registration_path,  :title=>"Register", :style => "float:right"%>
@@ -54,7 +55,14 @@ $(document).ready(function () {
 			</ul>
 		</div>
 		<% end %>
-	</div>                                                                                       
+	</div>   
+	
+<% if params[:isNewChallenge] == "isNew" %>
+    <script> 
+      $.dojitsuWallPost.renderFbWallPost();
+    </script>
+<% end %>	
+
 	<div id="fb-root" />
 </div>
 
@@ -72,10 +80,20 @@ $(document).ready(function () {
 			};
 			
 			// Load the SDK Asynchronously
-			(function(d){
-				var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
-				js = d.createElement('script'); js.id = id; js.async = true;
-				js.src = "//connect.facebook.net/en_US/all.js";
-				d.getElementsByTagName('head')[0].appendChild(js);
-				}(document));
+			function popupCenter(url, width, height, name) {
+  var left = (screen.width/2)-(width/2);
+  var top = (screen.height/2)-(height/2);
+  return window.open(url, name, "menubar=no,toolbar=no,status=no,width="+width+",height="+height+",toolbar=no,left="+left+",top="+top);
+}
+
+$("a.popup").click(function(e) {
+  popupCenter($(this).attr("href"), $(this).attr("data-width"), $(this).attr("data-height"), "authPopup");
+  e.stopPropagation(); return false;
+});
+if(window.opener) {
+    window.opener.location.reload(true);
+    window.close()
+  }
+
+
 </script>
