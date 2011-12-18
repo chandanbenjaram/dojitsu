@@ -106,7 +106,7 @@
 								<font color="#999999"><b>BIRTH DAY</b></font></td>
 							</td>
 							<td align="left" height="10px" style="color:#666666;">
-								<b><%= current_user.facebook.birthday.inspect %></b>
+								<b><%= current_user.facebook.birthday rescue 'N/A' %></b>
 							</td>
 						</tr>
 						<tr> 
