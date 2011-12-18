@@ -32,15 +32,15 @@
 							</label>
 					</td>
 					<td style="width:80%; padding-left: 56%;"><input type="text" id="search"/>
-					 <%= image_tag ("searchbutton.PNG")%>
+					<%= image_tag ("searchbutton.PNG") %>
 						
 						
 					</td>
 					<td>
-					<p class="invite"><span class="invitee3"><%= render :partial => 'invitations' %>
+					<p class="invite"><%= render :partial => 'invitations' %>
 		<%#= image_tag("invitee.PNG", :width=> "100px" , :height => "30px", :style => "top:10px;" )%>
 
-		<%= hidden_field_tag "myvar", 0%>	</span>
+		<%= hidden_field_tag "myvar", 0%>	
 		</p>
 					</td>
 				</table>

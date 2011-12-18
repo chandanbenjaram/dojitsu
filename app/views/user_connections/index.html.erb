@@ -3,28 +3,15 @@
 <%= render 'layouts/loggedinbody'%>
 <% as= current_user.challenges.size %>
 
-
-<div bgcolor="#f4f4f4" ,class="topbar" style="margin-top: 0px; width: 100%; height: 30px; background: none repeat scroll 0% 0% rgb(244, 244, 244); top: -18px; position: relative;">
-
-	<div class="invitee_button" ><%= render :partial => 'invitations' %><div style="position:relative; top:-30px; float:right; right:-90px; color:#999999; font-size: 12px;font-weight:bold;"><%=current_user.facebook.name%></div></div>
-
-
-
+<div bgcolor="#f4f4f4" ,class="topbar" style="margin-top: 0px; width: 100%; height: 30px; background: none repeat scroll 0% 0% rgb(244, 244, 244); top: -18px; position: relative;">	
+<div class="invitee_button" ><%= render :partial => 'invitations' %><div style="position:relative; top:-30px; float:right; right:-90px; color:#999999; font-size: 12px;font-weight:bold;"><%=current_user.facebook.name%></div></div>		
 </div>
-
-
 
 <div id="ch_main_div5">
 	<p class="user"><font color="orange"><%=current_user.facebook.name%></font></p>
 	<table border="1px">
 		<tr width="600px">
-			<td width="100px" height="200px" align="left">      
-				<% picturePath = current_user.facebook.picture('large')%>
-				<% if picturePath.nil?   
-					 picturePath = current_user.facebook.picture
-				end%>
-				<%= image_tag picturePath %>   
-				
+			<td width="100px" height="200px" id="image1" align="left">
 			</td>
 			<td width="570px" height="200px">
 				<table>
@@ -127,193 +114,189 @@
 								<hr/>
 							</td>
 						</tr>
-					</table>                        
-				</td>
-			</tr>
-		</table>
-		<table width="100%" border="0" style="margin-top:0px;">
-			<tr>
-				<td colspan="3">
-					<ul class="tabs">
-						<li><a href="#tab1"><b>MY DOJO</b></a></li>
-						<li><a href="#tab2"><b>CHALLENGES</b></a></li>
-					</ul>
-					<div class="tab_container1">
-						<div id="tab1" class="tab_content2">
-							<div id="myDojo"></div>
-						</div>
-						<script>
-						$.dojitsuUtile.renderAjaxPageLoad("/user_connections/myDojo","#myDojo");
-						</script>
-
-						<script>
-						(function ($) {
-							jQuery.expr[':'].Contains = function(a,i,m){
-								return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
-							};
-
-							function listFilter(header, list) {
-								var form = $("<form>").attr({"class":"filterform","action":"#"}),
-								input = $("<input>").attr({"class":"filterinput","type":"text"});
-								$("#search").append($(form).append(input).appendTo(header));
-
-								$(input)
-								.change( function () {
-									var filter = $(this).val();
-									if(filter) {
-										$(list).find("a:not(:Contains(" + filter + "))").parent().slideUp();
-										$(list).find("a:Contains(" + filter + ")").parent().slideDown();
-									} else {
-										$(list).find("tr").slideDown();
-									}
-									return false;
-								})
-								.keyup( function () {
-									$(this).change();
-								});
-							}
-							$(function () {
-								listFilter($("#header"), $("#list"));
-							});
-							}(jQuery));
-							</script> 			
-
-
-
-							<div id="tab2" class="tab_content2"><br>
-
-								<div id="people"></div>
-							</div>
-							<script>
-							$.dojitsuUtile.renderAjaxPageLoad("/user_connections/people","#people");
-							</script>
-						</td>
-					</tr>
-				</table>
-				<script>
-				window.fbAsyncInit();
-				FB.getLoginStatus(function(response) {
-					if (response.session)
-					{
-						globaluserid=response.session["uid"];
-						name=globaluserid;
-						FB.api(
-							{
-								method: 'fql.query',
-								query: 'SELECT uid1 FROM friend WHERE uid2='+globaluserid
-							},
-							function(response)
-							{
-								FB.api({
-									method: 'fql.query',
-									query: 'SELECT name,pic_big,sex,birthday FROM user WHERE uid=' + name
-								}, function(response){
-									htmlcontent = '<img src=' + response[0].pic_big+ ' />';
-									htmlcontent1=response[0].name
-									htmlcontent2=response[0].sex
-									htmlcontent3=response[0].birthday
-									$("#image").append(htmlcontent1);
-									$("#image1").append(htmlcontent);
-									$("#image2").append(htmlcontent2);
-									$("#image3").append(htmlcontent3);
-								});
-							}
-						);
-
-						FB.api('/me', function(response) {
-							var location = response.location.name;
-							var hometown = response.hometown.name;
-							$("#hometown").append(hometown);
-							$("#location").append(location);
-						});
-						FB.api(
-							{
-								method: 'permissions.request',
-								perms: 'user_birthday',
-							},
-							function(response) {
-								FB.api('/me', function(response){
-									display: 'none'
-									var bir =response[0].birthday;
-									var email=response[0].email;
-								});
-							}
-						);
-					}
-				});
-				</script> 
-				<style>
-				.update {
-					float: left;
-					left: 87%;
-					position: relative;
-					top: 10px;
-				}
-				#points {
-					background: none repeat scroll 0 0 #DDEFCE;
-					color: #7AC142;
-					height: 30px;
-					left: 92%;
-					padding-left: 5px;
-					padding-top: 4px;
-					position: relative;
-					top: -100px;
-					width: 40px;
-				}
-				</style>
-				<div id="jfmfs-container-wrapper" style="display: none">
-					<div id="jfmfs-container">
+					</table>
+			</td>
+		</tr>
+	 </table>
+	<table width="100%" border="0" style="margin-top:0px;">
+		<tr>
+			<td colspan="3">
+    			<ul class="tabs">
+    				<li><a href="#tab1"><b>MY DOJO</b></a></li>
+    				<li><a href="#tab2"><b>CHALLENGES</b></a></li>
+				</ul>
+				<div class="tab_container1">
+					<div id="tab1" class="tab_content2">
+						<div id="myDojo"></div>
+                                                <div id="myDojo1"></div>
 					</div>
-				</div>
-				<script type="text/javascript" charset="utf-8">        
-				(function($j) { 
-					var selectorObz = {    
-						filter_default: "Search By Name",
-						friend_fields: "id,name,last_name&access_token="+'<%= current_user.facebook.access_token%>'
-					}
+				    <script>
+					$.dojitsuAjaxPage.renderAjaxPageLoad("/user_connections/myDojo","#myDojo","#myDojo1");
+				    </script>
+					
+					<script>
+						(function ($) {
+						  jQuery.expr[':'].Contains = function(a,i,m){
+							  return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+						  };
 
-					$j('.invitees').live('click', function(){
-						$j( "#jfmfs-container-wrapper" ).dialog({
-							modal: true,
-							resizable: false,
-							closeText: "",
-							position: 'center',
-							title: 'Invite Participants',
-							width: '725px',
-							open: function(event, ui) { $j("#jfmfs-container").jfmfs(selectorObz); },
-							buttons: {                                             
-								Cancel: function() {
-									$j("#jfmfs-container").data('jfmfs').clearSelected(); 
-									$j('#inviteBtn').val("INVITE PARTICIPANTS");    
-									$j(this).dialog( "close" );
-								},
-								Save: function() {
-									var friendSelector = $j("#jfmfs-container").data('jfmfs');
-									var selectedFriends = friendSelector.getSelectedIds();
-									$j('#invitees_id').val(selectedFriends);
-									$j('#inviteBtn').val("INVITE PARTICIPANTS (" + selectedFriends.length + ")");   
-									$j(this).dialog( "close" );
-									jQuery.support.cors = true;
-									$.get('/user_connections/sendInvitation', 
-									{inviteIds:selectedFriends},
-									function(data) {
+						  function listFilter(header, list) {
+							var form = $("<form>").attr({"class":"filterform","action":"#"}),
+								input = $("<input>").attr({"class":"filterinput","type":"text"});
+							$("#search").append($(form).append(input).appendTo(header));
 
-										}, 'script'
-									);
-								} 
-							}
-
-						});
-					})          
-
-					})(jQuery);                              
+							$(input)
+							  .change( function () {
+								var filter = $(this).val();
+								if(filter) {
+								  $(list).find("a:not(:Contains(" + filter + "))").parent().slideUp();
+								  $(list).find("a:Contains(" + filter + ")").parent().slideDown();
+								} else {
+								  $(list).find("tr").slideDown();
+								}
+								return false;
+							  })
+							.keyup( function () {
+								$(this).change();
+							});
+						  }
+						  $(function () {
+							listFilter($("#header"), $("#list"));
+						  });
+						}(jQuery));
+					</script> 			
+		
+		
+		
+					<div id="tab2" class="tab_content2"><br>
+					
+						<div id="people"></div>
+                                                <div id="people1"></div>
+                                        </div>
+					<script>
+                                          $.dojitsuAjaxPage.renderAjaxPageLoad("/user_connections/people","#people","#people1");
 					</script>
-					<style>
-					.ui-widget-header {
-    background: none repeat scroll 0 0 #7AC142;
-    border: 1px solid #AAAAAA;
-    color: #222222;
-    font-weight: bold;
+</td>
+</tr>
+</table>
+ <script>
+window.fbAsyncInit();
+FB.getLoginStatus(function(response) {
+             if (response.session)
+{
+                   globaluserid=response.session["uid"];
+name=globaluserid;
+FB.api(
+                     {
+                        method: 'fql.query',
+                         query: 'SELECT uid1 FROM friend WHERE uid2='+globaluserid
+                      },
+                    function(response)
+                      {
+FB.api({
+method: 'fql.query',
+query: 'SELECT name,pic_big,sex,birthday FROM user WHERE uid=' + name
+}, function(response){
+htmlcontent = '<img src=' + response[0].pic_big+ ' />';
+htmlcontent1=response[0].name
+htmlcontent2=response[0].sex
+htmlcontent3=response[0].birthday
+$("#image").append(htmlcontent1);
+$("#image1").append(htmlcontent);
+$("#image2").append(htmlcontent2);
+$("#image3").append(htmlcontent3);
+});
 }
-					</style>
+                        );
+						
+FB.api('/me', function(response) {
+var location = response.location.name;
+var hometown = response.hometown.name;
+$("#hometown").append(hometown);
+$("#location").append(location);
+});
+FB.api(
+{
+method: 'permissions.request',
+perms: 'user_birthday',
+},
+function(response) {
+console.log(response);
+FB.api('/me', function(response){
+console.log(response);
+display: 'none'
+var bir =response[0].birthday;
+var email=response[0].email;
+});
+}
+);
+            }
+    });
+ </script> 
+ <style>
+ .update {
+    float: left;
+    left: 87%;
+    position: relative;
+    top: 10px;
+}
+#points {
+    background: none repeat scroll 0 0 #DDEFCE;
+    color: #7AC142;
+    height: 30px;
+    left: 92%;
+    padding-left: 5px;
+    padding-top: 4px;
+    position: relative;
+    top: -100px;
+    width: 40px;
+}
+</style>
+<div id="jfmfs-container-wrapper" style="display: none">
+  <div id="jfmfs-container">
+  </div>
+ </div>
+<script type="text/javascript" charset="utf-8">        
+(function($j) { 
+ var selectorObz = {    
+  filter_default: "Search By Name",
+  friend_fields: "id,name,last_name&access_token="+'<%= current_user.facebook.access_token%>'
+ }
+
+ $j('.invitees').live('click', function(){
+  $j( "#jfmfs-container-wrapper" ).dialog({
+   modal: true,
+   resizable: false,
+   closeText: "",
+   position: 'center',
+   title: 'Invite Participants',
+   width: '725px',
+   open: function(event, ui) { $j("#jfmfs-container").jfmfs(selectorObz); },
+   buttons: {                                             
+                Cancel: function() {
+     $j("#jfmfs-container").data('jfmfs').clearSelected(); 
+     $j('#inviteBtn').val("INVITE PARTICIPANTS");    
+     $j(this).dialog( "close" );
+    },
+    Save: function() {
+     var friendSelector = $j("#jfmfs-container").data('jfmfs');
+     var selectedFriends = friendSelector.getSelectedIds();
+     $j('#invitees_id').val(selectedFriends);
+        $j('#inviteBtn').val("INVITE PARTICIPANTS (" + selectedFriends.length + ")");   
+    $j(this).dialog( "close" );
+		jQuery.support.cors = true;
+		$.get('/user_connections/sendInvitation', 
+			{inviteIds:selectedFriends},
+			function(data) {
+
+			}, 'script'
+		);
+     } 
+   }
+   
+  });
+ })          
+
+ })(jQuery);                              
+ </script>
 
