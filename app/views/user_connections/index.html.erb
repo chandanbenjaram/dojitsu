@@ -106,7 +106,7 @@
 								<font color="#999999"><b>BIRTH DAY</b></font></td>
 							</td>
 							<td align="left" height="10px" style="color:#666666;">
-								<b><%= current_user.facebook.birthday rescue 'N/A' %></b>
+								<b><%= current_user.facebook.birthday.inspect %></b>
 							</td>
 						</tr>
 						<tr> 
@@ -308,4 +308,12 @@
 
 					})(jQuery);                              
 					</script>
+					<style>
+					.ui-widget-header {
+    background: none repeat scroll 0 0 #7AC142;
+    border: 1px solid #AAAAAA;
+    color: #222222;
+    font-weight: bold;
+}
+					</style>
 

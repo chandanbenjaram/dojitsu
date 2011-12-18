@@ -1354,9 +1354,23 @@ width:90%;
 .completedtask1
 {
 	color:#fff;
-	left:150px;
+	left:170px;
 	position:relative;
 	top:2px;
+}
+.invitees3{
+    background: none repeat scroll 0 0 #F9A943;
+    border-radius: 3px 3px 3px 3px;
+    color: #FFFFFF;
+    display: block;
+    font-size: 12px;
+    left: 0;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    top: -2px;
+    width: 85px;
 }
 
 
@@ -1694,9 +1708,11 @@ top: -12px;
 			}
 			
 .invite {
-position :relative;
-	top: 15px;
-		}
+    margin-top: -20px;
+    position: relative;
+    right: 5px;
+    top: 15px;
+}
 		.nav_shadow_mydojo
 		{
 		height: 25px;
