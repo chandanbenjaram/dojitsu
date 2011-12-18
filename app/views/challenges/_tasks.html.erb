@@ -141,8 +141,10 @@
 								width: 175px;
 								top:-6px;
 							}
-						</style>						
-						<%= markAsComplete%>	
+						</style>
+                                                <% if @challenge.is_complete != 1 %>
+                                                  <%= markAsComplete%>
+                                                <% end %>
 					</div>
 		</tr>
 	<% else %>

@@ -1,6 +1,13 @@
 = stylesheet_link_tag "colorbox"
-= javascript_include_tag "jquery.colorbox-min"
+= javascript_include_tag "jquery.colorbox-min","fbWallPost"
 = render partial="layouts/loggedinbody"
+
+
+-if params[:isNewChallenge] == "isNew"
+    javascript:
+      $.dojitsuWallPost.renderFbWallPost();
+    
+
 .span-24.challengeSubNav
 	.span-8
 		.span-4   &nbsp;
