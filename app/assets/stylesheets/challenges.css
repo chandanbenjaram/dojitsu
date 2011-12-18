@@ -23,7 +23,7 @@ td.taskScorebySelection select {
 } 
 
 td.taskSelection select {
-	width: 222px;
+	width: 130%;
 }
 
 .taskIcon {

@@ -128,6 +128,14 @@
 									 top:-43px;
 									 left:25px;
 								  }
+								  @media screen and (-webkit-min-device-pixel-ratio:0) {
+								  .addRow {
+								    position:relative;
+									 margin-top:3%;
+									 left:25px;
+								    }
+								}
+
 								</style>
 							</td>
 						</tr>
@@ -181,7 +189,7 @@
 					["Lowest number of points","Lowest number of points"],	 
 					["1st person to reach End Point","1st person to reach End Point"],	
 					["Participant completes all tasks","Participant completes all tasks"]			 														
-					]), :id => "soc_wn", :style => "width:322px"
+					]), :id => "soc_wn", :style => "width:130%"
 					%>		
 				</div>	
 				<div id="select_challenge_div"></div>
@@ -197,7 +205,7 @@
 						["3","3"],
 						["5","5"],	 
 						["All participants win","all"] 														
-						]), :id => "soc_hm", :style => "width:322px"
+						]), :id => "soc_hm", :style => "width:130%"
 						%>
 					</div>		
 						<div id="soc_how_many_winner_div"></div>	
@@ -224,7 +232,7 @@
     										["Choose", ""],							
 											["Add all points together","Add all points together"],
 											["Reach all milestones","Reach all milestones"]
- 											]), :id => "per_wn", :style => "width:322px" 
+ 											]), :id => "per_wn", :style => "width:130%" 
  										%>
 										</div>
 									</td>
@@ -243,7 +251,7 @@
 				</tr>
 				<tr>
 					<td colspan="4">
-						<%= link_to "CANCEL", challenges_path, :style => "color:#ffffff;" ,:class => "links_cancel"%>
+						<%= link_to "CANCEL", challenges_path, :class => "links_cancel"%>
 						<%= f.submit "DONE",  :class => "links" %>
 					</td>
 				</tr> 

@@ -57,11 +57,7 @@ $(document).ready(function () {
 		<% end %>
 	</div>   
 	
-<% if params[:isNewChallenge] == "isNew" %>
-    <script> 
-      $.dojitsuWallPost.renderFbWallPost();
-    </script>
-<% end %>	
+
 
 	<div id="fb-root" />
 </div>
@@ -80,6 +76,14 @@ $(document).ready(function () {
 			};
 			
 			// Load the SDK Asynchronously
+			(function(d){
+				var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+				js = d.createElement('script'); js.id = id; js.async = true;
+				js.src = "//connect.facebook.net/en_US/all.js";
+				d.getElementsByTagName('head')[0].appendChild(js);
+				}(document));
+			
+			// Load the SDK Asynchronously
 			function popupCenter(url, width, height, name) {
   var left = (screen.width/2)-(width/2);
   var top = (screen.height/2)-(height/2);
@@ -95,5 +99,6 @@ if(window.opener) {
     window.close()
   }
 
+  
 
 </script>
