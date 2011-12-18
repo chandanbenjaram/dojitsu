@@ -3,122 +3,124 @@
 <%= render 'layouts/loggedinbody'%>
 <% as= current_user.challenges.size %>
 
-
-<div bgcolor="#f4f4f4" ,class="topbar" style="margin-top: 0px; width: 100%; height: 30px; background: none repeat scroll 0% 0% rgb(244, 244, 244); top: -18px; position: relative;">
-	
-				<div class="invitee_button" ><%= render :partial => 'invitations' %></div>
-			
-			
-		
+<div bgcolor="#f4f4f4" ,class="topbar" style="margin-top: 0px; width: 100%; height: 30px; background: none repeat scroll 0% 0% rgb(244, 244, 244); top: -18px; position: relative;">	
+<div class="invitee_button" ><%= render :partial => 'invitations' %><div style="position:relative; top:-30px; float:right; right:-90px; color:#999999; font-size: 12px;font-weight:bold;"><%=current_user.facebook.name%></div></div>		
 </div>
-
-
 
 <div id="ch_main_div5">
 	<p class="user"><font color="orange"><%=current_user.facebook.name%></font></p>
 	<table border="1px">
 		<tr width="600px">
-			<td width="100px" height="200px" id="image1" align="left">
+			<td width="100px" height="200px" align="left">      
+				<% picturePath = current_user.facebook.picture('large')%>
+				<% if picturePath.nil?   
+					 picturePath = current_user.facebook.picture
+				end%>
+				<%= image_tag picturePath %>   
+				
 			</td>
 			<td width="570px" height="200px">
-				<table border =5 bordercolor=#f4f4f4>
-					<tr>
-						<td width="100px">
-							<!--<font color="#999999"><b>TROPHIES</b></font>--></td>
-						</td>
-						<td align="left">
-							<!--<font color="gray">No of trophies</font>-->
-						</td>
-					</tr>
-				</table>
 				<table>
 					<tr>
 						<td width="100px">
 							<b><font color="#999999">MEMBER SINCE</font></b></td>
 						</td>
 						<td align="left" style="color:#666666">
-							<b><%  user = User.find(:all)%>
-							<%= current_user.created_at%></b>
+							<%= current_user.created_at%>
 						</td>
-					</tr>
-				</table>
-				<hr/>
-				<table border =5 bordercolor=#f4f4f4>
+					</tr> 
+					<tr> 
+						<td colspan="2"> 
+							<hr/>
+						</td>
+					</tr>   
 					<tr>
 						<td width="100px">
 							<font color="#999999"><b>ACHIEVEMENTS</b></font>
 						</td>
 						<td align="left" style="color:#666666;">
-						<b>	<% sum=0 %>
-							<% current_user.challenges.each  do |ch| %>
-								<% t= 0 %>
-								<% ch.tasks.each do |tasks| %>
-								<% t = t+1 %>
+							<b>	<% totalTasks=0 %>
+								<% current_user.challenges.each  do |ch| %>
+									<% totalTasks+=ch.tasks.length%>
 								<% end %>
-								<% sum = sum + t %>
-							 <% end %>
-							<b><%= current_user.challenges.length %>&nbsp;Challenges&nbsp;and&nbsp;<%= sum%>&nbsp;tasks</b>
-						</td>
-					</tr>
-				</table>
-				
-				<hr/>
-				
-				<table height="10px">
-					<tr height="10px">
-						<td width="100px" height="10px">
-							<font color="#999999"><b> CURRENT CITY</b></font></td>
-						</td>
-						<td align="left" height="10px" style="color:#666666;">
-							<b><p id="location"></p></b>
-						</td>
-					</tr>
-				</table>
-					<hr/>
-				<table>
-					<tr>
-						<td width="100px">
-							<font color="#999999"><b>HOME CITY</b></font></td>
-						</td>
-						
-						<b>	<p id="hometown"></p></b>
-						</td>
-					</tr>
-				</table>
-				<hr/>
-				<table>
-					<tr>
-						<td width="100px">
-							<font color="#999999"><b> SEX</b></font></td>
-						</td>
-						<td id="image2"  >
-				
-						</td>
-					</tr>
-				</table>
-				<hr/>
-				<table>
-					<tr>
-						<td width="100px">
-							<font color="#999999"><b>BIRTH DAY</b></font></td>
-						</td>
-						<td  id="image3">
-							<%#= current_user.facebook.birthday %>
-						</td>
-					</tr>
-				</table>
-				<hr/>
-				<table>
-					<tr>
-						<td width="100px">
-							<font color="#999999"><b>ABOUT ME</b></font></td>
-						</td>
-						<td>
-							<%  about_me = current_user.facebook.bio %>
-							<%= about_me %>
-						</td>
-					</tr>
-				</table>
+								<b><%= current_user.challenges.length %>&nbsp;Challenges&nbsp;and&nbsp;<%= totalTasks%>&nbsp;tasks</b>
+							</td>
+						</tr>
+
+						<tr> 
+							<td colspan="2"> 
+								<hr/>
+							</td>
+						</tr>   
+
+						<tr>
+							<td width="100px" height="10px">
+								<font color="#999999"><b>CURRENT CITY</b></font></td>
+							</td>
+							<td align="left" height="10px" style="color:#666666;">
+								<b><%= current_user.facebook.location.name rescue 'N/A' %></b>
+							</td>
+						</tr>
+						<tr> 
+							<td colspan="2"> 
+								<hr/>
+							</td>
+						</tr>   
+
+						<tr>
+							<td width="100px">
+								<font color="#999999"><b>HOME CITY</b></font></td>
+							</td>
+							<td align="left" height="10px" style="color:#666666;">
+								<b><%= current_user.facebook.hometown.name rescue 'N/A' %></b>
+							</td>
+						</tr>
+						<tr> 
+							<td colspan="2"> 
+								<hr/>
+							</td>
+						</tr>   
+
+						<tr>
+							<td width="100px">
+								<font color="#999999"><b>SEX</b></font></td>
+							</td>
+							<td align="left" height="10px" style="color:#666666;">
+								<b><%= current_user.facebook.gender rescue 'N/A' %></b>
+							</td>
+						</tr>
+						<tr> 
+							<td colspan="2"> 
+								<hr/>
+							</td>
+						</tr>
+						<tr>
+							<td width="100px">
+								<font color="#999999"><b>BIRTH DAY</b></font></td>
+							</td>
+							<td align="left" height="10px" style="color:#666666;">
+								<b><%= current_user.facebook.birthday rescue 'N/A' %></b>
+							</td>
+						</tr>
+						<tr> 
+							<td colspan="2"> 
+								<hr/>
+							</td>
+						</tr>
+						<tr>
+							<td width="100px">
+								<font color="#999999"><b>ABOUT ME</b></font></td>
+							</td>
+							<td align="left" height="10px" style="color:#666666;">
+								<b><%= current_user.facebook.bio rescue 'N/A' %></b>
+							</td>						
+						</tr> 
+						<tr> 
+							<td colspan="2"> 
+								<hr/>
+							</td>
+						</tr>
+					</table>
 			</td>
 		</tr>
 	 </table>
@@ -132,9 +134,10 @@
 				<div class="tab_container1">
 					<div id="tab1" class="tab_content2">
 						<div id="myDojo"></div>
+                                                <div id="myDojo1"></div>
 					</div>
 				    <script>
-					$.dojitsuUtile.renderAjaxPageLoad("/user_connections/myDojo","#myDojo");
+					$.dojitsuAjaxPage.renderAjaxPageLoad("/user_connections/myDojo","#myDojo","#myDojo1");
 				    </script>
 					
 					<script>
@@ -174,9 +177,10 @@
 					<div id="tab2" class="tab_content2"><br>
 					
 						<div id="people"></div>
-					</div>
+                                                <div id="people1"></div>
+                                        </div>
 					<script>
-                                          $.dojitsuUtile.renderAjaxPageLoad("/user_connections/people","#people");
+                                          $.dojitsuAjaxPage.renderAjaxPageLoad("/user_connections/people","#people","#people1");
 					</script>
 </td>
 </tr>
@@ -254,3 +258,59 @@ var email=response[0].email;
     width: 40px;
 }
 </style>
+<div id="jfmfs-container-wrapper" style="display: none">
+  <div id="jfmfs-container">
+  </div>
+ </div>
+<script type="text/javascript" charset="utf-8">        
+(function($j) { 
+ var selectorObz = {    
+  filter_default: "Search By Name",
+  friend_fields: "id,name,last_name&access_token="+'<%= current_user.facebook.access_token%>'
+ }
+
+ $j('.invitees').live('click', function(){
+  $j( "#jfmfs-container-wrapper" ).dialog({
+   modal: true,
+   resizable: false,
+   closeText: "",
+   position: 'center',
+   title: 'Invite Participants',
+   width: '725px',
+   open: function(event, ui) { $j("#jfmfs-container").jfmfs(selectorObz); },
+   buttons: {                                             
+                Cancel: function() {
+     $j("#jfmfs-container").data('jfmfs').clearSelected(); 
+     $j('#inviteBtn').val("INVITE PARTICIPANTS");    
+     $j(this).dialog( "close" );
+    },
+    Save: function() {
+     var friendSelector = $j("#jfmfs-container").data('jfmfs');
+     var selectedFriends = friendSelector.getSelectedIds();
+     $j('#invitees_id').val(selectedFriends);
+        $j('#inviteBtn').val("INVITE PARTICIPANTS (" + selectedFriends.length + ")");   
+    $j(this).dialog( "close" );
+		jQuery.support.cors = true;
+		$.get('/user_connections/sendInvitation', 
+			{inviteIds:selectedFriends},
+			function(data) {
+
+			}, 'script'
+		);
+     } 
+   }
+   
+  });
+ })          
+
+ })(jQuery);                              
+ </script>
+
+<style>
+					.ui-widget-header {
+    background: none repeat scroll 0 0 #7AC142;
+    border: 1px solid #AAAAAA;
+    color: #222222;
+    font-weight: bold;
+}
+					</style>

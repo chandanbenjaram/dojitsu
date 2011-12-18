@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+  :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :confirmable
 
   has_many :user_connections
   has_many :authentications
@@ -25,11 +25,11 @@ class User < ActiveRecord::Base
   def apply_omniauth(omniauth)      
     authentications.build(:provider => omniauth[:provider], :uid => omniauth[:uid], :email => omniauth[:email], :name => omniauth[:name], :first_name => omniauth[:first_name], :last_name => omniauth[:last_name], :token =>omniauth[:token])
   end
-  
+
   def password_required?
     (authentications.empty? || !password.blank?) && super
   end
-  
+
   def inbox 
     Message.where(:to => fbauth.uid).desc("created_at").limit(6)
   end
@@ -47,17 +47,7 @@ class User < ActiveRecord::Base
   def facebook
     FbGraph::User.new('me', :access_token => self.fbauth.token).fetch
   end
-  
- def facebookmsg
-    
-  debugger
-    FbGraph::Message.new('me', :access_token => self.fbauth.token).fetch
-	
-  end
-   def fbauth
-    self.authentications.find_by_provider('facebookmsg')
-  end
-   
+
   def fbauth
     self.authentications.find_by_provider('facebook')
   end

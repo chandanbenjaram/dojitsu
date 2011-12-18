@@ -1,6 +1,7 @@
 <%= javascript_include_tag('fbWallPost') %>
 <%= render 'layouts/loggedinbody'%>
-<%= debug @users %>
+<%#= debug @users %>
+
 <% @users.each do |aChallenge| %>
 <table>
   <tr>
@@ -11,8 +12,50 @@
 <% end %>
 <%= will_paginate @users %>
 
+
+
+
+
+
+
+
+
+
+<% Challenge.Modetesting.each do |test| %>
+  <%= test.title %>
+<% end %>
+<%= debug @testing%>
+
+
 <script> 
-  
-	$.dojitsuWallPost.renderFbWallPost();
-	
+  $.dojitsuWallPost.renderFbWallPost();
 </script>
+
+
+
+
+
+
+<%#= Challenge.count %>
+<%#= Challenge.exists? %>
+<%#= Challenge.blank? %>
+<%#= Challenge.where(:_type.exists => false).count %>
+<%#= Challenge.where(:_type.exists => false).only(:social_type).count %>
+<%#= Challenge.where(:type => "Challenge").count %>
+<%#= Challenge.only(:social_type).where(:_type => "ChallengeSocialType").count %>
+<%#= Challenge.where(:_type.exists => false).also_in(:_type => "Challenge") %>
+
+<%#= Challenge.any_in(aliases: [ "Bond" ]).also_in(aliases: [ "007" ]) %>
+<%#= Challenge.any_in(:_type.exists => false) %>
+
+<% noChallenge = 0 %>
+<% Challenge.where(:_type.exists => false).each do |possibleChallenge| %>
+    <% if possibleChallenge.social_type.instance_of?ChallengeSocialType%>
+      <% noChallenge = 1 %>
+    <% end %>
+<% end %>
+<% if noChallenge == 1 %> 
+    there is challenge
+<% else %>
+    No Challenge               
+<% end %>

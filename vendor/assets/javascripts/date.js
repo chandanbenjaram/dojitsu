@@ -67,7 +67,7 @@ Date.firstDayOfWeek = 1;
  * @author Kelvin Luck
  */
 
-Date.format = 'mm/dd/yyyy';
+Date.format = 'dd/mm/yyyy';
 
 
 /**

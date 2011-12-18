@@ -15,3 +15,4 @@
 function dojoFBLogout(e){ 
 	FB.logout();
 };
+
