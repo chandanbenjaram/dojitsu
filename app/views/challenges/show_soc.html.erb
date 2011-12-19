@@ -7,11 +7,16 @@
 	<%= link_to "#{@challenge.title}","#" , :style=> "text-decoration: none; color:#666666;", :class => "challenge_link1" %> 
 </div>
 
+
+
 <% if params[:isNewChallenge] == "isNew" %>
     <script> 
       $.dojitsuWallPost.renderFbWallPost();
     </script>
 <% end %>    
+
+
+
 
 <% if !@challenge.child_challenges.blank? && userIds = []%>
 	<% for aChild in @challenge.child_challenges %>
@@ -65,9 +70,9 @@
 		<script>
 		function fun()
 		{
-		alert("opening");
+	
 		window.fbAsyncInit();
-		alert("calling");
+		
         // calling the API ...
 		var body = 'Reading JS SDK documentation';
 FB.api('/me/feed', 'post', { message: body }, function(response) {
