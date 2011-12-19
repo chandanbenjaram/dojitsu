@@ -29,12 +29,14 @@ $(document).ready(function($) {
 
 			$( '.'+$(this).val()).append(div_tag).fadeIn('500'); 
 
-			$('.datepicker').datepicker({ 
+			$('.datepicker').datepicker({  
+                                
 				showOn: "button",
 				buttonImage: calendarImagePath,
 				showOn: "button",
 				buttonImageOnly: true,
 			});
+                        
 		}       
 	}); 
 
@@ -56,7 +58,8 @@ $(document).ready(function($) {
 			$( '.'+$(this).val()).append(div_tag).fadeIn('500'); 
 
 			$('.datepicker').datepicker({ 
-				showOn: "button",
+				
+                                showOn: "button",
 				buttonImage: calendarImagePath,
 				showOn: "button",
 				buttonImageOnly: true,

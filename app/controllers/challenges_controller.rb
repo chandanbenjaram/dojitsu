@@ -34,7 +34,6 @@ class ChallengesController < ApplicationController
 
   def show_per
     @challenge = Challenge.find(params[:id])
-	
     @is_complete_status = 0 
     @challenge.tasks.each do |checkingTaskStatus|
       unless checkingTaskStatus.is_complete == 1
@@ -133,7 +132,7 @@ class ChallengesController < ApplicationController
       end  
     end    
 
-    redirect_to show_per_challenges_path(:id => @challenge), :notice => "Challenge created!"
+    redirect_to show_per_challenges_path(:id => @challenge, :isNewChallenge => "isNew"), :notice => "Challenge created!"
 
   end
 
@@ -164,11 +163,6 @@ class ChallengesController < ApplicationController
     end
   end
 	
-  def date_update
-  	raise "venkat..."
-    @challenge = Challenge.find(params[:id])
-  end
-	
   def destroy
     @challenge.destroy
     redirect_to :action => 'index'
@@ -197,12 +191,12 @@ class ChallengesController < ApplicationController
     else
       @ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1, :score => params[:tatal_s])
     end 
-    redirect_to show_per_challenges_path(:id => params[:id])
+    redirect_to show_per_challenges_path(:id => params[:id], :isNewChallenge => "isNew")
   end
 
   def challenge_comp
-    @sdf = Challenge.where(:_id => params[:id]).update(:is_complete => 1)
-    redirect_to :action => "index"
+    Challenge.where(:_id => params[:id]).update(:is_complete => 1)
+    redirect_to challenges_path(:isNewChallenge => "isNew")
   end
 
   def my_challenge
@@ -228,16 +222,33 @@ class ChallengesController < ApplicationController
   end
 
   def date_update
-   @challenge = Challenge.find(params[:id]) 
-   raise @challenge.inspect
+   @challenge = Challenge.find(params[:value][:myParams2])
+   startPoint = @challenge.start_point
+   raise startPoint.update_attributes(:value => params[:value][:myParams1]).inspect
+  end
+  
+  def date_updateEnd
+   @challenge = Challenge.find(params[:value][:myParams2])
+   if params[:value][:myParams3]
+     endPoint = @challenge.end_point
+     endPoint.update_attributes(:value => params[:value][:myParams1], :label =>params[:value][:myParams3])
+   else
+     endPoint = @challenge.end_point
+     endPoint.update_attributes(:value => params[:value][:myParams1])
+     redirect_to challenges_path
+   end
   end
 
   def update_status
     aChallenge = Challenge.find(params[:id])
     socialType = aChallenge.social_type
-    socialType.update_attributes(:status => params[:status])       
-       
-    redirect_to show_soc_challenges_path(:id => params[:id])
+    socialType.update_attributes(:status => params[:status])
+    if params[:status] == '1'       
+        redirect_to show_soc_challenges_path(:id => params[:id], :isNewChallenge => "isNew")
+    else
+        redirect_to show_soc_challenges_path(:id => params[:id])
+    end
+    
   end
 
   def update_status_af_meg
@@ -285,6 +296,6 @@ class ChallengesController < ApplicationController
   def find_challenge
     @challenge = Challenge.all
   end
-
+  
 end
 

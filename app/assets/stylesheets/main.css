@@ -63,10 +63,11 @@ a {
 	text-decoration: none;
 }
 
+/*
 a:hover {
 	color: #069;
 	text-decoration: underline;
-}
+}*/
 
 a:visited {
 	color: #069;
@@ -593,11 +594,11 @@ select {
 border: none;
 vertical-align: top;
 position: relative;
-width: 220px;
+width: 130%;
 height: 25px;
 color: #F9A943;
 background: transparent;
-top: -3px;
+margin-top: -3px;
 }
 
 select:focus{
@@ -661,7 +662,9 @@ input.radio {
 	padding: 5px;
 	text-align: center;
 	text-transform: uppercase;
-	width: 130px;
+	width: 90px;
+	margin-right:10px;
+	float:right;
 }
 
 .ds_view_all{
@@ -669,7 +672,7 @@ input.radio {
      float: left;
      font-family: Arial;
      height: 27px;
-     left: 117px;
+     left: 105px;
      min-width: 78px;
      position: relative;
      text-align: right;
@@ -757,16 +760,20 @@ input.radio {
 }
 
 .links_cancel {
-	background: none repeat scroll 0 0 #999999;
-	text-color:white;
+	background: none repeat #999999;
 	display: block;
 	font-size: 12px;
 	margin: 20px 0;
 	padding: 5px;
 	text-align: center;
 	text-transform: uppercase;
-	width: 70px;
+	width: 8%;
+	text-decoration: none;
+	float:right; 
+	top: 2px;
+
 }
+
 
 .task_links_cancel {
 	background: none repeat scroll 0 0 #f9a943;
@@ -779,6 +786,7 @@ input.radio {
 	text-align: center;
 	text-transform: uppercase;
 	width: 100px;
+	height: 19px;
 }
 
 .challenge_mark_as_c{
@@ -1354,9 +1362,23 @@ width:90%;
 .completedtask1
 {
 	color:#fff;
-	left:150px;
+	left:170px;
 	position:relative;
 	top:2px;
+}
+.invitees3{
+    background: none repeat scroll 0 0 #F9A943;
+    border-radius: 3px 3px 3px 3px;
+    color: #FFFFFF;
+    display: block;
+    font-size: 12px;
+    left: 0;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    top: -2px;
+    width: 85px;
 }
 
 
@@ -1694,9 +1716,11 @@ top: -12px;
 			}
 			
 .invite {
-position :relative;
-	top: 15px;
-		}
+    margin-top: -20px;
+    position: relative;
+    right: 5px;
+    top: 15px;
+}
 		.nav_shadow_mydojo
 		{
 		height: 25px;
@@ -1743,4 +1767,39 @@ right:10px;
  .fbusername{
 	top:-20px;
 	position:relative;
+}
+#all_hr{
+	color:#0066CC;
+	width:100%;
+	height:2px;
+}
+
+.button_link{
+   float: right;
+    position: relative;
+    right: 170px;
+    top: 20px;
+    height: 33px;
+}
+
+
+.shadow {
+    color: #333333;
+    font-family: arial;
+    font-size: 11px;
+    font-weight: bold;
+    text-shadow: -1px 0 1px #E9E9E9;
+    text-transform: uppercase;
+    width: 150px;
+}
+
+.shadow1{
+	color: #333333;
+    font-family: arial;
+    font-size: 11px;
+    font-weight: bold;
+    text-shadow: -1px 0 1px #E9E9E9;
+    text-transform: uppercase;
+    width: 78px;
+	
 }

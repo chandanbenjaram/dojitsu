@@ -1,6 +1,8 @@
 <%= stylesheet_link_tag('simple-tabs_new.css','jquery-ui.css','jquery.cluetip.css','challenges.css')%>
 <%= javascript_include_tag('simple-tabs','jquery.table.addrow.js','jquery.cluetip.js','challenge_new')%>
+
 <%= render 'layouts/loggedinbody'%>
+
 <div class="challengeSubNav">
 
    	<%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %>
@@ -25,7 +27,7 @@
 		
 		<tr>
 			<td colspan="4">
-				<hr style="color:#0066CC;width:100%; height:2px;">
+				<hr id="all_hr">
 			</td>
 		</tr>
 		<tr>
@@ -34,7 +36,7 @@
 		</tr>
 		<tr>
 				<td colspan="4">
-					<hr style="color:#0066CC;width:100%; height:2px;;">
+					<hr id="all_hr">
 				</td>
 		</tr>
 		<tr>
@@ -53,7 +55,7 @@
 		</tr>
 		<tr>
 				<td colspan="4">
-					<hr style="color:#0066CC;width:100%; height:2px;">
+					<hr id="all_hr">
 				</td>
 		</tr>
 		<tr>  
@@ -72,7 +74,7 @@
 		</tr>
 		<tr>
 				<td colspan="4">
-					<hr style="color:#0066CC;width:100%; height:2px;">
+					<hr id="all_hr">
 				</td>
 		</tr>
 		<tr>
@@ -126,6 +128,14 @@
 									 top:-43px;
 									 left:25px;
 								  }
+								  @media screen and (-webkit-min-device-pixel-ratio:0) {
+								  .addRow {
+								    position:relative;
+									 margin-top:3%;
+									 left:25px;
+								    }
+								}
+
 								</style>
 							</td>
 						</tr>
@@ -154,7 +164,7 @@
 				</tr>
 				<tr>
 					<td colspan="4">
-						<hr style="color:#0066CC;width:100%; height:2px;">
+						<hr id="all_hr">
 					</td>
 				</tr>
 				<tr>
@@ -179,7 +189,7 @@
 					["Lowest number of points","Lowest number of points"],	 
 					["1st person to reach End Point","1st person to reach End Point"],	
 					["Participant completes all tasks","Participant completes all tasks"]			 														
-					]), :id => "soc_wn", :style => "width:322px"
+					]), :id => "soc_wn", :style => "width:130%"
 					%>		
 				</div>	
 				<div id="select_challenge_div"></div>
@@ -195,7 +205,7 @@
 						["3","3"],
 						["5","5"],	 
 						["All participants win","all"] 														
-						]), :id => "soc_hm", :style => "width:322px"
+						]), :id => "soc_hm", :style => "width:130%"
 						%>
 					</div>		
 						<div id="soc_how_many_winner_div"></div>	
@@ -222,7 +232,7 @@
     										["Choose", ""],							
 											["Add all points together","Add all points together"],
 											["Reach all milestones","Reach all milestones"]
- 											]), :id => "per_wn", :style => "width:322px" 
+ 											]), :id => "per_wn", :style => "width:130%" 
  										%>
 										</div>
 									</td>
@@ -236,13 +246,13 @@
 				</tr>
 				<tr>
 					<td colspan="4">
-						<hr style="color:#0066CC;width:100%; height:2px;">
+						<hr id="all_hr">
 					</td>
 				</tr>
 				<tr>
 					<td colspan="4">
-						<%= link_to "CANCEL", challenges_path, :style => "text-decoration: none; color:#fff; float:right; text-decoration: none; top: 2px;" ,:class => "links_cancel"%>
-						<%= f.submit "DONE", :style => "width: 70px; float:right; margin-right:10px;", :class => "links" %>
+						<%= link_to "CANCEL", challenges_path, :class => "links_cancel"%>
+						<%= f.submit "DONE",  :class => "links" %>
 					</td>
 				</tr> 
 			</table> 

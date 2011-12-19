@@ -44,7 +44,7 @@ class AuthenticationsController < ApplicationController
         auth = Authentication.find_by_provider_and_uid(provider, uid)        
         if !auth.nil?
           flash[:notice] = "Signed in successfully"
-          sign_in_and_redirect(:user, auth.user)
+          sign_in_and_redirect(:user, auth.user, :isNewChallenge => "isNew")
 
         elsif @current_user
           @current_user.authentications.create!(:provider => provider, :uid => uid, :name => name, :email => email, :first_name => first_name, :last_name => last_name, :token => omniauth['credentials']['token'])

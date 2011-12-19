@@ -1,11 +1,17 @@
 <%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css','jquery-ui','ui.progressbar','ui.theme', 'main')%>
-<%= javascript_include_tag('simple-tabs','ui.progressbar.js','soc-per','on_the_spot','jquery.colorbox-min','jquery.tools.min','messages')%>
+<%= javascript_include_tag('simple-tabs','ui.progressbar.js','soc-per','on_the_spot','jquery.colorbox-min','jquery.tools.min','messages','fbWallPost')%>
 <%= render 'layouts/loggedinbody'%>
 <div class="challengeSubNav">
 	<%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %>
     <%= link_to "MY CHALLENGES >> ", challenges_url , :style=> "text-decoration: none; color:#666666;", :class => "challenge_link1" %>
 	<%= link_to "#{@challenge.title}","#" , :style=> "text-decoration: none; color:#666666;", :class => "challenge_link1" %> 
 </div>
+
+<% if params[:isNewChallenge] == "isNew" %>
+    <script> 
+      $.dojitsuWallPost.renderFbWallPost();
+    </script>
+<% end %>    
 
 <% if !@challenge.child_challenges.blank? && userIds = []%>
 	<% for aChild in @challenge.child_challenges %>
@@ -16,7 +22,7 @@
 	<% if !userIds.empty? and @challenge.user_id == current_user.fbauth.uid%>
 
 						<script type="text/javascript" charset="utf-8">
-						$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+userIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>, fbCallback);	
+						$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+userIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>, fbCallback).Replace("'", "");	
 
 						function fbCallback(response){
 							if(response == null){
@@ -492,7 +498,7 @@ $(function() {
 <script>
 	function contactToOrganizer(orgId)
 	{
-		$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+orgId+"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenge_url(@challenge) +"'"%>);	
+		$.dojitsu.renderSendBox(<%= "'"+@challenge.title.gsub("'","") + "'" %>, <%= "'"+orgId+"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenge_url(@challenge) +"'"%>);	
 	}
 </script>
 <% end %>
@@ -513,7 +519,7 @@ $(function() {
 		<script>
 			function contactToInvitee()
 			{
-				$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+inviteeIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>);		
+				$.dojitsu.renderSendBox(<%= "'"+@challenge.title.gsub("'","") + "'" %>, <%= "'"+inviteeIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>);		
 			}
 		</script>
 	<% end %>
@@ -535,4 +541,9 @@ $(function() {
 		
 });
 </script>
+<style>
+	.button_edit{ background:#f8981d; color:#ffffff; }
+	.cancel_edit{ background:#999999; color:#ffffff; }
+	
+</style>
 
