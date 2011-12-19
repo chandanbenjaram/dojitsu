@@ -45,7 +45,7 @@
                         <b><font color= #999999>START POINT</font></b>
                     </td>
                     <td>
-                         <div id="Test" onclick="Testing();">
+                         <div id="TestStart" onclick="TestingStart();">
                               <% if @challenge.start_point.instance_of?PointDateType %>		
                                   <b style="color:#666666;"><%= @challenge.start_point.value.strftime("%b %d, %Y")%> </b>
                               <% else %>							
@@ -53,12 +53,14 @@
                                   <b style="color:#666666;"><%= @challenge.start_point.value.to_i %></b>
                               <% end %>
                          </div>
-                         <div id="replaced">
+                         <div id="replacedStart">
                              <table>
                                   <tr>
-                                      <td width="50px;"> 
+                                       <% if @challenge.start_point.instance_of?PointDateType %>		
+                                        <td width="50px;"> 
                                           <div class="styled-select">
-                                              <%= select_tag "start_point_type", "<option value='startPointDate'>Date</option><option value='startPointNumber'>Number</option>".html_safe , :required => "required" %>
+                                            
+                                              <%= select_tag "start_point_type", "<option value='startPointDate'>Date</option>".html_safe , :required => "required" %>
                                           </div>
                                       </td>  
                                       <td colspan="2">					
@@ -66,42 +68,54 @@
                                           </div>
                                           <div class="startPointNumber">
                                           </div>				
+                                      </td>
+                                    <% else %>							                       
+                                        <td width="50px;"> 
+                                          <div class="styled-select">
+                                            
+                                              <%= select_tag "start_point_type", "<option value='startPointNumber'>Number</option>".html_safe , :required => "required" %>
+                                          </div>
                                       </td>  
+                                      <td colspan="2">					
+                                          <div class="startPointDate">
+                                          </div>
+                                          <div class="startPointNumber">
+                                          </div>				
+                                      </td>
+                                    <% end %> 
                                   </tr>
                                   <tr>
                                       <td colspan="4">
-                                      <%= image_tag("update.png", :class =>"dateUpdate")  %>
-                                      <input type="button"  value="CANCEL" onclick="cancel();"  :style ="text-decoration: none; color:#fff; float:right; width: 100px; float:right; margin-right: 0px;"  class = "links_cancel">
+                                      <%= image_tag("update.png", :class =>"dateUpdateStart")  %>
+                                      <%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "links_cancel" %>
                                       </td>
                                   </tr> 
                               </table>
                          </div>
                          <script>
-                            $("#replaced").hide();
-                            function Testing()
+                            $("#replacedStart").hide();
+                            function TestingStart()
                             {
-                                $("#Test").replaceWith($("#replaced").show());
+                                $("#TestStart").replaceWith($("#replacedStart").show());
                             }
                             
-                            $('.dateUpdate').click(function(){
-                                alert("Maisa");
-                                var startValue = $("#start_point_value").val();
-                                var challengeId = '<%= @challenge.id %>'
-                                alert(startValue);
-                                alert(challengeId);
-                                var obj = {
+                            $('.dateUpdateStart').click(function(){
+                              var startValue = $("#start_point_value").val();
+                              var startLabel = $("#start_point_label").val();
+                              var challengeId = '<%= @challenge.id %>'
+                              var objj = {
                                   myParams1:startValue,
+                                  myParams3:startLabel,
                                   myParams2:challengeId
-                                };
-                                alert(obj);
+                                };       
                                 jQuery.support.cors = true;
-                                $.get('/challenges/date_update', 
-                                        {value:obj},
-                                        function(data) {
-
-                                        }, 'script'
-                                );
-                            });
+                                $.get('/challenges/date_updateStart', 
+                                    {value:objj},
+                                    function(data) {
+                                        
+                                    }, 'script' 
+                                );                             
+                            });                            
                             
                          </script>
                     </td>
@@ -119,11 +133,6 @@
                         <td width=120px>
                              <b><font color= #999999>END POINT</font></b>
                         </td>
-                        
-                        
-                        
-                        
-                        
                         <td>
                          <div id="TestEnd" onclick="TestingEnd();">
                               <% if @challenge.end_point.instance_of?PointDateType %>		
@@ -199,19 +208,7 @@
                             
                          </script>
                     </td>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
+         
                         <td>
                              <%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :style => "text-decoration: underline;",:align=>"right" %>
                         </td>
