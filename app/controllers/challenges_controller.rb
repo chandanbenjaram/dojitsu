@@ -233,11 +233,10 @@ class ChallengesController < ApplicationController
   end
 
   def update_status
-    #aChallenge = Challenge.find(params[:id])
-    #socialType = aChallenge.social_type
-    #socialType.update_attributes(:status => params[:status])       
-
-	
+    aChallenge = Challenge.find(params[:id])
+    socialType = aChallenge.social_type
+    socialType.update_attributes(:status => params[:status])       
+       
     redirect_to show_soc_challenges_path(:id => params[:id])
   end
 
@@ -286,6 +285,6 @@ class ChallengesController < ApplicationController
   def find_challenge
     @challenge = Challenge.all
   end
-  
+
 end
 
