@@ -1,4 +1,5 @@
-<%= stylesheet_link_tag('registration') %>
+<%= stylesheet_link_tag('registration','jquery.cluetip.css') %>
+<%= javascript_include_tag('jquery.cluetip.js') %>
 <div>
     <div class="registration">
         <div class="regdetails">
@@ -10,7 +11,7 @@
                                  <%= f.label :email %>
                             </td>
                             <td width="75%">
-                                 <%= f.text_field :email, :size=>"50" %>
+                                 <%= f.text_field :email, :id => "textFieldEffect" %>
                             </td>
 
                         </tr>
@@ -19,7 +20,7 @@
                                  <%= f.label :first_name,"First Name" %><br />                                        
                             </td>
                             <td>
-                                 <%= f.text_field :first_name, :size=>"50" %>
+                                 <%= f.text_field :first_name, :id => "textFieldEffect" %>
                             </td>
                         </tr>
                         <tr>
@@ -27,16 +28,18 @@
                                  <%= f.label :last_name, "Last Name" %><br />                                        
                             </td>
                             <td>
-                                 <%= f.text_field :last_name, :size=>"50" %>
+                                 <%= f.text_field :last_name, :id => "textFieldEffect" %>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                 <%= f.label :password %>                                        
-                                 <%= image_tag("btn_questionmark_up.png", :style=>"position: relative; top: 4px;")%></b>
+                                 <%= f.label :password %> 
+                                 <span class="moreInfoTip color999" rel="#moreCreateTaskId" title="Password instruction....!.">
+                                      <%= image_tag("btn_questionmark_up.png", :style=>"position: relative; top: 4px;")%>
+				</span>                                 
                             </td>
                             <td>
-                                 <%= f.password_field :password, :size=>"50" %>
+                                 <%= f.password_field :password, :id => "textFieldEffect" %>
                                  <i class="reglable">6 character minimum</i>
                             </td>
                         </tr>
@@ -45,7 +48,7 @@
                                  <%= f.label :password_confirmation %><br />                                        
                             </td>
                             <td>
-                                 <%= f.password_field :password_confirmation, :size=>"50" %>
+                                 <%= f.password_field :password_confirmation, :id => "textFieldEffect" %>
                             </td>
                         </tr>
                     </table>
@@ -150,7 +153,22 @@
     
 </div>
 
+<div id="moreCreateTaskId">
+    <table height="150">						
+        <tr>
+             <td width="43%"><p style="color:#f9a943; font-size:12px; margin-top:15px;"><b>Your password must be more than 6 digit and combination number.</b></p></td>
+        </tr>		
+    </table>			
+</div>
 
-
-
+<script>
+  $('.moreInfoTip').cluetip({
+		width:640,
+		height:225,
+		local:true, 
+		dropShadow: false,
+		arrows: true,
+		cluetipClass: 'jtip'		
+  });
+</script>
 
