@@ -42,8 +42,7 @@ class AuthenticationsController < ApplicationController
         auth = Authentication.find_by_provider_and_uid(provider, uid)        
         if !auth.nil?
           flash[:notice] = "Signed in successfully"
-          sign_in_and_redirect(:user, auth.user, :isNewChallenge => "isNew")
-
+          sign_in_and_redirect(:user, auth.user)		  
         elsif @current_user
           @current_user.authentications.create!(:provider => provider, :uid => uid, :name => name, :email => email, :first_name => first_name, :last_name => last_name, :token => omniauth['credentials']['token'])
           flash[:notice] = "Facebook authentication successful"
@@ -56,6 +55,7 @@ class AuthenticationsController < ApplicationController
           if user.save!
             flash[:notice] = "New user signed in successfully." 
             sign_in_and_redirect(:user, user)
+			session[:isNewChallenge] = "isNew"
           else
             redirect_to new_user_registration_path
           end
@@ -65,6 +65,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def destroy
+  
   end
 
   def failure
