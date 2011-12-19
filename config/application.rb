@@ -35,6 +35,7 @@ module Dojitsu
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
+    config.action_mailer.default_url_options = { :host => 'localhost:4000' }
 
     # mail server settings
     config.action_mailer.delivery_method = :smtp

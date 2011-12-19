@@ -170,7 +170,7 @@ class ChallengesController < ApplicationController
   end  
 
   def invitee_accepted_req
-    raise "aaaaaaaaa"
+    
   end
 
   def message
@@ -221,11 +221,17 @@ class ChallengesController < ApplicationController
     end
     redirect_to show_per_challenges_path(:id => params[:challenge_id])
   end
-
-  def date_update
+  
+  def date_updateStart	
    @challenge = Challenge.find(params[:value][:myParams2])
-   startPoint = @challenge.start_point
-   raise startPoint.update_attributes(:value => params[:value][:myParams1]).inspect
+   if params[:value][:myParams3]
+     startPoint = @challenge.start_point
+     startPoint.update_attributes(:value => params[:value][:myParams1], :label =>params[:value][:myParams3])
+   else
+     startPoint = @challenge.start_point
+     startPoint.update_attributes(:value => params[:value][:myParams1])
+     redirect_to challenges_path
+   end
   end
   
   def date_updateEnd

@@ -7,11 +7,16 @@
 	<%= link_to "#{@challenge.title}","#" , :style=> "text-decoration: none; color:#666666;", :class => "challenge_link1" %> 
 </div>
 
+
+
 <% if params[:isNewChallenge] == "isNew" %>
     <script> 
       $.dojitsuWallPost.renderFbWallPost();
     </script>
 <% end %>    
+
+
+
 
 <% if !@challenge.child_challenges.blank? && userIds = []%>
 	<% for aChild in @challenge.child_challenges %>
@@ -22,7 +27,7 @@
 	<% if !userIds.empty? and @challenge.user_id == current_user.fbauth.uid%>
 
 						<script type="text/javascript" charset="utf-8">
-						$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+userIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>, fbCallback);	
+						$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+userIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>, fbCallback).Replace("'", "");	
 
 						function fbCallback(response){
 							if(response == null){
@@ -65,9 +70,9 @@
 		<script>
 		function fun()
 		{
-		alert("opening");
+	
 		window.fbAsyncInit();
-		alert("calling");
+		
         // calling the API ...
 		var body = 'Reading JS SDK documentation';
 FB.api('/me/feed', 'post', { message: body }, function(response) {
@@ -493,7 +498,7 @@ $(function() {
 <script>
 	function contactToOrganizer(orgId)
 	{
-		$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+orgId+"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenge_url(@challenge) +"'"%>);	
+		$.dojitsu.renderSendBox(<%= "'"+@challenge.title.gsub("'","") + "'" %>, <%= "'"+orgId+"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenge_url(@challenge) +"'"%>);	
 	}
 </script>
 <% end %>
@@ -514,7 +519,7 @@ $(function() {
 		<script>
 			function contactToInvitee()
 			{
-				$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+inviteeIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>);		
+				$.dojitsu.renderSendBox(<%= "'"+@challenge.title.gsub("'","") + "'" %>, <%= "'"+inviteeIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>);		
 			}
 		</script>
 	<% end %>
