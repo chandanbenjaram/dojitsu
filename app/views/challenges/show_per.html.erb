@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag('simple-tabs','datePicker', 'colorbox','jquery-ui', 'ui.progressbar','ui.theme', 'main','soc-per','challenges.css')%>
-<%= javascript_include_tag('simple-tabs','ui.progressbar','jquery.colorbox-min', 'jquery.cluetip.js','jquery.table.addrow','jquery.datePicker','date','on_the_spot','jquery.tools.min','soc-per','challenge_new','fbWallPost')%>
+<%= javascript_include_tag('simple-tabs','ui.progressbar','jquery.colorbox-min', 'jquery.cluetip.js','jquery.table.addrow','on_the_spot','jquery.tools.min','soc-per','challenge_new','fbWallPost')%>
 <%= render 'layouts/loggedinbody'%>
 <div class="challengeSubNav">
 
@@ -49,7 +49,7 @@
                                   <b style="color:#666666;"><%= @challenge.start_point.value.strftime("%b %d, %Y")%> </b>
                               <% else %>							
                                   <%ch = @challenge.start_point  %>
-                                  <b style="color:#666666;"><%=  on_the_spot_edit ch,:value, :type=>:text %></b>
+                                  <b style="color:#666666;"><%= @challenge.start_point.value.to_i %></b>
                               <% end %>
                          </div>
                          <div id="replaced">
@@ -114,21 +114,107 @@
 	</tr>
 	<tr>
 		<table>
-				<tr> 
-					<td width=120px>
-						<b><font color= #999999>END POINT</font></b>
-					</td>
-					<td>
-						<% if @challenge.end_point.instance_of?PointDateType %>		
-							<b style="color:#666666;"><div id="date"><%= @challenge.end_point.value.strftime("%b %d, %Y") %></div></b>
-						<% else %>							
-							<b style="color:#666666;"><%= @challenge.end_point.value.to_i %></b>
-						<% end %>
-					</td>
-					<td>
-						<%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :style => "text-decoration: underline;",:align=>"right" %>
-					</td>
-				</tr>
+                    <tr> 
+                        <td width=120px>
+                             <b><font color= #999999>END POINT</font></b>
+                        </td>
+                        
+                        
+                        
+                        
+                        
+                        <td>
+                         <div id="TestEnd" onclick="TestingEnd();">
+                              <% if @challenge.end_point.instance_of?PointDateType %>		
+                                  <b style="color:#666666;"><%= @challenge.end_point.value.strftime("%b %d, %Y")%> </b>
+                              <% else %>							                       
+                                  <b style="color:#666666;"><%= @challenge.end_point.value.to_i %></b>
+                              <% end %>
+                         </div>
+                         <div id="replacedEnd">
+                             <table>
+                                  <tr>                                                                    
+                                    <% if @challenge.end_point.instance_of?PointDateType %>		
+                                        <td width="50px;"> 
+                                          <div class="styled-select">
+                                            
+                                              <%= select_tag "end_point_type", "<option value='endPointDate'>Date</option>".html_safe , :required => "required" %>
+                                          </div>
+                                      </td>  
+                                      <td colspan="2">					
+                                          <div class="endPointDate">
+                                          </div>
+                                          <div class="endPointNumber">
+                                          </div>				
+                                      </td>
+                                    <% else %>							                       
+                                        <td width="50px;"> 
+                                          <div class="styled-select">
+                                            
+                                              <%= select_tag "end_point_type", "<option value='endPointNumber'>Number</option>".html_safe , :required => "required" %>
+                                          </div>
+                                      </td>  
+                                      <td colspan="2">					
+                                          <div class="endPointDate">
+                                          </div>
+                                          <div class="endPointNumber">
+                                          </div>				
+                                      </td>
+                                    <% end %>    
+                                  </tr>
+                                  <tr>
+                                      <td colspan="4">
+                                      <%= image_tag("update.png", :class =>"dateUpdateEnd")  %>
+                                      <%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "links_cancel" %>
+                                      </td>
+                                  </tr> 
+                              </table>
+                         </div>
+                         <script>
+                            $("#replacedEnd").hide();
+                            function TestingEnd()
+                            {
+                                $("#TestEnd").replaceWith($("#replacedEnd").show());
+                            }
+                            
+                            $('.dateUpdateEnd').click(function(){                                
+                                var endValue = $("#end_point_value").val();
+                                var endLabel = $("#end_point_label").val();
+                                var challengeId = '<%= @challenge.id %>'                               
+                                var obj = {
+                                  myParams1:endValue,
+                                  myParams3:endLabel,
+                                  myParams2:challengeId
+                                };                               
+                                jQuery.support.cors = true;
+                                $.get('/challenges/date_updateEnd', 
+                                        {value:obj},
+                                        function(data) {
+                                            
+                                        }, 'script' 
+                                );                                                                                        
+                                //window.location.href=window.location.href;               
+                            });                            
+                            
+                         </script>
+                    </td>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <td>
+                             <%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :style => "text-decoration: underline;",:align=>"right" %>
+                        </td>
+                    </tr>
 			</table>
 		<hr/ width=400px>	
 		<br><br>
@@ -280,7 +366,7 @@
 	
 </script>
 <style>
-	.button_edit{ background:#f8981d; color:#ffffff; }
-	.cancel_edit{ background:#999999; color:#ffffff; }
-	
+  .ui-datepicker{
+    width:20%;
+  }
 </style>
