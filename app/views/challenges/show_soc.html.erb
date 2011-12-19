@@ -22,7 +22,7 @@
 	<% if !userIds.empty? and @challenge.user_id == current_user.fbauth.uid%>
 
 						<script type="text/javascript" charset="utf-8">
-						$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+userIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>, fbCallback);	
+						$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+userIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>, fbCallback).Replace("'", "");	
 
 						function fbCallback(response){
 							if(response == null){
@@ -493,7 +493,7 @@ $(function() {
 <script>
 	function contactToOrganizer(orgId)
 	{
-		$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+orgId+"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenge_url(@challenge) +"'"%>);	
+		$.dojitsu.renderSendBox(<%= "'"+@challenge.title.gsub("'","") + "'" %>, <%= "'"+orgId+"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenge_url(@challenge) +"'"%>);	
 	}
 </script>
 <% end %>
@@ -514,7 +514,7 @@ $(function() {
 		<script>
 			function contactToInvitee()
 			{
-				$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+inviteeIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>);		
+				$.dojitsu.renderSendBox(<%= "'"+@challenge.title.gsub("'","") + "'" %>, <%= "'"+inviteeIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>);		
 			}
 		</script>
 	<% end %>
