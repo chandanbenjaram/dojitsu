@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   end
 
   def inbox 
-    Message.where(:to => fbauth.uid).desc("created_at").limit(6)
+    Message.all(conditions: { :to => fbauth.uid }, limit: 6).desc("created_at")
   end
 
   def challenges 
