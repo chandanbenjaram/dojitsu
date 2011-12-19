@@ -594,11 +594,11 @@ select {
 border: none;
 vertical-align: top;
 position: relative;
-width: 220px;
+width: 130%;
 height: 25px;
 color: #F9A943;
 background: transparent;
-top: -3px;
+margin-top: -3px;
 }
 
 select:focus{
@@ -767,7 +767,7 @@ input.radio {
 	padding: 5px;
 	text-align: center;
 	text-transform: uppercase;
-	width: 70px;
+	width: 8%;
 	text-decoration: none;
 	float:right; 
 	top: 2px;
