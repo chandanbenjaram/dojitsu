@@ -30,8 +30,6 @@ class AuthenticationsController < ApplicationController
         location_name = omniauth['extra']['user_hash']['location']['name'] rescue nil 
         location_id = omniauth['extra']['user_hash']['location']['id'] rescue nil
 
-        # omniauth['extra']['user_hash']['location']['name'] ? location_name =  omniauth['extra']['user_hash']['location']['name'] : location_name = ''
-        # omniauth['extra']['user_hash']['location']['id'] ? location_id =  omniauth['extra']['user_hash']['location']['id'] : location_id = '' 
 
       else                                       
         render :text => '--- provider, #{@provider_route}, not supported ---'  
@@ -56,7 +54,7 @@ class AuthenticationsController < ApplicationController
           auth_hash = {:provider => provider, :uid => uid, :name => name, :email => email, :first_name => first_name, :last_name => last_name, :token => omniauth['credentials']['token']}
           user.apply_omniauth(auth_hash)         
           if user.save!
-            flash[:notice] = "New user signed in successfully."
+            flash[:notice] = "New user signed in successfully." 
             sign_in_and_redirect(:user, user)
           else
             redirect_to new_user_registration_path
