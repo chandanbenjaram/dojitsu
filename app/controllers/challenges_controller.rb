@@ -157,6 +157,7 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.find(params[:id])
 	
     if @challenge.update_attributes(params[:challenge])
+		#raise "aaa"
       redirect_to :action => 'index', :id => @challenge
     else
       render :action => edit
@@ -221,8 +222,7 @@ class ChallengesController < ApplicationController
     redirect_to show_per_challenges_path(:id => params[:challenge_id])
   end
   
-  def date_updateStart
-   	
+  def date_updateStart	
    @challenge = Challenge.find(params[:value][:myParams2])
    if params[:value][:myParams3]
      startPoint = @challenge.start_point
