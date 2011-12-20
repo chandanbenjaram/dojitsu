@@ -1,62 +1,23 @@
 <div>
 	<div class="registration">
-		<div class="regdetails">
-			<font color="#F8981D" size=4>REGISTER TO DOJITSU!</font>
-				<form name="regform" action="http://google.com">
-						<table >
-							<tr >
-								<td width="25%" >
-									<lable class="reglable">FIRST NAME</lable>
-								</td>
-								<td width="75%">
-									<input class="reginput" type="text" name="fname" required>
-									
-								</td>
-								
-							</tr>
+		<h2>Sign up</h2>
 
-							<tr>
-								<td >
-									<lable  class="reglable" >LAST NAME</lable>
-								</td>
-								<td>
-									<input class="reginput" type="text" name="lname" required>
-								</td>
-							</tr>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%#= devise_error_messages! %>
 
-							<tr>
-								<td>
-									<lable  class="reglable" >EMAIL ADDRESS</lable>
-								</td>
-								<td>
-									<input class="reginput" type="email" name="email" required>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<lable class="reglable">PASSWORD</lable>
-									<%= image_tag("btn_questionmark_up.png")%></b>
-								</td>
-								<td>
-									<input class="reginput" type="password" name="password" required>
-								<i class="reglable">6 character minimum</i>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<lable  class="reglable" >CONFIRM PASSWORD</lable>
-								</td>
-								<td>
-									<input class="reginput" type="password" name="confirmpass" required>
-								</td>
-							</tr>
-						</table>
-						<div class="buttons">
-							<input class="register" type="submit" value="REGISTER">
-							<input class="cancel" type="button" value="CANCEL">
-						</div>
-				</form>
-			</div>
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email %></div>
+
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
+
+  <div><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.submit "Sign up" %></div>
+<% end %>
+
+<%= render :partial => "devise/shared/links" %>
 </div>
 
 <script>(function(d, s, id) {
