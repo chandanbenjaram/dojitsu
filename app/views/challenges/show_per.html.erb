@@ -1,8 +1,6 @@
 <%= stylesheet_link_tag('simple-tabs','datePicker', 'colorbox','jquery-ui', 'ui.progressbar','ui.theme', 'main','soc-per','challenges.css')%>
 <%= javascript_include_tag('simple-tabs','ui.progressbar','jquery.colorbox-min', 'jquery.cluetip.js','jquery.table.addrow','on_the_spot','jquery.tools.min','soc-per','challengePersonal','fbWallPost')%>
 <%= render 'layouts/loggedinbody'%>
-
-
 <div class="challengeSubNav">
 
    	<%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %>
@@ -38,6 +36,7 @@
 					</td>
 				</tr>
 		</table>
+
 		<hr/ width=400px>
 	</tr>
 	<tr>
@@ -88,7 +87,7 @@
                                   </tr>
                                   <tr>
                                       <td colspan="4">
-                                      <%= image_tag("update.png", :class =>"dateUpdateStart")  %>
+                                      <%= link_to image_tag("update.png", :class =>"dateUpdateStart") , show_per_challenges_path(:id => @challenge.id) %>
                                       <%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "links_cancel" %>
                                       </td>
                                   </tr> 
@@ -130,6 +129,10 @@
 		<hr/ width=400px>
 	</tr>
 	<tr>
+		
+		
+		
+		
 		<table>
                     <tr> 
                         <td width=120px>
@@ -176,7 +179,7 @@
                                   </tr>
                                   <tr>
                                       <td colspan="4">
-                                      <%= image_tag("update.png", :class =>"dateUpdateEnd")  %>
+                                      <%= link_to image_tag("update.png", :class =>"dateUpdateEnd"), show_per_challenges_path(:id => @challenge.id)  %>
                                       <%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "links_cancel" %>
                                       </td>
                                   </tr> 
@@ -204,8 +207,10 @@
                                         function(data) {
                                             
                                         }, 'script' 
-                                );                                                                                        
-                                //window.location.href=window.location.href;               
+                                );
+                                                                                                                     
+                                //window.location.href=window.location.href;             
+                                
                             });                            
                             
                          </script>
@@ -365,8 +370,13 @@
 	});
 	
 </script>
+
 <style>
   .ui-datepicker{
     width:20%;
   }
+
+	.button_edit{ background:#f8981d; color:#ffffff; }
+	.cancel_edit{ background:#999999; color:#ffffff; }
+	
 </style>
