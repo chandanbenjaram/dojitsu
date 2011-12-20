@@ -767,9 +767,10 @@ input.radio {
 	padding: 5px;
 	text-align: center;
 	text-transform: uppercase;
-	width: 8%;
+	width: 60px;
 	text-decoration: none;
-	float:right; 
+	float:right;
+	right:8px; 
 	top: 2px;
 
 }
@@ -787,6 +788,8 @@ input.radio {
 	text-transform: uppercase;
 	width: 100px;
 	height: 19px;
+	position: relative;
+    right: 30px;
 }
 
 .challenge_mark_as_c{

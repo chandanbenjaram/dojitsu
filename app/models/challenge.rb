@@ -55,12 +55,7 @@ class Challenge
   def self.whatsNew
     where(:_type.exists => false).desc("created_at").limit(3)
   end
-  
-  def self.Modetesting
-   @testing = Challenge.where(:user_id => '100000974421554')
-   return @testing
-  end
-  
+    
   private
   
   def publishToFb
