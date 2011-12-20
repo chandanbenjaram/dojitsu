@@ -1368,6 +1368,7 @@ width:90%;
 	left:170px;
 	position:relative;
 	top:2px;
+	width:100px;
 }
 .invitees3{
     background: none repeat scroll 0 0 #F9A943;
@@ -1805,4 +1806,20 @@ right:10px;
     text-transform: uppercase;
     width: 78px;
 	
+}
+.dateUpdateEnd {
+    float: right;
+    height: 28px;
+    position: relative;
+    right: 25%;
+    top: 20px;
+    width: 12%;
+}
+.dateUpdateStart{
+	float: right;
+    height: 28px;
+    position: relative;
+    right: 25%;
+    top: 20px;
+    width: 12%;
 }
