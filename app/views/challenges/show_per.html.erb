@@ -36,6 +36,7 @@
 					</td>
 				</tr>
 		</table>
+
 		<hr/ width=400px>
 	</tr>
 	<tr>
@@ -86,7 +87,7 @@
                                   </tr>
                                   <tr>
                                       <td colspan="4">
-                                      <%= image_tag("update.png", :class =>"dateUpdateStart")  %>
+                                      <%= link_to image_tag("update.png", :class =>"dateUpdateStart") , show_per_challenges_path(:id => @challenge.id) %>
                                       <%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "links_cancel" %>
                                       </td>
                                   </tr> 
@@ -128,6 +129,10 @@
 		<hr/ width=400px>
 	</tr>
 	<tr>
+		
+		
+		
+		
 		<table>
                     <tr> 
                         <td width=120px>
@@ -174,7 +179,7 @@
                                   </tr>
                                   <tr>
                                       <td colspan="4">
-                                      <%= image_tag("update.png", :class =>"dateUpdateEnd")  %>
+                                      <%= link_to image_tag("update.png", :class =>"dateUpdateEnd"), show_per_challenges_path(:id => @challenge.id)  %>
                                       <%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "links_cancel" %>
                                       </td>
                                   </tr> 
@@ -202,8 +207,10 @@
                                         function(data) {
                                             
                                         }, 'script' 
-                                );                                                                                        
-                                //window.location.href=window.location.href;               
+                                );
+                                                                                                                     
+                                //window.location.href=window.location.href;             
+                                
                             });                            
                             
                          </script>
@@ -363,8 +370,13 @@
 	});
 	
 </script>
+
 <style>
   .ui-datepicker{
     width:20%;
   }
+
+	.button_edit{ background:#f8981d; color:#ffffff; }
+	.cancel_edit{ background:#999999; color:#ffffff; }
+	
 </style>

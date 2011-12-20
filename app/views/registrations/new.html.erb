@@ -61,15 +61,6 @@
       <%= render :partial => "devise/shared/links" %>
     </div>
 
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {return;}
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-    </script>
-    
     <div>
     <div class="regmessage">
 
@@ -78,7 +69,7 @@
               <tr>
                   <td><font color="#AAA9A9" size=4><b>WHAT'S NEW</b></font></td>
                   <td>
-                      <% if Challenge.where(:_type.exists => false).desc("created_at").limit(3).count == 0 %>
+                      <% if Challenge.whatsNew.count == 0 %>
                       <% else %>				
                            <%= link_to "", nonLoginIndex_challenges_path, :class => "non_login_view_all", :method => :get%> </td>
                       <% end %>
@@ -89,10 +80,10 @@
 	<table>
             <td>
             
-            <% if Challenge.where(:_type.exists => false).desc("created_at").limit(3).count == 0 %>
+            <% if Challenge.whatsNew.count == 0 %>
                 <p align="center">No challenges found</p>
             <% else %>
-                <% Challenge.where(:_type.exists => false).desc("created_at").limit(3).each do |anc| %>
+                <% Challenge.whatsNew.each do |anc| %>
                     <div class="messagereg">
                         <%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:-2px;") %>
                           <table width="100%" style="margin-top:-10px;">
