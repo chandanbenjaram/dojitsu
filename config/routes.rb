@@ -47,6 +47,9 @@ Dojitsu::Application.routes.draw do
 		get "sendInvitation"
 		get "myDojo"
 		get "people"
+		
+		get "delete_contact"
+		
 	end
   end
   resources :messages do
