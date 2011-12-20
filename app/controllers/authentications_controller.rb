@@ -52,10 +52,12 @@ class AuthenticationsController < ApplicationController
           else  
             user = User.find_or_initialize_by_email(:email => email)
             auth_hash = {:provider => provider, :uid => uid, :name => name, :email => email, :first_name => first_name, :last_name => last_name, :token => omniauth['credentials']['token']}
-            user.apply_omniauth(auth_hash)         
+            user.apply_omniauth(auth_hash)
+            user.confirm!
             if user.save!
               flash[:notice] = "New user signed in successfully." 
               sign_in_and_redirect(:user, user)
+              session[:isNewChallenge] = "isNew"
             else
               redirect_to new_user_registration_path
             end
