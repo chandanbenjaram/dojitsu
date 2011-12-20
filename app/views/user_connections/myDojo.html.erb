@@ -1,4 +1,7 @@
 <script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> </script>
+<script src="jquery.confirm/jquery.confirm.js"></script>
+<script src="js/script.js"></script>
+
 <% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
 	<% group =Array.new %>
 	<% allConnections.each  do |eachConnection| %>
@@ -67,7 +70,7 @@
 						</td>
 						<td>
 						<%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>
-						<%= link_to image_tag("btn_delete_up.png" , :class =>"private_msg1"), user_connection_path(eachConnection.id), :confirm => 'Are you sure?', :method => :delete %></span> 
+						<%= link_to image_tag("btn_delete_up.png" , :class =>"private_msg1"), user_connection_path(eachConnection.id), :onclick=>"confirmBox", :method => :delete %></span> 
 						</td>
 						</tr>
 					<% end %>
@@ -75,6 +78,31 @@
 				</tbody>
 				</table>
 				</div>
+				
+				
+				<div id="confirmOverlay">
+    <div id="confirmBox">
+
+        <h1>Title of the confirm dialog</h1>
+        <p>Description of what is about to happen</p>
+
+        <div id="confirmButtons">
+            <a class="button blue" href="#">Yes<span></span></a>
+            <a class="button gray" href="#">No<span></span></a>
+        </div>
+    </div>
+</div>
+				<script>
+				function confirmBox()
+				{
+				alert("hi");
+				$("#confirmOvelay")
+				}
+				
+				</script>
+				
+				
+
 				
 				<script type="text/javascript">
 							$(document).ready(function()
