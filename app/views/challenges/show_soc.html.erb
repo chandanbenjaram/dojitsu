@@ -8,15 +8,11 @@
 </div>
 
 
-
 <% if params[:isNewChallenge] == "isNew" %>
     <script> 
       $.dojitsuWallPost.renderFbWallPost();
     </script>
 <% end %>    
-
-
-
 
 <% if !@challenge.child_challenges.blank? && userIds = []%>
 	<% for aChild in @challenge.child_challenges %>
