@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag('simple-tabs','datePicker', 'colorbox','jquery-ui', 'ui.progressbar','ui.theme', 'main','soc-per','challenges.css')%>
-<%= javascript_include_tag('simple-tabs','ui.progressbar','jquery.colorbox-min', 'jquery.cluetip.js','jquery.table.addrow','on_the_spot','jquery.tools.min','soc-per','challenge_new','fbWallPost')%>
+<%= javascript_include_tag('simple-tabs','ui.progressbar','jquery.colorbox-min', 'jquery.cluetip.js','jquery.table.addrow','on_the_spot','jquery.tools.min','soc-per','challengePersonal','fbWallPost')%>
 <%= render 'layouts/loggedinbody'%>
 <div class="challengeSubNav">
 
@@ -10,6 +10,7 @@
 	<%= link_to "#{@challenge.title}","#" , :style=> "text-decoration: none; color:#666666;", :class => "challenge_link1" %> 
 
 </div>
+
 <% if params[:isNewChallenge] == "isNew" %>
     <script> 
       $.dojitsuWallPost.renderFbWallPost();

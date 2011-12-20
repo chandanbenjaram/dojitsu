@@ -1,0 +1,75 @@
+var calendarImagePath = <%= "'" + asset_path("icon_calendar.png") +"'"%>;
+$(document).ready(function($) { 
+
+    $(".alternativeRow").btnAddRow({oddRowCSS:"oddRow",evenRowCSS:"evenRow"});
+    $(".delRow").btnDelRow();
+
+    $('#start_point_type').live('change', function() {        
+            $('.startPointDate').empty();    
+            $('.startPointNumber').empty();
+
+            if($(this).val()){
+                    var div_tag = $('<div id="space"></div>');		
+                    if($(this).val() === "startPointNumber") {  
+                            $(div_tag).append($('<input id="start_point_value"  name="start_point_value" class="textfield_effect" type="text" required="required" placeholder="Enter number here">'));								
+
+                            $(div_tag).append('&nbsp;&nbsp;');
+                            $(div_tag).append($('<input id="start_point_label" name="start_point_label" class="textfield_effect" type="text" required="required" placeholder="Enter label here" >'));				
+                            $('#end_point_type option[value="endPointNumber"]').attr('selected','selected').trigger('change');    
+                    }else{
+                            $(div_tag).append('<input id="start_point_value"  name="start_point_value" class="textfield_effect datepicker" type="text" required="required" placeholder="Enter date here">');				
+
+                            $('#end_point_type option[value="endPointDate"]').attr('selected','selected').trigger('change');    
+
+
+
+
+                    }
+                    $(".textfield_effect datepicker").append('&nbsp;&nbsp;');
+
+                    $( '.'+$(this).val()).append(div_tag).fadeIn('500'); 
+
+                    $('.datepicker').datepicker({ 
+                            dateFormat: 'dd/mm/yy',
+                            showOn: "button",
+                            buttonImage: calendarImagePath,
+                            showOn: "button",
+                            buttonImageOnly: true,
+                    });
+            }       
+    }); 
+
+    $('#end_point_type').change(function() {
+            $('.endPointDate').empty();    
+            $('.endPointNumber').empty();
+            if($(this).val()){
+                    var div_tag = $('<div></div>');		
+                    if($(this).val() === "endPointNumber") {  
+                            $(div_tag).append($('<input id="end_point_value" name="end_point_value" class="textfield_effect" type="text" required="required" placeholder="Enter number here">'));								
+                            $(div_tag).append('&nbsp;&nbsp;');
+                            $(div_tag).append($('<input id="end_point_label"  name="end_point_label" class="textfield_effect" type="text" required="required" placeholder="Enter label here">'));				
+
+                    }else{
+                            $(div_tag).append('<input id="end_point_value" name="end_point_value" class="textfield_effect datepicker" type="text" required="required" placeholder="Enter date here">');				
+
+                    }
+
+                    $( '.'+$(this).val()).append(div_tag).fadeIn('500'); 
+
+                    $('.datepicker').datepicker({ 
+                            dateFormat: 'dd/mm/yy',
+                            showOn: "button",
+                            buttonImage: calendarImagePath,
+                            showOn: "button",
+                            buttonImageOnly: true,
+                    });
+            }       
+    });
+
+    $('#start_point_type').trigger('change');
+    $('#end_point_type').trigger('change');
+	
+});
+
+
+
