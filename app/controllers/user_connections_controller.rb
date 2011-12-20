@@ -1,7 +1,10 @@
 class UserConnectionsController < ApplicationController
   before_filter :authenticate_user!
 
-
+	def delete_contact
+		raise "Maisa"
+	end
+  
   def index
     @user_connections = Challenge.all;
 	#raise current_user.facebook.uid.inspect
@@ -24,6 +27,11 @@ class UserConnectionsController < ApplicationController
   def dashbord
   end
   
+  def delete_contact
+  @useconnection = params[:id]
+	render :layout => false
+		
+	end
   def connections_selection
   end
   
@@ -34,9 +42,10 @@ class UserConnectionsController < ApplicationController
   def people
 	render :layout => false
   end
+ 
   
   def destroy
-    @useconnection = UserConnection.find(params[:id])
+    @useconnection = UserConnection.where(:target_id => params[:id]).first
     @useconnection.destroy
 	redirect_to :action => 'index'
   end

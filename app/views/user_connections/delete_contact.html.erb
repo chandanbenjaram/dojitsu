@@ -1,0 +1,9 @@
+<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css','jquery-ui','ui.progressbar','ui.theme', 'main')%>
+<%= javascript_include_tag('simple-tabs','ui.progressbar.js','soc-per','on_the_spot','jquery.colorbox-min','jquery.tools.min','messages','fbWallPost')%>
+
+<div>
+<p> Remove <%=FbGraph::User.new(@useconnection).fetch.name %> from mydojo </p>
+
+	<%=image_tag(FbGraph::User.new(@useconnection).fetch.picture) %> &nbsp; Are you sure you want to remove  <%=FbGraph::User.new(@useconnection).fetch.name %> from my dojo 
+		<%= link_to image_tag("btn_delete_up.png" ), user_connection_path(:id => @useconnection), :method => :delete %>
+</div>
