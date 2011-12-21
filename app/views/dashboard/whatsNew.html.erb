@@ -6,8 +6,8 @@
 		<%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:-2px;") %>
 		<table width="100%" style="margin-top:-10px;">
 			<tr>
-				<td width="60%"><font size="3px;" style="font-weight:bold"><%= aChallenge.title%></font></td>
-				<td width="40%">
+				<td width="70%"><font size="2px;" style="font-weight:bold"><%= aChallenge.title%></font></td>
+				<td width="30%">
 					<%= time_ago_in_words  aChallenge.created_at%>
 				</td>
 			</tr>
@@ -52,7 +52,12 @@
 					<% end %>
 					<% if aChallenge.social_type.instance_of?ChallengeSocialType%>
 						<p style="text-transform:none;">
-							<%=h truncate(aChallenge.description, :length => 15) %>....<%= link_to "VIEW" , show_soc_challenges_path(:id => aChallenge.id) %>									
+							<% if aChallenge.description.size <= 10 %>	
+								<%=h truncate(aChallenge.description, :length => 10) %>&nbsp;&nbsp;&nbsp;<%= link_to "VIEW" , show_soc_challenges_path(:id => aChallenge.id) %>
+							<%else%>
+							 
+								<%=h truncate(aChallenge.description, :length => 145) %>....<%= link_to "VIEW" , show_soc_challenges_path(:id => aChallenge.id) %>									
+							<%end%>
 						</p>
 					<% end %>								
 				</td>

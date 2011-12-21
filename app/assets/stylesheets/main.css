@@ -599,6 +599,7 @@ height: 25px;
 color: #F9A943;
 background: transparent;
 margin-top: -3px;
+top: 25%;
 }
 
 select:focus{
@@ -1330,7 +1331,7 @@ width:90%;
 {
 	background: none repeat scroll 0 0 #F4F4F4;
     border: 1px solid #BEBEBE;
-    height: 180px;
+    height: auto;
     margin: 10px;
     overflow: hidden;
     position: relative;
