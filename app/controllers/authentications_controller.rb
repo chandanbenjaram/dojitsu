@@ -56,6 +56,7 @@ class AuthenticationsController < ApplicationController
             if user.save!
               flash[:notice] = "New user signed in successfully." 
               sign_in_and_redirect(:user, user)
+			  session[:isNewChallenge] = "isNew"
             else
               redirect_to new_user_registration_path
             end
