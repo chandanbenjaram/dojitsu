@@ -10,15 +10,15 @@ module ChallengesHelper
 					end 
 				end
 				if allTaskComplete == 1 
-					link_to "MARK AS COMPLETED",  "#", :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"
+					link_to "MARK AS COMPLETED",  "#", :style => "text-decoration: none; color:#fff; float:right; position:relative; top:-5px;" ,:class => "challenge_mark_as_c"
 				else 
-					link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"
+					link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => " position:relative; top:-5px; text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"
 				end
 			else
-				link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"
+				link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => " position:relative; top:-5px; text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"
 			end
 		else
-			link_to "MARK AS COMPLETED",  "#", :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"
+			link_to "MARK AS COMPLETED",  "#", :style => " position:relative; top:-5px; text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"
 		end	
 	end	
 	
