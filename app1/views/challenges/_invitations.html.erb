@@ -1,0 +1,47 @@
+<%= stylesheet_link_tag('jquery.facebook.multifriend.select.css','challenges.css')%>
+<%= javascript_include_tag('jquery.facebook.multifriend.select') %>
+<%= form_for :challenge, :url => {:controller=> "challenges",:action => "create"},:html=>{:multipart => true, :name => "challenge_form", :onclick=> "return validate_form_fields(this);"} do |f| -%>
+<p>            
+	<input id = "inviteBtn" type="button" value="INVITE PARTICIPANTS" class="links_invite_p"/>
+	<%= text_field_tag :invitees, nil , :id => "invitees_id", :class=> "hidden" %>
+	<div id="jfmfs-container-wrapper" style="display: none">
+		<div id="jfmfs-container">
+		</div>
+	</div>
+</p>                             
+<% end %>
+<script type="text/javascript" charset="utf-8">        
+(function($j) { 
+	var selectorObz = {    
+		filter_default: "Search By Name",
+		friend_fields: "id,name,last_name&access_token="+'<%= current_user.facebook.access_token%>'
+	}
+
+	$j('.links_invite_p').live('click', function(){
+		$j( "#jfmfs-container-wrapper" ).dialog({
+			modal: true,
+			resizable: false,
+			closeText: "",
+			position: 'center',
+			title: 'Invite Participants',
+			width: '725px',
+			open: function(event, ui) { $j("#jfmfs-container").jfmfs(selectorObz); },
+			buttons: {                                             
+                Cancel: function() {
+					$j("#jfmfs-container").data('jfmfs').clearSelected(); 
+					$j('#inviteBtn').val("INVITE PARTICIPANTS");    
+					$j(this).dialog( "close" );
+				},
+				Save: function() {
+					var friendSelector = $j("#jfmfs-container").data('jfmfs');
+					var selectedFriends = friendSelector.getSelectedIds();
+					$j('#invitees_id').val(selectedFriends);
+				   	$j('#inviteBtn').val("INVITE PARTICIPANTS (" + selectedFriends.length + ")");                                 
+
+					$j(this).dialog( "close" );
+				}
+			}
+		});
+	})          
+})(jQuery);                              
+</script>	

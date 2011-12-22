@@ -1,0 +1,177 @@
+var calendarImagePath = <%= "'" + asset_path("icon_calendar.png") +"'"%>;
+$(document).ready(function($) { 
+
+	$(".alternativeRow").btnAddRow({oddRowCSS:"oddRow",evenRowCSS:"evenRow"});
+	$(".delRow").btnDelRow();
+
+	$('#start_point_type').live('change', function() {        
+		$('.startPointDate').empty();    
+		$('.startPointNumber').empty();
+
+		if($(this).val()){
+			var div_tag = $('<div id="space"></div>');		
+			if($(this).val() === "startPointNumber") {  
+				$(div_tag).append($('<input id="start_point_value"  name="start_point_value" class="textfield_effect" type="text" required="required" placeholder="Enter number here">'));								
+
+				$(div_tag).append('&nbsp;&nbsp;');
+				$(div_tag).append($('<input id="start_point_label" name="start_point_label" class="textfield_effect" type="text" required="required" placeholder="Enter label here" >'));				
+				$('#end_point_type option[value="endPointNumber"]').attr('selected','selected').trigger('change');    
+			}else{
+				$(div_tag).append('<input id="start_point_value"  name="start_point_value" class="textfield_effect datepicker" type="text" required="required" placeholder="Enter date here">');				
+
+				$('#end_point_type option[value="endPointDate"]').attr('selected','selected').trigger('change');    
+				
+
+
+
+			}
+			$(".textfield_effect datepicker").append('&nbsp;&nbsp;');
+
+			$( '.'+$(this).val()).append(div_tag).fadeIn('500'); 
+
+			$('.datepicker').datepicker({  
+                                
+				showOn: "button",
+				buttonImage: calendarImagePath,
+				showOn: "button",
+				buttonImageOnly: true,
+			});
+                        
+		}       
+	}); 
+
+	$('#end_point_type').change(function() {
+		$('.endPointDate').empty();    
+		$('.endPointNumber').empty();
+		if($(this).val()){
+			var div_tag = $('<div></div>');		
+			if($(this).val() === "endPointNumber") {  
+				$(div_tag).append($('<input id="end_point_value" name="end_point_value" class="textfield_effect" type="text" required="required" placeholder="Enter number here">'));								
+				$(div_tag).append('&nbsp;&nbsp;');
+				$(div_tag).append($('<input id="end_point_label"  name="end_point_label" class="textfield_effect" type="text" required="required" placeholder="Enter label here">'));				
+				 
+			}else{
+				$(div_tag).append('<input id="end_point_value" name="end_point_value" class="textfield_effect datepicker" type="text" required="required" placeholder="Enter date here">');				
+				
+			}
+
+			$( '.'+$(this).val()).append(div_tag).fadeIn('500'); 
+
+			$('.datepicker').datepicker({ 
+				
+                                showOn: "button",
+				buttonImage: calendarImagePath,
+				showOn: "button",
+				buttonImageOnly: true,
+			});
+		}       
+	});
+
+	$('#start_point_type').trigger('change');
+	$('#end_point_type').trigger('change');
+
+	$('.moreInfoTip').cluetip({
+		width:640,
+		height:225,
+		local:true, 
+		dropShadow: false,
+		arrows: true,
+		cluetipClass: 'jtip'		
+	});
+	$(document).ready(function() {
+
+
+		$(".tab_content").hide();
+		$("ul.tabs li:first").addClass("active").show(); 
+		$(".tab_content:first").show(); 
+
+
+		$("ul.tabs li").click(function() {
+
+			$("ul.tabs li").removeClass("active"); 
+			$(this).addClass("active"); 
+			$(".tab_content").hide(); 
+
+			var activeTab = $(this).find("a").attr("href"); 
+			$(activeTab).fadeIn();
+			return false;
+		});
+	});
+
+	$('ul.tabs li').click(function(event){
+
+		var ty = event.target.id;
+		if( ty == "soc")
+		{
+			$('#soc_wn').val("");
+			$('#soc_hm').val("");
+		}
+		else
+		{
+			$('#per_wn').val("");
+		}
+	});
+
+
+	$('.chall_type').click(function(){
+		if ($(this).attr("id") == "challenge_cha_type_per")
+		{
+
+			$("#challenge_cha_type_per_div").show("fast");
+			$("#challenge_cha_type_soc_div").hide("fast");
+		}
+		else
+		{
+			$("#challenge_cha_type_soc_div").show("fast");
+			$("#challenge_cha_type_per_div").hide("fast");
+		}
+	});
+
+	$('.chall_type').click(function(){
+		if ($(this).attr("id") == "challenge_cha_type_per")
+		{
+
+			$("#challenge_cha_type_per_div").show("fast");
+			$("#challenge_cha_type_soc_div").hide("fast");
+		}
+		else
+		{
+			$("#challenge_cha_type_soc_div").show("fast");
+			$("#challenge_cha_type_per_div").hide("fast");
+		}
+	});            
+	
+	$('.chall_type').click(function(){
+		if ($(this).attr("id") == "challenge_cha_type_per")
+		{
+
+			$("#challenge_cha_type_per_div").show("fast");
+			$("#challenge_cha_type_soc_div").hide("fast");
+		}
+		else
+		{
+			$("#challenge_cha_type_soc_div").show("fast");
+			$("#challenge_cha_type_per_div").hide("fast");
+		}
+	});
+	
+});
+
+function validate_form_fields(str)
+	{
+		if ((document.challenge_form.soc_who_win.value == "") && (document.challenge_form.per_who_win.value == "")) 
+		{
+			document.getElementById("select_challenge_div").innerHTML = "<font color=\"#FF0000\">Please select who wins</font>";
+			document.challenge_form.soc_who_win.focus();
+			return false;
+		}
+
+		if ((document.challenge_form.soc_who_win.value != "") && (document.challenge_form.soc_how_many_winner.value == "")) 
+		{
+			document.getElementById("soc_how_many_winner_div").innerHTML = "<font color=\"#FF0000\">Please select how many winners</font>";
+			document.challenge_form.soc_who_win.focus();
+			return false;
+		}
+		
+	}
+

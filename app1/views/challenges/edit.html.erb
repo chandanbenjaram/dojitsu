@@ -1,0 +1,229 @@
+<%= render 'layouts/loggedinbody'%>
+<%= stylesheet_link_tag('datePicker')%>
+<%= javascript_include_tag('jquery.datePicker', 'date','jquery.table.addrow')%>
+
+<% t = Time.now.strftime("%m-%d-%Y") %>
+</br>
+</br>
+</br>
+
+
+<%= form_for @challenge do |f|%>
+	<%= render "#{@challenge.current_step}_step", :f => f%>
+ 	<p>  
+		<%= f.submit "Back", :name => "previous_button" unless @challenge.first_step? %>
+		<%= f.submit "Next", :style => "width: 100px;"%>
+		
+	</p>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<div id="ne_tsk_div_form">
+	<div id="ne_tsk_div_form_al">
+		<%= form_for( @challenge, :method => "get" ,:url => pravin_challenges_path, :validate => true) do |f| %>
+		<p>
+			<%= f.label :title %><br />
+			<%= f.text_field :title, :class => "textfield_effect_nw_tk" %>
+		</p>
+		<p>
+			<%= f.label :description %><br />
+			<%= f.text_area :description,:class => "textarea_nw_tk" %>
+		</p>
+		<p>
+			<%= f.label :discipline %><br />
+			<%= f.select :discipline, options_for_select([
+				["Select Categories", "0"],							
+				["Categories 1","cat1"],
+				["Categories 2","cat2"],	 
+				["Categories 3","cat3"],	
+				["Categories 4","cat4"],	
+				["Categories 5","cat5"] 														
+				]), :style => "width:197px" 
+				%>
+			</p>
+			<p>
+				<%= f.label :participants %><br />
+				<%= f.select :participants, options_for_select([
+					["Select Participants", "0"],							
+					["Organizer","org "],
+					["Avatars","avt"],	 
+					["Judges","jud"],	
+					["Audience","aud"],	
+					["Teams","tem"] 														
+					]), :style => "width:197px" 
+					%>
+				</p>
+				<p>
+					<%= f.label :dateStart, "Start Date" %><br />		
+					<%= select_tag "ch_st_date", options_for_select([
+						["Immediately","#startDateNow"],
+						["Date","#startDateDate"],	 
+						["Number","#startDateNbr"]														
+						]), :style => "width:197px" 
+						%><br/>
+						<%= f.text_field :dateStart, :class => "textfield_effect  date-pick" %>
+					</p>
+				</br>
+				</br>
+				<p>
+					<%= f.label :dateEnd, "End Date" %><br />
+					<!--
+					<%= f.text_field :dateEnd, :class => "textfield_effect date-pick" %>
+					-->
+<!--
+					<%= select_tag "ch_ed_date", options_for_select([
+						["Select Start Date", "0"],							
+						["Date","#ch_ed_dat"],	 
+						["Number","#ch_ed_num"]														
+						]), :style => "width:197px" 
+						%>
+						<div id="ch_ed_dat" style="display:none;">
+							<%= f.text_field :dateEnd1, :class => "textfield_effect  date-pick" %></br>
+						</div>
+						<div id="ch_ed_num" style="display:none;">
+							<%= f.text_field :dateEnd2, :class => "textfield_effect" %>
+						</div>
+					</p>
+				</br>
+			</br>
+			<p>
+				<div id="new_tsk_field">
+					<table border="1" class="atable">
+						<tr><th colspan="2">Input your task</th>
+							<th>
+								<input type="button" class="alternativeRow" value="Add Task" style="float:left; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
+							</th>
+						</tr>
+						<tr>
+							<td>New Task</td>
+							<td>
+								<%= text_field_tag :task, nil, :placeholder => 'Enter task...', :class => "textfield_effect_nw_tk_add" %>
+							</td>
+							<td>
+								<input type="button" class="delRow" value="Remove" style="float:right; color: #000; border: 2px solid grey; padding: 2px 5px; margin-left:2px;">
+							</td>
+						</tr>
+					</table>
+				</div>
+			</p>
+			<p>                                                         
+				<input type="button" value="Cancel" style="width: 100px;">
+				<%= f.submit "Next", :style => "width: 100px;"%>
+			</p>
+		</br>
+	</br>
+	<% end %>
+</div>	
+</div>
+-->
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+	// Date Picker scripting code
+	//alert("Date picker is working");
+	$('.date-pick').datePicker({startDate:'01/01/1996'});
+
+    $('#ch_st_date').change(function() {
+		console.debug('changed...' + $(this));
+
+	});
+	
+	$('#ch_ed_date').change(function() {
+		console.debug('changed...' + $(this));
+
+	});
+	
+	$('.chall_type').click(function(){
+		if ($(this).attr("id") == "challenge_cha_type_per")
+		{
+			//alert($(this).attr("id"));
+			$("#challenge_cha_type_per_div").show("fast");
+			$("#challenge_cha_type_soc_div").hide("fast");
+		}
+		else
+		{
+			//alert($(this).attr("id"));
+			$("#challenge_cha_type_soc_div").show("fast");
+			$("#challenge_cha_type_per_div").hide("fast");
+		}
+		//$("<div></div>").appendTo("div#new_tsk_field");
+	});
+	
+	/*
+	$('#ch_ed_date').change(function() {
+		var sel_val = $(this).val();
+		//alert("new"+sel_val);
+		//$('#ch_st_date').hide();
+		if ($(this).val() == "#ch_ed_dat")
+		{
+			//alert("date");
+			$(sel_val).show();
+			$('#ch_ed_num').hide();	
+		}
+		else
+		{
+			//alert("number");
+			$(sel_val).show();
+			$('#ch_ed_dat').hide();
+		}
+
+	});
+	
+	/*
+	$('#ch_ed_date').change(function() {
+	var sel_val = $(this).val();
+	//alert(""+sel_val);
+	//$('#ch_ed_date').hide();
+	$(sel_val).show();
+	});
+	*/
+
+	// Add row for new task
+	$(".alternativeRow").btnAddRow({oddRowCSS:"oddRow",evenRowCSS:"evenRow"});
+	$(".delRow").btnDelRow();
+
+});
+</script>
+
+<style type="text/css">
+
+.atable{
+	border-collapse:collapse;
+	border:1px solid #AAA;
+	width:100%;
+}
+
+.atable th{
+	border:1px solid #AAF;
+	background:#ADD8E6;
+	font-weight:bold;
+}
+
+.atable td{
+	padding:4px;
+	border:1px solid #AAF;
+}
+
+.oddRow{
+	background:#FFFFFF;
+}
+
+.evenRow{
+	background:#F0F8FF;
+}
+
+</style>
+

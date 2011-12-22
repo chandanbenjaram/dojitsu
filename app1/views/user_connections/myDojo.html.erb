@@ -1,0 +1,187 @@
+<script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> </script>
+<%= stylesheet_link_tag('colorbox') %>
+<%= javascript_include_tag('jquery.colorbox-min') %>
+
+<% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
+	<% group =Array.new %>
+	<% allConnections.each  do |eachConnection| %>
+		<% group.push(eachConnection.target_id) %>
+	<% end %>
+		<script>
+			function contactToInvitee() 
+			{
+			 var contact = '<%= group.join(",") %>';
+			 window.fbAsyncInit();
+				FB.ui({
+				  method: 'send',
+				  to:contact,
+				  name: 'Do your best',
+				  link: 'http://www.dojitsu.com'
+						 });										 
+			 }
+		</script>
+
+			<div class="tables">
+
+				<table>
+					<td width="10%">
+							<label for="search">
+							<strong>
+
+							<font color="#8c8c8c"><b style="float: right;">Total:&nbsp;<%= group.length %><span style="position: relative; top: 5px;">&nbsp;<%= image_tag("btn_msg_up.png", :onclick=>"contactToInvitee()") %></span></font><b >
+															
+							</strong>
+
+							</label>
+					</td>
+					<td style="width:80%; padding-left: 56%;"><input type="text" id="search"/>
+					<%= image_tag ("searchbutton.PNG") %>
+						
+						
+					</td>
+					<td>
+					<p class="invite"><%= render :partial => 'invitations' %>
+		<%#= image_tag("invitee.PNG", :width=> "100px" , :height => "30px", :style => "top:10px;" )%>
+
+		<%= hidden_field_tag "myvar", 0%>	
+		</p>
+					</td>
+				</table>
+				
+
+
+				<table width="100%" id="tblData" class="sortable" border=1>
+				<thead>
+				<tr>
+
+				<th width="85%"><b style="position:relative; color:#666666; padding-left:20px; " >NAME</b></th>
+				<th width="15%"><b style=" color:#666666;  " >STATUS </b></th>
+				</tr>
+				</thead>
+				<tbody bgcolor="#ffffff">
+				<% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
+                    				
+					<% allConnections.each  do |eachConnection| %>
+						<tr>
+						<td>
+						<%=image_tag(FbGraph::User.new(eachConnection.target_id).fetch.picture) %>
+						<span class="fbusername"><%= FbGraph::User.new(eachConnection.target_id).fetch.name %></span>
+						<span > 
+						</td>
+						<td>
+						
+						<%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>
+			
+						
+						<%= link_to image_tag("btn_delete_up.png" ,), delete_contact_user_connections_path( :id=>eachConnection.target_id), :class=>"remove" %></span> 
+						</td>
+						</tr>
+					<% end %>
+                                       
+				</tbody>
+				</table>
+				</div>
+				
+				<script>
+					$('.remove').colorbox();
+				</script>
+				
+
+				
+				
+
+				
+				<script type="text/javascript">
+							$(document).ready(function()
+							{
+								$('#search').keyup(function()
+								{
+									searchTable($(this).val());
+								});
+							});
+							function searchTable(inputVal)
+							{
+								var table = $('#tblData');
+								table.find('tr').each(function(index, row)
+								{
+									var allCells = $(row).find('td');
+									if(allCells.length > 0)
+									{
+										var found = false;
+										allCells.each(function(index, td)
+										{
+											var regExp = new RegExp(inputVal, 'i');
+											if(regExp.test($(td).text()))
+											{
+												found = true;
+												return false;
+											}
+										});
+										if(found == true)$(row).show();else $(row).hide();
+									}
+								});
+							}
+						</script>
+
+<script>
+    $(document).ready(function() {
+        $(".private_msg").click(function(event) {                                                                                                                  
+            var targetId = event.target.id;
+            $.dojitsu.renderSendBox("Testing", targetId,"http://www.dojitsu.com", <%= "'"+ challenges_url() +"'"%>);	
+        });
+    });
+ </script>
+
+
+<div id="tooltip" class="tooltip">
+	
+</div>
+
+
+
+
+
+<script>
+	function changeVal(str,score) {
+		var tot_score = str*score;
+		$("#tatal_s").val(tot_score);
+	} 
+	// execute your scripts when the DOM is ready. this is a good habit
+	$(function() {	
+		
+		$('.task_update_popup').colorbox();
+		$('.add_task_popup').colorbox();
+		
+		$("#date").dateinput({
+			format: 'dddd dd, mmmm yyyy',	// the format displayed for the user
+			selectors: true,             	// whether month/year dropdowns are shown
+			min: -100,                    // min selectable day (100 days backwards)
+			max: 100,                    	// max selectable day (100 days onwards)
+			offset: [10, 20],            	// tweak the position of the calendar
+			speed: 'fast',               	// calendar reveal speed
+			firstDay: 1                  	// which day starts a week. 0 = sunday, 1 = monday etc..
+		});
+	});
+	
+	// setup tooltip for a single DIV element
+	$("#task_list a").tooltip({
+		// each trashcan image works as a trigger
+		tip: '#tooltip',
+
+		// custom positioning
+		position: 'center right',
+
+		// move tooltip a little bit to the right
+		offset: [0, 15],
+
+		// there is no delay when the mouse is moved away from the trigger
+		delay: 0
+	});
+	
+</script>
+<style>
+  .ui-datepicker{
+    width:20%;
+  }
+</style>
+

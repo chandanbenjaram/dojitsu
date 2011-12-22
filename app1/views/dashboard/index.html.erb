@@ -1,0 +1,78 @@
+<%= javascript_include_tag('ui.progressbar','ajaxPageLoad','fbWallPost')%>
+<%= stylesheet_link_tag('jquery-ui', 'ui.progressbar','ui.theme', 'main')%>
+<%= render 'layouts/loggedinbody'%>
+
+<div class="challange">
+  my dashboard
+</div>
+<% if session[:isNewChallenge] == "isNew" %>
+  <script> 
+	 
+      $.dojitsuWallPost.renderFbWallPost();
+    </script> 
+<% end %>
+<table>
+      <td>
+      <content>		
+      <table>
+          <td>
+              <tr>
+                  <td>
+                      <div class="dashboardsidebar">
+                      <div class="mychallenge">
+			                      <div id="titlechallenge">
+			                          <div style="left: 16px; position: relative; top: 5px;">
+			                            <div class="shadow">my challenges<font color="#ffffff"><b>&nbsp;&nbsp;( <%= current_user.challenges.size %> ) </b></font></div>
+			                          </div>
+			                          <div class="second_titlechallenge">
+			                             <%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
+			                          </div>
+			                      </div>
+			                      <div id="myChallenge"></div>
+			                      <div id="myChallenge1" align="center"></div>
+			                      <script>                         
+			                        $.dojitsuAjaxPage.renderAjaxPageLoad("/dashboard/myChallenge","#myChallenge","#myChallenge1");
+			                      </script>
+			                  </div>
+                      </div>	
+                  </td>
+              </tr>
+              <tr>
+                  <td>	
+                      <div class="dashboardsidebar1">
+                          <div class="mychallenge">
+                              <div id="titlechallenge">
+                                  <div id="title" style="left: 16px; position: relative; top: 5px;">
+                                     <div class="shadow">new messages <font style="color:#fff">&nbsp;&nbsp;( <%= current_user.inbox.count %> )</font></div>
+                                  </div>
+                                  <div class="second_titlechallenge">
+                                     <%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
+                                  </div>
+                              </div>
+                              <div id="message"></div>
+                              <div id="message1" align="center"></div>
+                              <script>
+                                $.dojitsuAjaxPage.renderAjaxPageLoad("/dashboard/message","#message","#message1");
+                              </script>
+                          </div>	
+                      </div>
+                  </td>
+              </tr>
+          </td>
+      </table>
+      </content>
+  </td>
+	<td valign=top>
+            <div class="dashboardsidebar2">
+                <div class="whatsnew">	
+                    <font style="float: left;left: 15px; position: relative; top:6px;"><div class="shadow1">what's new</div></font> 
+                    <%= button_to "", challenges_url, :class => "ds_view_all", :method => :get%>
+                </div> 
+                <div id="whatsNew"></div>
+                <div id="whatsNew1" align="center"></div>
+                <script>
+                  $.dojitsuAjaxPage.renderAjaxPageLoad("/dashboard/whatsNew","#whatsNew","#whatsNew1");
+                </script>
+            </div>
+	</td>
+</table>

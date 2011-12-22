@@ -1,0 +1,15 @@
+<div class="dashboardsidebar">
+  <div style=" width:40%; "  class="mychallenge2">
+      <div  style=" width:100%; "  id="titlechallenge1">
+        <div style="padding-left:16px;">
+          <font size="4" color="#8c8c8c"><b  id="total">Total :</b><b id="total"><%= current_user.challenges.size %> </b></font>
+        </div>
+        <div  style=" width:100%; " class="second_titlechallenge">
+          <%= button_to "", new_challenge_url, :class => "new_challenge_button1", :method => :get%>
+        </div>
+      </div>						
+      <div style="overflow-y: auto; overflow-x: width: 1%; hidden;  height : 440px;" id="challengedetails1">
+        <%= render 'dashboard/challengeProgress' %>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<html xmlns:fb="http://www.facebook.com/2008/fbml">
+  <body>
+ <%= javascript_include_tag('all')%>
+	<script>
+      // assume we are already logged in
+       window.fbAsyncInit();
+
+      FB.ui({
+          method: 'send',
+          name: 'My dojitsu challenge'
+          
+          });
+     </script>
+	 
+  </body>
+</html>

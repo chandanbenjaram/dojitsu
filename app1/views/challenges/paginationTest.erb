@@ -1,0 +1,69 @@
+<%= javascript_include_tag('fbWallPost') %>
+<%= render 'layouts/loggedinbody'%>
+<%#= debug @users %>
+
+<% @users.each do |aChallenge| %>
+<table>
+  <tr>
+    <td><%= aChallenge.user_id %> </td>
+    <td><%= aChallenge.target_id %></td>
+  </tr>
+</table>
+<% end %>
+<%= will_paginate @users %>
+
+
+
+<%= debug @testing%>
+
+
+<script> 
+  $.dojitsuWallPost.renderFbWallPost();
+</script>
+
+
+<%#= Challenge.count %>
+<%#= Challenge.exists? %>
+<%#= Challenge.blank? %>
+<%#= Challenge.where(:_type.exists => false).count %>
+<%#= Challenge.where(:_type.exists => false).only(:social_type).count %>
+<%#= Challenge.where(:type => "Challenge").count %>
+<%#= Challenge.only(:social_type).where(:_type => "ChallengeSocialType").count %>
+<%#= Challenge.where(:_type.exists => false).also_in(:_type => "Challenge") %>
+
+<%#= Challenge.any_in(aliases: [ "Bond" ]).also_in(aliases: [ "007" ]) %>
+<%#= Challenge.any_in(:_type.exists => false) %>
+
+<% noChallenge = 0 %>
+<% Challenge.where(:_type.exists => false).each do |possibleChallenge| %>
+    <% if possibleChallenge.social_type.instance_of?ChallengeSocialType%>
+      <% noChallenge = 1 %>
+    <% end %>
+<% end %>
+<% if noChallenge == 1 %> 
+    there is challenge
+<% else %>
+    No Challenge               
+<% end %>
+    
+    
+    
+<%  allTaskComplete = 0 %>
+<% if @challenge.user_id == current_user.fbauth.uid %>
+    <% if @challenge.canCompleteBeforeTasks? %> 
+        <% @challenge.tasks.each do |aTask| %> 
+            <% if aTask.is_complete == 0  %>
+                 <% allTaskComplete = 1  %>			
+            <% end  %>
+        <% end %>
+        <% if allTaskComplete == 1  %>
+           <%=  link_to "MARK AS COMPLETED",  "#", :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c" %>
+        <% else  %>
+            <%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c" %>
+        <% end %>
+    <% else %>
+       <%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c" %>
+    <% end %>
+<% else %>
+   <%= link_to "MARK AS COMPLETED",  "#", :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c" %>
+<% end %>    
