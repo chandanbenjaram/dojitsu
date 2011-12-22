@@ -21,7 +21,7 @@
 <table width="100%" border="0" border cellspacing=12px>
 	<tr>
 		<div style="text-transform: uppercase; font-size:25px; margin:0px">
-			<font color="orange"><%= on_the_spot_edit @challenge, :title, :type=> :text %></font>
+			<font color="#FFA500"><%= on_the_spot_edit @challenge, :title, :type=> :text %></font>
 		</div><br>
 		<tr>
 		<table id="description">
@@ -36,6 +36,7 @@
 					</td>
 				</tr>
 		</table>
+
 		<hr/ width=400px>
 	</tr>
 	<tr>
@@ -86,7 +87,7 @@
                                   </tr>
                                   <tr>
                                       <td colspan="4">
-                                      <%= image_tag("update.png", :class =>"dateUpdateStart")  %>
+                                      <%= link_to image_tag("update.png", :class =>"dateUpdateStart") , show_per_challenges_path(:id => @challenge.id) %>
                                       <%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "links_cancel" %>
                                       </td>
                                   </tr> 
@@ -110,7 +111,7 @@
                                 };       
                                 jQuery.support.cors = true;
                                 $.get('/challenges/date_updateStart', 
-                                    {value:objj},
+                                    {value:obj},
                                     function(data) {
                                         
                                     }, 'script' 
@@ -128,6 +129,10 @@
 		<hr/ width=400px>
 	</tr>
 	<tr>
+		
+		
+		
+		
 		<table>
                     <tr> 
                         <td width=120px>
@@ -174,7 +179,7 @@
                                   </tr>
                                   <tr>
                                       <td colspan="4">
-                                      <%= image_tag("update.png", :class =>"dateUpdateEnd")  %>
+                                      <%= link_to image_tag("update.png", :class =>"dateUpdateEnd"), show_per_challenges_path(:id => @challenge.id)  %>
                                       <%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "links_cancel" %>
                                       </td>
                                   </tr> 
@@ -202,8 +207,10 @@
                                         function(data) {
                                             
                                         }, 'script' 
-                                );                                                                                        
-                                //window.location.href=window.location.href;               
+                                );
+                                                                                                                     
+                                //window.location.href=window.location.href;             
+                                
                             });                            
                             
                          </script>
@@ -217,8 +224,8 @@
 		<hr/ width=400px>	
 		<br><br>
 		<table bg color=#f4f4f4>
-			<tr bgcolor="orange">
-				<td bgcolor="orange"><font color="white"><b>&nbsp; &nbsp; &nbsp;TASKS</b></font></td>
+			<tr bgcolor="#FFA500">
+				<td bgcolor="#FFA500"><font color="#ffffff"><b>&nbsp; &nbsp; &nbsp;TASKS</b></font></td>
 				
 			</tr>
 		</table>
@@ -363,8 +370,13 @@
 	});
 	
 </script>
+
 <style>
   .ui-datepicker{
     width:20%;
   }
+
+	.button_edit{ background:#f8981d; color:#ffffff; }
+	.cancel_edit{ background:#999999; color:#ffffff; }
+	
 </style>

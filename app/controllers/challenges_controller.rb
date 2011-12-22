@@ -227,6 +227,7 @@ class ChallengesController < ApplicationController
    if params[:value][:myParams3]
      startPoint = @challenge.start_point
      startPoint.update_attributes(:value => params[:value][:myParams1], :label =>params[:value][:myParams3])
+	 raise value
    else
      startPoint = @challenge.start_point
      startPoint.update_attributes(:value => params[:value][:myParams1])

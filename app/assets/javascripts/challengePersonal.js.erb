@@ -15,11 +15,11 @@ $(document).ready(function($) {
 
                             $(div_tag).append('&nbsp;&nbsp;');
                             $(div_tag).append($('<input id="start_point_label" name="start_point_label" class="textfield_effect" type="text" required="required" placeholder="Enter label here" >'));				
-                            $('#end_point_type option[value="endPointNumber"]').attr('selected','selected').trigger('change');    
+                              
                     }else{
                             $(div_tag).append('<input id="start_point_value"  name="start_point_value" class="textfield_effect datepicker" type="text" required="required" placeholder="Enter date here">');				
 
-                            $('#end_point_type option[value="endPointDate"]').attr('selected','selected').trigger('change');    
+                          
 
 
 
@@ -30,7 +30,7 @@ $(document).ready(function($) {
                     $( '.'+$(this).val()).append(div_tag).fadeIn('500'); 
 
                     $('.datepicker').datepicker({ 
-                            dateFormat: 'mm/dd/yy',
+                            dateFormat: 'dd/mm/yy',
                             showOn: "button",
                             buttonImage: calendarImagePath,
                             showOn: "button",
@@ -57,7 +57,7 @@ $(document).ready(function($) {
                     $( '.'+$(this).val()).append(div_tag).fadeIn('500'); 
 
                     $('.datepicker').datepicker({ 
-                            dateFormat: 'mm/dd/yy',
+                            dateFormat: 'dd/mm/yy',
                             showOn: "button",
                             buttonImage: calendarImagePath,
                             showOn: "button",
