@@ -68,10 +68,10 @@ a:hover {
 	color: #069;
 	text-decoration: underline;
 }*/
-
+/*
 a:visited {
 	color: #FFFFFF;
-}
+}*/
 
 a.signup_button {
 	margin-left: auto;
@@ -773,6 +773,7 @@ input.radio {
 	float:right;
 	right:8px; 
 	top: 2px;
+	color:#FFFFFF;
 
 }
 .links_cancel2 {
@@ -789,6 +790,7 @@ input.radio {
     text-transform: uppercase;
     top: -15px;
     width: 60px;
+  
 }
 .links_cancel1{
 	background: none repeat #999999;
@@ -804,6 +806,14 @@ input.radio {
     width: 80px;
 	
 }
+.links_cancel1:hover{
+	color: #FFFFFF;
+}
+.links_cancel:hover{
+	color: #FFFFFF;
+}
+
+
 
 .task_links_cancel {
   	background: none repeat scroll 0 0 #F9A943;
@@ -1857,4 +1867,7 @@ right:10px;
     right: 25%;
     top: 20px;
     width: 12%;
+}
+.vewcolor{
+	color:#999999;
 }
