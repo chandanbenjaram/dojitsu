@@ -8,15 +8,11 @@
 </div>
 
 
-
 <% if params[:isNewChallenge] == "isNew" %>
     <script> 
       $.dojitsuWallPost.renderFbWallPost();
     </script>
 <% end %>    
-
-
-
 
 <% if !@challenge.child_challenges.blank? && userIds = []%>
 	<% for aChild in @challenge.child_challenges %>
@@ -56,7 +52,7 @@
 			<table>
 				<tr >
 					<td width="20px" >  
-						<%= link_to image_tag("accepted.png"), update_status_challenges_path(:id => @challenge, :status=> 1), :onclick=>"fun();" %>
+						<%= link_to image_tag("accepted.png"), update_status_challenges_path(:id => @challenge, :status=> 1) %>
 					</td> 
 					<td width="20px" >
 						<%= link_to(image_tag("declane.png"), update_status_challenges_path(:id => @challenge, :status=> -1))%>
@@ -67,23 +63,18 @@
 				</tr>
 			</table>
 		<% end %>	
-		<script>
+			<script>
 		function fun()
 		{
-	
-		window.fbAsyncInit();
-		
-        // calling the API ...
-		var body = 'Reading JS SDK documentation';
-FB.api('/me/feed', 'post', { message: body }, function(response) {
-  if (!response || response.error) {
-    alert('Error occured');
-  } else {
-    alert('Post ID: ' + response.id);
-  }
-});
+	  <% if @challenge.social_type.status.to_i !=1 %>
+      $.dojitsuWallPost.renderFbWallPost();
+	  	<% end  %>
       }
+
+	  
+
 		</script>
+		
 		
 	
 		<script type="text/javascript">
