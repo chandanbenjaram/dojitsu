@@ -38,7 +38,7 @@ section {
 	margin-top: 1em;
 	font-size: 120%;
 	padding: 20px;
-	background: #fff;
+	background: #FFFFFF;
 }
 
 section h1 {
@@ -68,10 +68,10 @@ a:hover {
 	color: #069;
 	text-decoration: underline;
 }*/
-
+/*
 a:visited {
-	color: #069;
-}
+	color: #FFFFFF;
+}*/
 
 a.signup_button {
 	margin-left: auto;
@@ -79,7 +79,7 @@ a.signup_button {
 	display: block;
 	text-align: center;
 	width: 190px;
-	color: #fff;
+	color: #FFFFFF;
 	background: #006400;
 	font-size: 150%;
 	font-weight: bold;
@@ -88,7 +88,7 @@ a.signup_button {
 
 h3{
 	margin-left:5px;
-	color:#fff;
+	color:#FFFFFF;
 	width:50%;
 	float:left;
 }
@@ -222,7 +222,7 @@ ul.homenavbar > li.selected > a {
 }
 
 .new_challenge_button {
-	background: #f8981d url("new1.PNG") no-repeat left center;	
+	background: #F8981D url("new1.PNG") no-repeat left center;	
 	text-align: right;
 	min-width: 70px;
 	height:25px;
@@ -233,7 +233,7 @@ ul.homenavbar > li.selected > a {
 	font-family: arial;
 }
 .new_challenge_button1 {
-	background: #f8981d url("new1.PNG") no-repeat left center;	
+	background: #F8981D url("new1.PNG") no-repeat left center;	
 	text-align: right;
 	min-width: 70px;
 	height:25px;
@@ -273,7 +273,7 @@ div.field, div.actions {
 }
 
 .dojo-navbar {
-	background-color: #f8981d;
+	background-color: #F8981D;
 	height: 30px;
 }
 
@@ -300,9 +300,9 @@ ul.dojo-menu a {
 }
 
 ul.dojo-menu a:hover {
-	color: #fff;
+	color: #FFFFFF;
 	text-decoration: none;
-	background-color: #f8981d;
+	background-color: #F8981D;
 	padding: 0px;
 	background-image: url("main_nav_bg_up.png"); 
 	background: url(main_nav_bg_up.png) repeat center top ;
@@ -318,14 +318,14 @@ ul.dojo-menu a:selected {
 }
 
 .dojo-menu ul li .selectable {
-	color: #fff;
+	color: #FFFFFF;
 }
 
 
 
 
 .navbar {
-	background: #f8981d;
+	background: #F8981D;
 	margin: 0 auto;
 	width: 934px;
 	display: block;
@@ -372,7 +372,7 @@ nav .menu #check :hover {
 }
 
 .fb-login-button {
-	background:#f8981d url("btn_add_up.png") no-repeat left center ;	
+	background:#F8981D url("btn_add_up.png") no-repeat left center ;	
 }
   
 .authnav ul {
@@ -417,7 +417,7 @@ nav .menu #check :hover {
 a .selected {
 	text-decoration: none;
 	color: #666666;
-	background-color: #fff;
+	background-color: #FFFFFF;
 	border-radius: 5px 5px 0px 0px;
 }
 
@@ -443,7 +443,7 @@ position:relative;
 .textfield_effect{
 	border-width: 1px;
 	border-style: solid;
-	border-color: #f4f4f4;
+	border-color: #F4F4F4;
 	
 	background-repeat: repeat-x;
 	font-family: Arial;
@@ -594,11 +594,12 @@ select {
 border: none;
 vertical-align: top;
 position: relative;
-width: 130%;
+width: 110%;
 height: 25px;
 color: #F9A943;
 background: transparent;
 margin-top: -3px;
+top: 25%;
 }
 
 select:focus{
@@ -668,12 +669,12 @@ input.radio {
 }
 
 .ds_view_all{
-	 background: url("viewall.PNG") no-repeat; 
+	 background: url("viewallbutton.PNG") no-repeat; 
      float: left;
      font-family: Arial;
      height: 27px;
      left: 105px;
-     min-width: 78px;
+     min-width: 25%;
      position: relative;
      text-align: right;
      top: 0px;
@@ -772,11 +773,28 @@ input.radio {
 	float:right;
 	right:8px; 
 	top: 2px;
+	color:#FFFFFF;
 
+}
+.links_cancel2 {
+    background: none repeat scroll 0 0 #999999;
+    display: block;
+    float: right;
+    font-size: 12px;
+    margin: 20px 0;
+    padding: 5px;
+    position: relative;
+    right: -6px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    top: -15px;
+    width: 60px;
+  
 }
 .links_cancel1{
 	background: none repeat #999999;
-   	
+   	height: 21px;
     color: #FFFFFF;
     display: block;
     float: right;
@@ -788,27 +806,35 @@ input.radio {
     width: 80px;
 	
 }
+.links_cancel1:hover{
+	color: #FFFFFF;
+}
+.links_cancel:hover{
+	color: #FFFFFF;
+}
+
+
 
 .task_links_cancel {
-	background: none repeat scroll 0 0 #f9a943;
-	border-radius: 3px 3px 3px 3px;
-	text-color:white;
-	display: block;
-	font-size: 12px;
-	margin: 20px 0;
-	padding: 5px;
-	text-align: center;
-	text-transform: uppercase;
-	width: 100px;
-	height: 19px;
-	position: relative;
-    right: 30px;
+  	background: none repeat scroll 0 0 #F9A943;
+    border-radius: 3px 3px 3px 3px;
+    color: #FFFFFF;
+    display: block;
+    float: right;
+    font-size: 12px;
+    height: 1%;
+    margin: 1% 0;
+    padding: 6px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    width: 70px;
 }
 
 .challenge_mark_as_c{
 	background: none repeat scroll 0 0 #999999;
 	border-radius: 3px 3px 3px 3px;
-	text-color:white;
+	text-color:#FFFFFF;
 	display: block;
 	font-size: 12px;
 	
@@ -887,14 +913,14 @@ option:hover {
 }
 
 h2{
-	color: #f8981d;
+	color: #F8981D;
 	font-size: 20px;
 }
 
 #ch_main_div{
 	border-width:10px;
 	border-style:solid;
-	border-color:#f4f4f4;
+	border-color:#F4F4F4;
 	margin-top:20px;
 	-moz-border-radius:    5px;
 	-webkit-border-radius: 5px;
@@ -903,7 +929,7 @@ h2{
 #ch_main_div3{
 	border-width:0px;
 	border-style:solid;
-	border-color:#ffffff;
+	border-color:#FFFFFF;
 	margin-top:35px;
 	padding :40px;
 	-moz-border-radius:    5px;
@@ -1018,7 +1044,7 @@ ul.tabs1 {
 	width:100%;
 	-moz-border-radius: 5px;
 	-moz-border-radius: 5px 5px 0px 0px;
-	background-color:#bebebe;
+	background-color:#BEBEBE;
 	height:20px;
 }
 
@@ -1027,7 +1053,7 @@ ul.tabs1 {
 }
 
 #mychallenge_name{
-	background-color:#bebebe;
+	background-color:#BEBEBE;
 	height:20px;
 	width:100%;
 }
@@ -1144,7 +1170,7 @@ position:absolute;
 {
 	width:635px;
 	border: 0px solid #BEBEBE;
-	background:#f4f4f4;
+	background:#F4F4F4;
 	height:30px;
 	-moz-border-radius-topleft: 5px;
 	-moz-border-radius-topright: 5px;
@@ -1330,7 +1356,7 @@ width:90%;
 {
 	background: none repeat scroll 0 0 #F4F4F4;
     border: 1px solid #BEBEBE;
-    height: 180px;
+    height: auto;
     margin: 10px;
     overflow: hidden;
     position: relative;
@@ -1372,12 +1398,12 @@ width:90%;
 	float:left;
 	left:3px;
 	position:relative;
-	color:#fff;
+	color:#FFFFFF;
 }
 
 .completedtask1
 {
-	color:#fff;
+	color:#FFFFFF;
 	left:170px;
 	position:relative;
 	top:2px;
@@ -1404,7 +1430,7 @@ width:90%;
 	float:left;
 	left:95px;
 	position:relative;
-	color:#fff;
+	color:#FFFFFF;
 }
 
 #points
@@ -1790,6 +1816,12 @@ right:10px;
 	width:100%;
 	height:2px;
 }
+#all_hr1{
+	color:#0066CC;
+	width:100%;
+	height:2px;
+	
+}
 
 .button_link{
    float: right;
@@ -1835,4 +1867,7 @@ right:10px;
     right: 25%;
     top: 20px;
     width: 12%;
+}
+.vewcolor{
+	color:#999999;
 }

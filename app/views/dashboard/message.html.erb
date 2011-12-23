@@ -6,7 +6,7 @@
 		</thead>
 		<tbody>
 			<% current_user.inbox.each do |userMessage| %>
-			<tr>
+			<tr class = "imagebackground2">
 				<td width="10%">
 					<%=image_tag(FbGraph::User.new(userMessage.from).fetch.picture) %>																			
 				</td>
