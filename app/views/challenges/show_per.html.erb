@@ -59,25 +59,24 @@
                                   <tr>
                                        <% if @challenge.start_point.instance_of?PointDateType %>		
                                         <td width="50px;"> 
-                                          <div class="styled-select">
-                                            
-                                              <%= select_tag "start_point_type", "<option value='startPointDate'>Date</option>".html_safe , :required => "required" %>
-                                          </div>
-                                      </td>  
-                                      <td colspan="2">					
+                                          <div class="styled-select">   
+	                                              <%= select_tag "start_point_type", "<option value='startPointDate'>Date</option>".html_safe , :required => "required" %>
+	                                          </div>
+	                                      </td>  
+	                                      <td colspan="2">					
                                           <div class="startPointDate">
                                           </div>
                                           <div class="startPointNumber">
                                           </div>				
-                                      </td>
+                                      	</td>
                                     <% else %>							                       
                                         <td width="50px;"> 
                                           <div class="styled-select">
                                             
                                               <%= select_tag "start_point_type", "<option value='startPointNumber'>Number</option>".html_safe , :required => "required" %>
                                           </div>
-                                      </td>  
-                                      <td colspan="2">					
+	                                      </td>  
+	                                      <td colspan="2">					
                                           <div class="startPointDate">
                                           </div>
                                           <div class="startPointNumber">
@@ -94,37 +93,41 @@
                               </table>
                          </div>
                          <script>
-                            $("#replacedStart").hide();
+                        $("#replacedStart").hide();
                             function TestingStart()
                             {
                                 $("#TestStart").replaceWith($("#replacedStart").show());
                             }
                             
-                            $('.dateUpdateStart').click(function(){
-                              var startValue = $("#start_point_value").val();
-                              var startLabel = $("#start_point_label").val();
-                              var challengeId = '<%= @challenge.id %>'
-                              var objj = {
-                                  myParams1:startValue,
-                                  myParams3:startLabel,
+                            $('.dateUpdateStart').click(function(){                                
+                                var startValue = $("#start_point_value").val();
+                                var startLabel = $("#start_point_label").val();
+                                var challengeId = '<%= @challenge.id %>'                               
+                                
+                                var objj = {
+                                  myParams1:endValue,
+                                  myParams3:endLabel,
                                   myParams2:challengeId
-                                };       
+                                };                               
                                 jQuery.support.cors = true;
                                 $.get('/challenges/date_updateStart', 
-                                    {value:obj},
-                                    function(data) {
-                                        
-                                    }, 'script' 
-                                );                             
+                                        {value:objj},
+                                        function(data) {
+                                            
+                                        }, 'script' 
+                                );
+                                                                                                                     
+                                //window.location.href=window.location.href;             
+                                
                             });                            
                             
                          </script>
                     </td>
-                    <td></td>
-                    <td align="right">
-                            <%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :align=>"right" %>
-                    </td>
-                </tr>
+         
+                        <td>
+                             <%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :style => "text-decoration: underline;",:align=>"right" %>
+                        </td>
+                    </tr>
             </table>
 		<hr/ width=400px>
 	</tr>

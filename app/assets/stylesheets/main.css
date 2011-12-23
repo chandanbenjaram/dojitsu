@@ -1764,21 +1764,22 @@ top: -12px;
     right: 5px;
     top: 15px;
 }
-		.nav_shadow_mydojo
-		{
-		height: 25px;
-    margin-bottom: 0.1em;
-    position: relative;
-    top: -18px;
-    width: 100%;
-		}
+
+.nav_shadow_mydojo
+{
+	height: 25px;
+	margin-bottom: 0.1em;
+	position: relative;
+	top: -18px;
+	width: 100%;
+}
 		
 .imagebackground{
  	background: url("ui-bg_glass_75_dadada_1x400.png") no-repeat center;	
 	padding-left: 18px;
 	background-size: 8%;
-	
 }
+
 
 .mydojoscore
   {
@@ -1791,8 +1792,8 @@ top: -12px;
     position: relative;
   }
   .taskIcon{
-float:right;
-right:10px;  	
+		float:right;
+		right:10px;  	
   }
   
   .hidebutton{
@@ -1868,6 +1869,9 @@ right:10px;
     top: 20px;
     width: 12%;
 }
-.vewcolor{
-	color:#999999;
+
+.bordercolort
+{
+	height:5px;
+	border-bottom:2px solid #BEBEBE;
 }

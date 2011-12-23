@@ -4,6 +4,10 @@ class ChallengesController < ApplicationController
   #on_spot_edit  is the gem to edit the data on spot 
   can_edit_on_the_spot
 
+  def date_updateStart
+  	raise 'Maisa'
+  end
+
   def index
     @title = "Challenges"
     @no_of_row = Challenge.all.count
@@ -222,22 +226,13 @@ class ChallengesController < ApplicationController
     redirect_to show_per_challenges_path(:id => params[:challenge_id])
   end
   
-  def date_updateStart	
-   @challenge = Challenge.find(params[:value][:myParams2])
-   if params[:value][:myParams3]
-     startPoint = @challenge.start_point
-     startPoint.update_attributes(:value => params[:value][:myParams1], :label =>params[:value][:myParams3])
-	 raise value
-   else
-     startPoint = @challenge.start_point
-     startPoint.update_attributes(:value => params[:value][:myParams1])
-     redirect_to challenges_path
-   end
+  def date_updateStart
+  	raise "Maisa1" 
   end
   
   def date_updateEnd
    @challenge = Challenge.find(params[:value][:myParams2])
-   if params[:value][:myParams3]
+     if params[:value][:myParams3]
      endPoint = @challenge.end_point
      endPoint.update_attributes(:value => params[:value][:myParams1], :label =>params[:value][:myParams3])
    else
