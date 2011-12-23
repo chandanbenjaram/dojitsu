@@ -58,7 +58,7 @@ class AuthenticationsController < ApplicationController
               flash[:notice] = "New user signed in successfully." 
               sign_in_and_redirect(:user, user)
               session[:isNewChallenge] = "isNew"
-			 session[:isNewChallenge] :disabled => true
+			
             else
               redirect_to new_user_registration_path
             end
@@ -68,6 +68,8 @@ class AuthenticationsController < ApplicationController
   end
 
   def destroy
+   
+
   end
 
   def failure

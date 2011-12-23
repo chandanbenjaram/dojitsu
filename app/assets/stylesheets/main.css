@@ -1407,7 +1407,7 @@ width:90%;
 	left:170px;
 	position:relative;
 	top:2px;
-	width:100px;
+	width:200px;
 }
 .invitees3{
     background: none repeat scroll 0 0 #F9A943;
@@ -1867,7 +1867,4 @@ right:10px;
     right: 25%;
     top: 20px;
     width: 12%;
-}
-.vewcolor{
-	color:#999999;
 }
