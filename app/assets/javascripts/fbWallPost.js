@@ -1,9 +1,10 @@
 (function($) {
     $.dojitsuWallPost ={
         renderFbWallPost : function(){
-		
+			//alert("Maisa");
 			window.fbAsyncInit();
-		 alert("checking");
+			//alert("Pride");
+			// calling the API ...
 			var obj = {
 				method: 'feed',
 				link: 'http://www.dojitsu.com',
