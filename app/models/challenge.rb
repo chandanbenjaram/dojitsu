@@ -41,5 +41,51 @@ class Challenge
   def self.whatsNew    
     Challenge.social_n_parents.recently_created.limit(3)
   end
+  
+  def self.all_winners()
+    score = Challenge.collection.map_reduce(
+      "function() { this.tasks.forEach(function(s){ emit(s.name, 1); }); }",
+      "function(key,values) { var sum = 0; values.forEach(function(v){ sum += v.score; }); return sum; }"
+    )
+    opts = { :sort => ["_id", :desc] }
 
+    score.find({}, opts).to_a \
+        .map!{|item| { :name => item['_id'], :score_sum => item['value'].to_i } }
+  end
+  
+  
+   def self.task_score_map
+    <<-MAP
+      function() {
+        this.tasks.forEach(function(aTask) {
+          emit(aTask.score, {score: aTask.score});
+        });
+      }
+    MAP
+  end
+  
+  def self.task_score_reduce
+    <<-REDUCE
+      function(key, values) {
+         var sum = 0;
+         values.forEach(function(aScore) {
+            sum += parseInt(aScore.score);
+        });
+        return sum;
+        }
+    REDUCE
+  end
+  
+  def self.task_score_build(opts)
+    self.collection.map_reduce(self.task_score_map, self.task_score_reduce, opts)
+  end
+  
+  def self.task_score(opts={}) 
+    hash = opts.merge({ 
+      :out    => {:inline => true}, 
+      :raw    => true 
+    }) 
+    self.task_score_build(hash).find() 
+  end
+  
 end                
