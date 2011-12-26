@@ -32,6 +32,7 @@ Dojitsu::Application.routes.draw do
       get "paginationTest"
       get "update_status_af_meg"
       put "update_task_soc"
+      get "scoreboard_main"
 	
       put :update_attribute_on_the_spot 
 	  get :get_attribute_on_the_spot

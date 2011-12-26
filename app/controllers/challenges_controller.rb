@@ -177,6 +177,11 @@ class ChallengesController < ApplicationController
     
   end
 
+  def scoreboard_main
+  @challenge = Challenge.find(params[:id])
+  @this_tasks = @challenge.tasks
+  end
+
   def message
     render :partial => 'challenges/message'
   end  

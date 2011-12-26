@@ -1,0 +1,65 @@
+<%= render 'layouts/loggedinbody'%>
+
+<div style=" font-size: 18px; " class="challange"> 
+			<%= @challenge.title %>
+</div> 
+<div  style=" font-size: 13px; color: #8c8c8c; text-transform: uppercase;" >
+	Tasks : <%=@this_tasks.length%>
+	<br>	
+	<table>
+		<tr>
+			<td>
+			<% @this_tasks.each do |task1|%>
+			<%= task1.name %></br>
+			<%end%>
+			</td>
+			<td>
+				<% @this_tasks.each do |task2|%>
+				<%= task2.score%></br>
+				<%end%>
+			</td>	
+		</tr>
+	</table>
+</div>
+<div >
+	<table>
+			<td width="47%">
+					<strong>
+							<% if  @challenge.class.to_s == "Challenge" %>
+										<font size="4" color="#8c8c8c"><b  id="total">Total: <%= @challenge.child_challenges.length %>&nbsp;&nbsp;&nbsp;Participants</b></font>
+									<%else %>
+										<font size="4" color="#8c8c8c"> <b  id="total">Total: <%= @challenge.parent.child_challenges.length %></b></font>
+							<% end %>
+					</strong>
+			</td>
+	</table>
+	<table border=1>
+		<thead>	
+			<tr>
+				<th width="85%"><b style="position:relative; color:#666666; padding-left:20px; " >NAME</b></th>
+				<th width="15%"><b style=" color:#666666;  " >SCORE </b></th>
+			</tr>
+		</thead>
+			<tbody bgcolor="#ffffff">
+				  <%if @challenge.parent .nil? %>
+							 <% childChallenges =  @challenge.child_challenges %>
+					  <%else%>
+					         <%childChallenges =  @challenge.parent.child_challenges %>
+				  <%end%>                      
+			  <% childChallenges.each do |aChildChallenge| %>
+				<tr>
+						<td ><%=image_tag FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>
+							    <a href="#"  id="ahref">
+							    	<%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %>
+						    	</a>
+						</td>
+						<td>
+							
+						</td>
+				</tr>
+				<% end %>
+		</tbody>
+	</table>
+</div>
+			
+
