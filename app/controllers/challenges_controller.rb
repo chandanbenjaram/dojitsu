@@ -10,7 +10,12 @@ class ChallengesController < ApplicationController
     @challenges = current_user.challenges
     
   end
-
+  
+  def filter
+  raise "filter"
+  end
+  
+  
   def show       
     @challenge = Challenge.find(params[:id])	
     
@@ -56,6 +61,8 @@ class ChallengesController < ApplicationController
     1.times {@challenge.tasks.build} 
   end
 
+  
+  
   def create
     
     @ch = Challenge.new(params[:challenge])
@@ -139,7 +146,9 @@ class ChallengesController < ApplicationController
   def edit
     @challenge = Challenge.find(params[:id])
   end
+ 
 
+ 
   def update_task_soc
     @challenge = Challenge.find(params[:id])
     Challenge.where(:_id => params[:id]).update(:canCompleteBeforeTasks => params[:challenge][:canCompleteBeforeTasks])
@@ -247,6 +256,7 @@ class ChallengesController < ApplicationController
   end
 
   def update_status
+  
     aChallenge = Challenge.find(params[:id])
     socialType = aChallenge.social_type
     socialType.update_attributes(:status => params[:status])
@@ -303,6 +313,7 @@ class ChallengesController < ApplicationController
   def find_challenge
     @challenge = Challenge.all
   end
+  
   
 end
 

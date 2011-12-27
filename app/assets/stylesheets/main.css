@@ -600,6 +600,16 @@ color: #F9A943;
 background: transparent;
 margin-top: -3px;
 }
+.flt_s{
+border: 2px solid #a52a2a;
+
+position: relative;
+width: 10%;
+height: 25px;
+color: #F9A943;
+
+margin-top: -3px;
+}
 
 select:focus{
 	border-color: #4ccbda;
@@ -1749,6 +1759,12 @@ top: -12px;
 		
 .imagebackground{
  	background: url("ui-bg_glass_75_dadada_1x400.png") no-repeat center;	
+	padding-left: 18px;
+	background-size: 8%;
+	
+}
+.imagebackground2{
+ 	background: url("ui-bg_highlight-soft_vertical.png") no-repeat center;	
 	padding-left: 18px;
 	background-size: 8%;
 	
