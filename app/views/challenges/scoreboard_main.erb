@@ -8,18 +8,23 @@
 	<br>	
 	<table>
 		<tr>
-			<td>
+			<td style="color:red;", width="80%">
 			<% @this_tasks.each do |task1|%>
 			<%= task1.name %></br>
 			<%end%>
 			</td>
-			<td>
+			<td style="color:red;", width="20%">
+			<% x = 0%>
 				<% @this_tasks.each do |task2|%>
-				<%= task2.score%></br>
+					<%= task2.score%></br>
+					<% x += task2.score.to_i %>
 				<%end%>
+				total is : <%= x %>
 			</td>	
+			
 		</tr>
 	</table>
+	
 </div>
 <div >
 	<table>
@@ -36,30 +41,41 @@
 	<table border=1>
 		<thead>	
 			<tr>
-				<th width="85%"><b style="position:relative; color:#666666; padding-left:20px; " >NAME</b></th>
-				<th width="15%"><b style=" color:#666666;  " >SCORE </b></th>
+				<th width="25%"><b style="position:relative; color:#666666; padding-left:20px; " >NAME</b></th>
+				<th width="25%"><b style=" color:#666666;" >CURRENT_CHAL_SCORE </b></th>
+				<th width="25%"><b style=" color:#666666;" >TOTAL_CHAL </b></th>
+				<th width="25%"><b style=" color:#666666;" >TOTAL_CHAL_SCORE </b></th>
 			</tr>
 		</thead>
 			<tbody bgcolor="#ffffff">
 				  <%if @challenge.parent .nil? %>
 							 <% childChallenges =  @challenge.child_challenges %>
 					  <%else%>
-					         <%childChallenges =  @challenge.parent.child_challenges %>
+					         <% childChallenges =  @challenge.parent.child_challenges %>
+					         
 				  <%end%>                      
 			  <% childChallenges.each do |aChildChallenge| %>
 				<tr>
-						<td ><%=image_tag FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>
-							    <a href="#"  id="ahref">
-							    	<%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %>
-						    	</a>
+						<td>
+							<%=image_tag FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>
+						    
+							<a href="#"  id="ahref">
+						    	<% FbGraph::User.new(aChildChallenge.user_id).fetch.name %>
+						    
+					    	</a>
 						</td>
 						<td>
-							
+							aa
+						</td>
+						<td>
+							<%ch = Challenge.where(:challenge_id => @chaid ).and(:user_id  =>@cid)%>
+							<%ch%>
+						</td>
+						<td >
+						 	 cc
 						</td>
 				</tr>
 				<% end %>
 		</tbody>
 	</table>
 </div>
-			
-
