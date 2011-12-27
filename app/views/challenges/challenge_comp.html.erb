@@ -1,0 +1,22 @@
+
+<div id="ch_main_div"> 
+    <b><h4>hiiiii</h4></b>
+    <div id="ch_main_div1"> 
+        testing
+        <hr/>
+        <table width=100%>
+            <tr>
+                <td>
+                    <% Challenge.task_score.each do |aWinner| %>
+                        <% aWinner.each do |key, value| %>
+                            <%= key %> is <%= value %>
+                        <% end %>
+                    <% end %>
+                </td>
+                <td>
+                    <%#= debug Challenge.task_score %>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -211,8 +211,10 @@ class ChallengesController < ApplicationController
   end
 
   def challenge_comp
-    Challenge.where(:_id => params[:id]).update(:is_complete => 1)
-    redirect_to challenges_path(:isNewChallenge => "isNew")
+    #raise "Maisa"
+    render :layout => false
+    #Challenge.where(:_id => params[:id]).update(:is_complete => 1)
+    #redirect_to challenges_path(:isNewChallenge => "isNew")
   end
 
   def my_challenge
@@ -275,6 +277,76 @@ class ChallengesController < ApplicationController
   end
   
   def paginationTest
+   @challenge = Challenge.where(:_id => "4ef1a6a454b53001a4000067").first
+	 $wins ={"first"=>{"id"=>"1", "score"=>"1"},"second"=>{"id"=>"2", "score"=>"2"},"third"=>{"id"=>"3", "score"=>"3"},"fourth"=>{"id"=>"4", "score"=>"4"},"fifth"=>{"id"=>"5", "score"=>"5"}} 
+	 temp ={"id"=>"10","score"=>"20"} 
+	 aTotalScore = 0 
+   
+    $wins["first"]["score"] = 1
+    $wins["second"]["score"] = 2
+    $wins["third"]["score"] = 3
+    $wins["fourth"]["score"] = 4
+    $wins["fifth"]["score"] = 5
+    
+    $wins["first"]["id"] = 1
+    $wins["second"]["id"] = 2
+    $wins["third"]["id"] = 3
+    $wins["fourth"]["id"] = 4
+    $wins["fifth"]["id"] = 5
+
+ 
+   
+	 if @challenge.instance_of?Challenge
+      @challenge.tasks.each_with_index do |orgTasks,index|  
+          aTotalScore += orgTasks.score.to_i 
+      end 
+      $wins["first"]["id"]= @challenge.user_id
+      $wins["first"]["score"]= aTotalScore     
+      aTotalScore = 0 
+      
+      @challenge.child_challenges.each do |aChildChallenge|
+          aChildChallenge.tasks.each_with_index do |eachTasks,index| 
+              aTotalScore += eachTasks.score.to_i  
+          end
+          #raise aTotalScore.inspect
+          if aTotalScore > $wins["first"]["score"] 
+              #raise "first less"
+              whoWinning aTotalScore, $wins["first"]["score"], aChildChallenge.user_id, 1
+              #raise "returned"
+              aTotalScore = 0
+              next if aTotalScore == 0
+          elsif aTotalScore > $wins["second"]["score"]        
+              raise "second less"
+              whoWinning aTotalScore, $wins["second"]["score"], aChildChallenge.user_id, 2
+              #raise "returned"
+              aTotalScore = 0
+              next
+          elsif aTotalScore > $wins["third"]["score"]  
+              #raise "third less"
+              whoWinning aTotalScore, $wins["third"]["score"], aChildChallenge.user_id, 3
+              #raise "returned"
+              aTotalScore = 0
+              next
+          elsif aTotalScore > $wins["fourth"]["score"]  
+              #raise "fourht less"
+              whoWinning aTotalScore, $wins["fourth"]["score"], aChildChallenge.user_id, 4
+              #raise "returned"
+              aTotalScore = 0
+              next
+          else       
+              #raise "fifth less"
+              whoWinning aTotalScore, $wins["fifth"]["score"], aChildChallenge.user_id, 5
+              #raise "returned"
+              aTotalScore = 0
+              next
+          end 
+          aTotalScore = 0 
+      end
+      
+	 else 
+		raise "childchallenge"
+	 end 
+    
     #@challegnes = Challenge.where(:_type.exists => false)
     #@users = Challenge.paginate(:page => params[:page])
     # or, use an explicit "per page" limit:
@@ -309,6 +381,80 @@ class ChallengesController < ApplicationController
 
   def find_challenge
     @challenge = Challenge.all
+  end
+  
+  def whoWinning(tempScore, winnerScore, winnerId, aPossition  )
+    aTScore = 0
+    aTId = 0
+    if aPossition == 5
+        $wins["fifth"]["score"],$wins["fifth"]["id"] = tempScore,winnerId
+        raise $wins.inspect
+        return
+    else
+        if aPossition == 1
+            #raise "replaceing 1st"
+            #raise tempScore.inspect
+            #raise winnerScore.inspect
+            #raise winnerId.inspect
+            aTScore,$wins["first"]["score"] = winnerScore,tempScore
+            #raise $wins["first"]["score"].inspect
+            #raise aTScore.inspect
+            $wins["second"]["score"],aTId = aTScore,$wins["first"]["id"]
+            $wins["first"]["id"],$wins["second"]["id"] = winnerId,aTId
+            #raise $wins["first"]["id"].inspect
+            #raise $wins["second"]["id"].inspect
+            #aTId = $wins["second"]["id"]
+            if $wins["third"]["score"].to_i > $wins["second"]["score"]
+                whoWinning $wins["third"]["score"], $wins["second"]["score"], $wins["third"]["score"], 2
+            else
+                #raise "Third is not greter"
+                return 1
+            end
+        end
+        
+        if aPossition == 2
+            #aTScore,$wins["second"]["score"] = $wins["second"]["score"],tempScore
+            #aTId = $wins["third"]["id"]
+            #$wins["third"]["score"],$wins["second"]["id"] = aTScore,winnerId
+            #if $wins["fourth"]["score"].to_i > $wins["third"]["score"]
+            #    whoWinning $wins["fourth"]["score"], $wins["third"]["score"], aTId, 3                
+            #end
+            
+            #raise "replaceing 2nd"
+            #raise tempScore.inspect
+            #raise winnerScore.inspect
+            #raise winnerId.inspect
+            aTScore,$wins["first"]["score"] = winnerScore,tempScore
+            #raise $wins["first"]["score"].inspect
+            #raise aTScore.inspect
+            $wins["second"]["score"],aTId = aTScore,$wins["first"]["id"]
+            $wins["first"]["id"],$wins["second"]["id"] = winnerId,aTId
+            #raise $wins["first"]["id"].inspect
+            #raise $wins["second"]["id"].inspect
+            #aTId = $wins["second"]["id"]
+            if $wins["third"]["score"].to_i > $wins["second"]["score"]
+                whoWinning $wins["third"]["score"], $wins["second"]["score"], $wins["third"]["score"], 2
+            end
+        
+        
+        end
+        
+        if aPossition == 3
+            aTScore,$wins["third"]["score"] = $wins["third"]["score"],tempScore
+            aTId = $wins["fourth"]["id"]
+            $wins["fourth"]["score"],$wins["third"]["id"] = aTScore,winnerId
+            if $wins["fifth"]["score"].to_i > $wins["fourth"]["score"]
+                whoWinning $wins["fifth"]["score"], $wins["fourth"]["score"], aTId, 4                
+            end
+        end
+        
+        if aPossition == 4
+            aTScore,$wins["fourth"]["score"] = $wins["fourth"]["score"],tempScore
+            aTId = $wins["fifth"]["id"]
+            $wins["fifth"]["score"],$wins["fourth"]["id"] = aTScore,winnerId
+            #whoWinning $wins["fifth"]["score"], $wins["fourth"]["score"], aTId, 5            
+        end
+    end
   end
   
 end
