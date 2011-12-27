@@ -17,6 +17,8 @@
 			function callback(response) 
 			{
 			   document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+                           session_destroy() ;
+                           $.cookie('isNewChallenge', null); 
 			}
 
 			FB.ui(obj, callback);

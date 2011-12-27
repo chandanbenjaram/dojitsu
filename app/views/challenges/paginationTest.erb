@@ -14,26 +14,13 @@
 
 
 
+<%#= debug Challenge.all_winners %>
 
-
-
-
-
-
-
-<% Challenge.Modetesting.each do |test| %>
-  <%= test.title %>
-<% end %>
-<%= debug @testing%>
-
+<%#= debug Challenge.task_score('4ef1a6a454b53001a4000067')%>
 
 <script> 
   $.dojitsuWallPost.renderFbWallPost();
 </script>
-
-
-
-
 
 
 <%#= Challenge.count %>
@@ -59,3 +46,47 @@
 <% else %>
     No Challenge               
 <% end %>
+   
+    </br>    
+    
+    
+    <%= Challenge.winner('4ef1a6a454b53001a4000067') %> 
+    </br>
+    <%= Challenge.winnerCompleteAllTask('4ef1a6a454b53001a4000067') %>
+    </br>
+    
+    
+
+    <% @challenge = Challenge.where(:_id => "4ef1a6a454b53001a4000067").first %> 
+    <% aTotalScore = 0  %>
+    <% @list=Hash.new() %>  
+   
+    <% if @challenge.instance_of?Challenge %>
+        <% @challenge.tasks.each_with_index do |orgTasks,index| %>
+            <%= orgTasks.score %>=<%= index %>,
+            <% aTotalScore += orgTasks.score.to_i %>
+        <% end %>
+        <% @list[@challenge.user_id] = aTotalScore %>    
+        <%#= @challenge.user_id %> = <%#= @firstWinnerScore= aTotalScore %>
+        <%= @list[@challenge.user_id] %>
+        </br>
+        <% aTotalScore = 0  %>
+        <% @challenge.child_challenges.each do |aChildChallenge| %>
+        <% aChildChallenge.tasks.each_with_index do |eachTasks,index| %>
+            <%= eachTasks.score %>=<%= index %>,
+            <% aTotalScore += eachTasks.score.to_i %>
+        <% end %>
+        <%#= aChildChallenge.user_id %>=<%#= aTotalScore  %>
+        <%= @list[aChildChallenge.user_id] = aTotalScore %>
+        <% aTotalScore = 0  %>    
+        </br>    
+    <% end %>
+      
+    <%= @winner = @list.sort {|a,b| -1*(a[1]<=>b[1]) } %>    
+        
+    <% else %>
+        childchallenge
+    <% end %>
+    
+    
+    

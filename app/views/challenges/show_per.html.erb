@@ -21,7 +21,7 @@
 <table width="100%" border="0" border cellspacing=12px>
 	<tr>
 		<div style="text-transform: uppercase; font-size:25px; margin:0px">
-			<font color="orange"><%= on_the_spot_edit @challenge, :title, :type=> :text %></font>
+			<font color="#FFA500"><%= on_the_spot_edit @challenge, :title, :type=> :text %></font>
 		</div><br>
 		<tr>
 		<table id="description">
@@ -111,7 +111,7 @@
                                 };       
                                 jQuery.support.cors = true;
                                 $.get('/challenges/date_updateStart', 
-                                    {value:objj},
+                                    {value:obj},
                                     function(data) {
                                         
                                     }, 'script' 
@@ -224,8 +224,8 @@
 		<hr/ width=400px>	
 		<br><br>
 		<table bg color=#f4f4f4>
-			<tr bgcolor="orange">
-				<td bgcolor="orange"><font color="white"><b>&nbsp; &nbsp; &nbsp;TASKS</b></font></td>
+			<tr bgcolor="#FFA500">
+				<td bgcolor="#FFA500"><font color="#ffffff"><b>&nbsp; &nbsp; &nbsp;TASKS</b></font></td>
 				
 			</tr>
 		</table>
