@@ -20,7 +20,7 @@
 	<table width="100%" border="0" style="margin-top:0px;">
 		<tr>
 			<td colspan="4">
-				<p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :placeholder=>"Enter challenge title here" , :required => "required"  %><div id="title"></div></p>
+				<p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :placeholder=>"Enter challenge title here" , :required => "required", :maxlength => "30"  %><div id="title"></div></p>
 			</td>	
 		</tr>
 	
@@ -118,7 +118,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="5"></td>									
+							<td colspan="5"><hr id="all_hr1"></td>									
 							<td align="right">
 							<%= image_tag("btn_add_up.png", :class => "addRow")%>
 								<style>

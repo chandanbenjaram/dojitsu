@@ -14,7 +14,9 @@
 
 
 
-<%= debug Challenge.task_score %>
+<%#= debug Challenge.all_winners %>
+
+<%#= debug Challenge.task_score('4ef1a6a454b53001a4000067')%>
 
 <script> 
   $.dojitsuWallPost.renderFbWallPost();
@@ -44,52 +46,47 @@
 <% else %>
     No Challenge               
 <% end %>
+   
+    </br>    
     
     
+    <%= Challenge.winner('4ef1a6a454b53001a4000067') %> 
+    </br>
+    <%= Challenge.winnerCompleteAllTask('4ef1a6a454b53001a4000067') %>
+    </br>
     
-<%  allTaskComplete = 0 %>
-<% if @challenge.user_id == current_user.fbauth.uid %>
-    <% if @challenge.canCompleteBeforeTasks? %> 
-        <% @challenge.tasks.each do |aTask| %> 
-            <% if aTask.is_complete == 0  %>
-                 <% allTaskComplete = 1  %>			
-            <% end  %>
-        <% end %>
-        <% if allTaskComplete == 1  %>
-           <%=  link_to "MARK AS COMPLETED",  "#", :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c" %>
-        <% else  %>
-            <%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c" %>
-        <% end %>
-    <% else %>
-       <%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c" %>
-    <% end %>
-<% else %>
-   <%= link_to "MARK AS COMPLETED",  "#", :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c" %>
-<% end %>  
     
 
-    <% orgTasks = 0 %>
-    <% aTotalScore = 0 %>
-    <% @tempTotalScore = 0%>
-    <% @challenge = Challenge.where(:_id => "4ef1a6a454b53001a4000067").first %>    
-    <% @challenge.tasks.each_with_index do |orgTasks,index| %>
-        <%= orgTasks.score %>=<%= index %>,
-        <% aTotalScore += orgTasks.score.to_i %>
-    <% end %>
-    <%= @challenge.user_id %> = <%= @firstWinnerScore= aTotalScore %>    
-    <% orgTasks = 0 %>
-    </br>
-    <% @challenge.child_challenges.each do |aChildChallenge| %>
-        <%= aChildChallenge.user_id %>
+    <% @challenge = Challenge.where(:_id => "4ef1a6a454b53001a4000067").first %> 
+    <% aTotalScore = 0  %>
+    <% @list=Hash.new() %>  
+   
+    <% if @challenge.instance_of?Challenge %>
+        <% @challenge.tasks.each_with_index do |orgTasks,index| %>
+            <%= orgTasks.score %>=<%= index %>,
+            <% aTotalScore += orgTasks.score.to_i %>
+        <% end %>
+        <% @list[@challenge.user_id] = aTotalScore %>    
+        <%#= @challenge.user_id %> = <%#= @firstWinnerScore= aTotalScore %>
+        <%= @list[@challenge.user_id] %>
+        </br>
+        <% aTotalScore = 0  %>
+        <% @challenge.child_challenges.each do |aChildChallenge| %>
         <% aChildChallenge.tasks.each_with_index do |eachTasks,index| %>
             <%= eachTasks.score %>=<%= index %>,
-            <% @tempTotalScore += eachTasks.score.to_i %>
+            <% aTotalScore += eachTasks.score.to_i %>
         <% end %>
-        <%= @tempTotalScore%>    
-        <% @tempTotalScore = 0%>
+        <%#= aChildChallenge.user_id %>=<%#= aTotalScore  %>
+        <%= @list[aChildChallenge.user_id] = aTotalScore %>
+        <% aTotalScore = 0  %>    
         </br>    
     <% end %>
+      
+    <%= @winner = @list.sort {|a,b| -1*(a[1]<=>b[1]) } %>    
+        
+    <% else %>
+        childchallenge
+    <% end %>
     
-    </br>        
     
-<%= debug $wins.to_yaml %>    
+    

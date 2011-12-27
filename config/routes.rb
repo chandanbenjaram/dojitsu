@@ -4,7 +4,7 @@ Dojitsu::Application.routes.draw do
   get "dashboard/message"
   get "dashboard/myChallenge"
   get "dashboard/dashboardIndex"
-
+  
   # user registration & 3rd party logins
   match 'users/auth/:provider/callback', :to=>'authentications#create'
   devise_for :users, :controllers => { :registrations => "registrations"}

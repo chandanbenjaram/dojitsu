@@ -196,8 +196,10 @@ class ChallengesController < ApplicationController
   end
 
   def challenge_comp
-    Challenge.where(:_id => params[:id]).update(:is_complete => 1)
-    redirect_to challenges_path(:isNewChallenge => "isNew")
+    #raise "Maisa"
+    render :layout => false
+    #Challenge.where(:_id => params[:id]).update(:is_complete => 1)
+    #redirect_to challenges_path(:isNewChallenge => "isNew")
   end
 
   def my_challenge
@@ -227,6 +229,7 @@ class ChallengesController < ApplicationController
    if params[:value][:myParams3]
      startPoint = @challenge.start_point
      startPoint.update_attributes(:value => params[:value][:myParams1], :label =>params[:value][:myParams3])
+	 raise value
    else
      startPoint = @challenge.start_point
      startPoint.update_attributes(:value => params[:value][:myParams1])

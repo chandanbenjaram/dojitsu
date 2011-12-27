@@ -41,7 +41,9 @@ class Challenge
   def self.whatsNew    
     Challenge.social_n_parents.recently_created.limit(3)
   end
-  
+    
+  private
+ 
   def self.all_winners()
     score = Challenge.collection.map_reduce(
       "function() { this.tasks.forEach(function(s){ emit(s.name, 1); }); }",
@@ -53,12 +55,17 @@ class Challenge
         .map!{|item| { :name => item['_id'], :score_sum => item['value'].to_i } }
   end
   
-  
-   def self.task_score_map
+   def self.task_score_map(orgId)
+     logger.debug "#{orgId}"
+     @childChallenge = where(:challenge_id => orgId).and(:challenge_id.exists => true)
+     logger.debug "#{@childChallenge}"
+     logger.debug "Maisa"
+     
     <<-MAP
       function() {
+        var user_id = this.user_id;
         this.tasks.forEach(function(aTask) {
-          emit(aTask.score, {score: aTask.score});
+          emit(user_id, {score: aTask.score});
         });
       }
     MAP
@@ -76,16 +83,92 @@ class Challenge
     REDUCE
   end
   
-  def self.task_score_build(opts)
-    self.collection.map_reduce(self.task_score_map, self.task_score_reduce, opts)
+  def self.task_score_build(opts,orgId)
+    self.collection.map_reduce(self.task_score_map(orgId), self.task_score_reduce, opts)
   end
   
-  def self.task_score(opts={}) 
+  def self.task_score(orgId,opts={})
+    logger.debug "#{orgId}"
     hash = opts.merge({ 
-      :out    => {:inline => true}, 
+      :out    => {:inline => true},
+      :limit => 15,
+      :sort => [['_id', Mongo::ASCENDING]],
+      :scope => 100002573213371,
       :raw    => true 
     }) 
-    self.task_score_build(hash).find() 
+    self.task_score_build(hash,orgId).find() 
   end
   
+  
+  
+  def self.winner(orgId)
+     @challenge = Challenge.where(:_id => orgId).first  
+     aTotalScore = 0  
+     @list=Hash.new()   
+   
+     if @challenge.instance_of?Challenge 
+         @challenge.tasks.each_with_index do |orgTasks,index|
+            if orgTasks.is_complete == 1
+              aTotalScore += orgTasks.score.to_i
+            end  
+         end 
+         @list[@challenge.user_id] = aTotalScore      
+         
+        
+         aTotalScore = 0  
+         @challenge.child_challenges.each do |aChildChallenge| 
+             aChildChallenge.tasks.each_with_index do |eachTasks,index|             
+                  if eachTasks.is_complete == 1
+                    aTotalScore += eachTasks.score.to_i
+                  end
+             end   
+        @list[aChildChallenge.user_id] = aTotalScore 
+        aTotalScore = 0                 
+        end  
+        @winner = @list.sort {|a,b| -1*(a[1]<=>b[1]) }
+        return @winner
+     else 
+       childchallenge
+      end 
+  end
+  
+  def self.winnerCompleteAllTask(orgId)
+     @challenge = Challenge.where(:_id => orgId).first  
+     aTotalScore = 0  
+     @listCAT=Hash.new()   
+     isCompletAll = 0
+     if @challenge.instance_of?Challenge 
+         @challenge.tasks.each_with_index do |orgTasks,index|
+            if orgTasks.is_complete == 1
+              isCompletAll = 1
+              aTotalScore += orgTasks.score.to_i
+            end  
+         end 
+         if isCompletAll == 1
+          @listCAT[@challenge.user_id] = aTotalScore      
+         end
+        
+         isCompletAll = 0
+         aTotalScore = 0  
+         @challenge.child_challenges.each do |aChildChallenge| 
+             aChildChallenge.tasks.each_with_index do |eachTasks,index|             
+                  if eachTasks.is_complete == 1
+                    isCompletAll = 1
+                    aTotalScore += eachTasks.score.to_i
+                  end
+             end   
+            if isCompletAll == 1     
+                @listCAT[aChildChallenge.user_id] = aTotalScore 
+            end
+            isCompletAll = 0
+            aTotalScore = 0                 
+        end  
+        @winner = @listCAT.sort {|a,b| -1*(a[1]<=>b[1]) }
+        return @winner
+     else 
+       childchallenge
+      end 
+  end
+  
+    
 end                

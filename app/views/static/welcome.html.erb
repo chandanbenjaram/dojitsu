@@ -1,8 +1,15 @@
+<%= javascript_include_tag('fbWallPost')%>
 <div class="span-24 homecontent">
   
     <% if !current_user.nil? %>
-      <%= render :template =>'dashboard/index'%>
-    <% else %>
+	<%= render :template =>'dashboard/index'%>
+		<% if session[:isNewChallenge] == "isNew" %>
+		  <script> 
+			 
+			  $.dojitsuWallPost.renderFbWallPost();
+			</script> 
+		<% end %>
+	<% else %>
 	   <%= link_to image_tag("registerlogo1.PNG", :height => '529', :width => '950'),"#"%>
       <%= render 'layouts/nonloggedinbody'%>
     <% end %>
