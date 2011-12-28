@@ -7,11 +7,7 @@
         <table width=100%>
             <tr>
                 <td>
-                    <% Challenge.task_score.each do |aWinner| %>
-                        <% aWinner.each do |key, value| %>
-                            <%= key %> is <%= value %>
-                        <% end %>
-                    <% end %>
+                    <%= Challenge.winner('4ef1a6a454b53001a4000067') %>
                 </td>
                 <td>
                     <%#= debug Challenge.task_score %>
