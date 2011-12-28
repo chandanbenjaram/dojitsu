@@ -12,7 +12,9 @@ class ChallengesController < ApplicationController
     @title = "Challenges"
     @no_of_row = Challenge.all.count
     @challenges = current_user.challenges
-    
+    @challengeCompleted = params[:id]
+    @orgChallenge = Challenge.where(:_id => params[:id]).first
+    #raise @orgChallenge.social_type.who_win.inspect
   end
 
   def show       
@@ -212,9 +214,9 @@ class ChallengesController < ApplicationController
 
   def challenge_comp
     #raise "Maisa"
-    render :layout => false
-    #Challenge.where(:_id => params[:id]).update(:is_complete => 1)
-    #redirect_to challenges_path(:isNewChallenge => "isNew")
+    #render :layout => false
+    Challenge.where(:_id => params[:id]).update(:is_complete => 1)
+    redirect_to challenges_path(:isNewChallenge => "isNew", :id => params[:id])
   end
 
   def my_challenge
@@ -364,7 +366,10 @@ class ChallengesController < ApplicationController
       render "nonLoginShowPersonal"
     end
   end
-  
+  def trophies
+  	@challenge = Challenge.find(params[:id])
+  	
+  	end
   def nonLoginShowSocial
     @challenge = Challenge.find(params[:id])
   end

@@ -1,4 +1,5 @@
- <%= stylesheet_link_tag('challenges.css','simple-tabs','jquery-ui', 'ui.core','ui.progressbar', 'main','colorbox')%>
+
+ <%= stylesheet_link_tag('challenges.css','simple-tabs','jquery-ui', 'ui.core','ui.progressbar', 'main')%>
 <%= javascript_include_tag('jquery.facebook.multifriend.select','simple-tabs','ui.progressbar','on_the_spot','ajaxPageLoad','user_connection','messages')%>
 <%= render 'layouts/loggedinbody'%>
 <% as= current_user.challenges.size %>
@@ -136,6 +137,7 @@
 						<div id="myDojo"></div>
                                                 <div id="myDojo1"></div>
 					</div>
+					
 				    <script>
 					$.dojitsuAjaxPage.renderAjaxPageLoad("/user_connections/myDojo","#myDojo","#myDojo1");
 				    </script>
@@ -278,13 +280,20 @@ var email=response[0].email;
    title: 'Invite Participants',
    width: '725px',
    open: function(event, ui) { $j("#jfmfs-container").jfmfs(selectorObz); },
-   buttons: {                                             
-                Cancel: function() {
+  
+
+  buttons: {                                             
+               
+
+
+			   Cancel: function() {
      $j("#jfmfs-container").data('jfmfs').clearSelected(); 
      $j('#inviteBtn').val("INVITE PARTICIPANTS");    
      $j(this).dialog( "close" );
     },
-    Save: function() {
+    
+	
+	Save: function() {
      var friendSelector = $j("#jfmfs-container").data('jfmfs');
      var selectedFriends = friendSelector.getSelectedIds();
      $j('#invitees_id').val(selectedFriends);
@@ -297,18 +306,29 @@ var email=response[0].email;
 
 			}, 'script'
 		);
+		
+
+		
+		
      } 
    }
    
   });
- })          
+ }
+ )          
+})(jQuery);
 
- })(jQuery);                              
+$('.ui-button').live('click', function(){
+
+
+  $.dojitsuAjaxPage.renderAjaxPageLoad("/user_connections/myDojo","#myDojo","#myDojo1");
+    $(".tables").replaceWith($('.tables'));
+  });
  </script>
 
 <style>
 					.ui-widget-header {
-    background: none repeat scroll 0 0 #7AC142;
+    background: none repeat scroll 0 0 #D7D7D7;
     border: 1px solid #AAAAAA;
     color: #222222;
     font-weight: bold;

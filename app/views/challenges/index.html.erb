@@ -1,0 +1,97 @@
+<%= stylesheet_link_tag('colorbox')%>
+<%= javascript_include_tag('jquery.colorbox-min')%>
+
+<%= render 'layouts/loggedinbody'%>
+<div class="challengeSubNav">
+    <%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %> 
+    <%= link_to "MY CHALLENGES  ",challenges_url ,:class => "challenge_link" , :style=> "text-decoration: none; color:#666666; left: 100px;" %>
+</div>
+
+<div style="display:none"> 
+        <div id="winnerList">          
+          <table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0">		  
+              <tr bgcolor="#000000" class="BoldRED">
+                  <td width="4%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;border-left:#666666 1px solid;"><div align="left" class="style22">
+                          <div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Winner</span></div></div>
+                  </td>
+                  <td width="10%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
+                       <div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Winner Name</span></div></div>
+                  </td>
+                  <td width="10%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
+                       <div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Total Score</span></div></div>
+                  </td>
+              </tr> 
+              <% if !@orgChallenge.blank? %>
+                  <% sl=0 %>
+                  <% if @orgChallenge.social_type.who_win == "Highest number of points" %>
+                      <% @all =  Challenge.winner(params[:id]) %>
+                  <% end %>
+                  <% if @orgChallenge.social_type.who_win == "Participant completes all tasks" %>
+                      <% @all =  Challenge.winnerCompleteAllTask(params[:id]) %>
+                  <% end %>
+                  <% if @orgChallenge.social_type.who_win == "Lowest number of points" %>
+                      <% @temp =  Challenge.winner(params[:id]) %>
+                      <% @all = @temp.sort {|a,b| a[1] <=> b[1]} %>
+                  <% end %>
+                  <% @all.each do |aWinner,index| %>
+                      <tr bgcolor="#FFFFFF" onMouseOver="this.bgColor='#3399cc';" onMouseOut="this.bgColor='#FFFFFF';" >
+                          <td height="25" style="border-bottom:#666666 1px solid;border-left:#666666 1px solid;"><div align="center"><%=image_tag(FbGraph::User.new(aWinner).fetch.picture) %></div></td>
+                          <td style="border-bottom:#666666 1px solid"><div align="center"><%= FbGraph::User.new(aWinner).fetch.name %></div></td>               
+                          <td style="border-bottom:#666666 1px solid"><div align="center"><%= index %></div></td>               
+                      </tr>
+                      <% sl +=1 %>
+                      <% if sl.to_i == @orgChallenge.social_type.how_many_winners.to_i %>
+                          <% break %>
+                      <% end %>
+                  <% end %>
+             <% end %>     
+            </table>  
+        </div>
+        </div>  
+
+
+<% if !@orgChallenge.blank? %>        
+<script>
+  $(document).ready(function(){
+            $.colorbox({
+              opacity: 0.40,
+              transition: 'none',
+              speed: 200,
+              width: 700,
+              scrolling: true,
+              inline:true, 
+              href:"#winnerList",
+              title: '',
+              overlayClose: true,
+              onComplete: function () {
+                  // $(this).initFunctions(); // if you want to reinit another colorbox, you should pass the element as an argument to initFunctions rather than calling this as a blanket initializer for all colorboxes.
+              }
+          });
+    });
+</script>
+<% end %>
+
+
+<h3>All Challenges</h3>
+ <% if @challenges.blank? %>
+  <p>no challenges at all.</p>
+  
+ <% else %>
+ <div id="ch_index_list" style="width:100%; float:left;">
+  <% @challenges.each do |c| %>
+  
+   <%= link_to c.title, {:action => 'show_per', :id => c.id },:style=> "text-decoration: none; font-weight:bold; color:#666666;" %> &nbsp;&nbsp;&nbsp;&nbsp;<br>
+
+  <% end %> 
+ </br>
+ </div>
+<% end %>
+<br/>
+
+<script type="text/javascript">
+ jQuery(document).ready(function(cash) {
+  //popup for task
+  //alert("Add task pupup working");
+  $('.add_task_popup').colorbox(); 
+ });
+</script>
