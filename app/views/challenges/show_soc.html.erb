@@ -311,11 +311,11 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
 
 						<td ><%=image_tag FbGraph::User.new(aChildChallenge.user_id).fetch.picture %> <a href="#"  id="ahref"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></a></td>
 						<td >  <% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 %>
-																	<%= image_tag  "icon_thinking.png"  %><%= aChildChallenge.social_type.status %>
+																	<%= image_tag  "icon_thinking.png"  %>
 															   <% elsif aChildChallenge.social_type.status == 1 %>
-																	<%= image_tag  "icon_accept.png"  %><%= aChildChallenge.social_type.status %>
+																	<%= image_tag  "icon_accept.png"  %>
 															   <% else %>
-																	<%= image_tag "icon_decline.png"  %><%= aChildChallenge.social_type.status %>
+																	<%= image_tag "icon_decline.png"  %>
 															   <% end %>
 						</td>
 
