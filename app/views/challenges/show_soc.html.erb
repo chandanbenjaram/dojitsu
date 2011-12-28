@@ -319,7 +319,7 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
 																	  <%else%>
 																	   <%childChallenges =  @challenge.parent.child_challenges %>
 																	   <%end%>       
-			 htmltable="<table><% childChallenges.each do |aChildChallenge| %> <tr><td><img_src='<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>'/><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %><%= aChildChallenge.social_type.status %></td></tr><% end %></table>";
+			 htmltable="<table><% childChallenges.each do |aChildChallenge| %> <tr><td><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td> <% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 %>pending<% elsif aChildChallenge.social_type.status == 1 %>accepted<% else %>declined<% end %></td></tr><% end %></table>";
 					 		document.getElementById("name").innerHTML =htmltable
 					 </script>
 					<script>
@@ -369,7 +369,7 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
 																		htmltr_open='<img src=' + str+ ' />';
 																		var check_name= "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %>";
 																		document.getElementById("name").innerHTML =htmltr_open+check_name+challenge_status	
-																		document.getElementById("status").innerHTML =challenge_status
+																		document.getElementById("status").innerHTML ="accepted"
 														}
 																	if (name_search == check_name &&  challenge_status==-1 && status==-1)
 																		{
@@ -378,7 +378,7 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
 																		var check_name= "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %>";
 																		var challenge_status="<%= aChildChallenge.social_type.status %>";
 																		document.getElementById("name").innerHTML =htmltr_open+check_name+challenge_status	
-																		document.getElementById("status").innerHTML =challenge_status
+																		document.getElementById("status").innerHTML ="declined"
 																		}
 																	 if (name_search == check_name && status==0 && challenge_status==0)
 																			{
@@ -387,7 +387,7 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
 																		var check_name= "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %>";
 																		var challenge_status="<%= aChildChallenge.social_type.status %>";
 																		document.getElementById("name").innerHTML =htmltr_open+check_name+challenge_status	
-																		document.getElementById("status").innerHTML =challenge_status	
+																		document.getElementById("status").innerHTML ="pending"	
 																			}
 																	if (name_search == check_name && status==2)
 																			{
@@ -397,10 +397,8 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
 																		var challenge_status="<%= aChildChallenge.social_type.status %>";
 																	document.getElementById("name").innerHTML =htmltr_open+check_name+challenge_status	
 																		document.getElementById("status").innerHTML =challenge_status	
-	
 																			}
 												<% end %>		
-											
 												 if( status==2 && name_search ==="" ||  status==2 && name_search ==="nil" ||  status==2 && name_search ===null   )
 														{
 															<%if @challenge.parent .nil? %>
@@ -408,12 +406,8 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
 																	  <%else%>
 																	   <%childChallenges =  @challenge.parent.child_challenges %>
 																	   <%end%>                      
-												      
-                                                         htmltable="<table><% childChallenges.each do |aChildChallenge| %> <tr><td><img_src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"/><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %><%= aChildChallenge.social_type.status %></td></tr><% end %></table>";
-														
+                                                         htmltable="<table><% childChallenges.each do |aChildChallenge| %> <tr><td><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %><%= aChildChallenge.social_type.status %></td></tr><% end %></table>";
 														document.getElementById("name").innerHTML =htmltable
-													
-												
 														}
 												else if( status==1 && name_search ==="" ||  status==1 && name_search ==="nil" ||  status==1 && name_search ===null    )
 														{
@@ -422,16 +416,9 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
 																	  <%else%>
 																	   <%childChallenges =  @challenge.parent.child_challenges %>
 																	   <%end%>                      
-												
-                                                         htmltable="<table><% childChallenges.each do |aChildChallenge| %><% if aChildChallenge.social_type.status == 1 %> <tr><td><img_src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"/><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %><%= aChildChallenge.social_type.status %></td></tr><% end %><% end %></table>";
-														
+                                                         htmltable="<table><% childChallenges.each do |aChildChallenge| %><% if aChildChallenge.social_type.status == 1 %> <tr><td><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name%></td><td>accepted<td></tr><% end %><% end %></table>";
 														document.getElementById("name").innerHTML =htmltable
-													    
-													
-												
-												
 														}
-														
 														else if(  status==0 && name_search ==="" ||  status==0 && name_search ==="nil" ||  status==0 && name_search ===null   )
 														{
 														 <%if @challenge.parent .nil? %>
@@ -439,12 +426,8 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
 																	  <%else%>
 																	   <%childChallenges =  @challenge.parent.child_challenges %>
 																	   <%end%>                      
-												
-                                                         htmltable="<table><% childChallenges.each do |aChildChallenge| %><% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 %> <tr><td><img_src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"/><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %><%= aChildChallenge.social_type.status %></td></tr><% end %><% end %></table>";
-														
+                                                         htmltable="<table><% childChallenges.each do |aChildChallenge| %><% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 %> <tr><td><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td>pending</td></tr><% end %><% end %></table>";
 														document.getElementById("name").innerHTML =htmltable
-													    
-												
 														}
 														else if(  status==-1 && name_search ==="" ||  status==-1 && name_search ==="nil" ||  status==-1 && name_search ===null   )
 														{
@@ -453,18 +436,37 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
 																	  <%else%>
 																	   <%childChallenges =  @challenge.parent.child_challenges %>
 																	   <%end%>                      
-												
-                                                         htmltable="<table><% childChallenges.each do |aChildChallenge| %><% if aChildChallenge.social_type.status == -1 %> <tr><td><img_src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"/><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %><%= aChildChallenge.social_type.status %></td></tr><% end %><% end %></table>";
-														
+                                                         htmltable="<table><% childChallenges.each do |aChildChallenge| %><% if aChildChallenge.social_type.status == -1 %> <tr><td><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td>declined</td></tr><% end %><% end %></table>";
 														document.getElementById("name").innerHTML =htmltable
-													    
-												
-														}
+													}
+													
+															<%if @challenge.parent .nil? %>
+																	   <% childChallenges =  @challenge.child_challenges %>
+																	  <%else%>
+																	   <%childChallenges =  @challenge.parent.child_challenges %>
+																	   <%end%>       
+																	   	<% childChallenges.each do |aChildChallenge| %>
+													else if(name_search==check_name && status!="") 
+													{
+													
+																		  if(status==2)
+																	   {
+																	   
 																		
-									
-									
-									
-										
+																		var str = "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>";
+																		htmltr_open='<img src=' + str+ ' />';
+																		var check_name= "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %>";
+																	
+																		document.getElementById("name").innerHTML =htmltr_open+check_name+challenge_status																		   
+												
+																		
+																		}
+																		else if(status!=challenge_status)
+																	   {
+																		document.getElementById("name").innerHTML ="No such Reocrds found .........."
+																		}
+													}
+													<% end %>
 							}
 							 </script>
 						<td></td>
@@ -656,8 +658,9 @@ $(function() {
 		$(".addRow").btnAddRow();
 		$(".delRow").btnDelRow();
 		
-		$('.soc_add_task_popup').colorbox();		
-        });
+		$('.soc_add_task_popup').colorbox();
+		
+});
 </script>
 <style>
 	.button_edit{ background:#f8981d; color:#ffffff; }
