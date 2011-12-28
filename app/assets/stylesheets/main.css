@@ -771,20 +771,18 @@ input.radio {
 }
 
 .links_cancel {
-	background: none repeat #999999;
-	display: block;
-	font-size: 12px;
-	margin: 20px 0;
-	padding: 5px;
-	text-align: center;
-	text-transform: uppercase;
-	width: 60px;
-	text-decoration: none;
-	float:right;
-	right:8px; 
-	top: 2px;
-	color:#FFFFFF;
-
+    background: none repeat #999999;
+    color: #FFFFFF;
+    float: right;
+    height: 24px;
+    margin: 15px 0;
+    padding: 2px;
+    position: relative;
+    right: -14%;
+    text-align: center;
+    text-transform: uppercase;
+    top: 15%;
+    width: 10%;
 }
 .links_cancel2 {
     background: none repeat scroll 0 0 #999999;
@@ -1873,16 +1871,16 @@ top: -12px;
     float: right;
     height: 28px;
     position: relative;
-    right: 25%;
-    top: 20px;
+    right: 10%;
+    top: 15px;
     width: 12%;
 }
 .dateUpdateStart{
-	float: right;
+    float: right;
     height: 28px;
     position: relative;
-    right: 25%;
-    top: 20px;
+    right: 10%;
+    top: 15px;
     width: 12%;
 }
 

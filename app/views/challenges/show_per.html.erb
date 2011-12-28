@@ -59,24 +59,25 @@
                                   <tr>
                                        <% if @challenge.start_point.instance_of?PointDateType %>		
                                         <td width="50px;"> 
-                                          <div class="styled-select">   
-	                                              <%= select_tag "start_point_type", "<option value='startPointDate'>Date</option>".html_safe , :required => "required" %>
-	                                          </div>
-	                                      </td>  
-	                                      <td colspan="2">					
+                                          <div class="styled-select">
+                                            
+                                              <%= select_tag "start_point_type", "<option value='startPointDate'>Date</option>".html_safe , :required => "required" %>
+                                          </div>
+                                      </td>  
+                                      <td colspan="2">					
                                           <div class="startPointDate">
                                           </div>
                                           <div class="startPointNumber">
                                           </div>				
-                                      	</td>
+                                      </td>
                                     <% else %>							                       
                                         <td width="50px;"> 
                                           <div class="styled-select">
                                             
                                               <%= select_tag "start_point_type", "<option value='startPointNumber'>Number</option>".html_safe , :required => "required" %>
                                           </div>
-	                                      </td>  
-	                                      <td colspan="2">					
+                                      </td>  
+                                      <td colspan="2">					
                                           <div class="startPointDate">
                                           </div>
                                           <div class="startPointNumber">
@@ -85,40 +86,36 @@
                                     <% end %> 
                                   </tr>
                                   <tr>
-                                      <td colspan="4">
+                                      
                                       <%= link_to image_tag("update.png", :class =>"dateUpdateStart") , show_per_challenges_path(:id => @challenge.id) %>
                                       <%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "links_cancel" %>
-                                      </td>
+                                     
                                   </tr> 
                               </table>
                          </div>
                          <script>
-                        $("#replacedStart").hide();
+                            $("#replacedStart").hide();
                             function TestingStart()
                             {
                                 $("#TestStart").replaceWith($("#replacedStart").show());
                             }
                             
-                            $('.dateUpdateStart').click(function(){                                
-                                var startValue = $("#start_point_value").val();
-                                var startLabel = $("#start_point_label").val();
-                                var challengeId = '<%= @challenge.id %>'                               
-                                
-                                var objj = {
-                                  myParams1:endValue,
-                                  myParams3:endLabel,
-                                  myParams2:challengeId
-                                };                               
+                            $('.dateUpdateStart').click(function(){
+                              var startValue = $("#start_point_value").val();
+                              var startLabel = $("#start_point_label").val();
+                              var challengeId = '<%= @challenge.id %>'
+                              var objj = {
+                                  myParams11:startValue,
+                                  myParams31:startLabel,
+                                  myParams21:challengeId
+                                };       
                                 jQuery.support.cors = true;
                                 $.get('/challenges/date_updateStart', 
-                                        {value:objj},
-                                        function(data) {
-                                            
-                                        }, 'script' 
-                                );
-                                                                                                                     
-                                //window.location.href=window.location.href;             
-                                
+                                    {value:objj},
+                                    function(data) {
+                                        
+                                    }, 'script' 
+                                );                             
                             });                            
                             
                          </script>
@@ -181,10 +178,10 @@
                                     <% end %>    
                                   </tr>
                                   <tr>
-                                      <td colspan="4">
+                                    
                                       <%= link_to image_tag("update.png", :class =>"dateUpdateEnd"), show_per_challenges_path(:id => @challenge.id)  %>
                                       <%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "links_cancel" %>
-                                      </td>
+                                    
                                   </tr> 
                               </table>
                          </div>

@@ -7,7 +7,7 @@ $(document).ready(function($) {
 	$('#start_point_type').live('change', function() {        
 		$('.startPointDate').empty();    
 		$('.startPointNumber').empty();
-
+		
 		if($(this).val()){
 			var div_tag = $('<div id="space"></div>');		
 			if($(this).val() === "startPointNumber") {  
@@ -59,7 +59,7 @@ $(document).ready(function($) {
 
 			$('.datepicker').datepicker({ 
 				
-                                showOn: "button",
+                 showOn: "button",
 				buttonImage: calendarImagePath,
 				showOn: "button",
 				buttonImageOnly: true,

@@ -4,9 +4,7 @@ class ChallengesController < ApplicationController
   #on_spot_edit  is the gem to edit the data on spot 
   can_edit_on_the_spot
 
-  def date_updateStart
-  	raise 'Maisa'
-  end
+
 
   def index
     @title = "Challenges"
@@ -242,7 +240,14 @@ class ChallengesController < ApplicationController
   end
   
   def date_updateStart
-  	raise "Maisa1" 
+  	@challenge = Challenge.find(params[:value][:myParams21])
+     if params[:value][:myParams31]
+     startPoint = @challenge.start_point
+     startPoint.update_attributes(:value => params[:value][:myParams11], :label =>params[:value][:myParams31])
+   else
+     startPoint = @challenge.start_point
+     startPoint.update_attributes(:value => params[:value][:myParams11])
+   end
   end
   
   def date_updateEnd
