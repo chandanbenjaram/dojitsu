@@ -25,24 +25,25 @@
 		<% end %>
 	<% end %>
 	<% if !userIds.empty? and @challenge.user_id == current_user.fbauth.uid%>
-            <script type="text/javascript" charset="utf-8">
-            $.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+userIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>, fbCallback).Replace("'", "");	
 
-            function fbCallback(response){
-                    if(response == null){
-                    } else
-                    {
-                            var srt = '<%= params[:id] %>';
-                            jQuery.support.cors = true;
-                            $.get('/challenges/update_status_af_meg', 
-                                    {thinking_abt:srt},
-                                    function(data) {
+						<script type="text/javascript" charset="utf-8">
+						$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+userIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>, fbCallback).Replace("'", "");	
 
-                                    }, 'script'
-                            );
-                    }
-            }
-            </script>
+						function fbCallback(response){
+							if(response == null){
+							} else
+							{
+								var srt = '<%= params[:id] %>';
+								jQuery.support.cors = true;
+								$.get('/challenges/update_status_af_meg', 
+									{thinking_abt:srt},
+									function(data) {
+
+									}, 'script'
+								);
+							}
+						}
+						</script>
 	<% end %>
 <% end %>
 
@@ -407,6 +408,7 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
 																	   <%end%>                      
                                                          htmltable="<table><% childChallenges.each do |aChildChallenge| %> <tr><td><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %><%= aChildChallenge.social_type.status %></td></tr><% end %></table>";
 														document.getElementById("name").innerHTML =htmltable
+														 //htmltable="<table><% childChallenges.each do |aChildChallenge| %> <tr><td><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %><%= aChildChallenge.social_type.status %></td></tr><% end %></table>";
 														}
 												else if( status==1 && name_search ==="" ||  status==1 && name_search ==="nil" ||  status==1 && name_search ===null    )
 														{
@@ -422,7 +424,7 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
 														{
 														 <%if @challenge.parent .nil? %>
 																	   <% childChallenges =  @challenge.child_challenges %>
-																	  <%else%>
+																  <%else%>
 																	   <%childChallenges =  @challenge.parent.child_challenges %>
 																	   <%end%>                      
                                                          htmltable="<table><% childChallenges.each do |aChildChallenge| %><% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 %> <tr><td><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td>pending</td></tr><% end %><% end %></table>";

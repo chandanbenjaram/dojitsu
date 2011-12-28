@@ -21,6 +21,7 @@
                        <div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Total Score</span></div></div>
                   </td>
               </tr>            
+			  <% if @orgChallenge? %>
               <% sl=0 %>
               <% if @orgChallenge.social_type.who_win == "Highest number of points" %>
                   <% @all =  Challenge.winner(params[:id]) %>
@@ -42,6 +43,7 @@
               <% if sl.to_i == @orgChallenge.social_type.how_many_winners.to_i %>
                   <% break %>
               <% end %>
+			   <% end %>
               <% end %>
             </table>  
         </div>
