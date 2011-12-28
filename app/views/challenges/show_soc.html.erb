@@ -139,6 +139,7 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
 				<b ><font color= #999999>ORGANIZER</font></b>
 			</td>
 			<td width="73%">
+			
 				<% if @challenge.instance_of?ChildChallenge%>
 					<%  @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
 					<script>
