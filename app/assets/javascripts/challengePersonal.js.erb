@@ -4,7 +4,7 @@ $(document).ready(function($) {
     $(".alternativeRow").btnAddRow({oddRowCSS:"oddRow",evenRowCSS:"evenRow"});
     $(".delRow").btnDelRow();
 
-    $('#start_point_type').change(function() {        
+    $('#start_point_type').live('change', function() {        
             $('.startPointDate').empty();    
             $('.startPointNumber').empty();
 
@@ -20,7 +20,7 @@ $(document).ready(function($) {
                             $(div_tag).append('<input id="start_point_value"  name="start_point_value" class="textfield_effect datepicker" type="text" required="required" placeholder="Enter start date here">');				
 
                     }
-                   
+                    $(".textfield_effect datepicker").append('&nbsp;&nbsp;');
 
                     $( '.'+$(this).val()).append(div_tag).fadeIn('500'); 
 
