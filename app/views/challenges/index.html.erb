@@ -20,35 +20,37 @@
                   <td width="10%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
                        <div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Total Score</span></div></div>
                   </td>
-              </tr>            
-              <% sl=0 %>
-              <% if @orgChallenge.social_type.who_win == "Highest number of points" %>
-                  <% @all =  Challenge.winner(params[:id]) %>
-              <% end %>
-              <% if @orgChallenge.social_type.who_win == "Participant completes all tasks" %>
-                  <% @all =  Challenge.winnerCompleteAllTask(params[:id]) %>
-              <% end %>
-              <% if @orgChallenge.social_type.who_win == "Lowest number of points" %>
-                  <% @temp =  Challenge.winner(params[:id]) %>
-                  <% @all = @temp.sort {|a,b| a[1] <=> b[1]} %>
-              <% end %>
-              <% @all.each do |aWinner,index| %>
-              <tr bgcolor="#FFFFFF" onMouseOver="this.bgColor='#3399cc';" onMouseOut="this.bgColor='#FFFFFF';" >
-                  <td height="25" style="border-bottom:#666666 1px solid;border-left:#666666 1px solid;"><div align="center"><%=image_tag(FbGraph::User.new(aWinner).fetch.picture) %></div></td>
-                  <td style="border-bottom:#666666 1px solid"><div align="center"><%= FbGraph::User.new(aWinner).fetch.name %></div></td>               
-                  <td style="border-bottom:#666666 1px solid"><div align="center"><%= index %></div></td>               
-              </tr>
-              <% sl +=1 %>
-              <% if sl.to_i == @orgChallenge.social_type.how_many_winners.to_i %>
-                  <% break %>
-              <% end %>
-              <% end %>
+              </tr> 
+              <% if !@orgChallenge.blank? %>
+                  <% sl=0 %>
+                  <% if @orgChallenge.social_type.who_win == "Highest number of points" %>
+                      <% @all =  Challenge.winner(params[:id]) %>
+                  <% end %>
+                  <% if @orgChallenge.social_type.who_win == "Participant completes all tasks" %>
+                      <% @all =  Challenge.winnerCompleteAllTask(params[:id]) %>
+                  <% end %>
+                  <% if @orgChallenge.social_type.who_win == "Lowest number of points" %>
+                      <% @temp =  Challenge.winner(params[:id]) %>
+                      <% @all = @temp.sort {|a,b| a[1] <=> b[1]} %>
+                  <% end %>
+                  <% @all.each do |aWinner,index| %>
+                      <tr bgcolor="#FFFFFF" onMouseOver="this.bgColor='#3399cc';" onMouseOut="this.bgColor='#FFFFFF';" >
+                          <td height="25" style="border-bottom:#666666 1px solid;border-left:#666666 1px solid;"><div align="center"><%=image_tag(FbGraph::User.new(aWinner).fetch.picture) %></div></td>
+                          <td style="border-bottom:#666666 1px solid"><div align="center"><%= FbGraph::User.new(aWinner).fetch.name %></div></td>               
+                          <td style="border-bottom:#666666 1px solid"><div align="center"><%= index %></div></td>               
+                      </tr>
+                      <% sl +=1 %>
+                      <% if sl.to_i == @orgChallenge.social_type.how_many_winners.to_i %>
+                          <% break %>
+                      <% end %>
+                  <% end %>
+             <% end %>     
             </table>  
         </div>
         </div>  
 
 
-<% if @challengeCompleted == params[:id] %>        
+<% if !@orgChallenge.blank? %>        
 <script>
   $(document).ready(function(){
             $.colorbox({
@@ -68,18 +70,6 @@
     });
 </script>
 <% end %>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <h3>All Challenges</h3>
