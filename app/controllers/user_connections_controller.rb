@@ -24,7 +24,12 @@ class UserConnectionsController < ApplicationController
   def dashbord
   end
   
-  def connections_selection
+ def delete_contact
+  @useconnection = params[:id]
+	render :layout => false
+		
+	end 
+	def connections_selection
   end
   
   def myDojo
@@ -35,10 +40,10 @@ class UserConnectionsController < ApplicationController
 	render :layout => false
   end
   
+  
   def destroy
-    @useconnection = UserConnection.find(params[:id])
+    @useconnection = UserConnection.where(:target_id => params[:id]).first
     @useconnection.destroy
 	redirect_to :action => 'index'
   end
-  
 end
