@@ -62,5 +62,34 @@ class Challenge
     logger.debug "Maisa Pride"
   end
 
-
+def self.winner(orgId)
+     @challenge = Challenge.where(:_id => orgId).first  
+     aTotalScore = 0  
+     @list=Hash.new()   
+   
+     if @challenge.instance_of?Challenge 
+         @challenge.tasks.each_with_index do |orgTasks,index|
+            if orgTasks.is_complete == 1
+              aTotalScore += orgTasks.score.to_i
+            end  
+         end 
+         @list[@challenge.user_id] = aTotalScore      
+         
+        
+         aTotalScore = 0  
+         @challenge.child_challenges.each do |aChildChallenge| 
+             aChildChallenge.tasks.each_with_index do |eachTasks,index|             
+                  if eachTasks.is_complete == 1
+                    aTotalScore += eachTasks.score.to_i
+                  end
+             end   
+        @list[aChildChallenge.user_id] = aTotalScore 
+        aTotalScore = 0                 
+        end  
+        @winner = @list.sort {|a,b| -1*(a[1]<=>b[1]) }
+        return @winner
+     else 
+       childchallenge
+      end 
+  end
 end                

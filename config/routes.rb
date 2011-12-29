@@ -33,6 +33,7 @@ Dojitsu::Application.routes.draw do
       get "update_status_af_meg"
       put "update_task_soc"
 	  get "filter"
+	  get "trophies"
 
       put :update_attribute_on_the_spot 
 	  get :get_attribute_on_the_spot

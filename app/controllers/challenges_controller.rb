@@ -360,7 +360,10 @@ class ChallengesController < ApplicationController
       render "nonLoginShowPersonal"
     end
   end
-  
+  def trophies
+  	@challenge = Challenge.find(params[:id])
+  	
+  	end
   def nonLoginShowSocial
     @challenge = Challenge.find(params[:id])
   end
