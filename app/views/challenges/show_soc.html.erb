@@ -25,25 +25,24 @@
 		<% end %>
 	<% end %>
 	<% if !userIds.empty? and @challenge.user_id == current_user.fbauth.uid%>
+            <script type="text/javascript" charset="utf-8">
+            $.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+userIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>, fbCallback).Replace("'", "");	
 
-						<script type="text/javascript" charset="utf-8">
-						$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+userIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>, fbCallback).Replace("'", "");	
+            function fbCallback(response){
+                    if(response == null){
+                    } else
+                    {
+                            var srt = '<%= params[:id] %>';
+                            jQuery.support.cors = true;
+                            $.get('/challenges/update_status_af_meg', 
+                                    {thinking_abt:srt},
+                                    function(data) {
 
-						function fbCallback(response){
-							if(response == null){
-							} else
-							{
-								var srt = '<%= params[:id] %>';
-								jQuery.support.cors = true;
-								$.get('/challenges/update_status_af_meg', 
-									{thinking_abt:srt},
-									function(data) {
-
-									}, 'script'
-								);
-							}
-						}
-						</script>
+                                    }, 'script'
+                            );
+                    }
+            }
+            </script>
 	<% end %>
 <% end %>
 
