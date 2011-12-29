@@ -1,7 +1,8 @@
+<%= render 'layouts/loggedinbody'%>
 <table>
 <% if @challenge.class.to_s == "ChildChallenge" %>
 		<div>
-	 <% winners_Count= @id.social_type.how_many_winners%>
+	 <% winners_Count= @challenge.social_type.how_many_winners%>
 		<%  nooftrophies=winners_Count.to_i %>
 		<% Challenge.winner(@challenge.parent.id).each do |winner| %>
 		<tr>
