@@ -599,7 +599,7 @@ height: 25px;
 color: #F9A943;
 background: transparent;
 margin-top: -3px;
-top: 25%;
+top: 10px;
 }
 .flt_s{
 border: 2px solid #a52a2a;
@@ -771,20 +771,18 @@ input.radio {
 }
 
 .links_cancel {
-	background: none repeat #999999;
-	display: block;
-	font-size: 12px;
-	margin: 20px 0;
-	padding: 5px;
-	text-align: center;
-	text-transform: uppercase;
-	width: 60px;
-	text-decoration: none;
-	float:right;
-	right:8px; 
-	top: 2px;
-	color:#FFFFFF;
-
+    background: none repeat #999999;
+    color: #FFFFFF;
+    float: right;
+    height: 24px;
+    margin: 15px 0;
+    padding: 2px;
+    position: relative;
+    right: -14%;
+    text-align: center;
+    text-transform: uppercase;
+    top: 15%;
+    width: 10%;
 }
 .links_cancel2 {
     background: none repeat scroll 0 0 #999999;
@@ -1413,11 +1411,11 @@ width:90%;
 
 .completedtask1
 {
-	color:#FFFFFF;
-	left:170px;
-	position:relative;
-	top:2px;
-	width:200px;
+	color: #FFFFFF;
+    left: 170px;
+    position: relative;
+    top: 2px;
+    width: 30%;
 }
 .invitees3{
     background: none repeat scroll 0 0 #F9A943;
@@ -1774,20 +1772,20 @@ top: -12px;
     right: 5px;
     top: 15px;
 }
-		.nav_shadow_mydojo
-		{
-		height: 25px;
-    margin-bottom: 0.1em;
-    position: relative;
-    top: -18px;
-    width: 100%;
-		}
+
+.nav_shadow_mydojo
+{
+	height: 25px;
+	margin-bottom: 0.1em;
+	position: relative;
+	top: -18px;
+	width: 100%;
+}
 		
 .imagebackground{
  	background: url("ui-bg_glass_75_dadada_1x400.png") no-repeat center;	
 	padding-left: 18px;
 	background-size: 8%;
-	
 }
 .imagebackground2{
  	background: url("ui-bg_highlight-soft_vertical.png") no-repeat center;	
@@ -1795,6 +1793,7 @@ top: -12px;
 	background-size: 8%;
 	
 }
+
 
 .mydojoscore
   {
@@ -1807,8 +1806,8 @@ top: -12px;
     position: relative;
   }
   .taskIcon{
-float:right;
-right:10px;  	
+		float:right;
+		right:10px;  	
   }
   
   .hidebutton{
@@ -1872,15 +1871,21 @@ right:10px;
     float: right;
     height: 28px;
     position: relative;
-    right: 25%;
-    top: 20px;
+    right: 10%;
+    top: 15px;
     width: 12%;
 }
 .dateUpdateStart{
-	float: right;
+    float: right;
     height: 28px;
     position: relative;
-    right: 25%;
-    top: 20px;
+    right: 10%;
+    top: 15px;
     width: 12%;
+}
+
+.bordercolort
+{
+	height:5px;
+	border-bottom:2px solid #BEBEBE;
 }

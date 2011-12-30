@@ -4,7 +4,7 @@ Dojitsu::Application.routes.draw do
   get "dashboard/message"
   get "dashboard/myChallenge"
   get "dashboard/dashboardIndex"
-  
+
   # user registration & 3rd party logins
   match 'users/auth/:provider/callback', :to=>'authentications#create'
   devise_for :users, :controllers => { :registrations => "registrations"}
@@ -32,8 +32,9 @@ Dojitsu::Application.routes.draw do
       get "paginationTest"
       get "update_status_af_meg"
       put "update_task_soc"
+      get "scoreboard_main"
 	  get "filter"
-
+	  get "trophies"
       put :update_attribute_on_the_spot 
 	  get :get_attribute_on_the_spot
 	  

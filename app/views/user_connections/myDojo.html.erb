@@ -34,7 +34,7 @@
 
 							</label>
 					</td>
-					<td style="width:80%; padding-left: 56%;"><input type="text" id="search"/>
+					<td id="searchbutton" style="width:80%; padding-left: 56%;"><input type="text" id="search"/>
 					<%= image_tag ("searchbutton.PNG") %>
 						
 						
@@ -117,7 +117,15 @@
 												return false;
 											}
 										});
-										if(found == true)$(row).show();else $(row).hide();
+										$('#searchbutton').live('click', function(){
+												
+											if(found == true)
+											
+											   $(row).show();
+											else
+											   $(row).hide();
+											  
+											  });
 									}
 								});
 							}

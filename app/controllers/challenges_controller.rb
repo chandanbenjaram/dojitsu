@@ -4,6 +4,8 @@ class ChallengesController < ApplicationController
   #on_spot_edit  is the gem to edit the data on spot 
   can_edit_on_the_spot
 
+
+
   def index
     @title = "Challenges"
     @no_of_row = Challenge.all.count
@@ -174,6 +176,17 @@ class ChallengesController < ApplicationController
     
   end
 
+  def scoreboard_main
+  @challenge = Challenge.find(params[:id])
+  @this_tasks = @challenge.tasks
+	  @challenge.child_challenges.each do |childid|
+	 		@cid = childid.user_id 
+	  end
+	  @challenge.child_challenges.each do |chalid|
+	 		 @chaid = chalid.challenge_id 
+	  end
+  end
+
   def message
     render :partial => 'challenges/message'
   end  
@@ -227,22 +240,20 @@ class ChallengesController < ApplicationController
     redirect_to show_per_challenges_path(:id => params[:challenge_id])
   end
   
-  def date_updateStart	
-   @challenge = Challenge.find(params[:value][:myParams2])
-   if params[:value][:myParams3]
+  def date_updateStart
+  	@challenge = Challenge.find(params[:value][:myParams21])
+     if params[:value][:myParams31]
      startPoint = @challenge.start_point
-     startPoint.update_attributes(:value => params[:value][:myParams1], :label =>params[:value][:myParams3])
-	 raise value
+     startPoint.update_attributes(:value => params[:value][:myParams11], :label =>params[:value][:myParams31])
    else
      startPoint = @challenge.start_point
-     startPoint.update_attributes(:value => params[:value][:myParams1])
-     redirect_to challenges_path
+     startPoint.update_attributes(:value => params[:value][:myParams11])
    end
   end
   
   def date_updateEnd
    @challenge = Challenge.find(params[:value][:myParams2])
-   if params[:value][:myParams3]
+     if params[:value][:myParams3]
      endPoint = @challenge.end_point
      endPoint.update_attributes(:value => params[:value][:myParams1], :label =>params[:value][:myParams3])
    else
@@ -361,7 +372,10 @@ class ChallengesController < ApplicationController
       render "nonLoginShowPersonal"
     end
   end
-  
+  def trophies
+  	@challenge = Challenge.find(params[:id])
+  	
+  	end
   def nonLoginShowSocial
     @challenge = Challenge.find(params[:id])
   end
