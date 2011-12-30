@@ -16,8 +16,7 @@ class ChallengesController < ApplicationController
   end
 
   def show       
-    @challenge = Challenge.find(params[:id])	
-    
+    @challenge = Challenge.find(params[:id])
   end
 
   def show_soc
@@ -203,11 +202,17 @@ class ChallengesController < ApplicationController
   def task_update_c
     @ch_ts_update = Challenge.find(params[:id])
     unless params[:tatal_s]
-      @ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1)
+      if params[:task_done] == "yes"
+        @ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1)
+        redirect_to show_per_challenges_path(:id => params[:id], :isNewChallenge => "isNew")
+        return
+      end
     else
       @ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1, :score => params[:tatal_s])
+      redirect_to show_per_challenges_path(:id => params[:id], :isNewChallenge => "isNew")
+      return
     end 
-    redirect_to show_per_challenges_path(:id => params[:id], :isNewChallenge => "isNew")
+    redirect_to show_per_challenges_path(:id => params[:id])
   end
 
   def challenge_comp
