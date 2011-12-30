@@ -9,8 +9,8 @@
           <tbody>  
               <% current_user.challenges.each do |userChallenge| %>
               <tr style="cursor:pointer;" valign="top" class="challengerow" onclick="location.href='<%= show_per_challenges_path(:id => userChallenge)  %>'" >
-                  <td class="bordercolort">	
-                      <font family="Arial" color="#666666" size=3"><b><%= userChallenge.title %></b></font><br><font size=2>by </font>
+                  <td class="bordercolort",  style="padding-left:15px; ">	
+                      <font family="Arial" color="#666666" size=2"><b><%= userChallenge.title %></b></font><br><font size=2>by </font>
                       <% if userChallenge.instance_of?ChildChallenge %>
                          <% @parentChallenge = Challenge.where(:_id => userChallenge.challenge_id).first%>
                          <script>
@@ -27,7 +27,7 @@
                               <%= userChallenge.child_challenges.size %> contestants<br>
                       <% end %>
                   </td>
-                  <td class="bordercolort">					
+                  <td class="bordercolort", style="padding-right:8px; ">					
                       <div class="taskprogress" id="taskprogress<%= taskCompleted %>"></div><br/>
                           <div id="check1">
                                   <% flag1=0 %>
