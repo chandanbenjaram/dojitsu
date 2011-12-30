@@ -1889,3 +1889,11 @@ top: -12px;
 	height:5px;
 	border-bottom:2px solid #BEBEBE;
 }
+.underline_view{
+text-decoration: underline;
+color: #06BACE;
+}
+.underline_view:hover{
+text-decoration: underline;
+color: #06BACE;
+}

@@ -47,6 +47,16 @@
                     </td>
                     <td>
                          <div id="TestStart" onclick="TestingStart();">
+						 <div id="start_point">
+						 <%=  @challenge.start_point.value.strftime("%b %d, %Y")%>
+						  
+						 </div>
+						 <script>
+						 $("#start_point").hide();
+						 var date1 =  "<%=  @challenge.start_point.value.strftime("%b %d, %Y")%>";
+						
+							
+						 </script>
                               <% if @challenge.start_point.instance_of?PointDateType %>		
                                   <b style="color:#666666;"><%= @challenge.start_point.value.strftime("%b %d, %Y")%> </b>
                               <% else %>							
@@ -97,7 +107,10 @@
                             $("#replacedStart").hide();
                             function TestingStart()
                             {
+								
+								
                                 $("#TestStart").replaceWith($("#replacedStart").show());
+								$("#start_point_value").value = date1
                             }
                             
                             $('.dateUpdateStart').click(function(){

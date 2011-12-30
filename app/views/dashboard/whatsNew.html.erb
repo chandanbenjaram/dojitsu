@@ -8,7 +8,9 @@
 			<tr>
 				<td width="60%"><font size="3px;" style="font-weight:bold"><%= aChallenge.title%></font></td>
 				<td width="40%">
+				<p style="margin:0 4cm 0 0 ">
 					<%= time_ago_in_words  aChallenge.created_at%>
+				</p>
 				</td>
 			</tr>
 			<tr>
@@ -47,12 +49,12 @@
 				<td colspan="2">
 					<% if aChallenge.personal_type.instance_of?ChallengePersonalType%>
 						<p style="text-transform:none;">
-							<%=h truncate(aChallenge.description, :length => 15) %>....<%= link_to "VIEW" , show_per_challenges_path(:id => aChallenge.id) %>									
+							<%=h truncate(aChallenge.description, :length => 15) %>&nbsp;&nbsp;<%= link_to "VIEW" , show_per_challenges_path(:id => aChallenge.id) %>									
 						</p>
 					<% end %>
 					<% if aChallenge.social_type.instance_of?ChallengeSocialType%>
 						<p style="text-transform:none;">
-							<%=h truncate(aChallenge.description, :length => 15) %>....<%= link_to "VIEW" , show_soc_challenges_path(:id => aChallenge.id) %>									
+							<%=h truncate(aChallenge.description, :length => 15) %>&nbsp;&nbsp;<%= link_to "VIEW" , show_soc_challenges_path(:id => aChallenge.id) %>									
 						</p>
 					<% end %>								
 				</td>

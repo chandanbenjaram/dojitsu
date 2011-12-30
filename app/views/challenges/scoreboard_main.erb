@@ -35,7 +35,7 @@
 				<td>
 					<% if @challenge.class.to_s == "ChildChallenge" %>
 						<%  @parentChallenge = Challenge.where(:_id => @challenge.parent.id).first%>
-						<%=image_tag FbGraph::User.new(@parentChallenge.user_id).fetch.picture %>
+						<%= image_tag FbGraph::User.new(@parentChallenge.user_id).fetch.picture %>
 						<b style="color:#666666;"><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
 					<%else%>
 						<%  @parentChallenge = Challenge.where(:_id => @challenge.id).first%>
@@ -149,8 +149,24 @@
               						<% end %>
 										
 								
-							</table>	
+							</table><hr/>	
 
+<table>
+        <td>
+              <tr>
+                  <td>
+                      
+                      <div class="mychallenge">
+							<div id = "titlechallenge"><div>
+							
+			          </div>
+                      
+                  </td>
+              </tr>
+		</td>
+</table>
+							
+							
  <style>
   p { width:400px; }
   </style>
@@ -178,4 +194,6 @@
 		}
 	);
 
-</script>						
+</script>	
+
+					
