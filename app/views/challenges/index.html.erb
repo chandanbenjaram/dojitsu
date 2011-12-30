@@ -21,7 +21,7 @@
                        <div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Total Score</span></div></div>
                   </td>
               </tr> 
-              <% if !@orgChallenge.blank? %>
+              <% if !@orgChallenge.blank? and @orgChallenge.instance_of?Challenge and session[:taskComplete] == 'orgCompleteTask' %>
                   <% sl=0 %>
                   <% if @orgChallenge.social_type.who_win == "Highest number of points" %>
                       <% @all =  Challenge.winner(params[:id]) %>
@@ -50,7 +50,8 @@
         </div>  
 
 
-<% if !@orgChallenge.blank? %>        
+<% if(!@orgChallenge.blank? and @orgChallenge.instance_of?Challenge and session[:taskComplete] == 'orgCompleteTask') %>        
+<%= session[:taskComplete] = nil %>
 <script>
   $(document).ready(function(){
             $.colorbox({

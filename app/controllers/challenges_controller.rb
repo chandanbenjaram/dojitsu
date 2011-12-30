@@ -10,8 +10,8 @@ class ChallengesController < ApplicationController
     @title = "Challenges"
     @no_of_row = Challenge.all.count
     @challenges = current_user.challenges
-    @challengeCompleted = params[:id]
     @orgChallenge = Challenge.where(:_id => params[:id]).first
+    session[:taskComplete] = 'orgCompleteTask'
     #raise @orgChallenge.social_type.who_win.inspect
   end
 
