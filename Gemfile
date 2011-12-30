@@ -46,6 +46,11 @@ gem "simple-navigation"
 gem "on_the_spot"
 gem "will_paginate", "~> 3.0.2"
 
+#color window for testing
+gem "win32console", "~> 1.3.0"
+gem 'spork', '0.9.0.rc8'
+gem "webrat", "~> 0.7.3"
+
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
