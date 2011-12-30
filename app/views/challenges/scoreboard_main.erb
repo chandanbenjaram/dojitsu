@@ -1,0 +1,181 @@
+<%= render 'layouts/loggedinbody'%>
+
+<div style=" font-size: 18px; " class="challange"> 
+			<%= @challenge.title %>
+</div> 
+<div  style=" font-size: 13px; color: #8c8c8c; text-transform: uppercase;" >
+	Tasks : <%=@this_tasks.length%>
+	<br>	
+	<table>
+		<tr>
+			<td style="color:#999999;", width="80%">
+			<% @this_tasks.each do |task1|%>
+			<%= task1.name %></br>
+			<%end%>
+			</td>
+			<td style="color:#999999;", width="20%">
+			<% x = 0%>
+				<% @this_tasks.each do |task2|%>
+					<%= task2.score%></br>
+					<% x += task2.score.to_i %>
+				<%end%>
+				total is : <%= x %>
+			</td>	
+		</tr>
+	</table>
+</div>
+<table border=1>
+		<tr>
+				<thead>		
+						<th width="25%"><b style="position:relative; color:#666666; padding-left:20px; " >ORGANIZER</b>
+						<th width="25%"><b style="position:relative; color:#666666; padding-left:20px; " >CURRENT_CHAL_SCORE</b>
+				</thead>
+		</tr>
+		<tbody bgcolor="#ffffff">
+				<td>
+					<% if @challenge.class.to_s == "ChildChallenge" %>
+						<%  @parentChallenge = Challenge.where(:_id => @challenge.parent.id).first%>
+						<%=image_tag FbGraph::User.new(@parentChallenge.user_id).fetch.picture %>
+						<b style="color:#666666;"><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
+					<%else%>
+						<%  @parentChallenge = Challenge.where(:_id => @challenge.id).first%>
+						<%=image_tag FbGraph::User.new(@parentChallenge.user_id).fetch.picture %>
+						<b style="color:#666666;"><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
+					<%end%>
+				</td>
+				<td>
+					<% if @challenge.class.to_s == "ChildChallenge" %>
+							<%  @parentChallenge = Challenge.where(:_id => @challenge.parent.id).first%>
+							<% x = 0%>
+							<% @parentChallenge.tasks.each do |parent_tasks|%>
+							   <%if parent_tasks.is_complete == 1%>
+									  <%x += parent_tasks.score.to_i%></br>
+								<%end%>
+							<%end%>
+							<%= x%>
+					<%else%>
+							<%  @parentChallenge = Challenge.where(:_id => @challenge.id).first%>
+							<% x = 0%>
+							<% @parentChallenge.tasks.each do |parent_tasks|%>
+							   <%if parent_tasks.is_complete == 1%>
+									  <%x += parent_tasks.score.to_i%></br>
+								<%end%>
+							<%end%>
+							<%= x%>
+					<%end%>
+					<button class="parentbutton">Show Parent Details </button>
+					<div id="parent">
+							<table>
+								<tr>
+								<td>
+									<% @parentChallenge.tasks.each do |parent_tasks|%>
+											  <%= parent_tasks.name %></br>
+										
+									<%end%>
+									</td>
+									<td style="color:#999999;", width="20%">
+											<% @parentChallenge.tasks.each do |parent_tasks|%>
+												<%if parent_tasks.is_complete == 1%>
+													<%= parent_tasks.score %></br>
+												<%else%>
+												0<br>
+												<%end%>
+											<%end%>
+									</td>	
+									
+								</tr>
+							</table>
+					</div>
+				</td>
+		</tbody>
+</table>
+<table border=1>
+		<thead>	
+			<tr>
+										<th width="25%"><b style="position:relative; color:#666666; padding-left:20px; " >INVITEES</b></th>
+										<th width="25%"><b style=" color:#666666;" >CURRENT_CHAL_SCORE </b></th>
+									
+									</tr>
+								</thead>
+								<tbody bgcolor="#ffffff">
+										  <%if @challenge.parent .nil? %>
+													 <% childChallenges1 =  @challenge.child_challenges %>
+											  <%else%>
+													 <% childChallenges1=  @challenge.parent.child_challenges %>
+													 
+										  <%end%>      
+
+									  <% childChallenges1.each do |aChildChallenge| %>
+										<tr>
+												<td>
+													<%=image_tag FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>
+													<%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %>
+												</td>
+												<td>
+													  <% sum_score = 0%>
+														  <% aChildChallenge.tasks.each do |tasks_socre| %>
+														   <%if tasks_socre.is_complete == 1%>
+														  <% sum_score = sum_score +tasks_socre.score.to_i %>
+														  <% end %>
+													  <% end %>
+													  <%= sum_score %>
+													 <button class="childbutton">Show Details</button>
+
+													  <span >
+														<table>
+																<tr>
+																	<td style="color:#999999;", width="80%">
+																	<% @this_tasks.each do |task1|%>
+																	<%= task1.name %></br>
+																	<%end%>
+																	</td>
+																	<td style="color:#999999;", width="20%">
+																		 <% aChildChallenge.tasks.each do |tasks_socre| %>
+																		  <%if tasks_socre.is_complete == 1%>
+																		 <%= tasks_socre.score %>
+																		 <%else%>
+																		 0
+																		 <%end%><br>
+																			<% end %>
+																	</td>	
+																	
+																</tr>
+															</table>
+													  </span>
+													
+												</td>
+									
+										</tr>
+              						<% end %>
+										
+								
+							</table>	
+
+ <style>
+  p { width:400px; }
+  </style>
+ <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+	$("span").hide();
+    $(".childbutton").click(function () 
+		{
+		  $("span").slideToggle("fast");
+		}
+	);
+
+</script>		
+ <style>
+  section { width:400px; }
+  </style>
+ <script src="http://code.jquery.com/jquery-latest.js"></script>
+ 
+<script>
+	$("#parent").hide();
+    $(".parentbutton").click(function () 
+		{
+		
+		  $("#parent").slideToggle("fast");
+		}
+	);
+
+</script>						
