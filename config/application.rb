@@ -41,11 +41,11 @@ module Dojitsu
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
         :address => "smtp.gmail.com",
-        :port => 587,
+      :port => "587",
         :domain => 'localhost:4000',
-        :user_name => 'chandan.benjaram@gmail.com',
-        :password => 'password',
-        :authentication => 'plain',
+        :user_name => 'sriram.in20@gmail.com',
+        :password => '9866266845',
+        :authentication => 'login',
         :enable_starttls_auto => true 
       }
 
