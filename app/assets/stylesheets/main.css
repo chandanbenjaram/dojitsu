@@ -1,4 +1,4 @@
-/* app global placeholder properties */
+#/* app global placeholder properties */
 ::-webkit-textarea-placeholder, ::-webkit-input-placeholder { 
 	color: #c6c6c6;
 	font-weight: normal;
@@ -1130,7 +1130,8 @@ ul.tabs1 {
 {
 	position:relative;
 	float:left;
-	left:-30px;
+	left:30px;
+	width:100%;
 }
 #score
 {
@@ -1569,7 +1570,7 @@ input:required {
 }
 #search{
   border: 1px solid #BEBEBE;
-    height: 25px;
+    height: 20px;
     width: 180px;
 }
 #tableshow_soc
