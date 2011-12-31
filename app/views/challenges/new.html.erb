@@ -18,21 +18,21 @@
 
 	<%= form_for :challenge, :url => {:controller=> "challenges",:action => "create"},:html=>{:multipart => true, :name => "challenge_form", :onSubmit => "return validate_form_fields(this);"} do |f| -%>
 	<table width="100%" border="0" style="margin-top:0px;">
-		<tr>
+		<tr >
 			<td colspan="4">
-				<p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :placeholder=>"Enter challenge title here" , :required => "required", :maxlength => "30"  %><div id="title"></div></p>
+			<%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :placeholder=>"Enter challenge title here" , :required => "required", :maxlength => "30"  %><div id="title"></div>
 			</td>	
 		</tr>
 	
 		
-		<tr>
+		<tr >
 			<td colspan="4">
 				<hr id="all_hr">
 			</td>
 		</tr>
 		<tr>
-			<td valign="center" class="color999"><%= f.label :description, "DESCRIPTION" %></td>
-			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea", :placeholder=>"Enter challenge description here" %><div %></td>
+			<td valign="top" class="color999"><%= f.label :description, "DESCRIPTION" %></td>
+			<td  colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea", :placeholder=>"Enter challenge description here" %></td>
 		</tr>
 		<tr>
 				<td colspan="4">

@@ -449,7 +449,7 @@ position:relative;
 	font-family: Arial;
 	font-size: 15px;
 	color: #C6C6C6;
-	width: 299px;
+	width: 48.3%;
 	height: 25px;
 }
 
@@ -507,7 +507,7 @@ position:relative;
 	font-family: Arial;
 	font-size: 15px;
 	color: #333333;
-	
+	resize: none;
 	height: 25px;
 	
 	width:99%;
@@ -517,6 +517,7 @@ position:relative;
 	border-color: #4ccbda;
 	border-width: 1px;
 	height:60px;
+	resize: none;
 }
 
 .textarea_nw_tk:focus{
@@ -1788,7 +1789,7 @@ top: -12px;
 	background-size: 8%;
 }
 .imagebackground2{
- 	background: url("ui-bg_highlight-soft_vertical.png") no-repeat center;	
+
 	padding-left: 18px;
 	background-size: 8%;
 	
