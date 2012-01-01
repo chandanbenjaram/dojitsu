@@ -449,7 +449,7 @@ position:relative;
 	font-family: Arial;
 	font-size: 15px;
 	color: #C6C6C6;
-	width: 48.3%;
+	width: 100%;
 	height: 25px;
 }
 
@@ -595,7 +595,7 @@ select {
 border: none;
 vertical-align: top;
 position: relative;
-width: 110%;
+width: 130%;
 height: 25px;
 color: #F9A943;
 background: transparent;
@@ -683,12 +683,12 @@ input.radio {
 	 background: url("viewallbutton.PNG") no-repeat; 
      float: left;
      font-family: Arial;
-     height: 27px;
+     height: 24px;
      left: 105px;
-     min-width: 25%;
+     min-width: 24%;
      position: relative;
      text-align: right;
-     top: 0px;
+     top: 3px;
 }
 .ds_view_all1 {
 	background: url("viewall.PNG") no-repeat right;	
@@ -1245,7 +1245,7 @@ position:absolute;
 	postion:absolute;
 	padding-left:20px;
 	width:120px;
-height:auto;
+	height:auto;
 }
 #content2
 {
@@ -1254,7 +1254,7 @@ height:auto;
 	padding-left:10px;
 	width:400px;
 	height:auto;
-	 text-align: right;
+	text-align: right;
 }
 #check1
 {
@@ -1890,4 +1890,29 @@ top: -12px;
 {
 	height:5px;
 	border-bottom:2px solid #BEBEBE;
+}
+.underline_view{
+text-decoration: underline;
+color: #06BACE;
+}
+.underline_view:hover{
+text-decoration: underline;
+color: #06BACE;
+}
+#timespace{
+	position:relative; 
+	float:right; 
+	right:31px;
+}
+#image3{
+position:relative;
+float:right;
+}
+#image1{
+position:relative;
+float:right;
+}
+#image4{
+position:relative;
+float:right;
 }

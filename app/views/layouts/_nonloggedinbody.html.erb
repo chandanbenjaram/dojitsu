@@ -25,8 +25,10 @@
                           <%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:-2px;") %>
                           <table width="100%" style="margin-top:-10px;">
                             <tr>
-                                  <td width="40%">
-                                          <font size="3px;" style="font-weight:bold"><%=h truncate(anc.title, :length => 30) %></font></br>
+                                  <td width="40%", style="padding-left:10px; ">
+                                         <font size="3px;" style="font-weight:bold;">
+												<%=h truncate(anc.title) %>
+										 </font></br>
                                           by  <b><%= FbGraph::User.new(anc.user_id).fetch.name %></b></br>
                                           <% if anc.start_point.instance_of?PointDateType %>
                                                   <%= anc.start_point.value.strftime("%b %d, %Y")%> - <%= anc.end_point.value.strftime("%b %d, %Y")%>
@@ -41,16 +43,29 @@
                                           <%end%>
                                   </td>
                                   <td width="60%">
-                                          <p style="float:right; margin-right:20px; color: #A9A8A8;"><%= time_ago_in_words  anc.created_at%></p></br></br>
+                                          <p style="float:right; margin-right:20px; color: #A9A8A8;">&nbsp;&nbsp;<%= time_ago_in_words  anc.created_at%></p></br></br>
                                           <% if anc.personal_type.instance_of?ChallengePersonalType%>
                                                   <p style="text-transform:none;">
-                                                          <%=h truncate(anc.description, :length => 128) %>....<%= link_to "VIEW" , nonLoginShowPersonal_challenges_path(:id => anc.id) %>									
+													  <% if anc.description.size > 200 %>
+																<%=h truncate(anc.description, :length => 200) %>&nbsp;&nbsp;<b><%= link_to "VIEW" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view' %></b>									
+														<%else%>
+																<%= anc.description %>
+													<%end%>
                                                   </p>
                                           <% end %>
                                           <% if anc.social_type.instance_of?ChallengeSocialType%>
-                                                  <p style="text-transform:none;">
-                                                          <%=h truncate(anc.description, :length => 190) %>....<%= link_to "VIEW" , nonLoginShowSocial_challenges_path(:id =>anc.id) %>									
-                                                  </p>
+                                                <p style="text-transform:none;">
+												<% if anc.description.size > 200 %>
+														<%=h truncate(anc.description, :length => 200) %>&nbsp;&nbsp;<b><%= link_to "VIEW" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view'%></b>									
+												<%else%>
+														<%= anc.description %>
+												<%end%>
+												<% if anc.description.size > 200 %>
+														<%=h truncate(anc.description, :length => 200) %>&nbsp;&nbsp;<b><%= link_to "VIEW" , nonLoginShowSocial_challenges_path(:id =>anc.id), :class => 'underline_view' %>									
+												<%else%>
+														<%= anc.description %>
+												<%end%>
+                                                </p>
                                           <% end %>
                                   </td>
                             </tr>

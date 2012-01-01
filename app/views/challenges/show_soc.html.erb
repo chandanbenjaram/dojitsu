@@ -124,7 +124,7 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
 			<td height="34px" height="34px" width="15%">
 				<b><font color= #999999>DESCRIPTION</font></b></td>
 			<td width="73%">
-				<b style="color:#666666;"><%= on_the_spot_edit @challenge,:description , :type=>:textarea  %></b>
+				<b style="color:#666666;"><%= on_the_spot_edit @challenge,:description , :type=>:textarea , :class => "textarea_nw_tk", :id => "on_focus_textarea" %></b>
 			</td>
 			<td width="12%">
 				<span id="image1"><%= image_tag("icon_edit.png") %></span>
@@ -183,7 +183,7 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
 				<% end %>
 			</td>
 			<td  width="12%">
-				<span id="image3"><%= image_tag("icon_edit.png") %></span>
+				<span id="image3" ><%= image_tag("icon_edit.png") %></span>
 			</td>
 		</tr>
 	</table>
@@ -220,16 +220,16 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
 		</td>
 		<td>
 		<% if @challenge.social_type.status == 1 &&  @challenge.class.to_s == "ChildChallenge" %>
-				<b style="color:#666666;"><%= @challenge.parent.child_challenges.length %>&nbsp;&nbsp;&nbsp;<%= link_to " Total Score ", scoreboard_main_challenges_path(:id => @challenge.id) %></b>&nbsp;&nbsp;&nbsp;
+				<b style="color:#666666;"><%= @challenge.parent.child_challenges.length %>&nbsp;&nbsp;&nbsp;<% link_to " Total Score ", scoreboard_main_challenges_path(:id => @challenge.id) %></b>&nbsp;&nbsp;&nbsp;
 			<% else %>
 				<% if @challenge.social_type.status == 1 %> 
 					<b style="color:#666666;"><%= @challenge.child_challenges.length %></b>
-					&nbsp;&nbsp;&nbsp;<%= link_to " Total Score ", scoreboard_main_challenges_path(:id => @challenge.id) %>&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;<% link_to " Total Score ", scoreboard_main_challenges_path(:id => @challenge.id) %>&nbsp;&nbsp;&nbsp;
 				<% else %>
-					<b style="color:#666666;"><%= @challenge.parent.child_challenges.length %>&nbsp;&nbsp;&nbsp;<%= link_to " Total Score ", scoreboard_main_challenges_path(:id => @challenge.id) %></b>&nbsp;&nbsp;&nbsp;
+					<b style="color:#666666;"><%= @challenge.parent.child_challenges.length %>&nbsp;&nbsp;&nbsp;<% link_to " Total Score ", scoreboard_main_challenges_path(:id => @challenge.id) %></b>&nbsp;&nbsp;&nbsp;
 				<% end %>
 		<% end %>
-		<span style=" text-decoration:none;"><%= link_to " Winners of the Challenge", trophies_challenges_path(:id => @challenge.id) %></span>
+		<span style=" text-decoration:none;"><% link_to " Winners of the Challenge", trophies_challenges_path(:id => @challenge.id) %></span>
 		</td>
 		
 	</tr>
