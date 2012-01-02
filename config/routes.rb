@@ -37,6 +37,7 @@ Dojitsu::Application.routes.draw do
 	  get "trophies"
       put :update_attribute_on_the_spot 
 	  get :get_attribute_on_the_spot
+	 
 	  
     end
   end

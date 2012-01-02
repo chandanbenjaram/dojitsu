@@ -34,9 +34,15 @@
 
 							</label>
 					</td>
-					<td id="searchbutton" style="width:80%; padding-left: 56%;"><input type="text" id="search"/>
-					<%= image_tag ("searchbutton.PNG") %>
-						
+					<td style="width:80%; padding-left: 56%;"><input type="text" id="search"/>
+				<span class="searchbox">	<%= image_tag ("searchbutton.PNG")   %><span>
+						<style>
+						.searchbox
+						{
+						position:relative;
+						relative; top:5px
+						}
+						</style>
 						
 					</td>
 					<td>
@@ -66,18 +72,24 @@
 						<td>
 						<%=image_tag(FbGraph::User.new(eachConnection.target_id).fetch.picture) %>
 						<span class="fbusername"><%= FbGraph::User.new(eachConnection.target_id).fetch.name %></span>
-						<span > 
+						
 						</td>
 						<td>
-						
+						<span > 
 						<%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>
 			
 						
-						<%= link_to image_tag("btn_delete_up.png" ,), delete_contact_user_connections_path( :id=>eachConnection.target_id), :class=>"remove" %></span> 
+					<span class="delete">	<%= link_to image_tag("btn_delete_up.png"), delete_contact_user_connections_path( :id=>eachConnection.target_id)%></span> </span>
 						</td>
 						</tr>
 					<% end %>
-                                       
+                                <style>
+								.delete
+								{
+								position:relative;
+								relative; top:-5px
+								}
+</style>								
 				</tbody>
 				</table>
 				</div>
@@ -117,15 +129,7 @@
 												return false;
 											}
 										});
-										$('#searchbutton').live('click', function(){
-												
-											if(found == true)
-											
-											   $(row).show();
-											else
-											   $(row).hide();
-											  
-											  });
+										if(found == true)$(row).show();else $(row).hide();
 									}
 								});
 							}

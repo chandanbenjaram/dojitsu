@@ -245,6 +245,7 @@ class ChallengesController < ApplicationController
   end
   
   def date_updateStart
+ 
   	@challenge = Challenge.find(params[:value][:myParams21])
      if params[:value][:myParams31]
      startPoint = @challenge.start_point

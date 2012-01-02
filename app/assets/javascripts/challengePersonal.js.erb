@@ -4,6 +4,9 @@ $(document).ready(function($) {
     $(".alternativeRow").btnAddRow({oddRowCSS:"oddRow",evenRowCSS:"evenRow"});
     $(".delRow").btnDelRow();
 
+var str= date1
+
+
     $('#start_point_type').live('change', function() {        
             $('.startPointDate').empty();    
             $('.startPointNumber').empty();
@@ -14,11 +17,12 @@ $(document).ready(function($) {
                             $(div_tag).append($('<input id="start_point_value"  name="start_point_value" class="textfield_effect" type="text" required="required" placeholder="Enter start number here">'));								
 
                             $(div_tag).append('&nbsp;&nbsp;');
-                            $(div_tag).append($('<input id="start_point_label" name="start_point_label" class="textfield_effect" type="text" required="required" placeholder="Enter start label here" >'));				
+                            $(div_tag).append($('<input id="start_point_label" name="start_point_label" class="textfield_effect" type="text" required="required" placeholder="Enter start label here" >'));	date1			
                               
                     }else{
-                            $(div_tag).append('<input id="start_point_value"  name="start_point_value" class="textfield_effect datepicker" type="text" required="required" placeholder="Enter start date here">');				
-
+                            $(div_tag).append('<input id="start_point_value"  name="start_point_value" class="textfield_effect datepicker" type="text" required="required"  placeholder="Enter start date here" >');				
+							
+							
                     }
                     $(".textfield_effect datepicker").append('&nbsp;&nbsp;');
 
@@ -31,25 +35,25 @@ $(document).ready(function($) {
                             showOn: "button",
                             buttonImageOnly: true,
                     });
-            }       
+            } 
     }); 
 
     $('#end_point_type').change(function() {
             $('.endPointDate').empty();    
             $('.endPointNumber').empty();
             if($(this).val()){
-                    var div_tag = $('<div></div>');		
+                    var div_tag1 = $('<div></div>');		
                     if($(this).val() === "endPointNumber") {  
-                            $(div_tag).append($('<input id="end_point_value" name="end_point_value" class="textfield_effect" type="text" required="required" placeholder="Enter end number here">'));								
-                            $(div_tag).append('&nbsp;&nbsp;');
-                            $(div_tag).append($('<input id="end_point_label"  name="end_point_label" class="textfield_effect" type="text" required="required" placeholder="Enter end label here">'));				
+                            $(div_tag1).append($('<input id="end_point_value" name="end_point_value" class="textfield_effect" type="text" required="required" placeholder="Enter end number here">'));								
+                            $(div_tag1).append('&nbsp;&nbsp;');
+                            $(div_tag1).append($('<input id="end_point_label"  name="end_point_label" class="textfield_effect" type="text" required="required" placeholder="Enter end label here">'));				
 
                     }else{
-                            $(div_tag).append('<input id="end_point_value" name="end_point_value" class="textfield_effect datepicker" type="text" required="required" placeholder="Enter end date here">');				
+                            $(div_tag1).append('<input id="end_point_value" name="end_point_value" class="textfield_effect datepicker" type="text" required="required" placeholder="Enter end date here">');				
 
                     }
 
-                    $( '.'+$(this).val()).append(div_tag).fadeIn('500'); 
+                    $( '.'+$(this).val()).append(div_tag1).fadeIn('500'); 
 
                     $('.datepicker').datepicker({ 
                             dateFormat: 'dd/mm/yy',
