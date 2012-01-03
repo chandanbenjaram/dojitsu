@@ -2,11 +2,11 @@
 <div class="span-24 homecontent">
   
     <% if !current_user.nil? %>
-    <% if session[:isNewChallenge] == "isNew" %>
+    <% if session[:isNewUser] == "isNew" %>
 		  <script> 
 			  alert("hi");
 			  $.dojitsuWallPost.renderFbWallPost();
-			  <% session[:isNewChallenge] = "isNew1" %>
+			  <% session[:isNewUser] = "isNew1" %>
 			</script> 
 	<% end %>
 		<%= render :template => 'dashboard/index'%>

@@ -124,11 +124,13 @@
 		if(this.delRowButtons.size()==1)
 			this.delRowButtons.hide();
 		else {
+			
 			if(this.autoAddRow)
 				this.delRowButtons.not(":last").show();
 			else
 				this.delRowButtons.show();
 		}
+	
 		if(this.autoAddRow) {
 			this.target.find(".autoAdd"+this.seed).removeClass("autoAdd"+t.seed);
 			this.target
@@ -350,4 +352,5 @@
 			}
 		}
 	};
+
 }})(jQuery);

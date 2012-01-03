@@ -3,12 +3,14 @@
 	color: #c6c6c6;
 	font-weight: normal;
 	font-size: 12px;
+	resize:none;
 }
 
 textarea:-moz-placeholder, input:-moz-placeholder { 
 	color: #c6c6c6; 
 	font-weight: normal;
 	font-size: 12px;
+	resize:none;
 	height:32px;
 }
 
@@ -635,11 +637,13 @@ option {
 option:focus{
 	border-color: #4ccbda;
 	border-width: 1px;
+	color:#999999;
 }
 
 option:hover{
 	border-color: #4ccbda;
 	border-width: 1px;
+	color:#999999;
 }
 
 input.radio {
@@ -1542,6 +1546,7 @@ input:required {
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
 	height: 30px;
+	color:#999999;
 }
 
 #check3 {
