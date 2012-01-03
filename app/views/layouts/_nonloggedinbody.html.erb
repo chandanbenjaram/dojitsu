@@ -60,11 +60,6 @@
 												<%else%>
 														<%= anc.description %>
 												<%end%>
-												<% if anc.description.size > 200 %>
-														<%=h truncate(anc.description, :length => 200) %>&nbsp;&nbsp;<b><%= link_to "VIEW" , nonLoginShowSocial_challenges_path(:id =>anc.id), :class => 'underline_view' %>									
-												<%else%>
-														<%= anc.description %>
-												<%end%>
                                                 </p>
                                           <% end %>
                                   </td>
