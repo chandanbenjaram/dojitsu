@@ -153,7 +153,7 @@
 							<td colspan="6">
 								<b class="color999"><%= image_tag("icon_arrow_left.png")%>&nbsp;&nbsp;Do all tasks need to be complete before the challenge is marked complete?</b><br>
 								<%= f.radio_button :canCompleteBeforeTasks, "1", :class => "chall_type" ,:checked =>"checked"%>
-								<font class="color999"><%= f.label "Yes" %></font>
+								<font class="color999"><%= f.label "Yes" %></font><span class="spacing"></span>
 								<%= f.radio_button :canCompleteBeforeTasks, "0", :class => "chall_type"%>
 								<font class="color999"><%= f.label "No" %></font>							   
 							</td>
@@ -279,12 +279,11 @@
 			<td width="21%"><input type="text" value="Score" size="5" /></td>
 		</tr>
 		<tr>	
-			<td height="51"></td>
+			<td height="10"></td>
 			<td colspan="5">e.g. reporting 10 miles for "run treadmill (2 points)" task scores 20 points</td>
 		</tr>
 	</table>			
 </div>
-
 			
 			
 			
