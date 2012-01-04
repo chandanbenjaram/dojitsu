@@ -2,9 +2,9 @@
 
 <table width="100%" border="1" bgcolor=#f4f4f4 >
 	<tr bgcolor=#f5f5f5>
-		<th width="85%">
+		<td width="85%">
 			<h3 align="left"><font color="#8c8c8c"><b>Total : <%= @challenge.tasks.count %></b></font></h3>
-		</th>
+		</td>
 		<% t=0 %>
 		
 		<% @challenge.child_challenges.each do |aTask| %>
@@ -108,10 +108,10 @@
 					</style>
 					<div id="check3">
 						<div class="completedtask1"> 
-								<%= total_score %> points (<%= total_score_count %> &nbsp; tasks)
+								<%= total_score %> points (<%= total_score_count %>&nbsp;tasks)
 						</div>
 						<div class="notcompleted1">
-									<font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="#fff"><%= (total-total_score) %> points (<%= @challenge.tasks.count.to_i-total_score_count.to_i %>&nbsp; tasks)</font>
+									<font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="#fff"><%= (total-total_score) %> points (<%= @challenge.tasks.count.to_i-total_score_count.to_i %>&nbsp;tasks)</font>
 						</div>
 						
 						<script type="text/javascript">

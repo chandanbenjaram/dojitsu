@@ -50,6 +50,7 @@ gem "will_paginate", "~> 3.0.2"
 gem "win32console", "~> 1.3.0"
 gem 'spork', '0.9.0.rc8'
 gem "webrat", "~> 0.7.3"
+gem 'factory_girl_rails'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
