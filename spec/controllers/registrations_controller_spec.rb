@@ -11,6 +11,7 @@ describe RegistrationsController do
     it "should be successful" do
       get :new
       response.should be_success
+      response.should render_template('new')
     end
     
     it "should have the right title" do

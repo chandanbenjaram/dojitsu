@@ -174,7 +174,9 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   # provider :facebook, '208068219229732', '0d8e4313c829e165ebf70272fc8a2f48'
   # config.omniauth :facebook, '208068219229732', '0d8e4313c829e165ebf70272fc8a2f48'
-      
+   
+  config.stretches = Rails.env.test? ? 1 : 10
+  
   ########## FACEBOOK call backs #####################
   ### UNCOMMENT FOLLOWING BLOCK BASED ON YOUR ENVIRONMENT
   ### localhost:4000 callback

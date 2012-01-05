@@ -118,9 +118,9 @@ GEM
       mumboe-soap4r
     nokogiri (1.5.0)
     nokogiri (1.5.0-x86-mingw32)
-    oauth2 (0.5.1)
-      faraday (~> 0.7.4)
-      multi_json (~> 1.0.3)
+    oauth2 (0.5.2)
+      faraday (~> 0.7)
+      multi_json (~> 1.0)
     omniauth (1.0.1)
       hashie (~> 1.2)
       rack
