@@ -57,8 +57,8 @@ group :development, :test do
 	gem 'annotate'
 	#gem 'ruby-debug'
 	#gem "mongrel"
-	gem 'ruby-debug-base19', "0.11.24"
-	gem 'ruby-debug19', "0.11.6"  
+	#gem 'ruby-debug-base19', "0.11.24"
+	#gem 'ruby-debug19', "0.11.6"  
   #gem "win32console", "~> 1.3.0"
   gem 'spork', '0.9.0.rc8'
   gem "webrat", "~> 0.7.3"
