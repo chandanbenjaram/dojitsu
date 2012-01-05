@@ -29,10 +29,18 @@ Spork.prefork do
     # instead of true.
     config.use_transactional_fixtures = true
   end
+  
+  RSpec.configure do |config|
+    config.include Devise::TestHelpers, :type => :controller
+  end
+  
+  RSpec.configure do |config|
+    config.extend ControllerMacros, :type => :controller
+  end
+    
 end
 
-    Spork.each_run do
-
+Spork.each_run do
     # Webrat configuration
     Webrat.configure do |config|
         config.mode = :rails

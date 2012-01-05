@@ -2,8 +2,10 @@ class Task
   include Mongoid::Document
   
   #task validations
-  #validates_presence_of :name, :message => "Please add at least one task."  
-
+  validates_presence_of :name, :message => "Please add at least one task."  
+  validates_presence_of :score
+  #validates_presence_of :score_by
+  
   # name of task
   field :name, :type => Hash
   # score translates to Point on UI  
