@@ -42,14 +42,17 @@ ul.tabs li  {
 	background: url("btn_radio_off.png") no-repeat scroll 19px 60% #F4F4F4;
 }      
  
-html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that the active tab does not listen to the hover properties--*/
+html ul.tabs li.active, html ul.tabs li.active { /*--Makes sure that the active tab does not listen to the hover properties--*/
 	background:#FFFFFF;
-	border-bottom: 1px solid #fff; /*--Makes the active tab look like it's connected with its content--*/
+	border-bottom: 1px solid #ffffff; /*--Makes the active tab look like it's connected with its content--*/
 	background: url("btn_radio_on.png") no-repeat scroll 19px 70% white;
 	
 }
 .spacing{
- margin-left: 10em;
+ margin-left: 9em;
+}
+.spacing2{
+padding-left:9px;
 }
 
 .tab_container {
