@@ -28,7 +28,7 @@ $(document).ready(function () {
 	<div>
 		<% if !current_user.nil? %>
 		<div class="logo_globalheader">
-			<%= link_to(image_tag("logo.png")) %>
+			<%= link_to image_tag("logo.png"), dashboard_index_path %>
 		</div>
 		<div class="popup_globalheader">	
 			<ul id="nav">
