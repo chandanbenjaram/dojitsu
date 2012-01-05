@@ -1,6 +1,7 @@
+<%= stylesheet_link_tag('colorbox')%>
+<%= javascript_include_tag('jquery.colorbox-min')%>
 <script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> </script>
-<%= stylesheet_link_tag('colorbox') %>
-<%= javascript_include_tag('jquery.colorbox-min') %>
+
 
 <% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
 	<% group =Array.new %>
@@ -76,10 +77,11 @@
 						</td>
 						<td>
 						<span > 
-						<%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>
-			
-						
-					<span class="delete">	<%= link_to image_tag("btn_delete_up.png"), delete_contact_user_connections_path( :id=>eachConnection.target_id) %></span> </span>
+								<%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>
+								<span class="delete">	
+										<%= link_to image_tag("btn_delete_up.png"), delete_contact_user_connections_path( :id => eachConnection.target_id), :class=>"remove"  %>	
+								</span>
+						</span>
 						</td>
 						</tr>
 					<% end %>
