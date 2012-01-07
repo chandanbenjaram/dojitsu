@@ -10,6 +10,7 @@ class ChallengesController < ApplicationController
     @challenges = current_user.challenges
     @challengeCompleted = params[:id]
     @orgChallenge = Challenge.where(:_id => params[:id]).first
+    cookies[:key] = "orgCompleteTask"
     #raise @orgChallenge.social_type.who_win.inspect
   end
 
@@ -360,6 +361,10 @@ class ChallengesController < ApplicationController
     else
       render "nonLoginShowPersonal"
     end
+  end
+  
+  def trophies
+    @challenge = Challenge.find(params[:id])
   end
   
   def nonLoginShowSocial

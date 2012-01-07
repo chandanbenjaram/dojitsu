@@ -1,4 +1,9 @@
+<%= javascript_include_tag('ajaxPageLoad')%>
 <%= render 'layouts/loggedinbody'%>
 
-<%= render :partial => "messages/message" %>	
+<div id="message"></div>
+<div id="message1" align="center"></div>
+<script>
+  $.dojitsuAjaxPage.renderAjaxPageLoad("/dashboard/message","#message","#message1");
+</script>
 
