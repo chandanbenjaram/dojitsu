@@ -272,9 +272,9 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
 							<label for="search">
 							<strong>
 							<% if  @challenge.class.to_s == "Challenge" %>
-																<font size="4" color="#8c8c8c"><b  id="total">Total: <%= @challenge.child_challenges.length %></b></font>
+																<font size="4" color="#8c8c8c">Total: <%= @challenge.child_challenges.length %></font>
 															<%else %>
-																<font size="4" color="#8c8c8c"> <b  id="total">Total: <%= @challenge.parent.child_challenges.length %></b></font>
+																<font size="4" color="#8c8c8c">Total: <%= @challenge.parent.child_challenges.length %></font>
 															<% end %>
 															<% if @challenge.instance_of?Challenge %>
 																<%= image_tag("btn_msg_up.png", :style=>"margin-left:10px; position:relative; top:5px;" ,:onclick=>"contactToInvitee()")%>
@@ -286,8 +286,8 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
 					<script>
 					function search()
 					{
-					var name_search=document.getElementById("search").value;
-				     select();				
+						var name_search=document.getElementById("search").value;
+						 select();				
 					}
 					</script>
 					<td><div class="styled-select"> <select id="select">

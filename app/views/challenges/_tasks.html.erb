@@ -3,7 +3,7 @@
 <table width="100%" border="1" bgcolor=#f4f4f4 >
 	<tr bgcolor=#f5f5f5>
 		<td width="85%">
-			<h3 align="left"><font color="#8c8c8c"><b>Total : <%= @challenge.tasks.count %></b></font></h3>
+			<b>Total : <%= @challenge.tasks.count %></b>
 		</td>
 		<% t=0 %>
 		
@@ -104,15 +104,28 @@
 					{
 						width: 795px;
 					
-						}
+					}
 					</style>
+				
+					
+				
 					<div id="check3">
-						<div class="completedtask1"> 
-								<%= total_score %> points (<%= total_score_count %>&nbsp;tasks)
-						</div>
-						<div class="notcompleted1">
-									<font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="#fff"><%= (total-total_score) %> points (<%= @challenge.tasks.count.to_i-total_score_count.to_i %>&nbsp;tasks)</font>
-						</div>
+								<div class="completedtask1"> 
+											<% if total_score.to_i && total_score_count == 0 %>
+												<%= total_score %> point (<%= total_score_count %>&nbsp;task)
+											<% else %>
+												<%= total_score %> points (<%= total_score_count %>&nbsp;tasks)
+											<%end%>
+											</div>
+								
+											<div class="notcompleted1">
+														<% if total-total_score.to_i && @challenge.tasks.count.to_i-total_score_count.to_i == 0 %>
+															<font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="#fff"><%= (total-total_score) %> point (<%= @challenge.tasks.count.to_i-total_score_count.to_i %>&nbsp;task)</font>
+														<%else%>
+															<font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="#fff"><%= (total-total_score) %> points (<%= @challenge.tasks.count.to_i-total_score_count.to_i %>&nbsp;tasks)</font>
+														<%end%>
+							
+					</div>
 						
 						<script type="text/javascript">
 								$(function() {

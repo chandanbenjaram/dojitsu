@@ -47,13 +47,7 @@
                     </td>
                     <td>
                          <div id="TestStart" onclick="TestingStart();">
-                               <div id="start_point">
-                                  <%=  @challenge.start_point.value.strftime("%b %d, %Y")%>
-                               </div>
-                               <script>
-                               $("#start_point").hide();
-                               var date1 =  "<%=  @challenge.start_point.value.strftime("%b %d, %Y")%>";
-                               </script>
+						 
                               <% if @challenge.start_point.instance_of?PointDateType %>		
                                   <b style="color:#666666;"><%= @challenge.start_point.value.strftime("%b %d, %Y")%> </b>
                               <% else %>							
@@ -107,7 +101,7 @@
 								
 								
                                 $("#TestStart").replaceWith($("#replacedStart").show());
-								$("#start_point_value").value = date1
+								
                             }
                             
                             $('.dateUpdateStart').click(function(){
@@ -187,9 +181,11 @@
                                       </td>
                                     <% end %>    
                                   </tr>
-                                  <tr>            
+                                  <tr>
+                                    
                                       <%= link_to image_tag("update.png", :class =>"dateUpdateEnd"), show_per_challenges_path(:id => @challenge.id)  %>
-                                      <%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "links_cancel" %>                                   
+                                      <%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "links_cancel" %>
+                                    
                                   </tr> 
                               </table>
                          </div>
@@ -306,10 +302,10 @@
 					</style>
 					<div id="blackbox_personal">
 						<div class="completedtask1">																	
-								<%= total_score %> points (<%= total_score_count %>&nbsp;tasks)
+								<%= total_score %> points (<%= total_score_count %> &nbsp; tasks)
 						</div>
 						<div class="notcompleted1">
-									<font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="#fff"><%= (total-total_score) %> points (<%= @challenge.tasks.count.to_i-total_score_count.to_i %>&nbsp;tasks)</font>
+									<font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="#fff"><%= (total-total_score) %> points (<%= @challenge.tasks.count.to_i-total_score_count.to_i %>&nbsp; tasks)</font>
 						</div>
 						<script type="text/javascript">
 								$(function() {
@@ -351,7 +347,15 @@
 		$('.task_update_popup').colorbox();
 		$('.add_task_popup').colorbox();
 		
-		
+		$("#date").dateinput({
+			format: 'dddd dd, mmmm yyyy',	// the format displayed for the user
+			selectors: true,             	// whether month/year dropdowns are shown
+			min: -100,                    // min selectable day (100 days backwards)
+			max: 100,                    	// max selectable day (100 days onwards)
+			offset: [10, 20],            	// tweak the position of the calendar
+			speed: 'fast',               	// calendar reveal speed
+			firstDay: 1                  	// which day starts a week. 0 = sunday, 1 = monday etc..
+		});
 	});
 	
 	// setup tooltip for a single DIV element
@@ -378,5 +382,18 @@
 
 	.button_edit{ background:#f8981d; color:#ffffff; }
 	.cancel_edit{ background:#999999; color:#ffffff; }
+.textfield_effect 
+	{
+		background-repeat: repeat-x;
+		border-color: #F4F4F4;
+		border-style: solid;
+		border-width: 1px;
+		color: #C6C6C6;
+		font-family: Arial;
+		font-size: 15px;
+		height: 25px;
+		width: 30%;
+	}
+	
 	
 </style>

@@ -482,7 +482,7 @@ position:relative;
 	font-family: Arial;
 	font-size: 15px;
 	color: #C6C6C6;
-	width: 35%;
+	width: 49%;
 	height: 25px;
 }
 
@@ -881,7 +881,7 @@ input.radio {
 	text-color:#FFFFFF;
 	display: block;
 	font-size: 12px;
-	
+	float:right;
 	padding: 5px;
 	text-align: center;
 	text-transform: uppercase;
