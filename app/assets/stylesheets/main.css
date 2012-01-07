@@ -1449,7 +1449,7 @@ width:90%;
 .completedtask1
 {
 	color: #FFFFFF;
-    left: 150px;
+    left: 165px;
     position: relative;
     top: 2px;
     width: 30%;
@@ -1473,7 +1473,7 @@ width:90%;
 .notcompleted1
 {
 	float:left;
-	left:95px;
+	left:115px;
 	position:relative;
 	color:#FFFFFF;
 }

@@ -3,8 +3,8 @@
 <table width="100%" border="1" bgcolor=#f4f4f4 >
 	<tr bgcolor=#f5f5f5>
 		<td width="85%">
-			<b>Total : <%= @challenge.tasks.count %></b>
-		</td>
+			Total : <%= @challenge.tasks.count %>
+			</td>
 		<% t=0 %>
 		
 		<% @challenge.child_challenges.each do |aTask| %>
@@ -110,6 +110,7 @@
 					
 				
 					<div id="check3">
+						<div class="task" id="taskprogress"></div>
 								<div class="completedtask1"> 
 											<% if total_score.to_i && total_score_count == 0 %>
 												<%= total_score %> point (<%= total_score_count %>&nbsp;task)
@@ -137,12 +138,13 @@
 						</script>
 						<style>
 					#check5 {
-						color: #7AC142;
-						font-size: 15px;
-						font-weight:bold;
-						position: relative;
-						top: 20px;
-						left:10px;
+								color: #7AC142;
+								font-size: 15px;
+								font-weight:bold;
+								position: relative;
+								top: 20px;
+								left:10px;
+								width: 19%;
 							}
 							.challenge_mark_as_c1 {
 								background: none repeat scroll 0 0 #999999;
