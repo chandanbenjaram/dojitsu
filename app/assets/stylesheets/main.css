@@ -1,16 +1,14 @@
-#/* app global placeholder properties */
+/* app global placeholder properties */
 ::-webkit-textarea-placeholder, ::-webkit-input-placeholder { 
 	color: #c6c6c6;
 	font-weight: normal;
 	font-size: 12px;
-	resize:none;
 }
 
 textarea:-moz-placeholder, input:-moz-placeholder { 
 	color: #c6c6c6; 
 	font-weight: normal;
 	font-size: 12px;
-	resize:none;
 	height:32px;
 }
 
@@ -451,7 +449,7 @@ position:relative;
 	font-family: Arial;
 	font-size: 15px;
 	color: #C6C6C6;
-	width: 35%;
+	width: 299px;
 	height: 25px;
 }
 
@@ -509,7 +507,7 @@ position:relative;
 	font-family: Arial;
 	font-size: 15px;
 	color: #333333;
-	resize: none;
+	
 	height: 25px;
 	
 	width:99%;
@@ -519,7 +517,6 @@ position:relative;
 	border-color: #4ccbda;
 	border-width: 1px;
 	height:60px;
-	resize: none;
 }
 
 .textarea_nw_tk:focus{
@@ -597,12 +594,12 @@ select {
 border: none;
 vertical-align: top;
 position: relative;
-width: 130%;
+width: 110%;
 height: 25px;
 color: #F9A943;
 background: transparent;
 margin-top: -3px;
-top: 10px;
+top: 25%;
 }
 .flt_s{
 border: 2px solid #a52a2a;
@@ -637,13 +634,11 @@ option {
 option:focus{
 	border-color: #4ccbda;
 	border-width: 1px;
-	color:#999999;
 }
 
 option:hover{
 	border-color: #4ccbda;
 	border-width: 1px;
-	color:#999999;
 }
 
 input.radio {
@@ -687,12 +682,12 @@ input.radio {
 	 background: url("viewallbutton.PNG") no-repeat; 
      float: left;
      font-family: Arial;
-     height: 24px;
+     height: 27px;
      left: 105px;
-     min-width: 24%;
+     min-width: 25%;
      position: relative;
      text-align: right;
-     top: 3px;
+     top: 0px;
 }
 .ds_view_all1 {
 	background: url("viewall.PNG") no-repeat right;	
@@ -776,18 +771,20 @@ input.radio {
 }
 
 .links_cancel {
-    background: none repeat #999999;
-    color: #FFFFFF;
-    float: right;
-    height: 24px;
-    margin: 15px 0;
-    padding: 2px;
-    position: relative;
-    right: -14%;
-    text-align: center;
-    text-transform: uppercase;
-    top: 15%;
-    width: 10%;
+	background: none repeat #999999;
+	display: block;
+	font-size: 12px;
+	margin: 20px 0;
+	padding: 5px;
+	text-align: center;
+	text-transform: uppercase;
+	width: 60px;
+	text-decoration: none;
+	float:right;
+	right:8px; 
+	top: 2px;
+	color:#FFFFFF;
+
 }
 .links_cancel2 {
     background: none repeat scroll 0 0 #999999;
@@ -1134,8 +1131,7 @@ ul.tabs1 {
 {
 	position:relative;
 	float:left;
-	left:30px;
-	width:100%;
+	left:-30px;
 }
 #score
 {
@@ -1249,7 +1245,7 @@ position:absolute;
 	postion:absolute;
 	padding-left:20px;
 	width:120px;
-	height:auto;
+height:auto;
 }
 #content2
 {
@@ -1258,7 +1254,7 @@ position:absolute;
 	padding-left:10px;
 	width:400px;
 	height:auto;
-	text-align: right;
+	 text-align: right;
 }
 #check1
 {
@@ -1417,11 +1413,11 @@ width:90%;
 
 .completedtask1
 {
-	color: #FFFFFF;
-    left: 150px;
-    position: relative;
-    top: 2px;
-    width: 30%;
+	color:#FFFFFF;
+	left:170px;
+	position:relative;
+	top:2px;
+	width:200px;
 }
 .invitees3{
     background: none repeat scroll 0 0 #F9A943;
@@ -1546,7 +1542,6 @@ input:required {
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
 	height: 30px;
-	color:#999999;
 }
 
 #check3 {
@@ -1575,7 +1570,7 @@ input:required {
 }
 #search{
   border: 1px solid #BEBEBE;
-    height: 20px;
+    height: 25px;
     width: 180px;
 }
 #tableshow_soc
@@ -1779,28 +1774,27 @@ top: -12px;
     right: 5px;
     top: 15px;
 }
-
-.nav_shadow_mydojo
-{
-	height: 25px;
-	margin-bottom: 0.1em;
-	position: relative;
-	top: -18px;
-	width: 100%;
-}
+		.nav_shadow_mydojo
+		{
+		height: 25px;
+    margin-bottom: 0.1em;
+    position: relative;
+    top: -18px;
+    width: 100%;
+		}
 		
 .imagebackground{
  	background: url("ui-bg_glass_75_dadada_1x400.png") no-repeat center;	
 	padding-left: 18px;
 	background-size: 8%;
+	
 }
 .imagebackground2{
-
+ 	background: url("ui-bg_highlight-soft_vertical.png") no-repeat center;	
 	padding-left: 18px;
 	background-size: 8%;
 	
 }
-
 
 .mydojoscore
   {
@@ -1813,8 +1807,8 @@ top: -12px;
     position: relative;
   }
   .taskIcon{
-		float:right;
-		right:10px;  	
+float:right;
+right:10px;  	
   }
   
   .hidebutton{
@@ -1878,46 +1872,15 @@ top: -12px;
     float: right;
     height: 28px;
     position: relative;
-    right: 10%;
-    top: 15px;
+    right: 25%;
+    top: 20px;
     width: 12%;
 }
 .dateUpdateStart{
-    float: right;
+	float: right;
     height: 28px;
     position: relative;
-    right: 10%;
-    top: 15px;
+    right: 25%;
+    top: 20px;
     width: 12%;
-}
-
-.bordercolort
-{
-	height:5px;
-	border-bottom:2px solid #BEBEBE;
-}
-.underline_view{
-text-decoration: underline;
-color: #06BACE;
-}
-.underline_view:hover{
-text-decoration: underline;
-color: #06BACE;
-}
-#timespace{
-	position:relative; 
-	float:right; 
-	right:31px;
-}
-#image3{
-position:relative;
-float:right;
-}
-#image1{
-position:relative;
-float:right;
-}
-#image4{
-position:relative;
-float:right;
 }

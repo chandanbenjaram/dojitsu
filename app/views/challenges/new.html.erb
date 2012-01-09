@@ -18,21 +18,21 @@
 
 	<%= form_for :challenge, :url => {:controller=> "challenges",:action => "create"},:html=>{:multipart => true, :name => "challenge_form", :onSubmit => "return validate_form_fields(this);"} do |f| -%>
 	<table width="100%" border="0" style="margin-top:0px;">
-		<tr >
+		<tr>
 			<td colspan="4">
-			<%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :placeholder=>"Enter challenge title here" , :required => "required", :maxlength => "30"  %><div id="title"></div>
+				<p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :placeholder=>"Enter challenge title here" , :required => "required", :maxlength => "30"  %><div id="title"></div></p>
 			</td>	
 		</tr>
 	
 		
-		<tr >
+		<tr>
 			<td colspan="4">
 				<hr id="all_hr">
 			</td>
 		</tr>
 		<tr>
-			<td valign="top" class="color999"><%= f.label :description, "DESCRIPTION" %></td>
-			<td  colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea", :placeholder=>"Enter challenge description here" %></td>
+			<td valign="center" class="color999"><%= f.label :description, "DESCRIPTION" %></td>
+			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea", :placeholder=>"Enter challenge description here" %><div %></td>
 		</tr>
 		<tr>
 				<td colspan="4">
@@ -153,7 +153,7 @@
 							<td colspan="6">
 								<b class="color999"><%= image_tag("icon_arrow_left.png")%>&nbsp;&nbsp;Do all tasks need to be complete before the challenge is marked complete?</b><br>
 								<%= f.radio_button :canCompleteBeforeTasks, "1", :class => "chall_type" ,:checked =>"checked"%>
-								<font class="color999"><%= f.label "Yes" %></font><span class="spacing"></span>
+								<font class="color999"><%= f.label "Yes" %></font>
 								<%= f.radio_button :canCompleteBeforeTasks, "0", :class => "chall_type"%>
 								<font class="color999"><%= f.label "No" %></font>							   
 							</td>
@@ -279,11 +279,12 @@
 			<td width="21%"><input type="text" value="Score" size="5" /></td>
 		</tr>
 		<tr>	
-			<td height="10"></td>
+			<td height="51"></td>
 			<td colspan="5">e.g. reporting 10 miles for "run treadmill (2 points)" task scores 20 points</td>
 		</tr>
 	</table>			
 </div>
+
 			
 			
 			

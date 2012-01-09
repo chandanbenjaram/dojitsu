@@ -2,12 +2,17 @@
 	<p align="center">No challenges found</p>
 <% else %>
 	<% Challenge.whatsNew.each do |aChallenge| %>
-	<div id="contentbox" >
+	<div id="contentbox">
 		<%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:-2px;") %>
 		<table width="100%" style="margin-top:-10px;">
 			<tr>
-				<td width="70%", style="padding-left:15px; ">
-					<font size="3px;" style="font-weight:bold;"><%= aChallenge.title%></font>	<br>										
+				<td width="60%"><font size="3px;" style="font-weight:bold"><%= aChallenge.title%></font></td>
+				<td width="40%">
+					<%= time_ago_in_words  aChallenge.created_at%>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">													
 					by
 					<% if aChallenge.instance_of?ChildChallenge %>
 					   <% @parentChallenge = Challenge.where(:_id => aChallenge.challenge_id).first%>
@@ -18,34 +23,38 @@
 					<% else %>
 						<b><%= FbGraph::User.new(aChallenge.user_id).fetch.name %></b>
 					<% end %>
-		<br>	
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
 					<% if aChallenge.start_point.instance_of?PointDateType %>
 						<%= aChallenge.start_point.value.strftime("%b %d, %Y")%> - <%= aChallenge.end_point.value.strftime("%b %d, %Y")%>
 					<% else %>
 						<%= aChallenge.start_point.value rescue 0%> - <%= aChallenge.end_point.value rescue 0%>
 					<% end %>
-
-					<% if aChallenge.child_challenges.size<2 %>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><% if aChallenge.child_challenges.size<2 %>
 					 <%= aChallenge.child_challenges.size%>&nbsp;&nbsp;contestant
 					 <%else%>
 					<%= aChallenge.child_challenges.size%>&nbsp;&nbsp;contestants
 					<%end%>
 					
-		
-				
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
 					<% if aChallenge.personal_type.instance_of?ChallengePersonalType%>
 						<p style="text-transform:none;">
-							<%=h truncate(aChallenge.description, :length => 15) %>&nbsp;&nbsp;<b><%= link_to "VIEW" , show_per_challenges_path(:id => aChallenge.id), :class => 'underline_view'  %></b>									
+							<%=h truncate(aChallenge.description, :length => 15) %>....<%= link_to "VIEW" , show_per_challenges_path(:id => aChallenge.id) %>									
 						</p>
 					<% end %>
 					<% if aChallenge.social_type.instance_of?ChallengeSocialType%>
 						<p style="text-transform:none;">
-							<%=h truncate(aChallenge.description, :length => 15) %>&nbsp;&nbsp;<b><%= link_to "VIEW" , show_soc_challenges_path(:id => aChallenge.id), :class => 'underline_view'   %>	</b>								
+							<%=h truncate(aChallenge.description, :length => 15) %>....<%= link_to "VIEW" , show_soc_challenges_path(:id => aChallenge.id) %>									
 						</p>
 					<% end %>								
-				</td>
-				<td valign="top" width="30%", style="text-align: right;">
-						<p style="float:right; position: relative; right: 10px;"><%= time_ago_in_words  aChallenge.created_at%></p>
 				</td>
 			</tr>
 		</table>

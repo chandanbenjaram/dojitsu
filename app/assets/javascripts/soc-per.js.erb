@@ -1,7 +1,27 @@
 (function($) {
-	
+	$('.editable1').editable({
+		type:'text',
+		submit:'update',
+		cancel:'cancel',
+		editClass:'resultItem',
+		// onSubmit: end
+	}); 
+
+	// edit on spot 2 nd type
+	$('.editable2').editable({type:'textarea',submitBy:'dblclick'}).css('background-color','#39c');
 
 
+	$('.editable3').editable({
+		type:'text',
+		submit:'save',
+		// onSubmit:end
+	}); 
+
+	$('div.editable').editable();
+
+	// Add row for new task
+	$(".alternativeRow").btnAddRow({oddRowCSS:"oddRow",evenRowCSS:"evenRow"});
+	$(".delRow").btnDelRow();
 
 	//select all the a tag with name equal to modal
 	$('a[name=modal]').click(function(e) {
@@ -54,8 +74,8 @@
 		}
 	});
 	
-
-	
+	$(".addComment").btnAddRow({rowNumColumn:"rowNumber"});
+	$(".delRow").btnDelRow();
 
 })(jQuery);
 

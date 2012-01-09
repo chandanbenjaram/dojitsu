@@ -38,20 +38,24 @@ module Dojitsu
     config.action_mailer.default_url_options = { :host => 'localhost:4000' }
 
     # mail server settings
-    config.action_mailer.delivery_method = :smtp
-    config.action_mailer.smtp_settings = {
-        :address => "smtp.gmail.com",
-      :port => "587",
-        :domain => 'localhost:4000',
-        :user_name => 'sriram.in20@gmail.com',
-        :password => '9866266845',
-        :authentication => 'login',
-        :enable_starttls_auto => true 
-      }
-
-    config.action_mailer.perform_deliveries = true
-    config.action_mailer.raise_delivery_errors = true 
     
+config.action_mailer.delivery_method = :smtp
+
+config.action_mailer.perform_deliveries = true
+config.action_mailer.raise_delivery_errors = true
+config.action_mailer.default :charset => "utf-8"
+
+ ActionMailer::Base.smtp_settings = {
+  :address => "smtp.gmail.com",
+  :port => 587,
+  :domain =>  'gmail.com',
+  :user_name => ENV['GMAIL_SMTP_USER'],
+  :password => ENV['GMAIL_SMTP_PASSWORD'],
+  :enable_starttls_auto => true ,
+  :authentication => :plain
+}
+ 
+   
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 

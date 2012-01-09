@@ -10,6 +10,26 @@ require 'spec_helper'
 #     end
 #   end
 # end
+
+
 describe OmniauthCallbacksHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+ OmniAuth.config.test_mode = true
+    OmniAuth.config.add_mock(:facebook, {
+    :provider => 'facebook',
+    :uid => '100000018823471',
+    :user_info => {
+        :name => 'Sriram Ilapakurty'
+      }
+})
+
 end
+
+#OmniAuth.config.test_mode = true
+#OmniAuth.config.add_mock(:facebook, {  :provider    => "facebook", 
+     #                             :uid         => "100000018823471", 
+          #                        :user_info   => {   :name       => "Sriram Ilapakurty"},
+           #                       :credentials => {   :access_token => "AAACEdEose0cBAEIWkEPnmt8uAYnntM7kpEJwpfxlE5PpBe7ziOzjlZBxZC52ZBMyqz5MyG4qwIbi5S5EuWyuKsKj3Pioq7XDUhNiMsfAghCZAQgtQdEf"} })
+
+#end
+
+

@@ -1,5 +1,7 @@
 require 'spec_helper'
 
 describe Authentication do
-  pending "add some examples to (or delete) #{__FILE__}"
+ it "should have a user" do
+      should belong_to(:user) 
+  end          
 end

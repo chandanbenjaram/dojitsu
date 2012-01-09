@@ -1,16 +1,15 @@
-<%= stylesheet_link_tag('main')%>
 <div style="overflow-y: auto; overflow-x: hidden;  height : 465px;" id="challengedetails">
 	<% taskCompleted=1 %>
 	<script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> </script>
 	<table class="sortable">
           <thead>
-            	<tr><th style="CURSOR: pointer; cursor: hand;" id="content1">NAME</th><th style="CURSOR: pointer; cursor: hand;" id="content2">MY DOJITSU SCORE</th></tr>
+            <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">NAME</th><th style="CURSOR: pointer; cursor: hand;" id="content2">MY DOJITSU SCORE</th></tr>
           </thead>
           <tbody>  
               <% current_user.challenges.each do |userChallenge| %>
               <tr style="cursor:pointer;" valign="top" class="challengerow" onclick="location.href='<%= show_per_challenges_path(:id => userChallenge)  %>'" >
-                  <td class="bordercolort",  style="padding-left:15px; ">	
-                      <font family="Arial" color="#666666" size=2"><b><%= userChallenge.title %></b></font><br><font size=2>by </font>
+                  <td>	
+                      <font family="Arial" color="#666666" size=3"><b><%= userChallenge.title %></b></font><br><font size=2>by </font>
                       <% if userChallenge.instance_of?ChildChallenge %>
                          <% @parentChallenge = Challenge.where(:_id => userChallenge.challenge_id).first%>
                          <script>
@@ -27,7 +26,7 @@
                               <%= userChallenge.child_challenges.size %> contestants<br>
                       <% end %>
                   </td>
-                  <td class="bordercolort", style="padding-right:8px; ">					
+                  <td >					
                       <div class="taskprogress" id="taskprogress<%= taskCompleted %>"></div><br/>
                           <div id="check1">
                                   <% flag1=0 %>
@@ -63,7 +62,7 @@
                               &nbsp;&nbsp;<font size=4><b><%= aScore %></b></font>
                       </div>													
                   </td>																					
-                  <% taskCompleted+=1 %>															
+                  <% taskCompleted+=1 %>																
               </tr>
               <% end %>
           </tbody>

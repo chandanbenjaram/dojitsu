@@ -7,6 +7,7 @@ Dojitsu::Application.routes.draw do
 
   # user registration & 3rd party logins
   match 'users/auth/:provider/callback', :to=>'authentications#create'
+
   devise_for :users, :controllers => { :registrations => "registrations"}
   resources :authentications
 

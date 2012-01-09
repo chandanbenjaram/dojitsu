@@ -1,5 +1,15 @@
 require 'spec_helper'
 
 describe UserConnection do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should have a UserConnection" do
+    UserConnection.new.should be_a(UserConnection)
+
+  end         
+ 
+        
+ 
+  
 end
+
+
+
