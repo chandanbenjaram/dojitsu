@@ -42,7 +42,7 @@ describe AuthenticationsController do
       end
       
       it "should render the 'new' page" do
-        get :new, :user => @attr
+        post :create, :user => @attr
         response.should redirect_to(new_user_registration_path)
       end
     end

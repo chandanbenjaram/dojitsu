@@ -8,12 +8,14 @@ class ChallengesController < ApplicationController
     @title = "Challenges"
     @no_of_row = Challenge.all.count
     @challenges = current_user.challenges
-    
+    @challengeCompleted = params[:id]
+    @orgChallenge = Challenge.where(:_id => params[:id]).first
+    cookies[:key] = "orgCompleteTask"
+    #raise @orgChallenge.social_type.who_win.inspect
   end
 
   def show       
-    @challenge = Challenge.find(params[:id])	
-    
+	@challenge = Challenge.find(params[:id])
   end
 
   def show_soc
@@ -188,7 +190,9 @@ class ChallengesController < ApplicationController
   def task_update_c
     @ch_ts_update = Challenge.find(params[:id])
     unless params[:tatal_s]
-      @ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1)
+      if params[:task_done] == "yes"
+        @ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1)
+      end
     else
       @ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1, :score => params[:tatal_s])
     end 
@@ -197,9 +201,9 @@ class ChallengesController < ApplicationController
 
   def challenge_comp
     #raise "Maisa"
-    render :layout => false
-    #Challenge.where(:_id => params[:id]).update(:is_complete => 1)
-    #redirect_to challenges_path(:isNewChallenge => "isNew")
+    #render :layout => false
+    Challenge.where(:_id => params[:id]).update(:is_complete => 1)
+    redirect_to challenges_path(:isNewChallenge => "isNew", :id => params[:id])
   end
 
   def my_challenge
@@ -357,6 +361,10 @@ class ChallengesController < ApplicationController
     else
       render "nonLoginShowPersonal"
     end
+  end
+  
+  def trophies
+    @challenge = Challenge.find(params[:id])
   end
   
   def nonLoginShowSocial

@@ -9,10 +9,10 @@
 	<table width=100%>
 	<tr>
 	<td>
-	<%= button_to "DONE",   user_connection_path(:id => @useconnection), :method => :delete %>
+	<%= button_to "DONE",   user_connection_path(:id => @useconnection), :method => :delete, :class => "selectable-del" %>
 	</td>
 	<td>
-<%= link_to "CANCEL", user_connections_path, :class => "selectable"%>
+	<%= link_to "CANCEL", user_connections_path, :class => "selectable"%>
 	</td>
 	</tr>
 	</table>

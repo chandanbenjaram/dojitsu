@@ -2,6 +2,20 @@ require 'spec_helper'
 
 describe Challenge do
   
+  describe "Validation" do
+    
+    it "should not be valid without a title" do
+      aChallenge = Challenge.create(:title => "")
+      aChallenge.should_not be_valid
+    end
+    
+    it "save the title and validate" do
+      aChallenge = Challenge.create(:title => "Challenge testing")
+      aChallenge.title.should == "Challenge testing"
+    end
+    
+  end
+  
   describe "Associations" do
     it "has many child_challenges" do
       Challenge.new.should respond_to(:child_challenges)
@@ -53,6 +67,22 @@ describe Challenge do
         }.should_not change(Task, :count)
       end
       
+    end
+  end
+  
+  describe "Scope ':social_n_parents'" do
+    it "should have the scope" do
+      Challenge.should respond_to(:social_n_parents)
+    end
+    
+    it "should include social challenge excluding chaild challenge" do
+      @challenge = Challenge.create(:social_type.exists => true, :challenge_id.exists => false)
+      Challenge.social_n_parents.should include(@challenge)
+    end
+    
+    it "should include Challenge with social_type flag" do
+      socialChallenge = Challenge.create! :social_type.exists => true
+      Challenge.socialChallenge.should include(socialChallenge)
     end
   end
   

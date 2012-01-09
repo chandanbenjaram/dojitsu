@@ -18,21 +18,20 @@
 
 	<%= form_for :challenge, :url => {:controller=> "challenges",:action => "create"},:html=>{:multipart => true, :name => "challenge_form", :onSubmit => "return validate_form_fields(this);"} do |f| -%>
 	<table width="100%" border="0" style="margin-top:0px;">
-		<tr>
+		<tr >
 			<td colspan="4">
-				<p align="left"><%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :placeholder=>"Enter challenge title here" , :required => "required", :maxlength => "30"  %><div id="title"></div></p>
+			<%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :placeholder=>"Enter challenge title here" , :required => "required", :maxlength => "30"  %><div id="title"></div>
 			</td>	
 		</tr>
 	
-		
-		<tr>
+		<tr >
 			<td colspan="4">
 				<hr id="all_hr">
 			</td>
 		</tr>
 		<tr>
-			<td valign="center" class="color999"><%= f.label :description, "DESCRIPTION" %></td>
-			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea", :placeholder=>"Enter challenge description here" %><div %></td>
+			<td valign="top" class="color999"><%= f.label :description, "DESCRIPTION" %></td>
+			<td  colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea", :placeholder=>"Enter challenge description here" %></td>
 		</tr>
 		<tr>
 				<td colspan="4">
@@ -83,6 +82,7 @@
 					<span class="moreInfoTip color999" rel="#moreCreateTaskId" title="The score for each task will be added up to determin the winner(s).">
 						<%= image_tag("btn_questionmark_up.png")%>
 					</span>
+				
 				</td>
 				<td colspan="3">
 					<table border="1">
@@ -152,8 +152,8 @@
 						<tr>
 							<td colspan="6">
 								<b class="color999"><%= image_tag("icon_arrow_left.png")%>&nbsp;&nbsp;Do all tasks need to be complete before the challenge is marked complete?</b><br>
-								<%= f.radio_button :canCompleteBeforeTasks, "1", :class => "chall_type" ,:checked =>"checked"%>
-								<font class="color999"><%= f.label "Yes" %></font>
+								<span class="spacing2"><%= f.radio_button :canCompleteBeforeTasks, "1", :class => "chall_type" ,:checked =>"checked"%>
+								<font class="color999"><%= f.label "Yes" %></span></font><span class="spacing"></span>
 								<%= f.radio_button :canCompleteBeforeTasks, "0", :class => "chall_type"%>
 								<font class="color999"><%= f.label "No" %></font>							   
 							</td>
@@ -265,7 +265,7 @@
 		<tr>
 			<td width="43%"><p style="color:#f9a943; font-size:12px; margin-top:15px;"><b>check box:</b></p></td>
 			<td width="17%"><input type="text" value="1(Check of the task)" size="18" /></td>
-			<td width="3%"><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
+			<td width="3%"><%= image_tag("icon_multiply.png", :height => '15', :width => '11')%></td>
 			<td width="13%"><input type="text" value="point(s) per task" size="14" /></td>
 			<td width="3%"><%= image_tag("icon_equal.png", :height => '10', :width => '10')%></td>
 			<td width="21%"><input type="text" value="Score" size="5" /></td>
@@ -279,12 +279,29 @@
 			<td width="21%"><input type="text" value="Score" size="5" /></td>
 		</tr>
 		<tr>	
-			<td height="51"></td>
+			<td height="15"></td>
 			<td colspan="5">e.g. reporting 10 miles for "run treadmill (2 points)" task scores 20 points</td>
 		</tr>
 	</table>			
 </div>
-
+<style>
+.ui-draggable .ui-dialog-titlebar {
+    background: none repeat scroll 0 0 #8497BF;
+    cursor: move;
+}
+.ui-dialog .ui-dialog-title {
+    color: #FFFFFF;
+    float: left;
+    margin: 0.1em 16px 0.1em 0;
+}
+.ui-dialog .ui-dialog-buttonpane button {
+    background: none repeat scroll 0 0 #8497BF;
+    color: #FFFFFF;
+    cursor: pointer;
+    margin: 0.5em 0.4em 0.5em 0;
+	font-weight: bold;
+}
+</style>
 			
 			
 			

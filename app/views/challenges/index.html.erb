@@ -21,7 +21,7 @@
                        <div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Total Score</span></div></div>
                   </td>
               </tr> 
-              <% if !@orgChallenge.blank? and @orgChallenge.instance_of?Challenge and session[:taskComplete] == 'orgCompleteTask' %>
+              <% if !@orgChallenge.blank? and @orgChallenge.instance_of?Challenge and cookies[:key] == 'orgCompleteTask' %>
                   <% sl=0 %>
                   <% if @orgChallenge.social_type.who_win == "Highest number of points" %>
                       <% @all =  Challenge.winner(params[:id]) %>
@@ -50,8 +50,8 @@
         </div>  
 
 
-<% if(!@orgChallenge.blank? and @orgChallenge.instance_of?Challenge and session[:taskComplete] == 'orgCompleteTask') %>        
-<%= session[:taskComplete] = nil %>
+<% if(!@orgChallenge.blank? and @orgChallenge.instance_of?Challenge and cookies[:key] == 'orgCompleteTask') %>        
+<%= cookies[:key] = nil%>
 <script>
   $(document).ready(function(){
             $.colorbox({
@@ -66,7 +66,7 @@
               overlayClose: true,
               onComplete: function () {
                   // $(this).initFunctions(); // if you want to reinit another colorbox, you should pass the element as an argument to initFunctions rather than calling this as a blanket initializer for all colorboxes.
-              }
+              }              
           });
     });
 </script>

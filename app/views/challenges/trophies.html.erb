@@ -1,56 +1,78 @@
 <%= render 'layouts/loggedinbody'%>
 <table>
 <% if @challenge.class.to_s == "ChildChallenge" %>
-		<div>
-	 <% winners_Count= @challenge.social_type.how_many_winners%>
-		<%  nooftrophies=winners_Count.to_i %>
-		<% Challenge.winner(@challenge.parent.id).each do |winner| %>
-		<tr>
-					
-				 <td width="50%">
-					<%= image_tag FbGraph::User.new(winner[0]).fetch.picture %><span style="position:relative; font-weight:bold; top:-15px; padding-left:10px; "><%= FbGraph::User.new(winner[0]).fetch.name %></span>
-				 </td>
-				 <td width="25%"> <% for i in 1..nooftrophies%>
-							<%= image_tag ("icon_trophy.png") %>
-						<% end %>
-						
-						<% nooftrophies-=1 %>
-				 </td>
-				 <td width="25%">
-					<b><%= winner[1] %></b>
-				 </td>
-				 
-		</tr>
-		<tr>
-		<td colspan=3><hr width="100%"></td>
-		</tr>
-	   <%end%>
-	</div>
+     <% winners_Count= @challenge.social_type.how_many_winners%>
+        <% nooftrophies=winners_Count.to_i %>
+        <% sl=0 %>
+        <% if @challenge.parent.social_type.who_win == "Highest number of points" %>
+            <% @all =  Challenge.winner(@challenge.parent.id) %>
+        <% end %>
+        <% if @challenge.parent.social_type.who_win == "Participant completes all tasks" %>
+            <% @all =  Challenge.winnerCompleteAllTask(@challenge.parent.id) %>
+        <% end %>
+        <% if @challenge.parent.social_type.who_win == "Lowest number of points" %>
+            <% @temp =  Challenge.winner(@challenge.parent.id) %>
+            <% @all = @temp.sort {|a,b| a[1] <=> b[1]} %>
+        <% end %>
+        <% @all.each do |winner| %>
+        <tr>
+           <td width="50%">
+              <%= image_tag FbGraph::User.new(winner[0]).fetch.picture %><span style="position:relative; font-weight:bold; top:-15px; padding-left:10px; "><%= FbGraph::User.new(winner[0]).fetch.name %></span>
+           </td>
+           <td width="25%"> 
+              <% for i in 1..nooftrophies%>
+                  <%= image_tag ("icon_trophy.png") %>
+              <% end %>
+              <% nooftrophies-=1 %>
+           </td>
+           <td width="25%">
+              <b><%= winner[1] %></b>
+           </td>
+        </tr>
+        <tr>
+            <td colspan=3><hr width="100%"></td>
+        </tr>
+        <% sl +=1 %>
+        <% if sl.to_i == @challenge.parent.social_type.how_many_winners.to_i %>
+            <% break %>
+        <% end %>
+     <%end%>
 <% else %>
-<div>
  <% winners_Count= @challenge.social_type.how_many_winners%>
-	<%  nooftrophies=winners_Count.to_i %>
-	<% Challenge.winner(@challenge.id).each do |winner| %>
-			<tr>
-					
-				 <td width="50%">
-					<%= image_tag FbGraph::User.new(winner[0]).fetch.picture %><span style="position:relative; font-weight:bold; top:-15px; padding-left:10px; "><%= FbGraph::User.new(winner[0]).fetch.name %></span>
-				 </td>
-				 <td width="25%"> <% for i in 1..nooftrophies%>
-							<%= image_tag ("icon_trophy.png") %>
-						<% end %>
-						
-						<% nooftrophies-=1 %>
-				 </td>
-				 <td width="25%">
-					<b><%= winner[1] %></b>
-				 </td>
-				 
-			 </tr>
-			 <tr>
-				<td colspan=3><hr width="100%"></td>
-			</tr>
-   <%end%>
-</div>
+      <% nooftrophies=winners_Count.to_i %>
+      <% sl=0 %>
+        <% if @challenge.social_type.who_win == "Highest number of points" %>
+            <% @all =  Challenge.winner(@challenge.id) %>
+        <% end %>
+        <% if @challenge.social_type.who_win == "Participant completes all tasks" %>
+            <% @all =  Challenge.winnerCompleteAllTask(@challenge.id) %>
+        <% end %>
+        <% if @challenge.social_type.who_win == "Lowest number of points" %>
+            <% @temp =  Challenge.winner(@challenge.id) %>
+            <% @all = @temp.sort {|a,b| a[1] <=> b[1]} %>
+        <% end %>
+        <% @all.each do |winner| %>
+        <tr>
+           <td width="50%">
+              <%= image_tag FbGraph::User.new(winner[0]).fetch.picture %><span style="position:relative; font-weight:bold; top:-15px; padding-left:10px; "><%= FbGraph::User.new(winner[0]).fetch.name %></span>
+           </td>
+           <td width="25%"> 
+              <% for i in 1..nooftrophies%>
+                  <%= image_tag ("icon_trophy.png") %>
+              <% end %>
+              <% nooftrophies-=1 %>
+           </td>
+           <td width="25%">
+              <b><%= winner[1] %></b>
+           </td>
+        </tr>
+        <tr>
+            <td colspan=3><hr width="100%"></td>
+        </tr>
+        <% sl +=1 %>
+        <% if sl.to_i == @challenge.social_type.how_many_winners.to_i %>
+            <% break %>
+        <% end %>
+     <%end%>
 <% end %>
 </table>
