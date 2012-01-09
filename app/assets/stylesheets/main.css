@@ -1316,6 +1316,7 @@ width:90%;
 	font-size:15px;
 	font-style:bold;
 	position:relative;
+	width: 35%;
 }
 
 #soc_check2
@@ -1428,7 +1429,7 @@ width:90%;
 	color:#fff;
 	left:60px;
 	position:relative;
-	width:80%;
+	width:39%;
         top: 4px;
 }
 .remainedtask
@@ -1449,10 +1450,10 @@ width:90%;
 .completedtask1
 {
 	color: #FFFFFF;
-    left: 165px;
+    left: 160px;
     position: relative;
-    top: 2px;
-    width: 30%;
+    top: 7px;
+    width: 14%;
 }
 .invitees3{
     background: none repeat scroll 0 0 #F9A943;
@@ -1473,9 +1474,10 @@ width:90%;
 .notcompleted1
 {
 	float:left;
-	left:115px;
+	left:13%;
 	position:relative;
 	color:#FFFFFF;
+	top: 12%;
 }
 
 #points
@@ -1644,12 +1646,13 @@ input:required {
 }
 #percentage_personal
 {
-	  color: #7AC142;
+    color: #7AC142;
     font-size: 15px;
     font-weight: bold;
-    padding-left: 2px;
+    left: 10px;
     position: relative;
-    top: 8px;
+    top: 13px;
+    width: 20%;
 }
 #blackbox_personal
 {
