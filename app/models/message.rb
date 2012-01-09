@@ -1,9 +1,10 @@
 class Message
   include Mongoid::Document
   include Mongoid::Timestamps::Created
-  field :to, :type=>String
-  field :from, :type=>String
+  field :receiver_id, :type=>String
+  field :sender_id, :type=>String
   field :subject, :type=>String
   field :snippet, :type=>String
   field :body, :type=>String  
+  field :IsRead, :type=>Booleans, :default => 0 
 end

@@ -38,16 +38,18 @@ module Dojitsu
     config.action_mailer.default_url_options = { :host => 'localhost:4000' }
 
     # mail server settings
+      
     config.action_mailer.delivery_method = :smtp
+
     config.action_mailer.smtp_settings = {
-        :address => "smtp.gmail.com",
-      :port => "587",
-        :domain => 'localhost:4000',
-        :user_name => 'sriram.in20@gmail.com',
-        :password => '9866266845',
-        :authentication => 'login',
-        :enable_starttls_auto => true 
-      }
+      :enable_starttls_auto => true,
+      :address => "smtp.gmail.com",
+      :port => 587,
+      :domain => "gmail.com",
+      :authentication => :login,
+      :user_name => 'mysolution555@gmail.com',
+      :password => 'mysolution',
+    }
 
     config.action_mailer.perform_deliveries = true
     config.action_mailer.raise_delivery_errors = true 
