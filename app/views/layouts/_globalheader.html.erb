@@ -2,9 +2,13 @@
 
 <div class="span-24 header first">&nbsp;</div>
 <div class="span-24">      
-	<% if !current_user.nil?%> 
-	<%#= image_tag((current_user.facebook.picture), :style => "float:right", :alt => "Profile") %><br>
-	<% else %>                                                                                       
+	<% if !current_user.nil?%>
+          <% if isStandalone %>
+              no Image
+          <% else %>
+              <%= image_tag((current_user.facebook.picture), :style => "float:right", :alt => "Profile") %><br>
+          <% end %>
+        <% else %>                                                                                       
 	<%= link_to(image_tag("logo.png", :style => "float:left", :alt => "Home"), root_path) %>
 	<% end %> 
 
@@ -32,7 +36,13 @@ $(document).ready(function () {
 		</div>
 		<div class="popup_globalheader">	
 			<ul id="nav">
-					<li><a href="#" class="selected"><div><%#= current_user.authentications[0].name %>&nbsp;<%=image_tag("nav-arrow.png")%></div> </a>
+					<li><a href="#" class="selected"><div>                                                
+                                              <% if isStandalone %>
+                                                  <%= current_user.first_name %>
+                                              <% else %>
+                                                  <%= current_user.authentications[0].name %>
+                                              <% end %>
+                                              &nbsp;<%=image_tag("nav-arrow.png")%></div> </a>
 						<ul>
 							<li><%= link_to "Log out", destroy_user_session_path %></li>	
 						</ul>

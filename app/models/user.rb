@@ -31,13 +31,13 @@ class User < ActiveRecord::Base
   end
 
   def inbox 
-    Message.all(conditions: { :to => (fbauth.uid rescue current_user.id) }, limit: 6).desc("created_at")
+    Message.all(conditions: { :to => (fbauth.uid rescue gmauth.id) }, limit: 6).desc("created_at")
   end
 
   def challenges 
     challenges = []
-
-    Challenge.any_of({:user_id => (fbauth.uid rescue emailAuth.id) }, {"child_challenges.user_id" => (fbauth.uid rescue emailAuth.id)}).each do |aChallenge|
+    logger.debug gmauth.id
+    Challenge.any_of({:user_id => (fbauth.uid rescue gmauth.id) }, {"child_challenges.user_id" => (fbauth.uid rescue gmauth.id)}).each do |aChallenge|
       addUserOnlyChallenge challenges, aChallenge
     end
 
@@ -52,13 +52,14 @@ class User < ActiveRecord::Base
     self.authentications.find_by_provider('facebook')
   end
   
-  def emailAuth
-    self.authentications.find_by_email('pravinmishra88@gmail.com')
+  def gmauth
+    User.find_by_email(email)
+    #logger.debug "Maisa"
   end
 
   private
   def addUserOnlyChallenge(challenges, aChallenge) 
-    if aChallenge.user_id == (fbauth.uid rescue current_user.id)
+    if aChallenge.user_id == (fbauth.uid rescue gmauth.id)
       challenges.push(aChallenge)
     end             
 

@@ -10,7 +10,8 @@
 	</div>
 </p>                             
 <% end %>
-<script type="text/javascript" charset="utf-8">        
+<% if !isStandalone %>
+    <script type="text/javascript" charset="utf-8">        
 (function($j) { 
 	var selectorObz = {    
 		filter_default: "Search By Name",
@@ -44,4 +45,7 @@
 		});
 	})          
 })(jQuery);                              
-</script>	
+</script>
+<% else %>
+    	
+<% end %>
