@@ -5,6 +5,7 @@
 <div class="challange">
   my dashboard
 </div>
+<%= current_user.challenges %>
 <% if session[:isNewChallenge] == "isNew" %>
     <script> 
 	 
@@ -22,7 +23,7 @@
                       <div class="mychallenge">
 			                      <div id="titlechallenge">
 			                          <div style="left: 16px; position: relative; top: 5px;">
-			                            <div class="shadow">my challenges<font color="#ffffff"><b>&nbsp;&nbsp;( <%= current_user.challenges.size %> ) </b></font></div>
+			                            <div class="shadow">my challenges<font color="#ffffff"><b>&nbsp;&nbsp;( <%#= current_user.challenges.size %> ) </b></font></div>
 			                          </div>
 			                          <div class="second_titlechallenge">
 			                             <%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
@@ -43,7 +44,7 @@
                           <div class="mychallenge">
                               <div id="titlechallenge">
                                   <div id="title" style="left: 16px; position: relative; top: 5px;">
-                                     <div class="shadow">new messages <font style="color:#fff">&nbsp;&nbsp;( <%= current_user.inbox.count %> )</font></div>
+                                     <div class="shadow">new messages <font style="color:#fff">&nbsp;&nbsp;( <%#= current_user.inbox.count %> )</font></div>
                                   </div>
                                   <div class="second_titlechallenge">
                                      <%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
