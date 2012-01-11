@@ -1,5 +1,6 @@
-<%= stylesheet_link_tag('fb_logout')%>
+<%= stylesheet_link_tag('fb_logout','colorbox')%>
 
+<%= javascript_include_tag('jquery.colorbox-min')%>
 <div class="span-24 header first">&nbsp;</div>
 <div class="span-24">      
 	<% if !current_user.nil?%> 
@@ -30,6 +31,12 @@ $(document).ready(function () {
 		<div class="logo_globalheader">
 			<%= link_to(image_tag("logo.png")) %>
 		</div>
+		<%= link_to image_tag("invite_friends_button.png"), invite_contact_user_connections_path, :class=>"invite"  %>	
+									
+				<script>
+					$('.invite').colorbox();
+				</script>
+				
 		<div class="popup_globalheader">	
 			<ul id="nav">
 					<li><a href="#" class="selected"><div><%= current_user.authentications[0].name %>&nbsp;<%=image_tag("nav-arrow.png")%></div> </a>

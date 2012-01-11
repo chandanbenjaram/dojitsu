@@ -980,8 +980,14 @@ h2{
 
 #ch_main_div1{
 	 border-style: solid;
+	 background-color:#d7d7d7
     margin-top: 10px;
     padding-left: 20px;
+}
+#ch_main_div_score{
+	 border-style: solid;
+    margin-top: 10px;
+    padding: 20px;
 }
 
 /* tooltip styling 
