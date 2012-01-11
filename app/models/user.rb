@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   def challenges 
     challenges = []
     logger.debug gmauth.id
-    Challenge.any_of({:user_id => (fbauth.uid rescue gmauth.id) }, {"child_challenges.user_id" => (fbauth.uid rescue gmauth.id)}).each do |aChallenge|
+    Challenge.any_of({:user_id => (fbauth.uid rescue gmauth.id.to_s) }, {"child_challenges.user_id" => (fbauth.uid rescue gmauth.id.to_s)}).each do |aChallenge|
       addUserOnlyChallenge challenges, aChallenge
     end
 
@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
 
   private
   def addUserOnlyChallenge(challenges, aChallenge) 
-    if aChallenge.user_id == (fbauth.uid rescue gmauth.id)
+    if aChallenge.user_id == (fbauth.uid rescue gmauth.id.to_s)
       challenges.push(aChallenge)
     end             
 
