@@ -24,7 +24,8 @@
 			<% userIds.push(aChild.user_id)  %>
 		<% end %>
 	<% end %>
-	<% if !userIds.empty? and @challenge.user_id == current_user.fbauth.uid%>
+	<% if isStandalone %>
+            <% if !userIds.empty? and @challenge.user_id == current_user.gmauth.id%>
 
 						<script type="text/javascript" charset="utf-8">
 						$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+userIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>, fbCallback).Replace("'", "");	
@@ -44,7 +45,30 @@
 							}
 						}
 						</script>
-	<% end %>
+	    <% end %>
+        <% else %>
+            <% if !userIds.empty? and @challenge.user_id == current_user.fbauth.uid%>
+
+						<script type="text/javascript" charset="utf-8">
+						$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+userIds.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>, fbCallback).replace("'", "");	
+
+						function fbCallback(response){
+							if(response == null){
+							} else
+							{
+								var srt = '<%= params[:id] %>';
+								jQuery.support.cors = true;
+								$.get('/challenges/update_status_af_meg', 
+									{thinking_abt:srt},
+									function(data) {
+
+									}, 'script'
+								);
+							}
+						}
+						</script>
+            <% end %>
+        <% end %>        
 <% end %>
 
 <div id="ch_main_div"> 
@@ -140,16 +164,26 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
 			</td>
 			<td width="73%">
 				<% if @challenge.instance_of?ChildChallenge%>
-					<%  @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
-					<script>
-						var ordId = <%=  orgId = @parentChallenge.user_id %>
-					</script>
-					<b style="color:#666666;"><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
-				<% else %>	
-					<b style="color:#666666;" id="user_name"></b>
-					<script>
-						var ordId = <%=  orgId = @challenge.user_id %>
-					</script>
+                                    <%  @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
+                                    <script>
+                                            var ordId = <%=  orgId = @parentChallenge.user_id %>
+                                    </script>
+                                    <b>
+                                        <% if isStandalone %>
+                                            <%= @parentChallenge.first_name %>
+                                        <% else %>
+                                            <%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %>
+                                        <% end %>                                  
+                                    </b>
+				<% else %>                                        
+                                      <% if isStandalone %>
+                                    <b style="color:#666666;"><%= current_user.gmauth.first_name %></b>
+                                      <% else %>
+                                          <b style="color:#666666;" id="user_name"></b>
+                                      <% end %>                                                                          					
+                                  <script>
+                                          var ordId = <%=  orgId = @challenge.user_id %>
+                                  </script>
 				<% end %>	
 			</td>
 			<td  width="12%">
@@ -647,15 +681,25 @@ $(function() {
 		background:#ffffff;
 	}
 </style>
-<% if @challenge.class.to_s == "ChildChallenge" || @challenge.user_id != current_user.fbauth.uid %>
-<script>
-	function contactToOrganizer(orgId)
-	{
-		$.dojitsu.renderSendBox(<%= "'"+@challenge.title.gsub("'","") + "'" %>, <%= "'"+orgId+"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenge_url(@challenge) +"'"%>);	
-	}
-</script>
+<% if isStandalone %>
+    <% if @challenge.class.to_s == "ChildChallenge" || @challenge.user_id != current_user.gmauth.id %>
+    <script>
+            function contactToOrganizer(orgId)
+            {
+                    $.dojitsu.renderSendBox(<%= "'"+@challenge.title.gsub("'","") + "'" %>, <%= "'"+orgId+"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenge_url(@challenge) +"'"%>);	
+            }
+    </script>
 <% end %>
-
+<% else %>
+    <% if @challenge.class.to_s == "ChildChallenge" || @challenge.user_id != current_user.fbauth.uid %>
+    <script>
+            function contactToOrganizer(orgId)
+            {
+                    $.dojitsu.renderSendBox(<%= "'"+@challenge.title.gsub("'","") + "'" %>, <%= "'"+orgId+"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenge_url(@challenge) +"'"%>);	
+            }
+    </script>
+    <% end %>
+<% end %>
 <!--
 <% if @challenge.class.to_s == "ChildChallenge" %>
 	<%= parentId = @challenge.user_id %>

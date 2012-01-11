@@ -6,8 +6,15 @@
   my dashboard
 </div>
 
-
-<!--<table>
+<%#= debug current_user.gmauth.id %>
+<%#= debug current_user.challenges %>
+<% if session[:isNewChallenge] == "isNew" %>
+    <script> 
+	 
+      $.dojitsuWallPost.renderFbWallPost();
+    </script>
+<% end %>
+<table>
       <td>
       <content>		
       <table>
@@ -72,4 +79,4 @@
                 </script>
             </div>
 	</td>
-</table>-->
+</table>

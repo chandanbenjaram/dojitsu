@@ -238,14 +238,26 @@
 						<h3 align="left"><font color="#8c8c8c"><b>Total : <%= @challenge.tasks.count %></b></font></h3>
 					</td>
 					<td>
-						<% if @challenge.user_id == current_user.fbauth.uid%>
+                                            <% if isStandalone %>
+                                                <% if @challenge.user_id == current_user.gmauth.id%>
 							<%= link_to image_tag("btn_add_up.png", :style =>"margin-top:3px;" ), add_task_link_challenges_path(:id => @challenge), :class => "addComment add_task_popup" %>
 						<% end %>
+                                            <% else %>
+                                                <% if @challenge.user_id == current_user.fbauth.uid%>
+							<%= link_to image_tag("btn_add_up.png", :style =>"margin-top:3px;" ), add_task_link_challenges_path(:id => @challenge), :class => "addComment add_task_popup" %>
+						<% end %>
+                                            <% end %>                                                
 					</td>
 					<td  align="center">
-						<% if @challenge.user_id == current_user.fbauth.uid %>
+                                            <% if isStandalone %>
+                                                <% if @challenge.user_id == current_user.gmauth.id %>
 							<font color="#8c8c8c">ADD A TASK</font>
-						<% end %>	
+						<% end %>
+                                            <% else %>
+                                                <% if @challenge.user_id == current_user.fbauth.uid %>
+							<font color="#8c8c8c">ADD A TASK</font>
+						<% end %>
+                                            <% end %>							
 					</td>
 				</tr>
 			<tr bgcolor=#D7D7D7>

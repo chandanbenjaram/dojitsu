@@ -3,8 +3,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :token_authenticatable, :confirmable
-
+  :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :confirmable
 
   has_many :user_connections
   has_many :authentications
@@ -32,13 +31,13 @@ class User < ActiveRecord::Base
   end
 
   def inbox 
-    Message.all(conditions: { :to => fbauth.uid }, limit: 6).desc("created_at")
+    Message.all(conditions: { :to => (fbauth.uid rescue gmauth.id) }, limit: 6).desc("created_at")
   end
 
   def challenges 
     challenges = []
-
-    Challenge.any_of({:user_id => fbauth.uid }, {"child_challenges.user_id" => fbauth.uid}).each do |aChallenge|
+    logger.debug gmauth.id
+    Challenge.any_of({:user_id => (fbauth.uid rescue gmauth.id.to_s) }, {"child_challenges.user_id" => (fbauth.uid rescue gmauth.id.to_s)}).each do |aChallenge|
       addUserOnlyChallenge challenges, aChallenge
     end
 
@@ -52,10 +51,15 @@ class User < ActiveRecord::Base
   def fbauth
     self.authentications.find_by_provider('facebook')
   end
+  
+  def gmauth
+    User.find_by_email(email)
+    #logger.debug "Maisa"
+  end
 
   private
   def addUserOnlyChallenge(challenges, aChallenge) 
-    if aChallenge.user_id == fbauth.uid
+    if aChallenge.user_id == (fbauth.uid rescue gmauth.id.to_s)
       challenges.push(aChallenge)
     end             
 
