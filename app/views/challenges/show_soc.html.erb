@@ -171,9 +171,9 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
                                     </script>
                                     <b>
                                         <% if isStandalone %>
-                                            <%= @parentChallenge.first_name %>
+                                            <b style="color:#666666;"><%= @parentChallenge.first_name %></b>
                                         <% else %>
-                                            <%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %>
+                                            <b style="color:#666666;"><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
                                         <% end %>                                  
                                     </b>
 				<% else %>                                        
@@ -189,9 +189,21 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
 			</td>
 			<td  width="12%">
 				<span id="image2">
-				<% if @challenge.instance_of?ChildChallenge || @challenge.user_id != current_user.fbauth.uid %>
+                                <% if isStandalone %>
+                                    <% if @challenge.user_id != current_user.gmauth.id %>
 					<%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(ordId)" ) %>
-				<% end %>
+                                    <% end %>
+                                <% else %>                                  
+                                  <% if @challenge.instance_of?ChildChallenge%>
+                                      <% if @parentChallenge.user_id != current_user.fbauth.uid %>
+					<%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(ordId)" ) %>
+                                      <% end %>
+                                  <% else %>
+                                      <% if @challenge.user_id != current_user.fbauth.uid %>
+					<%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(ordId)" ) %>
+                                      <% end %>
+                                  <% end %>
+                                <% end %>                                                                          								
 				</span>
 			</td>
 		</tr>

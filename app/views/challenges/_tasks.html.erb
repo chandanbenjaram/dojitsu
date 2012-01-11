@@ -159,10 +159,20 @@
 								width: 175px;
 								top:-6px;
 							}
-						</style>
-                                                <% if @challenge.is_complete != 1 %>
-                                                  <%= markAsComplete%>
-                                                <% end %>
+						</style>                                                
+                                                <% if isStandalone %>
+                                                    <% if @challenge.user_id != current_user.gmauth.id %>
+                                                        <% if @challenge.is_complete != 1 %>
+                                                          <%= markAsComplete%>
+                                                        <% end %>
+                                                    <% end %>
+                                                <% else %>
+                                                      <% if @challenge.user_id == current_user.fbauth.uid %>
+                                                        <% if @challenge.is_complete != 1 %>
+                                                          <%= markAsComplete%>
+                                                        <% end %>
+                                                      <% end %>
+                                                <% end %>               
 					</div>
 		</tr>
 	<% else %>
