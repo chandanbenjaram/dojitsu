@@ -1,12 +1,12 @@
 <%= stylesheet_link_tag('simple-tabs','jquery-ui','ui.progressbar','ui.theme', 'main')%>
-<%= javascript_include_tag('simple-tabs','ui.progressbar.js','soc-per','messages')%>
+<%= javascript_include_tag('simple-tabs','ui.progressbar.js','soc-per','messages','nonloginsocialpage')%>
 
-<div id="ch_main_div"> 
-    <div id="ch_main_div1"> 
-        <div style=" font-size: 25px; font-weight: bold;" class="challange"> 
+<section id="ch_main_section"> 
+    <section id="ch_main_section1"> 
+        <section class="challange"> 
             <%= @challenge.title%>
-        </div> 							
-        <div>
+        </section> 							
+        <section>
             <table >
                 <tr>
                     <td width="80px">
@@ -16,8 +16,8 @@
                     </td>
                 </tr>
             </table>
-        </div>	
-        <div>
+        </section>	
+        <section>
             <table width="500px">
                 <tr>
                     <td width="130px" class="titles">
@@ -45,11 +45,11 @@
                     <hr/>
                 </tr>
             </table>
-        </div>
-        <div>
+        </section>
+        <section>
             <hr/>
-        </div>
-        <div>
+        </section>
+        <section>
             <table>
                 <tr>
                     <td width=130px>
@@ -64,11 +64,11 @@
                     </td>
                 </tr>
             </table>
-        </div>			
-        <div>
+        </section>			
+        <section>
               <hr/>
-        </div>
-        <div>
+        </section>
+        <section>
             <table>
                 <tr> 
                     <td width=130px>
@@ -83,10 +83,10 @@
                     </td>
                 </tr>
             </table>
-        </div>
-        <div>
+        </section>
+        <section>
              <hr/>
-        </div>	
+        </section>	
         <table>
             <tr>
                 <td width="130px" class="titles">
@@ -106,28 +106,28 @@
             </tr>
         </table>
         <input type="hidden" name="thinking_abt" id="thinking_abt" value="<%= @challenge.id %>"> 
-        <table width="100%" border="0" style="margin-top:0px;">
+        <table width="100%" border="0" class="tabsstyle">
             <tr>
                 <td colspan="3">
                     <ul class="tabs">
                         <li><a href="#tab1"><b>TASKS</b></a></li>
                         <li><a href="#tab2"><b>PEOPLE</b></a></li>
                     </ul>
-                    <div class="tab_container">
-                        <div id="tab1" style="background:#F5F5F5;" class="tab_content">
+                    <section class="tab_container">
+                        <section id="tab1" class="tab_content">
                             <% if(@challenge.social_type.status? and @flg.to_s == "ed") %>
                                     <%= render :partial=> "challenges/tasks_edit" %>
                             <% else %>
                                     <%= render :partial=> "challenges/nonLoginTasks" %>																										
                             <% end %>
-                        </div>
-                        <div id="tab2" style="background:#F5F5F5;" class="tab_content">
+                        </section>
+                        <section id="tab2" class="tab_content">
                             <table width="100%" border="0" height="40px">
                                 <tr bgcolor=#F4F4F4>
                                     <td width="220px">
                                         <b  id="total">Total: <%= @challenge.child_challenges.length %></b>
                                         <% if @challenge.instance_of?Challenge %>
-                                                <%= image_tag("btn_msg_up.png", :style=>"margin-left:10px; position:relative; top:5px;" ,:onclick=>"contactToInvitee()")%>
+                                                <%= image_tag("btn_msg_up.png", :class => "imgbtnmsgup", :onclick=>"contactToInvitee()")%>
                                         <% end %>
                                     </td>
                                     <td width = "100px" id="search">
@@ -144,13 +144,7 @@
                                     </td>
                                 </tr>
                             </table>
-                            <style>
-                                    .filterinput
-                                    {
-                                    width :200px;
-                                    height:25px;
-                                    }
-                            </style>
+                      
                             <table  border="0" height="20px" bgcolor="gray"> 
                                 <tr bgcolor=#D7D7D7>
                                     <td>
@@ -161,7 +155,7 @@
                                     </td>
                                 </tr>
                             </table>
-                            <div id="wrap">
+                            <section id="wrap">
                                  <h1 id="header"></h1>
                                  <table bgcolor="white">
                                   <tr>
@@ -187,9 +181,19 @@
                                         </td>
                                   </tr> 
                                  </table>
-                               </div> 
-                            </div> 
-                            <script>
+                               </section> 
+                            </section> 
+                           
+                           
+                        </section>
+                    </section>
+                </td>
+            </tr>
+        </table>  
+    </section>		
+<% orgIds = "" %>
+	<script> 
+	 
                             $(document).ready(function() 
                             { 
                                     $("#btnFilter").click(function() 
@@ -206,19 +210,7 @@
                                             } 
                                     }); 
                             });
-                            </script>                           
-                            <style type="text/css">
-                            #status_icon
-                            { 
-                            float: right;
-                            width: 80px;
-                            } 
-                             #ahref
-                            {     
-                            color:#000000;
-                            }
-                            </style>                
-                            <script>
+                         
                              (function (cash) {
                                jQuery.expr[':'].Contains = function(a,i,m){
                                     return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
@@ -249,15 +241,6 @@
                               listFilter($("#header"), $("#list"));
                                });
                              }(jQuery));
-                            </script>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        </table>  
-    </div>		
-<% orgIds = "" %>
-	<script> 
 		window.fbAsyncInit();
 		FB.getLoginStatus(function(response) { 
 		if (response.session)
@@ -320,20 +303,13 @@
 				htmlcontent =response[0].name ;
 						$("#user_name").append(htmlcontent);    
 			});
+function contactToOrganizer(orgId)
+{
+	$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+orgId+"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenge_url(@challenge) +"'"%>);	
+}
 </script>
 
-<style>
-	.table{
-		background:#ffffff;
-	}
-</style>
 
-<script>
-    function contactToOrganizer(orgId)
-    {
-        $.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+orgId+"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenge_url(@challenge) +"'"%>);	
-    }
-</script>
 
 
 

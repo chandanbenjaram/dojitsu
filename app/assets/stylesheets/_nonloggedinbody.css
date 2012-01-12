@@ -11,7 +11,7 @@ float: left;
 }
 .seetutorial
 {
- float: left;
+	float: left;
     left: 50px;
     position: relative;
     top: -32px;

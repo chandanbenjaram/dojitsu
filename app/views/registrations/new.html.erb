@@ -1,8 +1,8 @@
 <%= stylesheet_link_tag('registration','jquery.cluetip.css') %>
 <%= javascript_include_tag('jquery.cluetip.js') %>
 <%= stylesheet_link_tag('nonLogin') %>
-<div class="registration">
-    <div class="regdetails">
+<section class="registration">
+    <section class="regdetails">
            <font color="#F8981D" size=4>REGISTER TO DOJITSU!</font>
                 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
                     <table>
@@ -17,7 +17,7 @@
                         </tr>
                         <tr>
                             <td>
-                                 <%= f.label :first_name, "First Name" %><br />                                        
+                                 <%= f.label :first_name, "First Name" %><>                                        
                             </td>
                             <td>
                                  <%= f.text_field :first_name, :id => "textFieldEffect" %>
@@ -35,7 +35,7 @@
                             <td>
                                  <%= f.label :password %> 
                                  <span class="moreInfoTip color999" rel="#moreCreateTaskId" title="About your password....!.">
-                                      <%= image_tag("btn_questionmark_up.png", :style=>"position: relative; top: 4px;")%>
+                                      <%= image_tag("btn_questionmark_up.png", :class=>"positionforimage")%>
 								 </span>                                 
                             </td>
                             <td>
@@ -52,22 +52,22 @@
                             </td>
                         </tr>
                     </table>
-                    <div class="buttons">
+                    <section class="buttons">
                         <input class="register" type="submit" value="REGISTER">
                         <input class="cancel" type="button" value="CANCEL">
-                    </div>                     
+                    </section>                     
               <% end %>          
-	</div>
-</div>
+	</section>
+</section>
 <br>
-<div>
+<%= stylesheet_link_tag('nonLogin') %>
 <table width="100%">
-	<td width="70%" class="divone">
-		<div class="regmessage">
-                    <div class="msgtitle">
+	<td>
+		
+                    <section class="msgtitle">
                         <table>
                           <tr>
-                              <td><font color="#AAA9A9" size=4><b>WHAT'S NEW</b></font></td>
+                              <td  class="titlecolor"><b>WHAT'S NEW</b></td>
                               <td>
                                   <% if Challenge.whatsNew.count == 0 %>
                                   <% else %>				
@@ -76,19 +76,17 @@
                               </td>    
                               </tr>
                         </table>
-                    </div>
-		
-                
+                  
                 <% if Challenge.whatsNew.count == 0 %>
                     <p align="center">No challenges found</p>
-		<% else %>
+				<% else %>
                     <% Challenge.whatsNew.each do |anc| %>
-                      <div class="messagereg">
-                          <%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:-2px;") %>
-                          <table width="100%" style="margin-top:-10px;">
+                      <section class="messagereg">
+                          <%= image_tag("new.gif", :height => '30', :width => '30', :class => "newtag" ) %>
+                          <table width="100%", class="tablemargin">
                             <tr>
-                                  <td width="28%", style="padding-left:10px; ">
-                                         <font size="3px;" style="font-weight:bold;">
+                                  <td width="30%", class="tdpaddingleft">
+                                         <font size="3px;" , class="chaltitlecolor">
 												<%= anc.title %>
 										 </font></br>
                                           by  <b><%= FbGraph::User.new(anc.user_id).fetch.name %></b></br>
@@ -105,9 +103,9 @@
                                           <%end%>
                                   </td>
                                   <td width="75%">
-                                          <p style="float:right; margin-right:20px; color: #A9A8A8;">&nbsp;&nbsp;<%= time_ago_in_words  anc.created_at%></p></br></br>
+                                          <p class="createdtime">&nbsp;&nbsp;<%= time_ago_in_words  anc.created_at%></p></br></br>
                                           <% if anc.personal_type.instance_of?ChallengePersonalType%>
-                                                  <p style="text-transform:none;">
+                                                  <p class="textranform">
 													  <% if anc.description.size > 200 %>
 																<%=h truncate(anc.description, :length => 200) %>&nbsp;&nbsp;<b><%= link_to "VIEW" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view' %></b>									
 														<%else%>
@@ -116,68 +114,46 @@
                                                   </p>
                                           <% end %>
                                           <% if anc.social_type.instance_of?ChallengeSocialType%>
-                                                <p style="text-transform:none;">
+                                                <p class="textranform">
 												<% if anc.description.size > 200 %>
 														<%=h truncate(anc.description, :length => 200) %>&nbsp;&nbsp;<b><%= link_to "VIEW" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view'%></b>									
 												<%else%>
-														<%= anc.description %>
+														<%= anc.description %>&nbsp;&nbsp;<%= link_to "VIEW" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view' %></b>
 												<%end%>
                                                 </p>
                                           <% end %>
                                   </td>
                             </tr>
                           </table>
-                          </div>
+                          </section>
                       <% end %>
 		<% end %>
 	</td>
-	<td class = "imagebackground" width="7%"></td>
-	<td width="56%">
-				<div class="regdojitsu2">	
-							<div class="fb-like-box" data-href="http://www.facebook.com/pages/Dojitsu/295711967114330" data-width="350" data-height="180" data-show-faces="true" data-stream="false" data-header="false"></div>
-							<div class="dourbest">
+	<td class = "imagebackground2" ></td>
+	<td class="sectiontwo" width="*">
+		<div class="fb-like-box" data-href="http://www.facebook.com/pages/Dojitsu/295711967114330" data-width="350" data-height="180" data-show-faces="true" data-stream="false" data-header="false"></div>
+		<section class="dourbest3">
 									<%= image_tag("dourbest.PNG" ,:size => "350x195", :alt => "Do YOur Best")%>
-										<div class="reg">
+										<section class="reg">
 											<%= link_to(image_tag("regwelcome.PNG" ,:size => "90x25", :alt => "Do Your Best"),"#") %>
-										</div>
-										<div class="seetutorial">
+										</section>
+										<section class="seetutorial">
 											<%= image_tag("seetutorial.PNG" ,:size => "75x21", :alt => "See Tutorial")%>
-										</div>
+										</section>
 								
-							</div>
-				</div>
-									
+							</section>
+						
 	</td>
 </table>
-<style>
-.dourbest{
-top:2px;
-position:relative;
-}
-label{
-color:#CFCFCF;
-}
-#textFieldEffect{
 
-    background: none repeat scroll 0 0 #CFCFCF;
-    border-color: #A5A5A5;
-    border-style: solid;
-    border-width: 1px;
-    color: #C6C6C6;
-    font-family: Arial;
-    font-size: 15px;
-    height: 25px;
-    width: 470px;
-   background: #F4F4F4;
-}
-</style>
+
 <script>
   $('.moreInfoTip').cluetip({
-		width:430,
-		height:190,
-		local:true, 
-		dropShadow: false,
-		arrows: true,
-		cluetipClass: 'jtip'		
+  width:430,
+  height:190,
+  local:true, 
+  dropShadow: false,
+  arrows: true,
+  cluetipClass: 'jtip'  
   });
 </script>

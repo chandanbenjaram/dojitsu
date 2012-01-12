@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag('fb_logout')%>
 
-<div class="span-24 header first">&nbsp;</div>
-<div class="span-24">      
+<section class="span-24 header first">&nbsp;</section>
+<section class="span-24">      
 	<% if !current_user.nil?%> 
 	<%= image_tag((current_user.facebook.picture), :style => "float:right", :alt => "Profile") %><br>
 	<% else %>                                                                                       
@@ -25,23 +25,23 @@ $(document).ready(function () {
 	
 });
 </script>
-	<div>
+	<section>
 		<% if !current_user.nil? %>
-		<div class="logo_globalheader">
+		<section class="logo_globalheader">
 			<%= link_to image_tag("logo.png"), dashboard_index_path %>
-		</div>
-		<div class="popup_globalheader">	
+		</section>
+		<section class="popup_globalheader">	
 			<ul id="nav">
-					<li><a href="#" class="selected"><div><%= current_user.authentications[0].name %>&nbsp;<%=image_tag("nav-arrow.png")%></div> </a>
+					<li><a href="#" class="selected"><section><%= current_user.authentications[0].name %>&nbsp;<%=image_tag("nav-arrow.png")%></section> </a>
 						<ul>
 							<li><%= link_to "Log out", destroy_user_session_path %></li>	
 						</ul>
 					</li>
 					
 				</ul>					
-		</div>
+		</section>
 		<% else %>   
-		<div class="authnav">
+		<section class="authnav">
 			<ul>
 				<li>
 					<%=link_to image_tag("loginbutton.png"), user_omniauth_authorize_path(:facebook, :display=>"popup"), :class => "popup", :"data-width" => 600, :"data-height" => 400 , :isNewChallenge => "isNew"%>		
@@ -53,14 +53,14 @@ $(document).ready(function () {
 				<%= link_to image_tag("login.PNG", :alt => "Login"), new_user_session_path,  :title=>"Login", :style => "float:right"%>
 				</li>  -->                                                                                                                               
 			</ul>
-		</div>
+		</section>
 		<% end %>
-	</div>   
+	</section>   
 	
 
 
-	<div id="fb-root" />
-</div>
+	<section id="fb-root" />
+</section>
 
 <script>  										       
 			window.fbAsyncInit = function() {
