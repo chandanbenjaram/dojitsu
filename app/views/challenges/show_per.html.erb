@@ -5,9 +5,9 @@
 
    	<%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %>
     
-	<%= link_to "MY CHALLENGES >> ", challenges_url , :style=> "text-decoration: none; color:#666666;", :class => "challenge_link1" %>
+	<%= link_to "MY CHALLENGES >> ", challenges_url , :class => "challenge_link1" %>
 	
-	<%= link_to "#{@challenge.title}","#" , :style=> "text-decoration: none; color:#666666;", :class => "challenge_link1" %> 
+	<%= link_to "#{@challenge.title}","#" , :class => "challenge_link1" %> 
 
 </div>
 
@@ -20,16 +20,16 @@
 <%= form_for @challenge do |f| %>
 <table width="100%" border="0" border cellspacing=12px>
 	<tr>
-		<div style="text-transform: uppercase; font-size:25px; margin:0px">
-			<font color="#FFA500"><%= on_the_spot_edit @challenge, :title, :type=> :text %></font>
+		<div class="onthespantitle">
+			<span class="ctitlecolor"><%= on_the_spot_edit @challenge, :title, :type=> :text %></span>
 		</div><br>
 		<tr>
 		<table id="description">
 				<tr>
-					<td width="15%">
-						<b><font color= #999999>DESCRIPTION</font></b></td>
+					<td valign="top" width="15%">
+						<b class="elecolor">DESCRIPTION</b></td>
 					<td  width="73%">
-						<b style="color:#666666;"><%= on_the_spot_edit @challenge,:description , :type=>:textarea  %></b>
+						<b class="ondescricolor"><%= on_the_spot_edit @challenge,:description , :type=>:textarea  %></b>
 					</td>
 					<td  width="12%">
 						<span id="image1"><%= image_tag("icon_edit.png") %></span>
@@ -42,17 +42,17 @@
 	<tr>
             <table>
                 <tr>
-                    <td width=120px>
-                        <b><font color= #999999>START POINT</font></b>
+                    <td  width=120px >
+                        <b class="elecolor">START POINT</b>
                     </td>
                     <td>
                          <div id="TestStart" onclick="TestingStart();">
 						 
                               <% if @challenge.start_point.instance_of?PointDateType %>		
-                                  <b style="color:#666666;"><%= @challenge.start_point.value.strftime("%b %d, %Y")%> </b>
+                                  <b class="ondescricolor">><%= @challenge.start_point.value.strftime("%b %d, %Y")%> </b>
                               <% else %>							
                                   <%ch = @challenge.start_point  %>
-                                  <b style="color:#666666;"><%= @challenge.start_point.value.to_i %></b>
+                                  <b class="ondescricolor"><%= @challenge.start_point.value.to_i %></b>
                               <% end %>
                          </div>
                          <div id="replacedStart">
@@ -133,21 +133,17 @@
 		<hr/ width=400px>
 	</tr>
 	<tr>
-		
-		
-		
-		
-		<table>
+	<table>
                     <tr> 
                         <td width=120px>
-                             <b><font color= #999999>END POINT</font></b>
+                             <b class="elecolor">END POINT</b>
                         </td>
                         <td>
                          <div id="TestEnd" onclick="TestingEnd();">
                               <% if @challenge.end_point.instance_of?PointDateType %>		
-                                  <b style="color:#666666;"><%= @challenge.end_point.value.strftime("%b %d, %Y")%> </b>
+                                  <b class="ondescricolor"><%= @challenge.end_point.value.strftime("%b %d, %Y")%> </b>
                               <% else %>							                       
-                                  <b style="color:#666666;"><%= @challenge.end_point.value.to_i %></b>
+                                  <b class="ondescricolor"><%= @challenge.end_point.value.to_i %></b>
                               <% end %>
                          </div>
                          <div id="replacedEnd">
@@ -227,9 +223,9 @@
 			</table>
 		<hr/ width=400px>	
 		<br><br>
-		<table bg color=#f4f4f4>
+		<table bgcolor=#f4f4f4>
 			<tr bgcolor="#FFA500">
-				<td bgcolor="#FFA500"><font color="#ffffff"><b>&nbsp; &nbsp; &nbsp;TASKS</b></font></td>
+				<td bgcolor="#FFA500"><b class="taskscolor">&nbsp; &nbsp; &nbsp;TASKS</b></td>
 				
 			</tr>
 		</table>
@@ -239,25 +235,37 @@
 			<table  bgcolor=#f4f4f4>
 				<tr bgcolor=#f5f5f5>
 					<td width="40px">
-						<h3 align="left"><font color="#8c8c8c"><b>Total : <%= @challenge.tasks.count %></b></font></h3>
+						<h3 align="left"><b class="totalstyle">Total : <%= @challenge.tasks.count %></b></h3>
 					</td>
 					<td>
-						<% if @challenge.user_id == current_user.fbauth.uid%>
+                                            <% if isStandalone %>
+                                                <% if @challenge.user_id == current_user.gmauth.id%>
 							<%= link_to image_tag("btn_add_up.png", :style =>"margin-top:3px;" ), add_task_link_challenges_path(:id => @challenge), :class => "addComment add_task_popup" %>
 						<% end %>
+                                            <% else %>
+                                                <% if @challenge.user_id == current_user.fbauth.uid%>
+							<%= link_to image_tag("btn_add_up.png", :style =>"margin-top:3px;" ), add_task_link_challenges_path(:id => @challenge), :class => "addComment add_task_popup" %>
+						<% end %>
+                                            <% end %>                                                
 					</td>
 					<td  align="center">
-						<% if @challenge.user_id == current_user.fbauth.uid %>
-							<font color="#8c8c8c">ADD A TASK</font>
-						<% end %>	
+                                            <% if isStandalone %>
+                                                <% if @challenge.user_id == current_user.gmauth.id %>
+							<span class="totalstyle">ADD A TASK</span>
+						<% end %>
+                                            <% else %>
+                                                <% if @challenge.user_id == current_user.fbauth.uid %>
+							<span class="totalstyle">ADD A TASK</span>
+						<% end %>
+                                            <% end %>							
 					</td>
 				</tr>
 			<tr bgcolor=#D7D7D7>
   				<td width="90%">
-   					<font color="#999999"  ><b>POINT(S)</b></font> <%= image_tag("icon_slash.png", :height => '12', :width => '5') %> <font color="#999999"><b>TASKS</b></font>
+   					<span class ="elecolor" ><b>POINT(S)</b></span> <%= image_tag("icon_slash.png", :height => '12', :width => '5') %> <span class="elecolor"><b>TASKS</b></span>
   						</td>
   						<td></td>
-  							<td width="15%" style="font-weight:bold; text-align:right; color:#999999;">
+  							<td width="15%" class="scorestyle" >
    								SCORE
   						</td>
  				</tr>
@@ -305,7 +313,7 @@
 								<%= total_score %> points (<%= total_score_count %> &nbsp; tasks)
 						</div>
 						<div class="notcompleted1">
-									<font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="#fff"><%= (total-total_score) %> points (<%= @challenge.tasks.count.to_i-total_score_count.to_i %>&nbsp; tasks)</font>
+									<span class="togostyle"><b>to go:</b></span>&nbsp; <span class="taskscolor"><%= (total-total_score) %> points (<%= @challenge.tasks.count.to_i-total_score_count.to_i %>&nbsp; tasks)</span>
 						</div>
 						<script type="text/javascript">
 								$(function() {
@@ -375,25 +383,3 @@
 	
 </script>
 
-<style>
-  .ui-datepicker{
-    width:20%;
-  }
-
-	.button_edit{ background:#f8981d; color:#ffffff; }
-	.cancel_edit{ background:#999999; color:#ffffff; }
-.textfield_effect 
-	{
-		background-repeat: repeat-x;
-		border-color: #F4F4F4;
-		border-style: solid;
-		border-width: 1px;
-		color: #C6C6C6;
-		font-family: Arial;
-		font-size: 15px;
-		height: 25px;
-		width: 30%;
-	}
-	
-	
-</style>

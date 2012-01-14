@@ -12,5 +12,9 @@ class MessagesController < ApplicationController
 			end	
 		end
 	end
+  
+  def message
+		render :layout => false
+	end
 	
 end

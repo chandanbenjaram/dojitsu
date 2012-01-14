@@ -3,20 +3,32 @@
 <% else %>
 	<% Challenge.whatsNew.each do |aChallenge| %>
 	<div id="contentbox" >
-		<%= image_tag("new.gif", :height => '30', :width => '30' ,:style =>"margin-top:0px; margin-left:-2px;") %>
-		<table width="100%" style="margin-top:-10px;">
+		<%= image_tag("new.gif", :height => '30', :width => '30' ,:class => "imagestyle") %>
+		<table width="100%" class="maintable">
 			<tr>
-				<td width="70%", style="padding-left:15px; ">
-					<font size="3px;" style="font-weight:bold;"><%= aChallenge.title%></font>	<br>										
+				<td width="70%" class="firsttdst">
+					<span class ="chatitle"><%= aChallenge.title%></span>	<br>										
 					by
 					<% if aChallenge.instance_of?ChildChallenge %>
 					   <% @parentChallenge = Challenge.where(:_id => aChallenge.challenge_id).first%>
 					   <script>
 							var ordId = <%=  orgId = @parentChallenge.user_id %>
 					   </script>
-					   <b><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
+					   <b>
+                                              <% if isStandalone %>
+                                                  <%= @parentChallenge.first_name %>
+                                              <% else %>
+                                                  <%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %>
+                                              <% end %>                                  
+                                           </b>
 					<% else %>
-						<b><%= FbGraph::User.new(aChallenge.user_id).fetch.name %></b>
+						<b>
+                                                    <% if isStandalone %>
+                                                        <%= current_user.gmauth.first_name %>
+                                                    <% else %>
+                                                        <%= FbGraph::User.new(aChallenge.user_id).fetch.name %>
+                                                    <% end %>                                  
+                                                </b>
 					<% end %>
 		<br>	
 					<% if aChallenge.start_point.instance_of?PointDateType %>
@@ -34,18 +46,18 @@
 		
 				
 					<% if aChallenge.personal_type.instance_of?ChallengePersonalType%>
-						<p style="text-transform:none;">
+						<p class="texttransormn">
 							<%=h truncate(aChallenge.description, :length => 15) %>&nbsp;&nbsp;<b><%= link_to "VIEW" , show_per_challenges_path(:id => aChallenge.id), :class => 'underline_view'  %></b>									
 						</p>
 					<% end %>
 					<% if aChallenge.social_type.instance_of?ChallengeSocialType%>
-						<p style="text-transform:none;">
+						<p class="texttransormn">
 							<%=h truncate(aChallenge.description, :length => 15) %>&nbsp;&nbsp;<b><%= link_to "VIEW" , show_soc_challenges_path(:id => aChallenge.id), :class => 'underline_view'   %>	</b>								
 						</p>
 					<% end %>								
 				</td>
-				<td valign="top" width="30%", style="text-align: right;">
-						<p style="float:right; position: relative; right: 10px; width:110%;"><%= time_ago_in_words  aChallenge.created_at%></p>
+				<td valign="top" width="30%" class="tdalign" >
+						<p class = "timestyle"><%= time_ago_in_words  aChallenge.created_at%></p>
 				</td>
 			</tr>
 		</table>

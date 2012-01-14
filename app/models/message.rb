@@ -5,5 +5,5 @@ class Message
   field :from, :type=>String
   field :subject, :type=>String
   field :snippet, :type=>String
-  field :body, :type=>String  
+  field :body, :type=>String
 end

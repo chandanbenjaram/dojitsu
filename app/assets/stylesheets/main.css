@@ -179,27 +179,7 @@ ul.homenavbar > li.selected > a {
 	font-size: 12px; 
 	font-weight:bold;
 }   
-.new_challenge_button_new1 {
-    background: url("new1.PNG") no-repeat scroll left center #F8981D;
-    float: left;
-    font-family: arial;
-    height: 25px;
-    left: 90px;
-    min-width: 70px;
-    position: relative;
-    text-align: right;
-    top: 2px;
-}
-.challenge_link1 {
-    color: gray;
-    font-family: arial;
-    font-size: 12px;
-    font-weight: bold;
-    left: 100px;
-    position: relative;
-    text-decoration: none;
-    top: 7px;
-}
+
 
 .challenge_link{
 	color: gray;
@@ -700,20 +680,7 @@ input.radio {
     overflow: hidden;
     width: 300px;
 }
-.links {
-	background: none repeat scroll 0 0 #f9a943;
-	border-radius: 3px 3px 3px 3px;
-	color: #FFFFFF;
-	display: block;
-	font-size: 12px;
-	margin: 20px 0;
-	padding: 5px;
-	text-align: center;
-	text-transform: uppercase;
-	width: 90px;
-	margin-right:10px;
-	float:right;
-}
+
 
 .ds_view_all{
 	 background: url("viewallbutton.PNG") no-repeat; 
@@ -807,20 +774,7 @@ input.radio {
     padding: 40px;
 }
 
-.links_cancel {
-    background: none repeat #999999;
-    color: #FFFFFF;
-    float: right;
-    height: 24px;
-    margin: 15px 0;
-    padding: 2px;
-    position: relative;
-    right: -14%;
-    text-align: center;
-    text-transform: uppercase;
-    top: 15%;
-    width: 10%;
-}
+
 .links_cancel2 {
     background: none repeat scroll 0 0 #999999;
     display: block;
@@ -837,27 +791,6 @@ input.radio {
     width: 60px;
   
 }
-.links_cancel1{
-	background: none repeat #999999;
-   	height: 21px;
-    color: #FFFFFF;
-    display: block;
-    float: right;
-    font-size: 12px;
-    margin: 20px 10px 20px 0;
-    padding: 5px;
-    text-align: center;
-    text-transform: uppercase;
-    width: 80px;
-	
-}
-.links_cancel1:hover{
-	color: #FFFFFF;
-}
-.links_cancel:hover{
-	color: #FFFFFF;
-}
-
 
 
 .task_links_cancel {
@@ -1018,16 +951,7 @@ opacity: 0.95;
 
 
 /*edit personal challenge*/
-.challange{
-	color: #F8981D;
-    font-size: 20px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-	font-size: 25px;
-	font-weight: bold;
 
-
-}
 
 ul.tabs1 {
 	margin: 0;
@@ -1177,22 +1101,6 @@ ul.tabs1 {
 	float:left;
 	left:400px;
 }
-#challengedetails
-{
-position:absolute;
-	background: none repeat scroll 0 0 #FFFFFF;
-   
-    height: 465px;
-    margin-top: -1px;
-    position: absolute;
-    width: 635px;
-	-moz-border-radius-topleft: 0px;
-	-moz-border-radius-topright: 0px;
-	-moz-border-radius-bottomright: 5px;
-	-moz-border-radius-bottomleft: 5px;
-	-webkit-border-radius: 0px 0px 5px 5px;
-	border-radius: 0px 0px 5px 5px; 
-}
 
 .mychallenge2 {
     border: 0 solid #BEBEBE;
@@ -1277,23 +1185,6 @@ position:absolute;
 	top:-10px
 }
 
-#content1
-{
-	float:left;
-	postion:absolute;
-	padding-left:20px;
-	width:120px;
-	height:auto;
-}
-#content2
-{
-	float:left;
-	postion:absolute;
-	padding-left:10px;
-	width:400px;
-	height:auto;
-	text-align: right;
-}
 #check1
 {
 	height:50px;
@@ -1360,12 +1251,7 @@ width:90%;
 	left:530px;
 	top:-10px
 }
-.dashboardsidebar1{
 
-	width: 645px;
-
-
-}
 .dashboardsidebar2 {
 	position:relative;
 	top:10px;
@@ -1401,17 +1287,7 @@ width:90%;
 	color:#ffffff;
 	top:3px;
 }
-#contentbox
-{
-	background: none repeat scroll 0 0 #F4F4F4;
-    border: 1px solid #BEBEBE;
-    height: auto;
-    margin: 10px;
-    overflow: hidden;
-    position: relative;
-    top: 1px;
-    width: 260px;
-}
+
 
 .hidden {
 	display: none;
@@ -1432,8 +1308,8 @@ width:90%;
 	color:#fff;
 	left:60px;
 	position:relative;
-	width:39%;
-        top: 4px;
+	width:42%;
+     top: 4px;
 }
 .remainedtask
 {
@@ -1598,12 +1474,7 @@ input:required {
 	height:25px;
 }
 
-.challengerow{
 
- border:10px solid #FF0000;
-
- 
-}
 #search1 {
     border: 1px solid #BEBEBE;
     height: 25px;
@@ -1647,44 +1518,13 @@ input:required {
 	 right: 50px;
     position: relative;
 }
-#percentage_personal
-{
-    color: #7AC142;
-    font-size: 15px;
-    font-weight: bold;
-    left: 10px;
-    position: relative;
-    top: 13px;
-    width: 20%;
-}
-#blackbox_personal
-{
-	height:60px;
-	width:835px;
-	background:#000000;
-	margin-top:10px;
-	padding-left:10px;
-}
-.showperscore_personal
-{ background: none repeat scroll 0 0 #DDEFCE;
-    color: green;
-    float: right;
-    font-size: 15px;
-    font-weight: bold;
-    height: 25px;
-    padding-left: 18px;
-    padding-top: 6px;
-    position: relative;
-    right: 5px;
-    top: -31px;
-    width: 30px;
-}
+
 .invitee_list
-					{
-					 margin-top: -25px;
-   
-    position: relative;
-					}
+{
+	 margin-top: -25px;
+     position: relative;
+}
+
 #icon
 { 
 			
@@ -1892,49 +1732,6 @@ top: -12px;
     height: 33px;
 }
 
-
-.shadow {
-    color: #333333;
-    font-family: arial;
-    font-size: 11px;
-    font-weight: bold;
-    text-shadow: -1px 0 1px #E9E9E9;
-    text-transform: uppercase;
-    width: 150px;
-}
-
-.shadow1{
-	color: #333333;
-    font-family: arial;
-    font-size: 11px;
-    font-weight: bold;
-    text-shadow: -1px 0 1px #E9E9E9;
-    text-transform: uppercase;
-    width: 78px;
-	
-}
-.dateUpdateEnd {
-    float: right;
-    height: 28px;
-    position: relative;
-    right: 10%;
-    top: 15px;
-    width: 12%;
-}
-.dateUpdateStart{
-    float: right;
-    height: 28px;
-    position: relative;
-    right: 10%;
-    top: 15px;
-    width: 12%;
-}
-
-.bordercolort
-{
-	height:5px;
-	border-bottom:2px solid #BEBEBE;
-}
 .underline_view{
 text-decoration: underline;
 color: #06BACE;
@@ -1984,4 +1781,44 @@ float:right;
 }
 .table{
 	background:#ffffff;
+}
+.fontcolor{
+	color: #999999;
+}
+
+.totoalcount{
+	font-size: 4px;
+	color: #8c8c8c;
+}
+.buttonup{
+	margin-left:10px; 
+	position:relative;
+	top:5px;
+}
+#mychallengesstyle
+{
+		left: 16px;
+		position: relative; 
+		top: 5px;
+ }
+ .fontstyle
+ {
+ color: #ffffff;
+  font-weight: bold;
+ }
+ 
+ .new_challenge_button_new1 {
+    background: url("new1.PNG") no-repeat scroll left center #F8981D;
+    float: left;
+    font-family: arial;
+    height: 25px;
+    left: 90px;
+    min-width: 70px;
+    position: relative;
+    text-align: right;
+    top: 2px;
+}
+
+a:focus, a:hover {
+    color: #666666;
 }

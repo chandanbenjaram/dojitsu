@@ -1,10 +1,14 @@
 <%= stylesheet_link_tag('fb_logout')%>
 
-<section class="span-24 header first">&nbsp;</section>
-<section class="span-24">      
-	<% if !current_user.nil?%> 
-	<%= image_tag((current_user.facebook.picture), :style => "float:right", :alt => "Profile") %><br>
-	<% else %>                                                                                       
+<div class="span-24 header first">&nbsp;</div>
+<div class="span-24">      
+	<% if !current_user.nil?%>
+          <% if isStandalone %>
+              no Image
+          <% else %>
+              <%= image_tag((current_user.facebook.picture), :style => "float:right", :alt => "Profile") %><br>
+          <% end %>
+        <% else %>                                                                                       
 	<%= link_to(image_tag("logo.png", :style => "float:left", :alt => "Home"), root_path) %>
 	<% end %> 
 
@@ -25,42 +29,48 @@ $(document).ready(function () {
 	
 });
 </script>
-	<section>
+	<div>
 		<% if !current_user.nil? %>
-		<section class="logo_globalheader">
-			<%= link_to image_tag("logo.png"), dashboard_index_path %>
-		</section>
-		<section class="popup_globalheader">	
+		<div class="logo_globalheader">
+			<%= link_to(image_tag("logo.png")) %>
+		</div>
+		<div class="popup_globalheader">	
 			<ul id="nav">
-					<li><a href="#" class="selected"><section><%= current_user.authentications[0].name %>&nbsp;<%=image_tag("nav-arrow.png")%></section> </a>
+					<li><a href="#" class="selected"><div>                                                
+                                              <% if isStandalone %>
+                                                  <%= current_user.first_name %>
+                                              <% else %>
+                                                  <%= current_user.authentications[0].name %>
+                                              <% end %>
+                                              &nbsp;<%=image_tag("nav-arrow.png")%></div> </a>
 						<ul>
 							<li><%= link_to "Log out", destroy_user_session_path %></li>	
 						</ul>
 					</li>
 					
 				</ul>					
-		</section>
+		</div>
 		<% else %>   
-		<section class="authnav">
+		<div class="authnav">
 			<ul>
 				<li>
 					<%=link_to image_tag("loginbutton.png"), user_omniauth_authorize_path(:facebook, :display=>"popup"), :class => "popup", :"data-width" => 600, :"data-height" => 400 , :isNewChallenge => "isNew"%>		
 				</li>
-				<!-- <li>                                                                                                                                         
+				 <li>                                                                                                                                         
 				<%= link_to image_tag("register.PNG", :alt => "Register"), new_user_registration_path,  :title=>"Register", :style => "float:right"%>
 				</li>                                                                                                                                            
 				<li>                                                                                                                                         
 				<%= link_to image_tag("login.PNG", :alt => "Login"), new_user_session_path,  :title=>"Login", :style => "float:right"%>
-				</li>  -->                                                                                                                               
+				</li>                                                                                                                                 
 			</ul>
-		</section>
+		</div>
 		<% end %>
-	</section>   
+	</div>   
 	
 
 
-	<section id="fb-root" />
-</section>
+	<div id="fb-root" />
+</div>
 
 <script>  										       
 			window.fbAsyncInit = function() {
