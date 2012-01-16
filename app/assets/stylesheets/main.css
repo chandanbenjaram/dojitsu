@@ -35,7 +35,19 @@ textarea:-moz-placeholder, input:-moz-placeholder {
 	background-color: gray;
 	height: 50px;
 }
-
+.challenge_link1 
+{
+    color: gray;
+    font-family: arial;
+    font-size: 12px;
+    font-weight: bold;
+    left: 100px;
+    position: relative;
+    text-decoration: none;
+    top: 7px;
+	text-decoration: none;
+	color: #666666;
+}
 section1 {
 
 	margin-top: 1em;
@@ -745,16 +757,7 @@ input.radio {
     top: 8px;
     width: 85px;
 }
-.topbar
-{
- background: none repeat scroll 0 0 #F4F4F4;
-    height: 30px;
-    margin-top: 0;
-    position: relative;
-    top: -20px;
-    width: 100%;
 
-}
 .invitee_button {
 	float:right;
     right: 400px;
@@ -1645,10 +1648,7 @@ top: -12px;
 	height:25px;
 					}
 					
-.user {
-	font-size :20px;
-	text-transform: uppercase;
-			}
+
 			
 .invite {
     margin-top: -20px;

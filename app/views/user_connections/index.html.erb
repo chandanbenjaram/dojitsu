@@ -1,15 +1,20 @@
 
- <%= stylesheet_link_tag('challenges.css','simple-tabs','jquery-ui', 'ui.core','ui.progressbar', 'main','colorbox')%>
+<%= stylesheet_link_tag('challenges.css','simple-tabs','jquery-ui', 'ui.core','ui.progressbar', 'main','colorbox','userconnections')%>
 <%= javascript_include_tag('jquery.facebook.multifriend.select','simple-tabs','ui.progressbar','jquery.colorbox-min','on_the_spot','ajaxPageLoad','user_connection','messages')%>
 <%= render 'layouts/loggedinbody'%>
 <% as= current_user.challenges.size %>
 
-<div bgcolor="#f4f4f4" ,class="topbar" style="margin-top: 0px; width: 100%; height: 30px; background: none repeat scroll 0% 0% rgb(244, 244, 244); top: -18px; position: relative;">	
-<div class="invitee_button" ><%= render :partial => 'invitations' %><div style="position:relative; top:-30px; float:right; right:-90px; color:#999999; font-size: 12px;font-weight:bold;"><%=current_user.facebook.name%></div></div>		
-</div>
+<section bgcolor="#f4f4f4" class="topbar" id="topbbarid" >	
+<section class="invitee_button" >
+		<%= render :partial => 'invitations' %>
+			<section  class="username">
+				<%=current_user.facebook.name%>
+			</section>			
+		</section>		
+</section>
 
-<div id="ch_main_div5">
-	<p class="user"><font color="orange"><%=current_user.facebook.name%></font></p>
+<section id="ch_main_section5">
+	<p class="user"><%=current_user.facebook.name%></p>
 	<table border="1px">
 		<tr width="600px">
 			<td width="100px" height="200px" align="left">      
@@ -24,10 +29,12 @@
 				<table>
 					<tr>
 						<td width="100px">
-							<b><font color="#999999">MEMBER SINCE</font></b></td>
+							<b><span class="titlecol" >MEMBER SINCE</span></b></td>
 						</td>
-						<td align="left" style="color:#666666">
-							<%= current_user.created_at%>
+						<td align="left">
+							<span class="subtitlecol" >
+								<%= current_user.created_at%>
+							</span>
 						</td>
 					</tr> 
 					<tr> 
@@ -37,14 +44,16 @@
 					</tr>   
 					<tr>
 						<td width="100px">
-							<font color="#999999"><b>ACHIEVEMENTS</b></font>
+							<b><span class="titlecol" >ACHIEVEMENTS</span></b>
 						</td>
-						<td align="left" style="color:#666666;">
-							<b>	<% totalTasks=0 %>
+						<td align="left" >
+							<span class="subtitlecol" >
+								<% totalTasks=0 %>
 								<% current_user.challenges.each  do |ch| %>
 									<% totalTasks+=ch.tasks.length%>
 								<% end %>
 								<b><%= current_user.challenges.length %>&nbsp;Challenges&nbsp;and&nbsp;<%= totalTasks%>&nbsp;tasks</b>
+								</span>
 							</td>
 						</tr>
 
@@ -56,10 +65,12 @@
 
 						<tr>
 							<td width="100px" height="10px">
-								<font color="#999999"><b>CURRENT CITY</b></font></td>
+								<span class="titlecol" ><b>CURRENT CITY</b></span></td>
 							</td>
-							<td align="left" height="10px" style="color:#666666;">
+							<td align="left" >
+								<span class="subtitlecol" >
 								<b><%= current_user.facebook.location.name rescue 'N/A' %></b>
+								</span>
 							</td>
 						</tr>
 						<tr> 
@@ -70,10 +81,14 @@
 
 						<tr>
 							<td width="100px">
-								<font color="#999999"><b>HOME CITY</b></font></td>
+								<span class="titlecol" ><b>HOME CITY</b></span>
+								
 							</td>
-							<td align="left" height="10px" style="color:#666666;">
-								<b><%= current_user.facebook.hometown.name rescue 'N/A' %></b>
+							</td>
+							<td align="left" height="10px">
+								<span class="subtitlecol" >
+									<b><%= current_user.facebook.hometown.name rescue 'N/A' %></b>
+								</span>
 							</td>
 						</tr>
 						<tr> 
@@ -84,10 +99,12 @@
 
 						<tr>
 							<td width="100px">
-								<font color="#999999"><b>SEX</b></font></td>
+								<span class="titlecol" ><b>SEX</b></span></td>
 							</td>
-							<td align="left" height="10px" style="color:#666666;">
+							<td align="left" height="10px">
+								<span class="subtitlecol" >
 								<b><%= current_user.facebook.gender rescue 'N/A' %></b>
+								</span>
 							</td>
 						</tr>
 						<tr> 
@@ -97,10 +114,11 @@
 						</tr>
 						<tr>
 							<td width="100px">
-								<font color="#999999"><b>BIRTH DAY</b></font></td>
+								<span class="titlecol" ><b>BIRTH DAY</b></span></td>
 							</td>
-							<td align="left" height="10px" style="color:#666666;">
-								<b><%= current_user.facebook.birthday rescue 'N/A' %></b>
+							<td align="left" height="10px">
+								<span class="subtitlecol" >
+								<b><%= current_user.facebook.birthday rescue 'N/A' %></b></span>
 							</td>
 						</tr>
 						<tr> 
@@ -110,10 +128,11 @@
 						</tr>
 						<tr>
 							<td width="100px">
-								<font color="#999999"><b>ABOUT ME</b></font></td>
+								<span class="titlecol" ><b>ABOUT ME</b></span></td>
 							</td>
-							<td align="left" height="10px" style="color:#666666;">
-								<b><%= current_user.facebook.bio rescue 'N/A' %></b>
+							<td align="left" height="10px">
+								<span class="subtitlecol" >
+								<b><%= current_user.facebook.bio rescue 'N/A' %></b></span>
 							</td>						
 						</tr> 
 						<tr> 
@@ -125,18 +144,18 @@
 			</td>
 		</tr>
 	 </table>
-	<table width="100%" border="0" style="margin-top:0px;">
+	<table width="100%" border="0" class="marginst">
 		<tr>
 			<td colspan="3">
     			<ul class="tabs">
     				<li><a href="#tab1"><b>MY DOJO</b></a></li>
     				<li><a href="#tab2"><b>CHALLENGES</b></a></li>
 				</ul>
-				<div class="tab_container1">
-					<div id="tab1" class="tab_content2">
-						<div id="myDojo"></div>
+				<section class="tab_container1">
+					<section id="tab1" class="tab_content2">
+						<section id="myDojo"></section>
                        
-					</div>
+					</section>
 					
 				    <script>
 					$.dojitsuAjaxPage.renderAjaxPageLoad("/user_connections/myDojo","#myDojo","#myDojo1");
@@ -176,11 +195,11 @@
 		
 		
 		
-					<div id="tab2" class="tab_content2"><br>
+					<section id="tab2" class="tab_content2"><br>
 					
-						<div id="people"></div>
-                                                <div id="people1"></div>
-                                        </div>
+						<section id="people"></section>
+                                                <section id="people1"></section>
+                                        </section>
 					<script>
                                           $.dojitsuAjaxPage.renderAjaxPageLoad("/user_connections/people","#people","#people1");
 					</script>
@@ -241,29 +260,11 @@ var email=response[0].email;
             }
     });
  </script> 
- <style>
- .update {
-    float: left;
-    left: 87%;
-    position: relative;
-    top: 10px;
-}
-#points {
-    background: none repeat scroll 0 0 #DDEFCE;
-    color: #7AC142;
-    height: 30px;
-    left: 92%;
-    padding-left: 5px;
-    padding-top: 4px;
-    position: relative;
-    top: -100px;
-    width: 40px;
-}
-</style>
-<div id="jfmfs-container-wrapper" style="display: none">
-  <div id="jfmfs-container">
-  </div>
- </div>
+
+<section id="jfmfs-container-wrapper" margin-top:0px;="display: none">
+  <section id="jfmfs-container">
+  </section>
+ </section>
 <script type="text/javascript" charset="utf-8">        
 (function($j) { 
  var selectorObz = {    
@@ -326,11 +327,3 @@ $('.ui-button').live('click', function(){
   });
  </script>
 
-<style>
-					.ui-widget-header {
-    background: none repeat scroll 0 0 #7AC142;
-    border: 1px solid #AAAAAA;
-    color: #222222;
-    font-weight: bold;
-}
-					</style>

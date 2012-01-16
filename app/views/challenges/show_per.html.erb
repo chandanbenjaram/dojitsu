@@ -49,7 +49,7 @@
                          <div id="TestStart" onclick="TestingStart();">
 						 
                               <% if @challenge.start_point.instance_of?PointDateType %>		
-                                  <b class="ondescricolor">><%= @challenge.start_point.value.strftime("%b %d, %Y")%> </b>
+                                  <b class="ondescricolor"><%= @challenge.start_point.value.strftime("%b %d, %Y")%> </b>
                               <% else %>							
                                   <%ch = @challenge.start_point  %>
                                   <b class="ondescricolor"><%= @challenge.start_point.value.to_i %></b>

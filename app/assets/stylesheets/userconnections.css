@@ -1,0 +1,75 @@
+.topbar
+{
+    background: none repeat scroll 0 0 #F4F4F4;
+    height: 30px;
+    margin-top: 0;
+    position: relative;
+    top: -20px;
+    width: 100%;
+	margin-top: 0px; 
+
+}
+#topbbarid
+{
+	margin-top: 0px;
+	width: 100%;
+	height: 30px; 
+	background: none repeat scroll 0% 0% rgb(244, 244, 244);
+	top: -18px;
+	position: relative;
+}
+.username
+{
+	position:relative; 
+	top:-30px; 
+	float:right; 
+	right:-90px; 
+	color:#999999; 
+	font-size: 12px;
+	font-weight:bold;	
+}
+
+.user 
+{
+	font-size :20px;
+	text-transform: uppercase;
+	color: #F8981D;
+}
+.titlecol
+{
+	color: #999999;
+}
+.subtitlecol
+{
+	color: #666666;
+}
+
+ .update {
+    float: left;
+    left: 87%;
+    position: relative;
+    top: 10px;
+}
+#points {
+    background: none repeat scroll 0 0 #DDEFCE;
+    color: #7AC142;
+    height: 30px;
+    left: 92%;
+    padding-left: 5px;
+    padding-top: 4px;
+    position: relative;
+    top: -100px;
+    width: 40px;
+}
+
+.ui-widget-header 
+{
+    background: none repeat scroll 0 0 #7AC142;
+    border: 1px solid #AAAAAA;
+    color: #222222;
+    font-weight: bold;
+}
+.marginst
+{
+	margin-top:0px;
+}

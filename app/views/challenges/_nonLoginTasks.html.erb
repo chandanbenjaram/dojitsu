@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag('main')%>
+<%= stylesheet_link_tag('main','nonLogin')%>
 <table width="100%" border="1" bgcolor=#f4f4f4 >
     <tr bgcolor=#f5f5f5>
         <th width="85%">
@@ -124,22 +124,7 @@
                     });
                 </script>
                 
-                <style>
-                #check6 {
-                color: #fff;
-                font-size: 15px;
-                position: relative;
-                top: 40px;
-                left:10px;
-                font-weight:bold;
-                    }
-                    .acceptimage
-                    {
-                    position:relative;
-                    left:760px;
-                    top:15px;
-                    }
-                </style>
+                
                 <div class="acceptimage">
                 <%= link_to image_tag("accepted.png"), update_status_challenges_path(:id => @challenge, :status=> 1) %>
                 </div>
