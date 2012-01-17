@@ -1,14 +1,14 @@
 #textFieldEffect{
-	border-width: 1px;
-	border-style: solid;
-	border-color: #A5A5A5;
-	
-	background-repeat: repeat-x;
-	font-family: Arial;
-	font-size: 15px;
-	color: #C6C6C6;
-	width: 470px;
-	height: 25px;
+	background: none repeat scroll 0 0 #CFCFCF;
+    border-color: #A5A5A5;
+    border-style: solid;
+    border-width: 1px;
+    color: #C6C6C6;
+    font-family: Arial;
+    font-size: 15px;
+    height: 25px;
+    width: 470px;
+   background: #F4F4F4;
 }
 
 .reg
@@ -26,12 +26,7 @@ float: left;
     top: -32px;
 }
 
-.dourbest
-{
-position: relative;
-    bottom: 26px;
 
-}
 .facebooklike
 {
  background: none repeat scroll 0 0 #FFFFFF;
@@ -68,15 +63,29 @@ left:10px;
 .regdojitsu
 {
 
-top:8px;
+top: 110%;
 float:left;
-left:580px;
+left:64%;
 position:absolute;
 background:#ffffff;
 
 width:355px;
 height:340px;
 }
+.regdojitsu
+{
+
+top: 110%;
+float:left;
+left:64%;
+position:absolute;
+background:#ffffff;
+
+width:355px;
+height:340px;
+}
+
+
 .viewall
 {
 padding-top:2px;
@@ -188,4 +197,67 @@ background: #A5A5A5;
 	width: 58px;
 	height: 22px;
 	color:#ffffff;
+}
+label{
+color:#CFCFCF;
+}
+
+.fb-like-box{
+	top:-40%;
+}
+.registertitle{
+	color: #F8981D; 
+	font-size: 16px;
+	font-weight: bold;
+}
+.whatnewfont{
+	color: #AAA9A9; 
+	font-size: 19px;
+	font-weight: bold;
+}
+.chatitle{
+	font-size: 16px;
+	font-weight: bold;
+}
+.dourbest{
+	top:2px;
+	position:relative;
+}
+label{
+color:#CFCFCF;
+}
+#textFieldEffect{
+
+    background: none repeat scroll 0 0 #CFCFCF;
+    border-color: #A5A5A5;
+    border-style: solid;
+    border-width: 1px;
+    color: #C6C6C6;
+    font-family: Arial;
+    font-size: 15px;
+    height: 25px;
+    width: 470px;
+   background: #F4F4F4;
+}
+.imagenew{
+	margin-top:0px;
+	margin-left:-2px;
+}
+.margin{
+	margin-top:-10px;
+}
+.margin2{
+	margin-top: 10px;
+}
+.createdat{
+float:right;
+margin-right:20px; 
+color: #A9A8A8;
+}
+.descriptionstyle{
+		text-transform:none;
+}
+.btnquestionupimge{
+	position: relative;
+	top: 4px;
 }

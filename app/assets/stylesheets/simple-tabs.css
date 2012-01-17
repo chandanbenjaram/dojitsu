@@ -68,6 +68,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 .tab_content {
 	padding: 20px;
 	font-size: 1.2em;
+	background:#F5F5F5;
 }
 .tab_content2 {
 	margin-top:0px;

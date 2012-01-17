@@ -1,129 +1,82 @@
-<%= javascript_include_tag('ui.progressbar','ajaxPageLoad','fbWallPost','jquery.colorbox-min')%>
-<%= stylesheet_link_tag('jquery-ui', 'ui.progressbar','ui.theme', 'main','colorbox')%>
+<%= javascript_include_tag('ui.progressbar','ajaxPageLoad','fbWallPost')%>
+<%= stylesheet_link_tag('jquery-ui', 'ui.progressbar','ui.theme', 'main', 'dashboard')%>
 <%= render 'layouts/loggedinbody'%>
 
 <div class="challange">
-  my dashboard
+ 
 </div>
-
 <%#= debug current_user.gmauth.id %>
 <%#= debug current_user.challenges %>
-
+<% if session[:isNewChallenge] == "isNew" %>
+    <script>
+      $.dojitsuWallPost.renderFbWallPost();
+    </script>
+<% end %>
 <table>
       <td>
-      <content>		
-      <table>
-          <td>
-              <tr>
-                  <td>
-                      <div class="dashboardsidebar">
-                      <div class="mychallenge">
-			                      <div id="titlechallenge">
-			                          <div style="left: 16px; position: relative; top: 5px;">
-			                            <div class="shadow">my challenges<font color="#ffffff"><b>&nbsp;&nbsp;( <%= current_user.challenges.size %> ) </b></font></div>
-			                          </div>
-			                          <div class="second_titlechallenge">
-			                             <%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
-			                          </div>
-			                      </div>
-			                      <div id="myChallenge"></div>
-			                      <div id="myChallenge1" align="center"></div>
-			                      <script>                         
-			                        $.dojitsuAjaxPage.renderAjaxPageLoad("/dashboard/myChallenge","#myChallenge","#myChallenge1");
-			                      </script>
-			                  </div>
-                      </div>	
-                  </td>
-              </tr>
-              <tr>
-                  <td>	
-                      <div class="dashboardsidebar1">
-                          <div class="mychallenge">
-                              <div id="titlechallenge">
-                                  <div id="title" style="left: 16px; position: relative; top: 5px;">
-                                     <div class="shadow">new messages <font style="color:#fff">&nbsp;&nbsp;( <%= current_user.inbox.count %> )</font></div>
-                                  </div>
-                                  <div class="second_titlechallenge">
-                                     <%= button_to "", "#", :class => "new_message_button", :method => :get%>
-                                  </div>
-                              </div>
-                              <div style="overflow-y: auto; overflow-x: hidden;" id="challengedetails">
-                              <div id="message"></div>
-                              <div id="message1" align="center"></div>
-                              <script>
-                                $.dojitsuAjaxPage.renderAjaxPageLoad("/dashboard/message","#message","#message1");
-                              </script>
-                          </div>	
-                      </div>
-                  </td>
-              </tr>
-          </td>
-      </table>
-      </content>
-  </td>
-	<td valign=top>
-            <div class="dashboardsidebar2">
-                <div class="whatsnew">	
-                    <font style="float: left;left: 15px; position: relative; top:6px;"><div class="shadow1">what's new</div></font> 
-                    <%= button_to "", challenges_url, :class => "ds_view_all", :method => :get%>
-                </div> 
-                <div id="whatsNew"></div>
-                <div id="whatsNew1" align="center"></div>
-                <script>
-                  $.dojitsuAjaxPage.renderAjaxPageLoad("/dashboard/whatsNew","#whatsNew","#whatsNew1");
-                </script>
-            </div>
+      <content>
+<table>
+	<td>
+        <tr>
+			 <td>
+				 <div class="dashboardsidebar">
+						<div class="mychallenge">
+							<div id="titlechallenge">
+								<div id="mychallengesstyle">
+										<div class="shadow">my challenges &nbsp;&nbsp;<span class="fontstyle">( <%= current_user.challenges.size %> )</sapn>
+										</div>
+								</div>
+								<div class="second_titlechallenge">
+									<%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
+								</div>
+							</div>
+							<div id="myChallenge"></div>
+							<div id="myChallenge1" align="center"></div>
+							<script>
+									$.dojitsuAjaxPage.renderAjaxPageLoad("/dashboard/myChallenge","#myChallenge","#myChallenge1");
+							</script>
+						</div>
+		        </div>
+		     </td>
+		</tr>
+		<tr>
+		     <td>
+			        <div class="dashboardsidebar1">
+					    <div class="mychallenge">
+						    <div id="titlechallenge">
+							    <div id="mychallengesstyle" >
+								        <div class="shadow">new messages &nbsp;&nbsp;<span class="fontstyle">( <%= current_user.inbox.count %> )</span>
+									    </div>
+								</div>
+								<div class="second_titlechallenge">
+											 <%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
+								</div>
+							</div>
+							<div id="challengedetails">
+							<div id="message"></div>
+						    <div id="message1" align="center"></div>
+								<script>
+										$.dojitsuAjaxPage.renderAjaxPageLoad("/dashboard/message","#message","#message1");
+								</script>
+							</div>
+						</div>
+			</td>
+		</tr>
+	 </td>
+</table>
+</content>
+</td>
+<td valign=top>
+	<div class="dashboardsidebar2">
+		<div class="whatsnew">
+				<div class="shadow1" id="shadowcolor">what's new</div>
+							<%= button_to "", challenges_url, :class => "ds_view_all", :method => :get%>
+				</div>
+				<div id="whatsNew"></div>
+				<div id="whatsNew1" align="center"></div>
+					<script>
+							  $.dojitsuAjaxPage.renderAjaxPageLoad("/dashboard/whatsNew","#whatsNew","#whatsNew1");
+					</script>
+		</div>
 	</td>
 </table>
-<div style="display:none">
-<div id="sendNewMessage">
-    <%= form_tag newmessage_messages_path, :method => :get do  %>
-    <table width="100%" bgcolor="#f4f4f4">
-      <tr bgcolor="#f4f4f4">
-        <td colspan="2">
-          <b style="font-size: 18px; color: #8c8c8c">New Message<b>
-        </td>
-      </tr>
-      <tr bgcolor="#ffffff">
-        <td width="17%">
-          <b style="font-size: 15px; color: #dddddd">T0</b>        </td>
-        <td width="83%">
-          <%= text_field_tag 'to', nil, :size=>"38" %>        </td>
-      </tr>
-      <tr bgcolor="#ffffff">
-        <td>
-          <b style="font-size: 15px; color: #dddddd">MESSAGE</b>
-        </td>
-        <td>
-          <%= text_area_tag 'message', nil %>
-        </td>
-      </tr>      
-      <tr bgcolor="#ffffff">
-        <td colspan="2">
-          <%= link_to "CANCEL",  "#", :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel_message"%>        
-          <%= submit_tag "UPDATE", :style => "width: 80px; float:right;", :class => "links" %>
-        </td>
-      </tr>
-    </table>
-    <% end %>
-</div>
-</div>
-<script>
-    $(".new_message_button").click(function(){
-        //alert("Maisa");
-        $.colorbox({
-              opacity: 0.40,
-              transition: 'none',
-              speed: 200,
-              width: 400,
-              scrolling: true,
-              inline:true, 
-              href:"#sendNewMessage",
-              title: '',
-              overlayClose: true,
-              onComplete: function () {
-                  // $(this).initFunctions(); // if you want to reinit another colorbox, you should pass the element as an argument to initFunctions rather than calling this as a blanket initializer for all colorboxes.
-              }              
-          });
-    });
-</script>

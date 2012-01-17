@@ -14,17 +14,17 @@
 }*/
 .reg
 {
-float: left;
+	float: left;
     left: 230px;
     position: relative;
-    top: -35px;
+    top: -38px;
 }
 .seetutorial
 {
- float: left;
+    float: left;
     left: 50px;
     position: relative;
-    top: -32px;
+    top: -35px;
 }
 .facebooklike
 {
@@ -61,10 +61,93 @@ left:10px;
 }
 .messagereg
 {
-	width:550px;
+	width:560px;
 	height:130px;
 	background:#F9F7F7;
 	color:#000;
 	border:1px solid #DCDCDC;
 	margin-top:10px;
 }
+.sectionone{
+		
+		background: #FFFFFF; 
+}
+.sectiontwo
+{
+		background: #FFFFFF;
+}
+. {
+	display: block;
+}
+.newtag
+{
+	margin-left: -3px;
+    margin-top: -1px;
+}
+.titlecolor
+{
+	color: #AAA9A9;
+    font-size: 190%;
+}
+.tablemargin
+{
+	margin-top: -10px;
+}
+.tdpaddingleft
+{
+		padding-left:10px;
+}
+.chaltitlecolor
+{
+	font-weight:bold;
+}
+.createdtime
+{
+	float:right; 
+	margin-right:20px; 
+	color: #A9A8A8;
+}
+.textranform{
+	text-transform:none;
+}
+.positionforimage{
+	position: relative;
+	top: 4px;
+}
+.dourbest
+{
+	top: 5px;
+	position:relative;
+	
+
+}
+
+.dourbest1 {
+    position: relative;
+    top: 4px;
+}
+.LikeboxPluginPagelet{
+background: red;
+}
+ #check5 {
+                color: #7AC142;
+                font-size: 15px;
+                font-weight:bold;
+                position: relative;
+                top: 27px;
+                left:10px;
+                        }
+                         #check6 {
+                color: #fff;
+                font-size: 15px;
+                position: relative;
+                top: 40px;
+                left:10px;
+                font-weight:bold;
+                    }
+                    .acceptimage
+                    {
+                    position:relative;
+                    left:760px;
+                    top:15px;
+                    }

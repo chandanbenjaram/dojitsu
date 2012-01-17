@@ -7,9 +7,9 @@
 
    	<%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %>
     
-	<%= link_to "MY CHALLENGES >> ",challenges_url , :style=> "text-decoration: none; color:#666666;",:class => "challenge_link1" %>
+	<%= link_to "MY CHALLENGES >> ",challenges_url , :class => "challenge_link1" %>
 	
-	<%= link_to "CREATE NEW ",new_challenge_url , :style=> "text-decoration: none; color:#666666;",:class => "challenge_link1" %> 
+	<%= link_to "CREATE NEW ",new_challenge_url , :class => "challenge_link1" %> 
 
 </div>
 
@@ -17,7 +17,7 @@
 	<span class="pageTitle">CREATE NEW</span>
 
 	<%= form_for :challenge, :url => {:controller=> "challenges",:action => "create"},:html=>{:multipart => true, :name => "challenge_form", :onSubmit => "return validate_form_fields(this);"} do |f| -%>
-	<table width="100%" border="0" style="margin-top:0px;">
+	<table width="100%" border="0" class ="challengecre">
 		<tr >
 			<td colspan="4">
 			<%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :placeholder=>"Enter challenge title here" , :required => "required", :maxlength => "30"  %><div id="title"></div>
@@ -64,7 +64,7 @@
 					<%= select_tag "end_point_type", "<option value=''>Choose</option><option value='endPointDate'>Date</option><option value='endPointNumber'>Number</option>".html_safe, :required => "required" %>
 					</div>
 				</td>  
-				<td colspan="2" style="float: left;">					
+				<td colspan="2" class="endpointdatenumber">					
 					<div class="endPointDate">
 					</div>
 					<div class="endPointNumber">
@@ -102,7 +102,7 @@
 								["Choose", ""],
 								["Check box:1 for checking off the task", "Check box:1 for checking off the task"],	 
 								["Self-report number","Self-report number"]														
-								]), :style => "width:300px", :required => "required"%>	
+								]), :class => "styleselect", :required => "required"%>	
 							</td>
 							</div>
 							<td align="center" class="taskIcon"><%= image_tag("icon_multiply.png")%></td>
@@ -121,32 +121,10 @@
 							<td colspan="5"><hr id="all_hr1"></td>									
 							<td align="right">
 							<%= image_tag("btn_add_up.png", :class => "addRow")%>
-								<style>
-								  .addRow
-								  {
-									 position:relative;
-									 top:-43px;
-									 left:25px;
-								  }
-								  @media screen and (-webkit-min-device-pixel-ratio:0) {
-								  .addRow {
-								    position:relative;
-									 margin-top:3%;
-									 left:25px;
-								    }
-								}
-
-								</style>
+								
 							</td>
 						</tr>
-							<script type="text/javascript">
-							(function($){
-								$(document).ready(function(){
-									$(".addRow").btnAddRow();
-									$(".delRow").btnDelRow();
-							});
-							})(jQuery);
-							</script>	
+							
 						<% end %> 
 						<% end %>
 						<tr>
@@ -189,7 +167,7 @@
 					["Lowest number of points","Lowest number of points"],	 
 					["1st person to reach End Point","1st person to reach End Point"],	
 					["Participant completes all tasks","Participant completes all tasks"]			 														
-					]), :id => "soc_wn", :style => "width:130%"
+					]), :id => "soc_wn", :class => "selectagwidth"
 					%>		
 				</div>	
 				<div id="select_challenge_div"></div>
@@ -205,7 +183,7 @@
 						["3","3"],
 						["5","5"],	 
 						["All participants win","all"] 														
-						]), :id => "soc_hm", :style => "width:130%"
+						]), :id => "soc_hm", :class => "selectagwidth"
 						%>
 					</div>		
 						<div id="soc_how_many_winner_div"></div>	
@@ -216,7 +194,7 @@
 					<td><b class="color999">Participants</b></td>
 					<td>
                             
-						<%= hidden_field_tag "myvar", 0%>					
+										
 						<%= render :partial => 'invitations', :locals => {:form => f} %>
 					</td>
 				</tr>
@@ -225,14 +203,14 @@
     					<div id="tab2" class="tab_content">
        						<table width="100%" border="0">
   								<tr>
-    								<td  width="20%"><b style="color:#999999;">Who wins</b></td>
+    								<td  width="20%"><b class="color999">Who wins</b></td>
 									<td>
 										<div class="styled-select1">
 										<%= select_tag :per_who_win, options_for_select([
     										["Choose", ""],							
 											["Add all points together","Add all points together"],
 											["Reach all milestones","Reach all milestones"]
- 											]), :id => "per_wn", :style => "width:130%" 
+ 											]), :id => "per_wn", :class => "selectagwidth" 
  										%>
 										</div>
 									</td>
@@ -285,25 +263,7 @@
 		</tr>
 	</table>			
 </div>
-<style>
-.ui-draggable .ui-dialog-titlebar {
-    background: none repeat scroll 0 0 #8497BF;
-    cursor: move;
-}
-.ui-dialog .ui-dialog-title {
-    color: #FFFFFF;
-    float: left;
-    margin: 0.1em 16px 0.1em 0;
-}
-.ui-dialog .ui-dialog-buttonpane button {
-    background: none repeat scroll 0 0 #8497BF;
-    color: #FFFFFF;
-    cursor: pointer;
-    margin: 0.5em 0.4em 0.5em 0;
-	font-weight: bold;
-}
-</style>
-			
+
 			
 			
 

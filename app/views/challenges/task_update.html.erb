@@ -4,27 +4,35 @@
 <div style="background:#f4f4f4; width:600px; height:140px; overflow:hidden" >
 <% @score_by%>
   <% if @score_by == "Check box:1 for checking off the task" %>
-	<table bgcolor="#f4f4f4" >
-		<tr bgcolor="#ffffff">
-			<td colspan="2">
-				<font size="4px;"><%= @name%></font>
-			<td>
-		</tr>	
-		<tr  bgcolor="#ABD6AD">
-			<td>
-				<font size="4px;"><%= @score%> <%= image_tag("icon_multiply.png")%><%= check_box_tag 'task_done', 'yes', true%> 1 mark as complete</font>
-			</td>
-			<td colspan="2">
-				<%= image_tag("icon_equal.png")%><font size="4px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @score%></font>
-			</td>
-		</tr>
-		<tr bgcolor="#ffffff">
-			<td colspan="2">
-				<%= link_to "CANCEL",  show_per_challenges_path(:id => @id), :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel2"%>
-				<%= link_to "UPDATE",  task_update_c_challenges_path(:id => @id,:name =>@name), :style => "text-decoration: none; color:#fff; float:right; margin-right:5px;" ,:class => "task_links_cancel"%>
-			<td>
-		</tr>							
+  <%= form_tag task_update_c_challenges_path, :method => :get do %>
+    <table bgcolor="#f4f4f4" >
+        <tr bgcolor="#ffffff">
+            <td colspan="2">
+               <font size="4px;"><%= @name%></font>
+               <%= hidden_field_tag 'name', @name %>
+               <%= hidden_field_tag 'id', @id %>
+            <td>
+        </tr>	
+        <tr  bgcolor="#ABD6AD">
+            <td>
+                <font size="4px;"><%= @score%>
+                    <%= image_tag("icon_multiply.png")%>
+                    <%= check_box_tag 'task_done', 'yes', false%> 1 mark as complete
+                </font>
+            </td>
+            <td colspan="2">
+               <%= image_tag("icon_equal.png")%><font size="4px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @score%></font>
+            </td>
+        </tr>
+        <tr bgcolor="#ffffff">
+            <td colspan="2">
+                <%= link_to "CANCEL",  show_per_challenges_path(:id => @id), :style => "text-decoration: none; color:#fff; float:right; top: 2px; right: -96px;" ,:class => "links_cancel2"%>
+                <%#= link_to "UPDATE",  task_update_c_challenges_path(:id => @id,:name =>@name), :style => "text-decoration: none; color:#fff; float:right; margin-right:5px;" ,:class => "task_links_cancel"%>
+                <%= submit_tag "UPDATE", :style => "width: 80px; float:right; margin-right:10px; right: -80px;", :class => "links" %>
+            <td>
+        </tr>							
     <table>
+    <% end %>
   <% else %>
 	<%= form_tag task_update_c_challenges_path, :method => :get do %>
 		<table bgcolor="#f4f4f4">

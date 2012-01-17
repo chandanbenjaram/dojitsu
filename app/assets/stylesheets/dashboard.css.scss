@@ -1,3 +1,187 @@
 // Place all the styles related to the dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#mychallengesstyle
+{
+		left: 16px;
+		position: relative; 
+		top: 5px;
+ }
+ .fontstyle
+ {
+ color: #ffffff;
+  font-weight: bold;
+ }
+.shadow {
+    color: #333333;
+    font-family: arial;
+    font-size: 11px;
+    font-weight: bold;
+    text-shadow: -1px 0 1px #E9E9E9;
+    text-transform: uppercase;
+    width: 150px;
+}
+
+.shadow1{
+	color: #333333;
+    font-family: arial;
+    font-size: 11px;
+    font-weight: bold;
+    text-shadow: -1px 0 1px #E9E9E9;
+    text-transform: uppercase;
+    width: 78px;
+	
+}
+
+#shadowcolor{
+ float: left;
+ left: 15px; 
+ position: relative;
+ top:6px;
+ }
+ 
+.dashboardsidebar1
+{
+
+	width: 645px;
+}
+
+// mychallenge styles
+
+#challengedetails
+{
+	position:absolute;
+	background: none repeat scroll 0 0 #FFFFFF;
+   
+    height: 465px;
+    margin-top: -1px;
+    position: absolute;
+    width: 635px;
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-topright: 0px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-webkit-border-radius: 0px 0px 5px 5px;
+	border-radius: 0px 0px 5px 5px; 
+	overflow-y: auto; 
+	overflow-x: hidden;
+	height : 465px;
+}
+.challengerow{
+
+	border:10px solid #FF0000;
+	cursor:pointer;
+ 
+}
+
+.bordercolort
+{
+	height:5px;
+	border-bottom:2px solid #BEBEBE;
+	padding-left:15px;
+}
+.bordercolort1
+{
+	height:5px;
+	border-bottom:2px solid #BEBEBE;
+	padding-right:8px;
+}
+.bordercolort2
+{
+	height:5px;
+	border-bottom:2px solid #BEBEBE;
+	padding-right:20px;
+}
+.userchallengestyle{
+		font-family: arial;
+		color: #666666;
+		font-size: 15px;
+}
+.fontsize
+{
+	font-size: 13px;
+}
+.togostyle
+{
+	font-size: 14px;
+	color: #F8981D;
+}
+.pointscolor
+{
+	color: #FFFFFF;
+}
+.ascoresize
+{
+	font-size: 16px;
+}
+
+#content1
+{
+	float:left;
+	postion:absolute;
+	padding-left:20px;
+	width:120px;
+	height:auto;
+	cursor: pointer; 
+	cursor: hand;
+}
+#content2
+{
+	float:left;
+	postion:absolute;
+	padding-left:10px;
+	width:400px;
+	height:auto;
+	text-align: right;
+	cursor: pointer; 
+	cursor: hand;
+}
+
+//what's new styles
+
+#contentbox
+{
+	background: none repeat scroll 0 0 #F4F4F4;
+    border: 1px solid #BEBEBE;
+    height: auto;
+    margin: 10px;
+    overflow: hidden;
+    position: relative;
+    top: 1px;
+    width: 260px;
+}
+.imagestyle
+{
+	margin-top:0px;	
+	margin-left:-2px;
+}
+.maintable
+{
+	margin-top:-10px;
+}
+.firsttdst
+{
+	padding-left:15px;
+}
+.chatitle
+{
+	font-size: 16px;
+	font-weight:bold;
+}
+.tdalign
+{
+	text-align: right;
+}
+.timestyle
+{
+	float:right; 
+	position: relative; 
+	right: 10px; 
+	width:110%;
+}
+.texttransormn
+{
+	text-transform:none;
+}
+
+//message css styles

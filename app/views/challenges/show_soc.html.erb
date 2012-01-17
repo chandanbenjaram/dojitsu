@@ -129,17 +129,19 @@
 			<td height="34px" width="15%" class="titles">
 				<b ><font color= #999999>ORGANIZER</font></b>
 			</td>
-			<td width="73%">
+			<td width="73%" id="organizer">
 				<% if @challenge.instance_of?ChildChallenge%>
 					<%  @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
 					<script>
 						var ordId = <%=  orgId = @parentChallenge.user_id %>
+						//document.getElementById('organizer').innerHTML=ordId
 					</script>
 					<b style="color:#666666;"><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
 				<% else %>	
 					<b style="color:#666666;" id="user_name"></b>
 					<script>
 						var ordId = <%=  orgId = @challenge.user_id %>
+							//document.getElementById('organizer').innerHTML=ordId
 					</script>
 				<% end %>	
 			</td>
@@ -303,10 +305,10 @@
 				</div>
 					 <script>
 					 	<%if @challenge.parent .nil? %>
-																	   <% childChallenges =  @challenge.child_challenges %>
-																	  <%else%>
-																	   <%childChallenges =  @challenge.parent.child_challenges %>
-																	   <%end%>       
+									<% childChallenges =  @challenge.child_challenges %>
+						<%else%>
+									<%childChallenges =  @challenge.parent.child_challenges %>
+						 <%end%>       
 			 htmltable="<table><% childChallenges.each do |aChildChallenge| %> <tr><td width=80%><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td> <% if aChildChallenge.social_type.status == 1 %><img src="+"/assets/icon_accept.png"+"><% elsif aChildChallenge.social_type.status == -1 %><img src="+"/assets/icon_decline.png"+"><% else %><img src="+"/assets/icon_thinking.png"+"><% end %></td></tr><% end %></table>";
 					 		document.getElementById("name").innerHTML =htmltable
 					 </script>
