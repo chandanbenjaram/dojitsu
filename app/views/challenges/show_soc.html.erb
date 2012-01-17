@@ -316,7 +316,229 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
                                   
                                  <div class="tables">
 
-	venkat
+	<table>
+     <td width="47%">
+       <label for="search">
+       <strong>
+       <% if  @challenge.class.to_s == "Challenge" %>
+                <font size="4" color="#D7D7D7"><b  id="total">Total: <%= @challenge.child_challenges.length %></b></font>
+               <%else %>
+                <font size="4" color="#D7D7D7"> <b  id="total">Total: <%= @challenge.parent.child_challenges.length %></b></font>
+               <% end %>
+               <% if @challenge.instance_of?Challenge %>
+                <%= image_tag("btn_msg_up.png", :style=>"margin-left:10px; position:relative; top:5px;" ,:onclick=>"contactToInvitee()")%>
+               <% end %>
+       </strong>
+       </label>
+     </td>
+     <td><input type="text" id="search" /></td>
+     <script>
+     function search()
+     {
+     var name_search=document.getElementById("search").value;
+         select();    
+     }
+     </script>
+     <td><div class="styled-select"> <select id="select">
+       <option value="All" id="select">ALL</option>
+       <option value="1" id="select">ACCEPTED</option>
+       <option value="pending" id="select">PENDING</option>
+       <option value="-1" id="select">DECLINED</option>
+      </select> </div>
+     </td>
+     <td>
+      <%=image_tag("searchbutton.PNG",  :onclick=>"search();" )%>
+         <%#= link_to(image_tag("declane.png"), filter_challenges_path(:id => @challenge)) %>
+     </td>
+    </table>
+    <table width="100%"  class="sortable" border=1>
+    <thead>
+    <tr>
+    <th width="80%"><b style="position:relative; color:#666666; padding-left:20px; " >NAME</b></th>
+    <th width="20%"><b style=" color:#666666;  " >STATUS </b></th>
+    </tr>
+    </thead>
+    </table>
+    <table width="100%" id="tblData" class="sortable" border=1>
+    <tbody bgcolor="#ffffff">
+     <tr >
+         <td >
+      <div id="name">
+    
+      </div>
+     </td>  
+    </tr>
+    <div id ="all">
+    </div>
+      <script>
+       <%if @challenge.parent .nil? %>
+                    <% childChallenges =  @challenge.child_challenges %>
+                   <%else%>
+                    <%childChallenges =  @challenge.parent.child_challenges %>
+                    <%end%>       
+    htmltable="<table><% childChallenges.each do |aChildChallenge| %> <tr><td width=80%><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td> <% if aChildChallenge.social_type.status == 1 %><img src="+"/assets/icon_accept.png"+"><% elsif aChildChallenge.social_type.status == -1 %><img src="+"/assets/icon_decline.png"+"><% else %><img src="+"/assets/icon_thinking.png"+"><% end %></td></tr><% end %></table>";
+        document.getElementById("name").innerHTML =htmltable
+      </script>
+     <script>
+       
+        function select()
+        {
+       //   $("#all").hide();
+        //  $("#all").replaceWith($("#name")
+         var select= document.getElementById("select").value
+         var name_search=document.getElementById("search").value;
+         <%if @challenge.parent .nil? %>
+              <% childChallenges =  @challenge.child_challenges %>
+             <%else%>
+              <%childChallenges =  @challenge.parent.child_challenges %>
+              <%end%>                      
+              <% childChallenges.each do |aChildChallenge| %>
+           
+              var challenge_status="<%= aChildChallenge.social_type.status %>";
+                 if (select == "All")
+                  {
+                  var status = 2
+                  }
+                  if (select == "1")
+                  {
+                  var status = 1
+                  }
+                  if (select == "pending")
+                  {
+                  var status = 0
+                  }
+                  if (select == "-1")
+                  {
+                  var status = -1
+                  }
+                          <% end %>
+        <%if @challenge.parent .nil? %>
+               <% childChallenges =  @challenge.child_challenges %>
+              <%else%>
+               <%childChallenges =  @challenge.parent.child_challenges %>
+               <%end%>                      
+       <% childChallenges.each do |aChildChallenge| %>
+                var check_name= "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %>";
+                var name_search=document.getElementById("search").value;
+                var challenge_status="<%= aChildChallenge.social_type.status %>";
+            if (name_search == check_name && challenge_status==1 && status==1)
+             {
+             var str = "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>";
+             htmltr_open='<img src=' + str+ ' />';
+             var check_name= "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %>";
+             document.getElementById("name").innerHTML ="<table><tr><td width="+"84%"+"><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_accept.png"+"></td></tr></table>";
+
+             }
+             if (name_search == check_name && challenge_status==-1 && status==-1)
+             {
+             var str = "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>";
+             htmltr_open='<img src=' + str+ ' />';
+             var check_name= "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %>";
+             var challenge_status="<%= aChildChallenge.social_type.status %>";
+             document.getElementById("name").innerHTML ="<table><tr><td width="+"84%"+"><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_decline.png"+"></td></tr></table>";
+
+             }
+             if (name_search == check_name && status==0 || name_search == check_name && status=="null")
+         
+             {
+             var str = "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>";
+             htmltr_open='<img src=' + str+ ' />';
+             var check_name= "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %>";
+             var challenge_status="<%= aChildChallenge.social_type.status %>";
+             <% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 or aChildChallenge.social_type.status == "null"%> 
+             document.getElementById("name").innerHTML ="<table><tr><td width="+"84%"+"><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_thinking.png"+"></td></tr></table>";
+             <% end %>
+             }
+             if (name_search == check_name && status==2)
+             {
+             var str = "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>";
+             htmltr_open='<img src=' + str+ ' />';
+             var check_name= "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %>";
+             var challenge_status="<%= aChildChallenge.social_type.status %>";
+             document.getElementById("name").innerHTML ="<table><tr><td width="+"84%"+"><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><% if aChildChallenge.social_type.status == 1 %><img src="+"/assets/icon_accept.png"+"><% elsif aChildChallenge.social_type.status == -1 %><img src="+"/assets/icon_decline.png"+"><% else %><img src="+"/assets/icon_thinking.png"+"><% end %></td></tr></table>";
+             }
+             
+             <% end %>
+        if( status==2 && name_search ==="" ||  status==2 && name_search ==="nil" ||  status==2 && name_search ===null   )
+           {
+             <%if @challenge.parent .nil? %>
+               <% childChallenges =  @challenge.child_challenges %>
+             <%else%>
+               <%childChallenges =  @challenge.parent.child_challenges %>
+             <%end%>                      
+                                      htmltable="<table><% childChallenges.each do |aChildChallenge| %> <tr><td width=80%><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td> <% if aChildChallenge.social_type.status == 1 %><img src="+"/assets/icon_accept.png"+"><% elsif aChildChallenge.social_type.status == -1 %><img src="+"/assets/icon_decline.png"+"><% else %><img src="+"/assets/icon_thinking.png"+"><% end %></td></tr><% end %></table>"
+           document.getElementById("name").innerHTML =htmltable
+            }
+        else if( status==1 && name_search ==="" ||  status==1 && name_search ==="nil" ||  status==1 && name_search ===null    )
+              {
+               <%if @challenge.parent .nil? %>
+                    <% childChallenges =  @challenge.child_challenges %>
+                   <%else%>
+                    <%childChallenges =  @challenge.parent.child_challenges %>
+                    <%end%>                      
+                                                         htmltable="<table><% childChallenges.each do |aChildChallenge| %><% if aChildChallenge.social_type.status == 1 %> <tr><td><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name%></td><td><img src="+"/assets/icon_accept.png"+"><td></tr><% end %><% end %></table>";
+              document.getElementById("name").innerHTML =htmltable
+              }
+        else if(  status==0 && name_search ==="" ||  status==0 && name_search ==="nil" ||  status==0 && name_search ===null   )
+              {
+               <%if @challenge.parent .nil? %>
+                    <% childChallenges =  @challenge.child_challenges %>
+                   <%else%>
+                    <%childChallenges =  @challenge.parent.child_challenges %>
+                    <%end%>                      
+                                                         htmltable="<table><% childChallenges.each do |aChildChallenge| %><% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 or aChildChallenge.social_type.status == "null"%> <tr><td width="+"84%"+"><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_thinking.png"+"></td></tr><% end %><% end %></table>";
+              document.getElementById("name").innerHTML =htmltable
+              }
+        else if(  status==-1 && name_search ==="" ||  status==-1 && name_search ==="nil" ||  status==-1 && name_search ===null   )
+              {
+              <%if @challenge.parent .nil? %>
+                    <% childChallenges =  @challenge.child_challenges %>
+                   <%else%>
+                    <%childChallenges =  @challenge.parent.child_challenges %>
+                    <%end%>                      
+                                                         htmltable="<table><% childChallenges.each do |aChildChallenge| %><% if aChildChallenge.social_type.status == -1 %> <tr><td ><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_decline.png"+"></td></tr><% end %><% end %></table>";
+              document.getElementById("name").innerHTML =htmltable
+             }
+             
+       <%if @challenge.parent .nil? %>
+            <% childChallenges =  @challenge.child_challenges %>
+           <%else%>
+            <%childChallenges =  @challenge.parent.child_challenges %>
+            <%end%>       
+          <% childChallenges.each do |aChildChallenge| %>
+            
+          <% end %>
+             }
+        </script>
+      <td></td>
+     
+
+    </tr>
+   
+    </tbody>
+    </table>
+
+				</div> 		
+								  
+				</div> 
+				                    
+				<style type="text/css">
+				
+				 #ahref
+				{     
+				color: #666666;
+				font-weight: bold;
+				top: -20px;
+				position:relative;
+				}
+				</style>                
+				
+				
+			</div> 
+					
+		</td>
+	</tr>
+</table>  
 
 				</div> 		
 								  
@@ -368,11 +590,7 @@ $(function() {
 });
 </script>
 
-<style>
-	.table{
-		background:#ffffff;
-	}
-</style>
+
 <% if isStandalone %>
     <% if @challenge.class.to_s == "ChildChallenge" || @challenge.user_id != current_user.gmauth.id %>
     <script>
@@ -424,11 +642,7 @@ $(function() {
 	
 	
 </script>
-<style>
-	.button_edit{ background:#f8981d; color:#ffffff; }
-	.cancel_edit{ background:#999999; color:#ffffff; }
-	
-</style>
+
 
 <div id="jfmfs-container-wrapper" style="display: none">
   <div id="jfmfs-container">
@@ -493,11 +707,3 @@ $('.ui-button').live('click', function(){
   });
  </script>
 
-<style>
-	.ui-widget-header {
-				background: none repeat scroll 0 0 #7AC142;
-				border: 1px solid #AAAAAA;
-				color: #222222;
-				font-weight: bold;
-			}
-</style>

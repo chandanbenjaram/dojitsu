@@ -26,13 +26,14 @@
 		<tr>
 		<table id="description">
 				<tr>
-					<td valign="top" width="15%">
+					<td valign="top" width="13%">
 						<b class="elecolor">DESCRIPTION</b></td>
 					<td  width="73%">
 						<b class="ondescricolor"><%= on_the_spot_edit @challenge,:description , :type=>:textarea  %></b>
 					</td>
 					<td  width="12%">
 						<span id="image1"><%= image_tag("icon_edit.png") %></span>
+						
 					</td>
 				</tr>
 		</table>
@@ -232,8 +233,8 @@
 	</tr>
 	<tr>
 		  <div id="ch_main_div2">
-			<table  bgcolor=#f4f4f4>
-				<tr bgcolor=#f5f5f5>
+			<table>
+				<tr class="bgcolorb">
 					<td width="40px">
 						<h3 align="left"><b class="totalstyle">Total : <%= @challenge.tasks.count %></b></h3>
 					</td>
@@ -382,4 +383,5 @@
 	});
 	
 </script>
+
 

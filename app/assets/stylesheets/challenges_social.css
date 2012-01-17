@@ -9,6 +9,10 @@
     text-align: right;
     top: 2px;
 }
+.table
+{
+		background:#ffffff;
+}
 .challenge_link1 
 {
     color: gray;
@@ -36,6 +40,11 @@
 {
 	color: #999999;
 }
+.colorligtblk1
+{
+	color: #999999;
+	font-weight: bold;
+}
 
 .colordarkblk
 {
@@ -53,4 +62,51 @@
 .tab_content
 {
 	background:#F5F5F5;
+}
+
+.button_edit
+{
+	background:#f8981d; color:#ffffff; 
+ }
+.cancel_edit
+{
+	background:#999999; color:#ffffff; 
+}
+	
+.ui-widget-header 
+{
+		background: none repeat scroll 0 0 #7AC142;
+		border: 1px solid #AAAAAA;
+		color: #222222;
+		font-weight: bold;
+}
+	
+.donedivbutton
+{
+	position:relative; 
+	margin-top:-40px; 
+	margin-bottom:-15px; 
+	float:left; 
+	left:400px;
+}
+
+#cancelbutton
+{
+	text-decoration: none; 
+	color:#fff; 
+	float:right; 
+	position: relative; 
+	right:-100%; 
+	width:100px; 
+}
+#donebutton
+{
+    background: none repeat scroll 0 0 #F8981D;
+    color: #FFFFFF;
+    float: right;
+    margin-right: 10px;
+    position: relative;
+    right: -100%;
+    top: 28px;
+    width: 100px;
 }

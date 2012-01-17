@@ -1,14 +1,14 @@
 <%= javascript_include_tag('jquery.table.addrow')%>
-
+<%= stylesheet_link_tag('challenges_social') %>
 <table width="100%">
 	<%= form_for(@challenge, :url => update_task_soc_challenges_path(:id =>@challenge))  do |f| %>
 	<tr  bgcolor="#f4f4f4">
-		<div><b style="color:#999999;">Edit my tasks (<%= @challenge.tasks.count %>)</b></div>
-		<div style="position:relative; margin-top:-40px; margin-bottom:-15px; float:left; left:400px; ">
-			<%= link_to "CANCEL",  show_soc_challenges_path(:id => @challenge), :style => "text-decoration: none; color:#fff; float:right; position: relative; right:-100%; width:100px; ", :class => "links_cancel"%>
+		<span class="colorligtblk1">Editing my tasks (<%= @challenge.tasks.count %>)</span>
+		<section class = "donedivbutton">
+			<%= link_to "CANCEL",  show_soc_challenges_path(:id => @challenge), :id => "cancelbutton", :class => "links_cancel"%>
 			<%#= button_to "DONE",  update_task_soc_challenges_path, :style => "text-decoration: none; color:#fff; float:right; margin-right:5px;" ,:class => "task_links_cancel"%>
-			<%= f.submit "DONE", :style => "width: 100px; float:right; margin-right:10px; position:relative; right: -100%; top:7px; ", :class => "links" %>	
-			</div>
+			<%= f.submit "DONE", :id => "donebutton" %>	
+		</section>
 	</tr>
 	<tr bgcolor="#d7d7d7">
 		<td width="4%"></td>
@@ -27,14 +27,14 @@
 	<tr bgcolor="#ffffff">
 		<td><%= image_tag("select_icon.png", :height => '20', :width => '20')%></td>
 		<td>
-		<div class="styled-select">
+		<section class="styled-select">
 		<%= task_fields.select :score_by, options_for_select([
 			[task.score_by, task.score_by],
 			["Check box:1 for checking off the task", "Check box:1 for checking off the task"],	 
 			["Self-report number","Self-report number"]														
 			]), :style => "width:280px; position:relative; float:left;"
 		%>
-		</div></td>		
+		</section></td>		
 		<td><%= image_tag("icon_multiply.png")%></td>
 	
 		<td><%= task_fields.text_field :score, :size=> "12" %></td>
@@ -58,9 +58,9 @@
                         <font class="color999"><%= f.label "No" %></font>		
 	
 		<td>
-			<div class="addbutton_soc">
+			<section class="addbutton_soc">
 				<%= link_to image_tag("btn_add_up.png", :style=>"position:relative;left:-13px; top:19px;"), add_task_link_challenges_path(:id => @challenge), :class => "soc_add_task_popup" %>
-			</div>
+			</section>
 		</td>
 			
 	</tr>
