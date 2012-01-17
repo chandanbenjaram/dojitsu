@@ -10,6 +10,10 @@ describe MessagesController do
     it "Should route to MESSAGES controller MESSAGE action" do
       { :get =>"/messages/message"}.should route_to(:controller => 'messages', :action => 'message')
     end
+    
+    it "should route to MESSAGES controller NEWMESSAGE action" do
+      { :get =>"/messages/newmessage"}.should route_to(:controller => 'messages', :action => 'newmessage')
+     end
 
   end
 end

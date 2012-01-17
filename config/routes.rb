@@ -7,6 +7,7 @@ Dojitsu::Application.routes.draw do
 
   # user registration & 3rd party logins
   match 'users/auth/:provider/callback', :to=>'authentications#create'
+
   devise_for :users, :controllers => { :registrations => "registrations"}
   resources :authentications
 
@@ -35,6 +36,8 @@ Dojitsu::Application.routes.draw do
       get "scoreboard_main"
       get "filter"
       get "trophies"
+	  get "scoreboard"
+	  get "publish"
       put :update_attribute_on_the_spot 
       get :get_attribute_on_the_spot
     end
@@ -48,8 +51,9 @@ Dojitsu::Application.routes.draw do
 		get "sendInvitation"
 		get "myDojo"
 		get "people"
-		
+		get "invite_contact"
 		get "delete_contact"
+		
 		
 	end
   end
@@ -57,6 +61,7 @@ Dojitsu::Application.routes.draw do
     collection do
       get "storemessage"
       get "message"
+      get "newmessage"
     end	
   end 
 

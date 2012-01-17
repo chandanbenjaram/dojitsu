@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Authentication do
-  it "belongs to users" do
-	
-  end
+ it "should have a user" do
+      should belong_to(:user) 
+  end          
 end

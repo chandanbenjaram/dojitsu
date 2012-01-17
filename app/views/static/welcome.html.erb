@@ -1,4 +1,5 @@
 <%= javascript_include_tag('fbWallPost')%>
+
 <div class="span-24 homecontent">
     <% if !current_user.nil? %>
         <% if session[:isNewUser] == "isNew" %>
@@ -7,7 +8,7 @@
               $.dojitsuWallPost.renderFbWallPost();
               <% session[:isNewUser] = "isNew1" %>
             </script> 
-	<% end %>
+        <% end %>
     <%= render :template => 'dashboard/index'%>	
     <% else %>
        <%= link_to image_tag("registerlogo1.PNG", :height => '529', :width => '950'),"#"%>

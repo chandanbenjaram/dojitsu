@@ -1,4 +1,10 @@
-	
+<%= javascript_include_tag('jquery.colorbox-min')%>
+<%= stylesheet_link_tag('colorbox')%>
+
+<div class="challengeSubNav">
+    <%= button_to "", "#", :class => "new_message_button_index", :method => :get%> 
+    <%= link_to "MESSAGES  ",dashboard_index_url ,:class => "challenge_link" , :style=> "text-decoration: none; color:#666666; left: 100px;" %>
+</div>	
 <table class="sortable">
     <% if current_user.inbox.count == 0 %>
         <p align="center">No message for you</p>
@@ -54,4 +60,57 @@
         <% end %>
     </tbody>
     <% end %>
-</table>		
+</table>
+
+<div style="display:none">
+<div id="sendNewMessage">
+    <%= form_tag newmessage_messages_path, :method => :get do  %>
+    <table width="100%" bgcolor="#f4f4f4">
+      <tr bgcolor="#f4f4f4">
+        <td colspan="2">
+          <b style="font-size: 18px; color: #8c8c8c">New Message<b>
+        </td>
+      </tr>
+      <tr bgcolor="#ffffff">
+        <td width="17%">
+          <b style="font-size: 15px; color: #dddddd">T0</b>        </td>
+        <td width="83%">
+          <%= text_field_tag 'to', nil, :size=>"38" %>        </td>
+      </tr>
+      <tr bgcolor="#ffffff">
+        <td>
+          <b style="font-size: 15px; color: #dddddd">MESSAGE</b>
+        </td>
+        <td>
+          <%= text_area_tag 'message', nil %>
+        </td>
+      </tr>      
+      <tr bgcolor="#ffffff">
+        <td colspan="2">
+          <%= link_to "CANCEL",  "#", :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel_message"%>        
+          <%= submit_tag "UPDATE", :style => "width: 80px; float:right;", :class => "links" %>
+        </td>
+      </tr>
+    </table>
+    <% end %>
+</div>
+</div>
+<script>
+    $(".new_message_button_index").click(function(){
+        //alert("Maisa");
+        $.colorbox({
+              opacity: 0.40,
+              transition: 'none',
+              speed: 200,
+              width: 400,
+              scrolling: true,
+              inline:true, 
+              href:"#sendNewMessage",
+              title: '',
+              overlayClose: true,
+              onComplete: function () {
+                  // $(this).initFunctions(); // if you want to reinit another colorbox, you should pass the element as an argument to initFunctions rather than calling this as a blanket initializer for all colorboxes.
+              }              
+          });
+    });
+</script>

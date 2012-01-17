@@ -8,6 +8,23 @@ class UserConnectionsController < ApplicationController
     #@user_connections = FbGraph::User.me(AAAAAAITEghMBAGwEqIvywCnasJzScTAZAIKgx1mzI0SE8wWbEe78FmLF2DsrZBwnZBqQZB5hubkGq8ZAT9zYEJDeEMsYlQiZBSujBZBip28ZCNrxtAQ7JJPp)
     #friendslist = @user_connections.friends
   end
+  
+  
+  def new
+    @user_connection = UserConnection.new
+     render :action => "new"
+  end
+
+  
+  def create
+    @user_connection = UserConnection.new(params[:user_connection])
+   
+      if @user_connection.save
+       redirect_to(@user_connection, :notice => 'user was successfully created.')
+      else
+    render :action => "invite_contact"    
+      end
+	  end
 
   def profile
     prsofile ||= FbGraph::User.me(self.authentications.find_by_provider('facebook').token).fetch
@@ -29,6 +46,11 @@ class UserConnectionsController < ApplicationController
 	render :layout => false
 		
 	end 
+	  
+ def invite_contact
+      	render :layout => false
+	end 
+	
 	def connections_selection
   end
   

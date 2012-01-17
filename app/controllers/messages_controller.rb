@@ -16,5 +16,12 @@ class MessagesController < ApplicationController
   def message
 		render :layout => false
 	end
+  
+  def newmessage
+    from = User.find_by_id(current_user.id)
+    to = User.find_by_email(params[:to])
+    Message.create(:to =>to.id, :from =>from.id, :body => params[:message])
+    redirect_to dashboard_index_path
+  end
 	
 end

@@ -5,16 +5,14 @@
               url: aUrl, 
               cache: false,
               beforeSend: function( ) {
-                $(aDiv1).append("loading...");
+              
+                $(aDiv1).html("<img src='/assets/ajax-loader.gif' />");
               },
               success: function(html){
-                $(aDiv1).empty();
+                $(aDiv1).text('Loading...').hide();
                 $(aDiv).append(html); 
-               },
-              error: function( ) {
-                $(aDiv1).append("...error loading...");
-              }
+               }
             });
         }
     }	
-})(jQuery); 
+})(jQuery);		

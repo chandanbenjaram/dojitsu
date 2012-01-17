@@ -1,5 +1,4 @@
-<%= javascript_include_tag('fbWallPost','jquery.colorbox-min') %>
-<%= stylesheet_link_tag('colorbox', 'main')%>
+<%= javascript_include_tag('fbWallPost') %>
 <%= render 'layouts/loggedinbody'%>
 <%#= debug @users %>
 
@@ -51,14 +50,11 @@
     </br>    
     
     
-    <% @all =  Challenge.winner('4ef1a6a454b53001a4000067') %> 
+    <%= Challenge.winner('4ef1a6a454b53001a4000067') %> 
     </br>
-    <%#= Challenge.winnerCompleteAllTask('4ef1a6a454b53001a4000067') %>
+    <%= Challenge.winnerCompleteAllTask('4ef1a6a454b53001a4000067') %>
     </br>
     
-    <% @all.each do |aWinner,index| %>
-      <%= aWinner %>=<%= index %>
-    <% end %>
     
 
     <% @challenge = Challenge.where(:_id => "4ef1a6a454b53001a4000067").first %> 
@@ -72,7 +68,7 @@
         <% end %>
         <% @list[@challenge.user_id] = aTotalScore %>    
         <%#= @challenge.user_id %> = <%#= @firstWinnerScore= aTotalScore %>
-        <%#= @list[@challenge.user_id] %>
+        <%= @list[@challenge.user_id] %>
         </br>
         <% aTotalScore = 0  %>
         <% @challenge.child_challenges.each do |aChildChallenge| %>
@@ -81,70 +77,16 @@
             <% aTotalScore += eachTasks.score.to_i %>
         <% end %>
         <%#= aChildChallenge.user_id %>=<%#= aTotalScore  %>
-        <%#= @list[aChildChallenge.user_id] = aTotalScore %>
+        <%= @list[aChildChallenge.user_id] = aTotalScore %>
         <% aTotalScore = 0  %>    
         </br>    
     <% end %>
       
-    <%#= @winner = @list.sort {|a,b| -1*(a[1]<=>b[1]) } %>    
+    <%= @winner = @list.sort {|a,b| -1*(a[1]<=>b[1]) } %>    
         
     <% else %>
         childchallenge
     <% end %>
     
-    <%= link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => " position:relative; top:-5px; text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c display_winner" %>
     
-        <div style="display:none"> 
-        <div id="winnerList">          
-          <table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0">		  
-              <tr bgcolor="#000000" class="BoldRED">
-                  <td width="4%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;border-left:#666666 1px solid;"><div align="left" class="style22">
-                          <div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Winner</span></div></div>
-                  </td>
-                  <td width="10%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
-                       <div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Winner Name</span></div></div>
-                  </td>
-                  <td width="10%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
-                       <div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Total Score</span></div></div>
-                  </td>
-              </tr>            
-              <% sl=0 %>
-              <% @all =  Challenge.winner('4ef1a6a454b53001a4000067') %>
-              <% @all.each do |aWinner,index| %>
-              <tr bgcolor="#FFFFFF" onMouseOver="this.bgColor='#3399cc';" onMouseOut="this.bgColor='#FFFFFF';" >
-                  <td height="25" style="border-bottom:#666666 1px solid;border-left:#666666 1px solid;"><div align="center"><%=image_tag(FbGraph::User.new(aWinner).fetch.picture) %></div></td>
-                  <td style="border-bottom:#666666 1px solid"><div align="center"><%= FbGraph::User.new(aWinner).fetch.name %></div></td>               
-                  <td style="border-bottom:#666666 1px solid"><div align="center"><%= index %></div></td>               
-              </tr>
-              <% sl +=1 %>
-              <% if sl.to_i == 5 %>
-                  <% break %>
-              <% end %>
-              <% end %>
-            </table>  
-        </div>
-        </div>  
-
-        
-<script>
-  $(document).ready(function(){
-        $('.display_winner').click(function(){
-            alert("Maisa");
-            $('.display_winner').colorbox({
-              opacity: 0.40,
-              transition: 'none',
-              speed: 200,
-              width: 700,
-              scrolling: true,
-              inline:true, 
-              href:"#winnerList",
-              title: '',
-              overlayClose: true,
-              onComplete: function () {
-                  // $(this).initFunctions(); // if you want to reinit another colorbox, you should pass the element as an argument to initFunctions rather than calling this as a blanket initializer for all colorboxes.
-              }
-          });  
-        });
-    });
-</script>
     
