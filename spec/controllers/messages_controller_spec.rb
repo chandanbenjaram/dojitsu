@@ -46,5 +46,12 @@ describe MessagesController do
       response.should be_success
     end
   end
+  
+ describe "GET 'newmessage" do
+   it "should be successful" do
+     get :newmessage
+     response.should be_success
+   end
+ end
 
 end

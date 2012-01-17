@@ -57,6 +57,7 @@ Dojitsu::Application.routes.draw do
     collection do
       get "storemessage"
       get "message"
+      get "newmessage"
     end	
   end 
 
