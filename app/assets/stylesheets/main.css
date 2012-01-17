@@ -731,6 +731,45 @@ input.radio {
 	height: 27px;
 	top: -4px;
 }
+
+.new_message_button {
+  background: #F8981D url("new1.PNG") no-repeat left center;  
+  text-align: right;
+  min-width: 70px;
+  height:25px;
+  top:-5px;
+  position:relative;
+  float:left;
+  left:10px;
+ font-family: arial;
+}
+
+.new_message_button_index {
+  background: #F8981D url("new1.PNG") no-repeat left center;  
+  text-align: right;
+  min-width: 70px;
+  height:25px;
+  top:0px;
+  position:relative;
+  float:left;
+  left:80px;
+  font-family: arial;
+}
+
+.links_cancel_message {
+    background: none repeat #999999;
+    color: #FFFFFF;
+    float: right;
+    height: 24px;
+    margin: 15px 0;
+    padding: 2px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    top: 15%;
+    width: 10%;
+}
+
 .links_invite_p {
 	background: none repeat scroll 0 0 #f9a943;
 	border-radius: 3px 3px 3px 3px;
@@ -743,6 +782,22 @@ input.radio {
 	text-transform: uppercase;
 	width: 195px;
 }
+
+.links_message_update {
+  background: none repeat scroll 0 0 #f9a943;
+  border-radius: 3px 3px 3px 3px;
+  color: #FFFFFF;
+  display: block;
+  font-size: 12px;
+  margin: 20px 0;
+  padding: 5px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 90px;
+  margin-right:10px;
+  float:right;
+}
+
 .invitees {
     background: none repeat scroll 0 0 #F9A943;
     border-radius: 3px 3px 3px 3px;
@@ -1333,7 +1388,7 @@ width:90%;
 .completedtask1
 {
 	color: #FFFFFF;
-    left: 160px;
+    left: 170px;
     position: relative;
     top: 7px;
     width: 14%;
@@ -1469,7 +1524,7 @@ input:required {
     background: none repeat scroll 0 0 #000000;
     height: 60px;
     margin-top: 20px;
-    width: 880px;
+    width: 894px;
 }
 
 .filterinput
@@ -1785,6 +1840,7 @@ float:right;
 }
 .fontcolor{
 	color: #999999;
+	font-weight: bold;
 }
 
 .totoalcount{
