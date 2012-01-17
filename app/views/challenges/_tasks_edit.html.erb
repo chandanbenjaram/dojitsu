@@ -7,8 +7,18 @@
 		<div><b>Edit my tasks (<%= @challenge.tasks.count %>)</b></div>
 		<div style="position:relative; margin-top:-40px; margin-bottom:-15px; float:left; left:400px; ">
 			<%= link_to "CANCEL",  show_soc_challenges_path(:id => @challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel"%>
-			<%#= button_to "DONE",  update_task_soc_challenges_path, :style => "text-decoration: none; color:#fff; float:right; margin-right:5px;" ,:class => "task_links_cancel"%>
+			<%= button_to "DONE",  update_task_soc_challenges_path, :style => "text-decoration: none; color:#fff; float:right; margin-right:5px;" ,:class => "task_links_cancel"%>
+			
+			
+			<table>
+			<tr>
+			<td>
+			Are you sure to update ?
 			<%= f.submit "DONE",:onclick=>"confirm();", :id=>"taskedit",:style => "width: 100px; float:right; margin-right:10px;", :class => "links" %>	
+			</td>
+			</tr>
+			</table>
+			
 			</div>
 			<div id="task">
 			</div>
