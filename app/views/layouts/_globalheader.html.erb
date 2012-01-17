@@ -1,11 +1,14 @@
-<%= stylesheet_link_tag('fb_logout','colorbox')%>
+<%= stylesheet_link_tag('fb_logout')%>
 
-<%= javascript_include_tag('jquery.colorbox-min')%>
 <div class="span-24 header first">&nbsp;</div>
 <div class="span-24">      
-	<% if !current_user.nil?%> 
-	<%= image_tag((current_user.facebook.picture), :style => "float:right", :alt => "Profile") %><br>
-	<% else %>                                                                                       
+	<% if !current_user.nil?%>
+          <% if isStandalone %>
+              no Image
+          <% else %>
+              <%= image_tag((current_user.facebook.picture), :style => "float:right", :alt => "Profile") %><br>
+          <% end %>
+        <% else %>                                                                                       
 	<%= link_to(image_tag("logo.png", :style => "float:left", :alt => "Home"), root_path) %>
 	<% end %> 
 
@@ -31,15 +34,15 @@ $(document).ready(function () {
 		<div class="logo_globalheader">
 			<%= link_to(image_tag("logo.png")) %>
 		</div>
-		<%= link_to image_tag("invite_friends_button.png"), invite_contact_user_connections_path, :class=>"invite"  %>	
-				<script>
-					$('.invite').show();
-				</script>		
-				
-				
 		<div class="popup_globalheader">	
 			<ul id="nav">
-					<li><a href="#" class="selected"><div><%= current_user.authentications[0].name %>&nbsp;<%=image_tag("nav-arrow.png")%></div> </a>
+					<li><a href="#" class="selected"><div>                                                
+                                              <% if isStandalone %>
+                                                  <%= current_user.first_name %>
+                                              <% else %>
+                                                  <%= current_user.authentications[0].name %>
+                                              <% end %>
+                                              &nbsp;<%=image_tag("nav-arrow.png")%></div> </a>
 						<ul>
 							<li><%= link_to "Log out", destroy_user_session_path %></li>	
 						</ul>
@@ -53,16 +56,12 @@ $(document).ready(function () {
 				<li>
 					<%=link_to image_tag("loginbutton.png"), user_omniauth_authorize_path(:facebook, :display=>"popup"), :class => "popup", :"data-width" => 600, :"data-height" => 400 , :isNewChallenge => "isNew"%>		
 				</li>
-				<% if user_signed_in? %>
-				Signed in as <%= current_user.email %>
-				<% else %>
-				<li>
+				 <li>                                                                                                                                         
 				<%= link_to image_tag("register.PNG", :alt => "Register"), new_user_registration_path,  :title=>"Register", :style => "float:right"%>
 				</li>                                                                                                                                            
 				<li>                                                                                                                                         
 				<%= link_to image_tag("login.PNG", :alt => "Login"), new_user_session_path,  :title=>"Login", :style => "float:right"%>
-				</li> 
-				<% end %>
+				</li>                                                                                                                                 
 			</ul>
 		</div>
 		<% end %>
@@ -113,4 +112,3 @@ if(window.opener) {
   
 
 </script>
-
