@@ -49,8 +49,8 @@ class UserConnectionsController < ApplicationController
 	  
  def invite_contact
       	render :layout => false
-		
 	end 
+	
 	def connections_selection
   end
   

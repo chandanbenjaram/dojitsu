@@ -1167,8 +1167,9 @@ ul.tabs1 {
 #name
 {
 	position:relative;
+	width:100%;
 	float:left;
-	left:-30px;
+	left:30px;
 }
 #score
 {

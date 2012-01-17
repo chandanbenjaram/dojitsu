@@ -1,4 +1,5 @@
-<%= javascript_include_tag('jquery.table.addrow')%>
+<%= stylesheet_link_tag('colorbox')%>
+<%= javascript_include_tag('jquery.table.addrow','jquery.colorbox-min')%>
 
 <table width="100%">
 	<%= form_for(@challenge, :url => update_task_soc_challenges_path(:id =>@challenge))  do |f| %>
@@ -7,8 +8,20 @@
 		<div style="position:relative; margin-top:-40px; margin-bottom:-15px; float:left; left:400px; ">
 			<%= link_to "CANCEL",  show_soc_challenges_path(:id => @challenge), :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel"%>
 			<%#= button_to "DONE",  update_task_soc_challenges_path, :style => "text-decoration: none; color:#fff; float:right; margin-right:5px;" ,:class => "task_links_cancel"%>
-			<%= f.submit "DONE", :style => "width: 100px; float:right; margin-right:10px;", :class => "links" %>	
+			<%= f.submit "DONE",:onclick=>"confirm();", :id=>"taskedit",:style => "width: 100px; float:right; margin-right:10px;", :class => "links" %>	
 			</div>
+			<div id="task">
+			</div>
+			<script>
+			</script>
+			<script>
+			function show_confirm()
+			{
+			alert("hi");
+			
+			</script>
+							
+				
 	</tr>
 	<tr bgcolor="#d7d7d7">
 		<td width="4%"></td>

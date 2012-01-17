@@ -63,6 +63,8 @@ class ChallengesController < ApplicationController
       render "show_per"
     end
   end
+  
+  
 
   def new
     @challenge = Challenge.new
@@ -143,12 +145,15 @@ class ChallengesController < ApplicationController
           end
         end      
       end  
-    end    
+    end   
+redirect_to show_per_challenges_path(:id => @challenge, :isNewChallenge => "isNew"), :notice => "Challenge created!" 
 
-    redirect_to show_per_challenges_path(:id => @challenge, :isNewChallenge => "isNew"), :notice => "Challenge created!"
+  
 
   end
-
+def publish
+render :layout => false 
+end
   def edit
     @challenge = Challenge.find(params[:id])
   end
@@ -271,9 +276,9 @@ class ChallengesController < ApplicationController
     if params[:status] == '1'       
         redirect_to show_soc_challenges_path(:id => params[:id], :isNewChallenge => "isNew")
     else
-        redirect_to show_soc_challenges_path(:id => params[:id])
+        redirect_to show_soc_challenges_path(:id => params[:id]) 
     end
-    
+      
   end
 
   def update_status_af_meg

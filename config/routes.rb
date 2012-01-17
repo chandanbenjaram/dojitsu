@@ -37,6 +37,7 @@ Dojitsu::Application.routes.draw do
       get "filter"
       get "trophies"
 	  get "scoreboard"
+	  get "publish"
       put :update_attribute_on_the_spot 
       get :get_attribute_on_the_spot
     end
@@ -50,8 +51,9 @@ Dojitsu::Application.routes.draw do
 		get "sendInvitation"
 		get "myDojo"
 		get "people"
-		post "invite_contact"
+		get "invite_contact"
 		get "delete_contact"
+		
 		
 	end
   end

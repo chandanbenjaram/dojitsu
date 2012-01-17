@@ -1,23 +1,15 @@
-<div> 
-<b><h4> Invite Your friends </h4></b>
-	<div id="ch_main_div1"> 
-	<%= form_for :user_connection do |f| %>
-	 <table border=1>
- <tr bgcolor="black">
-    <td><font color="white">Enter Email-id: </font></td>
-    <td><font color="white"><%= f.text_field :target_id %></font></td>
-  </tr>
-    <hr/>
-	<table width=100%>
-	<tr>
-	<td>
-    <%= f.submit %>
-	</td>
-	<td>
-	<%= link_to "CANCEL", user_connections_path, :class => "selectable"%>
-	</td>
-	</tr>
-	</table>
-	<% end %>
-</div>
+<div>
+
+<script>
+<div class="platform_dialog_header">Invite Friend</div>
+
+window.fbAsyncInit();
+      FB.ui({
+          method: 'send',
+		 
+          name: 'Register with Dojitsu',
+          link: 'http://www.nytimes.com/2011/06/15/arts/people-argue-just-to-win-scholars-assert.html',
+          });
+     </script>
+
 </div>
