@@ -36,6 +36,18 @@
 	font-weight: bold;
 	
 }
+.links_cancel {
+    background: none repeat scroll 0 0 #999999;
+    display: block;
+    font-size: 12px;
+    margin: 20px 0;
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    top: 6px;
+  
+}
+
 .colorligtblk
 {
 	color: #999999;
@@ -93,21 +105,22 @@
 
 #cancelbutton
 {
-	text-decoration: none; 
-	color:#fff; 
-	float:right; 
-	position: relative; 
-	right:-100%; 
-	width:100px; 
+   color: #FFFFFF;
+    float: right;
+    position: relative;
+    right: -100%;
+    text-decoration: none;
+    width: 90px; 
 }
 #donebutton
 {
     background: none repeat scroll 0 0 #F8981D;
     color: #FFFFFF;
     float: right;
+    height: 30px;
     margin-right: 10px;
     position: relative;
     right: -100%;
-    top: 28px;
+    top: 25px;
     width: 100px;
 }

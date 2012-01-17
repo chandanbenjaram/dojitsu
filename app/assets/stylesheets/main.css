@@ -841,11 +841,11 @@ input.radio {
     margin: 20px 0;
     padding: 5px;
     position: relative;
-    right: -6px;
+    right: -500px;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
-    top: -15px;
+    top: 2px;
     width: 60px;
   
 }
@@ -1893,6 +1893,6 @@ a:focus, a:hover {
 	width: 90px;
 	margin-right:10px;
 	position: relative;
-    right: -78%;
+    right: -33%;
     text-align: center;
 }

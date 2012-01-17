@@ -302,9 +302,9 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
        <label for="search">
        <strong>
        <% if  @challenge.class.to_s == "Challenge" %>
-                <font size="4" color="#D7D7D7"><b  id="total">Total: <%= @challenge.child_challenges.length %></b></font>
+                <font size="4" color="#999999"><b  id="total">Total: <%= @challenge.child_challenges.length %></b></font>
                <%else %>
-                <font size="4" color="#D7D7D7"> <b  id="total">Total: <%= @challenge.parent.child_challenges.length %></b></font>
+                <font size="4" color="#999999"> <b  id="total">Total: <%= @challenge.parent.child_challenges.length %></b></font>
                <% end %>
                <% if @challenge.instance_of?Challenge %>
                 <%= image_tag("btn_msg_up.png", :style=>"margin-left:10px; position:relative; top:5px;" ,:onclick=>"contactToInvitee()")%>

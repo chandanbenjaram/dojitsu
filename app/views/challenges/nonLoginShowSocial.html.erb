@@ -132,7 +132,7 @@
                <sapn class="fontcolor"><b  id="total">Total: <%= @challenge.parent.child_challenges.length %></b></sapn>
                <% end %>
                <% if @challenge.instance_of?Challenge %>
-                <%= image_tag("btn_msg_up.png", :class => "buttonup" ,:onclick=>"contactToInvitee()")%>
+                <% image_tag("btn_msg_up.png", :class => "buttonup" ,:onclick=>"contactToInvitee()")%>
                <% end %>
        </strong>
        </label>
