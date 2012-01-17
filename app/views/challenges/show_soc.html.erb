@@ -11,7 +11,7 @@
 <% name_search =0%>
 
 <%if @challenge.pagecount==0%>
-<%= @challenge.pagecount.inspect %>
+
     <script> 
       $.dojitsuWallPost.renderFbWallPost();
     </script>
@@ -305,28 +305,14 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
                                  
                                  
                                  
-                                 
-                                 
-                                 
-                                 
-                                 
-                                 
-                                 
-                                 
-                                 
-                                 
-                                 
-                                 
-                                 <div class="tables">
-
-	<table>
+                                 <table>
      <td width="47%">
        <label for="search">
        <strong>
        <% if  @challenge.class.to_s == "Challenge" %>
-                <font size="4" color="#D7D7D7"><b  id="total">Total: <%= @challenge.child_challenges.length %></b></font>
+                <font size="4" color="#8c8c8c"><b  id="total">Total: <%= @challenge.child_challenges.length %></b></font>
                <%else %>
-                <font size="4" color="#D7D7D7"> <b  id="total">Total: <%= @challenge.parent.child_challenges.length %></b></font>
+                <font size="4" color="#8c8c8c"> <b  id="total">Total: <%= @challenge.parent.child_challenges.length %></b></font>
                <% end %>
                <% if @challenge.instance_of?Challenge %>
                 <%= image_tag("btn_msg_up.png", :style=>"margin-left:10px; position:relative; top:5px;" ,:onclick=>"contactToInvitee()")%>
@@ -374,14 +360,14 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
     <div id ="all">
     </div>
       <script>
-					 	<%if @challenge.parent .nil? %>
-																	   <% childChallenges =  @challenge.child_challenges %>
-																	  <%else%>
-																	   <%childChallenges =  @challenge.parent.child_challenges %>
-																	   <%end%>       
-			 htmltable="<table><% childChallenges.each do |aChildChallenge| %> <tr><td width=80%><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td> <% if aChildChallenge.social_type.status == 1 %><img src="+"/assets/icon_accept.png"+"><% elsif aChildChallenge.social_type.status == -1 %><img src="+"/assets/icon_decline.png"+"><% else %><img src="+"/assets/icon_thinking.png"+"><% end %></td></tr><% end %></table>";
-					 		document.getElementById("name").innerHTML =htmltable
-					 </script>
+       <%if @challenge.parent .nil? %>
+                    <% childChallenges =  @challenge.child_challenges %>
+                   <%else%>
+                    <%childChallenges =  @challenge.parent.child_challenges %>
+                    <%end%>       
+    htmltable="<table><% childChallenges.each do |aChildChallenge| %> <tr><td width=80%><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td> <% if aChildChallenge.social_type.status == 1 %><img src="+"/assets/icon_accept.png"+"><% elsif aChildChallenge.social_type.status == -1 %><img src="+"/assets/icon_decline.png"+"><% else %><img src="+"/assets/icon_thinking.png"+"><% end %></td></tr><% end %></table>";
+        document.getElementById("name").innerHTML =htmltable
+      </script>
      <script>
        
         function select()
@@ -426,24 +412,43 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
                 var challenge_status="<%= aChildChallenge.social_type.status %>";
             if (name_search == check_name && challenge_status==1 && status==1)
              {
+             var str = "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>";
+             htmltr_open='<img src=' + str+ ' />';
+             var check_name= "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %>";
              document.getElementById("name").innerHTML ="<table><tr><td width="+"84%"+"><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_accept.png"+"></td></tr></table>";
-            }
-            else if (name_search == check_name && challenge_status==-1 && status==-1)
-             {
-             document.getElementById("name").innerHTML ="<table><tr><td width="+"84%"+"><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_decline.png"+"></td></tr></table>";
+
              }
-            else if (name_search == check_name && status==0 || name_search == check_name && status=="null")
+             if (name_search == check_name && challenge_status==-1 && status==-1)
              {
+             var str = "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>";
+             htmltr_open='<img src=' + str+ ' />';
+             var check_name= "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %>";
+             var challenge_status="<%= aChildChallenge.social_type.status %>";
+             document.getElementById("name").innerHTML ="<table><tr><td width="+"84%"+"><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_decline.png"+"></td></tr></table>";
+
+             }
+             if (name_search == check_name && status==0 || name_search == check_name && status=="null")
+         
+             {
+             var str = "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>";
+             htmltr_open='<img src=' + str+ ' />';
+             var check_name= "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %>";
+             var challenge_status="<%= aChildChallenge.social_type.status %>";
              <% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 or aChildChallenge.social_type.status == "null"%> 
              document.getElementById("name").innerHTML ="<table><tr><td width="+"84%"+"><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_thinking.png"+"></td></tr></table>";
              <% end %>
              }
-           else if (name_search == check_name && status==2)
+             if (name_search == check_name && status==2)
              {
+             var str = "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>";
+             htmltr_open='<img src=' + str+ ' />';
+             var check_name= "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %>";
+             var challenge_status="<%= aChildChallenge.social_type.status %>";
              document.getElementById("name").innerHTML ="<table><tr><td width="+"84%"+"><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><% if aChildChallenge.social_type.status == 1 %><img src="+"/assets/icon_accept.png"+"><% elsif aChildChallenge.social_type.status == -1 %><img src="+"/assets/icon_decline.png"+"><% else %><img src="+"/assets/icon_thinking.png"+"><% end %></td></tr></table>";
              }
+             
              <% end %>
-        else if( status==2 && name_search ==="" ||  status==2 && name_search ==="nil" ||  status==2 && name_search ===null   )
+        if( status==2 && name_search ==="" ||  status==2 && name_search ==="nil" ||  status==2 && name_search ===null   )
            {
              <%if @challenge.parent .nil? %>
                <% childChallenges =  @challenge.child_challenges %>
@@ -483,10 +488,6 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
                                                          htmltable="<table><% childChallenges.each do |aChildChallenge| %><% if aChildChallenge.social_type.status == -1 %> <tr><td ><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_decline.png"+"></td></tr><% end %><% end %></table>";
               document.getElementById("name").innerHTML =htmltable
              }
-			 else
-			 {
-				document.getElementById("name").innerHTML = " No such records"
-			 }
              
        <%if @challenge.parent .nil? %>
             <% childChallenges =  @challenge.child_challenges %>
@@ -494,63 +495,46 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
             <%childChallenges =  @challenge.parent.child_challenges %>
             <%end%>       
           <% childChallenges.each do |aChildChallenge| %>
+            
           <% end %>
              }
         </script>
       <td></td>
+     
+
     </tr>
+   
     </tbody>
     </table>
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
-                                   
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
 
 				</div> 		
 								  
