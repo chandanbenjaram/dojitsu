@@ -232,6 +232,30 @@ ul.homenavbar > li.selected > a {
 	left:10px;
 	font-family: arial;
 }
+
+.new_message_button {
+	background: #F8981D url("new1.PNG") no-repeat left center;	
+	text-align: right;
+	min-width: 70px;
+	height:25px;
+	top:-5px;
+	position:relative;
+	float:left;
+	left:10px;
+	font-family: arial;
+}
+
+.new_message_button_index {
+	background: #F8981D url("new1.PNG") no-repeat left center;	
+	text-align: right;
+	min-width: 70px;
+	height:25px;
+	top:0px;
+	position:relative;
+	float:left;
+	left:80px;
+	font-family: arial;
+}
 .new_challenge_button1 {
 	background: #F8981D url("new1.PNG") no-repeat left center;	
 	text-align: right;
@@ -817,6 +841,21 @@ input.radio {
 	color:#FFFFFF;
 
 }
+
+.links_cancel_message {
+    background: none repeat #999999;
+    color: #FFFFFF;
+    float: right;
+    height: 24px;
+    margin: 15px 0;
+    padding: 2px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    top: 15%;
+    width: 10%;
+}
+
 .links_cancel2 {
     background: none repeat scroll 0 0 #999999;
     display: block;

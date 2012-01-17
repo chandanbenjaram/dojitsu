@@ -1,5 +1,5 @@
-<%= javascript_include_tag('ui.progressbar','ajaxPageLoad','fbWallPost')%>
-<%= stylesheet_link_tag('jquery-ui', 'ui.progressbar','ui.theme', 'main')%>
+<%= javascript_include_tag('ui.progressbar','ajaxPageLoad','fbWallPost','jquery.colorbox-min')%>
+<%= stylesheet_link_tag('jquery-ui', 'ui.progressbar','ui.theme', 'main','colorbox')%>
 <%= render 'layouts/loggedinbody'%>
 
 <div class="challange">
@@ -8,12 +8,7 @@
 
 <%#= debug current_user.gmauth.id %>
 <%#= debug current_user.challenges %>
-<% if session[:isNewChallenge] == "isNew" %>
-    <script> 
-	 
-      $.dojitsuWallPost.renderFbWallPost();
-    </script>
-<% end %>
+
 <table>
       <td>
       <content>		
@@ -49,7 +44,7 @@
                                      <div class="shadow">new messages <font style="color:#fff">&nbsp;&nbsp;( <%= current_user.inbox.count %> )</font></div>
                                   </div>
                                   <div class="second_titlechallenge">
-                                     <%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
+                                     <%= button_to "", "#", :class => "new_message_button", :method => :get%>
                                   </div>
                               </div>
                               <div style="overflow-y: auto; overflow-x: hidden;" id="challengedetails">
@@ -80,3 +75,55 @@
             </div>
 	</td>
 </table>
+<div style="display:none">
+<div id="sendNewMessage">
+    <%= form_tag newmessage_messages_path, :method => :get do  %>
+    <table width="100%" bgcolor="#f4f4f4">
+      <tr bgcolor="#f4f4f4">
+        <td colspan="2">
+          <b style="font-size: 18px; color: #8c8c8c">New Message<b>
+        </td>
+      </tr>
+      <tr bgcolor="#ffffff">
+        <td width="17%">
+          <b style="font-size: 15px; color: #dddddd">T0</b>        </td>
+        <td width="83%">
+          <%= text_field_tag 'to', nil, :size=>"38" %>        </td>
+      </tr>
+      <tr bgcolor="#ffffff">
+        <td>
+          <b style="font-size: 15px; color: #dddddd">MESSAGE</b>
+        </td>
+        <td>
+          <%= text_area_tag 'message', nil %>
+        </td>
+      </tr>      
+      <tr bgcolor="#ffffff">
+        <td colspan="2">
+          <%= link_to "CANCEL",  "#", :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel_message"%>        
+          <%= submit_tag "UPDATE", :style => "width: 80px; float:right;", :class => "links" %>
+        </td>
+      </tr>
+    </table>
+    <% end %>
+</div>
+</div>
+<script>
+    $(".new_message_button").click(function(){
+        //alert("Maisa");
+        $.colorbox({
+              opacity: 0.40,
+              transition: 'none',
+              speed: 200,
+              width: 400,
+              scrolling: true,
+              inline:true, 
+              href:"#sendNewMessage",
+              title: '',
+              overlayClose: true,
+              onComplete: function () {
+                  // $(this).initFunctions(); // if you want to reinit another colorbox, you should pass the element as an argument to initFunctions rather than calling this as a blanket initializer for all colorboxes.
+              }              
+          });
+    });
+</script>

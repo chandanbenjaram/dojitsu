@@ -16,7 +16,6 @@
                 <font size="3px" style="float:right"><%= time_ago_in_words userMessage.created_at %></font>
                 <font size="4px" style="font-weight:bold"><%= FbGraph::User.new(userMessage.from).fetch.name %></font></br>
                 <font size="3px"><%=h truncate(userMessage.body, :length => 55) %>..</font></br>										
-                </td>
             </td>
         </tr>
         <% end %>
