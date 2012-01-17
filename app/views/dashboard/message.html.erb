@@ -1,5 +1,8 @@
 
 <table class="sortable">
+    <% if current_user.inbox.count == 0 %>
+        <p align="center">No message for you</p>
+    <% else %>
     <thead>
       <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">FROM</th><th style="CURSOR: pointer; cursor: hand;" id="content2"><span id="timespace">TIME</span></th></tr>
     </thead>
@@ -18,4 +21,5 @@
         </tr>
         <% end %>
     </tbody>
+    <% end %>
 </table>		

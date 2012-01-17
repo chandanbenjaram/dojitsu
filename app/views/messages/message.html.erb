@@ -1,5 +1,8 @@
 	
 <table class="sortable">
+    <% if current_user.inbox.count == 0 %>
+        <p align="center">No message for you</p>
+    <% else %>
     <thead>
       <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">FROM</th><th style="CURSOR: pointer; cursor: hand;" id="content2"><span id="timespace">TIME</span></th><th></th></tr>
     </thead>
@@ -7,7 +10,7 @@
         <% current_user.inbox.each do |userMessage| %>
         <tr class = "imagebackground2">
             <td width="10%" class="bordercolort", style="padding-left:15px; ">
-                <%#= image_tag(FbGraph::User.new(userMessage.from).fetch.picture) %>																			
+                <%= image_tag(FbGraph::User.new(userMessage.from).fetch.picture) %>																			
             </td>
             <td width="90%" class="bordercolort", style="padding-right:20px;" >
                 <font size="3px" style="float:right">
@@ -16,15 +19,15 @@
                     
                     
                     
-                    <%= availability_date = DateTime.parse(userMessage.created_at.to_s)%></br>
+                    <%#= availability_date = DateTime.parse(userMessage.created_at.to_s)%>
                     
-                    <%= time_now = DateTime.parse(DateTime.now.to_s)%></br>
-                    <%#= DateTime.now.in_time_zone %></br>
+                    <%#= time_now = DateTime.parse(DateTime.now.to_s)%>
+                    <%#= DateTime.now.in_time_zone %>
                     
-                    <%= time_now = DateTime.parse(DateTime.now.in_time_zone.to_s) %></br>
-                    <%= time_until = availability_date - time_now %></br>
-                    <%= t = time_until.to_f %></br>
-                    <% tt = t*(86400) %></br>
+                    <%#= time_now = DateTime.parse(DateTime.now.in_time_zone.to_s) %>
+                    <%#= time_until = availability_date - time_now %>
+                    <%#= t = time_until.to_f %>
+                    
                     
 
                     
@@ -50,4 +53,5 @@
         </tr>
         <% end %>
     </tbody>
+    <% end %>
 </table>		

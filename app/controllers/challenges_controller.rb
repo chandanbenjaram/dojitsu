@@ -208,11 +208,16 @@ end
     unless params[:tatal_s]
       if params[:task_done] == "yes"
         @ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1)
+        redirect_to show_per_challenges_path(:id => params[:id], :isNewChallenge => "isNew")
+        return
       end
+      redirect_to show_per_challenges_path(:id => params[:id])
+      return
     else
       @ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1, :score => params[:tatal_s])
+      redirect_to show_per_challenges_path(:id => params[:id], :isNewChallenge => "isNew")
+      return
     end 
-    redirect_to show_per_challenges_path(:id => params[:id], :isNewChallenge => "isNew")
   end
 
   def challenge_comp

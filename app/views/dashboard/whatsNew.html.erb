@@ -31,7 +31,7 @@
                                                     <% if isStandalone %>
                                                         <%= current_user.gmauth.first_name %>
                                                     <% else %>
-                                                        <%= current_user.facebook.name %>
+                                                        <%= FbGraph::User.new(aChallenge.user_id).fetch.name %>
                                                     <% end %>                                  
                                                 </b>
 					<% end %>
