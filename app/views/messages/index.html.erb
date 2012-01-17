@@ -42,7 +42,7 @@
     </thead>
     <tbody>
         <% current_user.inbox.each do |userMessage| %>
-        <tr class = "imagebackground2">
+        <tr >
             <td width="10%" class="bordercolort", style="padding-left:15px; ">
                 <%= image_tag(FbGraph::User.new(userMessage.from).fetch.picture) %>																			
             </td>
