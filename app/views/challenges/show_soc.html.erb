@@ -68,7 +68,7 @@
         <% end %>        
 <% end %>
 
-<div id="ch_main_div"> 
+<div > 
 	<div id="ch_main_div1"> 
 		<div class="challange"> 
 			<%= on_the_spot_edit @challenge,:title, :maxlength => "30" %>
@@ -157,10 +157,10 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
 			<td valign="top" height="34px" height="34px" width="15%" >
 				<b class="colorligtblk">DESCRIPTION</b>
 			</td>
-			<td width="73%">
+			<td valign="top" width="73%">
 				<b class="colordarkblk"><%= on_the_spot_edit @challenge,:description , :type=>:textarea , :class => "textarea_nw_tk", :id => "on_focus_textarea" %></b>
 			</td>
-			<td width="12%">
+			<td valign="top" width="12%">
 				<span id="image1"><%= image_tag("icon_edit.png") %></span>
 			</td>
 		</tr>
@@ -170,50 +170,28 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
 	<table id="organizer">
 		<tr>
 			<td height="34px" width="15%" class="titles">
-				<b class="colorligtblk">ORGANIZER</b>
+				<b ><font color= #999999>ORGANIZER</font></b>
 			</td>
 			<td width="73%">
 			
-				<% if @challenge.instance_of?ChildChallenge%>
-                                    <%  @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
-                                    <script>
-                                            var ordId = <%=  orgId = @parentChallenge.user_id %>
-                                    </script>
-                                    <b>
-                                        <% if isStandalone %>
-                                            <b class="colordarkblk"><%= @parentChallenge.first_name %></b>
-                                        <% else %>
-                                            <b class="colordarkblk"><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
-                                        <% end %>                                  
-                                    </b>
-				<% else %>                                        
-                                      <% if isStandalone %>
-                                    <b class="colordarkblk"><%= current_user.gmauth.first_name %></b>
-                                      <% else %>
-                                         <b class="colordarkblk" id="user_name"></b>
-                                      <% end %>                                                                          					
-                                  <script>
-                                          var ordId = <%=  orgId = @challenge.user_id %>
-                                  </script>
-				<% end %>	
+			<% if @challenge.instance_of?ChildChallenge%>
+			 <%  @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
+			 <script>
+			  var ordId = <%=  orgId = @parentChallenge.user_id %>
+			 </script>
+			 <b style="color:#666666;"><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
+			<% else %> 
+			 <b style="color:#666666;" id="user_name"><%= FbGraph::User.new(@challenge.user_id).fetch.name %></b>
+			 <script>
+			  var ordId = <%=  orgId = @challenge.user_id %>
+			 </script>
+			<% end %>
 			</td>
 			<td  width="12%">
 				<span id="image2">
-                                <% if isStandalone %>
-                                    <% if @challenge.user_id != current_user.gmauth.id %>
+				<% if @challenge.instance_of?ChildChallenge || @challenge.user_id != current_user.fbauth.uid %>
 					<%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(ordId)" ) %>
-                                    <% end %>
-                                <% else %>                                  
-                                  <% if @challenge.instance_of?ChildChallenge%>
-                                      <% if @parentChallenge.user_id != current_user.fbauth.uid %>
-					<%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(ordId)" ) %>
-                                      <% end %>
-                                  <% else %>
-                                      <% if @challenge.user_id != current_user.fbauth.uid %>
-					<%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(ordId)" ) %>
-                                      <% end %>
-                                  <% end %>
-                                <% end %>                                                                          								
+				<% end %>
 				</span>
 			</td>
 		</tr>
@@ -371,14 +349,14 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
     <div id ="all">
     </div>
       <script>
-       <%if @challenge.parent .nil? %>
-                    <% childChallenges =  @challenge.child_challenges %>
-                   <%else%>
-                    <%childChallenges =  @challenge.parent.child_challenges %>
-                    <%end%>       
-    htmltable="<table><% childChallenges.each do |aChildChallenge| %> <tr><td width=80%><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td> <% if aChildChallenge.social_type.status == 1 %><img src="+"/assets/icon_accept.png"+"><% elsif aChildChallenge.social_type.status == -1 %><img src="+"/assets/icon_decline.png"+"><% else %><img src="+"/assets/icon_thinking.png"+"><% end %></td></tr><% end %></table>";
-        document.getElementById("name").innerHTML =htmltable
-      </script>
+					 	<%if @challenge.parent .nil? %>
+																	   <% childChallenges =  @challenge.child_challenges %>
+																	  <%else%>
+																	   <%childChallenges =  @challenge.parent.child_challenges %>
+																	   <%end%>       
+			 htmltable="<table><% childChallenges.each do |aChildChallenge| %> <tr><td><img_src='<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>'/><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %><%= aChildChallenge.social_type.status %></td></tr><% end %></table>";
+					 		document.getElementById("name").innerHTML =htmltable
+					 </script>
      <script>
        
         function select()
