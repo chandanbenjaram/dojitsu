@@ -9,10 +9,10 @@
         <section>
             <table >
                 <tr>
-                    <td width="80px">
-                         <b><sapn class="fontcolor">DESCRIPTION</span></b></td>
+                    <td width="80px" valign="top">
+                         <sapn class="fontcolor">DESCRIPTION</span></td>
                     <td width="500px">
-                         <b><%= @challenge.description %></b>
+                         <sapn class="colordarkblk"><%= @challenge.description %></span>
                     </td>
                 </tr>
             </table>
@@ -21,7 +21,7 @@
             <table width="500px">
                 <tr>
                     <td width="130px" class="titles">
-                            <b><sapn class="fontcolor">ORGANIZER</sapn></b>
+                           <sapn class="fontcolor">ORGANIZER</sapn>
                     </td>
                     <td >
                         <% if @challenge.instance_of?ChildChallenge%>
@@ -29,9 +29,9 @@
                             <script>
                                     var ordId = <%=  orgId = @parentChallenge.user_id %>
                             </script>
-                            <b><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
+                            <sapn class="colordarkblk"><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></span>
                         <% else %>	
-                            <b id="user_name"></b>
+                            <span class = "colordarkblk" id="user_name"></span>
                             <script>
                                     var ordId = <%=  orgId = @challenge.user_id %>
                             </script>
@@ -53,13 +53,13 @@
             <table>
                 <tr>
                     <td width=130px>
-                         <b><sapn class="fontcolor">START POINT</sapn></b>
+                        <sapn class="fontcolor">START POINT</sapn>
                     </td>
                     <td>
                         <% if @challenge.start_point.instance_of?PointDateType %>		
-                                 <b><%= @challenge.start_point.value.strftime("%b %d, %Y") %> </b>
+                               <sapn class="colordarkblk"><%= @challenge.start_point.value.strftime("%b %d, %Y") %> </sapn>
                         <% else %>							
-                                <b><%= @challenge.start_point.value.to_i %></b>
+                                <sapn class="colordarkblk"><%= @challenge.start_point.value.to_i %></sapn>
                         <% end %>
                     </td>
                 </tr>
@@ -72,13 +72,13 @@
             <table>
                 <tr> 
                     <td width=130px>
-                        <b><sapn class="fontcolor">END POINT</sapn></b>
+                        <sapn class="fontcolor">END POINT</sapn></b>
                     </td>
                     <td>
                         <% if @challenge.end_point.instance_of?PointDateType %>		
-                                <b><%= @challenge.end_point.value.strftime("%b %d, %Y") %></b>
+                                <sapn class="colordarkblk"><%= @challenge.end_point.value.strftime("%b %d, %Y") %></sapn>
                         <% else %>							
-                                <b><%= @challenge.end_point.value.to_i %></b>
+                                <sapn class="colordarkblk"><%= @challenge.end_point.value.to_i %></sapn>
                         <% end %>
                     </td>
                 </tr>
@@ -90,16 +90,16 @@
         <table>
             <tr>
                 <td width="130px" class="titles">
-                     <b><sapn class="fontcolor">PARTICIPANTS</sapn></b>
+                    <sapn class="fontcolor">PARTICIPANTS</sapn>
                 </td>
                 <td>
                 <% if @challenge.social_type.status == 1 &&  @challenge.class.to_s == "ChildChallenge" %>
-                     <b><%= @challenge.parent.child_challenges.length %></b>
+                     <sapn class="colordarkblk"><%= @challenge.parent.child_challenges.length %></sapn>
                 <% else %>
                     <% if @challenge.social_type.status == 1 %>
-                            <b><%= @challenge.child_challenges.length %></b>
+                            <sapn class="colordarkblk"><%= @challenge.child_challenges.length %></sapn>
                     <% else %>
-                            <b><%= @challenge.parent.child_challenges.length %></b>
+                             <sapn class="colordarkblk"><%= @challenge.parent.child_challenges.length %></sapn>
                     <% end %>
                 <% end %>
                 </td>
