@@ -108,7 +108,7 @@
 					</style>
 					<div id="check3">
 						<div class="completedtask1"> 
-								<%= total_score %> points (<%= total_score_count %> &nbsp; tasks)
+								<%= total_score %> points (<%= total_score_count %>&nbsp;tasks)
 						</div>
 						<div class="notcompleted1">
 									<font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="#fff"><%= (total-total_score) %> points (<%= @challenge.tasks.count.to_i-total_score_count.to_i %>&nbsp; tasks)</font>
@@ -128,7 +128,7 @@
 						font-size: 15px;
 						font-weight:bold;
 						position: relative;
-						top: 20px;
+						top: 26px;
 						left:10px;
 							}
 							.challenge_mark_as_c1 {

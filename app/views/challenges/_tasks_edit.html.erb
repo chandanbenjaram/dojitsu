@@ -1,5 +1,5 @@
 <%= javascript_include_tag('jquery.table.addrow')%>
-<%= stylesheet_link_tag('challenges_social') %>
+<%= stylesheet_link_tag('challenges_social','main') %>
 <table width="100%">
 	<%= form_for(@challenge, :url => update_task_soc_challenges_path(:id =>@challenge))  do |f| %>
 	<tr  bgcolor="#f4f4f4">
@@ -17,6 +17,7 @@
 		<td width="18%">POINT(S)</td>
 		<td width="3%"></td>
 		<td width="29%">TASK(NAME)</td>
+		<td width="5%"></td>
 		<td width="5%"></td>
 	</tr>
 	<% total_task_count = 0 %>
@@ -41,6 +42,7 @@
 		<td><%= image_tag("icon_slash.png")%></td>
 		<td><%= task_fields.text_field :name, :id=> "na", :size=> "24" %></td>
 		<td><%= image_tag("btn_delete_up.png", :height => '20', :width => '20', :class => "delRow")%></td>
+		<td></td>
 	</tr>
 
 	<% end %>

@@ -832,7 +832,22 @@ input.radio {
     padding: 40px;
 }
 
-
+.links_cancel {
+    background: none repeat scroll 0 0 #999999;
+    display: block;
+    float: right;
+    font-size: 12px;
+    margin: 20px 0;
+    padding: 5px;
+    position: relative;
+    right: -6px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    top: -15px;
+    width: 60px;
+  
+}
 .links_cancel2 {
     background: none repeat scroll 0 0 #999999;
     display: block;
@@ -841,15 +856,29 @@ input.radio {
     margin: 20px 0;
     padding: 5px;
     position: relative;
-    right: -500px;
+    right: -6px;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
-    top: 2px;
+    top: -15px;
     width: 60px;
   
 }
-
+.links_cancel3 {
+  background: none repeat scroll 0 0 #999999;
+    display: block;
+    float: right;
+    font-size: 12px;
+    margin: 20px 0;
+    padding: 5px;
+    position: relative;
+    right: -145px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    top: -2px;
+    width: 60px;
+}
 
 .task_links_cancel {
   	background: none repeat scroll 0 0 #F9A943;
@@ -1264,7 +1293,7 @@ width:90%;
 #check
 {
 	color:#7AC142;
-	top:17px;
+	top:18px;
 	font-size:15px;
 	font-style:bold;
 	position:relative;
@@ -1366,7 +1395,7 @@ width:90%;
 	color:#fff;
 	left:60px;
 	position:relative;
-	width:42%;
+	width:46%;
      top: 4px;
 }
 .remainedtask
@@ -1391,7 +1420,7 @@ width:90%;
     left: 170px;
     position: relative;
     top: 7px;
-    width: 14%;
+    width: 15%;
 }
 .invitees3{
     background: none repeat scroll 0 0 #F9A943;
@@ -1893,6 +1922,7 @@ a:focus, a:hover {
 	width: 90px;
 	margin-right:10px;
 	position: relative;
-    right: -33%;
+    right: -38%;
     text-align: center;
+	top: -2px;
 }
