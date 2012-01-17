@@ -371,11 +371,11 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
     <div id ="all">
     </div>
       <script>
-       <%if @challenge.parent .nil? %>
-                    <% childChallenges =  @challenge.child_challenges %>
-                   <%else%>
-                    <%childChallenges =  @challenge.parent.child_challenges %>
-                    <%end%>       
+       <%if @challenge.parent.nil? %>
+           <% childChallenges =  @challenge.child_challenges %>
+       <%else%>
+           <%childChallenges =  @challenge.parent.child_challenges %>
+       <%end%>       
     htmltable="<table><% childChallenges.each do |aChildChallenge| %> <tr><td width=80%><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td> <% if aChildChallenge.social_type.status == 1 %><img src="+"/assets/icon_accept.png"+"><% elsif aChildChallenge.social_type.status == -1 %><img src="+"/assets/icon_decline.png"+"><% else %><img src="+"/assets/icon_thinking.png"+"><% end %></td></tr><% end %></table>";
         document.getElementById("name").innerHTML =htmltable
       </script>
