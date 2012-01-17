@@ -1388,7 +1388,7 @@ width:90%;
 .completedtask1
 {
 	color: #FFFFFF;
-    left: 160px;
+    left: 170px;
     position: relative;
     top: 7px;
     width: 14%;
@@ -1524,7 +1524,7 @@ input:required {
     background: none repeat scroll 0 0 #000000;
     height: 60px;
     margin-top: 20px;
-    width: 880px;
+    width: 894px;
 }
 
 .filterinput
@@ -1840,6 +1840,7 @@ float:right;
 }
 .fontcolor{
 	color: #999999;
+	font-weight: bold;
 }
 
 .totoalcount{
