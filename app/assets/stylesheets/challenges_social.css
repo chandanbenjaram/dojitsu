@@ -44,6 +44,7 @@
 {
 	color: #999999;
 	font-weight: bold;
+	float: left;
 }
 
 .colordarkblk
@@ -93,21 +94,23 @@
 
 #cancelbutton
 {
-	text-decoration: none; 
-	color:#fff; 
-	float:right; 
-	position: relative; 
-	right:-100%; 
-	width:100px; 
+   color: #FFFFFF;
+    float: right;
+    position: relative;
+    right: -80%;
+    text-decoration: none;
+    top: 5px;
+    width: 75px;
 }
 #donebutton
 {
     background: none repeat scroll 0 0 #F8981D;
     color: #FFFFFF;
     float: right;
+    height: 30px;
     margin-right: 10px;
     position: relative;
-    right: -100%;
-    top: 28px;
-    width: 100px;
+    right: -80%;
+    top: 25px;
+    width: 90px;
 }

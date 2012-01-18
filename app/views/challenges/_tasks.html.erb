@@ -1,3 +1,5 @@
+
+
 <table width="100%" border="1" bgcolor=#f4f4f4 >
 	<tr bgcolor=#f5f5f5>
 		<th width="85%">
@@ -15,15 +17,11 @@
 		<% if t != 1 %>
 			<th width="3%">	</th>
 			<th width="12%">
-                           <% if isStandalone %>
-                              <%= link_to image_tag("icon_edit.png", :style =>"margin-top:3px; float:right" ), show_soc_challenges_path(:id => @challenge, :flg => "ed") %>
-                           <% else %>
-                              <% if @challenge.user_id == current_user.fbauth.uid and @challenge.is_complete != 1 %>
-                                 <% if @challenge.social_type.status == 1 and !(@challenge.instance_of?ChildChallenge)%>				    
-                                    <%= link_to image_tag("icon_edit.png", :style =>"margin-top:3px; float:right" ), show_soc_challenges_path(:id => @challenge, :flg => "ed") %>
-                                 <% end %>
-			      <% end %>
-                           <% end %>					
+				<% if @challenge.user_id == current_user.fbauth.uid %>
+					<% if @challenge.social_type.status == 1 and !(@challenge.instance_of?ChildChallenge)%>				    
+						<%= link_to image_tag("icon_edit.png", :style =>"margin-top:3px; float:right" ), show_soc_challenges_path(:id => @challenge, :flg => "ed") %>
+				    <% end %>
+				<% end %>	
 			</th>
 		<% end %> 
 		
@@ -58,27 +56,15 @@
 						</p>
 						
 						<div class="showperscore_0">
-                                                   <% if isStandalone %>
-                                                       <% if @challenge.user_id == current_user.gmauth.id %>
-                                                           <% if @challenge.social_type.status == 1 %>
-                                                                  <%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => " text-decoration: underline; color:#F9AB47;" %>
-                                                           <% else %>
-                                                                  <font style="color:black">0</font>
-                                                           <% end %>
+							<% if @challenge.user_id == current_user.fbauth.uid %>
+								<% if @challenge.social_type.status == 1 %>
+									<%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => " text-decoration: underline; color:#F9AB47;" %>
+								<% else %>
+									<font style="color:black">0</font>
+								<% end %>
 							<% else %>
-							   <font style="color:black">0</font>	
-							<% end %>
-                                                   <% else %>
-                                                      <% if @challenge.user_id == current_user.fbauth.uid %>
-                                                           <% if @challenge.social_type.status == 1 %>
-                                                                  <%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => " text-decoration: underline; color:#F9AB47;" %>
-                                                           <% else %>
-                                                                  <font style="color:black">0</font>
-                                                           <% end %>
-							<% else %>
-							   <font style="color:black">0</font>	
-							<% end %>
-                                                   <% end %>	
+									<font style="color:black">0</font>	
+							<% end %>	
 						</div>
 					</div>
 					
@@ -122,7 +108,7 @@
 					</style>
 					<div id="check3">
 						<div class="completedtask1"> 
-								<%= total_score %> points (<%= total_score_count %> &nbsp; tasks)
+								<%= total_score %> points (<%= total_score_count %>&nbsp;tasks)
 						</div>
 						<div class="notcompleted1">
 									<font size=3 color="#F8981D"><b>to go:</b></font>&nbsp; <font color="#fff"><%= (total-total_score) %> points (<%= @challenge.tasks.count.to_i-total_score_count.to_i %>&nbsp; tasks)</font>
@@ -142,7 +128,7 @@
 						font-size: 15px;
 						font-weight:bold;
 						position: relative;
-						top: 20px;
+						top: 26px;
 						left:10px;
 							}
 							.challenge_mark_as_c1 {
@@ -157,20 +143,10 @@
 								width: 175px;
 								top:-6px;
 							}
-						</style>                                                
-                                                <% if isStandalone %>                                                  
-                                                    <% if @challenge.user_id == current_user.gmauth.id %>
-                                                        <% if @challenge.is_complete != 1 %>
-                                                          <%= markAsComplete%>
-                                                        <% end %>
-                                                    <% end %>
-                                                <% else %>
-                                                      <% if @challenge.user_id == current_user.fbauth.uid %>
-                                                        <% if @challenge.is_complete != 1 %>
-                                                          <%= markAsComplete%>
-                                                        <% end %>
-                                                      <% end %>
-                                                <% end %>               
+						</style>
+                                                <% if @challenge.is_complete != 1 %>
+                                                  <%= markAsComplete%>
+                                                <% end %>
 					</div>
 		</tr>
 	<% else %>
@@ -226,7 +202,6 @@
 <script>
 	$('.task_update_popup').colorbox();
 	$('.add_task_popup').colorbox();
-        $('.challenge_mark_as_c').colorbox();
 	
 // execute your scripts when the DOM is ready. this is a good habit
 $(function() {

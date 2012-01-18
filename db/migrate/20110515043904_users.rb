@@ -8,7 +8,8 @@ class Users < ActiveRecord::Migration
       t.recoverable
       t.rememberable
       t.trackable
-      t.timestamps                  
+      t.timestamps
+	  t.confirmable
     end
   end
 

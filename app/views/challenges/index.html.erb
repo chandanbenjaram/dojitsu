@@ -73,11 +73,12 @@
 <% end %>
 
 
-<h3>All Challenges</h3>
+
  <% if @challenges.blank? %>
   <p>no challenges at all.</p>
   
  <% else %>
+  <h3>All Challenges</h3>
  <div id="ch_index_list" style="width:100%; float:left;">
   <% @challenges.each do |c| %>
   
