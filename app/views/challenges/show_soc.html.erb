@@ -348,10 +348,7 @@
 																	   <%end%>       
 			 htmltable="<table><% childChallenges.each do |aChildChallenge| %> <tr><td width=80%><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td> <% if aChildChallenge.social_type.status == 1 %><img src="+"/assets/icon_accept.png"+"><% elsif aChildChallenge.social_type.status == -1 %><img src="+"/assets/icon_decline.png"+"><% else %><img src="+"/assets/icon_thinking.png"+"><% end %></td></tr><% end %></table>";
 					 		document.getElementById("name").innerHTML =htmltable
-					 </script>
-     <script>
-       
-        function select()
+	 function select()
         {
         var select= document.getElementById("select").value
          var name_search=document.getElementById("search").value;
@@ -405,18 +402,15 @@
 			{
 			document.getElementById("name").innerHTML ="No such Records"
 			}
-            else if (name_search == check_name && status==0 || name_search == check_name && status=="null")
+            else if (name_search == check_name && status==0  || name_search == check_name && status=="null")
              {
              <% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 or aChildChallenge.social_type.status == "null"%> 
              document.getElementById("name").innerHTML ="<table><tr><td width="+"84%"+"><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_thinking.png"+"></td></tr></table>";
-             <% end %>
+             <% else%> 
+			 document.getElementById("name").innerHTML ="No such records found"
+			 <% end %>
              }
-			  else if (name_search == check_name && status==0 || name_search == check_name && status=="null")
-             {
-             <% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status != 0 or aChildChallenge.social_type.status != "null"%> 
-             document.getElementById("name").innerHTML ="No such records ";
-             <% end %>
-             }
+			 
            else if (name_search == check_name && status==2)
              {
              document.getElementById("name").innerHTML ="<table><tr><td width="+"84%"+"><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><% if aChildChallenge.social_type.status == 1 %><img src="+"/assets/icon_accept.png"+"><% elsif aChildChallenge.social_type.status == -1 %><img src="+"/assets/icon_decline.png"+"><% else %><img src="+"/assets/icon_thinking.png"+"><% end %></td></tr></table>";
