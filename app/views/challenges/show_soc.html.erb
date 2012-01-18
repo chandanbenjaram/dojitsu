@@ -10,11 +10,14 @@
 
 <% name_search =0%>
 
-<% if params[:isNewChallenge] == "isNew" %>
+<%if @challenge.pagecount==0%>
+
     <script> 
       $.dojitsuWallPost.renderFbWallPost();
     </script>
-<% end %>    
+ <% @challenge.update_attribute("pagecount","1") %>
+ <%end %>
+ 
 <% if !@challenge.child_challenges.blank? && userIds = []%>
 	<% for aChild in @challenge.child_challenges %>
 		<% if aChild.social_type.status.nil?%>
@@ -91,15 +94,18 @@
 		<script>
 		function fun()
 		{
+	
 		window.fbAsyncInit();
-		var body = 'Accepted challenge';
-		FB.api('/me/feed', 'post', { message: body }, function(response) {
-			if (!response || response.error) {
-																		alert('Error occured');
-																} else {
-																		alert('Post ID: ' + response.id);
-																}
-		});
+		
+        // calling the API ...
+		var body = 'Reading JS SDK documentation';
+FB.api('/me/feed', 'post', { message: body }, function(response) {
+  if (!response || response.error) {
+    alert('Error occured');
+  } else {
+    alert('Post ID: ' + response.id);
+  }
+});
       }
 		</script>
 		
@@ -128,7 +134,16 @@
 						$("#image4").show();
 						 
 					  });
-		 
+				/*	  $("#invitee_button").mouseover(function(){
+						$("#image5").show();
+						
+					  });
+					   $("#partbutton2").click(function(){
+						alert("hi");
+						
+					  });*/
+					
+					 
 					$(document).mouseout(function(){
 							$("#image1").hide();
 							$("#image2").hide();
@@ -145,10 +160,10 @@
 			<td valign="top" height="34px" height="34px" width="15%" >
 				<b class="colorligtblk">DESCRIPTION</b>
 			</td>
-			<td width="73%">
+			<td valign="top" width="73%">
 				<b class="colordarkblk"><%= on_the_spot_edit @challenge,:description , :type=>:textarea , :class => "textarea_nw_tk", :id => "on_focus_textarea" %></b>
 			</td>
-			<td width="12%">
+			<td valign="top" width="12%">
 				<span id="image1"><%= image_tag("icon_edit.png") %></span>
 			</td>
 		</tr>
@@ -216,7 +231,7 @@
 <div>
 	<table id="enddate">
 		<tr> 
-			<td height="34px" width=130px>
+			<td height="34px" width="15%">
 				<b class="colorligtblk">END POINT</b>
 			</td>
 			<td>
@@ -237,7 +252,7 @@
 </div>	
 <table id="participant">
 	<tr  height="34px" >
-		<td width="130px">
+		<td width="15%">
 			<b><span class="colorligtblk">PARTICIPANTS</span></b>
 		</td>
 		<td>
@@ -280,9 +295,48 @@
 					
                                  <script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> </script> 
                                   
-                                 <div class="tables">
-
-	<table>
+                                
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                            <table>
      <td width="47%">
        <label for="search">
        <strong>
@@ -337,14 +391,14 @@
     <div id ="all">
     </div>
       <script>
-					 	<%if @challenge.parent .nil? %>
-																	   <% childChallenges =  @challenge.child_challenges %>
-																	  <%else%>
-																	   <%childChallenges =  @challenge.parent.child_challenges %>
-																	   <%end%>       
-			 htmltable="<table><% childChallenges.each do |aChildChallenge| %> <tr><td width=80%><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td> <% if aChildChallenge.social_type.status == 1 %><img src="+"/assets/icon_accept.png"+"><% elsif aChildChallenge.social_type.status == -1 %><img src="+"/assets/icon_decline.png"+"><% else %><img src="+"/assets/icon_thinking.png"+"><% end %></td></tr><% end %></table>";
-					 		document.getElementById("name").innerHTML =htmltable
-					 </script>
+       <%if @challenge.parent .nil? %>
+                    <% childChallenges =  @challenge.child_challenges %>
+                   <%else%>
+                    <%childChallenges =  @challenge.parent.child_challenges %>
+                    <%end%>       
+    htmltable="<table><% childChallenges.each do |aChildChallenge| %> <tr><td width=80%><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td> <% if aChildChallenge.social_type.status == 1 %><img src="+"/assets/icon_accept.png"+"><% elsif aChildChallenge.social_type.status == -1 %><img src="+"/assets/icon_decline.png"+"><% else %><img src="+"/assets/icon_thinking.png"+"><% end %></td></tr><% end %></table>";
+        document.getElementById("name").innerHTML =htmltable
+      </script>
      <script>
        
         function select()
@@ -444,17 +498,49 @@
               htmltable="<table><% childChallenges.each do |aChildChallenge| %><% if aChildChallenge.social_type.status == -1 %> <tr><td ><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_decline.png"+"></td></tr><% end %><% end %></table>";
               document.getElementById("name").innerHTML =htmltable
              }
+ 
+ 
+    
              
-   else if(name_search == check_name && challenge_status!=1 && status!=1)
-	{
-	 document.getElementById("name").innerHTML ="No Such Records"
-	}
+   else
+ {
+  document.getElementById("name").innerHTML ="No Such Records"
+ }
              }
         </script>
       <td></td>
     </tr>
     </tbody>
-    </table>
+    </table>     
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
 
 				</div> 		
 								  
