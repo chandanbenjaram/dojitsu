@@ -83,6 +83,8 @@ left:10px;
 {
 	margin-left: -3px;
     margin-top: -1px;
+	height: 30px;
+	width: 30px;
 }
 .titlecolor
 {
@@ -95,20 +97,26 @@ left:10px;
 }
 .tdpaddingleft
 {
-		padding-left:10px;
+	color: #666666;
+    font-family: arial;
+    padding-left: 10px;
 }
 .chaltitlecolor
 {
-	font-weight:bold;
+	font-family: arial;
+	font-weight: bold;
+	font-size: 15px;
+	color: #666666;
 }
 .createdtime
 {
 	float:right; 
-	margin-right:20px; 
+	margin-right:14px; 
 	color: #A9A8A8;
 }
 .textranform{
 	text-transform:none;
+	color: #666666;
 }
 .positionforimage{
 	position: relative;
@@ -129,25 +137,34 @@ left:10px;
 .LikeboxPluginPagelet{
 background: red;
 }
- #check5 {
-                color: #7AC142;
-                font-size: 15px;
-                font-weight:bold;
-                position: relative;
-                top: 27px;
-                left:10px;
-                        }
-                         #check6 {
-                color: #fff;
-                font-size: 15px;
-                position: relative;
-                top: 40px;
-                left:10px;
-                font-weight:bold;
-                    }
-                    .acceptimage
-                    {
-                    position:relative;
-                    left:760px;
-                    top:15px;
-                    }
+ #check5 
+ {
+	color: #7AC142;
+	font-size: 15px;
+	font-weight:bold;
+	position: relative;
+	top: 27px;
+	left:10px;
+}
+ #check6 
+ {
+	color: #fff;
+	font-size: 15px;
+	position: relative;
+	top: 40px;
+	left:10px;
+	font-weight:bold;
+}
+.acceptimage
+{
+		position:relative;
+		left:760px;
+		top:15px;
+}
+.fbname
+{
+	color: #666666;
+    font-family: arial;
+	font-size: 12px;
+	font-weight: bold;
+}

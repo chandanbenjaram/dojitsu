@@ -129,7 +129,7 @@
        <% if  @challenge.class.to_s == "Challenge" %>
                 <span class="totoalcount"><b  id="total">Total: <%= @challenge.child_challenges.length %></b></span>
                <%else %>
-               <sapn class="fontcolor"><b  id="total">Total: <%= @challenge.parent.child_challenges.length %></b></sapn>
+               <sapn class="fontcolor"><b  id="total"> Total: <%= @challenge.parent.child_challenges.length %></b></sapn>
                <% end %>
                <% if @challenge.instance_of?Challenge %>
                 <% image_tag("btn_msg_up.png", :class => "buttonup" ,:onclick=>"contactToInvitee()")%>

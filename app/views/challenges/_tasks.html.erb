@@ -3,7 +3,7 @@
 <table width="100%" border="1" bgcolor=#f4f4f4 >
 	<tr bgcolor=#f5f5f5>
 		<th width="85%">
-			<h3 align="left"><font color="#8c8c8c"><b>Total : <%= @challenge.tasks.count %></b></font></h3>
+			<h3 align="left"><font color="#8c8c8c">Total : <%= @challenge.tasks.count %></b></font></h3>
 		</th>
 		<% t=0 %>
 		
@@ -152,7 +152,7 @@
 	<% else %>
 	<tr bgcolor=#f4f4f4>
 				<div>
-				My Dojitsu score: <br>
+				<sapn style="color: #999999; font-weight: bold;">My Dojitsu score: </span><br>
 				<div class="task" id="taskprogress"></div>
 				<div class="showperscore1"><%= total_score %></div>	
 				<style>
