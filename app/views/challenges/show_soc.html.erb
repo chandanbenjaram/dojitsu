@@ -91,18 +91,15 @@
 		<script>
 		function fun()
 		{
-	
 		window.fbAsyncInit();
-		
-        // calling the API ...
-		var body = 'Reading JS SDK documentation';
-FB.api('/me/feed', 'post', { message: body }, function(response) {
-  if (!response || response.error) {
-    alert('Error occured');
-  } else {
-    alert('Post ID: ' + response.id);
-  }
-});
+		var body = 'Accepted challenge';
+		FB.api('/me/feed', 'post', { message: body }, function(response) {
+			if (!response || response.error) {
+																		alert('Error occured');
+																} else {
+																		alert('Post ID: ' + response.id);
+																}
+		});
       }
 		</script>
 		
@@ -131,16 +128,7 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
 						$("#image4").show();
 						 
 					  });
-				/*	  $("#invitee_button").mouseover(function(){
-						$("#image5").show();
-						
-					  });
-					   $("#partbutton2").click(function(){
-						alert("hi");
-						
-					  });*/
-					
-					 
+		 
 					$(document).mouseout(function(){
 							$("#image1").hide();
 							$("#image2").hide();
@@ -361,9 +349,7 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
        
         function select()
         {
-       //   $("#all").hide();
-        //  $("#all").replaceWith($("#name")
-         var select= document.getElementById("select").value
+        var select= document.getElementById("select").value
          var name_search=document.getElementById("search").value;
          <%if @challenge.parent .nil? %>
               <% childChallenges =  @challenge.child_challenges %>
@@ -455,21 +441,14 @@ FB.api('/me/feed', 'post', { message: body }, function(response) {
                    <%else%>
                     <%childChallenges =  @challenge.parent.child_challenges %>
                     <%end%>                      
-                                                         htmltable="<table><% childChallenges.each do |aChildChallenge| %><% if aChildChallenge.social_type.status == -1 %> <tr><td ><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_decline.png"+"></td></tr><% end %><% end %></table>";
+              htmltable="<table><% childChallenges.each do |aChildChallenge| %><% if aChildChallenge.social_type.status == -1 %> <tr><td ><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_decline.png"+"></td></tr><% end %><% end %></table>";
               document.getElementById("name").innerHTML =htmltable
              }
-			 else
-			 {
-				document.getElementById("name").innerHTML = " No such records"
-			 }
              
-       <%if @challenge.parent .nil? %>
-            <% childChallenges =  @challenge.child_challenges %>
-           <%else%>
-            <%childChallenges =  @challenge.parent.child_challenges %>
-            <%end%>       
-          <% childChallenges.each do |aChildChallenge| %>
-          <% end %>
+   else if(name_search == check_name && challenge_status!=1 && status!=1)
+	{
+	 document.getElementById("name").innerHTML ="No Such Records"
+	}
              }
         </script>
       <td></td>
