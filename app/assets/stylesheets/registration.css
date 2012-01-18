@@ -151,7 +151,7 @@ position:relative;
 }
 .cancel{
 background: #A5A5A5; 
-	width: 58px;
+	width: 62px;
 	height: 22px;
 	color:#ffffff;
 }
@@ -192,12 +192,7 @@ position:relative;
 	color:#ffffff;
 
 }
-.cancel{
-background: #A5A5A5; 
-	width: 58px;
-	height: 22px;
-	color:#ffffff;
-}
+
 label{
 color:#CFCFCF;
 }
@@ -207,7 +202,7 @@ color:#CFCFCF;
 }
 .registertitle{
 	color: #F8981D; 
-	font-size: 16px;
+	font-size: 17px;
 	font-weight: bold;
 }
 .whatnewfont{
@@ -216,8 +211,10 @@ color:#CFCFCF;
 	font-weight: bold;
 }
 .chatitle{
-	font-size: 16px;
+	font-family: arial;
 	font-weight: bold;
+	font-size: 15px;
+	color: #666666;
 }
 .dourbest{
 	top:2px;
@@ -246,18 +243,34 @@ color:#CFCFCF;
 .margin{
 	margin-top:-10px;
 }
-.margin2{
+.margin2
+{
 	margin-top: 10px;
+	color: #666666;
+	padding-left: 10px;
 }
 .createdat{
 float:right;
-margin-right:20px; 
+margin-right:14px; 
 color: #A9A8A8;
 }
 .descriptionstyle{
 		text-transform:none;
+		color: #666666;
+		padding-left: 29px;
 }
 .btnquestionupimge{
 	position: relative;
 	top: 4px;
+}
+#align
+{	
+	box-align: center;
+}
+.fbname
+{
+	color: #666666;
+    font-family: arial;
+	font-size: 12px;
+	font-weight: bold;
 }
