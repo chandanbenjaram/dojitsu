@@ -83,6 +83,8 @@ left:10px;
 {
 	margin-left: -3px;
     margin-top: -1px;
+	height: 30px;
+	width: 30px;
 }
 .titlecolor
 {
@@ -96,19 +98,25 @@ left:10px;
 .tdpaddingleft
 {
 		padding-left:10px;
+		color: #666666;
+		font-size: 12px;
 }
 .chaltitlecolor
 {
-	font-weight:bold;
+	font-family: arial;
+	font-weight: bold;
+	font-size: 15px;
+	color: #666666;
 }
 .createdtime
 {
 	float:right; 
-	margin-right:20px; 
+	margin-right:14px; 
 	color: #A9A8A8;
 }
 .textranform{
 	text-transform:none;
+	color: #666666;
 }
 .positionforimage{
 	position: relative;
