@@ -41,25 +41,14 @@
                                     <%end%>
                                 </td>
                                 <td width="65%">
-                                    <span class="createdtime">&nbsp;&nbsp;<%= time_ago_in_words  anc.created_at%></span></br></br>
-                                    <% if anc.personal_type.instance_of?ChallengePersonalType%>
-                                        <span class="textranform">
-                                            <% if anc.description.size > 200 %>
-                                                <%=h truncate(anc.description, :length => 200) %>&nbsp;&nbsp;<b><%= link_to "VIEW" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view' %></b>									
-                                            <%else%>
-                                                <%= anc.description %>
-                                            <%end%>
-                                        </span>
-                                    <% end %>
-                                    <% if anc.social_type.instance_of?ChallengeSocialType%>
+                                    <span class="createdtime">&nbsp;&nbsp;<%= time_ago_in_words  anc.created_at%></span></br></br>                                    
                                       <p class="textranform">
                                           <% if anc.description.size > 200 %>
                                               <%=h truncate(anc.description, :length => 200) %>&nbsp;&nbsp;<b><%= link_to "VIEW" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view'%></b>									
                                           <%else%>
                                               <%= anc.description %>&nbsp;&nbsp;<%= link_to "VIEW" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view' %></b>
                                           <%end%>
-                                      </p>
-                                    <% end %>
+                                      </p>                                   
                                 </td>
                               </tr>
                           </table>
