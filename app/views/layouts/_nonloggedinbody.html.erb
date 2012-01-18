@@ -1,83 +1,83 @@
 <%= stylesheet_link_tag('nonLogin') %>
 <table width="100%">
-	  <td class="sectionone" valign=top >
-		 <section class="regmessage">
-             <section class="msgtitle">
-                 <table>
-                    <tr>
-                        <td  class="titlecolor"><b>WHAT'S NEW</b></td>
-                              <td>
-                                  <% if Challenge.whatsNew.count == 0 %>
-                                  <% else %>				
-                                         <%= link_to "", nonLoginIndex_challenges_path, :class => "non_login_view_all", :method => :get%> </td>
-                                  <% end %>
-                              </td>    
-                     </tr>
-                </table>
-                </section>  
-                <% if Challenge.whatsNew.count == 0 %>
-						<p align="center">No challenges found</p>
-				<% else %>
-						<% Challenge.whatsNew.each do |anc| %>
-								<section class="messagereg">
-									<%= image_tag("new.gif", :class => "newtag" ) %>
-									<table width="100%", class="tablemargin">
-											<tr>
-												<td width="32%", class="tdpaddingleft">
-														<span class="chaltitlecolor">
-															<%= anc.title %>
-														</span></br>
-														by  <span class="fbname"><%= FbGraph::User.new(anc.user_id).fetch.name %></span></br>
-														<% if anc.start_point.instance_of?PointDateType %>
-															  <%= anc.start_point.value.strftime("%b %d, %Y")%> - <%= anc.end_point.value.strftime("%b %d, %Y")%>
-														<% else %>
-															  <%= anc.start_point.value rescue 0%> - <%= anc.end_point.value rescue 0%>
-														<% end %>
-														<br>
-														<% if anc.child_challenges.size<2 %>
-															<%= anc.child_challenges.size%>&nbsp;&nbsp;contestant
-															<%else%>
-															<%= anc.child_challenges.size%>&nbsp;&nbsp;contestants
-														<%end%>
-												</td>
-												<td width="65%">
-														<span class="createdtime">&nbsp;&nbsp;<%= time_ago_in_words  anc.created_at%></span></br></br>
-														<% if anc.personal_type.instance_of?ChallengePersonalType%>
-																  <span class="textranform">
-																	  <% if anc.description.size > 200 %>
-																				<%=h truncate(anc.description, :length => 200) %>&nbsp;&nbsp;<b><%= link_to "VIEW" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view' %></b>									
-																		<%else%>
-																				<%= anc.description %>
-																	<%end%>
-																  </span>
-														<% end %>
-														<% if anc.social_type.instance_of?ChallengeSocialType%>
-															<p class="textranform">
-																<% if anc.description.size > 200 %>
-																			<%=h truncate(anc.description, :length => 200) %>&nbsp;&nbsp;<b><%= link_to "VIEW" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view'%></b>									
-																	<%else%>
-																			<%= anc.description %>&nbsp;&nbsp;<%= link_to "VIEW" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view' %></b>
-																<%end%>
-															</p>
-														<% end %>
-												</td>
-											</tr>
-									</table>
-								</section>
-						<% end %>
-				<% end %>
-			</td>
-			<td class = "imagebackground"></td>
-			<td class="sectiontwo" width="20%">
-				<section class="regdojitsu">	
-					<div class="fb-like-box" data-href="http://www.facebook.com/pages/Dojitsu/295711967114330" data-width="350" data-height="180" data-show-faces="true" data-stream="false" data-header="false"></div>
-						<section class="dourbest1">
-							<%= image_tag("dourbest.PNG" ,:size => "350x195", :alt => "Do YOur Best")%>
-									<%= link_to(image_tag("regwelcome.PNG" ,:size => "90x25", :alt => "Do Your Best", :class => "reg"),"#") %>
-									<%= image_tag("seetutorial.PNG" ,:size => "75x21", :class => "seetutorial")%>
-						</section>
-				</section>
-		</section>
-	</td>
+    <td class="sectionone" valign=top >
+         <section class="regmessage">
+       <section class="msgtitle">
+           <table>
+              <tr>
+                  <td  class="titlecolor"><b>WHAT'S NEW</b></td>
+                    <td>
+                        <% if Challenge.whatsNew.count == 0 %>
+                        <% else %>				
+                           <%= link_to "", nonLoginIndex_challenges_path, :class => "non_login_view_all", :method => :get%> </td>
+                        <% end %>
+                    </td>    
+               </tr>
+          </table>
+          </section>  
+          <% if Challenge.whatsNew.count == 0 %>
+              <p align="center">No challenges found</p>
+                <% else %>
+                    <% Challenge.whatsNew.each do |anc| %>
+                        <section class="messagereg">
+                          <%= image_tag("new.gif", :class => "newtag" ) %>
+                          <table width="100%", class="tablemargin">
+                              <tr>
+                                <td width="32%", class="tdpaddingleft">
+                                    <span class="chaltitlecolor">
+                                        <%= anc.title %>
+                                    </span></br>
+                                    by  <span class="fbname"><%= FbGraph::User.new(anc.user_id).fetch.name %></span></br>
+                                    <% if anc.start_point.instance_of?PointDateType %>
+                                        <%= anc.start_point.value.strftime("%b %d, %Y")%> - <%= anc.end_point.value.strftime("%b %d, %Y")%>
+                                    <% else %>
+                                        <%= anc.start_point.value rescue 0%> - <%= anc.end_point.value rescue 0%>
+                                    <% end %>
+                                    <br>
+                                    <% if anc.child_challenges.size<2 %>
+                                        <%= anc.child_challenges.size%>&nbsp;&nbsp;contestant
+                                        <%else%>
+                                        <%= anc.child_challenges.size%>&nbsp;&nbsp;contestants
+                                    <%end%>
+                                </td>
+                                <td width="65%">
+                                    <span class="createdtime">&nbsp;&nbsp;<%= time_ago_in_words  anc.created_at%></span></br></br>
+                                    <% if anc.personal_type.instance_of?ChallengePersonalType%>
+                                        <span class="textranform">
+                                            <% if anc.description.size > 200 %>
+                                                <%=h truncate(anc.description, :length => 200) %>&nbsp;&nbsp;<b><%= link_to "VIEW" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view' %></b>									
+                                            <%else%>
+                                                <%= anc.description %>
+                                            <%end%>
+                                        </span>
+                                    <% end %>
+                                    <% if anc.social_type.instance_of?ChallengeSocialType%>
+                                      <p class="textranform">
+                                          <% if anc.description.size > 200 %>
+                                              <%=h truncate(anc.description, :length => 200) %>&nbsp;&nbsp;<b><%= link_to "VIEW" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view'%></b>									
+                                          <%else%>
+                                              <%= anc.description %>&nbsp;&nbsp;<%= link_to "VIEW" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view' %></b>
+                                          <%end%>
+                                      </p>
+                                    <% end %>
+                                </td>
+                              </tr>
+                          </table>
+                        </section>
+                    <% end %>
+                <% end %>
+                  </td>
+                  <td class = "imagebackground"></td>
+                  <td class="sectiontwo" width="20%">
+                      <section class="regdojitsu">	
+                        <div class="fb-like-box" data-href="http://www.facebook.com/pages/Dojitsu/295711967114330" data-width="350" data-height="180" data-show-faces="true" data-stream="false" data-header="false"></div>
+                          <section class="dourbest1">
+                              <%= image_tag("dourbest.PNG" ,:size => "350x195", :alt => "Do YOur Best")%>
+                              <%= link_to(image_tag("regwelcome.PNG" ,:size => "90x25", :alt => "Do Your Best", :class => "reg"),"#") %>
+                              <%= image_tag("seetutorial.PNG" ,:size => "75x21", :class => "seetutorial")%>
+                          </section>
+                      </section>
+          </section>
+    </td>
 </table>
 
