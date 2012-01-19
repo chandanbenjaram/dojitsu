@@ -53,21 +53,52 @@
 			});    
         </script>
 		<br>
-		<tr>
+		</tr>
 		<table id="description">
 				<tr>
 					<td valign="top" width="13%">
 						<b class="elecolor">DESCRIPTION</b></td>
 					<td  width="73%">
-						<b class="ondescricolor"><%= on_the_spot_edit @challenge,:description , :type=>:textarea  %></b>
+						
+						<div class="onthespandescription" >
+							 <span class="ondescricolor"><%= @challenge.description %></span>
+						</div>
+						<div id="replacedDescription">
+							<%= text_area(:challenge, :description, :size => "20x60" )%>				
+							 <%= link_to image_tag("update.png", :class =>"replacedesc"), show_per_challenges_path(:id => @challenge.id)  %>
+							 <%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "replace_cancel_desc" %>		
+						</div>
 					</td>
-					<td  width="12%">
+					<td  width="12%" id="replacedDescriptionmain"  onclick="TestingDesc();">
 						<span id="image1"><%= image_tag("icon_edit.png") %></span>
 						
 					</td>
 				</tr>
 		</table>
-
+						<script>
+						$("#replacedDescription").hide();
+						function TestingDesc()
+						{
+							$(".onthespandescription").replaceWith($("#replacedDescription").show());	
+						}
+						
+						 $('.replacedesc').click(function(){
+						   var startValue2 = $("#challenge_description").val();	
+							var challengeId = '<%= @challenge._id %>'		   
+								jQuery.support.cors = true;
+								 var objj = {
+												  myParams11:startValue2,
+												  myParams21:challengeId
+												};    
+								$.get('/challenges/desc_update', 
+									{value:objj},
+									function(data) {
+										
+									}, 'script' 
+								);                             
+							});    
+						</script>
+					
 		<hr/ width=400px>
 	</tr>
 	<tr>
