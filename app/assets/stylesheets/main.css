@@ -767,7 +767,7 @@ input.radio {
     text-align: center;
     text-transform: uppercase;
     top: 15%;
-    width: 10%;
+    width: 18%;
 }
 
 .links_invite_p {
@@ -1925,4 +1925,21 @@ a:focus, a:hover {
     right: -38%;
     text-align: center;
 	top: -2px;
+}
+
+.linksNewMessage {
+	background: none repeat scroll 0 0 #f9a943;
+	border-radius: 3px 3px 3px 3px;
+	color: #FFFFFF;
+	display: block;
+	font-size: 12px;
+	margin: 20px 0;
+	padding: 5px;
+	text-align: center;
+	text-transform: uppercase;
+	width: 90px;
+	margin-right:10px;
+	position: relative;
+        text-align: center;
+	top: -5px;
 }

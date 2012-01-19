@@ -9,7 +9,6 @@ class Users < ActiveRecord::Migration
       t.rememberable
       t.trackable
       t.timestamps
-	  t.confirmable
     end
   end
 
