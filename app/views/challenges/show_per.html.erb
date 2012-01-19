@@ -20,9 +20,38 @@
 <%= form_for @challenge do |f| %>
 <table width="100%" border="0" border cellspacing=12px>
 	<tr>
-		<div class="onthespantitle">
-			<span class="ctitlecolor"><%= on_the_spot_edit @challenge, :title, :type=> :text %></span>
+		<div class="onthespantitle"  onclick="TestingTitle();">
+			<span class="ctitlecolor"><%= @challenge.title %></span>
 		</div>
+		<div id="replacedTitle">
+			<%= text_field(:challenge, :title, :maxlength =>30)%>				
+			 <%= link_to image_tag("update.png", :class =>"replacetitle"), show_per_challenges_path(:id => @challenge.id)  %>
+             <%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "replace_cancel" %>		
+        </div>
+		<script>
+		$("#replacedTitle").hide();
+		function TestingTitle()
+		{
+			$(".onthespantitle").replaceWith($("#replacedTitle").show());	
+		}
+		
+		 $('.replacetitle').click(function(){
+		   var startValue1 = $("#challenge_title").val();	
+			var challengeId = '<%= @challenge._id %>'		   
+				jQuery.support.cors = true;
+				 var objj = {
+                                  myParams11:startValue1,
+                                  myParams21:challengeId
+                                };    
+				
+				$.get('/challenges/title_update', 
+					{value:objj},
+					function(data) {
+						
+					}, 'script' 
+				);                             
+			});    
+        </script>
 		<br>
 		<tr>
 		<table id="description">
@@ -301,7 +330,7 @@
 				</tr>
 			</table>
 			<div style="width=30px">
-				My Dojitsu score: <br>
+				<span class="totalstyle">My Dojitsu score:</span> <br>
 				<div class="task" id="taskprogress"></div>
 				<div class="showperscore_personal"><%= total_score %></div>	
 				<style>
