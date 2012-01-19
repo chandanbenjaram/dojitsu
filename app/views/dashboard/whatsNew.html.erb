@@ -44,8 +44,6 @@
                   <%end%>
                   <p class="texttransormn">
                           <%=h truncate(aChallenge.description, :length => 15) %>&nbsp;&nbsp;<b><%= link_to "VIEW" , show_soc_challenges_path(:id => aChallenge.id), :class => 'underline_view'   %>	</b>								
-                  </p>
-                  								
               </td>
               <td valign="top" width="30%" class="tdalign" >
                               <p class = "timestyle"><%= time_ago_in_words  aChallenge.created_at%></p>
