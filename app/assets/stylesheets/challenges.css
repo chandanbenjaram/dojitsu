@@ -142,3 +142,36 @@ margin-left:10px;
 .bgcolorb{
 	background-color: #f5f5f5;
 }
+
+#challenge_title
+{
+	height: 30px;
+	width: 35%;
+}
+
+.replacetitle
+{
+	height: 30px;
+    position: relative;
+    top: 9px;
+    width: 10%;
+}
+
+.replace_cancel
+{
+	background: none repeat scroll 0 0 #999999;
+    color: #FFFFFF;
+    display: block;
+    float: right;
+    font-size: 12px;
+    height: 19px;
+    margin: 10px 43% 20px 0;
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 80px;
+}
+.replace_cancel:hover
+{	
+	color: #FFFFFF;
+}
