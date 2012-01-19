@@ -296,9 +296,8 @@ end
   end
   
   def title_update
-	aChallenge = Challenge.find(params[:id])
-	aChallenge.update_attributes(:title => "venkat")
-  
+	@aChallenge = Challenge.find(params[:value][:myParams21])
+	@aChallenge.update_attributes(:title =>params[:value][:myParams11]).inspect  
   end
 	
   def paginationTest
