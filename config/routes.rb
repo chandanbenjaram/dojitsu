@@ -44,6 +44,7 @@ Dojitsu::Application.routes.draw do
 	  get "desc_soc_update"
       put :update_attribute_on_the_spot 
       get :get_attribute_on_the_spot
+	  get "search"
     end
   end
 

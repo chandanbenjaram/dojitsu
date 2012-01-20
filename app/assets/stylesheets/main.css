@@ -1810,31 +1810,48 @@ top: -12px;
 text-decoration: underline;
 color: #06BACE;
 }
-.underline_view:hover{
-text-decoration: underline;
-color: #06BACE;
+.underline_view:hover
+{
+	text-decoration: underline;
+	color: #06BACE;
 }
-#timespace{
+#timespace
+{
 	position:relative; 
 	float:right; 
 	right:31px;
 }
-#image3{
-position:relative;
-float:right;
+#image3
+{
+	position:relative;
+	float:right;
 }
-#image1{
-position:relative;
-float:right;
+#image1
+{
+	position:relative;
+	float:right;
 }
-#image4{
-position:relative;
-float:right;
+#image5
+{
+	position:relative;
+	float:right;
 }
-.tabsstyle{
+#image6
+{
+	position:relative;
+	float:right;
+}
+#image4
+{
+	position:relative;
+	float:right;
+}
+.tabsstyle
+{
 	margin-top:0px;
 }
-.imgbtnmsgup{
+.imgbtnmsgup
+{
 		margin-left:10px; 
 		position:relative; 
 		top:5px; 

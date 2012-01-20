@@ -57,37 +57,31 @@
 							
 							
 							</script>
-							<script>
-															
-								$("#onthespantitle").click(function()
-								{
-									
-								});
-							
-							</script>
+					
 			<br>
 			</tr>
 					<table id="description">
 			<tr>
-			<td valign="top" height="34px" width="13%" >
-					<b class="elecolor">DESCRIPTION</b></td>
-			<td valign="top" width="73%">
+					<td valign="top" height="34px" width="13%" >
+							<b class="elecolor">DESCRIPTION</b></td>
+					<td valign="top" width="73%">
 
-			<div class="onthespandescription" >
-					<span class="ondescricolor"><%= @challenge.description %></span>
-			</div>
-			<div id="replacedDescription">
-					<%= text_area(:challenge, :description,  :style => "width: 400px; height: 93px; resize:none;")%>
-					<%= link_to image_tag("update.png", :class =>"replacedesc"), show_per_challenges_path(:id => @challenge.id) %>
-					<%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "replace_cancel_desc" %>
-			</div>
-			</td>
-				<td valign="top" width="12%" onclick="TestingDesc();">
-					<span id="image1"><%= image_tag("icon_edit.png") %></span>
-				</td>
+					<div class="onthespandescription" >
+							<span class="ondescricolor"><%= @challenge.description %></span>
+					</div>
+					<div id="replacedDescription">
+							<%= text_area(:challenge, :description,  :style => "width: 400px; height: 93px; resize:none;")%>
+							<%= link_to image_tag("update.png", :class =>"replacedesc"), show_per_challenges_path(:id => @challenge.id) %>
+							<%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "replace_cancel_desc" %>
+					</div>
+					</td>
+					<td valign="top" width="12%" onclick="TestingDesc();">
+						<span id="image1"><%= image_tag("icon_edit.png") %></span>
+					</td>
 			</tr>
 			</table>
 			<script>
+					
 					$("#replacedDescription").hide();
 					function TestingDesc()
 					{
@@ -115,13 +109,14 @@
 			<hr/ width=400px>
 			</tr>
 			<tr>
+			<div id="startp">
             <table>
                 <tr>
                     <td width=120px height="34px" >
                         <b class="elecolor">START POINT</b>
                     </td>
                     <td>
-                         <div id="TestStart" onclick="TestingStart();">
+                         <div id="TestStart" >
 
                               <% if @challenge.start_point.instance_of?PointDateType %>
                                   <b class="ondescricolor"><%= @challenge.start_point.value.strftime("%b %d, %Y")%> </b>
@@ -169,9 +164,34 @@
                                   </tr>
                               </table>
                          </div>
-                         <script>
+              
+						</td>
+         
+                      <td valign="top" width="12%" onclick="TestingStartPoint();" >
+								<span id="image5"><%= image_tag("icon_edit.png") %></span>
+					  </td>
+					      <script>
+						  $(document).ready(function(){
+											
+											$("#image5").hide();
+											$("#image6").hide();
+											 $("#startp").mouseover(function(){
+												$("#image5").show();
+												
+											  });
+											   $("#endpt").mouseover(function(){
+												$("#image6").show();
+												
+											  });
+											  $(document).mouseout(function(){
+														
+														$("#image5").hide();
+														$("#image6").hide();
+													
+												 });
+							 });									
                             $("#replacedStart").hide();
-                            function TestingStart()
+                            function TestingStartPoint()
                             {
 
 
@@ -198,23 +218,20 @@
                             });
                             
                          </script>
-                    </td>
-         
-                        <td>
-                             <%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :style => "text-decoration: underline;",:align=>"right" %>
-                        </td>
                     </tr>
             </table>
+			</div>
 <hr/ width=400px>
 </tr>
 <tr>
+<div id = "endpt">
 <table>
                     <tr>
                         <td width=120px height="34px">
                              <b class="elecolor">END POINT</b>
                         </td>
                         <td>
-                         <div id="TestEnd" onclick="TestingEnd();">
+                         <div id="TestEnd" >
                               <% if @challenge.end_point.instance_of?PointDateType %>
                                   <b class="ondescricolor"><%= @challenge.end_point.value.strftime("%b %d, %Y")%> </b>
                               <% else %>
@@ -255,9 +272,10 @@
                                   <tr>
                                     
                                       <%= link_to image_tag("update.png", :class =>"dateUpdateEnd"), show_per_challenges_path(:id => @challenge.id) %>
-                                      <%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "links_cancel" %>
+                                      <%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "links_cancel_end" %>
                                     
                                   </tr>
+								
                               </table>
                          </div>
                          <script>
@@ -290,12 +308,17 @@
                             
                          </script>
                     </td>
-         
+							
                         <td>
                              <%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :style => "text-decoration: underline;",:align=>"right" %>
                         </td>
+						  	<td valign="top" width="12%" onclick="TestingEnd();" >
+											<span id="image6"><%= image_tag("icon_edit.png") %></span>
+							</td>
+					
                     </tr>
 </table>
+</div>
 <hr/ width=400px>
 <br><br>
 <table bgcolor=#f4f4f4>
@@ -456,6 +479,6 @@ offset: [0, 15],
 delay: 0
 });
 
-</script>
 
 </body>
+
