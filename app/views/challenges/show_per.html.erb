@@ -1,7 +1,8 @@
 <%= stylesheet_link_tag('simple-tabs','datePicker', 'colorbox','jquery-ui', 'ui.progressbar','ui.theme', 'main','soc-per','challenges.css')%>
 <%= javascript_include_tag('simple-tabs','ui.progressbar','jquery.colorbox-min', 'jquery.cluetip.js','jquery.table.addrow','on_the_spot','jquery.tools.min','soc-per','challengePersonal','fbWallPost')%>
 <%= render 'layouts/loggedinbody'%>
-<div class="challengeSubNav">
+<body id="related">
+<div class="challengeSubNav" onclick="Testingbody();>
 
     <%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %>
     
@@ -52,6 +53,17 @@
 									}, 'script'
 									);
 							});
+								
+							
+							
+							</script>
+							<script>
+															
+								$("#onthespantitle").click(function()
+								{
+									
+								});
+							
 							</script>
 			<br>
 			</tr>
@@ -445,3 +457,5 @@ delay: 0
 });
 
 </script>
+
+</body>
