@@ -40,6 +40,7 @@ Dojitsu::Application.routes.draw do
 	  get "publish"
       put :update_attribute_on_the_spot 
       get :get_attribute_on_the_spot
+	  get "searchpeople"
     end
   end
 
