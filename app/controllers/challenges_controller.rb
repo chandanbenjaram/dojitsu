@@ -254,7 +254,7 @@ end
    if params[:value][:myParams3]
      startPoint = @challenge.start_point
      startPoint.update_attributes(:value => params[:value][:myParams1], :label =>params[:value][:myParams3])
-	 raise value
+	 
    else
      startPoint = @challenge.start_point
      startPoint.update_attributes(:value => params[:value][:myParams1])
@@ -295,6 +295,27 @@ end
     end
   end
   
+  def title_update
+	@aChallenge = Challenge.find(params[:value][:myParams21])
+	@aChallenge.update_attributes(:title =>params[:value][:myParams11]) 
+  end
+
+  def desc_update
+	@aChallenge = Challenge.find(params[:value][:myParams21])
+	@aChallenge.update_attributes(:description =>params[:value][:myParams11]) 
+  end
+  
+  def title_soc_update
+	@aChallenge = Challenge.find(params[:value][:myParams21])
+	@aChallenge.update_attributes(:title =>params[:value][:myParams11]) 
+  end
+  
+  def desc_soc_update
+  	@aChallenge = Challenge.find(params[:value][:myParams21])
+	@aChallenge.update_attributes(:description =>params[:value][:myParams11]) 
+  end
+  
+	
   def paginationTest
    @challenge = Challenge.where(:_id => "4ef1a6a454b53001a4000067").first
 	 $wins ={"first"=>{"id"=>"1", "score"=>"1"},"second"=>{"id"=>"2", "score"=>"2"},"third"=>{"id"=>"3", "score"=>"3"},"fourth"=>{"id"=>"4", "score"=>"4"},"fifth"=>{"id"=>"5", "score"=>"5"}} 
@@ -493,4 +514,7 @@ end
   
   end
 end
+
+
+
 

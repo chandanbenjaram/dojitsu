@@ -1,92 +1,92 @@
 <%= stylesheet_link_tag('main')%>
 
 <div id="challengedetails">
-	<% taskCompleted=1 %>
-	<script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> 
-	</script>
-	<table class="sortable">
-          <% if current_user.challenges.count == 0 %>
-              <p align="center">No challenges for you</p>
-          <% else %>
-          <thead>
-            	<tr>
-					<th id="content1">NAME</th>
-					<th id="content2">MY DOJITSU SCORE</th>
-				</tr>
-          </thead>
-          <tbody>
-              <% current_user.challenges.each do |userChallenge| %>
-                <tr valign="top" class="challengerow" onclick="location.href='<%= show_per_challenges_path(:id => userChallenge)  %>'" >
-                  <td class="bordercolort">	
-                      <span class="userchallengestyle"><b><%= userChallenge.title %></b></span><br> <span class="fontsize"> by </span> 
-                      <% if userChallenge.instance_of?ChildChallenge %>
-                         <% @parentChallenge = Challenge.where(:_id => userChallenge.challenge_id).first%>
-                         <script>
-                                      var ordId = <%=  orgId = @parentChallenge.user_id %>
-                         </script>
-                         <b>
-                            <% if isStandalone %>
-                                <%= @parentChallenge.first_name %>
-                            <% else %>
-                                <%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %>
-                            <% end %>                                  
-                        </b>                     
-                      <% else %>
-                              <b>
-                                  <% if isStandalone %>
-                                      <%= current_user.gmauth.first_name %>
-                                  <% else %>
-                                      <%= current_user.facebook.name %>
-                                  <% end %>                                  
-                              </b>
-                      <% end %>
-                      <br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
-                      <%if ( userChallenge.child_challenges.size <2 ) %> 
-                              <%= userChallenge.child_challenges.size >0 ? userChallenge.child_challenges.size : 1  %> contestant<br>
-                      <% else %>
-                              <%= userChallenge.child_challenges.size %> contestants<br>
-                      <% end %>
-                  </td>
-                  <td class="bordercolort1">					
-                      <div class="taskprogress" id="taskprogress<%= taskCompleted %>"></div><br/>
-                          <div id="check1">
-                                  <% flag1=0 %>
-                                  <% flag2=0 %>
-                                  <% aScore= 0 %>
-                                  <% bScore= 0 %>
-                                  <% userChallenge.tasks.each do |aTask| %>
-                                          <% if (aTask.is_complete == 1 ) %>
-                                                  <% aScore+=Integer(aTask.score) %>
-                                                  <% flag1+=1 %>
-                                          <% else %>
-                                                  <% bScore += aTask.score.to_i %>
-                                                  <% flag2+=1 %>
-                                          <% end %>
-                                  <% end %>
-                          <div class="update">
-                                  <%= image_tag("FDFDG.gif", :alt => "Update")%>												
-                          </div>
-                          <div class="completedtask"> 
-                                  <%= aScore %> points (<%= flag1 %>&nbsp;tasks)
-                          </div>
-                          <div class="notcompleted">
-                                  <span class="togostyle"><b>to go:</b></span>&nbsp; <span class="pointscolor"><%= bScore %> points (<%= flag2 %>&nbsp;tasks)</span>
-                          </div>
-                          <script type="text/javascript">
-                                  $(function() {
-                                          $("#taskprogress<%= taskCompleted %>").progressbar({ value: Math.round(((<%= aScore %>/<%= (aScore+bScore) %>)*100)) });
-                                          $("<p>").attr("id", "check").text($("#taskprogress<%= taskCompleted %>").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress<%= taskCompleted %>");
-                                  });
-                          </script>
+    <% taskCompleted=1 %>
+    <script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> 
+    </script>
+    <table class="sortable">
+      <% if current_user.challenges.count == 0 %>
+          <p align="center">No challenges for you</p>
+      <% else %>
+      <thead>
+          <tr>
+              <th id="content1">NAME</th>
+              <th id="content2">MY DOJITSU SCORE</th>
+          </tr>
+      </thead>
+      <tbody>
+          <% current_user.challenges.each do |userChallenge| %>
+            <tr valign="top" class="challengerow" onclick="location.href='<%= show_per_challenges_path(:id => userChallenge)  %>'" >
+              <td class="bordercolort">	
+                  <span class="userchallengestyle"><b><%= userChallenge.title %></b></span><br> <span class="fontsize"> by </span> 
+                  <% if userChallenge.instance_of?ChildChallenge %>
+                     <% @parentChallenge = Challenge.where(:_id => userChallenge.challenge_id).first%>
+                     <script>
+                         var ordId = <%=  orgId = @parentChallenge.user_id %>
+                     </script>
+                     <b>
+                        <% if isStandalone %>
+                            <%= @parentChallenge.first_name %>
+                        <% else %>
+                            <%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %>
+                        <% end %>                                  
+                    </b>                     
+                  <% else %>
+                      <b>
+                          <% if isStandalone %>
+                              <%= current_user.gmauth.first_name %>
+                          <% else %>
+                              <%= current_user.facebook.name %>
+                          <% end %>                                  
+                      </b>
+                  <% end %>
+                  <br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
+                  <%if ( userChallenge.child_challenges.size <2 ) %> 
+                     <%= userChallenge.child_challenges.size >0 ? userChallenge.child_challenges.size : 1  %> contestant<br>
+                  <% else %>
+                     <%= userChallenge.child_challenges.size %> contestants<br>
+                  <% end %>
+              </td>
+              <td class="bordercolort1">					
+                  <div class="taskprogress" id="taskprogress<%= taskCompleted %>"></div><br/>
+                      <div id="check1">
+                          <% flag1=0 %>
+                          <% flag2=0 %>
+                          <% aScore= 0 %>
+                          <% bScore= 0 %>
+                          <% userChallenge.tasks.each do |aTask| %>
+                              <% if (aTask.is_complete == 1 ) %>
+                                <% aScore+=Integer(aTask.score) %>
+                                <% flag1+=1 %>
+                              <% else %>
+                                <% bScore += aTask.score.to_i %>
+                                <% flag2+=1 %>
+                              <% end %>
+                          <% end %>
+                      <div class="update">
+                         <%= image_tag("FDFDG.gif", :alt => "Update")%>												
                       </div>
-                      <div id="points">
-                              &nbsp;&nbsp;<span class="ascoresize"><b><%= aScore %></b></span>
-                      </div>													
-                  </td>																					
-                  <% taskCompleted+=1 %>															
-              </tr>
-              <% end %>              
-          </tbody>
-          <% end %>
-	</table>
+                      <div class="completedtask"> 
+                         <%= aScore %> points (<%= flag1 %>&nbsp;tasks)
+                      </div>
+                      <div class="notcompleted">
+                         <span class="togostyle"><b>to go:</b></span>&nbsp; <span class="pointscolor"><%= bScore %> points (<%= flag2 %>&nbsp;tasks)</span>
+                      </div>
+                      <script type="text/javascript">
+                          $(function() {
+                              $("#taskprogress<%= taskCompleted %>").progressbar({ value: Math.round(((<%= aScore %>/<%= (aScore+bScore) %>)*100)) });
+                              $("<p>").attr("id", "check").text($("#taskprogress<%= taskCompleted %>").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress<%= taskCompleted %>");
+                          });
+                      </script>
+                  </div>
+                  <div id="points">
+                     &nbsp;&nbsp;<span class="ascoresize"><b><%= aScore %></b></span>
+                  </div>													
+              </td>																					
+              <% taskCompleted+=1 %>															
+          </tr>
+          <% end %>              
+      </tbody>
+      <% end %>
+    </table>
 </div>
