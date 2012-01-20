@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   def inbox 
     Message.all(conditions: { :to => (fbauth.uid rescue gmauth.id) }, limit: 6).desc("created_at")
   end
-
+  
   def challenges 
     challenges = []
     logger.debug gmauth.id

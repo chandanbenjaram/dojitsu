@@ -13,15 +13,15 @@ class MessagesController < ApplicationController
 		end
 	end
   
-  def message
-		render :layout => false
-	end
-  
   def newmessage
-    from = User.find_by_id(current_user.id)
-    to = User.find_by_email(params[:to])
-    Message.create(:to =>to.id, :from =>from.id, :body => params[:message])
-    redirect_to dashboard_index_path
+    whomSend = Authentication.find_by_email(params[:to])
+    Message.create(:to =>whomSend.uid, :from =>current_user.fbauth.uid, :body => params[:message])
+    redirect_to messages_path
   end
 	
+  def individualAllMessage
+    @iId = params[:iId]   
+    wayToRead = Message.where(:_id => params[:id]).first
+    wayToRead.update_attributes(:isRead => 1)
+  end
 end

@@ -66,6 +66,7 @@ Dojitsu::Application.routes.draw do
       get "storemessage"
       get "message"
       get "newmessage"
+      get "individualAllMessage"
     end	
   end 
 

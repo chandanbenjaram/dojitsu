@@ -5,7 +5,7 @@ $(document).ready(function(){
               opacity: 0.40,
               transition: 'none',
               speed: 200,
-              width: 450,             
+              width: 450,              
               scrolling: true,
               inline:true, 
               href:"#sendNewMessage",
