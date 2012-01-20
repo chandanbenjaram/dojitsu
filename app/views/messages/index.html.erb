@@ -1,18 +1,19 @@
-<%#= javascript_include_tag('ajaxPageLoad')%>
 <%= render 'layouts/loggedinbody'%>
 
-<%= javascript_include_tag('jquery.colorbox-min')%>
-<%= stylesheet_link_tag('colorbox')%>
+<%= javascript_include_tag('jquery.colorbox-min','messageJs')%>
+<%= stylesheet_link_tag('colorbox','messageCss')%>
 
-<div class="challengeSubNav">
+<section class="challengeSubNav">
     <%= button_to "", "#", :class => "new_message_button_index", :method => :get%> 
     <%= link_to "MESSAGES  ",dashboard_index_url ,:class => "challenge_link" , :style=> "text-decoration: none; color:#666666; left: 100px;" %>
-</div>	
-<div style=" font-size: 25px; font-weight: bold;" class="challange">
+</section>	
+<section class="challange" id="messageBox">
   <table width="100%">  
     <tr>
-      <td width="64%" ><font color="#f8981d">MESSAGES</font></td>
-      <td width="20%" ><input type="text" id="search" /></td>
+        <td width="64%" ><font color="#f8981d">MESSAGES</font></td>
+        <td width="20%" >
+          <input type="text" id="search" />
+        </td>
          <script>
          function search()
          {
@@ -27,31 +28,24 @@
            <option value="-1" id="select">DECLINED</option>
           </select> </div>
       </td>
-         <td width="3%" >
-          <%=image_tag("searchbutton.PNG",  :onclick=>"search();" )%>
-             <%#= link_to(image_tag("declane.png"), filter_challenges_path(:id => @challenge)) %>         </td>
+      <td width="3%" valign="bottom">
+          <%=image_tag("searchbutton.PNG",  :onclick=>"search();", :hight=>30, :width =>30 ) %>                   
+      </td>
     </tr>
 </table>
-</div>
-<table class="sortable">
-    <% if current_user.inbox.count == 0 %>
-        <p align="center">No message for you</p>
-    <% else %>
+</section>
+<table class="sortable">  
     <thead>
       <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">FROM</th><th style="CURSOR: pointer; cursor: hand;" id="content2"><span id="timespace">TIME</span></th><th></th></tr>
     </thead>
     <tbody>
         <% current_user.inbox.each do |userMessage| %>
         <tr >
-            <td width="10%" class="bordercolort", style="padding-left:15px; ">
-                <%= image_tag(FbGraph::User.new(userMessage.from).fetch.picture) %>																			
+            <td width="10%" class="bordercolort" style="padding-left:15px; ">
+                <%#= image_tag(FbGraph::User.new(userMessage.from).fetch.picture) %>																			
             </td>
-            <td width="90%" class="bordercolort", style="padding-right:20px;" >
+            <td width="90%" class="bordercolort" style="padding-right:20px;" >
                 <font size="3px" style="float:right">
-                    
-                    
-                    
-                    
                     
                     <%#= availability_date = DateTime.parse(userMessage.created_at.to_s)%>
                     
@@ -61,18 +55,6 @@
                     <%#= time_now = DateTime.parse(DateTime.now.in_time_zone.to_s) %>
                     <%#= time_until = availability_date - time_now %>
                     <%#= t = time_until.to_f %>
-                    
-                    
-
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                     
                     <%= time_ago_in_words userMessage.created_at %>
                 </font>
@@ -86,59 +68,53 @@
             </td>
         </tr>
         <% end %>
-    </tbody>
-    <% end %>
+    </tbody>    
 </table>
 
-<div style="display:none">
-<div id="sendNewMessage">
+<section style="display:none;">
+<section id="sendNewMessage">
     <%= form_tag newmessage_messages_path, :method => :get do  %>
     <table width="100%" bgcolor="#f4f4f4">
       <tr bgcolor="#f4f4f4">
         <td colspan="2">
-          <b style="font-size: 18px; color: #8c8c8c">New Message<b>
+          <span id="messageTextHead">New Message</span>
         </td>
       </tr>
       <tr bgcolor="#ffffff">
-        <td width="17%">
-          <b style="font-size: 15px; color: #dddddd">T0</b>        </td>
-        <td width="83%">
-          <%= text_field_tag 'to', nil, :size=>"41" %>        </td>
+        <td width="17%" class="bordercolort1">
+          <span id="messageText">T0</span>        
+        </td>
+        <td width="83%" class="bordercolort1">
+          <%= text_field_tag 'to', nil, :size=>"60" %>        </td>
       </tr>
       <tr bgcolor="#ffffff">
         <td>
-          <b style="font-size: 15px; color: #dddddd">MESSAGE</b>
+          <span id="messageText">MESSAGE</span>
         </td>
         <td>
-          <%= text_area_tag 'message', nil %>
+          <%= text_area_tag 'message','', :class =>"textareaMessage" %>
         </td>
-      </tr>      
+      </tr>
+      <tr bgcolor="#ffffff">
+        <td class="bordercolort1">
+          &nbsp;&nbsp;&nbsp;&nbsp;<%= image_tag("icon_attach_mo.png") %>&nbsp;&nbsp;&nbsp;&nbsp;
+          <%= image_tag("icon_photo_mo.png") %>
+        </td>
+        <td class="bordercolort1">
+          <section style="float: right;">
+            <%= check_box_tag 'toMobile','', false %>
+            <%= image_tag("icon_sms_mo.png") %>
+          </section>
+        </td>
+      </tr>
       <tr bgcolor="#ffffff">
         <td colspan="2">
           <%= link_to "CANCEL",  messages_path, :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel_message"%>        
-          <%= submit_tag "UPDATE", :style => "width: 80px; float:right;", :class => "linksNewMessage" %>
+          <%= submit_tag "SEND", :style => "width: 80px; float:right;", :class => "linksNewMessage" %>
         </td>
       </tr>
     </table>
     <% end %>
-</div>
-</div>
-<script>
-    $(".new_message_button_index").click(function(){
-        //alert("Maisa");
-        $.colorbox({
-              opacity: 0.40,
-              transition: 'none',
-              speed: 200,
-              width: 400,
-              scrolling: true,
-              inline:true, 
-              href:"#sendNewMessage",
-              title: '',
-              overlayClose: true,
-              onComplete: function () {
-                  // $(this).initFunctions(); // if you want to reinit another colorbox, you should pass the element as an argument to initFunctions rather than calling this as a blanket initializer for all colorboxes.
-              }              
-          });
-    });
-</script>
+</section>
+</section>
+
