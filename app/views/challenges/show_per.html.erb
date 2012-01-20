@@ -3,167 +3,168 @@
 <%= render 'layouts/loggedinbody'%>
 <div class="challengeSubNav">
 
-   	<%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %>
+    <%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %>
     
-	<%= link_to "MY CHALLENGES >> ", challenges_url , :class => "challenge_link1" %>
-	
-	<%= link_to "#{@challenge.title}","#" , :class => "challenge_link1" %> 
+<%= link_to "MY CHALLENGES >> ", challenges_url , :class => "challenge_link1" %>
+
+<%= link_to "#{@challenge.title}","#" , :class => "challenge_link1" %>
 
 </div>
 
 <% if params[:isNewChallenge] == "isNew" %>
-    <script> 
+    <script>
       $.dojitsuWallPost.renderFbWallPost();
     </script>
 <% end %>
 <div id="ch_main_div1">
 <%= form_for @challenge do |f| %>
 <table width="100%" border="0" border cellspacing=12px>
-	<tr>
-		<div class="onthespantitle"  onclick="TestingTitle();">
-			<span class="ctitlecolor"><%= @challenge.title %></span>
-		</div>
-		<div id="replacedTitle">
-			<%= text_field(:challenge, :title, :maxlength =>30)%>				
-			 <%= link_to image_tag("update.png", :class =>"replacetitle"), show_per_challenges_path(:id => @challenge.id)  %>
-             <%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "replace_cancel" %>		
+<tr>
+<div class="onthespantitle" onclick="TestingTitle();">
+<span class="ctitlecolor"><%= @challenge.title %></span>
+</div>
+<div id="replacedTitle">
+<%= text_field(:challenge, :title, :maxlength =>30, :class=> "titlewidth")%>
+<%= link_to image_tag("update.png", :class =>"replacetitle"), show_per_challenges_path(:id => @challenge.id) %>
+<%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "replace_cancel" %>
         </div>
-		<script>
-		$("#replacedTitle").hide();
-		function TestingTitle()
-		{
-			$(".onthespantitle").replaceWith($("#replacedTitle").show());	
-		}
-		
-		 $('.replacetitle').click(function(){
-		   var startValue1 = $("#challenge_title").val();	
-			var challengeId = '<%= @challenge._id %>'		   
-				jQuery.support.cors = true;
-				 var objj = {
-                                  myParams11:startValue1,
-                                  myParams21:challengeId
-                                };    
-				
-				$.get('/challenges/title_update', 
-					{value:objj},
-					function(data) {
-						
-					}, 'script' 
-				);                             
-			});    
-        </script>
-		<br>
-		</tr>
-		<table id="description">
-				<tr>
-					<td valign="top" width="13%">
-						<b class="elecolor">DESCRIPTION</b></td>
-					<td valign="top" width="73%">
-						
-						<div class="onthespandescription" >
-							 <span class="ondescricolor"><%= @challenge.description %></span>
-						</div>
-						<div id="replacedDescription">
-							<%= text_area(:challenge, :description, :size => "20x60" )%>				
-							 <%= link_to image_tag("update.png", :class =>"replacedesc"), show_per_challenges_path(:id => @challenge.id)  %>
-							 <%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "replace_cancel_desc" %>		
-						</div>
-					</td>
-					<td valign="top" width="12%"  onclick="TestingDesc();">
-						<span id="image1"><%= image_tag("icon_edit.png") %></span>
-						
-					</td>
-				</tr>
-		</table>
-						<script>
-						$("#replacedDescription").hide();
-						function TestingDesc()
-						{
-							$(".onthespandescription").replaceWith($("#replacedDescription").show());	
-						}
-						
-						 $('.replacedesc').click(function(){
-						   var startValue2 = $("#challenge_description").val();	
-							var challengeId = '<%= @challenge._id %>'		   
-								jQuery.support.cors = true;
-								 var objj = {
-												  myParams11:startValue2,
+							<script>
+							$("#replacedTitle").hide();
+							function TestingTitle()
+							{
+									$(".onthespantitle").replaceWith($("#replacedTitle").show());
+							}
+
+							$('.replacetitle').click(function()
+							{
+									var startValue1 = $("#challenge_title").val();
+									var challengeId = '<%= @challenge._id %>'
+									jQuery.support.cors = true;
+									var objj = {
+												  myParams11:startValue1,
 												  myParams21:challengeId
-												};    
-								$.get('/challenges/desc_update', 
+												};
+
+									$.get('/challenges/title_update',
 									{value:objj},
 									function(data) {
-										
-									}, 'script' 
-								);                             
-							});    
-						</script>
-					
-		<hr/ width=400px>
-	</tr>
-	<tr>
+
+									}, 'script'
+									);
+							});
+							</script>
+			<br>
+			</tr>
+					<table id="description">
+			<tr>
+			<td valign="top" height="34px" width="13%" >
+					<b class="elecolor">DESCRIPTION</b></td>
+			<td valign="top" width="73%">
+
+			<div class="onthespandescription" >
+					<span class="ondescricolor"><%= @challenge.description %></span>
+			</div>
+			<div id="replacedDescription">
+					<%= text_area(:challenge, :description,  :style => "width: 400px; height: 93px; resize:none;")%>
+					<%= link_to image_tag("update.png", :class =>"replacedesc"), show_per_challenges_path(:id => @challenge.id) %>
+					<%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "replace_cancel_desc" %>
+			</div>
+			</td>
+				<td valign="top" width="12%" onclick="TestingDesc();">
+					<span id="image1"><%= image_tag("icon_edit.png") %></span>
+				</td>
+			</tr>
+			</table>
+			<script>
+					$("#replacedDescription").hide();
+					function TestingDesc()
+					{
+							$(".onthespandescription").replaceWith($("#replacedDescription").show());
+					}
+
+					$('.replacedesc').click(function()
+					{
+							var startValue2 = $("#challenge_description").val();
+							var challengeId = '<%= @challenge._id %>'
+							jQuery.support.cors = true;
+							var objj = {
+							myParams11:startValue2,
+							myParams21:challengeId
+							};
+							$.get('/challenges/desc_update',
+							{value:objj},
+							function(data) {
+
+							}, 'script'
+						);
+					});
+			</script>
+
+			<hr/ width=400px>
+			</tr>
+			<tr>
             <table>
                 <tr>
-                    <td  width=120px >
+                    <td width=120px height="34px" >
                         <b class="elecolor">START POINT</b>
                     </td>
                     <td>
                          <div id="TestStart" onclick="TestingStart();">
-						 
-                              <% if @challenge.start_point.instance_of?PointDateType %>		
+
+                              <% if @challenge.start_point.instance_of?PointDateType %>
                                   <b class="ondescricolor"><%= @challenge.start_point.value.strftime("%b %d, %Y")%> </b>
-                              <% else %>							
-                                  <%ch = @challenge.start_point  %>
+                              <% else %>
+                                  <%ch = @challenge.start_point %>
                                   <b class="ondescricolor"><%= @challenge.start_point.value.to_i %></b>
                               <% end %>
                          </div>
                          <div id="replacedStart">
                              <table>
                                   <tr>
-                                       <% if @challenge.start_point.instance_of?PointDateType %>		
-                                        <td width="50px;"> 
+                                       <% if @challenge.start_point.instance_of?PointDateType %>
+                                        <td width="50px;">
                                           <div class="styled-select">
                                             
                                               <%= select_tag "start_point_type", "<option value='startPointDate'>Date</option>".html_safe , :required => "required" %>
                                           </div>
-                                      </td>  
-                                      <td colspan="2">					
+                                      </td>
+                                      <td colspan="2">
                                           <div class="startPointDate">
                                           </div>
                                           <div class="startPointNumber">
-                                          </div>				
+                                          </div>
                                       </td>
-                                    <% else %>							                       
-                                        <td width="50px;"> 
+                                    <% else %>
+                                        <td width="50px;">
                                           <div class="styled-select">
                                             
                                               <%= select_tag "start_point_type", "<option value='startPointNumber'>Number</option>".html_safe , :required => "required" %>
                                           </div>
-                                      </td>  
-                                      <td colspan="2">					
+                                      </td>
+                                      <td colspan="2">
                                           <div class="startPointDate">
                                           </div>
                                           <div class="startPointNumber">
-                                          </div>				
+                                          </div>
                                       </td>
-                                    <% end %> 
+                                    <% end %>
                                   </tr>
                                   <tr>
                                       
                                       <%= link_to image_tag("update.png", :class =>"dateUpdateStart") , show_per_challenges_path(:id => @challenge.id) %>
                                       <%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "links_cancel" %>
                                      
-                                  </tr> 
+                                  </tr>
                               </table>
                          </div>
                          <script>
                             $("#replacedStart").hide();
                             function TestingStart()
                             {
-								
-								
+
+
                                 $("#TestStart").replaceWith($("#replacedStart").show());
-								
+
                             }
                             
                             $('.dateUpdateStart').click(function(){
@@ -174,15 +175,15 @@
                                   myParams11:startValue,
                                   myParams31:startLabel,
                                   myParams21:challengeId
-                                };       
+                                };
                                 jQuery.support.cors = true;
-                                $.get('/challenges/date_updateStart', 
+                                $.get('/challenges/date_updateStart',
                                     {value:objj},
                                     function(data) {
                                         
-                                    }, 'script' 
-                                );                             
-                            });                            
+                                    }, 'script'
+                                );
+                            });
                             
                          </script>
                     </td>
@@ -192,59 +193,59 @@
                         </td>
                     </tr>
             </table>
-		<hr/ width=400px>
-	</tr>
-	<tr>
-	<table>
-                    <tr> 
-                        <td width=120px>
+<hr/ width=400px>
+</tr>
+<tr>
+<table>
+                    <tr>
+                        <td width=120px height="34px">
                              <b class="elecolor">END POINT</b>
                         </td>
                         <td>
                          <div id="TestEnd" onclick="TestingEnd();">
-                              <% if @challenge.end_point.instance_of?PointDateType %>		
+                              <% if @challenge.end_point.instance_of?PointDateType %>
                                   <b class="ondescricolor"><%= @challenge.end_point.value.strftime("%b %d, %Y")%> </b>
-                              <% else %>							                       
+                              <% else %>
                                   <b class="ondescricolor"><%= @challenge.end_point.value.to_i %></b>
                               <% end %>
                          </div>
                          <div id="replacedEnd">
                              <table>
-                                  <tr>                                                                    
-                                    <% if @challenge.end_point.instance_of?PointDateType %>		
-                                        <td width="50px;"> 
+                                  <tr>
+                                    <% if @challenge.end_point.instance_of?PointDateType %>
+                                        <td width="50px;">
                                           <div class="styled-select">
                                             
                                               <%= select_tag "end_point_type", "<option value='endPointDate'>Date</option>".html_safe , :required => "required" %>
                                           </div>
-                                      </td>  
-                                      <td colspan="2">					
+                                      </td>
+                                      <td colspan="2">
                                           <div class="endPointDate">
                                           </div>
                                           <div class="endPointNumber">
-                                          </div>				
+                                          </div>
                                       </td>
-                                    <% else %>							                       
-                                        <td width="50px;"> 
+                                    <% else %>
+                                        <td width="50px;">
                                           <div class="styled-select">
                                             
                                               <%= select_tag "end_point_type", "<option value='endPointNumber'>Number</option>".html_safe , :required => "required" %>
                                           </div>
-                                      </td>  
-                                      <td colspan="2">					
+                                      </td>
+                                      <td colspan="2">
                                           <div class="endPointDate">
                                           </div>
                                           <div class="endPointNumber">
-                                          </div>				
+                                          </div>
                                       </td>
-                                    <% end %>    
+                                    <% end %>
                                   </tr>
                                   <tr>
                                     
-                                      <%= link_to image_tag("update.png", :class =>"dateUpdateEnd"), show_per_challenges_path(:id => @challenge.id)  %>
+                                      <%= link_to image_tag("update.png", :class =>"dateUpdateEnd"), show_per_challenges_path(:id => @challenge.id) %>
                                       <%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "links_cancel" %>
                                     
-                                  </tr> 
+                                  </tr>
                               </table>
                          </div>
                          <script>
@@ -254,26 +255,26 @@
                                 $("#TestEnd").replaceWith($("#replacedEnd").show());
                             }
                             
-                            $('.dateUpdateEnd').click(function(){                                
+                            $('.dateUpdateEnd').click(function(){
                                 var endValue = $("#end_point_value").val();
                                 var endLabel = $("#end_point_label").val();
-                                var challengeId = '<%= @challenge.id %>'                               
+                                var challengeId = '<%= @challenge.id %>'
                                 var obj = {
                                   myParams1:endValue,
                                   myParams3:endLabel,
                                   myParams2:challengeId
-                                };                               
+                                };
                                 jQuery.support.cors = true;
-                                $.get('/challenges/date_updateEnd', 
+                                $.get('/challenges/date_updateEnd',
                                         {value:obj},
                                         function(data) {
                                             
-                                        }, 'script' 
+                                        }, 'script'
                                 );
                                                                                                                      
-                                //window.location.href=window.location.href;             
+                                //window.location.href=window.location.href;
                                 
-                            });                            
+                            });
                             
                          </script>
                     </td>
@@ -282,124 +283,124 @@
                              <%#=link_to image_tag("icon_edit.png"), date_update_challenges_path(:id => @challenge),:class=>"task_update_popup", :style => "text-decoration: underline;",:align=>"right" %>
                         </td>
                     </tr>
-			</table>
-		<hr/ width=400px>	
-		<br><br>
-		<table bgcolor=#f4f4f4>
-			<tr bgcolor="#FFA500">
-				<td bgcolor="#FFA500"><b class="taskscolor">&nbsp; &nbsp; &nbsp;TASKS</b></td>
-				
-			</tr>
-		</table>
-	</tr>
-	<tr>
-		  <div id="ch_main_div2">
-			<table>
-				<tr class="bgcolorb">
-					<td width="40px">
-						<h3 align="left"><b class="totalstyle">Total : <%= @challenge.tasks.count %></b></h3>
-					</td>
-					<td>
+</table>
+<hr/ width=400px>
+<br><br>
+<table bgcolor=#f4f4f4>
+<tr bgcolor="#FFA500">
+<td bgcolor="#FFA500"><b class="taskscolor">&nbsp; &nbsp; &nbsp;TASKS</b></td>
+
+</tr>
+</table>
+</tr>
+<tr>
+<div id="ch_main_div2">
+<table>
+<tr class="bgcolorb">
+<td width="40px">
+<h3 align="left"><b class="totalstyle">Total : <%= @challenge.tasks.count %></b></h3>
+</td>
+<td>
                                             <% if isStandalone %>
                                                 <% if @challenge.user_id == current_user.gmauth.id%>
-							<%= link_to image_tag("btn_add_up.png", :style =>"margin-top:3px;" ), add_task_link_challenges_path(:id => @challenge), :class => "addComment add_task_popup" %>
-						<% end %>
+<%= link_to image_tag("btn_add_up.png", :style =>"margin-top:3px;" ), add_task_link_challenges_path(:id => @challenge), :class => "addComment add_task_popup" %>
+<% end %>
                                             <% else %>
                                                 <% if @challenge.user_id == current_user.fbauth.uid%>
-							<%= link_to image_tag("btn_add_up.png", :style =>"margin-top:3px;" ), add_task_link_challenges_path(:id => @challenge), :class => "addComment add_task_popup" %>
-						<% end %>
-                                            <% end %>                                                
-					</td>
-					<td  align="center">
+<%= link_to image_tag("btn_add_up.png", :style =>"margin-top:3px;" ), add_task_link_challenges_path(:id => @challenge), :class => "addComment add_task_popup" %>
+<% end %>
+                                            <% end %>
+</td>
+<td align="center">
                                             <% if isStandalone %>
                                                 <% if @challenge.user_id == current_user.gmauth.id %>
-							<span class="totalstyle">ADD A TASK</span>
-						<% end %>
+<span class="totalstyle">ADD A TASK</span>
+<% end %>
                                             <% else %>
                                                 <% if @challenge.user_id == current_user.fbauth.uid %>
-							<span class="totalstyle">ADD A TASK</span>
-						<% end %>
-                                            <% end %>							
-					</td>
-				</tr>
-			<tr bgcolor=#D7D7D7>
-  				<td width="90%">
-   					<span class ="elecolor" ><b>POINT(S)</b></span> <%= image_tag("icon_slash.png", :height => '12', :width => '5') %> <span class="elecolor"><b>TASKS</b></span>
-  						</td>
-  						<td></td>
-  							<td width="15%" class="scorestyle" >
-   								SCORE
-  						</td>
- 				</tr>
-				<% total_score = 0 %>
-				<% total_score_count = 0 %>
-				<% total = 0 %>
-				<% @challenge.tasks.each do |aTask| %>
-				<% total += aTask.score.to_i %>
-				<tr bgcolor=#ffffff >
-					<td id="task_list" colspan="3" >						
-						<% if aTask.is_complete.to_i == 0 %>
-							<div>
-								<div style="float:left; margin-top:15px;"><%= aTask.score %> <%= image_tag("icon_slash.png", :height => '10', :width => '5')%></div><div style="float:left;  margin-top:15px; margin-left:5px;"><%= aTask.name %></div>
-								<div class="showperscore_0"><%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => "text-decoration: underline; color:#F9AB47;" %></div>
-							</div>
-						<% else %>	
-							<div>
-								<% total_score_count +=1 %>
-								<div style="float:left; margin-top:15px;"><%= aTask.score %> <%= image_tag("icon_slash.png", :height => '10', :width => '5')%></div><p style="float:left; margin-top:15px; margin-left:5px; text-decoration:line-through;"><%= aTask.name %></p>
-								<div class="showperscore"><%= aTask.score %></div>
-								<% total_score += aTask.score.to_i %>
-							</div>
-						<% end %>
-						<hr/ width=400px>																																	
-					</td>
-				</tr>
-				
-				<% end %>
-				<tr bgcolor=#f4f4f4>
-					<td colspan="3"></td>
-				</tr>
-			</table>
-			<div style="width=30px">
-				<span class="totalstyle">My Dojitsu score:</span> <br>
-				<div class="task" id="taskprogress"></div>
-				<div class="showperscore_personal"><%= total_score %></div>	
-				<style>
-					.task
-					{
-						width:790px;
-						}
-					</style>
-					<div id="blackbox_personal">
-						<div class="completedtask1">																	
-								<%= total_score %> points (<%= total_score_count %> &nbsp; tasks)
-						</div>
-						<div class="notcompleted1">
-									<span class="togostyle"><b>to go:</b></span>&nbsp; <span class="taskscolor"><%= (total-total_score) %> points (<%= @challenge.tasks.count.to_i-total_score_count.to_i %>&nbsp; tasks)</span>
-						</div>
-						<script type="text/javascript">
-								$(function() {
-									$("#taskprogress").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });							
-									$("<p>").attr("id", "percentage_personal").text($("#taskprogress").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress");
-								});
-						</script>
-						<% if @challenge.is_complete != 1 %>
+<span class="totalstyle">ADD A TASK</span>
+<% end %>
+                                            <% end %>
+</td>
+</tr>
+<tr bgcolor=#D7D7D7>
+   <td width="90%">
+    <span class ="elecolor" ><b>POINT(S)</b></span> <%= image_tag("icon_slash.png", :height => '12', :width => '5') %> <span class="elecolor"><b>TASKS</b></span>
+   </td>
+   <td></td>
+   <td width="15%" class="scorestyle" >
+    SCORE
+   </td>
+  </tr>
+<% total_score = 0 %>
+<% total_score_count = 0 %>
+<% total = 0 %>
+<% @challenge.tasks.each do |aTask| %>
+<% total += aTask.score.to_i %>
+<tr bgcolor=#ffffff >
+<td id="task_list" colspan="3" >
+<% if aTask.is_complete.to_i == 0 %>
+<div>
+<div style="float:left; margin-top:15px;"><%= aTask.score %> <%= image_tag("icon_slash.png", :height => '10', :width => '5')%></div><div style="float:left; margin-top:15px; margin-left:5px;"><%= aTask.name %></div>
+<div class="showperscore_0"><%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => "text-decoration: underline; color:#F9AB47;" %></div>
+</div>
+<% else %>
+<div>
+<% total_score_count +=1 %>
+<div style="float:left; margin-top:15px;"><%= aTask.score %> <%= image_tag("icon_slash.png", :height => '10', :width => '5')%></div><p style="float:left; margin-top:15px; margin-left:5px; text-decoration:line-through;"><%= aTask.name %></p>
+<div class="showperscore"><%= aTask.score %></div>
+<% total_score += aTask.score.to_i %>
+</div>
+<% end %>
+<hr/ width=400px>
+</td>
+</tr>
+
+<% end %>
+<tr bgcolor=#f4f4f4>
+<td colspan="3"></td>
+</tr>
+</table>
+<div style="width=30px">
+<span class="totalstyle">My Dojitsu score:</span> <br>
+<div class="task" id="taskprogress"></div>
+<div class="showperscore_personal"><%= total_score %></div>
+<style>
+.task
+{
+width:790px;
+}
+</style>
+<div id="blackbox_personal">
+<div class="completedtask1">
+<%= total_score %> points (<%= total_score_count %> &nbsp; tasks)
+</div>
+<div class="notcompleted1">
+<span class="togostyle"><b>to go:</b></span>&nbsp; <span class="taskscolor"><%= (total-total_score) %> points (<%= @challenge.tasks.count.to_i-total_score_count.to_i %>&nbsp; tasks)</span>
+</div>
+<script type="text/javascript">
+$(function() {
+$("#taskprogress").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });
+$("<p>").attr("id", "percentage_personal").text($("#taskprogress").progressbar("option", "value") + "% Completed: ").appendTo("#taskprogress");
+});
+</script>
+<% if @challenge.is_complete != 1 %>
                                                   <%= markAsComplete%>
                                                 <% end %>
-					</div><br>
-				</div>
-			
-	</tr>		
-</table>	
+</div><br>
+</div>
 
-<% end %>	
+</tr>
+</table>
+
+<% end %>
 
 </div>
 
 
 
 <div id="tooltip" class="tooltip">
-	
+
 </div>
 
 
@@ -407,42 +408,40 @@
 
 
 <script>
-	function changeVal(str,score) {
-		var tot_score = str*score;
-		$("#tatal_s").val(tot_score);
-	} 
-	// execute your scripts when the DOM is ready. this is a good habit
-	$(function() {	
-		
-		$('.task_update_popup').colorbox();
-		$('.add_task_popup').colorbox();
-		
-		$("#date").dateinput({
-			format: 'dddd dd, mmmm yyyy',	// the format displayed for the user
-			selectors: true,             	// whether month/year dropdowns are shown
-			min: -100,                    // min selectable day (100 days backwards)
-			max: 100,                    	// max selectable day (100 days onwards)
-			offset: [10, 20],            	// tweak the position of the calendar
-			speed: 'fast',               	// calendar reveal speed
-			firstDay: 1                  	// which day starts a week. 0 = sunday, 1 = monday etc..
-		});
-	});
-	
-	// setup tooltip for a single DIV element
-	$("#task_list a").tooltip({
-		// each trashcan image works as a trigger
-		tip: '#tooltip',
+function changeVal(str,score) {
+var tot_score = str*score;
+$("#tatal_s").val(tot_score);
+}
+// execute your scripts when the DOM is ready. this is a good habit
+$(function() {
 
-		// custom positioning
-		position: 'center right',
+$('.task_update_popup').colorbox();
+$('.add_task_popup').colorbox();
 
-		// move tooltip a little bit to the right
-		offset: [0, 15],
+$("#date").dateinput({
+format: 'dddd dd, mmmm yyyy', // the format displayed for the user
+selectors: true, // whether month/year dropdowns are shown
+min: -100, // min selectable day (100 days backwards)
+max: 100, // max selectable day (100 days onwards)
+offset: [10, 20], // tweak the position of the calendar
+speed: 'fast', // calendar reveal speed
+firstDay: 1 // which day starts a week. 0 = sunday, 1 = monday etc..
+});
+});
 
-		// there is no delay when the mouse is moved away from the trigger
-		delay: 0
-	});
-	
+// setup tooltip for a single DIV element
+$("#task_list a").tooltip({
+// each trashcan image works as a trigger
+tip: '#tooltip',
+
+// custom positioning
+position: 'center right',
+
+// move tooltip a little bit to the right
+offset: [0, 15],
+
+// there is no delay when the mouse is moved away from the trigger
+delay: 0
+});
+
 </script>
-
-
