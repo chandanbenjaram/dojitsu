@@ -510,8 +510,8 @@ end
     end
   end
   
-  def searchpeople
-  
+  def search
+ 
   end
 end
 

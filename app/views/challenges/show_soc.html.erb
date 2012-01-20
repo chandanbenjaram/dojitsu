@@ -1,5 +1,5 @@
-<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css','jquery-ui','ui.progressbar','ui.theme', 'main', 'challenges_social')%>
-<%= javascript_include_tag('simple-tabs','ui.progressbar.js','soc-per','on_the_spot','jquery.colorbox-min','ajaxPageLoad','jquery.tools.min','messages','fbWallPost')%>
+<%= stylesheet_link_tag('simple-tabs','colorbox','jquery-ui','ui.progressbar','ui.theme','main','challenges_social')%>
+<%= javascript_include_tag('simple-tabs','ui.progressbar.js','soc-per','jquery.colorbox-min','ajaxPageLoad','jquery.tools.min','messages','fbWallPost')%>
 <%= render 'layouts/loggedinbody'%>
 
 <div class="challengeSubNav">
@@ -73,7 +73,16 @@
 <div > 
 	<div id="ch_main_div1"> 
 		<div class="challange"> 
-			<%= on_the_spot_edit @challenge,:title, :maxlength => "30" %>
+		   <table>
+			   <tr>
+				   <td width=80%>
+						<%= on_the_spot_edit @challenge,:title, :maxlength => "30" %>
+					</td>
+					<td>
+						<h6><%#= link_to " Total Score ", scoreboard_main_challenges_path(:id => @challenge.id) %></h6>
+					</td>
+				</tr>
+			</table>
 		</div> 
 		<% unless @challenge.social_type.status.to_i == 1 %>
 			<table>
@@ -90,23 +99,7 @@
 				</tr>
 			</table>
 		<% end %>	
-		<script>
-		function fun()
-		{
-		window.fbAsyncInit();
-		var body = 'Accepted challenge';
-		FB.api('/me/feed', 'post', { message: body }, function(response) {
-			if (!response || response.error) {
-																		alert('Error occured');
-																} else {
-																		alert('Post ID: ' + response.id);
-																}
-		});
-      }
-		</script>
-		
-	
-		<script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function(){
 					$("#image1").hide();
 					$("#image2").hide();
@@ -250,9 +243,9 @@
 			<% else %>
 				<% if @challenge.social_type.status == 1 %> 
 					 <b class="colordarkblk"><%= @challenge.child_challenges.length %></b>
-					&nbsp;&nbsp;&nbsp;<% link_to " Total Score ", scoreboard_main_challenges_path(:id => @challenge.id) %>&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;<%= link_to " Total Score ", scoreboard_main_challenges_path(:id => @challenge.id) %>&nbsp;&nbsp;&nbsp;
 				<% else %>
-					 <b class="colordarkblk"><%= @challenge.parent.child_challenges.length %>&nbsp;&nbsp;&nbsp;<% link_to " Total Score ", scoreboard_main_challenges_path(:id => @challenge.id) %></b>&nbsp;&nbsp;&nbsp;
+					 <b class="colordarkblk"><%= @challenge.parent.child_challenges.length %>
 				<% end %>
 		<% end %>
 		<span class="textdecoration"><% link_to " Winners of the Challenge", trophies_challenges_path(:id => @challenge.id) %></span>
@@ -279,134 +272,11 @@
 					<% end %>
 				</div>
 				<div id="tab2" style="background:#F5F5F5;" class="tab_content">
-						<table>
-					<td width="47%">
-							<label for="search">
-							<strong>
-
-							<% if  @challenge.class.to_s == "Challenge" %>
-																<font size="4" color="#8c8c8c"><b  id="total">Total: <%= @challenge.child_challenges.length %></b></font>
-															<%else %>
-																<font size="4" color="#8c8c8c"> <b  id="total">Total: <%= @challenge.parent.child_challenges.length %></b></font>
-															<% end %>
-															<% if @challenge.instance_of?Challenge %>
-																<%= image_tag("btn_msg_up.png", :style=>"margin-left:10px; position:relative; top:5px;" ,:onclick=>"contactToInvitee()")%>
-															<% end %>
-															
-							</strong>
-
-							</label>
-					</td>
-					<td><input type="text" id="search"/></td>
-					<td>
-					<div class="styled-select"> 
-						<select id="select">
-						   <option value="All" id="select">ALL</option>
-						   <option value="1" id="select">ACCEPTED</option>
-						   <option value="pending" id="select">PENDING</option>
-						   <option value="-1" id="select">DECLINED</option>
-					  </select> 
-					</div>
-						
-						
-					</td>
-					<td>
-					<%=image_tag("searchbutton.PNG",  :onclick=>"select();" )%>
-					</td>
-				</table>
-				
-
-
-				<table width="100%" id="tblData" class="sortable" border=1>
-				<thead>
-				<tr>
-
-				<th width="6%"><b style="position:relative; color:#666666; padding-left:20px; " >NAME</b></th>
-				<th width="79%"><b style="position:relative; color:#666666; padding-left:20px; " ></b></th>
-				<th width="15%"><b style=" color:#666666;  " >STATUS </b></th>
-				</tr>
-				</thead>
-				<tbody bgcolor="#ffffff">
-				  <%if @challenge.parent .nil? %>
-											   <% childChallenges =  @challenge.child_challenges %>
-											  <%else%>
-											   <%childChallenges =  @challenge.parent.child_challenges %>
-											   <%end%>                      
-												  <% childChallenges.each do |aChildChallenge| %>
-
-				<tr >
-						<td ><%=image_tag FbGraph::User.new(aChildChallenge.user_id).fetch.picture %></td>
-						<td id="ahref"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td>
-						<td >  <% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 %>
-																	<%= image_tag  "icon_thinking.png"  %>
-															   <% elsif aChildChallenge.social_type.status == 1 %>
-																	<%= image_tag  "icon_accept.png"  %>
-															   <% else %>
-																	<%= image_tag "icon_decline.png"  %>
-															   <% end %>
-						</td>
-
-				</tr>
-				<% end %>
-				</tbody>
-				</table>
-				</div>
-				
-				<script type="text/javascript">
-				
-							$(document).ready(function()
-							{
-								$('#search').keyup(function()
-								{
-									searchTable($(this).val(),$('#select').value);
-								});
-							});
-							function searchTable(inputVal,select)
-							{
-								var table = $('#tblData');
-								table.find('tr').each(function(index, row)
-								{
-									var allCells = $(row).find('td');
-									if(allCells.length > 0)
-									{
-										var found = false;
-										allCells.each(function(index, td)
-										{
-											var regExp = new RegExp(inputVal, 'i');
-										
-											if(regExp.test($(td).text()))
-											{
-												found = true;
-												return false;
-											}
-										});
-										if(found == true)$(row).show();else $(row).hide();
-										
-									}
-								});
-							}
-							function select()
-							{
-							var select = document.getElementById("name").value;
-							alert(select);
-							}
-						</script>
-
+			
 					
-								  
+						<%= render :partial=> "challenges/searchpeople" %>			
 				</div> 
 				
-				                 
-				<style type="text/css">
-				
-				 #ahref
-				{     
-				color: #666666;
-				font-weight: bold;
-				top: -20px;
-				position:relative;
-				}
-				</style>                
 				
 				
 			</div>
