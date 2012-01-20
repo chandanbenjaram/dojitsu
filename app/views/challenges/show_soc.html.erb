@@ -181,19 +181,23 @@
 					</div>
 				<% else %>
 					<div>
-						<span class="challange"><%= @challenge.description %>	</span>
+						<b><font color= #666666><%= @challenge.description %>	</font></b>
 					</div>
 				<% end %>	
-			</div>
+			
 			<div id="replacedDescription">
 					<%= text_area(:challenge, :description,  :style => "width: 400px; height: 93px; resize:none;")%>
 					<%= link_to image_tag("update.png", :class =>"replacedesc"), show_per_challenges_path(:id => @challenge.id) %>
 					<%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "replace_cancel_desc1" %>
 			</div>
 			</td>
-				<td valign="top" width="12%" onclick="TestingDesc();">
-					<span id="image1"><%= image_tag("icon_edit.png") %></span>
-				</td>
+						<% if @challenge.user_id == current_user.fbauth.uid %>
+						<td valign="top" width="12%" onclick="TestingDesc();">
+							<span id="image1"><%= image_tag("icon_edit.png") %></span>
+						</td>
+						<% else %>
+							<td width="12%"></td>
+						<%end%>
 			</tr>
 	</table>
 			<script>
@@ -277,9 +281,15 @@
 					 <b class="colordarkblk"><%= @challenge.start_point.value.to_i %></b>
 				<% end %>
 			</td>
-			<td  width="12%">
-				<span id="image3" ><%= image_tag("icon_edit.png") %></span>
-			</td>
+				<td></td>
+				<!-- <% if @challenge.user_id == current_user.fbauth.uid %>
+					<td valign="top" width="12%" onclick="TestingDesc();">
+						<span id="image3"><%= image_tag("icon_edit.png") %></span>
+					</td>
+					<% else %>
+						<td width="12%"></td>
+				<%end%>
+				-->
 		</tr>
 	</table>
 </div>		
@@ -301,9 +311,14 @@
 					 <b class="colordarkblk"><%= @challenge.end_point.value.to_i %></b>
 				<% end %>
 			</td>
-			<td  width="12%">
-				<span id="image4"><%= image_tag("icon_edit.png") %></span>
-			</td>
+			<!-- <% if @challenge.user_id == current_user.fbauth.uid %>
+				<td valign="top" width="12%" onclick="TestingDesc();">
+					<span id="image4"><%= image_tag("icon_edit.png") %></span>
+				</td>
+				<% else %>
+					<td width="12%"></td>
+			<%end%> -->
+		
 		</tr>
 	</table>
 </div>
