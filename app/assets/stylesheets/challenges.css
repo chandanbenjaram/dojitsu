@@ -1,42 +1,47 @@
 #jfmfs-container-wrapper {
-	background-color: #f2f2f2;  	
+background-color: #f2f2f2;
 }
 
 .socialinvitemodal {
-}         
+}
 
 div.ui-dialog-titlebar{
 }
 
 
-.hidden {
+.hidden 
+{
     display: hidden;
-}             
+}
 
-.floatleft {
+.floatleft 
+{
 	float: left;
 }
 
 
-td.taskScorebySelection select {
+td.taskScorebySelection select 
+{
 	width: 100%;
-} 
+}
 
-td.taskSelection select {
+td.taskSelection select 
+{
 	width: 130%;
 }
 
-.taskIcon {
+.taskIcon 
+{
 	width: 5px;
 }
 
-.color999 {
+.color999 
+{
 	color:#999999;
-
 }
 .ui-datepicker-trigger
 {
-margin-left:10px;
+	margin-left:10px;
 }
 
 
@@ -46,7 +51,7 @@ margin-left:10px;
 }
 .endpointdatenumber
 {
-		float: left;
+	float: left;
 }
 .styleselect
 {
@@ -54,30 +59,36 @@ margin-left:10px;
 }
 .addRow
 {
- position:relative;
- top:-43px;
- left:25px;
-}
-@media screen and (-webkit-min-device-pixel-ratio:0)
- {
-		.addRow 
-		{
-			position:relative;
-			margin-top:3%;
-			left:25px;
-		}
+	 position:relative;
+	 top:-43px;
+	 left:25px;
 }
 
-.ui-draggable .ui-dialog-titlebar {
+@media screen and (-webkit-min-device-pixel-ratio:0)
+ {
+	.addRow
+	{
+	position:relative;
+	margin-top:3%;
+	left:25px;
+	}
+}
+
+.ui-draggable .ui-dialog-titlebar 
+{
     background: none repeat scroll 0 0 #8497BF;
     cursor: move;
 }
-.ui-dialog .ui-dialog-title {
+
+.ui-dialog .ui-dialog-title 
+{
     color: #FFFFFF;
     float: left;
     margin: 0.1em 16px 0.1em 0;
 }
-.ui-dialog .ui-dialog-buttonpane button {
+
+.ui-dialog .ui-dialog-buttonpane button 
+{
     background: none repeat scroll 0 0 #8497BF;
     color: #FFFFFF;
     cursor: pointer;
@@ -89,7 +100,8 @@ margin-left:10px;
 	width:130%;
 }
 
-.links {
+.links 
+{
 	background: none repeat scroll 0 0 #f9a943;
 	border-radius: 3px 3px 3px 3px;
 	color: #FFFFFF;
@@ -106,9 +118,10 @@ margin-left:10px;
     text-align: center;
 }
 
-.links_cancel1{
+.links_cancel1
+{
 	background: none repeat #999999;
-   	height: 21px;
+    height: 21px;
     color: #FFFFFF;
     display: block;
     float: right;
@@ -118,41 +131,45 @@ margin-left:10px;
     text-align: center;
     text-transform: uppercase;
     width: 80px;
-	
+
 }
-.links_cancel1:hover{
+.links_cancel1:hover
+{
 	color: #FFFFFF;
 }
 
 .textfield_effect
 {
-	
+
     background-repeat: repeat-x;
     font-family: Arial;
     width: 49%;
 }
 .textfield_effect
 {
-	
+
     background-repeat: repeat-x;
     font-family: Arial;
     width: 49%;
 }
 
-.bgcolorb{
+.bgcolorb
+{
 	background-color: #f5f5f5;
 }
 
-#challenge_title
+.titlewidth
 {
 	height: 30px;
-	width: 35%;
+	width: 	45%;
 }
 
 .replacetitle
 {
-	height: 30px;
+     float: right;
+    height: 30px;
     position: relative;
+    right: 43%;
     top: 9px;
     width: 10%;
 }
@@ -165,13 +182,93 @@ margin-left:10px;
     float: right;
     font-size: 12px;
     height: 19px;
-    margin: 10px 43% 20px 0;
+    margin: 10px 24% 20px 0;
     padding: 5px;
+    position: relative;
+    right: -2%;
     text-align: center;
     text-transform: uppercase;
+    top: 0;
     width: 80px;
 }
 .replace_cancel:hover
-{	
+{
 	color: #FFFFFF;
+}
+
+.replace_cancel_desc
+{
+	background: none repeat scroll 0 0 #999999;
+    color: #FFFFFF;
+    display: block;
+    float: right;
+    font-size: 12px;
+    height: 19px;
+    margin: 10px 23% 20px 0;
+    padding: 5px;
+    position: relative;
+    right: -14%;
+    text-align: center;
+    text-transform: uppercase;
+    top: 41px;
+    width: 80px;
+}
+
+.replacedesc
+{
+    float: left;
+    height: 30px;
+    left: 3%;
+    position: relative;
+    top: 80px;	
+	width: 14%;
+}
+
+.replace_cancel_desc:hover
+{
+	color: #FFFFFF;
+}
+
+textarea
+{
+	
+    border-color: #999999;
+    border-style: solid;
+    border-width: 1px;
+    color: #333333;
+    float: left;
+    font-family: Arial;
+    font-size: 12px;
+    height: 100px;
+    position: relative;
+    width: 240px;
+}
+
+.updatedesccolo
+{	
+	color: #666666;	
+}
+
+.replace_cancel_desc1
+{
+	background: #999999;
+    color: #FFFFFF;
+    display: block;
+    float: right;
+    font-size: 12px;
+    height: 19px;
+    margin: 10px 23% 20px 0;
+    padding: 5px;
+    position: relative;
+    right: -15%;
+    text-align: center;
+    text-transform: uppercase;
+    top: 41px;
+    width: 80px;	
+}
+
+.onthespandescription
+{	
+	color: #666666;
+	font-weight: bold;
 }

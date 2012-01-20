@@ -297,8 +297,24 @@ end
   
   def title_update
 	@aChallenge = Challenge.find(params[:value][:myParams21])
-	@aChallenge.update_attributes(:title =>params[:value][:myParams11]).inspect  
+	@aChallenge.update_attributes(:title =>params[:value][:myParams11]) 
   end
+
+  def desc_update
+	@aChallenge = Challenge.find(params[:value][:myParams21])
+	@aChallenge.update_attributes(:description =>params[:value][:myParams11]) 
+  end
+  
+  def title_soc_update
+	@aChallenge = Challenge.find(params[:value][:myParams21])
+	@aChallenge.update_attributes(:title =>params[:value][:myParams11]) 
+  end
+  
+  def desc_soc_update
+  	@aChallenge = Challenge.find(params[:value][:myParams21])
+	@aChallenge.update_attributes(:description =>params[:value][:myParams11]) 
+  end
+  
 	
   def paginationTest
    @challenge = Challenge.where(:_id => "4ef1a6a454b53001a4000067").first

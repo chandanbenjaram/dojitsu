@@ -39,6 +39,9 @@ Dojitsu::Application.routes.draw do
 	  get "scoreboard"
 	  get "publish"
 	  get "title_update"
+	  get "desc_update"
+	  get "title_soc_update"
+	  get "desc_soc_update"
       put :update_attribute_on_the_spot 
       get :get_attribute_on_the_spot
     end
