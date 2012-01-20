@@ -1,0 +1,96 @@
+#messageBox{
+     font-size: 25px;
+     font-weight: bold;
+}
+
+#sendNewMessage{    
+    
+}
+
+.new_message_button_index {
+  background: #F8981D url("new1.PNG") no-repeat left center;  
+  text-align: right;
+  min-width: 70px;
+  height:25px;
+  top:0px;
+  position:relative;
+  float:left;
+  left:80px;
+  font-family: arial;
+}
+
+.links_cancel_message {
+    background: none repeat #999999;
+    color: #FFFFFF;
+    float: right;
+    height: 24px;
+    margin: 15px 0;
+    padding: 2px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    top: 15%;
+    width: 18%;
+    font-size: 13px;
+}
+
+.linksNewMessage {
+	background: none repeat scroll 0 0 #f9a943;
+	border-radius: 3px 3px 3px 3px;
+	color: #FFFFFF;
+	display: block;
+	font-size: 12px;
+	margin: 20px 0;
+	padding: 5px;
+	text-align: center;
+	text-transform: uppercase;
+	width: 90px;
+	margin-right:10px;
+	position: relative;
+        text-align: center;
+	top: -5px;
+}
+
+#messageText{
+    font-size: 15px;
+    color: #dddddd;
+    font-weight: bold;
+}
+
+#messageTextHead{
+    font-size: 18px;
+    color: #dddddd;
+    font-weight: bold;    
+}
+
+.bordercolort
+{
+    height:5px;
+    border-bottom:2px solid #BEBEBE;
+    padding-left:15px;
+}
+
+.bordercolort1
+{
+    height:5px;
+    border-bottom:1px solid #BEBEBE;    
+}
+
+.serachBox{    
+    color: #C6C6C6;
+    width: 100%;
+    height: 40px;
+}
+
+#search{
+    border-width: 1px;
+    border-style: solid;
+    border-color: #F4F4F4;
+
+    background-repeat: repeat-x;
+    font-family: Arial;
+    font-size: 15px;
+    color: #C6C6C6;
+    width: 200px;
+    height: 30px;
+}

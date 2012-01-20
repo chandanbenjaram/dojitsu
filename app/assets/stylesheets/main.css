@@ -539,6 +539,20 @@ position:relative;
 	width:99%;
 }
 
+.textareaMessage {
+	border-width: 1px;
+	border-style: solid;
+	border-color: #999999;
+	
+	background-repeat: repeat-x;
+	font-family: Arial;
+	font-size: 15px;
+	color: #333333;
+	resize: none;
+	height: 50px;	
+	width:96%;
+}
+
 .textarea_nw_tk:hover{
 	border-color: #4ccbda;
 	border-width: 1px;
@@ -742,32 +756,6 @@ input.radio {
   float:left;
   left:10px;
  font-family: arial;
-}
-
-.new_message_button_index {
-  background: #F8981D url("new1.PNG") no-repeat left center;  
-  text-align: right;
-  min-width: 70px;
-  height:25px;
-  top:0px;
-  position:relative;
-  float:left;
-  left:80px;
-  font-family: arial;
-}
-
-.links_cancel_message {
-    background: none repeat #999999;
-    color: #FFFFFF;
-    float: right;
-    height: 24px;
-    margin: 15px 0;
-    padding: 2px;
-    position: relative;
-    text-align: center;
-    text-transform: uppercase;
-    top: 15%;
-    width: 18%;
 }
 
 .links_invite_p {
@@ -1715,6 +1703,7 @@ color: #FFFFFF;
 {
 position:relative;
 }
+
 .filterform {
 	 left: 17px;
 position: relative;
@@ -1927,19 +1916,3 @@ a:focus, a:hover {
 	top: -2px;
 }
 
-.linksNewMessage {
-	background: none repeat scroll 0 0 #f9a943;
-	border-radius: 3px 3px 3px 3px;
-	color: #FFFFFF;
-	display: block;
-	font-size: 12px;
-	margin: 20px 0;
-	padding: 5px;
-	text-align: center;
-	text-transform: uppercase;
-	width: 90px;
-	margin-right:10px;
-	position: relative;
-        text-align: center;
-	top: -5px;
-}
