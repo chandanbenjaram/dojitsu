@@ -5,7 +5,7 @@
 
 <section class="challengeSubNav">
     <%= button_to "", "#", :class => "new_message_button_index", :method => :get%> 
-    <%= link_to "MESSAGES  ",dashboard_index_url ,:class => "challenge_link" , :style=> "text-decoration: none; color:#666666; left: 100px;" %>
+    <%= link_to "MESSAGES  ",dashboard_index_url ,:class => "challenge_link" , :style=> "text-decoration: none; color:#666666; left: 15px;" %>
 </section>	
 <section class="challange" id="messageBox">
   <table width="100%">  
@@ -34,9 +34,10 @@
     </tr>
 </table>
 </section>
-<table class="sortable">  
+<table class="sortable" width="100%">  
     <thead>
-      <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">FROM</th><th style="CURSOR: pointer; cursor: hand;" id="content2"><span id="timespace">TIME</span></th><th></th></tr>
+      <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">FROM</th><th style="CURSOR: pointer; cursor: hand;" id="content2"><span id="timespace">TIME</span></th><th width="1%"></th>
+      </tr>
     </thead>
     <tbody>
         <% current_user.inbox.each do |userMessage| %>
@@ -46,10 +47,9 @@
             <%# id = unreadMessage %>
         <%# end %>
         <tr bgcolor ="F5FAF0">
-            <td width="10%" class="bordercolort" style="padding-left:15px;" onclick="location.href='<%= individualAllMessage_messages_path(:iId => userMessage.from, :id =>userMessage.id) %>'">
-                <%= image_tag(FbGraph::User.new(userMessage.from).fetch.picture) %>																			
-            </td>
-            <td width="83%" class="bordercolort" style="padding-right:20px;" onclick="location.href='<%= individualAllMessage_messages_path(:iId => userMessage.from, :id =>userMessage.id) %>'">
+            <td width="7%" class="bordercolort" style="padding-left:15px;" onclick="location.href='<%= individualAllMessage_messages_path(:iId => userMessage.from, :id =>userMessage.id) %>'">
+                <%= image_tag(FbGraph::User.new(userMessage.from).fetch.picture) %>            </td>
+            <td width="81%" class="bordercolort" style="padding-right:20px;" onclick="location.href='<%= individualAllMessage_messages_path(:iId => userMessage.from, :id =>userMessage.id) %>'">
                 <font size="3px" style="float:right">
                     
                     <%#= availability_date = DateTime.parse(userMessage.created_at.to_s)%>
@@ -61,20 +61,17 @@
                     <%#= time_until = availability_date - time_now %>
                     <%#= t = time_until.to_f %>
                     
-                    <%= time_ago_in_words userMessage.created_at %>
-                </font>
+                    <%= time_ago_in_words userMessage.created_at %>                </font>
                 <font size="4px" style="font-weight:bold"><%= FbGraph::User.new(userMessage.from).fetch.name %></font></br>
-                <font size="3px"><%= image_tag "icon_replied.png" %> <%=h truncate(userMessage.body, :length => 55) %>..</font></br>										
-                </td>
+                <font size="3px"><%= image_tag "icon_replied.png" %> <%=h truncate(userMessage.body, :length => 55) %>..</font></br>          </td>
             </td>
-            <td width="10%" class="bordercolort" style="padding-left:15px; ">
+            <td width="11%" class="bordercolort" style="padding-left:15px; ">
               <% if userMessage.isRead == 0 %>
                 <%= image_tag "btn_mark_unread_up.png" %>&nbsp;&nbsp;
               <% else %>
                 <%= image_tag "btn_mark_read_up.png" %>&nbsp;&nbsp;
               <% end %>                                
-              <%= link_to image_tag("icon_multiply.png"), message_path(:id => userMessage.id), :method => 'delete' %>
-            </td>
+              <%= link_to image_tag("icon_multiply.png"), message_path(:id => userMessage.id), :method => 'delete' %>            </td>
         </tr>
         <% end %>
     </tbody>    
