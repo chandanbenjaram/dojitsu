@@ -18,7 +18,7 @@ class Message
   def self.iAllMessage(iID)
     Message.all(conditions: { :from => iID}).desc("created_at")
   end
-  
+    
 end
 
 

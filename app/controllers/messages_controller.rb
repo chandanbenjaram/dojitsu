@@ -21,7 +21,12 @@ class MessagesController < ApplicationController
 	
   def individualAllMessage
     @iId = params[:iId]   
-    wayToRead = Message.where(:_id => params[:id]).first
-    wayToRead.update_attributes(:isRead => 1)
+    @wayToRead = Message.where(:_id => params[:id]).first
+    @wayToRead.update_attributes(:isRead => 1)
+  end
+  
+  def destroy
+     Message.where(:_id =>params[:id]).first.destroy
+     render 'index'
   end
 end

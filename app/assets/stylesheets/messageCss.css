@@ -94,3 +94,66 @@
     width: 200px;
     height: 30px;
 }
+
+#readMessage{
+    background-color: red;
+}
+
+#unreadMessage{
+    background-color: green;
+}
+
+#fdPicture{
+    margin-top: -10px;
+}
+
+.iMessageNew {
+  background: #F8981D url("new1.PNG") no-repeat left center;  
+  text-align: right;
+  min-width: 70px;
+  height:25px;
+  top:0px;
+  position:relative;
+  float:left;
+  left:0px;
+  font-family: arial;
+}
+
+.iMessageNewLinks{
+    color: gray;
+    color: gray;
+    font-family: arial;
+    font-size: 12px;
+    font-weight: bold;
+    left: 0px;
+    position: relative;
+    top: 5px;
+}
+
+#msgBody{
+    background-color: #F4F4F4;
+    width: 100%;
+    height: 600px;
+}
+
+#msgBodyTable{
+    margin: 15px 10px 10px 10px;
+    width: 98%;
+}
+
+#countMessage{
+    font-weight: bold;
+    font-size: 15px;
+    color:#666666; 
+}
+
+#msgOrangeColorTest{
+    color: #f8981d;
+    font-size: 22px;
+}
+
+#editIcone{
+    float: right;
+    position: relative;
+    right: 0px;
+}

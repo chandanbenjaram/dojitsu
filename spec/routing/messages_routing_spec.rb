@@ -18,6 +18,10 @@ describe MessagesController do
     it "should route to MESSAGES controller individualAllMessage action" do
       { :get =>"/messages/individualAllMessage"}.should route_to(:controller => 'messages', :action => 'individualAllMessage')
     end
+    
+    it "should route to MESSAGES controller DESTROY action" do
+      { :delete => "/messages/12"}.should route_to(:controller=>"messages", :action=>"destroy", :id => '12')
+    end
 
   end
 end

@@ -61,8 +61,18 @@ describe MessagesController do
  end
  
  describe "GET 'individualAllMessage'" do
+   
+   
+   
    it "should be successful" do
      get :individualAllMessage
+     response.should be_success
+   end
+ end
+ 
+ describe "DELETE 'destroy" do
+   it "should be successful" do
+     get :destroy, :id =>12
      response.should be_success
    end
  end

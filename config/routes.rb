@@ -52,16 +52,15 @@ Dojitsu::Application.routes.draw do
   match '/aboutus', :to=>'static#aboutus'
   match '/contactus', :to=>'static#contactus'
   resources :user_connections do
-	collection do
-		get "sendInvitation"
-		get "myDojo"
-		get "people"
-		get "invite_contact"
-		get "delete_contact"
-		
-		
-	end
+    collection do
+      get "sendInvitation"
+      get "myDojo"
+      get "people"
+      get "invite_contact"
+      get "delete_contact"
+    end
   end
+  
   resources :messages do
     collection do
       get "storemessage"

@@ -1,1 +1,101 @@
-<%= debug Message.iAllMessage(@iId).count %>
+<%= render 'layouts/loggedinbody' %>
+<%= javascript_include_tag('jquery.colorbox-min','messageJs')%>
+<%= stylesheet_link_tag('colorbox','messageCss')%>
+<section class="challengeSubNav">
+  <%= button_to "", "#", :class => "iMessageNew", :method => :get%> 
+  <%= link_to "MESSAGES >> #{FbGraph::User.new(@wayToRead.from).fetch.name.upcase}", messages_path, :class => "iMessageNewLinks", :style=> "text-decoration: none; color:#666666; left: 10px;" %>
+</section>
+<section>
+  <table id="fdPicture" width="100%">
+    <tr>
+      <td width="3%"><%= image_tag(FbGraph::User.new(@wayToRead.from).fetch.picture) %></td>
+      <td width="33%" id="msgOrangeColorTest"><%= FbGraph::User.new(@wayToRead.from).fetch.name.upcase   %></td>
+      <td width="24%"></td>
+	  <td width="19%" >
+          <input type="text" id="search" />
+      </td>
+         <script>
+         function search()
+         {
+             var name_search=document.getElementById("search").value;
+             select();    
+         }
+         </script>
+         <td width="12%" ><div class="styled-select"> <select id="select">
+           <option value="All" id="select">ALL</option>
+           <option value="Unread" id="select">Unread</option>
+           <option value="Archived" id="select">Archived</option>
+           <option value="Sent" id="select">Send</option>
+          </select> </div>
+      </td>
+      <td width="3%">
+          <%=image_tag("searchbutton.PNG",  :onclick=>"search();", :hight=>30, :width =>30 ) %>                   
+      </td>
+      <td width="3%" align="right">
+          <%=image_tag("up_sort.png", :hight=>32, :width =>32 ) %>                             
+      </td>
+      <td width="3%" align="left">          
+          <%=image_tag("dwn_sort.png", :hight=>37, :width =>37 ) %>
+      </td>
+    </tr>
+  </table>
+</section>
+<section id="msgBody">
+  <table id="msgBodyTable">
+    <tr>
+      <td id="countMessage"><%= image_tag("btn_msg_expand_all_up.png") %>&nbsp;&nbsp;<%= Message.iAllMessage(@iId).count %>&nbsp;Messages</td>
+      <td><%= image_tag("icon_edit.png", :id=>"editIcone") %> </td>
+    </tr>
+    <tr>
+      <td>Pride</td>
+    </tr>
+  </table>
+</section>
+<%= debug Message.iAllMessage(@iId).inspect %>
+
+<section style="display:none;">
+<section id="sendNewMessage">
+    <%= form_tag newmessage_messages_path, :method => :get do  %>
+    <table width="100%" bgcolor="#f4f4f4">
+      <tr bgcolor="#f4f4f4">
+        <td colspan="2">
+          <span id="messageTextHead">New Message</span>
+        </td>
+      </tr>
+      <tr bgcolor="#ffffff">
+        <td width="17%" class="bordercolort1">
+          <span id="messageText">T0</span>        
+        </td>
+        <td width="83%" class="bordercolort1">
+          <%= text_field_tag 'to', nil, :size=>"60" %>        </td>
+      </tr>
+      <tr bgcolor="#ffffff">
+        <td>
+          <span id="messageText">MESSAGE</span>
+        </td>
+        <td>
+          <%= text_area_tag 'message','', :class =>"textareaMessage" %>
+        </td>
+      </tr>
+      <tr bgcolor="#ffffff">
+        <td class="bordercolort1">
+          &nbsp;&nbsp;&nbsp;&nbsp;<%= image_tag("icon_attach_mo.png") %>&nbsp;&nbsp;&nbsp;&nbsp;
+          <%= image_tag("icon_photo_mo.png") %>
+        </td>
+        <td class="bordercolort1">
+          <section style="float: right;">
+            <%= check_box_tag 'toMobile','', false %>
+            <%= image_tag("icon_sms_mo.png") %>
+          </section>
+        </td>
+      </tr>
+      <tr bgcolor="#ffffff">
+        <td colspan="2">
+          <%= link_to "CANCEL",  messages_path, :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel_message"%>        
+          <%= submit_tag "SEND", :style => "width: 80px; float:right;", :class => "linksNewMessage" %>
+        </td>
+      </tr>
+    </table>
+    <% end %>
+</section>
+</section>
