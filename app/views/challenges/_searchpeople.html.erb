@@ -142,7 +142,7 @@
 							else if( status==1 && name_search ==="" ||  status==1 && name_search ==="nil" ||  status==1 && name_search ===null    )
 								  {
 								            
-											document.getElementById("name").innerHTML ="<table><% childChallenges.each do |aChildChallenge| %><% if aChildChallenge.social_type.status == 1 %> <tr><td><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name%></td><td><img src="+"/assets/icon_accept.png"+"><td></tr><% end %><% end %></table>";
+											document.getElementById("name").innerHTML ="<table><% childChallenges.each do |aChildChallenge| %><% if aChildChallenge.social_type.status == 1 %> <tr><td><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%#= FbGraph::User.new(aChildChallenge.user_id).fetch.name%></td><td><img src="+"/assets/icon_accept.png"+"><td></tr><% end %><% end %></table>";
 								  }
 							else if(  status==0 && name_search ==="" ||  status==0 && name_search ==="nil" ||  status==0 && name_search ===null   )
 								  {
@@ -152,7 +152,7 @@
 							else if(  status==-1 && name_search ==="" ||  status==-1 && name_search ==="nil" ||  status==-1 && name_search ===null   )
 								  {
 								               
-								document.getElementById("name").innerHTML="<table><% childChallenges.each do |aChildChallenge| %><% if aChildChallenge.social_type.status == -1 %> <tr><td ><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_decline.png"+"></td></tr><% end %><% end %></table>";
+								document.getElementById("name").innerHTML="<table><% childChallenges.each do |aChildChallenge| %><% if aChildChallenge.social_type.status == -1 %> <tr><td ><img src="+"<%#= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%#= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_decline.png"+"></td></tr><% end %><% end %></table>";
 								 }
 							<% end %>	 
 							 else if(!name_search)

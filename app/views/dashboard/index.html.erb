@@ -1,4 +1,4 @@
-<%= javascript_include_tag('ui.progressbar','ajaxPageLoad','fbWallPost','jquery.colorbox-min')%>
+<%= javascript_include_tag('ui.progressbar','ajaxPageLoad','fbWallPost')%>
 <%= stylesheet_link_tag('jquery-ui', 'ui.progressbar','ui.theme', 'main', 'dashboard','colorbox','messageCss')%>
 <%= render 'layouts/loggedinbody'%>
 <% if session[:isNewChallenge] == "isNew" %>
@@ -65,11 +65,62 @@
           <div class="shadow1" id="shadowcolor">what's new</div>
                                   <%= button_to "", challenges_url, :class => "ds_view_all", :method => :get%>
           </div>
-          <div id="whatsNew"></div>
-          <div id="whatsNew1" align="center"></div>
-                  <script>
-                                    $.dojitsuAjaxPage.renderAjaxPageLoad("/dashboard/whatsNew","#whatsNew","#whatsNew1");
-                  </script>
+          <% if Challenge.whatsNew.count == 0 %>
+    <p align="center">No challenges found</p>
+<% else %>
+<% Challenge.whatsNew.each do |aChallenge| %>
+    <div id="contentbox" >
+	 
+        <%= image_tag("new.gif", :height => '30', :width => '30' ,:class => "imagestyle") %>
+        <table width="100%" class="maintable">
+            <tr>
+              <td width="70%" class="firsttdst">
+                  <span class ="chatitle"><%= aChallenge.title%></span>	<br>										
+                  by
+                  <% if aChallenge.instance_of?ChildChallenge %>
+                     <% @parentChallenge = Challenge.where(:_id => aChallenge.challenge_id).first%>
+                     <script>
+                         var ordId = <%=  orgId = @parentChallenge.user_id %>
+                     </script>
+                     <b>
+                        <% if isStandalone %>
+                            <%= @parentChallenge.first_name %>
+                        <% else %>
+                            <%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %>
+                        <% end %>                                  
+                     </b>
+                  <% else %>
+                          <b>
+                              <% if isStandalone %>
+                                  <%= current_user.gmauth.first_name %>
+                              <% else %>
+                                  <%= FbGraph::User.new(aChallenge.user_id).fetch.name %>
+                              <% end %>                                  
+                          </b>
+                  <% end %>
+<br>	
+                  <% if aChallenge.start_point.instance_of?PointDateType %>
+                          <%= aChallenge.start_point.value.strftime("%b %d, %Y")%> - <%= aChallenge.end_point.value.strftime("%b %d, %Y")%>
+                  <% else %>
+                          <%= aChallenge.start_point.value rescue 0%> - <%= aChallenge.end_point.value rescue 0%>
+                  <% end %>
+
+                  <% if aChallenge.child_challenges.size<2 %>
+                   <%= aChallenge.child_challenges.size%>&nbsp;&nbsp;contestant
+                   <%else%>
+                  <%= aChallenge.child_challenges.size%>&nbsp;&nbsp;contestants
+                  <%end%>
+                  <p class="texttransormn">
+                          <%=h truncate(aChallenge.description, :length => 15) %>&nbsp;&nbsp;<b><%= link_to "VIEW" , show_soc_challenges_path(:id => aChallenge.id), :class => 'underline_view'   %>	</b>								
+              </td>
+              <td valign="top" width="30%" class="tdalign" >
+                              <p class = "timestyle"><%= time_ago_in_words  aChallenge.created_at%></p>
+              </td>
+            </tr>
+        </table>
+    </div>
+    <% end %>
+<% end %>
       </div>
     </td>
 </table>

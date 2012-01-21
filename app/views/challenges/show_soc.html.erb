@@ -372,44 +372,23 @@
 		<section class="tables">
 <%= render :partial=> "challenges/searchpeople" %>
 </table>  
-
-    </section>   
-          
-    </section> 
-                        
-
-    
-   </section> 
-     
-  </td>
+ </section>   
+ </section> 
+ </section> 
+</td>
  </tr>
 </table>
 <% orgIds = "" %>
-	
-
 <script>
 	$('.task_update_popup').colorbox();
 	$('.add_task_popup').colorbox();
-	
-// execute your scripts when the DOM is ready. this is a good habit
 $(function() {
-	// setup tooltip for a single section element
 	$("#mytable a").tooltip({
-		// each trashcan image works as a trigger
 		tip: '#tooltip',
-
-		// custom positioning
 		position: 'center right',
-
-		// move tooltip a little bit to the right
 		offset: [0, 15],
-
-		// there is no delay when the mouse is moved away from the trigger
 		delay: 0
 	});	
-	     
-	
-
 });
 </script>
 
@@ -462,69 +441,9 @@ $(function() {
 		var tot_score = str*score;
 		$("#tatal_s").val(tot_score);
 	}
-	
-	
 </script>
-
-
-<section id="jfmfs-container-wrapper" style="display: none">
-  <section id="jfmfs-container">
-  </section>
- </section>
-<script type="text/javascript" charset="utf-8">        
-(function($j) { 
- var selectorObz = {    
-  filter_default: "Search By Name",
-  friend_fields: "id,name,last_name&access_token="+'<%= current_user.facebook.access_token%>'
- }
-
- $j('.invitees').live('click', function(){
-  $j( "#jfmfs-container-wrapper" ).dialog({
-   modal: true,
-   resizable: false,
-   closeText: "",
-   position: 'center',
-   title: 'Invite Participants',
-   width: '725px',
-   open: function(event, ui) { $j("#jfmfs-container").jfmfs(selectorObz); },
-  
-
-  buttons: {                                             
-	 Cancel: function() {
-     $j("#jfmfs-container").data('jfmfs').clearSelected(); 
-     $j('#inviteBtn').val("INVITE PARTICIPANTS");    
-     $j(this).dialog( "close" );
-    },
-    
-	
-	Save: function() {
-     var friendSelector = $j("#jfmfs-container").data('jfmfs');
-     var selectedFriends = friendSelector.getSelectedIds();
-     $j('#invitees_id').val(selectedFriends);
-        $j('#inviteBtn').val("INVITE PARTICIPANTS (" + selectedFriends.length + ")");   
-    $j(this).dialog( "close" );
-		jQuery.support.cors = true;
-		$.get('/user_connections/sendInvitation', 
-			{inviteIds:selectedFriends},
-			function(data) {
-
-			}, 'script'
-		);
-		
-
-		
-		
-     } 
-   }
-   
-  });
- }
- )          
-})(jQuery);
-
+<script>
 $('.ui-button').live('click', function(){
-
-
   $.dojitsuAjaxPage.renderAjaxPageLoad("/user_connections/myDojo","#myDojo","#myDojo1");
     $(".tables").replaceWith($('.tables'));
   });
