@@ -25,7 +25,7 @@ describe MessagesController do
           }
       end
 
-     it "should create message 'storemessage;" do
+     it "should create message 'storemessage" do
         expect {
           @aMessage.stub!(:save).and_return(true)
           post :storemessage, @aMessage
@@ -40,16 +40,29 @@ describe MessagesController do
     end
   end
   
-  describe "GET 'message" do
-    it "should be successful" do
-      get :message
-      response.should be_success
-    end
-  end
   
  describe "GET 'newmessage" do
+   
+   before do
+        @iMessage = {"messageDetails"=>{
+            "recipients"=>"100003135115833",
+            "sender"=>"291827220867616",            
+            "body"=>"hi, how is going"} 
+          }
+      end
+
+     it "should create message 'newmessage" do
+        expect {
+          @iMessage.stub!(:save).and_return(true)
+          post :newmessage, @iMessage
+        }.to_not raise_error(ActionView::MissingTemplate)
+      end
+   
+ end
+ 
+ describe "GET 'individualAllMessage'" do
    it "should be successful" do
-     get :newmessage
+     get :individualAllMessage
      response.should be_success
    end
  end

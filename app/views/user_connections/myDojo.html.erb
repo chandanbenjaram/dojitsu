@@ -1,8 +1,3 @@
-<%= stylesheet_link_tag('colorbox')%>
-<%= javascript_include_tag('jquery.colorbox-min')%>
-<script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> </script>
-
-
 <% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
 	<% group =Array.new %>
 	<% allConnections.each  do |eachConnection| %>
@@ -48,32 +43,25 @@
 					</td>
 					<td>
 					<p class="invite"><%= render :partial => 'invitations' %>
-		<%#= image_tag("invitee.PNG", :width=> "100px" , :height => "30px", :style => "top:10px;" )%>
-
-		<%= hidden_field_tag "myvar", 0%>	
+					<%= hidden_field_tag "myvar", 0%>	
 		</p>
 					</td>
 				</table>
-				
-
-
 				<table width="100%" id="tblData" class="sortable" border=1>
 				<thead>
 				<tr>
-
 				<th width="85%"><b style="position:relative; color:#666666; padding-left:20px; " >NAME</b></th>
 				<th width="15%"><b style=" color:#666666;  " >STATUS </b></th>
 				</tr>
 				</thead>
 				<tbody bgcolor="#ffffff">
 				<% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
-                    				
+		
 					<% allConnections.each  do |eachConnection| %>
 						<tr>
 						<td>
 						<%=image_tag(FbGraph::User.new(eachConnection.target_id).fetch.picture) %>
 						<span class="fbusername"><%= FbGraph::User.new(eachConnection.target_id).fetch.name %></span>
-						
 						</td>
 						<td>
 						<span > 
@@ -85,59 +73,20 @@
 						</td>
 						</tr>
 					<% end %>
-                                <style>
+                          <style>
 								.delete
 								{
 								position:relative;
 								relative; top:-5px
 								}
-</style>								
+						</style>								
 				</tbody>
 				</table>
 				</div>
-				
 				<script>
 					$('.remove').colorbox();
 				</script>
-				
-
-				
-				
-
-				
-				<script type="text/javascript">
-							$(document).ready(function()
-							{
-								$('#search').keyup(function()
-								{
-									searchTable($(this).val());
-								});
-							});
-							function searchTable(inputVal)
-							{
-								var table = $('#tblData');
-								table.find('tr').each(function(index, row)
-								{
-									var allCells = $(row).find('td');
-									if(allCells.length > 0)
-									{
-										var found = false;
-										allCells.each(function(index, td)
-										{
-											var regExp = new RegExp(inputVal, 'i');
-											if(regExp.test($(td).text()))
-											{
-												found = true;
-												return false;
-											}
-										});
-										if(found == true)$(row).show();else $(row).hide();
-									}
-								});
-							}
-						</script>
-
-<script>
+	<script>
     $(document).ready(function() {
         $(".private_msg").click(function(event) {                                                                                                                  
             var targetId = event.target.id;

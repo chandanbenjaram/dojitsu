@@ -75,7 +75,7 @@ describe Challenge do
       Challenge.should respond_to(:social_n_parents)
     end
     
-    it "should include social challenge excluding chaild challenge" do
+    it "should include social challenge excluding child challenge" do
       @challenge = Challenge.create(:social_type.exists => true, :challenge_id.exists => false)
       Challenge.social_n_parents.should include(@challenge)
     end
