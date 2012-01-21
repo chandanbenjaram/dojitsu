@@ -3,13 +3,13 @@
 <%= stylesheet_link_tag('colorbox','messageCss')%>
 <section class="challengeSubNav">
   <%= button_to "", "#", :class => "iMessageNew", :method => :get%> 
-  <%#= link_to "MESSAGES >> #{FbGraph::User.new(@wayToRead.from).fetch.name.upcase}", messages_path, :class => "iMessageNewLinks", :style=> "text-decoration: none; color:#666666; left: 10px;" %>
+  <%= link_to "MESSAGES >> #{FbGraph::User.new(@wayToRead.from).fetch.name.upcase}", messages_path, :class => "iMessageNewLinks", :style=> "text-decoration: none; color:#666666; left: 10px;" %>
 </section>
 <section>
   <table id="fdPicture" width="100%">
     <tr>
-      <td width="3%"><%#= image_tag(FbGraph::User.new(@wayToRead.from).fetch.picture) %></td>
-      <td width="33%" id="msgOrangeColorTest"><%#= FbGraph::User.new(@wayToRead.from).fetch.name.upcase   %></td>
+      <td width="3%"><%= image_tag(FbGraph::User.new(@wayToRead.from).fetch.picture) %></td>
+      <td width="33%" id="msgOrangeColorTest"><%= FbGraph::User.new(@wayToRead.from).fetch.name.upcase   %></td>
       <td width="24%"></td>
 	  <td width="19%" >
           <input type="text" id="search" />
