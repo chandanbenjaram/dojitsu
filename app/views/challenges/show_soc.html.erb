@@ -2,13 +2,13 @@
 <%= javascript_include_tag('simple-tabs','ui.progressbar.js','soc-per','on_the_spot','jquery.colorbox-min','jquery.tools.min','messages','fbWallPost')%>
 <%= render 'layouts/loggedinbody'%>
 
-<div class="challengeSubNav">
+<section class="challengeSubNav">
 	<%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %>
     <%= link_to "MY CHALLENGES >> ", challenges_url ,  :class => "challenge_link1" %>
 	<%= link_to "#{@challenge.title}","#" ,  :class => "challenge_link1" %> 
-</div>
+</section>
 
-<% name_search =0%>
+<% name_search = 0%>
 
 <% if params[:isNewChallenge] == "isNew" %>
     <script> 
@@ -70,18 +70,18 @@
         <% end %>        
 <% end %>
 
-<div > 
-	<div id="ch_main_div1"> 
+<section > 
+	<section id="ch_main_section1"> 
 		<% if @challenge.user_id == current_user.fbauth.uid %>
 					 	<span class="challange" id ="updatetitle" onclick="TestingTitle();"><%= @challenge.title %>	</span> 
 				<% else %>
 						<span class="challange"><%= @challenge.title %>	</span> 
 				<% end %>	
-				<div id="replacedTitle">
+				<section id="replacedTitle">
 					<%= text_field(:challenge, :title, :maxlength =>30, :class => "titlewidth")%>
 					<%= link_to image_tag("update.png", :class =>"replacetitle"), show_per_challenges_path(:id => @challenge.id) %>
 					<%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "replace_cancel" %>
-				</div>
+				</section>
 							<script>
 							$("#replacedTitle").hide();
 							function TestingTitle()
@@ -140,7 +140,7 @@
 		
 	
 		<script type="text/javascript">
-	$(document).ready(function(){
+		$(document).ready(function(){
 					$("#image1").hide();
 					$("#image2").hide();
 					$("#image3").hide();
@@ -169,27 +169,27 @@
 
 		</script>
 		
-	<div>
+	<section>
 	<table id="description" >
 		<tr>
 			<td valign="top"height="34px" width="15%" >
-					<b><font color= #999999>DESCRIPTION<b ></font></td>
+					<span class="colorligtblk1">DESCRIPTION<b ></span>
 			<td valign="top" width="73%">
 			<% if @challenge.user_id == current_user.fbauth.uid %>
-					<div class="onthespandescription" >
-					 	<span id ="updatedesccolo" ><%= @challenge.description %>	</span> 
-					</div>
+					<section class="onthespandescription" >
+					 	<span class ="updatedesccolo" ><%= @challenge.description %>	</span> 
+					</section>
 				<% else %>
-					<div>
-						<b><font color= #666666><%= @challenge.description %>	</font></b>
-					</div>
+					<section>
+						<span class ="updatedesccolo" ><%= @challenge.description %>	</span> 
+					</section>
 				<% end %>	
 			
-			<div id="replacedDescription">
-					<%= text_area(:challenge, :description,  :style => "width: 400px; height: 93px; resize:none;")%>
+			<section id="replacedDescription">
+					<%= text_area(:challenge, :description, :class => "textareastyle" )%>
 					<%= link_to image_tag("update.png", :class =>"replacedesc"), show_per_challenges_path(:id => @challenge.id) %>
 					<%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "replace_cancel_desc1" %>
-			</div>
+			</section>
 			</td>
 						<% if @challenge.user_id == current_user.fbauth.uid %>
 						<td valign="top" width="12%" onclick="TestingDesc();">
@@ -227,13 +227,13 @@
 
 		</tr>
 	</table>
-</div>	
+</section>	
 
-<div>
+<section>
 	<table id="organizer">
 		<tr>
 			<td height="34px" width="15%" class="titles">
-				<b ><font color= #999999>ORGANIZER</font></b>
+				<span class="colorligtblk1">ORGANIZER</span>
 			</td>
 			<td width="73%">
 			
@@ -242,9 +242,9 @@
 			 <script>
 			  var ordId = <%=  orgId = @parentChallenge.user_id %>
 			 </script>
-			 <b style="color:#666666;"><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
+				    <b><span class ="updatedesccolo" > <%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></span></b>
 			<% else %> 
-			 <b style="color:#666666;" id="user_name"><%= FbGraph::User.new(@challenge.user_id).fetch.name %></b>
+					<b><span class ="updatedesccolo"  id="user_name"><%= FbGraph::User.new(@challenge.user_id).fetch.name %></span></b>
 			 <script>
 			  var ordId = <%=  orgId = @challenge.user_id %>
 			 </script>
@@ -262,13 +262,13 @@
 			<hr/>
 		</tr>
 	</table>
-</div>
+</section>
 
-<div>
+<section>
 	<hr/>
-</div>
+</section>
 
-<div>
+<section>
 	<table id="startdate">
 		<tr>
 			<td height="34px" width="15%">
@@ -292,13 +292,13 @@
 				-->
 		</tr>
 	</table>
-</div>		
+</section>		
 	
-<div>
+<section>
 	<hr/>
-</div>
+</section>
 
-<div>
+<section>
 	<table id="enddate">
 		<tr> 
 			<td height="34px" width=130px>
@@ -321,11 +321,11 @@
 		
 		</tr>
 	</table>
-</div>
+</section>
 
-<div>
+<section>
 	<hr/>
-</div>	
+</section>	
 
 <table id="participant">
 	<tr  height="34px" >
@@ -360,230 +360,26 @@
 				<li><a href="#tab1"><b>TASKS</b></a></li>
 				<li><a href="#tab2"><b>PEOPLE</b></a></li>
 			</ul>
-			<div class="tab_container">
-				<div id="tab1" class="tab_content">
+			<section class="tab_container">
+				<section id="tab1" class="tab_content">
 					<% if(@challenge.social_type.status? and @flg.to_s == "ed") %>
 						<%= render :partial=> "challenges/tasks_edit" %>
 					<% else %>
 						<%= render :partial=> "challenges/tasks" %>																										
 					<% end %>
-				</div>
-				<div id="tab2" style="background:#F5F5F5;" class="tab_content">
-		<div class="tables">
-
- <table>
-     <td width="47%">
-       <label for="search">
-       <strong>
-       <% if  @challenge.class.to_s == "Challenge" %>
-                <font size="4" color="#D7D7D7"><b  id="total">Total: <%= @challenge.child_challenges.length %></b></font>
-               <%else %>
-                <font size="4" color="#D7D7D7"> <b  id="total">Total: <%= @challenge.parent.child_challenges.length %></b></font>
-               <% end %>
-               <% if @challenge.instance_of?Challenge %>
-                <%= image_tag("btn_msg_up.png", :style=>"margin-left:10px; position:relative; top:5px;" ,:onclick=>"contactToInvitee()")%>
-               <% end %>
-       </strong>
-       </label>
-     </td>
-     <td><input type="text" id="search" /></td>
-     <script>
-     function search()
-     {
-     var name_search=document.getElementById("search").value;
-         select();    
-     }
-     </script>
-     <td><div class="styled-select"> <select id="select">
-       <option value="All" id="select">ALL</option>
-       <option value="1" id="select">ACCEPTED</option>
-       <option value="pending" id="select">PENDING</option>
-       <option value="-1" id="select">DECLINED</option>
-      </select> </div>
-     </td>
-     <td>
-      <%=image_tag("searchbutton.PNG",  :onclick=>"search();" )%>
-         <%#= link_to(image_tag("declane.png"), filter_challenges_path(:id => @challenge)) %>
-     </td>
-    </table>
-    <table width="100%"  class="sortable" border=1>
-    <thead>
-    <tr>
-    <th width="80%"><b style="position:relative; color:#666666; padding-left:20px; " >NAME</b></th>
-    <th width="20%"><b style=" color:#666666;  " >STATUS </b></th>
-    </tr>
-    </thead>
-    </table>
-    <table width="100%" id="tblData" class="sortable" border=1>
-    <tbody bgcolor="#ffffff">
-     <tr >
-         <td >
-      <div id="name">
-    
-      </div>
-     </td>  
-    </tr>
-    <div id ="all">
-    </div>
-      <script>
-       <%if @challenge.parent .nil? %>
-                    <% childChallenges =  @challenge.child_challenges %>
-                   <%else%>
-                    <%childChallenges =  @challenge.parent.child_challenges %>
-                    <%end%>       
-    htmltable="<table><% childChallenges.each do |aChildChallenge| %> <tr><td width=80%><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td> <% if aChildChallenge.social_type.status == 1 %><img src="+"/assets/icon_accept.png"+"><% elsif aChildChallenge.social_type.status == -1 %><img src="+"/assets/icon_decline.png"+"><% else %><img src="+"/assets/icon_thinking.png"+"><% end %></td></tr><% end %></table>";
-        document.getElementById("name").innerHTML =htmltable
-      </script>
-     <script>
-       
-        function select()
-        {
-        var select= document.getElementById("select").value
-         var name_search=document.getElementById("search").value;
-         <%if @challenge.parent .nil? %>
-              <% childChallenges =  @challenge.child_challenges %>
-             <%else%>
-              <%childChallenges =  @challenge.parent.child_challenges %>
-              <%end%>                      
-              <% childChallenges.each do |aChildChallenge| %>
-           
-              var challenge_status="<%= aChildChallenge.social_type.status %>";
-                 if (select == "All")
-                  {
-                  var status = 2
-                  }
-                  if (select == "1")
-                  {
-                  var status = 1
-                  }
-                  if (select == "pending")
-                  {
-                  var status = 0
-                  }
-                  if (select == "-1")
-                  {
-                  var status = -1
-                  }
-                          <% end %>
-        <%if @challenge.parent .nil? %>
-               <% childChallenges =  @challenge.child_challenges %>
-              <%else%>
-               <%childChallenges =  @challenge.parent.child_challenges %>
-               <%end%>                      
-       <% childChallenges.each do |aChildChallenge| %>
-                var check_name= "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %>";
-                var name_search=document.getElementById("search").value;
-                var challenge_status="<%= aChildChallenge.social_type.status %>";
-            if (name_search == check_name && challenge_status==1 && status==1)
-             {
-             document.getElementById("name").innerHTML ="<table><tr><td width="+"84%"+"><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_accept.png"+"></td></tr></table>";
-            }
-            else if (name_search == check_name && challenge_status==-1 && status==-1)
-             {
-             document.getElementById("name").innerHTML ="<table><tr><td width="+"84%"+"><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_decline.png"+"></td></tr></table>";
-             }
-            else if (name_search == check_name && status==0 || name_search == check_name && status=="null")
-             {
-             <% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 or aChildChallenge.social_type.status == "null"%> 
-             document.getElementById("name").innerHTML ="<table><tr><td width="+"84%"+"><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_thinking.png"+"></td></tr></table>";
-             <% end %>
-             }
-           else if (name_search == check_name && status==2)
-             {
-             document.getElementById("name").innerHTML ="<table><tr><td width="+"84%"+"><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><% if aChildChallenge.social_type.status == 1 %><img src="+"/assets/icon_accept.png"+"><% elsif aChildChallenge.social_type.status == -1 %><img src="+"/assets/icon_decline.png"+"><% else %><img src="+"/assets/icon_thinking.png"+"><% end %></td></tr></table>";
-             }
-             <% end %>
-        else if( status==2 && name_search ==="" ||  status==2 && name_search ==="nil" ||  status==2 && name_search ===null   )
-           {
-             <%if @challenge.parent .nil? %>
-               <% childChallenges =  @challenge.child_challenges %>
-             <%else%>
-               <%childChallenges =  @challenge.parent.child_challenges %>
-             <%end%>                      
-                                      htmltable="<table><% childChallenges.each do |aChildChallenge| %> <tr><td width=80%><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td> <% if aChildChallenge.social_type.status == 1 %><img src="+"/assets/icon_accept.png"+"><% elsif aChildChallenge.social_type.status == -1 %><img src="+"/assets/icon_decline.png"+"><% else %><img src="+"/assets/icon_thinking.png"+"><% end %></td></tr><% end %></table>"
-           document.getElementById("name").innerHTML =htmltable
-            }
-        else if( status==1 && name_search ==="" ||  status==1 && name_search ==="nil" ||  status==1 && name_search ===null    )
-              {
-               <%if @challenge.parent .nil? %>
-                    <% childChallenges =  @challenge.child_challenges %>
-                   <%else%>
-                    <%childChallenges =  @challenge.parent.child_challenges %>
-                    <%end%>                      
-                                                         htmltable="<table><% childChallenges.each do |aChildChallenge| %><% if aChildChallenge.social_type.status == 1 %> <tr><td><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name%></td><td><img src="+"/assets/icon_accept.png"+"><td></tr><% end %><% end %></table>";
-              document.getElementById("name").innerHTML =htmltable
-              }
-        else if(  status==0 && name_search ==="" ||  status==0 && name_search ==="nil" ||  status==0 && name_search ===null   )
-              {
-               <%if @challenge.parent .nil? %>
-                    <% childChallenges =  @challenge.child_challenges %>
-                   <%else%>
-                    <%childChallenges =  @challenge.parent.child_challenges %>
-                    <%end%>                      
-                                                         htmltable="<table><% childChallenges.each do |aChildChallenge| %><% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 or aChildChallenge.social_type.status == "null"%> <tr><td width="+"84%"+"><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_thinking.png"+"></td></tr><% end %><% end %></table>";
-              document.getElementById("name").innerHTML =htmltable
-              }
-        else if(  status==-1 && name_search ==="" ||  status==-1 && name_search ==="nil" ||  status==-1 && name_search ===null   )
-              {
-              <%if @challenge.parent .nil? %>
-                    <% childChallenges =  @challenge.child_challenges %>
-                   <%else%>
-                    <%childChallenges =  @challenge.parent.child_challenges %>
-                    <%end%>                      
-              htmltable="<table><% childChallenges.each do |aChildChallenge| %><% if aChildChallenge.social_type.status == -1 %> <tr><td ><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_decline.png"+"></td></tr><% end %><% end %></table>";
-              document.getElementById("name").innerHTML =htmltable
-             }
-             
-   else if(name_search == check_name && challenge_status!=1 && status!=1)
- {
-  document.getElementById("name").innerHTML ="No Such Records"
- }
-             }
-        </script>
-      <td></td>
-    </tr>
-    </tbody>
-    </table>
-
-    </div>   
-          
-    </div> 
-                        
-    <style type="text/css">
-    
-     #ahref
-    {     
-    color: #666666;
-    font-weight: bold;
-    top: -20px;
-    position:relative;
-    }
-    </style>                
-    
-    
-   </div> 
-     
-  </td>
- </tr>
+				</section>
+				<section id="tab2" style="background:#F5F5F5;" class="tab_content">
+		<section class="tables">
+Maisa
 </table>  
 
-    </div>   
+    </section>   
           
-    </div> 
+    </section> 
                         
-    <style type="text/css">
+
     
-     #ahref
-    {     
-    color: #666666;
-    font-weight: bold;
-    top: -20px;
-    position:relative;
-    }
-    </style>                
-    
-    
-   </div> 
+   </section> 
      
   </td>
  </tr>
@@ -597,7 +393,7 @@
 	
 // execute your scripts when the DOM is ready. this is a good habit
 $(function() {
-	// setup tooltip for a single DIV element
+	// setup tooltip for a single section element
 	$("#mytable a").tooltip({
 		// each trashcan image works as a trigger
 		tip: '#tooltip',
@@ -671,10 +467,10 @@ $(function() {
 </script>
 
 
-<div id="jfmfs-container-wrapper" style="display: none">
-  <div id="jfmfs-container">
-  </div>
- </div>
+<section id="jfmfs-container-wrapper" style="display: none">
+  <section id="jfmfs-container">
+  </section>
+ </section>
 <script type="text/javascript" charset="utf-8">        
 (function($j) { 
  var selectorObz = {    
