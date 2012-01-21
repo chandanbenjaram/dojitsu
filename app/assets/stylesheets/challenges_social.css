@@ -47,6 +47,7 @@
 	float: left;
 }
 
+
 .colordarkblk
 {
 	color: #666666;
@@ -114,3 +115,19 @@
     top: 25px;
     width: 90px;
 }
+
+.textareastyle
+{
+	width: 400px;
+	height: 93px;
+	resize: none;
+}
+
+ 
+  #ahref
+    {     
+    color: #666666;
+    font-weight: bold;
+    top: -20px;
+    position:relative;
+    }
