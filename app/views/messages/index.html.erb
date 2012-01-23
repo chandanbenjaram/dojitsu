@@ -72,7 +72,7 @@
           <% else %>
               <tr bgcolor ="#FFFFFF">
                   <td width="7%" class="bordercolort" style="padding-left:15px;" onclick="location.href='<%= individualAllMessage_messages_path(:iId => userMessage.from, :id =>userMessage.id) %>'">
-                      <%= image_tag(FbGraph::User.new(userMessage.from).fetch.picture) %>            </td>
+                      <%#= image_tag(FbGraph::User.new(userMessage.from).fetch.picture) %>            </td>
                   <td width="81%" class="bordercolort" style="padding-right:20px;" onclick="location.href='<%= individualAllMessage_messages_path(:iId => userMessage.from, :id =>userMessage.id) %>'">
                       <font size="3px" style="float:right">
 
@@ -86,7 +86,7 @@
                           <%#= t = time_until.to_f %>
 
                           <%= time_ago_in_words userMessage.created_at %>                </font>
-                      <font size="4px" style="font-weight:bold"><%= FbGraph::User.new(userMessage.from).fetch.name %></font></br>
+                      <font size="4px" style="font-weight:bold"><%#= FbGraph::User.new(userMessage.from).fetch.name %></font></br>
                       <font size="3px"><%= image_tag "icon_replied.png" %> <%=h truncate(userMessage.body, :length => 55) %>..</font></br>          </td>
                   </td>
                   <td width="11%" class="bordercolort" style="padding-left:15px; ">

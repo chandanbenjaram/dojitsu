@@ -539,20 +539,6 @@ position:relative;
 	width:99%;
 }
 
-.textareaMessage {
-	border-width: 1px;
-	border-style: solid;
-	border-color: #999999;
-	
-	background-repeat: repeat-x;
-	font-family: Arial;
-	font-size: 15px;
-	color: #333333;
-	resize: none;
-	height: 50px;	
-	width:96%;
-}
-
 .textarea_nw_tk:hover{
 	border-color: #4ccbda;
 	border-width: 1px;
