@@ -709,15 +709,15 @@ input.radio {
 
 
 .ds_view_all{
-	 background: url("viewallbutton.PNG") no-repeat; 
-     float: left;
-     font-family: Arial;
-     height: 24px;
-     left: 105px;
-     min-width: 24%;
-     position: relative;
-     text-align: right;
-     top: 3px;
+	background: url("viewallbutton.PNG") no-repeat scroll -1px -1px transparent;
+    float: left;
+    font-family: Arial;
+    height: 24px;
+    left: 105px;
+    min-width: 24%;
+    position: relative;
+    text-align: right;
+    top: 3px;
 }
 .ds_view_all1 {
 	background: url("viewall.PNG") no-repeat right;	
