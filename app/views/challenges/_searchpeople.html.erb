@@ -1,6 +1,4 @@
-<%= stylesheet_link_tag('simple-tabs','datePicker','jquery.cluetip.css','jquery-ui','ui.progressbar','ui.theme', 'main', 'challenges_social')%>
-<%= javascript_include_tag('simple-tabs','ui.progressbar.js','soc-per','on_the_spot', 'ajaxPageLoad','jquery.tools.min','messages','fbWallPost')%>
-                       
+
   <div class="tables">
 	<table>
 		<td width="47%">
@@ -104,17 +102,18 @@
 								var check_name= "<%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %>";
 								var name_search=document.getElementById("search").value;
 								var challenge_status="<%= aChildChallenge.social_type.status %>";
+							    htmlcontent="<table><tr><td width="+"84%"+"><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><% if aChildChallenge.social_type.status == 1 %><img src="+"/assets/icon_accept.png"+"><% elsif aChildChallenge.social_type.status == -1 %><img src="+"/assets/icon_decline.png"+"><% else %><img src="+"/assets/icon_thinking.png"+"><% end %></td></tr></table>";
 							if (name_search == check_name && challenge_status==1 && status==1)
 								 {
-								 document.getElementById("name").innerHTML ="<table><tr><td width="+"84%"+"><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_accept.png"+"></td></tr></table>";
-								}
+								 document.getElementById("name").innerHTML =htmlcontent
+								 }
 							else if (name_search == check_name && challenge_status!=1 && status==1)
 								{
 								document.getElementById("name").innerHTML ="No such Records"
 								}
 							else if (name_search == check_name && challenge_status==-1 && status==-1)
 								 {
-								 document.getElementById("name").innerHTML ="<table><tr><td width="+"84%"+"><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_decline.png"+"></td></tr></table>";
+								 document.getElementById("name").innerHTML =htmlcontent
 								 }
 							 else if (name_search == check_name && challenge_status!=-1 && status==-1)
 								{
@@ -123,15 +122,15 @@
 							else if (name_search == check_name && status==0  || name_search == check_name && status=="null")
 								 {
 									 <% if aChildChallenge.social_type.status.nil? or aChildChallenge.social_type.status == 0 or aChildChallenge.social_type.status == "null"%> 
-											document.getElementById("name").innerHTML ="<table><tr><td width="+"84%"+"><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><img src="+"/assets/icon_thinking.png"+"></td></tr></table>";
-									 <% else%> 
+											document.getElementById("name").innerHTML =htmlcontent
+											<% else%> 
 											document.getElementById("name").innerHTML ="No such records found"
 									 <% end %>
 								 }
 							 
 						   else if (name_search == check_name && status==2)
 								 {
-								 document.getElementById("name").innerHTML ="<table><tr><td width="+"84%"+"><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td><% if aChildChallenge.social_type.status == 1 %><img src="+"/assets/icon_accept.png"+"><% elsif aChildChallenge.social_type.status == -1 %><img src="+"/assets/icon_decline.png"+"><% else %><img src="+"/assets/icon_thinking.png"+"><% end %></td></tr></table>";
+								 document.getElementById("name").innerHTML =htmlcontent
 								 }
 						
 							else if( status==2 && name_search ==="" ||  status==2 && name_search ==="nil" ||  status==2 && name_search ===null   )

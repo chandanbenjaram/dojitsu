@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css','jquery-ui','ui.progressbar','ui.theme', 'main', 'challenges_social', 'challenges')%>
-<%= javascript_include_tag('simple-tabs','ui.progressbar.js','soc-per','on_the_spot','jquery.colorbox-min','jquery.tools.min','messages','fbWallPost')%>
+<%= javascript_include_tag('simple-tabs','ui.progressbar.js','ajaxPageLoad','soc-per','on_the_spot','jquery.colorbox-min','jquery.tools.min','messages','fbWallPost')%>
 <%= render 'layouts/loggedinbody'%>
 
 <section class="challengeSubNav">
@@ -370,9 +370,10 @@
 				</section>
 				<section id="tab2" style="background:#F5F5F5;" class="tab_content">
 		<section class="tables">
-<%= render :partial=> "challenges/searchpeople" %>
-</table>  
- </section>   
+		
+
+<%= render :partial=> "challenges/searchpeople" %>			
+</section>   
  </section> 
  </section> 
 </td>

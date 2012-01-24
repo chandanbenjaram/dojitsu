@@ -220,6 +220,12 @@ end
     end 
   end
 
+  
+    def search_people
+		render :layout => false
+  end
+  
+  
   def challenge_comp
     #raise "Maisa"
     #render :layout => false
@@ -426,7 +432,7 @@ end
     @challenges = Challenge.where(:_type.exists => false).desc("created_at")
   end
   
-  def socialPeople
+  def socialpeople
     render :layout => false
   end
 
@@ -510,9 +516,7 @@ end
     end
   end
   
-  def search
- 
-  end
+
 end
 
 
