@@ -61,9 +61,6 @@ describe MessagesController do
  end
  
  describe "GET 'individualAllMessage'" do
-   
-   
-   
    it "should be successful" do
      get :individualAllMessage
      response.should be_success

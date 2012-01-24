@@ -1,12 +1,17 @@
+<section id="messagecount">
+  <section id="messagecountTest">
+      <%= current_user.unReadMessage.count %>
+  </section>  
+</section>
 <%= render 'layouts/loggedinbody'%>
 
-<%= javascript_include_tag('jquery.colorbox-min','messageJs')%>
+<%= javascript_include_tag('jquery.colorbox-min','messageJs','jquery.tools.min')%>
 <%= stylesheet_link_tag('colorbox','messageCss')%>
-
 <section class="challengeSubNav">
     <%= button_to "", "#", :class => "new_message_button_index", :method => :get%> 
     <%= link_to "MESSAGES  ",dashboard_index_url ,:class => "challenge_link" , :style=> "text-decoration: none; color:#666666; left: 15px;" %>
 </section>	
+
 <section class="challange" id="messageBox">
   <table width="100%">  
     <tr>
@@ -61,11 +66,11 @@
                       <font size="4px" style="font-weight:bold"><%= FbGraph::User.new(userMessage.from).fetch.name %></font></br>
                       <font size="3px"><%= image_tag "icon_replied.png" %> <%=h truncate(userMessage.body, :length => 55) %>..</font></br>          </td>
                   </td>
-                  <td width="11%" class="bordercolortM" style="padding-left:15px; ">
+                  <td width="11%" class="bordercolortM" style="padding-left:15px;" id="demo">                    
                     <% if userMessage.isRead == 0 %>
                       <%= image_tag "btn_mark_read_up.png" %>&nbsp;&nbsp;
                     <% else %>
-                      <%= image_tag "btn_mark_unread_up.png" %>&nbsp;&nbsp;
+                      <%= link_to image_tag("btn_mark_unread_up.png"), markUnread_messages_path(:id => userMessage.id), :title=>"Mark as Unread"%>&nbsp;&nbsp;
                     <% end %>                                
                     <%= link_to image_tag("icon_multiply.png"), message_path(:id => userMessage.id), :method => 'delete' %>            </td>
               </tr>
@@ -148,4 +153,3 @@
     <% end %>
 </section>
 </section>
-

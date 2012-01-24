@@ -47,8 +47,8 @@ module Dojitsu
       :port => 587,
       :domain => "gmail.com",
       :authentication => :login,
-      :user_name => 'mysolution555@gmail.com',
-      :password => 'mysolution',
+      :user_name => 'dojitsu.whitebelt@gmail.com',
+      :password => 'whitebelt',
     }
 
     config.action_mailer.perform_deliveries = true

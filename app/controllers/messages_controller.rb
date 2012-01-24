@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
 		end
 	end
   
-  def newmessage    
+  def newmessage 
     whomSend = Authentication.find_by_email(params[:to])
     UserMailer.sendMail(params[:to],params[:message]).deliver
     Message.create(:to =>whomSend.uid, :from =>current_user.fbauth.uid, :body => params[:message])
@@ -21,14 +21,22 @@ class MessagesController < ApplicationController
   end
 	
   def individualAllMessage
-    @iId = params[:iId]   
+    @iId = params[:iId]    
     @wayToRead = Message.where(:_id => params[:id]).first
     @wayToRead.update_attributes(:isRead => 1)
+    details = Authentication.find_by_uid(params[:iId])
+    @toEmail = details.email    
   end
   
   def destroy
     aDelete = Message.where(:_id =>params[:id]).first
     aDelete.update_attributes(:isDeleted => 1)
+    render 'index'
+  end
+  
+  def markUnread    
+    aUnread = Message.where(:_id =>params[:id]).first
+    aUnread.update_attributes(:isRead => 0)
     render 'index'
   end
 end

@@ -1919,3 +1919,22 @@ a:focus, a:hover {
 	top: -2px;
 }
 
+#messagecount{
+    position: relative;
+    margin-left: 88%;
+    margin-top: -9px;
+    width:18px;
+    height: 18px;
+    background: none repeat scroll 0 0 #00B5CB;    
+    border-radius: 3px 3px 3px 3px;
+}
+
+#messagecountTest{
+    position: absolute;
+    top: -3px;
+    margin-left: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+}
+

@@ -71,6 +71,14 @@
     margin: 3px 5px 5px 5px;
 }
 
+.bordercolortR
+{    
+    border-bottom:1px solid #BEBEBE;
+    padding-left:15px;
+    margin: 3px 5px 5px 5px;
+    background-color: #ffffff;
+}
+
 .bordercolortM
 {    
     border-bottom:1px solid #BEBEBE;
@@ -226,8 +234,8 @@
 .textareaMessageI{
 	border-width: 1px;
 	border-style: solid;
-	border-color: #999999;
-	
+	border-color: #999999;	
+        background-color: #F4F4F4;
 	background-repeat: repeat-x;
 	font-family: Arial;
 	font-size: 15px;
@@ -235,4 +243,16 @@
 	resize: none;
 	height: 50px;	
 	width:98%;
+}
+
+.tooltip {
+    background: url("black_arrow.png") no-repeat scroll 0 0 transparent;
+    color: #FFFFFF;
+    display: none;
+    font-size: 12px;
+    height: 65px;
+    margin-left: 15px;
+    margin-top: 30px;
+    padding: 15px;
+    width: 110px;
 }
