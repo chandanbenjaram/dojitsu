@@ -5,4 +5,8 @@ class UserMailer < ActionMailer::Base
     @url  = "http://example.com/login"
     mail(:to => user.email, :subject => "Welcome to My Awesome Site")
   end
+  
+  def sendMail(email,aMessage)
+    mail(:to => email, :subject => "You have mail form dojitsu friend", :body => aMessage)
+  end  
 end

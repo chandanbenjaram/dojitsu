@@ -9,7 +9,7 @@
   <table id="fdPicture" width="100%">
     <tr>
       <td width="3%"><%= image_tag(FbGraph::User.new(@wayToRead.from).fetch.picture) %></td>
-      <td width="33%" id="msgOrangeColorTest"><%= FbGraph::User.new(@wayToRead.from).fetch.name.upcase   %></td>
+      <td width="33%" id="msgOrangeColorTest"><%#= FbGraph::User.new(@wayToRead.from).fetch.name.upcase   %></td>
       <td width="24%"></td>
 	  <td width="19%" >
           <input type="text" id="search" />
@@ -53,76 +53,118 @@
       </td>
       <td class="bordercolortMDetails" colspan="2"><%= image_tag("icon_edit.png", :id=>"editIcone") %> </td>
     </tr>
-  </table>  
-  <table id="msgBodyTableAll">
+  </table> 
+  
+  
+  
+  
+ 
+  <section id="msgBodyTableAll">
+    <% reply = 0 %>
     <% flag = 0 %>
     <% Message.iAllMessage(@iId,current_user.fbauth.uid).each do |iMessage| %>
-    <% if iMessage.from == current_user.fbauth.uid %>
-        <tr class="<%= iMessage.from %>_<%= flag %>">              
-            <td width="15%" class="bordercolort" style="padding-right:20px;">                        
-                <% if iMessage.from == current_user.fbauth.uid %>
-                  <font id="msgOrangeColorTestC">
-                    <%= FbGraph::User.new(iMessage.from).fetch.name %>
-                  </font>  
-                <% else %>
-                  <font id="msgOrangeColorTestI">
-                    <%= FbGraph::User.new(iMessage.from).fetch.name %>
-                  </font>
-                <% end %>
-            </td>       
-            <td width="68%" class="bordercolort" style="padding-right:20px;">                                   
-                <font id="textcolor">&nbsp;<%=h truncate(iMessage.body, :length => 80) %></font></br>
-            </td>        
-            <td width="15%" class="bordercolort" style="padding-right:20px;">
-                <font id="textcolor" style="float:right">
-                    <%= time_ago_in_words iMessage.created_at %>
-                </font>
-                <% text_field_tag "test",nil, :id => "#{iMessage.from}_#{flag}", :class => "getId" %>
-            </td>        
-        </tr>
+    <section  class="bordercolort" id="<%= iMessage.from%>_<%= flag%>">
+        <font id="textcolor" style="float:right">
+            <%= time_ago_in_words iMessage.created_at %>                                
+        </font>
+        <% if iMessage.from == current_user.fbauth.uid %>
+          <b style="color: #7AC142; font-size: 15px;" class="initial" id="#<%= iMessage.from%>_<%= flag%>">
+            <%= FbGraph::User.new(iMessage.from).fetch.name %>
+          </b>  
+        <% else %>
+          <b style="color: #f8981d; font-size: 15px;" class="initial" id="#<%= iMessage.from%>_<%= flag%>">
+            <%= FbGraph::User.new(iMessage.from).fetch.name %>
+          </b>
+        <% end %>                                               
+        <font id="textcolor">&nbsp;<%=h truncate(iMessage.body, :length => 80) %></font></br>    
+    </section>
+    
+    <section  class="bordercolort" id="<%= iMessage.from%>_<%= flag%><%= reply %>" style="display: none;">
+    <% if iMessage.from == current_user.fbauth.uid %>        
+        <font id="textcolor" style="float:right">
+            <%= time_ago_in_words iMessage.created_at %></BR> 
+            <%= image_tag "btn_mark_unread_up.png" %>&nbsp;&nbsp;
+            <%= link_to image_tag("icon_multiply.png"), message_path(:id => iMessage.id), :method => 'delete' %>
+        </font>
+        <% if iMessage.from == current_user.fbauth.uid %>
+          <b style="color: #7AC142; font-size: 15px;" class="reply" id="#<%= iMessage.from%>_<%= flag%><%= reply %>">
+            <%= FbGraph::User.new(iMessage.from).fetch.name %>
+          </b>  
+        <% else %>
+          <b style="color: #f8981d; font-size: 15px;" class="reply" id="#<%= iMessage.from%>_<%= flag%><%= reply %>">
+            <%= FbGraph::User.new(iMessage.from).fetch.name %>
+          </b>
+        <% end %>                                               
+        <font id="textcolor">&nbsp;</br><%= iMessage.body %></font></br>        
     <% else %>
-        <tr class="<%= iMessage.from %>_<%= flag %>"  bgcolor ="#FFFFFF">              
-            <td width="15%" class="bordercolort" style="padding-right:20px;" colspan="3">                        
-                <font id="textcolor" style="float:right">
-                    <%= time_ago_in_words iMessage.created_at %></br>                    
-                
-                  <%= image_tag "btn_mark_unread_up.png" %>&nbsp;&nbsp;
-                  <%= link_to image_tag("icon_multiply.png"), message_path(:id => iMessage.id), :method => 'delete' %>
-                </font>
-                <% if iMessage.from == current_user.fbauth.uid %>
-                  <font id="msgOrangeColorTestC">
-                    <%= FbGraph::User.new(iMessage.from).fetch.name %>
-                  </font>  
-                <% else %>
-                  <font id="msgOrangeColorTestI">
-                    <%= FbGraph::User.new(iMessage.from).fetch.name %>
-                  </font><font id="textcolorToMe">to me</font></br>
-                <% end %>                                               
-                <font id="textcolor">&nbsp;<%= iMessage.body %></font></br>
-                <hr width="100%">
-                <table width="100%" bgcolor="#f4f4f4">                    
-                    <tr bgcolor="#ffffff">                      
-                      <td colspan="2">
-                        <%= text_area_tag 'message','', :class =>"textareaMessageI" %>
-                      </td>
-                    </tr>
-                    <tr bgcolor="#ffffff">
-                      <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<%= image_tag("icon_attach_mo.png") %>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <%= image_tag("icon_photo_mo.png") %>
-                      </td>
-                      <td>
-                        <%#= link_to "CANCEL",  messages_path, :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel_message"%>        
-                        <%= submit_tag "REPLY", :style => "width: 80px; float:right;", :class => "linksNewMessage" %>                        
-                      </td>
-                    </tr>                   
-                </table>
-            </td>                
-        </tr>
-    <% end %>    
-    <% flag += 1 %>
-    <% end %>  
-  </table>
+        <font id="textcolor" style="float:right">
+            <%= time_ago_in_words iMessage.created_at %></BR> 
+            <%= image_tag "btn_mark_unread_up.png" %>&nbsp;&nbsp;
+            <%= link_to image_tag("icon_multiply.png"), message_path(:id => iMessage.id), :method => 'delete' %>                                
+        </font>
+        <% if iMessage.from == current_user.fbauth.uid %>
+          <b style="color: #7AC142; font-size: 15px;" class="reply" id="#<%= iMessage.from%>_<%= flag%><%= reply %>">
+            <%= FbGraph::User.new(iMessage.from).fetch.name %>
+          </b>  
+        <% else %>
+          <b style="color: #f8981d; font-size: 15px;" class="reply" id="#<%= iMessage.from%>_<%= flag%><%= reply %>">
+            <%= FbGraph::User.new(iMessage.from).fetch.name %>
+          </b><font id="textcolorToMe">to me</font>
+        <% end %>                                               
+        <font id="textcolor">&nbsp;</br><%= iMessage.body %></font></br>             
+          <hr width="100%">
+          <table width="100%" bgcolor="#f4f4f4">                    
+              <tr bgcolor="#ffffff">                      
+                <td colspan="2">
+                  <%= text_area_tag 'message','', :class =>"textareaMessageI" %>
+                </td>
+              </tr>
+              <tr bgcolor="#ffffff">
+                <td>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<%= image_tag("icon_attach_mo.png") %>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <%= image_tag("icon_photo_mo.png") %>
+                </td>
+                <td>
+                  <%#= link_to "CANCEL",  messages_path, :style => "text-decoration: none; color:#fff; float:right" ,:class => "links_cancel_message"%>        
+                  <%= submit_tag "REPLY", :style => "width: 80px; float:right;", :class => "linksNewMessage" %>                        
+                </td>
+              </tr>                   
+          </table>    
+    <% end %>
+    <% flag += 1 %>      
+    <% reply +=1 %>    
+    </section>
+    <% end %>
+  </section>
+ 
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 </section>
 
 <section style="display:none;">
@@ -171,4 +213,5 @@
     <% end %>
 </section>
 </section>
+
 

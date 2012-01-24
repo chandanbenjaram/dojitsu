@@ -37,3 +37,26 @@ $(document).ready(function(){
           });
     });
 });
+
+$(document).ready(function(){
+    $(".initial").click(function(event){      
+      var targetId = event.target.id;      
+      var toAdd = targetId.split("_");      
+      var showId = targetId.concat(toAdd[1])      
+      $(targetId).hide();
+      $(showId).show();
+      //$(targetId).replaceWith($(showId).show());
+    });
+    
+    $(".reply").click(function(event){      
+      var targetId = event.target.id;      
+      var toAdd = targetId.split("_");      
+      var toAddAgain = toAdd[1].split("");      
+      var showAdds = toAdd[0].concat("_");      
+      var showAddId = showAdds.concat(toAddAgain[0]);      
+      $(targetId).hide();
+      $(showAddId).show();
+      //$(targetId).replaceWith($(showAddId).show());
+    });
+    
+  });

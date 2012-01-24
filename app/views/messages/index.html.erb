@@ -42,11 +42,11 @@
     <tbody>
         <% current_user.inbox.each do |userMessage| %>
           <% if userMessage.isRead == 1 %>
-              <tr bgcolor ="#F5FAF0">
-                  <td width="7%" class="bordercolort" style="padding-left:15px;" onclick="location.href='<%= individualAllMessage_messages_path(:iId => userMessage.from, :id =>userMessage.id) %>'">
+              <tr bgcolor ="#FFFFFF">
+                  <td width="7%" class="bordercolortM" style="padding-left:15px;" onclick="location.href='<%= individualAllMessage_messages_path(:iId => userMessage.from, :id =>userMessage.id) %>'">
                       <%= image_tag(FbGraph::User.new(userMessage.from).fetch.picture) %>            </td>
-                  <td width="81%" class="bordercolort" style="padding-right:20px;" onclick="location.href='<%= individualAllMessage_messages_path(:iId => userMessage.from, :id =>userMessage.id) %>'">
-                      <font size="3px" style="float:right">
+                  <td width="81%" class="bordercolortM" style="padding-right:20px;" onclick="location.href='<%= individualAllMessage_messages_path(:iId => userMessage.from, :id =>userMessage.id) %>'">
+                      <font size="3px" style="float:right; margin-top: 12px;">
 
                           <%#= availability_date = DateTime.parse(userMessage.created_at.to_s)%>
 
@@ -61,20 +61,20 @@
                       <font size="4px" style="font-weight:bold"><%= FbGraph::User.new(userMessage.from).fetch.name %></font></br>
                       <font size="3px"><%= image_tag "icon_replied.png" %> <%=h truncate(userMessage.body, :length => 55) %>..</font></br>          </td>
                   </td>
-                  <td width="11%" class="bordercolort" style="padding-left:15px; ">
+                  <td width="11%" class="bordercolortM" style="padding-left:15px; ">
                     <% if userMessage.isRead == 0 %>
-                      <%= image_tag "btn_mark_unread_up.png" %>&nbsp;&nbsp;
-                    <% else %>
                       <%= image_tag "btn_mark_read_up.png" %>&nbsp;&nbsp;
+                    <% else %>
+                      <%= image_tag "btn_mark_unread_up.png" %>&nbsp;&nbsp;
                     <% end %>                                
                     <%= link_to image_tag("icon_multiply.png"), message_path(:id => userMessage.id), :method => 'delete' %>            </td>
               </tr>
           <% else %>
-              <tr bgcolor ="#FFFFFF">
-                  <td width="7%" class="bordercolort" style="padding-left:15px;" onclick="location.href='<%= individualAllMessage_messages_path(:iId => userMessage.from, :id =>userMessage.id) %>'">
-                      <%#= image_tag(FbGraph::User.new(userMessage.from).fetch.picture) %>            </td>
-                  <td width="81%" class="bordercolort" style="padding-right:20px;" onclick="location.href='<%= individualAllMessage_messages_path(:iId => userMessage.from, :id =>userMessage.id) %>'">
-                      <font size="3px" style="float:right">
+              <tr bgcolor ="#F5FAF0">
+                  <td width="7%" class="bordercolortM" style="padding-left:15px;" onclick="location.href='<%= individualAllMessage_messages_path(:iId => userMessage.from, :id =>userMessage.id) %>'">
+                      <%= image_tag(FbGraph::User.new(userMessage.from).fetch.picture) %>            </td>
+                  <td width="81%" class="bordercolortM" style="padding-right:20px;" onclick="location.href='<%= individualAllMessage_messages_path(:iId => userMessage.from, :id =>userMessage.id) %>'">
+                      <font size="3px" style="float:right; margin-top: 12px;">
 
                           <%#= availability_date = DateTime.parse(userMessage.created_at.to_s)%>
 
@@ -86,14 +86,14 @@
                           <%#= t = time_until.to_f %>
 
                           <%= time_ago_in_words userMessage.created_at %>                </font>
-                      <font size="4px" style="font-weight:bold"><%#= FbGraph::User.new(userMessage.from).fetch.name %></font></br>
+                      <font size="4px" style="font-weight:bold"><%= FbGraph::User.new(userMessage.from).fetch.name %></font></br>
                       <font size="3px"><%= image_tag "icon_replied.png" %> <%=h truncate(userMessage.body, :length => 55) %>..</font></br>          </td>
                   </td>
-                  <td width="11%" class="bordercolort" style="padding-left:15px; ">
+                  <td width="11%" class="bordercolortM" style="padding-left:15px; ">
                     <% if userMessage.isRead == 0 %>
-                      <%= image_tag "btn_mark_unread_up.png" %>&nbsp;&nbsp;
-                    <% else %>
                       <%= image_tag "btn_mark_read_up.png" %>&nbsp;&nbsp;
+                    <% else %>
+                      <%= image_tag "btn_mark_unread_up.png" %>&nbsp;&nbsp;
                     <% end %>                                
                     <%= link_to image_tag("icon_multiply.png"), message_path(:id => userMessage.id), :method => 'delete' %>            </td>
               </tr>
