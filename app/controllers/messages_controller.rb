@@ -13,8 +13,9 @@ class MessagesController < ApplicationController
 		end
 	end
   
-  def newmessage
+  def newmessage    
     whomSend = Authentication.find_by_email(params[:to])
+    UserMailer.sendMail(params[:to],params[:message]).deliver
     Message.create(:to =>whomSend.uid, :from =>current_user.fbauth.uid, :body => params[:message])
     redirect_to messages_path
   end
@@ -26,7 +27,8 @@ class MessagesController < ApplicationController
   end
   
   def destroy
-     Message.where(:_id =>params[:id]).first.destroy
-     render 'index'
+    aDelete = Message.where(:_id =>params[:id]).first
+    aDelete.update_attributes(:isDeleted => 1)
+    render 'index'
   end
 end

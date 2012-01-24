@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   end
 
   def inbox 
-    Message.all(conditions: { :to => (fbauth.uid rescue gmauth.id) }, limit: 6).desc("created_at")
+    Message.all(conditions: { :to => (fbauth.uid rescue gmauth.id), :isDeleted => 0 }, limit: 6).desc("created_at")
   end
   
   def challenges 
