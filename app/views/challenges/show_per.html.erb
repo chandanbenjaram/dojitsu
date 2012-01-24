@@ -4,7 +4,11 @@
 <body id="related">
 <div class="challengeSubNav" onclick="Testingbody();>
 
-    <%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %>
+    <section class="challengeSubNav">
+	<%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %>
+    <%= link_to "MY CHALLENGES >> ", challenges_url ,  :class => "challenge_link1" %>
+	<%= link_to "#{@challenge.title}","#" ,  :class => "challenge_link1" %> 
+</section>
     
 <%= link_to "MY CHALLENGES >> ", challenges_url , :class => "challenge_link1" %>
 
@@ -12,11 +16,13 @@
 
 </div>
 
-<% if params[:isNewChallenge] == "isNew" %>
-    <script>
+
+<% if @challenge.pagecount == 0 %>
+<script>
       $.dojitsuWallPost.renderFbWallPost();
     </script>
-<% end %>
+<% @challenge.update_attribute("pagecount","1")%>
+	<%end%>
 <div id="ch_main_div1">
 <%= form_for @challenge do |f| %>
 <table width="100%" border="0" border cellspacing=12px>

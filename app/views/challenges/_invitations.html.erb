@@ -33,7 +33,7 @@
 					$j('#inviteBtn').val("INVITE PARTICIPANTS");    
 					$j(this).dialog( "close" );
 				},
-				Save: function() {
+				Invite: function() {
 					var friendSelector = $j("#jfmfs-container").data('jfmfs');
 					var selectedFriends = friendSelector.getSelectedIds();
 					$j('#invitees_id').val(selectedFriends);
