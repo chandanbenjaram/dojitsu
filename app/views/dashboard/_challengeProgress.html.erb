@@ -1,9 +1,9 @@
 
 			<% t=1 %>
-			<script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> </script>
+
 			<table  class="sortable">
 			<thead>
-			  <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">NAME</th><th style="CURSOR: pointer; cursor: hand;" id="content2"><span class="mydojoscore">MY DOJITSU SCORE</span></th></tr>
+			  <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">NAME</th><th style="CURSOR: pointer; cursor: hand;" id="content2"><p id="p">MY DOJITSU SCORE</p></th></tr>
 			</thead>
 			<tbody>
 				<% current_user.challenges.each do |userChallenge| %>

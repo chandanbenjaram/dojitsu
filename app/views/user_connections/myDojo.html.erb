@@ -1,6 +1,4 @@
-<script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> </script>
-<%= stylesheet_link_tag('colorbox') %>
-<%= javascript_include_tag('jquery.colorbox-min') %>
+
 
 <% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
 	<% group =Array.new %>
