@@ -1,3 +1,8 @@
+<section id="messagecount">
+  <section id="messagecountTest">
+      <%= current_user.unReadMessage.count %>
+  </section>  
+</section>
 <%= render 'layouts/loggedinbody' %>
 <%= javascript_include_tag('jquery.colorbox-min','messageJs')%>
 <%= stylesheet_link_tag('colorbox','messageCss')%>
@@ -79,7 +84,7 @@
         <font id="textcolor">&nbsp;<%=h truncate(iMessage.body, :length => 80) %></font></br>    
     </section>
     
-    <section  class="bordercolort" id="<%= iMessage.from%>_<%= flag%><%= reply %>" style="display: none;">
+    <section  class="bordercolortR" id="<%= iMessage.from%>_<%= flag%><%= reply %>" style="display: none;">
     <% if iMessage.from == current_user.fbauth.uid %>        
         <font id="textcolor" style="float:right">
             <%= time_ago_in_words iMessage.created_at %></BR> 
@@ -113,6 +118,8 @@
         <% end %>                                               
         <font id="textcolor">&nbsp;</br><%= iMessage.body %></font></br>             
           <hr width="100%">
+          <%= form_tag newmessage_messages_path, :method => :get do  %>          
+          <%= hidden_field_tag 'to', "#{@toEmail}" %>
           <table width="100%" bgcolor="#f4f4f4">                    
               <tr bgcolor="#ffffff">                      
                 <td colspan="2">
@@ -129,7 +136,8 @@
                   <%= submit_tag "REPLY", :style => "width: 80px; float:right;", :class => "linksNewMessage" %>                        
                 </td>
               </tr>                   
-          </table>    
+          </table>
+          <% end %>
     <% end %>
     <% flag += 1 %>      
     <% reply +=1 %>    

@@ -34,6 +34,10 @@ class User < ActiveRecord::Base
     Message.all(conditions: { :to => (fbauth.uid rescue gmauth.id), :isDeleted => 0 }, limit: 6).desc("created_at")
   end
   
+  def unReadMessage
+    Message.all(conditions: { :to => fbauth.uid , :isRead => 0 })
+  end
+  
   def challenges 
     challenges = []
     logger.debug gmauth.id

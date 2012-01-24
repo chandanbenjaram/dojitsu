@@ -22,6 +22,10 @@ describe MessagesController do
     it "should route to MESSAGES controller DESTROY action" do
       { :delete => "/messages/12"}.should route_to(:controller=>"messages", :action=>"destroy", :id => '12')
     end
+    
+    it "should route to MESSAGES controller markUnread action" do
+      { :get => "/messages/markUnread"}.should route_to(:controller=>"messages", :action=>"markUnread")
+    end
 
   end
 end
