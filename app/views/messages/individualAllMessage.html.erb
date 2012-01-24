@@ -9,7 +9,7 @@
   <table id="fdPicture" width="100%">
     <tr>
       <td width="3%"><%= image_tag(FbGraph::User.new(@wayToRead.from).fetch.picture) %></td>
-      <td width="33%" id="msgOrangeColorTest"><%#= FbGraph::User.new(@wayToRead.from).fetch.name.upcase   %></td>
+      <td width="33%" id="msgOrangeColorTest"><%= FbGraph::User.new(@wayToRead.from).fetch.name.upcase   %></td>
       <td width="24%"></td>
 	  <td width="19%" >
           <input type="text" id="search" />
