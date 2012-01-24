@@ -1,3 +1,5 @@
+
+
 <% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
 	<% group =Array.new %>
 	<% allConnections.each  do |eachConnection| %>
@@ -31,62 +33,95 @@
 							</label>
 					</td>
 					<td style="width:80%; padding-left: 56%;"><input type="text" id="search"/>
-				<span class="searchbox">	<%= image_tag ("searchbutton.PNG")   %><span>
-						<style>
-						.searchbox
-						{
-						position:relative;
-						relative; top:5px
-						}
-						</style>
+					<span class="searchbox"><%= image_tag ("searchbutton.PNG") %><span>
+						
 						
 					</td>
 					<td>
 					<p class="invite"><%= render :partial => 'invitations' %>
-					<%= hidden_field_tag "myvar", 0%>	
+		<%#= image_tag("invitee.PNG", :width=> "100px" , :height => "30px", :style => "top:10px;" )%>
+
+		<%= hidden_field_tag "myvar", 0%>	
 		</p>
 					</td>
 				</table>
+				
+
+
 				<table width="100%" id="tblData" class="sortable" border=1>
 				<thead>
 				<tr>
+
 				<th width="85%"><b style="position:relative; color:#666666; padding-left:20px; " >NAME</b></th>
 				<th width="15%"><b style=" color:#666666;  " >STATUS </b></th>
 				</tr>
 				</thead>
 				<tbody bgcolor="#ffffff">
 				<% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
-		
+                    				
 					<% allConnections.each  do |eachConnection| %>
 						<tr>
 						<td>
 						<%=image_tag(FbGraph::User.new(eachConnection.target_id).fetch.picture) %>
 						<span class="fbusername"><%= FbGraph::User.new(eachConnection.target_id).fetch.name %></span>
+						<span > 
 						</td>
 						<td>
-						<span > 
-								<%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>
-								<span class="delete">	
-										<%= link_to image_tag("btn_delete_up.png"), delete_contact_user_connections_path( :id => eachConnection.target_id), :class=>"remove"  %>	
-								</span>
-						</span>
+						
+						<%= image_tag('btn_msg_up.png', :id => "#{eachConnection.target_id}", :class =>"private_msg" )%>
+			
+						
+						<%= link_to image_tag("btn_delete_up.png" ,), delete_contact_user_connections_path( :id=>eachConnection.target_id), :class=>"remove" %></span> 
 						</td>
 						</tr>
 					<% end %>
-                          <style>
-								.delete
-								{
-								position:relative;
-								relative; top:-5px
-								}
-						</style>								
+                                       
 				</tbody>
 				</table>
 				</div>
+				
 				<script>
 					$('.remove').colorbox();
 				</script>
-	<script>
+				
+
+				
+				
+
+				
+				<script type="text/javascript">
+							$(document).ready(function()
+							{
+								$('#search').keyup(function()
+								{
+									searchTable($(this).val());
+								});
+							});
+							function searchTable(inputVal)
+							{
+								var table = $('#tblData');
+								table.find('tr').each(function(index, row)
+								{
+									var allCells = $(row).find('td');
+									if(allCells.length > 0)
+									{
+										var found = false;
+										allCells.each(function(index, td)
+										{
+											var regExp = new RegExp(inputVal, 'i');
+											if(regExp.test($(td).text()))
+											{
+												found = true;
+												return false;
+											}
+										});
+										if(found == true)$(row).show();else $(row).hide();
+									}
+								});
+							}
+						</script>
+
+<script>
     $(document).ready(function() {
         $(".private_msg").click(function(event) {                                                                                                                  
             var targetId = event.target.id;
@@ -147,4 +182,15 @@
     width:20%;
   }
 </style>
-
+       <style>
+								.remove
+								{
+								position:relative;
+								relative; top:-5px
+								}
+									.searchbox
+						{
+						position:relative;
+						relative; top:5px
+						}
+						</style>
