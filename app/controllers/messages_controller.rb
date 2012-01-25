@@ -29,8 +29,9 @@ class MessagesController < ApplicationController
   end
   
   def destroy
-    aDelete = Message.where(:_id =>params[:id]).first
-    aDelete.update_attributes(:isDeleted => 1)
+    Message.where(:_id =>params[:id]).destroy
+    #aDelete = Message.where(:_id =>params[:id]).first
+    #aDelete.update_attributes(:isDeleted => 1)
     render 'index'
   end
   
