@@ -1,5 +1,5 @@
-<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css','jquery-ui','ui.progressbar','ui.theme', 'main', 'challenges_social', 'challenges')%>
-<%= javascript_include_tag('simple-tabs','ui.progressbar.js','ajaxPageLoad','soc-per','on_the_spot','jquery.colorbox-min','jquery.tools.min','messages','fbWallPost')%>
+<%= stylesheet_link_tag('simple-tabs','tab','datePicker','colorbox','jquery.cluetip.css','jquery-ui','ui.progressbar','ui.theme', 'main', 'challenges_social', 'challenges')%>
+<%= javascript_include_tag('simple-tabs','tabs','ui.progressbar.js','ajaxPageLoad','soc-per','on_the_spot','jquery.colorbox-min','jquery.tools.min','messages','fbWallPost')%>
 <%= render 'layouts/loggedinbody'%>
 
 <section class="challengeSubNav">
@@ -137,9 +137,7 @@
 		});
       }
 		</script>
-		
-	
-		<script type="text/javascript">
+	<script type="text/javascript">
 		$(document).ready(function(){
 					$("#image1").hide();
 					$("#image2").hide();
@@ -166,35 +164,34 @@
 						//	$("#image5").hide();
 					 });
 			 });
-
 		</script>
-		
 	<section>
 	<table id="description" >
 		<tr>
 			<td valign="top"height="34px" width="15%" >
 					<span class="colorligtblk1">DESCRIPTION<b ></span>
+			</td>
 			<td valign="top" width="73%">
-			<% if @challenge.user_id == current_user.fbauth.uid %>
-					<section class="onthespandescription" >
-					 	<span class ="updatedesccolo" ><%= @challenge.description %>	</span> 
-					</section>
-				<% else %>
-					<section>
-						<span class ="updatedesccolo" ><%= @challenge.description %>	</span> 
-					</section>
-				<% end %>	
+					<% if @challenge.user_id == current_user.fbauth.uid %>
+							<section class="onthespandescription" >
+								<span class ="updatedesccolo" ><%= @challenge.description %>	</span> 
+							</section>
+						<% else %>
+							<section>
+								<span class ="updatedesccolo" ><%= @challenge.description %>	</span> 
+							</section>
+						<% end %>	
 			
-			<section id="replacedDescription">
-					<%= text_area(:challenge, :description, :class => "textareastyle" )%>
-					<%= link_to image_tag("update.png", :class =>"replacedesc"), show_per_challenges_path(:id => @challenge.id) %>
-					<%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "replace_cancel_desc1" %>
-			</section>
+						<section id="replacedDescription">
+								<%= text_area(:challenge, :description, :class => "textareastyle" )%>
+								<%= link_to image_tag("update.png", :class =>"replacedesc"), show_per_challenges_path(:id => @challenge.id) %>
+								<%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "replace_cancel_desc1" %>
+						</section>
 			</td>
 						<% if @challenge.user_id == current_user.fbauth.uid %>
-						<td valign="top" width="12%" onclick="TestingDesc();">
-							<span id="image1"><%= image_tag("icon_edit.png") %></span>
-						</td>
+							<td valign="top" width="12%" onclick="TestingDesc();">
+									<span id="image1"><%= image_tag("icon_edit.png") %></span>
+							</td>
 						<% else %>
 							<td width="12%"></td>
 						<%end%>
@@ -224,18 +221,15 @@
 						);
 					});
 			</script>
-
-		</tr>
-	</table>
 </section>	
 
 <section>
 	<table id="organizer">
 		<tr>
-			<td height="34px" width="130px">
+			<td height="34px" width="15%" class="titles">
 				<span class="colorligtblk1">ORGANIZER</span>
 			</td>
-			<td >
+			<td width="73%">
 			
 			<% if @challenge.instance_of?ChildChallenge%>
 			 <%  @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
@@ -250,7 +244,13 @@
 			 </script>
 			<% end %>
 			</td>
-			
+			<td  width="12%">
+				<span id="image2">
+				<% if @challenge.instance_of?ChildChallenge || @challenge.user_id != current_user.fbauth.uid %>
+					<%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(ordId)" ) %>
+				<% end %>
+				</span>
+			</td>
 		</tr>
 		<tr>
 			<hr/>
@@ -265,17 +265,17 @@
 <section>
 	<table id="startdate">
 		<tr>
-			<td height="34px" width="130px">
+			<td height="34px" width="15%">
 				<b class="colorligtblk">START POINT</b>
 			</td>
-			<td >
+			<td width="73%">
 				<% if @challenge.start_point.instance_of?PointDateType %>		
 					 <b class="colordarkblk"><%= @challenge.start_point.value.strftime("%b %d, %Y") %> </b>
 				<% else %>							
 					 <b class="colordarkblk"><%= @challenge.start_point.value.to_i %></b>
 				<% end %>
 			</td>
-			
+				<td></td>
 				<!-- <% if @challenge.user_id == current_user.fbauth.uid %>
 					<td valign="top" width="12%" onclick="TestingDesc();">
 						<span id="image3"><%= image_tag("icon_edit.png") %></span>
@@ -317,54 +317,28 @@
 	</table>
 </section>
 
-<section>
-	<hr/>
-</section>	
+<div>
+<%#= render :partial=> "challenges/againstothers" %>
+</div>
 
-<table id="participant">
-	<tr  height="34px" >
-		<td width="130px">
-			<b><span class="colorligtblk">PARTICIPANTS</span></b>
-		</td>
-		<td>
-		<% if @challenge.social_type.status == 1 &&  @challenge.class.to_s == "ChildChallenge" %>
-				 <b class="colordarkblk"><%= @challenge.parent.child_challenges.length %>&nbsp;&nbsp;&nbsp;<% link_to " Total Score ", scoreboard_main_challenges_path(:id => @challenge.id) %></b>&nbsp;&nbsp;&nbsp;
-			<% else %>
-				<% if @challenge.social_type.status == 1 %> 
-					 <b class="colordarkblk"><%= @challenge.child_challenges.length %></b>
-					&nbsp;&nbsp;&nbsp;<%= link_to "Score board", scoreboard_main_challenges_path(:id => @challenge.id) %>&nbsp;&nbsp;&nbsp;
-				<% else %>
-					 <b class="colordarkblk"><%= @challenge.parent.child_challenges.length %>&nbsp;&nbsp;&nbsp;<% link_to " Total Score ", scoreboard_main_challenges_path(:id => @challenge.id) %></b>&nbsp;&nbsp;&nbsp;
-				<% end %>
-		<% end %>
-		<span class="textdecoration"><% link_to " Winners of the Challenge", trophies_challenges_path(:id => @challenge.id) %></span>
-		</td>
-	
-	
-	</tr>
-</table>
-<input type="hidden" name="thinking_abt" id="thinking_abt" value="<%= @challenge.id %>"> 
-<table width="100%" border="0" class="marginalign">
-	<tr>
-		<td colspan="3">
-			<ul class="tabs">
-				<li><a href="#tab1"><b>TASKS</b></a></li>
-				<li><a href="#tab2"><b>PEOPLE</b></a></li>
-			</ul>
-			<section class="tab_container">
-				<section id="tab1" class="tab_content">
-					<% if(@challenge.social_type.status? and @flg.to_s == "ed") %>
-						<%= render :partial=> "challenges/tasks_edit" %>
-					<% else %>
-						<%= render :partial=> "challenges/tasks" %>																										
-					<% end %>
-				</section>
-				<section id="tab2" style="background:#F5F5F5;" class="tab_content">
-		<section class="tables">
-	<%= render :partial=> "challenges/searchpeople" %>			
-</section>   
- </section> 
- </section> 
+	<input type="hidden" name="thinking_abt" id="thinking_abt" value="<%= @challenge.id %>"> 
+	<table width="100%" border="0" class="marginalign">
+		<tr>
+			<td colspan="3">
+				<ul class="tabs">
+					<li><a href="#tab1"><b>TASKS</b></a></li>
+					<li><a href="#tab2"><b>SCOREBOARD</b></a></li>
+				</ul>
+					<section class="tab_container">
+								<section id="tab1" class="tab_content" style="background:white;">
+									<%= render :partial=> "challenges/tasksupdate" %>
+								</section>
+								<section id="tab2" style="background:white;" class="tab_content">
+										<section class="tables">
+											<%#= render :partial=> "challenges/searchpeople" %>			
+										</section>   
+								</section> 
+					</section> 
 </td>
  </tr>
 </table>
@@ -438,4 +412,10 @@ $('.ui-button').live('click', function(){
     $(".tables").replaceWith($('.tables'));
   });
  </script>
+<style>
+#against
+{
+float:left;
+}
+</style>
 
