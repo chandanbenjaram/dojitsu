@@ -1,7 +1,15 @@
-
+<%= javascript_include_tag('jquery.tablesorter.min')%>
+<%= stylesheet_link_tag('style')%>
+  <script>
+	$(document).ready(function() 
+		{ 
+			$("#myTable").tablesorter(); 
+		} 
+	); 
+   </script> 
 			<% t=1 %>
 
-			<table  class="sortable">
+			<table   id="myTable" class="tablesorter">
 			<thead>
 			  <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">NAME</th><th style="CURSOR: pointer; cursor: hand;" id="content2"><p id="p">MY DOJITSU SCORE</p></th></tr>
 			</thead>

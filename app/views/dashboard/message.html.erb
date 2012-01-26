@@ -1,11 +1,20 @@
-<table class="sortable">
+<%= javascript_include_tag('jquery.tablesorter.min')%>
+<%= stylesheet_link_tag('style')%>
+    <script>
+	$(document).ready(function() 
+    { 
+        $("#myTable1").tablesorter( {sortList: [[0,0], [1,0]]} ); 
+    } 
+	); 
+   </script> 
+<table id="myTable1"  class="tablesorter">
     <% if current_user.inbox.count == 0 %>
         <p align="center">No message for you</p>
     <% else %>
     <thead>
         <tr>
-            <th id="content1">FROM</th>
-            <th id="content2">
+            <th id="content3">FROM</th>
+            <th id="content4">
                <span id="timespace">TIME</span>
             </th>
 	</tr>

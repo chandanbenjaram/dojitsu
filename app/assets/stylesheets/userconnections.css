@@ -46,7 +46,7 @@
 
  .update {
     float: left;
-    left: 87%;
+    left: 80%;
     position: relative;
     top: 10px;
 }
@@ -72,4 +72,21 @@
 .marginst
 {
 	margin-top:0px;
+}
+
+#content2 {
+    padding-left: 400px;
+}
+
+
+#p {
+    float: right;
+    margin: 0 0 0.5em;
+    position: relative;
+    right: 20px;
+    top: 4px;
+}
+
+#content1 {
+    background-position: 15% center;
 }
