@@ -338,7 +338,7 @@
 			<% else %>
 				<% if @challenge.social_type.status == 1 %> 
 					 <b class="colordarkblk"><%= @challenge.child_challenges.length %></b>
-					&nbsp;&nbsp;&nbsp;<% link_to " Total Score ", scoreboard_main_challenges_path(:id => @challenge.id) %>&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;<%= link_to "Score board", scoreboard_main_challenges_path(:id => @challenge.id) %>&nbsp;&nbsp;&nbsp;
 				<% else %>
 					 <b class="colordarkblk"><%= @challenge.parent.child_challenges.length %>&nbsp;&nbsp;&nbsp;<% link_to " Total Score ", scoreboard_main_challenges_path(:id => @challenge.id) %></b>&nbsp;&nbsp;&nbsp;
 				<% end %>
