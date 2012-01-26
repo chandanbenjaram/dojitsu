@@ -70,7 +70,7 @@
                     <% if userMessage.isRead == 0 %>
                       <%= image_tag "btn_mark_read_up.png" %>&nbsp;&nbsp;
                     <% else %>
-                      <%= link_to image_tag("btn_mark_unread_up.png"), markUnread_messages_path(:id => userMessage.id), :title=>"Mark as Unread"%>&nbsp;&nbsp;
+                      <%= link_to image_tag("btn_mark_unread_up.png"), markUnread_messages_path(:id => userMessage.id), :title=>"Mark as Unread" %>&nbsp;&nbsp;
                     <% end %>                                
                     <%= link_to image_tag("icon_multiply.png"), message_path(:id => userMessage.id), :method => 'delete' %>            </td>
               </tr>
