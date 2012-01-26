@@ -232,10 +232,10 @@
 <section>
 	<table id="organizer">
 		<tr>
-			<td height="34px" width="15%" class="titles">
+			<td height="34px" width="130px">
 				<span class="colorligtblk1">ORGANIZER</span>
 			</td>
-			<td width="73%">
+			<td >
 			
 			<% if @challenge.instance_of?ChildChallenge%>
 			 <%  @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
@@ -250,13 +250,7 @@
 			 </script>
 			<% end %>
 			</td>
-			<td  width="12%">
-				<span id="image2">
-				<% if @challenge.instance_of?ChildChallenge || @challenge.user_id != current_user.fbauth.uid %>
-					<%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(ordId)" ) %>
-				<% end %>
-				</span>
-			</td>
+			
 		</tr>
 		<tr>
 			<hr/>
@@ -271,17 +265,17 @@
 <section>
 	<table id="startdate">
 		<tr>
-			<td height="34px" width="15%">
+			<td height="34px" width="130px">
 				<b class="colorligtblk">START POINT</b>
 			</td>
-			<td width="73%">
+			<td >
 				<% if @challenge.start_point.instance_of?PointDateType %>		
 					 <b class="colordarkblk"><%= @challenge.start_point.value.strftime("%b %d, %Y") %> </b>
 				<% else %>							
 					 <b class="colordarkblk"><%= @challenge.start_point.value.to_i %></b>
 				<% end %>
 			</td>
-				<td></td>
+			
 				<!-- <% if @challenge.user_id == current_user.fbauth.uid %>
 					<td valign="top" width="12%" onclick="TestingDesc();">
 						<span id="image3"><%= image_tag("icon_edit.png") %></span>
@@ -345,10 +339,7 @@
 		<% end %>
 		<span class="textdecoration"><% link_to " Winners of the Challenge", trophies_challenges_path(:id => @challenge.id) %></span>
 		</td>
-		<td  width="12%"  >
-		    
-					
-		</td>
+	
 	
 	</tr>
 </table>

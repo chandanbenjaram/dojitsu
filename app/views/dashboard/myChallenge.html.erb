@@ -1,18 +1,24 @@
-<%= stylesheet_link_tag('main')%>
+<%= javascript_include_tag('jquery.tablesorter.min')%>
+<%= stylesheet_link_tag('main','style')%>
 
 <div id="challengedetails">
     <% taskCompleted=1 %>
-    
-   <script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"> 
-    </script>
-    <table class="sortable">
+    <script>
+	$(document).ready(function() { 
+	
+		$("#myTable").tablesorter( {sortList: [[0,0],[1,0]] } ); 
+		
+	}); 
+   </script> 
+   
+    <table id="myTable" class="tablesorter">
       <% if current_user.challenges.count == 0 %>
           <p align="center">No challenges for you</p>
       <% else %>
       <thead>
           <tr>
               <th id="content1">NAME</th>
-              <th id="content2">MY DOJITSU SCORE</th>
+              <th id="content2"><span class="position">MY DOJITSU SCORE</span></th>
           </tr>
       </thead>
       <tbody>
