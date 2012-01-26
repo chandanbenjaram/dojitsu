@@ -66,11 +66,11 @@
                       <font size="4px" style="font-weight:bold"><%= FbGraph::User.new(userMessage.from).fetch.name %></font></br>
                       <font size="3px"><%= image_tag "icon_replied.png" %> <%=h truncate(userMessage.body, :length => 55) %>..</font></br>          </td>
                   </td>
-                  <td width="11%" class="bordercolortM" style="padding-left:15px;" id="demo">                    
+                  <td width="11%" class="bordercolortM" style="padding-left:15px;">                    
                     <% if userMessage.isRead == 0 %>
                       <%= image_tag "btn_mark_read_up.png" %>&nbsp;&nbsp;
                     <% else %>
-                      <%= link_to image_tag("btn_mark_unread_up.png"), markUnread_messages_path(:id => userMessage.id), :title=>"Mark as Unread"%>&nbsp;&nbsp;
+                      <%= link_to image_tag("btn_mark_unread_up.png"), markUnread_messages_path(:id => userMessage.id), :id => "demo", :title=>"Mark as Unread"  %>&nbsp;&nbsp;
                     <% end %>                                
                     <%= link_to image_tag("icon_multiply.png"), message_path(:id => userMessage.id), :method => 'delete' %>            </td>
               </tr>

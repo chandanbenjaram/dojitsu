@@ -4,7 +4,7 @@
   </section>  
 </section>
 <%= render 'layouts/loggedinbody' %>
-<%= javascript_include_tag('jquery.colorbox-min','messageJs')%>
+<%= javascript_include_tag('jquery.colorbox-min','messageJs','jquery.tools.min')%>
 <%= stylesheet_link_tag('colorbox','messageCss')%>
 <section class="challengeSubNav">
   <%= button_to "", "#", :class => "iMessageNew", :method => :get%> 
@@ -104,7 +104,7 @@
     <% else %>
         <font id="textcolor" style="float:right">
             <%= time_ago_in_words iMessage.created_at %></BR> 
-            <%= image_tag "btn_mark_unread_up.png" %>&nbsp;&nbsp;
+            <%= link_to image_tag("btn_mark_unread_up.png"), :title=>"Mark as Unread" %>&nbsp;&nbsp;
             <%= link_to image_tag("icon_multiply.png"), message_path(:id => iMessage.id), :method => 'delete' %>                                
         </font>
         <% if iMessage.from == current_user.fbauth.uid %>
