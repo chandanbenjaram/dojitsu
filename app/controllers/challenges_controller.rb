@@ -20,7 +20,7 @@ class ChallengesController < ApplicationController
 
   def show_soc
     @flg = params[:flg]
-    @challenge = Challenge.find(params[:id])
+    @challenge = Challenge.find(params[:id])    
     @is_complete_status = 0 
     @challenge.tasks.each do |checkingTaskStatus|
       unless checkingTaskStatus.is_complete == 1
@@ -34,15 +34,15 @@ class ChallengesController < ApplicationController
     @org = User.find(:all,:conditions => ["id=?",@challenge.user_id]).first
   end
   
-   def scoreboard_main
-  @challenge = Challenge.find(params[:id])
-  @this_tasks = @challenge.tasks
-   @challenge.child_challenges.each do |childid|
-    @cid = childid.user_id 
-   end
-   @challenge.child_challenges.each do |chalid|
-     @chaid = chalid.challenge_id 
-   end
+  def scoreboard_main
+    @challenge = Challenge.find(params[:id])
+    @this_tasks = @challenge.tasks
+     @challenge.child_challenges.each do |childid|
+      @cid = childid.user_id 
+     end
+     @challenge.child_challenges.each do |chalid|
+       @chaid = chalid.challenge_id 
+     end
   end
 
   def show_per
@@ -435,7 +435,7 @@ end
   def socialpeople
     render :layout => false
   end
-
+  
   protected
 
   def find_challenge
