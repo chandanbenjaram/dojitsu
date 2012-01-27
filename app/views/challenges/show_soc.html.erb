@@ -68,7 +68,7 @@
 <% end %> -->
 
 <table width="100">		
-  <td valign="top" width="65%">
+  <td valign="top" width="70%">
     <table>
         <tr>
                 <td valign="top">
@@ -324,14 +324,34 @@
           <tr>
             <td>
                 <section class="mychallenge2">
-                        second
+                      <%= render :partial=> "challenges/againstothers" %>
                 </section>
+				</section>
             </td>					
           </tr>
           <tr>
               <td>
                   <section class="mychallenge3">
-                          second
+    <table width="100%" border="0" class="marginalign">
+		<tr>
+			<td colspan="3">
+				<ul class="tabs">
+					<li><a href="#tab1"><b>TASKS</b></a></li>
+					<li><a href="#tab2"><b>SCOREBOARD</b></a></li>
+				</ul>
+					<section class="tab_container">
+								<section id="tab1" class="tab_content" style="background:white;">
+									<%= render :partial=> "challenges/tasksupdate" %>
+								</section>
+								<section id="tab2" style="background:white;" class="tab_content">
+										<section class="tables">
+											<%#= render :partial=> "challenges/searchpeople" %>			
+										</section>   
+								</section> 
+					</section> 
+</td>
+ </tr>
+</table>
                   </section>
               </td>
           </tr>
@@ -347,28 +367,29 @@
 
 <style>
 .mychallenges {
-    border: 2px solid #BEBEBE;
-    border-radius: 6px 6px 6px 6px;
-    float: left;
-    height: 320px;
-    width: 100%;
-}
-.mychallenge2 {
-    border: 2px solid #BEBEBE;
-    border-radius: 6px 6px 6px 6px;
-    float: left;
-    height: 150px;
-    width: 100%;
-}
-.mychallenge3 {
-    border: 2px solid #BEBEBE;
+    border: 0px solid #BEBEBE;
     border-radius: 6px 6px 6px 6px;
     float: left;
     height: 250px;
     width: 100%;
 }
+.mychallenge2 {
+    border: 0px;
+    border-radius: 6px 6px 6px 6px;
+    float: left;
+    height: 350px;
+    width: 100%;
+}
+.mychallenge3 {
+    border: 0px;
+    border-radius: 6px 6px 6px 6px;
+    float: left;
+    height: 500px;
+    width: 100%;
+}
 .mychallenge4 {
     float: left;
+
 }
 </style>
 <script>

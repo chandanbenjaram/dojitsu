@@ -1960,7 +1960,8 @@ a:focus, a:hover {
 }
 
 #total{
-color:#8c8c8c
+color:#8c8c8c;
+font-size:15px;
 }
 
 #messagecountTest{

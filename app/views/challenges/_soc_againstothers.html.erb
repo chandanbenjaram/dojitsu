@@ -19,10 +19,11 @@
 	</tr>
 </table>
 	<hr/>
+	<hr/>
 	<br/>
 <table>
 	<tr>
-		<td width=20%>
+		<td width=10%>
 			Ranks
 		</td>
 		<td width=10%>
@@ -32,7 +33,7 @@
 			<div id="taskpercentage">
 			</div>
 		</td>
-		<td width=40%>
+		<td width=55%>
 				<div style="width=30px">
 						<span id="myscore"><b>My score</b></span><span  id ="top_score">Top Score</span> <br>
 						<div class="task" id="taskprogress"></div>
@@ -45,12 +46,12 @@
 					<br>
 				</div>
 		</td>
-		<td width=20%>
+		<td width=10%>
 			Updates
 		</td>
 	</tr>
 </table>
-//styles css 
+
 <style>
 #image
 {
@@ -65,7 +66,7 @@ margin-top:20px;
 }
 #top_score
 {
-padding-left: 400px;
+padding-left: 20%;
 font-weight:bold;
 font-size:16px;
 color:gray;
@@ -103,11 +104,11 @@ margin-right:20px;
 }
 .task
 {
-	width:550px;
+
 	}
 </style>
 
-//java script
+
 <script type="text/javascript">
 $(function() {
 	$("#taskprogress").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });							

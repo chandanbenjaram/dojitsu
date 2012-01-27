@@ -9,7 +9,7 @@
 </table>
 <table bgcolor=#f4f4f4>
 	<thead>
-		<td width=60%>
+		<td width=50%>
 			<b  id="total">Name</b>
 		</td>
 		<td width=6%>
@@ -18,7 +18,7 @@
 		<td width=6%>
 			<b  id="total">Hours<b id="sign">=</b></b>
 		</td>
-		<td width=10%>
+		<td width=20%>
 			<b  id="total">My Score</b>
 		</td>
 		<td width=18%>
@@ -30,7 +30,7 @@
 	<tbody>
 		<% @challenge.tasks.each do |aTask| %>
 			<tr>
-				<td  width=60%>
+				<td  width=50%>
 					<b  id="total"><%= aTask.name %></b>
 				</td>
 				<td width=6%>
@@ -38,7 +38,7 @@
 				</td>
 				<td width=6%>0
 				</td>
-				<td width=10%><% if aTask.is_complete.to_i == 0 %>0<%else%><%= aTask.score.to_i %><%end%>
+				<td width=20%><% if aTask.is_complete.to_i == 0 %>0<%else%><%= aTask.score.to_i %><%end%>
 				</td>
 				<td width=18%>
 				<%= link_to image_tag("update.png"), task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => "text-decoration: underline; color:#F9AB47;" %>
