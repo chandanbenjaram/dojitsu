@@ -72,7 +72,7 @@
     <table>
         <tr>
                 <td valign="top">
-                <section class="mychallenges">
+                <section  class="mychallenges">
                         <% if @challenge.user_id == current_user.fbauth.uid %>
                                         <span class="challange" id ="updatetitle" onclick="TestingTitle();"><%= @challenge.title %>	</span> 
                         <% else %>
@@ -318,20 +318,21 @@
                                                                 <hr/>
                                                         </section>	
                                                         </tr>
-                        </table>	
+                        </table>
+							</section>
                         </td>
                 </tr>
           <tr>
             <td>
-                <section class="mychallenge2">
+                <section class="mychallengea">
                       <%= render :partial=> "challenges/againstothers" %>
                 </section>
 				</section>
             </td>					
-          </tr>
+          </tr><br><br>
           <tr>
               <td>
-                  <section class="mychallenge3">
+                  <section class="mychallengeb">
     <table width="100%" border="0" class="marginalign">
 		<tr>
 			<td colspan="3">
@@ -358,40 +359,42 @@
         </table>
     </td>
     <td valign="top">
-      <section class="mychallenge4">
+      <section class="mychallengec">
           <%= render :partial => "challenges/people_status" %>
       </section>
     </td>
 </table>
-		
-
-<style>
+	<style>
 .mychallenges {
-    border: 0px solid #BEBEBE;
+     border: 2px solid #BEBEBE;
     border-radius: 6px 6px 6px 6px;
     float: left;
-    height: 250px;
-    width: 100%;
+    max-height: auto;
+    max-width: auto;
 }
-.mychallenge2 {
-    border: 0px;
+.mychallengea {
+    border: 2px solid #BEBEBE;
     border-radius: 6px 6px 6px 6px;
     float: left;
-    height: 350px;
-    width: 100%;
+   max-height: auto;
+    max-width: auto;
 }
-.mychallenge3 {
-    border: 0px;
+.mychallengeb {
+    border: 2px solid #BEBEBE;
     border-radius: 6px 6px 6px 6px;
     float: left;
-    height: 500px;
+	max-height: auto;
     width: 100%;
 }
-.mychallenge4 {
+.mychallengec {
+    border: 2px solid #BEBEBE;
+    border-radius: 6px 6px 6px 6px;
     float: left;
+	max-height: auto;
+    width: 100%;
+}
+</style>	
 
-}
-</style>
 <script>
     $("#replacedDescription").hide();
     function TestingDesc()
@@ -416,3 +419,4 @@
       );
     });
 </script>
+
