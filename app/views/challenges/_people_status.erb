@@ -1,0 +1,301 @@
+    <% @totalChallegne = 1 %>
+    <% @accepted = 1 %>
+    <% @thinking = 0 %>
+    <% @declined = 0 %>
+
+<% if @challenge.instance_of?ChildChallenge %>
+    <% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
+    <% abtTatal = @parentChallenge.child_challenges.count %>
+    <% @totalChallegne = abtTatal +1 %>
+      <% @parentChallenge.child_challenges.each do |eachChallenge| %>
+      <% if eachChallenge.social_type.status == 1 %>
+          <% @accepted += 1 %>
+      <% elsif eachChallenge.social_type.status == -1 %>
+          <% @declined += 1 %>
+      <% else %>
+          <% @thinking += 1 %>
+      <% end %>
+    <% end %>
+<% else %>
+    <% abtTatal = @challenge.child_challenges.count %>
+    <% @totalChallegne = abtTatal +1 %>
+    <% @challenge.child_challenges.each do |eachChallenge| %>
+      <% if eachChallenge.social_type.status == 1 %>
+          <% @accepted += 1 %>
+      <% elsif eachChallenge.social_type.status == -1 %>
+          <% @declined += 1 %>
+      <% else %>
+          <% @thinking += 1 %>
+      <% end %>
+    <% end %>
+<% end %>
+
+
+<!--
+Total Challnge=<%#= @challenge.child_challenges.count %></br>
+Accepted=<%#= @accepted %></br>
+Thinking=<%#= @thinking %></br>
+Decline=<%#= @declined %></br>
+-->
+<table width="100%">
+  <tr id="changeChallegne">
+    <td width="85%">
+      <b>You accepted the challenge</b>
+    </td>
+    <td width="15%">
+      <%= image_tag("change.png") %>
+    </td>
+  </tr>
+  <tr id="peopleinchallenge">
+    <td>
+      <b>People in this challenge(<%= @totalChallegne %>)</b>
+    </td>
+    <td>
+      <%= image_tag("searchbutton.PNG", :id=>"floatRight") %>
+    </td>
+  </tr>
+  <tr id="changeChallegne">
+    <td>
+      <%= check_box_tag 'myfriend', 'yes', false %> <b>show only my friends ()</b>
+    </td>
+    <td>
+      
+    </td>
+  </tr>
+</table>
+<section id="pStatus">
+  <div class="tabs">
+        <ul class="tabNavigation">
+            <li>
+                <%= link_to image_tag("icon_accept.png"), "#first" %>
+            </li>
+            <li>
+                <%= link_to image_tag("icon_thinking.png"), "#second" %>                
+            </li>            
+            <li>
+                <%= link_to image_tag("icon_decline.png"), "#third" %>
+            </li>
+            <li>
+                <%= link_to image_tag("quet.png"), "#fourth" %>            
+            </li>
+        </ul>
+        <div id="first">            
+            <table width="100%">              
+              <tr>
+                <td class="bordercolor" width="15%">
+                  <% if @challenge.instance_of?ChildChallenge %>
+                      <%= image_tag(FbGraph::User.new(@challenge.parent.user_id).fetch.picture) %>
+                  <% else %>
+                      <%= image_tag(FbGraph::User.new(@challenge.user_id).fetch.picture) %>
+                  <% end %>
+                </td>
+                <td class="bordercolor" width="85%" id="nameColor">
+                  <% if @challenge.instance_of?ChildChallenge %>
+                      <%= FbGraph::User.new(@challenge.parent.user_id).fetch.name %>
+                  <% else %>
+                      <%= FbGraph::User.new(@challenge.user_id).fetch.name %>
+                  <% end %>                  
+                </td>
+              </tr>
+              <% if @challenge.instance_of?ChildChallenge %>
+                  <% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
+                  <% @parentChallenge.child_challenges.each do |eachChallenge| %>
+                    <% if eachChallenge.social_type.status == 1 %>
+                      <tr>
+                        <td class="bordercolor" width="15%">                                                       
+                            <%= image_tag(FbGraph::User.new(eachChallenge.user_id).fetch.picture) %>                          
+                        </td>
+                        <td class="bordercolor" width="85%" id="nameColor">                          
+                            <%= FbGraph::User.new(eachChallenge.user_id).fetch.name %>                           
+                        </td>
+                      </tr>
+                    <% end %>
+                  <% end %>
+              <% else %>
+                  <% @challenge.child_challenges.each do |eachChallenge| %>
+                    <% if eachChallenge.social_type.status == 1 %>
+                      <tr>
+                        <td class="bordercolor" width="15%">                                                       
+                            <%= image_tag(FbGraph::User.new(eachChallenge.user_id).fetch.picture) %>                          
+                        </td>
+                        <td class="bordercolor" width="85%" id="nameColor">                          
+                            <%= FbGraph::User.new(eachChallenge.user_id).fetch.name %>                           
+                        </td>
+                      </tr>
+                    <% end %>
+                  <% end %>
+              <% end %>              
+            </table>
+        </div>
+        <div id="second">            
+            <table>
+              <% if @challenge.instance_of?ChildChallenge %>
+                  <% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
+                  <% @parentChallenge.child_challenges.each do |eachChallenge| %>
+                    <% if eachChallenge.social_type.status.to_i == 0 %>
+                      <tr>
+                        <td class="bordercolor" width="15%">                                                       
+                            <%= image_tag(FbGraph::User.new(eachChallenge.user_id).fetch.picture) %>                          
+                        </td>
+                        <td class="bordercolor" width="85%" id="nameColor">                          
+                            <%= FbGraph::User.new(eachChallenge.user_id).fetch.name %>                           
+                        </td>
+                      </tr>
+                    <% end %>
+                  <% end %>
+              <% else %>
+                  <% @challenge.child_challenges.each do |eachChallenge| %>
+                    <% if eachChallenge.social_type.status.to_i == 0 %>
+                      <tr>
+                        <td class="bordercolor" width="15%">                                                       
+                            <%= image_tag(FbGraph::User.new(eachChallenge.user_id).fetch.picture) %>                          
+                        </td>
+                        <td class="bordercolor" width="85%" id="nameColor">                          
+                            <%= FbGraph::User.new(eachChallenge.user_id).fetch.name %>                           
+                        </td>
+                      </tr>
+                    <% end %>
+                  <% end %>
+              <% end %>
+            </table>
+        </div>
+        <div id="third">
+          <table>
+            <% if @challenge.instance_of?ChildChallenge %>
+              <% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
+              <% @parentChallenge.child_challenges.each do |eachChallenge| %>              
+                <% if eachChallenge.social_type.status.to_i == -1 %>
+                  <tr>
+                    <td class="bordercolor" width="15%">                                                       
+                        <%= image_tag(FbGraph::User.new(eachChallenge.user_id).fetch.picture) %>                          
+                    </td>
+                    <td class="bordercolor" width="85%" id="nameColor">                          
+                        <%= FbGraph::User.new(eachChallenge.user_id).fetch.name %>                           
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %>
+          <% else %>
+              <% @challenge.child_challenges.each do |eachChallenge| %>                  
+                <% if eachChallenge.social_type.status.to_i == -1 %>
+                  <tr>
+                    <td class="bordercolor" width="15%">                                                       
+                        <%= image_tag(FbGraph::User.new(eachChallenge.user_id).fetch.picture) %>                          
+                    </td>
+                    <td class="bordercolor" width="85%" id="nameColor">                          
+                        <%= FbGraph::User.new(eachChallenge.user_id).fetch.name %>                           
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %>
+          <% end %>
+          </table>        
+        </div>
+        <div id="fourth">
+            <h2>NO Where</h2>
+            <p>Under process.</p>
+        </div>
+    </div>
+</section>
+
+<style>
+  #pStatus{
+    background-color: #F4F4F4;
+    padding: 8px 8px 8px 8px;
+    width: 95%;
+  }
+
+    IMG {
+      margin: 0px; 
+      position: relative;
+      top:3px;
+    }
+
+    UL.tabNavigation {
+        list-style: none;
+        margin: 0;
+        padding: 0;        
+    }
+
+    UL.tabNavigation LI {
+        display: inline;
+    }
+
+    UL.tabNavigation LI A {
+        padding: 3px 5px;
+        background-color: #B4B4B4;
+        color: #000;
+        text-decoration: none;
+        font-weight: bold;        
+    }
+
+    UL.tabNavigation LI A.selected,
+    UL.tabNavigation LI A:hover {
+        background-color: #F4F4F4;
+        color: #000;
+        padding-top: 7px;
+        font-weight: bold;
+    }
+
+    UL.tabNavigation LI A:focus {
+            outline: 0;
+    }
+
+    div.tabs > div {
+            padding: 5px;
+            margin-top: 3px;
+            border: 5px solid #F4F4F4;
+    }
+
+    div.tabs > div h2 {
+            margin-top: 0;
+    }
+
+    #first,#second,#third,#fourth {
+        background-color: #FFF;
+    }
+    
+    .bordercolor
+    {    
+        border-bottom:1px solid #BEBEBE;
+        padding-left:15px;
+        margin: 3px 5px 5px 5px;
+    }
+    
+    #nameColor{
+      color: #6883AF;      
+      font-weight: bold;
+    }
+    
+    #peopleinchallenge{
+      color:#F3A840;      
+      font-size:16px;
+      font-weight: bold;
+    }
+    
+    #changeChallegne{
+      color:#000000;
+      font-weight:bold;
+      font-size:14px;
+    }
+    
+    #floatRight{
+      float: right;
+    }
+    
+</style>
+
+<script type="text/javascript" charset="utf-8">
+    $(function () {
+        var tabContainers = $('div.tabs > div');
+        tabContainers.hide().filter(':first').show();
+
+        $('div.tabs ul.tabNavigation a').click(function () {
+            tabContainers.hide();
+            tabContainers.filter(this.hash).show();
+            $('div.tabs ul.tabNavigation a').removeClass('selected');
+            $(this).addClass('selected');
+            return false;
+        }).filter(':first').click();
+    });
+</script> 
