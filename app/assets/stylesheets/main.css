@@ -756,6 +756,19 @@ input.radio {
 	text-transform: uppercase;
 	width: 195px;
 }
+.links_score_p {
+	background: none repeat scroll 0 0 #f9a943;
+	border-radius: 3px 3px 3px 3px;
+	color: #FFFFFF;
+	display: block;
+	font-size: 12px;
+	margin: 20px 0;
+	padding: 5px;
+	text-align: center;
+	margin-left:40px;
+	text-transform: uppercase;
+	width: 400px;
+}
 
 .links_message_update {
   background: none repeat scroll 0 0 #f9a943;
@@ -881,6 +894,23 @@ input.radio {
 	text-align: center;
 	text-transform: uppercase;
 	width: 175px;
+}
+.myscore{
+	background: orange;
+	text-color: #FFFFFF;
+	display: block;
+	font-size: 12px;
+	float:right;
+	padding: 5px;
+	text-align: center;
+	text-transform: uppercase;
+	width: 175px;
+}
+#myscore{
+	
+color: gray;
+font-size:16px;
+	
 }
 
 
@@ -1022,9 +1052,9 @@ ul.tabs1 {
 	height: 32px; /*--Set height of tabs--*/
 	border-bottom:solid #F0F0F0;
 	border-left: 1px solid #999;
-	border-top:solid #F0F0F0;
+	
 	width: 100%;
-	background:	#F0F0F0;
+	background:	white;
 	font-size:11px;
 }
 
@@ -1930,7 +1960,8 @@ a:focus, a:hover {
 }
 
 #total{
-color:#8c8c8c
+color:#8c8c8c;
+font-size:15px;
 }
 
 #messagecountTest{
