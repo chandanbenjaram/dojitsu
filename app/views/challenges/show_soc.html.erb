@@ -1,5 +1,5 @@
-<%= stylesheet_link_tag('simple-tabs','tab','datePicker','colorbox','jquery.cluetip.css','jquery-ui','ui.progressbar','ui.theme', 'main', 'challenges_social', 'challenges')%>
-<%= javascript_include_tag('simple-tabs','tabs','ui.progressbar.js','ajaxPageLoad','soc-per','on_the_spot','jquery.colorbox-min','jquery.tools.min','messages','fbWallPost')%>
+<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css','jquery-ui','ui.progressbar','ui.theme', 'main', 'challenges_social', 'challenges')%>
+<%= javascript_include_tag('simple-tabs','tabs2','ui.progressbar.js','ajaxPageLoad','soc-per','on_the_spot','jquery.colorbox-min','jquery.tools.min','messages','fbWallPost')%>
 <%= render 'layouts/loggedinbody'%>
 
 <section class="challengeSubNav">
@@ -316,10 +316,11 @@
 		</tr>
 	</table>
 </section>
-
-<div>
-<%#= render :partial=> "challenges/againstothers" %>
-</div>
+<br/>
+<section>
+<%= render :partial=> "challenges/againstothers" %>
+</section>
+</section>
 
 	<input type="hidden" name="thinking_abt" id="thinking_abt" value="<%= @challenge.id %>"> 
 	<table width="100%" border="0" class="marginalign">

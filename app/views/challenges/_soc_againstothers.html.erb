@@ -1,0 +1,116 @@
+<% total_score = 0 %>
+				<% total_score_count = 0 %>
+				<% total = 0 %>
+				<% @challenge.tasks.each do |aTask| %>
+				<% total += aTask.score.to_i %>
+				<%end%>
+				<br/>
+<table>
+	<tr>
+			<td width=50%>
+				<b  id="total"> HOW AM I DOING ? </b>
+			</td>
+			<td>
+				<% if @challenge.is_complete != 1 %>
+					<input type="button" value="I'm Done with this challenge >> Submit my score <%= total-total_score%>" class="links_score_p"/>
+					<%#= button_to "I'm Done with this challenge >> Submit my score #{total-total_score } ",:id=>"button_color" %>
+				<% end %>
+			</td>
+	</tr>
+</table>
+	<hr/>
+	<br/>
+<table>
+	<tr>
+		<td width=20%>
+			Ranks
+		</td>
+		<td width=10%>
+			<%= image_tag (current_user.facebook.picture), :id=>"image" %>
+		</td>
+		<td width=10%>
+			<div id="taskpercentage">
+			</div>
+		</td>
+		<td width=40%>
+				<div style="width=30px">
+						<span id="myscore"><b>My score</b></span><span  id ="top_score">Top Score</span> <br>
+						<div class="task" id="taskprogress"></div>
+						<div class="showperscore_personal"></div>	
+						<div id="blackbox_personal">
+							<div class="notcompleted2">
+									<span class="tasks_color"><%= (total-total_score) %></span> <font color="gray" weight="bold" size="4px">points (<%= @challenge.tasks.count.to_i-total_score_count.to_i %>&nbsp; tasks)</font>
+							</div>
+						</div>
+					<br>
+				</div>
+		</td>
+		<td width=20%>
+			Updates
+		</td>
+	</tr>
+</table>
+//styles css 
+<style>
+#image
+{
+position:relaticve;
+margin-top:0px;
+}
+p{
+color:green;
+font-weight:bold;
+font-size:26px;
+margin-top:20px;
+}
+#top_score
+{
+padding-left: 400px;
+font-weight:bold;
+font-size:16px;
+color:gray;
+}
+.tasks_color
+{
+font-size:16px;
+font-weight:bold;
+color:green;
+}
+#points
+{
+font-size:16px;
+font-weight:bold;
+color:gray;
+}
+
+.notcompleted2 {
+    color: #FFFFFF;
+    float: left;
+    left: 1%;
+    position: relative;
+    top: 12%;
+}
+#update_progress {
+    margin-right: -10px;
+    padding-left: 100px;
+    position: relative;
+}
+#button_color
+{
+background-color:orange;
+color:white;
+margin-right:20px;
+}
+.task
+{
+	width:550px;
+	}
+</style>
+
+//java script
+<script type="text/javascript">
+$(function() {
+	$("#taskprogress").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });							
+	$("<p>").attr("id", "percentage_personal").text($("#taskprogress").progressbar("option", "value") + "%").appendTo("#taskpercentage");
+});
+</script>
