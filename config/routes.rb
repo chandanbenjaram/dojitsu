@@ -39,6 +39,7 @@ Dojitsu::Application.routes.draw do
 	  get "scoreboard"
 	  get "publish"
 	  get "title_update"
+	  get "task_update"
 	  get "desc_update"
 	  get "title_soc_update"
 	  get "desc_soc_update"

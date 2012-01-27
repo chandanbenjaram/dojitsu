@@ -1,0 +1,64 @@
+<%= stylesheet_link_tag('simple-tabs','datePicker','colorbox','jquery.cluetip.css','main')%>
+<%= javascript_include_tag('jquery.datePicker','date','jquery.cluetip.js')%>
+<table>
+	<tr>
+		<td>
+		<b  id="total">Total: <%= @challenge.tasks.count %></b>
+		</td>
+	</tr>
+</table>
+<table bgcolor=#f4f4f4>
+	<thead>
+		<td width=60%>
+			<b  id="total">Name</b>
+		</td>
+		<td width=6%>
+			<b  id="total">Points<b id="sign">X</b></b>
+		</td>
+		<td width=6%>
+			<b  id="total">Hours<b id="sign">=</b></b>
+		</td>
+		<td width=10%>
+			<b  id="total">My Score</b>
+		</td>
+		<td width=18%>
+		</td>
+	</thead>
+	</table>
+	
+	<table>
+	<tbody>
+		<% @challenge.tasks.each do |aTask| %>
+			<tr>
+				<td  width=60%>
+					<b  id="total"><%= aTask.name %></b>
+				</td>
+				<td width=6%>
+					<b  id="total"><%= aTask.score.to_i %></b>
+				</td>
+				<td width=6%>0
+				</td>
+				<td width=10%><% if aTask.is_complete.to_i == 0 %>0<%else%><%= aTask.score.to_i %><%end%>
+				</td>
+				<td width=18%>
+				<%= link_to image_tag("update.png"), task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => "text-decoration: underline; color:#F9AB47;" %>
+						<%#= button_to "UPDATE",  task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => "text-decoration: none; color:#fff; float:right; margin-right:5px;" ,:class => "task_links_cancel"%>
+				</td>
+			</tr>
+				<tr> 
+						<td colspan="5"> 
+							<hr/>
+						</td>
+					</tr>   
+		<% end %>
+	</tbody>
+</table>
+<script>
+$('.task_update_popup').colorbox();
+</script>
+<style type="text/css">
+#sign
+{
+color:orange;
+}
+</style>
