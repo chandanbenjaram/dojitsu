@@ -36,17 +36,16 @@ Dojitsu::Application.routes.draw do
       get "scoreboard_main"
       get "filter"
       get "trophies"
-	  get "scoreboard"
-	  get "publish"
-	  get "title_update"
-	  get "task_update"
-	  get "desc_update"
-	  get "title_soc_update"
-	  get "desc_soc_update"
+      get "scoreboard"
+      get "publish"
+      get "title_update"
+      get "task_update"
+      get "desc_update"
+      get "title_soc_update"
+      get "desc_soc_update"
       put :update_attribute_on_the_spot 
       get :get_attribute_on_the_spot
-	  get "search_people"
-	  get "change_challenge_status"
+      get "search_people"
     end
   end
 
@@ -62,10 +61,10 @@ Dojitsu::Application.routes.draw do
       get "delete_contact"
     end
   end
-  
+
   resources :messages do
     collection do
-      get "storemessage"
+      post "storemessage"
       get "message"
       get "newmessage"
       get "individualAllMessage"

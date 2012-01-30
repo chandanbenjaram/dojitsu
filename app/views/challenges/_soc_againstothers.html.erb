@@ -12,18 +12,17 @@
 			</td>
 			<td>
 				<% if @challenge.is_complete != 1 %>
-					<input type="button" value="I'm Done with this challenge >> Submit my score <%= total-total_score%>" class="links_score_p"/>
+					<input type="button" value="I'm Done with this challenge >> Submit my score <%= total-total_score%>" class="links_score_p" onclick="mark_as_complete();"/>
 					<%#= button_to "I'm Done with this challenge >> Submit my score #{total-total_score } ",:id=>"button_color" %>
 				<% end %>
 			</td>
 	</tr>
 </table>
 	<hr/>
-	<hr/>
 	<br/>
 <table>
 	<tr>
-		<td width=10%>
+		<td width=20%>
 			Ranks
 		</td>
 		<td width=10%>
@@ -33,7 +32,7 @@
 			<div id="taskpercentage">
 			</div>
 		</td>
-		<td width=55%>
+		<td width=40%>
 				<div style="width=30px">
 						<span id="myscore"><b>My score</b></span><span  id ="top_score">Top Score</span> <br>
 						<div class="task" id="taskprogress"></div>
@@ -46,7 +45,7 @@
 					<br>
 				</div>
 		</td>
-		<td width=10%>
+		<td width=20%>
 			Updates
 		</td>
 	</tr>
@@ -66,7 +65,7 @@ margin-top:20px;
 }
 #top_score
 {
-padding-left: 20%;
+padding-left: 400px;
 font-weight:bold;
 font-size:16px;
 color:gray;
@@ -104,7 +103,7 @@ margin-right:20px;
 }
 .task
 {
-
+	width:550px;
 	}
 </style>
 
@@ -114,4 +113,9 @@ $(function() {
 	$("#taskprogress").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });							
 	$("<p>").attr("id", "percentage_personal").text($("#taskprogress").progressbar("option", "value") + "%").appendTo("#taskpercentage");
 });
+
+function mark_as_complete()
+{
+alert("In progress");
+}
 </script>
