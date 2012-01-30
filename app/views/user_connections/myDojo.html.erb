@@ -1,5 +1,4 @@
 
-
 <% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
 	<% group =Array.new %>
 	<% allConnections.each  do |eachConnection| %>

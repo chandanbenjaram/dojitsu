@@ -35,21 +35,63 @@
 					<b  id="total"><%= aTask.name %></b>
 				</td>
 				<td width=6%>
-					<b  id="total"><%= aTask.score.to_i %></b>
+					<b  id="<%=aTask.name %>"><%= aTask.score.to_i %></b>
 				</td>
-				<td width=6%>0
+				<td width=6%>
+				   <% if aTask.score_by == "Check box:1 for checking off the task"  %>
+				    
+					<span id="check_zero">
+							<% if aTask.is_complete==0 %>
+								<img src="/assets/check_zero.PNG" id="myImage" name="myImage" onclick="update_task();" />
+								<%#= image_tag ("check_zero.PNG"),:onclick=>"update_task();" %>
+							<% else %>
+								<img src="/assets/check_one.PNG" />
+							<% end %>
+					</span>
+						<% check_image=0 %>
+					<script>
+						function update_task()
+						{
+						 var image = "/assets/check_one.PNG"
+						 document.myImage.src=image	
+					
+						 	if(image=="/assets/check_one.PNG")
+						{
+							<% check_image+=1 %>
+							
+						}
+					
+						}
+					</script>
+				<% else %>
+						no
+					<% end %>
 				</td>
-				<td width=20%>
+				<td width=20% id="my_score">
 					<% if aTask.is_complete.to_i == 0 %>
 							0
 					<%else%>
 						<%= aTask.score.to_i %>
 					<%end%>
 				</td>
-				<td width=18%>
-						<%= link_to image_tag("update.png"), task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => "text-decoration: underline; color:#F9AB47;" %>
+				<td width=18% id="updated_at">
+			
+						<%=image_tag("update.png", :onclick=>"update_date();") %>
 						<%#= button_to "UPDATE",  task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => "text-decoration: none; color:#fff; float:right; margin-right:5px;" ,:class => "task_links_cancel"%>
 				</td>
+				<script>
+				function update_date()
+				{
+				<% if check_image==1 %>
+							var my_score="<%= aTask.score.to_i %>";
+							<% t= DateTime.now %>
+							<% date=t.strftime("%d/%m/%y%H:%M:%S") %>
+							document.getElementById("my_score").innerHTML=my_score
+							document.getElementById("updated_at").innerHTML="<%= date %>"
+				<% end %>
+				}
+				</script>
+			
 			</tr>
 			<tr> 
 				<td colspan="5"> 
