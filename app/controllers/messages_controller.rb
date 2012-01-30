@@ -2,7 +2,6 @@ class MessagesController < ApplicationController
   before_filter :authenticate_user!, :except =>[:storemessage] 
   
 	def storemessage   
-	  debugger
 	 	@from = params[:from]
 		@to = params[:to]
 		@subject = params[:subject]
