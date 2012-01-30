@@ -203,6 +203,10 @@ end
     render :layout => false
   end
 
+  def change_challenge_status
+  render :layout => false
+  end
+  
   def task_update_c
     @ch_ts_update = Challenge.find(params[:id])
     unless params[:tatal_s]

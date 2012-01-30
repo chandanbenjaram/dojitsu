@@ -46,6 +46,7 @@ Dojitsu::Application.routes.draw do
       put :update_attribute_on_the_spot 
       get :get_attribute_on_the_spot
 	  get "search_people"
+	  get "change_challenge_status"
     end
   end
 
