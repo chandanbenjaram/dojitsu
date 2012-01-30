@@ -162,7 +162,7 @@ td.taskSelection select
 
     background-repeat: repeat-x;
     font-family: Arial;
-    width: 49%;
+    max-width: 49%;
 }
 
 .bgcolorb
@@ -283,4 +283,11 @@ textarea
 {	
 	color: #666666;
 	font-weight: bold;
+}
+
+#on_focus_textarea
+{
+	max-width: 806px; 
+	min-width:806px; 
+	height: 60px;
 }

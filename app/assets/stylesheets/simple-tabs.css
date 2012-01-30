@@ -34,7 +34,20 @@ ul.tabs li {
 	background: #e0e0e0;
 	
 }                   
-
+ul.tabs1 li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	height: 31px; /*--Subtract 1px from the height of the unordered list--*/
+	line-height: 31px; /*--Vertically aligns the text within the tab--*/
+	border: 1px solid #999;
+	border-left: none;
+	margin-bottom: -1px; /*--Pull the list item down 1px--*/
+	overflow: hidden;
+	position: relative;
+	background: #e0e0e0;
+	
+}      
 ul.tabs li a {
 	 border: 1px solid #FFFFFF;
     color: #FFFFFF;
@@ -45,14 +58,34 @@ ul.tabs li a {
     text-decoration: none;
     width: 100px;
 }
-
+ul.tabs1 li a {
+	 border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    display: block;
+    font-size: 1.2em;
+    outline: medium none;
+    padding-left: 40px;
+    text-decoration: none;
+    width: 100px;
+}
 
 ul.tabs li a:hover {
 	background: #F8981D;
 	color:#fff;
+}    
+ul.tabs1 li a:hover {
+	background: #F8981D;
+	color:#fff;
 }      
+   
  
 html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that the active tab does not listen to the hover properties--*/
+	background:#F8981D;
+	border-bottom: 1px solid #fff; /*--Makes the active tab look like it's connected with its content--*/
+	
+}
+
+html ul.tabs1 li.active, html ul.tabs1 li.active a:hover  { /*--Makes sure that the active tab does not listen to the hover properties--*/
 	background:#F8981D;
 	border-bottom: 1px solid #fff; /*--Makes the active tab look like it's connected with its content--*/
 	
@@ -83,12 +116,29 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 	float: left; width: 100%;
 	background: #f4f4f4;
 } 
+.tab_container22 {
+	border: 1px solid #999;
+	border-top: none;
+
+} 
 .tab_content {
 	padding: 20px;
 	font-size: 1.2em;
 	background:#F5F5F5;
 }
+.tab_content1 {
+	padding: 20px;
+	font-size: 1.2em;
+	background:#F5F5F5;
+}
 .tab_content2 {
+	margin-top:0px;
+	margin-left:5px;
+	margin-bottom:4px;
+	margin-right:5px;
+	font-size: 1.2em;
+}
+.tab_content3 {
 	margin-top:0px;
 	margin-left:5px;
 	margin-bottom:4px;

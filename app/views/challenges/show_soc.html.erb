@@ -68,11 +68,11 @@
 <% end %> -->
 
 <table width="100">		
-  <td valign="top" width="65%">
+  <td valign="top" width="70%">
     <table>
         <tr>
                 <td valign="top">
-                <section class="mychallenges">
+                <section  class="mychallenges">
                         <% if @challenge.user_id == current_user.fbauth.uid %>
                                         <span class="challange" id ="updatetitle" onclick="TestingTitle();"><%= @challenge.title %>	</span> 
                         <% else %>
@@ -318,59 +318,83 @@
                                                                 <hr/>
                                                         </section>	
                                                         </tr>
-                        </table>	
+                        </table>
+							</section>
                         </td>
                 </tr>
           <tr>
             <td>
-                <section class="mychallenge2">
-                        second
+                <section class="mychallengea">
+                      <%= render :partial=> "challenges/againstothers" %>
                 </section>
+				</section>
             </td>					
-          </tr>
+          </tr><br><br>
           <tr>
               <td>
-                  <section class="mychallenge3">
-                          second
+                  <section class="mychallengeb">
+    <table width="100%" border="0" class="marginalign">
+        <tr>
+            <td colspan="3">
+                <ul class="tabs">
+                        <li><a href="#tab1"><b>TASKS</b></a></li>
+                        <li><a href="#tab2"><b>SCOREBOARD</b></a></li>
+                </ul>
+                <section class="tab_container">
+                    <section id="tab1" class="tab_content" style="background:white;">
+                        <%= render :partial=> "challenges/tasksupdate" %>
+                    </section>
+                    <section id="tab2" style="background:white;" class="tab_content">
+                        <section class="tables">
+                             <%= render :partial=> "challenges/scoreboard" %>			
+                        </section>   
+                    </section> 
+                </section> 
+            </td>
+        </tr>
+    </table>
                   </section>
               </td>
           </tr>
         </table>
     </td>
     <td valign="top">
-      <section class="mychallenge4">
+      <section class="mychallengec">
           <%= render :partial => "challenges/people_status" %>
       </section>
     </td>
 </table>
-		
-
-<style>
+	<style>
 .mychallenges {
+     border: 2px solid #BEBEBE;
+    border-radius: 6px 6px 6px 6px;
+    float: left;
+    max-height: auto;
+    max-width: auto;
+}
+.mychallengea {
     border: 2px solid #BEBEBE;
     border-radius: 6px 6px 6px 6px;
     float: left;
-    height: 320px;
-    width: 100%;
+   max-height: auto;
+    max-width: auto;
 }
-.mychallenge2 {
+.mychallengeb {
     border: 2px solid #BEBEBE;
     border-radius: 6px 6px 6px 6px;
     float: left;
-    height: 150px;
+	max-height: auto;
     width: 100%;
 }
-.mychallenge3 {
+.mychallengec {
     border: 2px solid #BEBEBE;
     border-radius: 6px 6px 6px 6px;
     float: left;
-    height: 250px;
+	max-height: auto;
     width: 100%;
 }
-.mychallenge4 {
-    float: left;
-}
-</style>
+</style>	
+
 <script>
     $("#replacedDescription").hide();
     function TestingDesc()
@@ -395,3 +419,4 @@
       );
     });
 </script>
+
