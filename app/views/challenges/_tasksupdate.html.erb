@@ -67,7 +67,7 @@
 						no
 					<% end %>
 				</td>
-				<td width=20% id="myscore">
+				<td width=20% id="my_score">
 					<% if aTask.is_complete.to_i == 0 %>
 							0
 					<%else%>
@@ -83,10 +83,10 @@
 				function update_date()
 				{
 				<% if check_image==1 %>
-							var myscore="<%= aTask.score.to_i %>";
+							var my_score="<%= aTask.score.to_i %>";
 							<% t= DateTime.now %>
 							<% date=t.strftime("%d/%m/%y%H:%M:%S") %>
-							document.getElementById("myscore").innerHTML=myscore
+							document.getElementById("my_score").innerHTML=my_score
 							document.getElementById("updated_at").innerHTML="<%= date %>"
 				<% end %>
 				}
