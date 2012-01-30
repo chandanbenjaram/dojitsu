@@ -26,7 +26,7 @@
 							method: 'fql.multiquery',
 							return_ssl_resources: 1,
 							queries: {
-								"mThreadQ" : "SELECT thread_id, snippet, recipients FROM thread WHERE folder_id='1' ORDER BY updated_time DESC LIMIT 1", 
+								"mThreadQ" : "SELECT thread_id, snippet, recipients, snippet FROM thread WHERE folder_id='1' ORDER BY updated_time DESC LIMIT 1", 
 								"mMessageQ": "SELECT author_id, created_time, body, attachment, viewer_id FROM message WHERE thread_id IN(SELECT thread_id from #mThreadQ) ORDER BY created_time DESC LIMIT 1"
 								},
 								}, function(response){
@@ -38,7 +38,7 @@
 										message.to = messageLog.recipients;
 										message.subject = messageLog.attachment.name;
 										message.body = messageLog.body;
-										
+										// grab snippet
 										// post to recipients board
 										// jQuery.support.cors = true;     
 										$.post('/messages/storemessage', message);
