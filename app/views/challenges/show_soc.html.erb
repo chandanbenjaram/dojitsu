@@ -68,7 +68,7 @@
 <% end %> -->
 
 <table width="100" >		
-  <td valign="top" width="70%">
+  <td width="70%">
     <table>
         <tr>
                 <td valign="top">
@@ -109,7 +109,8 @@
                         });
                         </script>
                         <br><br>
-                        <% unless @challenge.social_type.status.to_i == 1 %>
+                       
+						<% unless @challenge.social_type.status.to_i == 1 %>
                                 <table>
                                         <tr >
                                                 <td  >  
@@ -333,9 +334,9 @@
           <tr>
               <td>
                   <section class="mychallengeb">
-    <table width="100%" border="0" class="marginalign">
+    <table width="100%" class="marginalign">
         <tr>
-            <td colspan="3">
+            <td>
                 <ul class="tabs">
                         <li><a href="#tab1"><b>TASKS</b></a></li>
                         <li><a href="#tab2"><b>SCOREBOARD</b></a></li>

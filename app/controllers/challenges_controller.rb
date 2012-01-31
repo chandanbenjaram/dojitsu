@@ -295,6 +295,13 @@ end
     end
       
   end
+    def update_status_again
+	
+		aChallenge = Challenge.find(params[:id])
+		socialType = aChallenge.social_type
+		socialType.update_attributes(:status => params[:status])
+		redirect_to show_soc_challenges_path(:id => params[:id])
+  end
 
   def update_status_af_meg
     Challenge.where(:_id => params[:thinking_abt] ).all.each do |aChallenge|

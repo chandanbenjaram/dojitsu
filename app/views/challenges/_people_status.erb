@@ -40,12 +40,15 @@ Decline=<%#= @declined %></br>
 -->
 <table width="100%">
   <tr id="changeChallegne">
-   
+     <% if @challenge.instance_of?ChildChallenge%>
 	<% if @challenge.social_type.status.to_i == 1 %>
 	 <b>You accepted the challenge</b>
      <%= link_to image_tag("change.png" , :class=> "update_challenge_stat"), change_challenge_status_challenges_path(:id => @challenge), :id=> "status_update_popup" %>
 	<%else%>
 	
+	 <%end%>
+	 <%else%>
+	 
 	 <%end%>
    
   </tr>

@@ -1,27 +1,21 @@
 <%= stylesheet_link_tag('status_update')%>
+<%@challenge = Challenge.find(params[:id])%>
+
 <div class="maindiv">
 	<span id="textstyle">Accepting  Challenge?</span>
 	<div class="subdiv">
 		 <table>
 				<tr >
 						<td  >  
-								<%= link_to image_tag("accepted.png", :class =>"replacestatusacc"), update_status_challenges_path(:id => @challenge, :status=> 1) %>
+								<%= link_to image_tag("accepted.png"), update_status_again_challenges_path(:id => @challenge.id , :status => 1) %>
 						</td> 
 						<td  >
-								<%= link_to image_tag("declane.png"), update_status_challenges_path(:id => @challenge, :status=> -1)%>
+								<%= link_to image_tag("declane.png"), update_status_again_challenges_path(:id => @challenge.id , :status => -1)%>
 						</td>
 						<td >
-								<%= image_tag("thinkbutton.png") %>
+								 <%= link_to image_tag("thinkbutton.png"), update_status_again_challenges_path(:id => @challenge.id , :status => 0)  %>
 						</td>
 				</tr>
 		</table>
 	</div>
 </div>
-<script>
- $('.replacestatusacc').click(function()
-{
-				var staus1 = '<%= status %>';
-				alert(staus1);
-				
-});
-</script>
