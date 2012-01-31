@@ -32,7 +32,7 @@
       <% end %>
     <% end %>
 <% end %>
-<%= current_user.id %>
+
 <% if @challenge.instance_of?ChildChallenge %>
     <% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>    
     <% @parentChallenge.child_challenges.each do |eachChallenge| %>
