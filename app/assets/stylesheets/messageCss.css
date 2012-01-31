@@ -113,19 +113,6 @@
     height: 40px;
 }
 
-#search{
-    border-width: 1px;
-    border-style: solid;
-    border-color: #F4F4F4;
-
-    background-repeat: repeat-x;
-    font-family: Arial;
-    font-size: 15px;
-    color: #C6C6C6;
-    width: 200px;
-    height: 30px;
-}
-
 #readMessage{
     background-color: red;
 }

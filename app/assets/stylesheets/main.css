@@ -1972,3 +1972,22 @@ font-size:15px;
     color: #ffffff;
 }
 
+#search{
+    border-width: 1px;
+    border-style: solid;
+    border-color: #F4F4F4;
+
+    background-repeat: repeat-x;
+    font-family: Arial;
+    font-size: 15px;
+    color: #C6C6C6;
+    width: 200px;
+    height: 30px;
+}
+
+.bordercolor
+    {    
+        border-bottom:1px solid #BEBEBE;
+        padding-left:15px;
+        margin: 3px 5px 5px 5px;
+    }

@@ -334,25 +334,25 @@
               <td>
                   <section class="mychallengeb">
     <table width="100%" border="0" class="marginalign">
-		<tr>
-			<td colspan="3">
-				<ul class="tabs">
-					<li><a href="#tab1"><b>TASKS</b></a></li>
-					<li><a href="#tab2"><b>SCOREBOARD</b></a></li>
-				</ul>
-					<section class="tab_container">
-								<section id="tab1" class="tab_content" style="background:white;">
-									<%= render :partial=> "challenges/tasksupdate" %>
-								</section>
-								<section id="tab2" style="background:white;" class="tab_content">
-										<section class="tables">
-											<%#= render :partial=> "challenges/searchpeople" %>			
-										</section>   
-								</section> 
-					</section> 
-</td>
- </tr>
-</table>
+        <tr>
+            <td colspan="3">
+                <ul class="tabs">
+                        <li><a href="#tab1"><b>TASKS</b></a></li>
+                        <li><a href="#tab2"><b>SCOREBOARD</b></a></li>
+                </ul>
+                <section class="tab_container">
+                    <section id="tab1" class="tab_content" style="background:white;">
+                        <%= render :partial=> "challenges/tasksupdate" %>
+                    </section>
+                    <section id="tab2" style="background:white;" class="tab_content">
+                        <section class="tables">
+                             <%= render :partial=> "challenges/scoreboard" %>			
+                        </section>   
+                    </section> 
+                </section> 
+            </td>
+        </tr>
+    </table>
                   </section>
               </td>
           </tr>
