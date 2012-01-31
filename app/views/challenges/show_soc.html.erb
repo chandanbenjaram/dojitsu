@@ -67,8 +67,8 @@
     <% end %>        
 <% end %> -->
 
-<table width="100">		
-  <td valign="top" width="70%">
+<table width="100%">		
+  <td valign="top" width="60%">
     <table>
         <tr>
                 <td valign="top">
@@ -325,7 +325,7 @@
           <tr>
             <td>
                 <section class="mychallengea">
-                      <%= render :partial=> "challenges/againstothers" %>
+                      <%#= render :partial=> "challenges/againstothers" %>
                 </section>
 				</section>
             </td>					
@@ -342,11 +342,11 @@
                 </ul>
                 <section class="tab_container">
                     <section id="tab1" class="tab_content" style="background:white;">
-                        <%= render :partial=> "challenges/tasksupdate" %>
+                        <%#= render :partial=> "challenges/tasksupdate" %>
                     </section>
                     <section id="tab2" style="background:white;" class="tab_content">
                         <section class="tables">
-                             <%= render :partial=> "challenges/scoreboard" %>			
+                             <%#= render :partial=> "challenges/scoreboard" %>			
                         </section>   
                     </section> 
                 </section> 
@@ -358,7 +358,7 @@
           </tr>
         </table>
     </td>
-    <td valign="top">
+    <td valign="top" width="40%">
       <section class="mychallengec">
           <%= render :partial => "challenges/people_status" %>
       </section>
@@ -390,7 +390,7 @@
     border: 2px solid #BEBEBE;
     border-radius: 6px 6px 6px 6px;
     float: left;
-	max-height: auto;
+    max-height: auto;
     width: 100%;
 }
 </style>	

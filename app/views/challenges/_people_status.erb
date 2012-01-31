@@ -1,7 +1,10 @@
-    <% @totalChallegne = 1 %>
+   <%= javascript_include_tag('jquery.tablesorter.min') %>
+   
+   <% @totalChallegne = 1 %>
     <% @accepted = 1 %>
     <% @thinking = 0 %>
     <% @declined = 0 %>
+    <% @myFriends = 0 %>
 
 <% if @challenge.instance_of?ChildChallenge %>
     <% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
@@ -29,14 +32,18 @@
       <% end %>
     <% end %>
 <% end %>
+<%= current_user.id %>
+<% if @challenge.instance_of?ChildChallenge %>
+    <% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>    
+    <% @parentChallenge.child_challenges.each do |eachChallenge| %>
 
+    <% end %>
+<% else %>    
+    <% @challenge.child_challenges.each do |eachChallenge| %>
+      
+    <% end %>
+<% end %>
 
-<!--
-Total Challnge=<%#= @challenge.child_challenges.count %></br>
-Accepted=<%#= @accepted %></br>
-Thinking=<%#= @thinking %></br>
-Decline=<%#= @declined %></br>
--->
 <table width="100%">
   <tr id="changeChallegne">
     <td width="85%">
@@ -56,7 +63,7 @@ Decline=<%#= @declined %></br>
   </tr>
   <tr id="changeChallegne">
     <td>
-      <%= check_box_tag 'myfriend', 'yes', false %> <b>show only my friends ()</b>
+      <%= check_box_tag 'myfrd', '1', false %> <b>show only my friends ()</b>
     </td>
     <td>
       
@@ -66,21 +73,28 @@ Decline=<%#= @declined %></br>
 <section id="pStatus">
   <div class="tabs">
         <ul class="tabNavigation">
-            <li>
-                <%= link_to image_tag("icon_accept.png"), "#first" %>
+            <li>                
+                <a href="#first"><%= image_tag("icon_accept.png")%><b>Accepted (<%= @accepted %>)</b></a>              
             </li>
-            <li>
-                <%= link_to image_tag("icon_thinking.png"), "#second" %>                
+            <li>                
+                <a href="#second"><%= image_tag("icon_thinking.png")%><b>Thinking (<%= @thinking %>)</b></a>              
             </li>            
-            <li>
-                <%= link_to image_tag("icon_decline.png"), "#third" %>
+            <li>                
+                <a href="#third"><%= image_tag("icon_decline.png")%><b>Decliend (<%= @declined %>)</b></a>
             </li>
-            <li>
-                <%= link_to image_tag("quet.png"), "#fourth" %>            
+            <li>                            
+                <a href="#fourth"><%= image_tag("quet.png")%><b></b></a>
             </li>
         </ul>
         <div id="first">            
-            <table width="100%">              
+          <table width="100%" id="myTable" class="tablesorter"> 
+              <thead>
+                  <tr>
+                      <th></th>
+                      <th></th>                          
+                  </tr>
+              </thead>
+              <tbody>
               <tr>
                 <td class="bordercolor" width="15%">
                   <% if @challenge.instance_of?ChildChallenge %>
@@ -124,11 +138,19 @@ Decline=<%#= @declined %></br>
                       </tr>
                     <% end %>
                   <% end %>
-              <% end %>              
+              <% end %>
+              </tbody>        
             </table>
         </div>
         <div id="second">            
-            <table>
+            <table id="myTable" class="tablesorter">
+              <thead>
+                  <tr>
+                      <th></th>
+                      <th></th>                          
+                  </tr>
+              </thead>
+              <tbody>
               <% if @challenge.instance_of?ChildChallenge %>
                   <% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
                   <% @parentChallenge.child_challenges.each do |eachChallenge| %>
@@ -157,10 +179,18 @@ Decline=<%#= @declined %></br>
                     <% end %>
                   <% end %>
               <% end %>
+              </tbody>        
             </table>
         </div>
         <div id="third">
-          <table>
+          <table id="myTable" class="tablesorter">
+          <thead>
+                <tr>
+                    <th></th>
+                    <th></th>                          
+                </tr>
+            </thead>
+            <tbody>
             <% if @challenge.instance_of?ChildChallenge %>
               <% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
               <% @parentChallenge.child_challenges.each do |eachChallenge| %>              
@@ -189,32 +219,36 @@ Decline=<%#= @declined %></br>
                 <% end %>
               <% end %>
           <% end %>
+          </tbody>        
           </table>        
         </div>
         <div id="fourth">
-            <h2>NO Where</h2>
+            <h2>No info</h2>
             <p>Under process.</p>
         </div>
     </div>
 </section>
 
 <style>
-  #pStatus{
-    background-color: #F4F4F4;
-    padding: 8px 8px 8px 8px;
-    width: 95%;
-  }
+    #pStatus{
+      background-color: #F4F4F4;
+      padding: 8px 8px 8px 8px;
+      width: 95%;
+    }
 
-  
-
+    IMG {
+      position: relative;
+      top:4px;
+    }    
+    
     UL.tabNavigation {
         list-style: none;
         margin: 0;
-        padding: 0;        
+        padding: 0;         
     }
 
     UL.tabNavigation LI {
-        display: inline;
+        display: inline;     
     }
 
     UL.tabNavigation LI A {
@@ -222,7 +256,7 @@ Decline=<%#= @declined %></br>
         background-color: #B4B4B4;
         color: #000;
         text-decoration: none;
-        font-weight: bold;        
+        font-weight: bold;           
     }
 
     UL.tabNavigation LI A.selected,
@@ -252,7 +286,8 @@ Decline=<%#= @declined %></br>
     }
     
     #nameColor{
-      color: #6883AF;      
+      color: #6883AF; 
+      font-size: 15px;
       font-weight: bold;
     }
     
@@ -272,6 +307,9 @@ Decline=<%#= @declined %></br>
       float: right;
     }
     
+    thead th{
+      background-color: #FFFFFF;
+    }
 </style>
 
 <script type="text/javascript" charset="utf-8">
@@ -287,4 +325,29 @@ Decline=<%#= @declined %></br>
             return false;
         }).filter(':first').click();
     });
-</script> 
+</script>
+
+<script>
+  $(document).ready(function(){
+    $("#myfrd").click(function(){      
+      if ($('#myfrd').attr('checked')) 
+      {
+          alert("Checked");
+      }
+      else
+      {
+          alert("uncheck");
+      }
+    });    
+  });
+</script>
+
+<script type="text/javascript" id="js">
+  $(document).ready(function() {
+      // call the tablesorter plugin
+      $("table").tablesorter({
+              // sort on the first column and third column, order asc
+              sortList: [[0,0],[1,0]]
+      });
+  }); 
+</script>
