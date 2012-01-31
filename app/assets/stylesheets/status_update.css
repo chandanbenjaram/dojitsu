@@ -7,7 +7,7 @@
 }
 .maindiv
 {
-	height: 178px;
+	height: 150px;
     width: 500px;
 	background: #F0F0F0;
 }
@@ -34,19 +34,21 @@
 }
 #textstyle 
 {
-    color: #999999;
+	color: #666666;
     float: left;
+    font-size: 14px;
     font-weight: bold;
     left: 30px;
     position: relative;
     top: 10px;
 }
 .subdiv {
-    background: none repeat scroll 0 0 #FFFFFF;
+		background: none repeat scroll 0 0 #FFFFFF;
     float: right;
     height: 130px;
     position: relative;
-    right: 5%;
+    right: 4%;
     top: 22px;
-    width: 90%;
+    width: 92%;
 }
+

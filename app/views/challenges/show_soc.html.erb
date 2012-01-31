@@ -115,16 +115,16 @@
                         <br><br>
                        
 						<% unless @challenge.social_type.status.to_i == 1 %>
-                                <table>
+                                <table width="100">
                                         <tr >
-                                                <td  >  
-                                                        <%= link_to image_tag("accepted.png"), update_status_challenges_path(:id => @challenge, :status=> 1), :onclick=>"fun();" %>
+                                                <td >  
+                                                        <%= link_to image_tag("accepted.PNG"), update_status_challenges_path(:id => @challenge, :status=> 1), :onclick=>"fun();" %>
                                                 </td> 
-                                                <td  >
-                                                        <%= link_to(image_tag("declane.png"), update_status_challenges_path(:id => @challenge, :status=> -1))%>
+                                                <td  cellpadding="2">
+                                                        <%= link_to(image_tag("declane.PNG"), update_status_challenges_path(:id => @challenge, :status=> -1))%>
                                                 </td>
-                                                <td >
-                                                        <%= image_tag("thinkbutton.png") %>
+                                                <td width="100%" cellpadding="2">
+                                                        <%= image_tag("thinkbutton.PNG") %>
                                                 </td>
                                         </tr>
                                 </table>
@@ -405,6 +405,7 @@
 	max-height: auto;
     width: 100%;
 }
+
 </style>	
 
 <script>
@@ -431,10 +432,4 @@
       );
     });
 </script>
-<style>
-a:focus, a:hover
-{
-color: #FFFFFF;
-}
 
-</style>
