@@ -1,14 +1,15 @@
 class MessagesController < ApplicationController
   before_filter :authenticate_user! 
   
-	def storemessage   
-	 	@from = params[:from]
-		@to = params[:to]
-		@subject = params[:subject]
-		@body = params[:body]  
+	def storemessage    
+	 	@from = params[:author_id]
+		@to = params[:recipients]
+		@subject = params[:attachment][:name]
+		@snippet = params[:snippet]
+    @body = params[:body]
 		@to.each do |messageTo|
 			unless messageTo == @from  
-				Message.create(:to => messageTo, :from => @from, :body => @body, :subject => @name)
+				Message.create(:to => messageTo, :from => @from, :body => @body, :snippet => @snippet ,:subject => @name)
 			end	
 		end
 		
