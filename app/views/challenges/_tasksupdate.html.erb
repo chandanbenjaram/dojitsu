@@ -26,7 +26,7 @@
 		</td>
 	</thead>
 </table>
-	
+	<% t = 0 %>
 <table>
 	<tbody>
 		<% @challenge.tasks.each do |aTask| %>
@@ -39,36 +39,28 @@
 				</td>
 				<td width=6%>
 				   <% if aTask.score_by == "Check box:1 for checking off the task"  %>
-				    
-					<span id="check_zero">
-							<% if aTask.is_complete==0 %>
-								<img src="/assets/check_zero.PNG" id="myImage" name="myImage" onclick="update_task();" />
-								<%#= image_tag ("check_zero.PNG"),:onclick=>"update_task();" %>
-							<% else %>
-								<img src="/assets/check_one.PNG" />
-							<% end %>
-					</span>
-						<% check_image=0 %>
-					<script>
-						function update_task()
+						<span id="check_zero">
+								<% if aTask.is_complete==0 %>
+									<img src="/assets/check_zero.PNG" id="myImage"  onclick="update_task();" />
+									<%#= image_tag ("check_zero.PNG"),:onclick=>"update_task();" %>
+								<% else %>
+									<img src="/assets/check_one.PNG" />
+								<% end %>
+						</span>
+							<% check_image=0 %>
+						<script>
+								function update_task()
 						{
 						 var image = "/assets/check_one.PNG"
 						 document.myImage.src=image	
-					
-						 	if(image=="/assets/check_one.PNG")
-						{
-							<% check_image+=1 %>
-							
 						}
-					
-						}
-					</script>
-				<% else %>
-						no
+						</script>
+					<% else %>
+					   <input type="text" name="hours" id="hours" />
 					<% end %>
 				</td>
-				<td width=20% id="my_score">
-					<% if aTask.is_complete.to_i == 0 %>
+				<td width=20% >
+					<span id="<%= aTask.name %>"><% if aTask.is_complete.to_i == 0 %></span>
 							0
 					<%else%>
 						<%= aTask.score.to_i %>
@@ -76,18 +68,27 @@
 				</td>
 				<td width=18% id="updated_at">
 			
-						<%=image_tag("update.png", :onclick=>"update_date();") %>
+					<%= link_to " update", update_tasks_list_challenges_path(:id=>aTask.id, :ch_id=>@challenge.id, :score=>aTask.score.to_i) %>
 						<%#= button_to "UPDATE",  task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => "text-decoration: none; color:#fff; float:right; margin-right:5px;" ,:class => "task_links_cancel"%>
 				</td>
 				<script>
 				function update_date()
 				{
-				<% if check_image==1 %>
+				 <% if aTask.score_by == "Check box:1 for checking off the task"  %>
 							var my_score="<%= aTask.score.to_i %>";
 							<% t= DateTime.now %>
 							<% date=t.strftime("%d/%m/%y%H:%M:%S") %>
 							document.getElementById("my_score").innerHTML=my_score
 							document.getElementById("updated_at").innerHTML="<%= date %>"
+				<% else%>
+					var self_report = document.getElementById("hours").value
+					var points ="<%= aTask.score.to_i %>";
+					var total_myscore= self_report * points
+					<% t= DateTime.now %>
+					<% date=t.strftime("%d/%m/%y%H:%M:%S") %>
+					document.getElementById("<%= aTask.name %>").innerHTML=total_myscore
+					document.getElementById("updated_at").innerHTML="<%= date %>"
+					
 				<% end %>
 				}
 				</script>
@@ -101,10 +102,13 @@
 		<% end %>
 	</tbody>
 </table>
-
 <style type="text/css">
 #sign
 {
 color:orange;
+}
+#hours
+{
+width:30px;
 }
 </style>

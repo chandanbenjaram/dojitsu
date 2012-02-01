@@ -436,6 +436,17 @@ end
     render :layout => false
   end
   
+  
+  def update_tasks_list
+	  @task_id = params[:id]
+	  @ch_id = params[:ch_id]
+	  @myscore = params[:score]
+	   t= DateTime.now
+	   date=t.strftime("%d/%m/%y%H:%M:%S") 
+	   
+		render :layout => false
+  end
+  
   protected
 
   def find_challenge

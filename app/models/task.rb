@@ -1,5 +1,6 @@
 class Task
   include Mongoid::Document
+
   
   #task validations
   validates_presence_of :name, :message => "Please add at least one task."  
@@ -14,6 +15,9 @@ class Task
   field :score
   # task status
   field :is_complete, :type => Integer, :default => 0
+  
+ 
+  
   
   embedded_in :challenge
 end
