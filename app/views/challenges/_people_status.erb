@@ -1,10 +1,9 @@
    <%= javascript_include_tag('jquery.tablesorter.min') %>
    
-   <% @totalChallegne = 1 %>
+    <% @totalChallegne = 1 %>
     <% @accepted = 1 %>
     <% @thinking = 0 %>
     <% @declined = 0 %>
-    <% @myFriends = 0 %>
 
 <% if @challenge.instance_of?ChildChallenge %>
     <% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
@@ -63,14 +62,14 @@
   </tr>
   <tr id="changeChallegne">
     <td>
-      <%= check_box_tag 'myfrd', '1', false %> <b>show only my friends ()</b>
+      <%= check_box_tag 'myfrd', '1', false %> <b>show only my friends (<%= @onlyMyFrd.count %>)</b>
     </td>
     <td>
       
     </td>
   </tr>
 </table>
-<section id="pStatus">
+<section id="pStatusAll">
   <div class="tabs">
         <ul class="tabNavigation">
             <li>                
@@ -229,8 +228,105 @@
     </div>
 </section>
 
+<section id="pStatusMy" style="display: none">
+  <div class="tabs">
+        <ul class="tabNavigation">
+            <li>                
+                <a href="#first"><%= image_tag("icon_accept.png")%><b>Accepted (<%= @myAccepted.count %>)</b></a>              
+            </li>
+            <li>                
+                <a href="#second"><%= image_tag("icon_thinking.png")%><b>Thinking (<%= @myThinking.count %>)</b></a>              
+            </li>            
+            <li>                
+                <a href="#third"><%= image_tag("icon_decline.png")%><b>Decliend (<%= @myDeclined.count %>)</b></a>
+            </li>
+            <li>                            
+                <a href="#fourth"><%= image_tag("quet.png")%><b></b></a>
+            </li>
+        </ul>
+        <div id="first">            
+          <table width="100%" id="myTable" class="tablesorter"> 
+              <thead>
+                  <tr>
+                      <th></th>
+                      <th></th>                          
+                  </tr>
+              </thead>
+              <tbody>                            
+                <% @myAccepted.each do |eachChallenge| %>                    
+                    <tr>
+                      <td class="bordercolor" width="15%">                                                       
+                          <%= image_tag(FbGraph::User.new(eachChallenge).fetch.picture) %>                          
+                      </td>
+                      <td class="bordercolor" width="85%" id="nameColor">                          
+                          <%= FbGraph::User.new(eachChallenge).fetch.name %>                           
+                      </td>
+                    </tr>                    
+                <% end %>              
+              </tbody>        
+            </table>
+        </div>
+        <div id="second">            
+            <table id="myTable" class="tablesorter">              
+              <thead>
+                  <tr>
+                      <th></th>
+                      <th></th>                          
+                  </tr>
+              </thead>
+              <tbody>
+              <% @myThinking.each do |eachChallenge| %>                    
+                <tr>
+                  <td class="bordercolor" width="15%">                                                       
+                      <%= image_tag(FbGraph::User.new(eachChallenge).fetch.picture) %>                          
+                  </td>
+                  <td class="bordercolor" width="85%" id="nameColor">                          
+                      <%= FbGraph::User.new(eachChallenge).fetch.name %>                           
+                  </td>
+                </tr>
+              <% end %>                  
+              </tbody>        
+            </table>
+        </div>
+        <div id="third">
+          <table id="myTable" class="tablesorter">
+          <thead>
+                <tr>
+                    <th></th>
+                    <th></th>                          
+                </tr>
+            </thead>
+            <tbody>
+            <% if @myDeclined.count > 0 %>  
+                <% @myDeclined.each do |eachChallenge| %>                              
+                  <tr>
+                    <td class="bordercolor" width="15%">                                                       
+                        <%= image_tag(FbGraph::User.new(eachChallenge).fetch.picture) %>                          
+                    </td>
+                    <td class="bordercolor" width="85%" id="nameColor">                          
+                        <%= FbGraph::User.new(eachChallenge).fetch.name %>                           
+                    </td>
+                  </tr>                
+                <% end %>
+            <% end %>      
+          </tbody>        
+          </table>        
+        </div>
+        <div id="fourth">
+            <h2>No info</h2>
+            <p>Under process.</p>
+        </div>
+    </div>
+</section>
+
 <style>
-    #pStatus{
+    #pStatusAll{
+      background-color: #F4F4F4;
+      padding: 8px 8px 8px 8px;
+      width: 95%;
+    }
+    
+    #pStatusMy{
       background-color: #F4F4F4;
       padding: 8px 8px 8px 8px;
       width: 95%;
@@ -332,11 +428,15 @@
     $("#myfrd").click(function(){      
       if ($('#myfrd').attr('checked')) 
       {
-          alert("Checked");
+          //alert("Checked");
+          $("#pStatusAll").hide();
+          $("#pStatusMy").show();
       }
       else
       {
-          alert("uncheck");
+          //alert("uncheck");
+          $("#pStatusMy").hide();
+          $("#pStatusAll").show();
       }
     });    
   });
