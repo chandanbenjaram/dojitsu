@@ -203,10 +203,6 @@ end
     render :layout => false
   end
 
-  def change_challenge_status
-  render :layout => false
-  end
-  
   def task_update_c
     @ch_ts_update = Challenge.find(params[:id])
     unless params[:tatal_s]
@@ -294,13 +290,6 @@ end
         redirect_to show_soc_challenges_path(:id => params[:id]) 
     end
       
-  end
-    def update_status_again
-	
-		aChallenge = Challenge.find(params[:id])
-		socialType = aChallenge.social_type
-		socialType.update_attributes(:status => params[:status])
-		redirect_to show_soc_challenges_path(:id => params[:id])
   end
 
   def update_status_af_meg
@@ -450,8 +439,15 @@ end
   
   def update_tasks_list
 	  @task_id = params[:id]
-	  @ch_id = params[:ch_id]
+	  @ch_id = Challenge.find(params[:ch_id])
 	  @myscore = params[:score]
+	  @ch_id.tasks.each do |aTask|
+	  
+			  if aTask.id.to_s==@task_id
+			  aTask.update_attribute("total",@myscore)
+				
+			 end
+		 end
 	   t= DateTime.now
 	   date=t.strftime("%d/%m/%y%H:%M:%S") 
 	   

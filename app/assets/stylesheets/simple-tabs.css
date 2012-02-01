@@ -119,7 +119,7 @@ html ul.tabs1 li.active, html ul.tabs1 li.active a:hover  { /*--Makes sure that 
 .tab_container22 {
 	border: 1px solid #999;
 	border-top: none;
-        width:90%;
+        width:100%;
 
 } 
 .tab_content {
