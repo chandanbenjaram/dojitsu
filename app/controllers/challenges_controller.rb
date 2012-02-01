@@ -203,6 +203,10 @@ end
     render :layout => false
   end
 
+  def change_challenge_status
+  render :layout => false
+  end
+  
   def task_update_c
     @ch_ts_update = Challenge.find(params[:id])
     unless params[:tatal_s]
@@ -290,6 +294,13 @@ end
         redirect_to show_soc_challenges_path(:id => params[:id]) 
     end
       
+  end
+    def update_status_again
+	
+		aChallenge = Challenge.find(params[:id])
+		socialType = aChallenge.social_type
+		socialType.update_attributes(:status => params[:status])
+		redirect_to show_soc_challenges_path(:id => params[:id])
   end
 
   def update_status_af_meg

@@ -178,12 +178,12 @@ td.taskSelection select
 
 .replacetitle
 {
-     float: right;
+   float: right;
     height: 30px;
     position: relative;
-    right: 43%;
+    right: 37%;
     top: 9px;
-    width: 10%;
+    width: 13%;
 }
 
 .replace_cancel
@@ -197,7 +197,7 @@ td.taskSelection select
     margin: 10px 24% 20px 0;
     padding: 5px;
     position: relative;
-    right: -2%;
+    right: -17%;
     text-align: center;
     text-transform: uppercase;
     top: 0;
@@ -228,12 +228,12 @@ td.taskSelection select
 
 .replacedesc
 {
-    float: left;
+   float: left;
     height: 30px;
-    left: 3%;
+    left: 4%;
     position: relative;
-    top: 80px;	
-	width: 14%;
+    top: 80px;
+    width: 16%;
 }
 
 .replace_cancel_desc:hover
@@ -263,7 +263,7 @@ textarea
 
 .replace_cancel_desc1
 {
-	background: #999999;
+    background: none repeat scroll 0 0 #999999;
     color: #FFFFFF;
     display: block;
     float: right;
@@ -272,11 +272,11 @@ textarea
     margin: 10px 23% 20px 0;
     padding: 5px;
     position: relative;
-    right: -15%;
+    right: -22%;
     text-align: center;
     text-transform: uppercase;
-    top: 41px;
-    width: 80px;	
+    top: 40px;
+    width: 60px;	
 }
 
 .onthespandescription

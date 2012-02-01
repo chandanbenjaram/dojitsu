@@ -8,7 +8,6 @@
 	<%= link_to "#{@challenge.title}","#" ,  :class => "challenge_link1" %> 
 </section>
 <% name_search = 0%>
-
 <!--
 <% if params[:isNewChallenge] == "isNew" %>
     <script> 
@@ -68,14 +67,18 @@
     <% end %>        
 <% end %> -->
 
-<table width="100">		
-  <td valign="top" width="70%">
+<table width="100%">		
+  <td width="60%">
     <table>
         <tr>
                 <td valign="top">
                 <section  class="mychallenges">
                         <% if @challenge.user_id == current_user.fbauth.uid %>
-                                        <span class="challange" id ="updatetitle" onclick="TestingTitle();"><%= @challenge.title %>	</span> 
+										<% unless @challenge.social_type.status.to_i == 1 %>
+												<span class="challange"><%= @challenge.title %>	</span> 
+										<%else%>
+												<span class="challange" id ="updatetitle" onclick="TestingTitle();"><%= @challenge.title %>	</span> 
+										<%end%>
                         <% else %>
                                         <span class="challange"><%= @challenge.title %>	</span> 
                         <% end %>	
@@ -110,17 +113,18 @@
                         });
                         </script>
                         <br><br>
-                        <% unless @challenge.social_type.status.to_i == 1 %>
-                                <table>
+                       
+						<% unless @challenge.social_type.status.to_i == 1 %>
+                                <table width="100">
                                         <tr >
-                                                <td  >  
-                                                        <%= link_to image_tag("accepted.png"), update_status_challenges_path(:id => @challenge, :status=> 1), :onclick=>"fun();" %>
+                                                <td >  
+                                                        <%= link_to image_tag("accepted.PNG"), update_status_challenges_path(:id => @challenge, :status=> 1), :onclick=>"fun();" %>
                                                 </td> 
-                                                <td  >
-                                                        <%= link_to(image_tag("declane.png"), update_status_challenges_path(:id => @challenge, :status=> -1))%>
+                                                <td  cellpadding="2">
+                                                        <%= link_to(image_tag("declane.PNG"), update_status_challenges_path(:id => @challenge, :status=> -1))%>
                                                 </td>
-                                                <td >
-                                                        <%= image_tag("thinkbutton.png") %>
+                                                <td width="100%" cellpadding="2">
+                                                        <%= image_tag("thinkbutton.PNG") %>
                                                 </td>
                                         </tr>
                                 </table>
@@ -167,16 +171,16 @@
                                          });
                          });
                         </script>
-                        <table>
+                        <table valign="top">
                                 <tr>
                                         <td>
                                                 <section>
                                                         <table id="description" >
                                                                 <tr>
-                                                                        <td height="34px" width="130px valign="top">
+                                                                        <td height="34px" width="100px" valign="top">
                                                                                         <span class="colorligtblk1">DESCRIPTION<b ></span>
                                                                         </td >
-                                                                        <td >
+                                                                        <td valign="top">
                                                                         <% if @challenge.user_id == current_user.fbauth.uid %>
                                                                                         <section class="onthespandescription" >
                                                                                                 <span class ="updatedesccolo" ><%= @challenge.description %>																				</span> 
@@ -192,14 +196,20 @@
                                                                                         <%= link_to image_tag("update.png", :class =>"replacedesc"), show_per_challenges_path(:id => @challenge.id) %>
                                                                                         <%= link_to "CANCEL", show_per_challenges_path(:id => @challenge.id), :class => "replace_cancel_desc1" %>
                                                                         </section>
-                                                                        </td>
-                                                                                                <% if @challenge.user_id == current_user.fbauth.uid %>
-                                                                                                <td valign="top" width ="20" onclick="TestingDesc();">
-                                                                                                        <span id="image1"><%= image_tag("icon_edit.png") %></span>
-                                                                                                </td>
-                                                                                                <% else %>
-                                                                                                        <td width ="20"></td>
-                                                                                                <%end%>
+                                                                        </td>				<% unless @challenge.social_type.status.to_i == 1 %>
+																							
+																											<td width ="20"></td>
+																								
+																							<%else%>
+																									<% if @challenge.user_id == current_user.fbauth.uid %>
+																									<td valign="top" width ="20" onclick="TestingDesc();">
+																											<span id="image1"><%= image_tag("icon_edit.png") %></span>
+																									</td>
+																									<% else %>
+																											<td width ="20"></td>
+																									<%end%>
+																							<%end%>
+                                                                                                
                                                                         </tr>
                                                         </table>
                                                                 <script>
@@ -232,7 +242,7 @@
                                                                         <section>
                                                                         <table id="organizer">
                                                                                 <tr>
-                                                                                        <td height="34px" width="130px">
+                                                                                        <td height="34px" width="100px">
                                                                                                 <span class="colorligtblk1">ORGANIZER</span>
                                                                                         </td>
                                                                                         <td >
@@ -264,7 +274,7 @@
                                                                 <section>
                                                                 <table id="startdate">
                                                                         <tr>
-                                                                                <td height="34px" width="130px">
+                                                                                <td height="34px" width="100px">
                                                                                         <b class="colorligtblk">START POINT</b>
                                                                                 </td>
                                                                                 <td >
@@ -293,7 +303,7 @@
                                                                 <section>
                                                                 <table id="enddate">
                                                                         <tr> 
-                                                                                <td height="34px" width=130px>
+                                                                                <td height="34px" width=100px>
                                                                                         <b class="colorligtblk">END POINT</b>
                                                                                 </td>
                                                                                 <td>
@@ -323,7 +333,7 @@
 							</section>
                         </td>
                 </tr>
-          <tr>
+			<tr>
             <td>
                 <section class="mychallengea">
                       <%= render :partial=> "challenges/againstothers" %>
@@ -334,34 +344,34 @@
           <tr>
               <td>
                   <section class="mychallengeb">
-    <table width="100%" border="0" class="marginalign">
-		<tr>
-			<td colspan="3">
-				<ul class="tabs">
-					<li><a href="#tab1"><b>TASKS</b></a></li>
-					<li><a href="#tab2"><b>SCOREBOARD</b></a></li>
-				</ul>
-					<section class="tab_container">
-								<section id="tab1" class="tab_content" style="background:white;">
-									<%= render :partial=> "challenges/tasksupdate" %>
-								</section>
-								<section id="tab2" style="background:white;" class="tab_content">
-										<section class="tables">
-											<%#= render :partial=> "challenges/searchpeople" %>			
-										</section>   
-								</section> 
-					</section> 
-</td>
- </tr>
-</table>
+    <table width="100%" class="marginalign">
+        <tr>
+            <td>
+                <ul class="tabs">
+                        <li><a href="#tab1"><b>TASKS</b></a></li>
+                        <li><a href="#tab2"><b>SCOREBOARD</b></a></li>
+                </ul>
+                <section class="tab_container">
+                    <section id="tab1" class="tab_content" style="background:white;">
+                        <%= render :partial=> "challenges/tasksupdate" %>
+                    </section>
+                    <section id="tab2" style="background:white;" class="tab_content">
+                        <section class="tables">
+                             <%= render :partial=> "challenges/scoreboard" %>			
+                        </section>   
+                    </section> 
+                </section> 
+            </td>
+        </tr>
+    </table>
                   </section>
               </td>
           </tr>
         </table>
     </td>
-    <td valign="top">
+    <td valign="top" width="40%">
       <section class="mychallengec">
-          <%#= render :partial => "challenges/people_status" %>
+          <%= render :partial => "challenges/people_status" %>
       </section>
     </td>
 </table>
@@ -371,21 +381,22 @@
     border-radius: 6px 6px 6px 6px;
     float: left;
     max-height: auto;
-    max-width: auto;
+	width: 570px;
 }
 .mychallengea {
     border: 2px solid #BEBEBE;
     border-radius: 6px 6px 6px 6px;
     float: left;
-   max-height: auto;
-    max-width: auto;
+	max-height: auto;
+	width: 570px;
+    
 }
 .mychallengeb {
     border: 2px solid #BEBEBE;
     border-radius: 6px 6px 6px 6px;
     float: left;
 	max-height: auto;
-    width: 90%;
+    width: 570px;
 }
 .mychallengec {
     border: 2px solid #BEBEBE;
@@ -394,6 +405,7 @@
 	max-height: auto;
     width: 100%;
 }
+
 </style>	
 
 <script>
