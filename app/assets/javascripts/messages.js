@@ -31,17 +31,8 @@
 								},
 								}, function(response){
 									if(response && response[0] && response[1]){
-										var messageLog = $.extend({}, response[0].fql_result_set[0], response[1].fql_result_set[0]);  
-										// call rails to put entry into messages table
-										var message = new Object();
-										message.from = messageLog.author_id;										
-										message.to = messageLog.recipients;
-										message.subject = messageLog.attachment.name;
-										message.body = messageLog.body;
-										// grab snippet
-										// post to recipients board
-										// jQuery.support.cors = true;     
-										$.post('/messages/storemessage', message);
+										var messageLog = $.extend({}, response[0].fql_result_set[0], response[1].fql_result_set[0]);  										     
+										$.post('/messages/storemessage', messageLog);
 									}
 									}) 
 									},							

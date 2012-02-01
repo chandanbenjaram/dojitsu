@@ -47,6 +47,32 @@ class ChallengesController < ApplicationController
 
   def show_per
     @challenge = Challenge.find(params[:id])
+    #GETING ALL USER CONNECTION
+    aConnection = []
+    @allConnections = UserConnection.select(:target_id).where(:user_id=>current_user.id)
+    @allConnections.each do |aTargetId|
+      aConnection.push(aTargetId.target_id)
+    end
+    #ALL CONNECTION AS PARTICIPANT
+    @onlyMyFrd = Challenge.all(conditions: {:user_id.in => aConnection, :title => @challenge.title })
+    #ALL FRD IN CHALLENGE 
+    @myAccepted = [] 
+    @myThinking = []
+    @myDeclined = []
+    @onlyMyFrd.each do |aStatus|
+      if aStatus.social_type.status == 1
+        @myAccepted.push(aStatus.user_id)
+      elsif aStatus.social_type.status == -1
+        @myDeclined.push(aStatus.user_id)
+      else
+        @myThinking.push(aStatus.user_id)
+      end
+    end
+    
+    #raise @myAccepted.inspect
+    #raise @myDeclined.inspect
+    #raise @myThinking.inspect
+    
     @is_complete_status = 0 
     @challenge.tasks.each do |checkingTaskStatus|
       unless checkingTaskStatus.is_complete == 1
@@ -203,10 +229,6 @@ end
     render :layout => false
   end
 
-  def change_challenge_status
-  render :layout => false
-  end
-  
   def task_update_c
     @ch_ts_update = Challenge.find(params[:id])
     unless params[:tatal_s]
@@ -294,13 +316,6 @@ end
         redirect_to show_soc_challenges_path(:id => params[:id]) 
     end
       
-  end
-    def update_status_again
-	
-		aChallenge = Challenge.find(params[:id])
-		socialType = aChallenge.social_type
-		socialType.update_attributes(:status => params[:status])
-		redirect_to show_soc_challenges_path(:id => params[:id])
   end
 
   def update_status_af_meg
@@ -445,6 +460,24 @@ end
   
   def socialpeople
     render :layout => false
+  end
+  
+  
+  def update_tasks_list
+	  @task_id = params[:id]
+	  @ch_id = Challenge.find(params[:ch_id])
+	  @myscore = params[:score]
+	  @ch_id.tasks.each do |aTask|
+	  
+			  if aTask.id.to_s==@task_id
+			  aTask.update_attribute("total",@myscore)
+				
+			 end
+		 end
+	   t= DateTime.now
+	   date=t.strftime("%d/%m/%y%H:%M:%S") 
+	   
+		render :layout => false
   end
   
   protected

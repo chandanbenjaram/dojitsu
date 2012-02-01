@@ -43,6 +43,8 @@ Dojitsu::Application.routes.draw do
       get "desc_update"
       get "title_soc_update"
       get "desc_soc_update"
+	  get "update_tasks_list"
+	  put "update_tasks_list"
       put :update_attribute_on_the_spot 
       get :get_attribute_on_the_spot
       get "search_people"
