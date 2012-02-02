@@ -1,4 +1,5 @@
    <%= javascript_include_tag('jquery.tablesorter.min') %>
+   <%= stylesheet_link_tag('status_update')%>
    
     <% @totalChallegne = 1 %>
     <% @accepted = 1 %>
@@ -45,12 +46,22 @@
 
 <table width="100%">
   <tr id="changeChallegne">
-    <td width="85%">
-      <b>You accepted the challenge</b>
-    </td>
-    <td width="15%">
-      <%= image_tag("change.png") %>
-    </td>
+    <% if @challenge.instance_of?ChildChallenge%>
+	  
+				<% if @challenge.social_type.status.to_i == 1 %>
+				 <td width="85%">
+				  <b>You accepted the challenge</b>
+				</td>
+				<td width="15%">
+				 <%= link_to image_tag("change.png" , :class=> "update_challenge_stat"), change_challenge_status_challenges_path(:id => @challenge), :id=> "status_update_popup" %>
+				 </td>
+				<%else%>
+				
+				 <%end%>
+	
+	  <%else%>
+			
+	  <%end%>
   </tr>
   <tr id="peopleinchallenge">
     <td>
@@ -453,3 +464,7 @@
       });
   }); 
 </script>
+<script>
+	$('#status_update_popup').colorbox();
+</script>
+

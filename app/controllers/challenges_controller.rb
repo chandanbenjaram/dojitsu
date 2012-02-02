@@ -318,6 +318,17 @@ end
       
   end
 
+   def change_challenge_status
+		render :layout => false
+  end
+  
+  def update_status_again
+    aChallenge = Challenge.find(params[:id])
+    socialType = aChallenge.social_type
+    socialType.update_attributes(:status => params[:status])
+    redirect_to show_soc_challenges_path(:id => params[:id])
+  end
+  
   def update_status_af_meg
     Challenge.where(:_id => params[:thinking_abt] ).all.each do |aChallenge|
       aChallenge.child_challenges.each do |aChildChallenge|
@@ -468,7 +479,7 @@ end
 	  @ch_id = Challenge.find(params[:ch_id])
 	  @myscore = params[:score]
 	  @ch_id.tasks.each do |aTask|
-	  
+	 
 			  if aTask.id.to_s==@task_id
 			  aTask.update_attribute("total",@myscore)
 				
@@ -477,7 +488,7 @@ end
 	   t= DateTime.now
 	   date=t.strftime("%d/%m/%y%H:%M:%S") 
 	   
-		render :layout => false
+		  redirect_to show_per_challenges_path(:id => @ch_id.id)
   end
   
   protected

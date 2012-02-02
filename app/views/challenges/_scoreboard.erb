@@ -84,7 +84,8 @@
             <% @challenge.parent.tasks.each do |aTask| %>
               <% total += aTask.score.to_i %>
               <% if (aTask.is_complete == 1 ) %>
-                <% total_score+=Integer(aTask.score) %>                
+                <% total_score+=Integer(aTask.score) %>
+                <% total_score_count += 1 %>
               <% end %>
             <%end%>        
             <section style="width:350px">                
@@ -110,7 +111,8 @@
             <% @challenge.tasks.each do |aTask| %>
               <% total += aTask.score.to_i %>
               <% if (aTask.is_complete == 1 ) %>
-                <% total_score+=Integer(aTask.score) %>                
+                <% total_score+=Integer(aTask.score) %> 
+                <% total_score_count += 1 %>
               <% end %>
             <%end%>             
             <section style="width:350px">                
@@ -133,9 +135,9 @@
       </td>
       <td class="bordercolor">        
         <% if @challenge.instance_of?ChildChallenge %>                        
-            <%= time_ago_in_words @challenge.parent.created_at %>
+            <%= time_ago_in_words @challenge.parent.updated_at %>
         <% else %>                        
-            <%= time_ago_in_words @challenge.created_at %>
+            <%= time_ago_in_words @challenge.updated_at %>
         <% end %>
       </td>
     </tr>
@@ -163,7 +165,8 @@
               <% eachChallenge.tasks.each do |aTask| %>
                 <% total += aTask.score.to_i %>
                 <% if (aTask.is_complete == 1 ) %>
-                  <% total_score+=Integer(aTask.score) %>                
+                  <% total_score+=Integer(aTask.score) %>  
+                  <% total_score_count += 1 %>
                 <% end %>
               <%end%>             
               <section style="width:350px">                
@@ -184,7 +187,7 @@
               </script>
             </td>
             <td class="bordercolor">
-              <%= time_ago_in_words eachChallenge.created_at %>
+              <%= time_ago_in_words eachChallenge.updated_at %>
             </td>
             <td class="bordercolor">
 
@@ -214,7 +217,8 @@
               <% eachChallenge.tasks.each do |aTask| %>
                   <% total += aTask.score.to_i %>
                   <% if (aTask.is_complete == 1 ) %>
-                    <% total_score+=Integer(aTask.score) %>                
+                    <% total_score+=Integer(aTask.score) %>  
+                    <% total_score_count += 1 %>
                   <% end %>
               <%end%>             
               <section style="width:350px">                
@@ -235,7 +239,7 @@
               </script>
             </td>
             <td class="bordercolor">
-              <%= time_ago_in_words eachChallenge.created_at %>
+              <%= time_ago_in_words eachChallenge.updated_at %>
             </td>
             <td class="bordercolor">
 
