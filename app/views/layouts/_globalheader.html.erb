@@ -11,70 +11,44 @@
         <% else %>                                                                                       
 	<%= link_to(image_tag("logo.png", :style => "float:left", :alt => "Home"), root_path) %>
 	<% end %> 
-<div>
+
+<script>
+$(document).ready(function () {	
+	
+	$('#nav li').hover(
+		function () {
+			//show its submenu
+			$('ul', this).slideDown(10);
+
+		}, 
+		function () {
+			//hide its submenu
+			$('ul', this).slideUp(10);			
+		}
+	);
+	
+});
+</script>
+	<div>
 		<% if !current_user.nil? %>
 		<div class="logo_globalheader">
 			<%= link_to(image_tag("logo.png" ), dashboard_index_path) %>
 		</div>
-		<style>
-			.tablelog
-		{
-				float: right;
-			width: auto;
-			top: -15px;
-			position: relative;
-		}
-		#logoutaling
-		{
-			text-align: center;
-		}
-			.namecss
-		{
-			padding: 10px;
-		}
-		
-			.namecss
-		{
-			padding: 10px;
-			height: 1px;
-		}
-		.namecss1
-		{
-			 float: left;
-			height: 1px;
-			left: -12px;
-			padding: 5px;
-			position: relative;
-		}
-		.backg
-		{
-			color: #FFFFFF;	
-		}
-		</style>
-		<script>
-		$(document).ready(function(){
-									$("#logoutaling").hide();
-					});
-		</script>
-		<div class="tablelog">
-			<table>
-				<tr>
-						<td >
-							<div class="namecss"><% if isStandalone %>
-							  <%= current_user.first_name %>
-						  <% else %>
-							  <%= current_user.authentications[0].name %>
-						  <% end %>
-						  </div>
-					  </td>
-					<td ><div class="namecss1"> <%=image_tag("nav-arrow.png")%></div></td>
-				</tr>
-				<tr>
-					<td ><div id="logoutaling"><%= link_to "Log out", destroy_user_session_path %></div> </td>
-					<td> </td>
-				</tr>
-			</table>
-						
+		<div class="popup_globalheader">	
+			<ul id="nav">
+					<li><a href="#" class="selected"><div>                                                
+                                              <% if isStandalone %>
+                                                  <%= current_user.first_name %>
+                                              <% else %>
+                                                  <%= current_user.authentications[0].name %>
+                                              <% end %>
+                                              &nbsp;<%=image_tag("nav-arrow.png")%></div> </a>
+						<ul>
+							<li><%= link_to "Log out", destroy_user_session_path %></li>	
+						</ul>
+					</li>
+					
+				</ul>					
 		</div>
 		<% else %>   
 		<div class="authnav">
@@ -97,6 +71,7 @@
 
 	<div id="fb-root" />
 </div>
+
 
 <script>  										       
 			window.fbAsyncInit = function() {
