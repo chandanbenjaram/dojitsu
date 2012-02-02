@@ -47,6 +47,7 @@ Dojitsu::Application.routes.draw do
 	  put "update_tasks_list"
       put :update_attribute_on_the_spot 
       get :get_attribute_on_the_spot
+	  get "score_soc_update"
       get "search_people"
 	  get "change_challenge_status"
 	  get "update_status_again"
