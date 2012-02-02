@@ -26,11 +26,11 @@
 		</td>
 	</thead>
 </table>
-	<% t = 0 %>
+	<% t = 1 %>
 <table>
 	<tbody>
 		<% @challenge.tasks.each do |aTask| %>
-			<tr>
+			<tr id="row<%=t %>">
 				<td  width=50%>
 					<b  id="total"><%= aTask.name %></b>
 				</td>
@@ -41,62 +41,54 @@
 				   <% if aTask.score_by == "Check box:1 for checking off the task"  %>
 						<span id="check_zero">
 								<% if aTask.total==0 %>
-									<img src="/assets/check_zero.PNG" id="myImage<%= score %>"  onclick="update_task();" />
-									<%#= image_tag ("check_zero.PNG"),:onclick=>"update_task();" %>
+									<img src="/assets/check_zero.PNG" id="myImage<%= t %>"  onclick="update_task<%=t%>();" />
+									<%#= image_tag ("check_zero.PNG"),:onclick=>"update_task#{t}();" %>
 								<% else %>
 									<img src="/assets/check_one.PNG" />
 								<% end %>
 						</span>
 							
 						<script>
-								function update_task()
+								function update_task<%=t%>()
 						{
 						 var image = "/assets/check_one.PNG"
-						 document.myImage<%= score %>.src=image	
+						 document.myImage<%= t %>.src=image	
 						 if (image== "/assets/check_one.PNG")
 						 {
 							var my_score="<%= aTask.score.to_i %>";
-							document.getElementById("my_score<%=score %>").innerHTML=my_score
+							document.getElementById("my_score<%=t %>").innerHTML=my_score
 						 }
 						}
 						</script>
 					<% else %>
-					   <input type="text" name="hours" id="hours" />
+					   <input type="text" class="hours" value="<%=t%>"  id="hours" />
 					<% end %>
 				</td>
-				<td width=20% id="my_score<%=score %>" >
+				<td width=20%   id="my_score<%=t%>" >
+				 <% if aTask.score_by == "Check box:1 for checking off the task"  %>
 					<%= aTask.total %>
+				<%else %>
+				   <b id="hours_myscore"></b>
+				<% end %>
 				</td>
 				<td width=18% id="updated_at">
 			       <% if aTask.score_by == "Check box:1 for checking off the task"  %>
 				        <%if aTask.total == 0 %>
-							<%= link_to " update", update_tasks_list_challenges_path(:id=>aTask.id, :ch_id=>@challenge.id, :score=>aTask.score.to_i,:total=>aTask.total) %>
+							<%= link_to image_tag("update.png"), update_tasks_list_challenges_path(:id=>aTask.id, :ch_id=>@challenge.id, :score=>aTask.score.to_i,:total=>aTask.total) %>
 				        <% else %>
-							<% aTask.updated_at %>
+							  <b ><%=  time_ago_in_words aTask.updated_at %></b>
 						<% end%>
 				<% else %>
-						<%= link_to " update", update_tasks_list_challenges_path(:id=>aTask.id, :ch_id=>@challenge.id, :score=>aTask.score.to_i,:total=>aTask.total) %>
+						<%=image_tag("update.png",:id=>"#{t}",:onclick=>" update_data#{t}();")%>
+						<%#= link_to " update", update_tasks_list_challenges_path(:id=>aTask.id, :ch_id=>@challenge.id, :score=>aTask.score.to_i,:total=>aTask.total) %>
 					<% end %>
 				</td>
 				<script>
-				function update_date()
+				function update_data<%=t%>()
 				{
-				 <% if aTask.score_by == "Check box:1 for checking off the task"  %>
-							var my_score="<%= aTask.score.to_i %>";
-							<% t= DateTime.now %>
-							<% date=t.strftime("%d/%m/%y%H:%M:%S") %>
-							document.getElementById("my_score<%=score %>").innerHTML=my_score
-							document.getElementById("updated_at").innerHTML="<%= date %>"
-				<% else%>
-					var self_report = document.getElementById("hours").value
-					var points ="<%= aTask.score.to_i %>";
-					var total_myscore= self_report * points
-					<% t= DateTime.now %>
-					<% date=t.strftime("%d/%m/%y%H:%M:%S") %>
-					document.getElementById("<%= aTask.name %>").innerHTML=total_myscore
-					document.getElementById("updated_at").innerHTML="<%= date %>"
-					
-				<% end %>
+					var elTableRow = document.getElementById("row<%= t%>");
+					var elTableCells = elTableRow.getElementsByTagName("td");
+					alert(elTableCells[0].textContent);
 				}
 				</script>
 			
@@ -106,7 +98,7 @@
 					<hr/>
 				</td>
 			</tr> 
-         <% score+=1 %>			
+         <%t+=1 %>			
 		<% end %>
 	</tbody>
 </table>
@@ -115,7 +107,7 @@
 {
 color:orange;
 }
-#hours
+.hours
 {
 width:30px;
 }
