@@ -90,7 +90,7 @@
                 <a href="#second"><%= image_tag("icon_thinking.png")%><b>Thinking (<%= @thinking %>)</b></a>              
             </li>            
             <li>                
-                <a href="#third"><%= image_tag("icon_decline.png")%><b>Decliend (<%= @declined %>)</b></a>
+                <a href="#third"><%= image_tag("icon_decline.png")%><b>Declined (<%= @declined %>)</b></a>
             </li>
             <li>                            
                 <a href="#fourth"><%= image_tag("quet.png")%><b></b></a>
@@ -249,7 +249,7 @@
                 <a href="#second"><%= image_tag("icon_thinking.png")%><b>Thinking (<%= @myThinking.count %>)</b></a>              
             </li>            
             <li>                
-                <a href="#third"><%= image_tag("icon_decline.png")%><b>Decliend (<%= @myDeclined.count %>)</b></a>
+                <a href="#third"><%= image_tag("icon_decline.png")%><b>Declined (<%= @myDeclined.count %>)</b></a>
             </li>
             <li>                            
                 <a href="#fourth"><%= image_tag("quet.png")%><b></b></a>
@@ -263,17 +263,19 @@
                       <th></th>                          
                   </tr>
               </thead>
-              <tbody>                            
-                <% @myAccepted.each do |eachChallenge| %>                    
-                    <tr>
-                      <td class="bordercolor" width="15%">                                                       
-                          <%= image_tag(FbGraph::User.new(eachChallenge).fetch.picture) %>                          
-                      </td>
-                      <td class="bordercolor" width="85%" id="nameColor">                          
-                          <%= FbGraph::User.new(eachChallenge).fetch.name %>                           
-                      </td>
-                    </tr>                    
-                <% end %>              
+              <tbody> 
+                <% if @myAccepted.count > 0 %>
+                    <% @myAccepted.each do |eachChallenge| %>                    
+                        <tr>
+                          <td class="bordercolor" width="15%">                                                       
+                              <%= image_tag(FbGraph::User.new(eachChallenge).fetch.picture) %>                          
+                          </td>
+                          <td class="bordercolor" width="85%" id="nameColor">                          
+                              <%= FbGraph::User.new(eachChallenge).fetch.name %>                           
+                          </td>
+                        </tr>                    
+                    <% end %>
+                <% end %>        
               </tbody>        
             </table>
         </div>
@@ -286,16 +288,18 @@
                   </tr>
               </thead>
               <tbody>
-              <% @myThinking.each do |eachChallenge| %>                    
-                <tr>
-                  <td class="bordercolor" width="15%">                                                       
-                      <%= image_tag(FbGraph::User.new(eachChallenge).fetch.picture) %>                          
-                  </td>
-                  <td class="bordercolor" width="85%" id="nameColor">                          
-                      <%= FbGraph::User.new(eachChallenge).fetch.name %>                           
-                  </td>
-                </tr>
-              <% end %>                  
+              <% if @myThinking.count > 0 %>  
+                  <% @myThinking.each do |eachChallenge| %>                    
+                    <tr>
+                      <td class="bordercolor" width="15%">                                                       
+                          <%= image_tag(FbGraph::User.new(eachChallenge).fetch.picture) %>                          
+                      </td>
+                      <td class="bordercolor" width="85%" id="nameColor">                          
+                          <%= FbGraph::User.new(eachChallenge).fetch.name %>                           
+                      </td>
+                    </tr>
+                  <% end %>              
+              <% end %>      
               </tbody>        
             </table>
         </div>
@@ -345,7 +349,7 @@
 
     IMG {
       position: relative;
-      top:4px;
+      top:5px;
     }    
     
     UL.tabNavigation {
@@ -439,13 +443,11 @@
     $("#myfrd").click(function(){      
       if ($('#myfrd').attr('checked')) 
       {
-          //alert("Checked");
           $("#pStatusAll").hide();
           $("#pStatusMy").show();
       }
       else
-      {
-          //alert("uncheck");
+      {         
           $("#pStatusMy").hide();
           $("#pStatusAll").show();
       }
