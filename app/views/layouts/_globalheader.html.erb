@@ -4,9 +4,9 @@
 <div class="span-24">      
 	<% if !current_user.nil?%>
           <% if isStandalone %>
-              no Image
+              
           <% else %>
-              <%= image_tag((current_user.facebook.picture), :style => "float:right", :alt => "Profile") %><br>
+              <%= image_tag((current_user.facebook.picture), :style => "float: right; position: relative; top: 1px;", :alt => "Profile") %><br>
           <% end %>
         <% else %>                                                                                       
 	<%= link_to(image_tag("logo.png", :style => "float:left", :alt => "Home"), root_path) %>
@@ -72,6 +72,7 @@ $(document).ready(function () {
 	<div id="fb-root" />
 </div>
 
+
 <script>  										       
 			window.fbAsyncInit = function() {
 				FB.init({     
@@ -111,4 +112,22 @@ if(window.opener) {
 
   
 
+</script>
+
+<script>
+$(document).ready(function () {	
+	
+	$('#nav li').hover(
+		function () {
+			//show its submenu
+			$('ul', this).slideDown(10);
+
+		}, 
+		function () {
+			//hide its submenu
+			$('ul', this).slideUp(10);			
+		}
+	);
+	
+});
 </script>

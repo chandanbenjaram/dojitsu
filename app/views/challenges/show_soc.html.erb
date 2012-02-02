@@ -67,8 +67,10 @@
     <% end %>        
 <% end %> -->
 
-<table width="100%">		
-  <td width="60%">
+<table width="100%">	
+<tbody>
+<tr>	
+  <td valign="top" width="60%" >
     <table>
         <tr>
                 <td valign="top">
@@ -369,11 +371,13 @@
           </tr>
         </table>
     </td>
-    <td valign="top" width="40%">
+    <td width="40%">
       <section class="mychallengec">
-          <%#= render :partial => "challenges/people_status" %>
+          <%= render :partial => "challenges/people_status" %>
       </section>
     </td>
+</tr>
+</tbody>
 </table>
 	<style>
 .mychallenges {
@@ -404,6 +408,7 @@
     float: left;
 	max-height: auto;
     width: 100%;
+	margin-top: -96%;
 }
 
 </style>	

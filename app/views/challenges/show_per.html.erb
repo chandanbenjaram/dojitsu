@@ -15,13 +15,16 @@
 <%= link_to "#{@challenge.title}","#" , :class => "challenge_link1" %>
 
 </div>
+<% if isStandalone %> 
+   <% else %>
+	 <% if @challenge.pagecount == 0 %>
+		<script>
+			$.dojitsuWallPost.renderFbWallPost();
+		</script>
+		<% @challenge.update_attribute("pagecount","1")%>
+	<%end%>
+<% end %>
 
-<% if @challenge.pagecount == 0 %>
-<script>
-      $.dojitsuWallPost.renderFbWallPost();
-    </script>
-<% @challenge.update_attribute("pagecount","1")%>
- <%end%>
 <div id="ch_main_div1">
 <%= form_for @challenge do |f| %>
 <table width="100%" border="0" border cellspacing=12px>
