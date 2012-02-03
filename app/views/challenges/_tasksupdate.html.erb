@@ -37,7 +37,7 @@
 				<td width=6%>
 					<b  id="<%=aTask.name %>"><%= aTask.score.to_i %></b>
 				</td>
-				<td width=6%>
+				<td width=6% >
 				   <% if aTask.score_by == "Check box:1 for checking off the task"  %>
 						<span id="check_zero">
 								<% if aTask.total==0 %>
@@ -61,14 +61,37 @@
 						}
 						</script>
 					<% else %>
-					   <input type="text" class="hours" value="<%=t%>"  id="hours" />
+					   <input type="text" id="hours<%=t%>" class="hour" onkeypress="return isNumberKey(event)" onmouseout="getvalue<%=t %>();" />
+					   <script>
+						   function isNumberKey(evt)
+								  {
+									 var charCode = (evt.which) ? evt.which : event.keyCode
+									 if (charCode > 31 && (charCode < 48 || charCode > 57))
+										return false;
+
+									 return true;
+								  }
+					   </script>
+					   <script>
+							   function getvalue<%=t %>()
+									   {
+									  
+										   var elTableRow = document.getElementById("row<%= t%>");
+											var elTableCells = elTableRow.getElementsByTagName("td");
+											var points = elTableCells[1].textContent
+											var self_report = document.getElementById("hours<%=t %>").value
+											var sum = points*self_report
+										
+											document.getElementById("hours_myscore<%=t%>").innerHTML=sum
+									  }
+					   </script>
 					<% end %>
 				</td>
-				<td width=20%   id="my_score<%=t%>" >
+				<td width=20%>
 				 <% if aTask.score_by == "Check box:1 for checking off the task"  %>
 					<%= aTask.total %>
 				<%else %>
-				   <b id="hours_myscore"></b>
+				   <b id="hours_myscore<%=t%>"></b>
 				<% end %>
 				</td>
 				<td width=18% id="updated_at">
@@ -79,7 +102,29 @@
 							  <b ><%=  time_ago_in_words aTask.updated_at %></b>
 						<% end%>
 				<% else %>
-						<%=image_tag("update.png",:id=>"#{t}",:onclick=>" update_data#{t}();")%>
+						<%=image_tag("update.png",:id=>"#{t}",  :onclick =>"score_mytotal();")%>
+						
+						<script>
+						   function score_mytotal()
+                        {
+                                        var startValue1 = $("#hours_myscore<%=t%>").val();
+                                        var taskId = '<%=aTask.id %>'
+										var challengeId='<%= @challenge.id%>'
+                                        jQuery.support.cors = true;
+                                        var objj = {
+                                                                  myParams112:startValue1,
+                                                                  myParams211:taskId,
+																  myParams111:challengeId
+                                                                };
+
+                                        $.get('/challenges/score_soc_update',
+                                        {value:objj},
+                                        function(data) {
+                                        }, 'script'
+                                        );
+                        }
+                        </script>
+						
 						<%#= link_to " update", update_tasks_list_challenges_path(:id=>aTask.id, :ch_id=>@challenge.id, :score=>aTask.score.to_i,:total=>aTask.total) %>
 					<% end %>
 				</td>
@@ -88,7 +133,7 @@
 				{
 					var elTableRow = document.getElementById("row<%= t%>");
 					var elTableCells = elTableRow.getElementsByTagName("td");
-					alert(elTableCells[0].textContent);
+					alert(elTableCells[2].textContent);
 				}
 				</script>
 			
@@ -107,7 +152,7 @@
 {
 color:orange;
 }
-.hours
+.hour
 {
 width:30px;
 }

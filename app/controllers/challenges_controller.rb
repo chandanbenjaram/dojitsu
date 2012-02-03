@@ -492,6 +492,13 @@ end
 		  redirect_to show_per_challenges_path(:id => @ch_id.id)
   end
   
+  def score_soc_update
+				
+					 @challenge = Challenge.find(params[:value][:myParams111])
+					 raise @challenge.inspect
+				#	 @aChallenge.update_attributes(:title =>params[:value][:myParams112]) 
+				end
+  
   protected
 
   def find_challenge
