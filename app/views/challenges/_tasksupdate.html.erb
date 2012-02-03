@@ -33,7 +33,11 @@
 <table>
 	<tbody>
 		<% @challenge.tasks.each do |aTask| %>
-			<tr id="row<%=t %>">
+		<% if aTask.is_complete ==0 %>
+			<tr id="row<%=t %>" class="tr_style">
+		<% else %>
+			<tr id="row<%=t %>" class="tr_style1">
+		<% end %>
 				<td  width=50% >
 					<b  id="total"><%= aTask.name %></b>
 				</td>
@@ -120,7 +124,7 @@
 				<td width=18% id="updated_at" class="td_content">
 			       <% if aTask.score_by == "Check box:1 for checking off the task"  %>
 				        <%if aTask.total == 0 %>
-							<%= link_to image_tag("update.png"), update_tasks_list_challenges_path(:id=>aTask.id, :ch_id=>@challenge.id, :score=>aTask.score.to_i,:total=>aTask.total) %>
+							<%= link_to image_tag("update.png"), update_tasks_list_challenges_path(:id=>aTask.id, :challengeId=>@challenge.id, :score=>aTask.score.to_i,:total=>aTask.total) %>
 				        <% else %>
 							  <b ><%=  time_ago_in_words aTask.updated_at %></b>
 						<% end%>
@@ -221,5 +225,13 @@ border: none;
 {
 text-align:center;
 font-weight;
+}
+.tr_style
+{
+background:#ffffff;
+}
+.tr_style1
+{
+background:#f1faec;
 }
 </style>
