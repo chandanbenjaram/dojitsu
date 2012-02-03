@@ -27,10 +27,10 @@ class Task
   
   def updateTimeStamps
     logger.debug "Maisa"
-    logger.debug "#{self.id}"
-    logger.debug "#{@as}"
-    logger.debug "#{self.score}"
-    #logger.debug "#{self.ch_id}"
+    #logger.debug "#{self.id}"
+    #logger.debug "#{@as}"
+    #logger.debug "#{self.score}"
+    #logger.debug "#{Challenge.params[:ch_id]}"
     
   end
   

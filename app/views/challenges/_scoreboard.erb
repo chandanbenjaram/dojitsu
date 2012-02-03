@@ -49,31 +49,36 @@
         <th width="10%">Rank</th>
         <th width="15%">Contestants</th>
         <th width="10%"></th>
-        <th width="55%">Achievement</th>
-        <th width="10%">Time</th>        
+        <th width="45%">Achievement</th>
+        <th width="20%">Time</th>        
       </tr>
     </thead>
     <tbody>
       <% @flag = 1 %>
+      <% lastUpdate = @challenge.created_at %>
       <% Challenge.scoreboard(params[:id]).each do |listOfAll| %>
       <tr>
         <td class="bordercolor">
-          <% if @flag == 1 %>
-            <%= image_tag("gold.png") %>
-          <% elsif @flag == 2 %>
-            <%= image_tag("silver.png") %>
-          <% elsif @flag == 3 %>
-            <%= image_tag("brozone.png") %>
-          <% elsif @flag == 4 %>
-            <%= image_tag("blue.png") %>
-          <% elsif @flag == 5 %>
-            <%= image_tag("red.png") %>
-          <% elsif @flag == 6 %>
-            <%= image_tag("platinum.png") %>
-          <% else %>
-            No Rank
-          <% end %>
-          <% @flag += 1 %>
+           <% unless listOfAll[1] == 0 %>
+              <% if @flag == 1 %>
+                <%= image_tag("gold.png") %>
+              <% elsif @flag == 2 %>
+                <%= image_tag("silver.png") %>
+              <% elsif @flag == 3 %>
+                <%= image_tag("brozone.png") %>
+              <% elsif @flag == 4 %>
+                <%= image_tag("blue.png") %>
+              <% elsif @flag == 5 %>
+                <%= image_tag("red.png") %>
+              <% elsif @flag == 6 %>
+                <%= image_tag("platinum.png") %>
+              <% else %>
+                No Rank
+              <% end %>
+              <% @flag += 1 %>
+           <% else %>
+              No rank  
+           <% end %>     
         </td>
         <td class="bordercolor">
           <%= FbGraph::User.new(listOfAll[0]).fetch.name %>
@@ -89,15 +94,22 @@
             <% eachChallenge = Challenge.all(conditions: {:user_id => listOfAll[0], :title=>@challenge.title}).first %>
             <% total_score = 0 %>
               <% total_score_count = 0 %>
-              <% total = 0 %>
+              <% total = 0 %>              
               <% eachChallenge.tasks.each do |aTask| %>
                   <% total += aTask.score.to_i %>
                   <% if (aTask.is_complete == 1 ) %>
                     <% total_score+=Integer(aTask.score) %>  
-                    <% total_score_count += 1 %>
+                    <% total_score_count += 1 %>                    
+                    <% if lastUpdate.to_s == eachChallenge.created_at %>
+                      <% lastUpdate = eachChallenge.created_at %>
+                    <% else %>
+                      <% if lastUpdate.to_i < aTask.updated_at.to_i %>                        
+                        <% lastUpdate = aTask.updated_at %>
+                      <% end %>  
+                    <% end %>                    
                   <% end %>
               <%end%>             
-              <section style="width:260px">                
+              <section style="width:200px">                
                   <section class="task" id="taskprogress<%= eachChallenge.user_id %>"></section>
                   <section class="sshowperscore_personal"></section>	
                   <section id="sblackbox_personal">
@@ -115,7 +127,7 @@
               </script>
         </td>
         <td class="bordercolor">
-          <%= time_ago_in_words eachChallenge.updated_at %>
+          <%= time_ago_in_words lastUpdate %>
         </td>
       </tr>
       <% end %>
