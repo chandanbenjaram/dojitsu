@@ -14,6 +14,7 @@ class Task
   field :score_by
   # score translates to Point on UI
   field :score
+
   field :total, :default=>0
   # task status
   field :is_complete, :type => Integer, :default => 0

@@ -476,27 +476,46 @@ end
   
   def update_tasks_list
 	  @task_id = params[:id]
-	  @ch_id = Challenge.find(params[:ch_id])
+	  @challengeId = Challenge.find(params[:challengeId])
 	  @myscore = params[:score]
-	  @ch_id.tasks.each do |aTask|
-	 
+	  @challengeId.tasks.each do |aTask|
+	  
 			  if aTask.id.to_s==@task_id
+			   
 			  aTask.update_attribute("total",@myscore)
-				
+				  if  aTask.total !=0
+					aTask.update_attribute("is_complete",1)
+				end
 			 end
 		 end
 	   t= DateTime.now
 	   date=t.strftime("%d/%m/%y%H:%M:%S") 
 	   
-		  redirect_to show_per_challenges_path(:id => @ch_id.id)
+		  redirect_to show_per_challenges_path(:id => @challengeId.id)
   end
   
-  def score_soc_update
-				
-					 @challenge = Challenge.find(params[:value][:myParams111])
-					 raise @challenge.inspect
-				#	 @aChallenge.update_attributes(:title =>params[:value][:myParams112]) 
-				end
+  def myscore_update_self_report
+		#raise params.inspect
+		@sum = params[:sum]
+		@challengeId = Challenge.find(params[:challenge])
+		#@ch =params[:challenge]
+		@task=params[:task]
+		#raise @sum.strip.inspect
+		#raise @ch_id.inspect
+		@my_total= @sum.strip
+		@challengeId.tasks.each do |aTask|
+		if aTask.id.to_s==@task
+			aTask.update_attribute("total",@my_total)
+			if  aTask.total !=0
+				aTask.update_attribute("is_complete",1)
+			end
+		 end
+		 end
+		#raise @my_total.inspect
+			#@ch_id = Challenge.find(params[:ch_id])
+	 
+					 redirect_to show_per_challenges_path(:id => @challengeId.id)
+end
   
   protected
 
