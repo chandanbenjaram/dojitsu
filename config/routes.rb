@@ -45,6 +45,7 @@ Dojitsu::Application.routes.draw do
       get "desc_soc_update"
 	  get "update_tasks_list"
 	  put "update_tasks_list"
+	  get "myscore_update_self_report"
       put :update_attribute_on_the_spot 
       get :get_attribute_on_the_spot
 	  get "score_soc_update"
