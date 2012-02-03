@@ -42,9 +42,9 @@ class Challenge
   def self.whatsNew    
     Challenge.social_n_parents.recently_created.limit(3)
   end
-    
+  
   private
- 
+  
   def self.all_winners()
     score = Challenge.collection.map_reduce(
       "function() { this.tasks.forEach(function(s){ emit(s.name, 1); }); }",
@@ -169,6 +169,57 @@ class Challenge
      else 
        childchallenge
       end 
+  end
+  
+  def self.scoreboard(challengeId)
+     @challenge = Challenge.where(:_id => challengeId).first  
+     aTotalScore = 0  
+     @list=Hash.new()
+    
+     if @challenge.instance_of?Challenge 
+         @challenge.tasks.each_with_index do |orgTasks,index|
+            if orgTasks.is_complete == 1
+              aTotalScore += orgTasks.score.to_i
+            end  
+         end 
+         @list[@challenge.user_id] = aTotalScore      
+         
+        
+         aTotalScore = 0  
+         @challenge.child_challenges.each do |aChildChallenge| 
+             aChildChallenge.tasks.each_with_index do |eachTasks,index|             
+                  if eachTasks.is_complete == 1
+                    aTotalScore += eachTasks.score.to_i
+                  end
+             end   
+        @list[aChildChallenge.user_id] = aTotalScore 
+        aTotalScore = 0                 
+        end  
+        @winner = @list.sort {|a,b| -1*(a[1]<=>b[1]) }
+        return @winner
+     else 
+       @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first 
+       @parentChallenge.tasks.each_with_index do |orgTasks,index|
+            if orgTasks.is_complete == 1
+              aTotalScore += orgTasks.score.to_i
+            end  
+         end 
+         @list[@parentChallenge.user_id] = aTotalScore      
+         
+        
+         aTotalScore = 0  
+         @parentChallenge.child_challenges.each do |aChildChallenge| 
+             aChildChallenge.tasks.each_with_index do |eachTasks,index|             
+                  if eachTasks.is_complete == 1
+                    aTotalScore += eachTasks.score.to_i
+                  end
+             end   
+        @list[aChildChallenge.user_id] = aTotalScore 
+        aTotalScore = 0                 
+        end  
+        @winner = @list.sort {|a,b| -1*(a[1]<=>b[1]) }
+        return @winner
+     end
   end
   
     

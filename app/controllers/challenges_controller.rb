@@ -476,6 +476,7 @@ end
   
   def update_tasks_list
 	  @task_id = params[:id]
+    @as = params[:ch_id]
 	  @ch_id = Challenge.find(params[:ch_id])
 	  @myscore = params[:score]
 	  @ch_id.tasks.each do |aTask|
