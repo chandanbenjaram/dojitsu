@@ -14,7 +14,7 @@
 			<b  id="total">Name</b>
 		</td>
 		<td width=6%>
-			<b  id="total">Points<b id="sign">X</b></b>
+			<b  id="total">Points<b id="sign">x</b></b>
 		</td>
 		<td width=6%>
 			<b  id="total">Hours<b id="sign">=</b></b>
@@ -29,7 +29,7 @@
 </table>
 	<% t = 1 %>
 	<% task =0 %>
-     <% total_tasks = 0%>
+    <% total_tasks = 0%>
 <table>
 	<tbody>
 		<% @challenge.tasks.each do |aTask| %>
@@ -57,26 +57,25 @@
 							
 						<script>
 								function update_task<%=t%>()
-						{
-						 var image = "/assets/check_one.PNG"
-						 document.myImage<%= t %>.src=image	
-						 if (image== "/assets/check_one.PNG")
-						 {
-							var my_check_score="<%= aTask.score.to_i %>";
-							var elTableRow = document.getElementById("row<%= t%>");
-							var elTableCells = elTableRow.getElementsByTagName("td");
-							document.getElementById("hours_myscore<%=t%>").innerHTML=my_check_score
-					
-						 }
-						}
+										{
+										 var image = "/assets/check_one.PNG"
+										 document.myImage<%= t %>.src=image	
+											 if (image== "/assets/check_one.PNG")
+											 {
+												var my_check_score="<%= aTask.score.to_i %>";
+												var elTableRow = document.getElementById("row<%= t%>");
+												var elTableCells = elTableRow.getElementsByTagName("td");
+												document.getElementById("hours_myscore<%=t%>").innerHTML=my_check_score
+											 }
+										}
 						</script>
 					<% else %>
 					 <%if aTask.total == 0 %>
-					   <input type="text" id="hours<%=t%>" class="hour" onkeypress="return isNumberKey(event)" onmouseout="getvalue<%=t %>();" />
-					  <%else%>
-					    <% sc_score =aTask.score.to_i %>
-                         <%= aTask.total.to_i.div sc_score.to_i  rescue 0 %>
-                      <% end %>					  
+						<input type="text" id="hours<%=t%>" class="hour" onkeypress="return isNumberKey(event)" onmouseout="getvalue<%=t %>();" />
+					 <%else%>
+							<% sc_score =aTask.score.to_i %>
+							 <%= aTask.total.to_i.div sc_score.to_i  rescue 0 %>
+                     <% end %>					  
 					   <script>
 						   function isNumberKey(evt)
 								  {
@@ -108,17 +107,22 @@
 											 document.getElementById("task<%=t%>").value="<%= aTask.id %>"
 									  }
 					   </script>
-					   <script>
-					  
-					   </script>
 					   <%#= raise @sum.inspect %>
-					<% end %>
+				<% end %>
 				</td>
 				<td width=20% id="hours_myscore<%=t%>" class="td_content">
 				 <% if aTask.score_by == "Check box:1 for checking off the task"  %>
-					<%= aTask.total %>
+				 <%if aTask.total == 0 %>
+				<b id="hours_myscore<%=t%>"><b id="orange"><%= aTask.total %></b></b>
+					<% else %>
+					<b id="hours_myscore<%=t%>"><b id="green"><%= aTask.total %></b></b>
+				<%end %>
 				<%else %>
-				   <b id="hours_myscore<%=t%>"><%= aTask.total %></b>
+				 <%if aTask.total == 0 %>
+				<b id="hours_myscore<%=t%>"><b id="orange"><%= aTask.total %></b></b>
+					<% else %>
+					<b id="hours_myscore<%=t%>"><b id="green"><%= aTask.total %></b></b>
+				<%end %>
 				<% end %>
 				</td>
 				<td width=18% id="updated_at" class="td_content">
@@ -126,7 +130,7 @@
 				        <%if aTask.total == 0 %>
 							<%= link_to image_tag("update.png"), update_tasks_list_challenges_path(:id=>aTask.id, :challengeId=>@challenge.id, :score=>aTask.score.to_i,:total=>aTask.total) %>
 				        <% else %>
-							  <b ><%=  time_ago_in_words aTask.updated_at %></b>
+							  <b id="update_time"><%=  time_ago_in_words aTask.updated_at %></b>
 						<% end%>
 				<% else %>
 				<%#= raise @challenge.id.inspect %>
@@ -137,21 +141,17 @@
 						
 					   <%#= raise @sum.inspect %>
 					    <%if aTask.total == 0 %>
-							<%= submit_tag "update" ,:class=>"my_submit_button"%>
+							<%= submit_tag "" ,:class=>"my_submit_button"%>
 						<% else %>
-							  <b ><%=  time_ago_in_words aTask.updated_at %></b>
+							  <b id="update_time"><%=  time_ago_in_words aTask.updated_at %></b>
 						<% end%>					   
 						<%#= raise @sum.inspect %>
 					   <%#= link_to image_tag("update.png"), myscore_update_self_report_challenges_path(:id=>aTask.id, :challengeId=>@challenge.id, :mytotal=>@sum) %>
 						<%#=image_tag("update.png",:id=>"#{t}",  :onclick =>"score_mytotal1#{t}();")%>
-						
 					<% end %>
 						<%#=image_tag("update.png",:id=>"#{t}",  :onclick =>"score_mytotal();")%>
-						
 						<script>
-						  
                         </script>
-						
 						<%#= link_to " update", update_tasks_list_challenges_path(:id=>aTask.id, :ch_id=>@challenge.id, :score=>aTask.score.to_i,:total=>aTask.total) %>
 					<% end %>
 				</td>
@@ -165,8 +165,13 @@
 				</script>
 			
 			</tr>
-			<tr> 
+			<% if aTask.is_complete ==0 %>
+				<tr  id="hr_line"> 
+			<%else%>
+				<tr id="hr_line1"> 
+			<% end %>
 				<td colspan="5"> 
+
 					<hr/>
 				</td>
 			</tr> 
@@ -181,9 +186,9 @@
 	<% end %>
 		
 </tbody>
-	<tfoot>
+	<tfoot id="tfoot">
 		<td width=50%>
-			<b  id="total"><%= task %> Tasks Completed <% tasks_remaining =  total_tasks - task %> <%= tasks_remaining %> more  to go</b>
+			<span  id="taskstatus"><%= task %> Tasks Completed <% tasks_remaining =  total_tasks - task %> <%= tasks_remaining %> more  to go</span>
 		</td>
 		<td width=6%>
 			
@@ -194,7 +199,7 @@
 		<td width=20% class="td_content">
 			<b  id="total_score" ><%=total_score %></b>
 		<td width=18%>
-			<b  id="total"><%= button_to "Submit" ,show_per_challenges_path,:class=>"my_submit_button"%></b>
+			<b  id="total1"><%= button_to "" ,show_per_challenges_path,:class=>"my_submit_button1"%></b>
 		</td>
 	</tfoot>
 	
@@ -204,33 +209,77 @@
 #sign
 {
 color:orange;
+font-size:8;
+font-weight:bold;
 }
 .hour
 {
 width:30px;
+text-align: center;
+}
+#orange
+{
+color:orange;
+}
+#green
+{
+color:green;
 }
 #total_score
 {
 color:green;
+font-weigth:bold;
 }
 .my_submit_button
 {
-background-color:orange;
+background-image: url("/assets/update.png");
 color:#fff;
-width: 80px;
-height: 30px;
+height: 26px;
+width: 89px;
+}
+.my_submit_button1
+{
+background-image: url("/assets/submit_button.PNG");
+background-repeat:no-repeat;
+color:#fff;
+height: 26px;
+width: 89px;
+}
 border: none;
 }
 .td_content
 {
 text-align:center;
-font-weight;
+color:#8C8C8C;
+font-weight:bold;
+}
+#update_time
+{
+text-align:center;
+color:#8C8C8C;
+font-weight:bold;
+}
+tfoot  #tfoot{
+    font-style: bold;
+}
+#taskstatus
+{
+font-weight:bold;
+color:#8C8C8C;
 }
 .tr_style
 {
 background:#ffffff;
 }
 .tr_style1
+{
+background:#f1faec;
+}
+hr_line
+{
+background:#ffffff;
+}
+hr_line1
 {
 background:#f1faec;
 }

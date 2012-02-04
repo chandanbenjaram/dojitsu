@@ -46,9 +46,7 @@
 					<% end %>
 				<% end %>
 			<div style="width=30px">
-			<span id="myscore"><b>My score</b></span><span  id ="top_score">Top Score</span> <br>
 			<div class="task" id="taskprogress"></div>
-		
 				<div class="showperscore_personal"></div>	
 				<style>
 					.task
@@ -56,7 +54,6 @@
 						width:400px;
 						}
 					</style>
-						
 					<div id="blackbox_personal">
 						
 						<div class="notcompleted12">
@@ -75,7 +72,7 @@
 	</td>		
 		</td>
 		<td width=10%>
-	      
+		<%#=  time_ago_in_words aTask.updated_at %>
 		</td>
 	</tr>
 </table>
