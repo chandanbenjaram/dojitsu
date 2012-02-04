@@ -20,7 +20,34 @@ class ChallengesController < ApplicationController
 
   def show_soc
     @flg = params[:flg]
-    @challenge = Challenge.find(params[:id])    
+    @challenge = Challenge.find(params[:id]) 
+    
+    #GETING ALL USER CONNECTION
+    aConnection = []
+    @allConnections = UserConnection.select(:target_id).where(:user_id=>current_user.id)
+    @allConnections.each do |aTargetId|
+      aConnection.push(aTargetId.target_id)
+    end
+    #ALL CONNECTION AS PARTICIPANT
+    @onlyMyFrd = Challenge.all(conditions: {:user_id.in => aConnection, :title => @challenge.title })
+    #ALL FRD IN CHALLENGE 
+    @myAccepted = [] 
+    @myThinking = []
+    @myDeclined = []
+    @onlyMyFrd.each do |aStatus|
+      if aStatus.social_type.status == 1
+        @myAccepted.push(aStatus.user_id)
+      elsif aStatus.social_type.status == -1
+        @myDeclined.push(aStatus.user_id)
+      else
+        @myThinking.push(aStatus.user_id)
+      end
+    end
+    
+    #raise @myAccepted.inspect
+    #raise @myDeclined.inspect
+    #raise @myThinking.inspect
+    
     @is_complete_status = 0 
     @challenge.tasks.each do |checkingTaskStatus|
       unless checkingTaskStatus.is_complete == 1
