@@ -4,33 +4,33 @@ namespace :rubber do
     rubber.allow_optional_tasks(self)
 
     before "rubber:setup_gem_sources", "rubber:base:install_rvm"
-    task :install_rvm do
-      rubber.sudo_script "install_rvm", <<-ENDSCRIPT
-        if [[ ! `rvm --version 2> /dev/null` =~ "#{rubber_env.rvm_version}" ]]; then
-          cd /tmp
-          curl -s https://rvm.beginrescueend.com/install/rvm -o rvm-installer
-          chmod +x rvm-installer
-          rm -f /etc/rvmrc
-          rvm_path=#{rubber_env.rvm_prefix} ./rvm-installer --version #{rubber_env.rvm_version}
+        task :install_rvm do
+          rubber.sudo_script "install_rvm", <<-ENDSCRIPT
+            if [[ ! `rvm --version 2> /dev/null` =~ "#{rubber_env.rvm_version}" ]]; then
+              cd /tmp
+              curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer -o rvm-installer
+              chmod +x rvm-installer
+              rm -f /etc/rvmrc
+              rvm_path=#{rubber_env.rvm_prefix} ./rvm-installer --version #{rubber_env.rvm_version}
 
-          # Set up the rubygems version
-          sed -i 's/rubygems_version=.*/rubygems_version=#{rubber_env.rubygems_version}/' #{rubber_env.rvm_prefix}/config/db
+              # Set up the rubygems version
+              sed -i 's/rubygems_version=.*/rubygems_version=#{rubber_env.rubygems_version}/' #{rubber_env.rvm_prefix}/config/db
 
-          # Set up the rake version
-          sed -i 's/rake.*/rake -v#{rubber_env.rake_version}/' #{rubber_env.rvm_prefix}/gemsets/default.gems
-          sed -i 's/rake.*/rake -v#{rubber_env.rake_version}/' #{rubber_env.rvm_prefix}/gemsets/global.gems
+              # Set up the rake version
+              sed -i 's/rake.*/rake -v#{rubber_env.rake_version}/' #{rubber_env.rvm_prefix}/gemsets/default.gems
+              sed -i 's/rake.*/rake -v#{rubber_env.rake_version}/' #{rubber_env.rvm_prefix}/gemsets/global.gems
 
-          # Set up the .gemrc file
-          if [[ ! -f ~/.gemrc ]]; then
-            echo "--- " >> ~/.gemrc
-          fi
+              # Set up the .gemrc file
+              if [[ ! -f ~/.gemrc ]]; then
+                echo "--- " >> ~/.gemrc
+              fi
 
-          if ! grep -q 'gem: ' ~/.gemrc; then
-            echo "gem: --no-ri --no-rdoc" >> ~/.gemrc
-          fi
-        fi
-      ENDSCRIPT
-    end
+              if ! grep -q 'gem: ' ~/.gemrc; then
+                echo "gem: --no-ri --no-rdoc" >> ~/.gemrc
+              fi
+            fi
+          ENDSCRIPT
+        end
 
     # ensure that the rvm profile script gets sourced by reconnecting
     after "rubber:base:install_rvm" do

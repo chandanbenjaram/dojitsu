@@ -1,14 +1,14 @@
---- 
+
 - !ruby/object:Rubber::Configuration::InstanceItem 
   domain: dojitsu.com
-  external_host: ec2-50-19-123-249.compute-1.amazonaws.com
-  external_ip: 50.19.123.249
+  external_host: ec2-50-16-148-218.compute-1.amazonaws.com
+  external_ip: 107.21.205.253
   image_id: ami-fd589594
   image_type: m1.large
-  instance_id: i-e7295284
-  internal_host: ip-10-83-143-58.ec2.internal
-  internal_ip: 10.83.143.58
-  name: dev
+  instance_id: i-77c44b12
+  internal_host: ip-10-118-6-52.ec2.internal
+  internal_ip: 10.118.6.52
+  name: bleeding
   platform: linux
   roles: 
   - !ruby/object:Rubber::Configuration::RoleItem 
@@ -47,7 +47,7 @@
   security_groups: 
   - dojitsu_production_default
   - dojitsu_production_web
-  - dojitsu_production_dev
+  - dojitsu_production_bleeding
   - dojitsu_production_haproxy
   - dojitsu_production_app
   - dojitsu_production_passenger
@@ -55,9 +55,10 @@
   - dojitsu_production_db
   - dojitsu_production_mysql_master
   - dojitsu_production_mongodb
-  static_ip: 50.19.123.249
+  static_ip: 107.21.205.253
   zone: us-east-1a
 - volumes: {}
 
   static_ips: 
     dev: 50.19.123.249
+    bleeding: 107.21.205.253
