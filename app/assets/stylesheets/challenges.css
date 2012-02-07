@@ -64,16 +64,6 @@ td.taskSelection select
 	 left:25px;
 }
 
-@media screen and (-webkit-min-device-pixel-ratio:0)
- {
-	.addRow
-	{
-	position:relative;
-	margin-top:3%;
-	left:25px;
-	}
-}
-
 .ui-draggable .ui-dialog-titlebar 
 {
     background: none repeat scroll 0 0 #8497BF;
