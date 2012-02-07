@@ -50,7 +50,7 @@ Dojitsu::Application.configure do
   config.active_support.deprecation = :notify
   
   # fb env specific settings
-  config.fb_app_id = '244346145644397' 
-  config.fb_app_secret = 'dffeadd3036c732d242c6bd8d6a39d4d'
+  config.fb_app_id = '286703391348668' 
+  config.fb_app_secret = '0fe402e8b7f9a4655319e81a0bf595c1'
   
 end
