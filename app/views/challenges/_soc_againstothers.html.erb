@@ -1,12 +1,58 @@
+<% percentage =0%>
+<% tasks = 0 %>
+<% score_total = 0 %>
 <% total_score = 0 %>
-				<% total_score_count = 0 %>
-					<% percentage =0%>
-				<% total = 0 %>
-				<% score_total = 0 %>
-				<% @challenge.tasks.each do |aTask| %>
-				<% total += aTask.score.to_i %>
-				<%end%>
-				<br/>
+<% total_score_count = 0 %>
+<% total = 0 %>
+<% @challenge.tasks.each do |aTask| %>
+	<% tasks+=1 %>
+	 <% total += aTask.total.to_i %>
+	<% if aTask.is_complete.to_i == 0 %>
+	<% else %>	
+		<% total_score += aTask.total.to_i %>
+	<% end %>
+<% end %>
+
+<script>
+<%  @parentChallenge = Challenge.where(:_id => @challenge.id).first%>
+<% x = 0%>
+<% tot_score = 0%>
+<% highest_score = Array [] %>
+<% organizer =0 %>
+<% participant =0 %>
+<% score_array1= Array[] %>
+	<% @parentChallenge.tasks.each do |parent_tasks|%>
+		  <%if parent_tasks.is_complete == 1%>
+				<%x += parent_tasks.total.to_i%></br>
+	    	<%end%>
+		<%tot_score+= parent_tasks.total.to_i%></br>
+		 <% score_array1 <<tot_score %>
+		<% organizer = score_array1.max %>
+	<%end%>
+	 <% score_array= Array[] %>
+<%if @challenge.parent .nil? %>
+		 <% childChallenges1 =  @challenge.child_challenges %>
+  <%else%>
+		 <% childChallenges1=  @challenge.parent.child_challenges %>
+<%end%>     
+<% childChallenges1.each do |aChildChallenge| %>
+	<% sum_score = 0%>
+	<% total_score = 0%>
+	<% aChildChallenge.tasks.each do |tasks_socre| %>
+		<%if tasks_socre.is_complete == 1%>
+			<% sum_score = sum_score +tasks_socre.total.to_i %>
+		<% end %>
+			<% total_score+= tasks_socre.total.to_i%>
+	<% end %>
+	
+	<% score_array <<sum_score %>
+<% end %>
+	<% participant = score_array.max %>
+	<% highest_score<<participant %>
+	<% highest_score<<organizer %>
+	<% highest_score.max %>
+</script>
+
 <table>
 	<tr>
 			<td width=50%>
@@ -14,14 +60,16 @@
 			</td>
 			<td>
 				<% if @challenge.is_complete != 1 %>
-					<input type="button" value="I'm Done with this challenge >> Submit my score <%= total-total_score%>" class="links_score_p" onclick="mark_as_complete();"/>
+					<input type="button" value="I'm Done with this challenge >> Submit my score <%= score_array.max%>" class="links_score_p" onclick="mark_as_complete();"/>
 					<%#= button_to "I'm Done with this challenge >> Submit my score #{total-total_score } ",:id=>"button_color" %>
 				<% end %>
 			</td>
 	</tr>
 </table>
+
 	<hr/>
 	<br/>
+	
 <table>
 	<tr>
 		<td width=10%>
@@ -30,75 +78,70 @@
 		<td width=10%>
 			<%= image_tag (current_user.facebook.picture), :id=>"image" %>
 		</td>
-		<td width=10% id="td_content_percentage" >
-						
+		<td width=10% id="td_content_percentage" >		
 		</td>
 		<td width=60%>
-			<% total_score = 0 %>
-				<% total_score_count = 0 %>
-				<% total = 0 %>
-				<% @challenge.tasks.each do |aTask| %>
-				 <% total += aTask.score.to_i %>
-				<% if aTask.is_complete.to_i == 0 %>
-					<% else %>	
-							<% total_score += aTask.score.to_i %>
-							</div>
-					<% end %>
-				<% end %>
 			<div style="width=30px">
-			<span id="myscore"><b>My score</b></span><span  id ="top_score">Top Score</span> <br>
-			<div class="task" id="taskprogress"></div>
-		
+				<span id="myscore"><b>My score</b></span><span  id ="top_score">Top Score</span> <br>
+				<div class="task" id="taskprogress"></div>
+				<span id ="score_under_progress" ><%= total %></span> <span id="score_under_progress_in_words">Points( <%= tasks%> tasks)  </span> &nbsp; <span id="top_score_list"> <%= highest_score.max %>points (<%= tasks%> tasks ) </span>
 				<div class="showperscore_personal"></div>	
-				<style>
-					.task
-					{
-						width:400px;
-						}
-					</style>
-						
 					<div id="blackbox_personal">
-						
 						<div class="notcompleted12">
-									
 						</div>
 						<script type="text/javascript">
 								$(function() {
-									$("#taskprogress").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });							
+									$("#taskprogress").progressbar({ value: Math.round(((<%= total_score %>/<%= highest_score.max %>)*100)) });							
 									$("<p>").attr("id", "percentage_personal").$("#taskprogress").progressbar("option") .appendTo("#taskpercentage");
 								});
 						</script>
-						
 					</div><br>
 				</div>
-			
-	</td>		
-		</td>
+		</td>		
 		<td width=10%>
-	      
 		</td>
 	</tr>
 </table>
 
 <script>
 	<% @challenge.tasks.each do |aTask| %>
-			<% total += aTask.score.to_i %>
-				<% if aTask.is_complete.to_i == 0 %>
-				<% else %>	
-					<% total_score += aTask.score.to_i %>
-				<% end %>
+			<% if aTask.is_complete.to_i == 1 %>
+				<% total_score += aTask.total.to_i %>
+			<% end %>
 	<% end %>
-var percentage= (<%= total_score %>/<%= total %>)*100
-var percent = parseInt(percentage);
-document.getElementById("td_content_percentage").textContent=percent+"%"
+	var percentage= (<%= total_score %>/<%= highest_score.max %>)*100
+	alert(<%= total_score %>);
+	alert(<%= highest_score.max %>);
+	var percent = parseInt(percentage);
+	alert(percent);
+	document.getElementById("td_content_percentage").textContent=percent+"%"
 </script>
 
 
 <style>
+.task
+{
+width:400px;
+}
 #image
 {
 position:relaticve;
 margin-top:0px;
+}
+#score_under_progress
+{
+color:#008000;
+font-weight:bold
+}
+#score_under_progress_in_words
+{
+color:#8C8C8C;
+font-weight:bold;
+}
+#top_score_list
+{
+color:#8C8C8C;
+font-weight:bold;
 }
 p{
 color:green;
@@ -153,6 +196,8 @@ margin-right:20px;
 color:green;
 font-weight:bold;
 font-size:20;
+text-align:right;
+font-size:22px;
 }
 .ui-widget-content
 {

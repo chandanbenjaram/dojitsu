@@ -25,11 +25,17 @@
 							<%  @parentChallenge = Challenge.where(:_id => @challenge.id).first%>
 							<% x = 0%>
 							<% tot_score = 0%>
+							<% highest_score = Array [] %>
+							<% organizer =0 %>
+							<% participant =0 %>
+							           <% score_array1= Array[] %>
 							<% @parentChallenge.tasks.each do |parent_tasks|%>
 							   <%if parent_tasks.is_complete == 1%>
-									  <%x += parent_tasks.score.to_i%></br>
+									  <%x += parent_tasks.total.to_i%></br>
 								<%end%>
-								 <%tot_score+= parent_tasks.score.to_i%></br>
+								 <%tot_score+= parent_tasks.total.to_i%></br>
+								    <% score_array1 <<tot_score %>
+									<% organizer = score_array1.max %>
 							<%end%>
 				</td>
 				<td  width="15%">
@@ -45,7 +51,7 @@
 													 <% childChallenges1=  @challenge.parent.child_challenges %>
 													 
 										  <%end%>      
-
+                                      <% score_array= Array[] %>
 									  <% childChallenges1.each do |aChildChallenge| %>
 										<tr>
 												<td width=50%>
@@ -58,17 +64,20 @@
 													  	  <% total_score = 0%>
 														  <% aChildChallenge.tasks.each do |tasks_socre| %>
 														   <%if tasks_socre.is_complete == 1%>
-														  <% sum_score = sum_score +tasks_socre.score.to_i %>
+														  <% sum_score = sum_score +tasks_socre.total.to_i %>
 														  <% end %>
-														   <% total_score+= tasks_socre.score.to_i%>
+														   <% total_score+= tasks_socre.total.to_i%>
 													  <% end %>
 													  <%= sum_score %>/<%= total_score %>
+													   <% score_array <<sum_score %>
 												</td>
 									
 										</tr>
               						<% end %>
-										
-								
+										<% participant = score_array.max %>
+								      <% highest_score<<participant %>
+									  <% highest_score<<organizer %>
+									  <%= highest_score.max %>
 							</table><hr/>	
 </table>
 

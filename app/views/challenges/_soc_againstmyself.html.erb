@@ -1,11 +1,22 @@
-<% total_score = 0 %>
-				<% total_score_count = 0 %>
-					<% percentage =0%>
-				<% total = 0 %>
-				<% score_total = 0 %>
+
+<% percentage1 =0%>
+<% tasks1=0%>
+<% score_total1 = 0 %>
+<% total_score1 = 0 %>
+<% remaining_score1 = 0 %>
+<% total_score_count1 = 0 %>
+<% total1 = 0 %>
 				<% @challenge.tasks.each do |aTask| %>
-				<% total += aTask.score.to_i %>
-				<%end%>
+				<% tasks1+=1 %>
+				 <% total1 += aTask.score.to_i %>
+				<% if aTask.is_complete.to_i == 0 %>
+				<% remaining_score1+= aTask.score.to_i %>
+					<% else %>	
+							<% total_score1 += aTask.score.to_i %>
+							</div>
+					<% end %>
+				<% end %>
+				
 				<br/>
 <table>
 	<tr>
@@ -14,7 +25,7 @@
 			</td>
 			<td>
 				<% if @challenge.is_complete != 1 %>
-					<input type="button" value="I'm Done with this challenge >> Submit my score <%= total-total_score%>" class="links_score_p" onclick="mark_as_complete();"/>
+					<input type="button" value="I'm Done with this challenge >> Submit my score <%=total_score1%>" class="links_score_p" onclick="mark_as_complete();"/>
 					<%#= button_to "I'm Done with this challenge >> Submit my score #{total-total_score } ",:id=>"button_color" %>
 				<% end %>
 			</td>
@@ -30,64 +41,47 @@
 		<td width=10%>
 			<%= image_tag (current_user.facebook.picture), :id=>"image" %>
 		</td>
-		<td width=10% id="td_content_percentage" >
+		<td width=10% id="td_content_percentage1" >
 						
 		</td>
 		<td width=60%>
-			<% total_score = 0 %>
-				<% total_score_count = 0 %>
-				<% total = 0 %>
-				<% @challenge.tasks.each do |aTask| %>
-				 <% total += aTask.score.to_i %>
-				<% if aTask.is_complete.to_i == 0 %>
-					<% else %>	
-							<% total_score += aTask.score.to_i %>
-							</div>
-					<% end %>
-				<% end %>
+		
 			<div style="width=30px">
-			<div class="task" id="taskprogress"></div>
+			<div style="width=30px">
+				<span id="myscore"><b>My score</b></span><span  id ="top_score">Top Score</span> <br>
+				<div class="task" id="taskprogress1"></div>
+				<span id ="score_under_progress" ><%= total_score1 %></span> <span id="score_under_progress_in_words">Points( <%= tasks1%> tasks)  </span> &nbsp; <span id="top_score_list"> <%= remaining_score1 %>points (<%= tasks1%> tasks ) </span>
 				<div class="showperscore_personal"></div>	
-				<style>
-					.task
-					{
-						width:400px;
-						}
-					</style>
 					<div id="blackbox_personal">
-						
 						<div class="notcompleted12">
-									
 						</div>
 						<script type="text/javascript">
 								$(function() {
-									$("#taskprogress").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });							
-									$("<p>").attr("id", "percentage_personal").$("#taskprogress").progressbar("option") .appendTo("#taskpercentage");
+									$("#taskprogress1").progressbar({ value: Math.round(((<%= total_score1 %>/<%= total1 %>)*100)) });							
+									$("<p>").attr("id", "percentage_personal").$("#taskprogress1").progressbar("option") .appendTo("#taskpercentage");
 								});
 						</script>
-						
 					</div><br>
 				</div>
-			
 	</td>		
 		</td>
 		<td width=10%>
-		<%#=  time_ago_in_words aTask.updated_at %>
+	      
 		</td>
 	</tr>
 </table>
 
 <script>
 	<% @challenge.tasks.each do |aTask| %>
-			<% total += aTask.score.to_i %>
+			<% total1 += aTask.score.to_i %>
 				<% if aTask.is_complete.to_i == 0 %>
 				<% else %>	
-					<% total_score += aTask.score.to_i %>
+					<% total_score1 += aTask.score.to_i %>
 				<% end %>
 	<% end %>
-var percentage= (<%= total_score %>/<%= total %>)*100
+var percentage= (<%= total_score1 %>/<%= total1 %>)*100
 var percent = parseInt(percentage);
-document.getElementById("td_content_percentage").textContent=percent+"%"
+document.getElementById("td_content_percentage1").textContent=percent+"%"
 </script>
 
 
@@ -145,7 +139,7 @@ margin-right:20px;
 {
 	width:100%;
 	}
-#td_content_percentage
+#td_content_percentage1
 {
 color:green;
 font-weight:bold;
