@@ -37,17 +37,20 @@ ul.tabs li a {
 	FONT-WEIGHT:BOLD;
 }
 
-
+/*
 ul.tabs li a:hover {
 	background: #FFFFFF;
 	color:#7A7A7A;
 }      
+*/
+ul.tabs li  {
+	background: url("btn_radio_off.png") no-repeat scroll 19px 60% #F4F4F4;
+}      
  
-html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that the active tab does not listen to the hover properties--*/
+html ul.tabs li.active, html ul.tabs li.active { 
 	background:#FFFFFF;
-	border-bottom: 1px solid #fff; /*--Makes the active tab look like it's connected with its content--*/
-	background: url("btn_radio_on.png") no-repeat scroll 19px 60% white;
-	
+	border-bottom: 1px solid #ffffff; 
+	background: url("btn_radio_on.png") no-repeat scroll 19px 70% white;
 }
 
 .tab_container {

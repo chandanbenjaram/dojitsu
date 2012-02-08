@@ -131,17 +131,17 @@
 			</td>
 			<td width="73%">
 				<% if @challenge.instance_of?ChildChallenge%>
-					<%  @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
-					<script>
-						var ordId = <%=  orgId = @parentChallenge.user_id %>
-					</script>
-					<b style="color:#666666;"><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
-				<% else %>	
-					<b style="color:#666666;" id="user_name"></b>
-					<script>
-						var ordId = <%=  orgId = @challenge.user_id %>
-					</script>
-				<% end %>	
+				 <%  @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
+				 <script>
+				  var ordId = <%=  orgId = @parentChallenge.user_id %>
+				 </script>
+								<b ><font color= #666666> <%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></font><b >
+				<% else %> 
+								<b ><font color= #666666> <%= FbGraph::User.new(@challenge.user_id).fetch.name %></font><b >
+				 <script>
+				  var ordId = <%=  orgId = @challenge.user_id %>
+				 </script>
+				<% end %>
 			</td>
 			<td  width="12%">
 				<span id="image2">

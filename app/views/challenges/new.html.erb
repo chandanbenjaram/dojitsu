@@ -31,8 +31,8 @@
 			</td>
 		</tr>
 		<tr>
-			<td valign="center" class="color999"><%= f.label :description, "DESCRIPTION" %></td>
-			<td colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea", :placeholder=>"Enter challenge description here" %><div %></td>
+			<td valign="top" class="color999"><%= f.label :description, "DESCRIPTION" %></td>
+			<td colspan="3" valign="top" ><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea", :placeholder=>"Enter challenge description here" %><div %></td>
 		</tr>
 		<tr>
 				<td colspan="4">
@@ -121,22 +121,7 @@
 							<td colspan="5"><hr id="all_hr1"></td>									
 							<td align="right">
 							<%= image_tag("btn_add_up.png", :class => "addRow")%>
-								<style>
-								  .addRow
-								  {
-									 position:relative;
-									 top:-43px;
-									 left:25px;
-								  }
-								  @media screen and (-webkit-min-device-pixel-ratio:0) {
-								  .addRow {
-								    position:relative;
-									 margin-top:3%;
-									 left:25px;
-								    }
-								}
-
-								</style>
+								
 							</td>
 						</tr>
 							<script type="text/javascript">
@@ -284,7 +269,22 @@
 		</tr>
 	</table>			
 </div>
+<style>
+								  .addRow
+								  {
+									 position:relative;
+									 top:-43px;
+									 left:25px;
+								  }
+								  @media screen and (-webkit-min-device-pixel-ratio:0) {
+								  .addRow {
+								    position:relative;
+									 margin-top:3%;
+									 left:25px;
+								    }
+								}
 
+								</style>
 			
 			
 			

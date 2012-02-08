@@ -506,13 +506,16 @@ position:relative;
 	background-repeat: repeat-x;
 	font-family: Arial;
 	font-size: 15px;
-	color: #333333;
-	
+	color: #BBBBBB;
 	height: 25px;
-	
 	width:99%;
 }
-
+#on_focus_textarea {
+    height: 60px;
+    max-width: 806px;
+    min-width: 806px;
+	}
+/*
 .textarea_nw_tk:hover{
 	border-color: #4ccbda;
 	border-width: 1px;
@@ -522,7 +525,7 @@ position:relative;
 .textarea_nw_tk:focus{
 	border-color: #4ccbda;
 	border-width: 1px;
-}
+}*/
 
 .textfield_effect_nw_tk_add {
 	border-width: 1px;
@@ -832,6 +835,8 @@ input.radio {
 	text-align: center;
 	text-transform: uppercase;
 	width: 175px;
+	top: -3px;
+    width: 175px;
 }
 
 
@@ -1257,7 +1262,7 @@ width:90%;
 #check
 {
 	color:#7AC142;
-	top:17px;
+	top: 23px;
 	font-size:15px;
 	font-style:bold;
 	position:relative;
@@ -1386,18 +1391,18 @@ width:90%;
 .notcompleted
 {
 	float:left;
-	left:3px;
+	left:11px;
 	position:relative;
 	color:#FFFFFF;
 }
 
 .completedtask1
 {
-	color:#FFFFFF;
-	left:170px;
-	position:relative;
-	top:2px;
-	width:100px;
+	color: #FFFFFF;
+    left: 170px;
+    position: relative;
+    top: 7px;
+    width: 20%;
 }
 .invitees3{
     background: none repeat scroll 0 0 #F9A943;
@@ -1417,10 +1422,11 @@ width:90%;
 
 .notcompleted1
 {
-	float:left;
-	left:95px;
-	position:relative;
-	color:#FFFFFF;
+	color: #FFFFFF;
+    float: left;
+    left: 12%;
+    position: relative;
+    top: 8px;
 }
 
 #points
@@ -1522,6 +1528,7 @@ input:required {
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
 	height: 30px;
+	color: #BBBBBB;
 }
 
 #check3 {
@@ -1549,7 +1556,7 @@ input:required {
     width: 180px;
 }
 #search{
-  border: 1px solid #BEBEBE;
+  
     height: 25px;
     width: 180px;
 }
@@ -1618,58 +1625,50 @@ input:required {
     width: 30px;
 }
 .invitee_list
-					{
-					 margin-top: -25px;
-   
-    position: relative;
-					}
+{
+	margin-top: -25px;
+	position: relative;
+}
 #icon
 { 
 			
-		    margin-left: 610px;
+	margin-left: 610px;
     margin-right: -50px;
     margin-top: -10px;
     position: relative;
 			
-			} 
+} 
 			
-				#names
-			{ 
-			float: left;
-			width: 660px;
-			} 
-		
-			
-			#name_list
-			{
-			
-			color: #000000;
+#names
+{ 
+	float: left;
+	width: 660px;
+} 
+#name_list
+{
+	color: #000000;
     padding-left: 5px;
     position: relative;
     top: -15px;
-			
-			
-			}
-			.private_msg
-			{
-			 		 left: 0px;
-    position: relative;
-    top: -5px;
-			}
-			
-			.private_msg1 {
-			float:right;
+}
+
+.private_msg
+{
+	left: 0px;
+	position: relative;
+	top: 0px;
+}
+.private_msg1 
+{
+	float:right;
     position: relative;
     right: 90px;
     top: -5px;
 }
-			.bottom_border
-			{
-			
-			}
-			#percentage_mydojo
+
+#percentage_mydojo
 {
-  color: #7AC142;
+    color: #7AC142;
     font-size: 16px;
     font-weight: bold;
     left: 2px;
@@ -1678,20 +1677,20 @@ input:required {
 }
 .completedtask_mydojo
 {
-color: #FFFFFF;
+	color: #FFFFFF;
     left: 170px;
     position: relative;
 }
 .notcompleted_mydojo
 {
- color: #FFFFFF;
+	color: #FFFFFF;
     float: left;
     left: 105px;
     position: relative;
 }
 #points_mydojo
 {
- background: none repeat scroll 0 0 #DDEFCE;
+	background: none repeat scroll 0 0 #DDEFCE;
     color: #7AC142;
     height: 35px;
     left: 620px;
@@ -1723,30 +1722,29 @@ color: #FFFFFF;
 }
 #challange_mydojo
 {
-position:relative;
+	position:relative;
 }
 .filterform {
 	 left: 17px;
-position: relative;
-top: -12px;
-					}
+	position: relative;
+}
 					
 .filterinput {
 	width :200px;
 	height:25px;
 	position :relative;
-	top: 15px;
-					}
+	top: -5px;
+}
 					
 .text_field {
 	width :200px;
 	height:25px;
-					}
+}
 					
 .user {
 	font-size :20px;
 	text-transform: uppercase;
-			}
+}
 			
 .invite {
     margin-top: -20px;
@@ -1754,14 +1752,14 @@ top: -12px;
     right: 5px;
     top: 15px;
 }
-		.nav_shadow_mydojo
-		{
-		height: 25px;
-    margin-bottom: 0.1em;
-    position: relative;
-    top: -18px;
-    width: 100%;
-		}
+.nav_shadow_mydojo
+{
+	height: 25px;
+	margin-bottom: 0.1em;
+	position: relative;
+	top: -18px;
+	width: 100%;
+}
 		
 .imagebackground{
  	background: url("ui-bg_glass_75_dadada_1x400.png") no-repeat center;	
@@ -1772,18 +1770,18 @@ top: -12px;
 
 .mydojoscore
   {
-    padding-right: 16px;
-    position: relative;
-  }
-   .time2
-  {
-    padding-right: 22px;
-    position: relative;
-  }
+	padding-right: 16px;
+	position: relative;
+}
+.time2
+{
+	padding-right: 22px;
+	position: relative;
+}
   .taskIcon{
-float:right;
-right:10px;  	
-  }
+	float:right;
+	right:10px;  	
+}
   
   .hidebutton{
    float: left;

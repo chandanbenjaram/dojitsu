@@ -9,10 +9,10 @@
         <div>
             <table >
                 <tr>
-                    <td width="80px">
+                    <td width="130px">
                          <b><font color= #999999>DESCRIPTION</font></b></td>
-                    <td width="500px">
-                         <b><%= @challenge.description %></b>
+                    <td >
+                         <span class="colordarkblk"><%= @challenge.description %></span>
                     </td>
                 </tr>
             </table>
@@ -29,16 +29,16 @@
                             <script>
                                     var ordId = <%=  orgId = @parentChallenge.user_id %>
                             </script>
-                            <b><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></b>
+                            <span class="colordarkblk">  <%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></span>
                         <% else %>	
-                            <b id="user_name"></b>
+                             <span class="colordarkblk" id="user_name"></span>
                             <script>
                                     var ordId = <%=  orgId = @challenge.user_id %>
                             </script>
                         <% end %>	
                     </td>
                     <td width="100px">
-                        <%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(ordId)" ) %>
+                        <% image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(ordId)" ) %>
                     </td>
                 </tr>
                 <tr>
@@ -57,9 +57,9 @@
                     </td>
                     <td>
                         <% if @challenge.start_point.instance_of?PointDateType %>		
-                                 <b><%= @challenge.start_point.value.strftime("%b %d, %Y") %> </b>
+                                  <span class="colordarkblk"><%= @challenge.start_point.value.strftime("%b %d, %Y") %> </span>
                         <% else %>							
-                                <b><%= @challenge.start_point.value.to_i %></b>
+                               <span class="colordarkblk"><%= @challenge.start_point.value.to_i %></span>
                         <% end %>
                     </td>
                 </tr>
@@ -76,9 +76,9 @@
                     </td>
                     <td>
                         <% if @challenge.end_point.instance_of?PointDateType %>		
-                                <b><%= @challenge.end_point.value.strftime("%b %d, %Y") %></b>
+                                 <span class="colordarkblk"><%= @challenge.end_point.value.strftime("%b %d, %Y") %></span>
                         <% else %>							
-                                <b><%= @challenge.end_point.value.to_i %></b>
+                                <span class="colordarkblk"><%= @challenge.end_point.value.to_i %></span>
                         <% end %>
                     </td>
                 </tr>
@@ -97,9 +97,9 @@
                      <b><%= @challenge.parent.child_challenges.length %></b>
                 <% else %>
                     <% if @challenge.social_type.status == 1 %>
-                            <b><%= @challenge.child_challenges.length %></b>
+                              <span class="colordarkblk"><%= @challenge.child_challenges.length %></span>
                     <% else %>
-                            <b><%= @challenge.parent.child_challenges.length %></b>
+                              <span class="colordarkblk"><%= @challenge.parent.child_challenges.length %></span>
                     <% end %>
                 <% end %>
                 </td>
@@ -140,7 +140,7 @@
                                                 <option value="audi">DECLINED</option>
                                         </select> 
                                         &nbsp;
-                                        <%= image_tag ("search_it.PNG") %>
+                                        <%= image_tag ("searchbutton.PNG") %>
                                     </td>
                                 </tr>
                             </table>
@@ -335,5 +335,31 @@
     }
 </script>
 
+<style>
+select{
+   background: none repeat scroll 0 0 transparent;
+    border: 1px solid #BBBBBB;
+    color: #F9A943;
+    height: 25px;
+    margin-top: -3px;
+    position: relative;
+    top: 25%;
+    vertical-align: top;
+    width: 50%;
+}
 
+#check5 {
+    color: #7AC142;
+    font-size: 15px;
+    font-weight: bold;
+    left: 10px;
+    position: relative;
+    top: 25px;
+}
+.colordarkblk
+{
+	color: #666666;
+	font-weight: bold;
+}
+</style>
 

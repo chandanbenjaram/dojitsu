@@ -1,5 +1,3 @@
-
-
 .divone{
 	vertical-align:top;
 }
@@ -18,6 +16,11 @@ float: left;
     left: 230px;
     position: relative;
     top: -35px;
+}
+.colordarkblk
+{
+	color: #666666;
+	font-weight: bold;
 }
 .seetutorial
 {
