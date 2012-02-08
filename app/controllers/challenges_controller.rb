@@ -499,6 +499,15 @@ end
   def socialpeople
     render :layout => false
   end
+
+	def mForWinner		
+		@winnerList = params[:winnerList]
+		@winnerList.split(" ").each do |eachWinner|
+				whomSend = Authentication.find_by_uid(eachWinner)				
+    		UserMailer.sendMessage(whomSend.email,params[:message]).deliver						
+		end
+		redirect_to show_soc_challenges_path(:id => params[:challengeId])
+	end
   
   
   def update_tasks_list
