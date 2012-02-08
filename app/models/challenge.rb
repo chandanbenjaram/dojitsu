@@ -140,12 +140,12 @@ class Challenge
      isCompletAll = 0
      if @challenge.instance_of?Challenge 
          @challenge.tasks.each_with_index do |orgTasks,index|
-            if orgTasks.is_complete == 1
+            if orgTasks.is_complete == 0
               isCompletAll = 1
               aTotalScore += orgTasks.score.to_i
             end  
          end 
-         if isCompletAll == 1
+         if isCompletAll == 0
           @listCAT[@challenge.user_id] = aTotalScore      
          end
         
@@ -153,12 +153,12 @@ class Challenge
          aTotalScore = 0  
          @challenge.child_challenges.each do |aChildChallenge| 
              aChildChallenge.tasks.each_with_index do |eachTasks,index|             
-                  if eachTasks.is_complete == 1
+                  if eachTasks.is_complete == 0
                     isCompletAll = 1
                     aTotalScore += eachTasks.score.to_i
                   end
              end   
-            if isCompletAll == 1     
+            if isCompletAll == 0     
                 @listCAT[aChildChallenge.user_id] = aTotalScore 
             end
             isCompletAll = 0
@@ -178,12 +178,12 @@ class Challenge
      isCompletAll = 0
      if @challenge.instance_of?Challenge 
          @challenge.tasks.each_with_index do |orgTasks,index|
-            if orgTasks.is_complete == 1
+            if orgTasks.is_complete == 0
               isCompletAll = 1
-              aTotalScore += orgTasks.score.to_i
+              aTotalScore += orgTasks.updated_at.to_i
             end  
          end 
-         if isCompletAll == 1
+         if isCompletAll == 0
           @listCAT[@challenge.user_id] = aTotalScore      
          end
         
@@ -191,12 +191,12 @@ class Challenge
          aTotalScore = 0  
          @challenge.child_challenges.each do |aChildChallenge| 
              aChildChallenge.tasks.each_with_index do |eachTasks,index|             
-                  if eachTasks.is_complete == 1
+                  if eachTasks.is_complete == 0
                     isCompletAll = 1
-                    aTotalScore += eachTasks.score.to_i
+                    aTotalScore += eachTasks.updated_at.to_i
                   end
              end   
-            if isCompletAll == 1     
+            if isCompletAll == 0     
                 @listCAT[aChildChallenge.user_id] = aTotalScore 
             end
             isCompletAll = 0
@@ -206,7 +206,7 @@ class Challenge
         return @winner
      else 
        childchallenge
-      end 
+     end 
   end
   
   def self.scoreboard(challengeId)
