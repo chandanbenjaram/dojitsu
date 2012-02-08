@@ -1,78 +1,28 @@
 <%= javascript_include_tag('ui.progressbar')%>
 <%= stylesheet_link_tag('jquery-ui', 'ui.progressbar','ui.theme')%>
 
-<% percentage =0%>
-<% tasks = 0 %>
-<% score_total = 0 %>
 <% total_score = 0 %>
-<% total_score_count = 0 %>
-<% total = 0 %>
-<% @challenge.tasks.each do |aTask| %>
-	<% tasks+=1 %>
-	 <% total += aTask.total.to_i %>
-	<% if aTask.is_complete.to_i == 0 %>
-	<% else %>	
-		<% total_score += aTask.total.to_i %>
-	<% end %>
-<% end %>
-
-<script>
-<%  @parentChallenge = Challenge.where(:_id => @challenge.id).first%>
-<% x = 0%>
-<% tot_score = 0%>
-<% highest_score = Array [] %>
-<% organizer =0 %>
-<% participant =0 %>
-<% score_array1= Array[] %>
-	<% @parentChallenge.tasks.each do |parent_tasks|%>
-		  <%if parent_tasks.is_complete == 1%>
-				<%x += parent_tasks.total.to_i%></br>
-	    	<%end%>
-		<%tot_score+= parent_tasks.total.to_i%></br>
-		 <% score_array1 <<tot_score %>
-		<% organizer = score_array1.max %>
-	<%end%>
-	 <% score_array= Array[] %>
-<%if @challenge.parent .nil? %>
-		 <% childChallenges1 =  @challenge.child_challenges %>
-  <%else%>
-		 <% childChallenges1=  @challenge.parent.child_challenges %>
-<%end%>     
-<% childChallenges1.each do |aChildChallenge| %>
-	<% sum_score = 0%>
-	<% total_score = 0%>
-	<% aChildChallenge.tasks.each do |tasks_socre| %>
-		<%if tasks_socre.is_complete == 1%>
-			<% sum_score = sum_score +tasks_socre.total.to_i %>
-		<% end %>
-			<% total_score+= tasks_socre.total.to_i%>
-	<% end %>
-	
-	<% score_array <<sum_score %>
-<% end %>
-	<% participant = score_array.max %>
-	<% highest_score<<participant %>
-	<% highest_score<<organizer %>
-	<% highest_score.max %>
-</script>
-
+				<% total_score_count = 0 %>
+				<% total = 0 %>
+				<% @challenge.tasks.each do |aTask| %>
+				<% total += aTask.score.to_i %>
+				<%end%>
+				<br/>
 <table>
 	<tr>
 			<td width=50%>
 				<b  id="total"> HOW AM I DOING ? </b>
 			</td>
 			<td>
-				<% if @challenge.is_complete != 0 %>
-					<input type="button" value="I'm Done with this challenge >> Submit my score <%= score_array.max%>" class="links_score_p" onclick="mark_as_complete();"/>
-					<%#= button_to "I'm Done with this challenge >> Submit my score #{total-total_score } ",:id=>"button_color" %>
-				<% end %>
+                            <% if @challenge.is_complete != 0 %>
+                                <input type="button" value="I'm Done with this challenge >> Submit my score <%= total-total_score%>" class="links_score_p" onclick="mark_as_complete();"/>
+                                <%#= button_to "I'm Done with this challenge >> Submit my score #{total-total_score } ",:id=>"button_color" %>
+                            <% end %>
 			</td>
 	</tr>
 </table>
-
 	<hr/>
 	<br/>
-	
 <table>
 	<tr>
 		<td width=10%>
@@ -81,69 +31,34 @@
 		<td width=10%>
 			<%= image_tag (current_user.facebook.picture), :id=>"image" %>
 		</td>
-		<td width=10% id="td_content_percentage" >		
+		<td width=10%>
+			<div id="taskpercentage">
+			</div>
 		</td>
 		<td width=60%>
-			<div style="width=30px">
-				<span id="myscore"><b>My score</b></span><span  id ="top_score">Top Score</span> <br>
-				<div class="task" id="taskprogress"></div>
-				<span id ="score_under_progress" ><%= total %></span> <span id="score_under_progress_in_words">Points( <%= tasks%> tasks)  </span> &nbsp; <span id="top_score_list"> <%= highest_score.max %>points (<%= tasks%> tasks ) </span>
-				<div class="showperscore_personal"></div>	
-					<div id="blackbox_personal">
-						<div class="notcompleted12">
+				<div style="width=30px">
+						<span id="myscore"><b>My score</b></span><span  id ="top_score">Top Score</span> <br>
+						<div class="task" id="taskprogress"></div>
+						<div class="showperscore_personal"></div>	
+						<div id="blackbox_personal">
+							<div class="notcompleted2">
+									<span class="tasks_color"><%= (total-total_score) %></span> <font color="gray" weight="bold" size="4px">points (<%= @challenge.tasks.count.to_i-total_score_count.to_i %>&nbsp; tasks)</font>
+							</div>
 						</div>
-						<script type="text/javascript">
-								$(function() {
-									$("#taskprogress").progressbar({ value: Math.round(((<%= total_score %>/<%= highest_score.max %>)*100)) });							
-									$("<p>").attr("id", "percentage_personal").$("#taskprogress").progressbar("option") .appendTo("#taskpercentage");
-								});
-						</script>
-					</div><br>
+					<br>
 				</div>
-		</td>		
+		</td>
 		<td width=10%>
+			Updates
 		</td>
 	</tr>
 </table>
 
-<script>
-	<% @challenge.tasks.each do |aTask| %>
-			<% if aTask.is_complete.to_i == 1 %>
-				<% total_score += aTask.total.to_i %>
-			<% end %>
-	<% end %>
-	var percentage= (<%= total_score %>/<%= highest_score.max %>)*100
-
-	var percent = parseInt(percentage);
-	
-	document.getElementById("td_content_percentage").textContent=percent+"%"
-</script>
-
-
 <style>
-.task
-{
-width:400px;
-}
 #image
 {
 position:relaticve;
 margin-top:0px;
-}
-#score_under_progress
-{
-color:#008000;
-font-weight:bold
-}
-#score_under_progress_in_words
-{
-color:#8C8C8C;
-font-weight:bold;
-}
-#top_score_list
-{
-color:#8C8C8C;
-font-weight:bold;
 }
 p{
 color:green;
@@ -193,307 +108,7 @@ margin-right:20px;
 {
 	width:100%;
 	}
-#td_content_percentage
-{
-color:green;
-font-weight:bold;
-font-size:20;
-text-align:right;
-font-size:22px;
-}
-.ui-widget-content
-{
-border-radius: 0px 0px 0px 0px;
-}
 </style>
-
-
-<div style="display:none"> 
-    <div id="winnerList">          
-      <table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0">		  
-          <tr bgcolor="#000000" class="BoldRED">
-              <td width="4%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;border-left:#666666 1px solid;"><div align="left" class="style22">
-                      <div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Winner</span></div></div>
-              </td>
-              <td width="10%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
-                   <div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Winner Name</span></div></div>
-              </td>
-              <td width="10%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
-                   <div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Total Score</span></div></div>
-              </td>
-          </tr> 
-          <% if !@challenge.blank? and @challenge.instance_of?Challenge and cookies[:key] == 'orgCompleteTask' %>
-              <% sl=0 %>
-              <% if @challenge.social_type.who_win == "Highest number of points" %>
-                  <% @all =  Challenge.winner(params[:id]) %>
-              <% end %>
-              <% if @challenge.social_type.who_win == "Participant completes all tasks" %>
-                  <% @all =  Challenge.winnerCompleteAllTask(params[:id]) %>
-              <% end %>
-              <% if @challenge.social_type.who_win == "Lowest number of points" %>
-                  <% @temp =  Challenge.winner(params[:id]) %>
-                  <% @all = @temp.sort {|a,b| a[1] <=> b[1]} %>
-              <% end %>
-              <% @all.each do |aWinner,index| %>
-                  <tr bgcolor="#FFFFFF" onMouseOver="this.bgColor='#3399cc';" onMouseOut="this.bgColor='#FFFFFF';" >
-                      <td height="25" style="border-bottom:#666666 1px solid;border-left:#666666 1px solid;"><div align="center"><%=image_tag(FbGraph::User.new(aWinner).fetch.picture) %></div></td>
-                      <td style="border-bottom:#666666 1px solid"><div align="center"><%= FbGraph::User.new(aWinner).fetch.name %></div></td>               
-                      <td style="border-bottom:#666666 1px solid"><div align="center"><%= index %></div></td>               
-                  </tr>
-                  <% sl +=1 %>
-                  <% if sl.to_i == @challenge.social_type.how_many_winners.to_i %>
-                      <% break %>
-                  <% end %>
-              <% end %>
-         <% end %>     
-        </table>  
-    </div>
-</div>
-
-<style>
-  #winList{
-    width: 100%;
-    background-color: #F4F4F4;    
-    font-size: 18px;
-    color: #666666;
-    font-weight:bold;
-    padding-left: 20px;
-    padding-top: 10px;
-  }
-  
-  #winListM{
-    width: 95%;
-    background-color: #FFFFFF;    
-    font-size: 14px;
-    color: #666666;
-    font-weight:bold;
-    padding: 10px 10px 10px 20px;
-  }
-  
-  #winListMNo{
-    background-color: #f4f4f4;
-    border: 2px;
-    border-style:solid;
-    border-color: #D0D0D0;
-    margin-top: 10px;
-    padding: 10px 10px 10px 20px;
-  }
-  
-  #winListMNoL{
-    margin-top: 10px;
-    background-color: #ffffff;
-  }
-
-  #addPersonalM{
-    margin-top:10px;	
-  }
-	
-  #addPersonalMm{
-    margin-top:10px;
-    hight:100px;	
-  }
-
-	.textareaMessage{
-		border-width: 1px;
-		border-style: solid;
-		border-color: #999999;
-		background-color:#F4F4F4;
-		background-repeat: repeat-x;
-		font-family: Arial;
-		font-size: 15px;
-		color: #333333;
-		resize: none;
-		height: 50px;	
-		width:98%;
-	}
-
-	.linksMWinner {
-		background: none repeat scroll 0 0 #f9a943;
-		border-radius: 3px 3px 3px 3px;
-		color: #FFFFFF;
-		display: block;
-		font-size: 12px;
-		margin: 20px 0;
-		padding: 5px;
-		text-align: center;
-		text-transform: uppercase;
-		width: 90px;
-		margin-right:10px;
-		position: relative;
-		text-align: center;
-		top: -20px;
-}
-
-</style>
-
-<section style="display: none">
-  <section id="winList">
-    Publish the winners!
-    <section id="winListM">
-      Here's the list of winner(s) for <%= @challenge.title %>. On your approval, the winner(s) will be published to Facebook.
-      <section id="winListMNo">
-        No of winners:&nbsp;<%= @challenge.social_type.how_many_winners %><%= image_tag("icon_edit.png", :style=>"float:right;" )%>
-        <table id="winListMNoL" width="100%">
-          <thead>          
-            <th>Rank</th>
-            <th>Name</th>
-            <th></th>
-            <th></th>
-            <th style="float:right">Score</th>
-          </thead>
-          <tbody>            
-	    <% if @challenge.instance_of?ChildChallenge %>
-		<% @fetChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
-	    <% else %>
-		 <% @fetChallenge = Challenge.where(:_id => params[:id]).first%>
-	    <% end %>
-            <% @flag = 1 %>
-            <% @latestScore = 1 %>
-              <% sl=0 %>
-              <% if @fetChallenge.social_type.who_win == "Highest number of points" %>
-                  <% @all =  Challenge.winner(@fetChallenge.id) %>
-              <% end %>
-              <% if @fetChallenge.social_type.who_win == "Participant completes all tasks" %>
-                  <% @all =  Challenge.winnerCompleteAllTask(@fetChallenge.id) %>
-              <% end %>
-              <% if @fetChallenge.social_type.who_win == "Lowest number of points" %>
-                  <% @temp =  Challenge.winner(@fetChallenge.id) %>
-                  <% @all = @temp.sort {|a,b| a[1] <=> b[1]} %>
-              <% end %>
-							<% @sendM = [] %>
-              <% @all.each do |aWinner,index| %>
-									<% @sendM.push(aWinner) %>
-                  <tr>
-                      <td class="bordercolor">
-                        <% if @flag == 1 %>
-                          gold
-                          <%= image_tag("trophy_gold.png") %>                          
-                          <% @latestScore = index %>
-                          <% @flag += 1 %>
-                        <% elsif @flag == 2 %>
-                          <% if @latestScore == index %>
-                            gold
-                            <%= image_tag("trophy_gold.png") %>                            
-                          <% else %>
-                            silver
-                            <%= image_tag("trophy_green.png") %>                            
-                            <% @latestScore = index %>
-                            <% @flag += 1 %>
-                          <% end %>              
-                        <% elsif @flag == 3 %>              
-                          <% if @latestScore == index %>
-                            silver
-                            <%= image_tag("trophy_green.png") %>                            
-                          <% else %>
-                            bronze
-                            <%= image_tag("trophy_orange.png") %>                            
-                            <% @latestScore = index %>
-                            <% @flag += 1 %>
-                          <% end %> 
-                        <% elsif @flag == 4 %>
-                          <% if @latestScore == index %>
-                            bronze
-                            <%= image_tag("trophy_orange.png") %>                            
-                          <% else %>
-                            blue
-                            <%= image_tag("trophy_blue.png") %>                            
-                            <% @latestScore = index %>
-                            <% @flag += 1 %>
-                          <% end %>                
-                        <% elsif @flag == 5 %>
-                          <% if @latestScore == index %>
-                            blue
-                            <%= image_tag("trophy_blue.png") %>                            
-                          <% else %>
-                            red
-                            <%= image_tag("trophy_purple.png") %>                            
-                            <% @latestScore = index %>
-                            <% @flag += 1 %>
-                          <% end %>                
-                        <% elsif @flag == 6 %>
-                          <% if @latestScore == index %>
-                            red
-                            <%= image_tag("trophy_purple.png") %>                            
-                          <% else %>
-                            platinum
-                            <%= image_tag("trophy_platinum.png") %>                            
-                            <% @latestScore = index %>
-                            <% @flag += 1 %>
-                          <% end %>                
-                        <% else %>
-
-                        <% end %>
-                      </td>
-                      <td class="bordercolor"><div align="center"><%=image_tag(FbGraph::User.new(aWinner).fetch.picture) %></div></td>
-                      <td class="bordercolor">
-			<div align="center" style="float:left"><%= FbGraph::User.new(aWinner).fetch.name %></div>
-		      </td>               
-                      <td class="bordercolor"><div align="center">
-			<section id="taskpercentages">
-			  <section id="taskpercentage<%= aWinner %>">				
-			  </section>            
-			</section></div>
-		      </td>			                    
-                      <td class="bordercolor">			
-			  <% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :title=>@fetChallenge.title}).first %>
-			  <% total_score = 0 %>
-			    <% total_score_count = 0 %>
-			    <% total = 0 %>              
-			    <% eachChallenge.tasks.each do |aTask| %>
-				<% total += aTask.score.to_i %>
-				<% if (aTask.is_complete == 1 ) %>
-				  <% total_score+=Integer(aTask.score) %>  
-				  <% total_score_count += 1 %>                  				                       
-				<% end %>
-			    <%end%>             
-			    <section style="width:200px">                
-				<section class="task" id="taskprogress<%= aWinner %>"></section>
-				<section class="sshowperscore_personal"></section>	
-				<section id="sblackbox_personal">
-				    <section class="snotcompleted2">
-					<span class="tasks_color"><%= (total-total_score) %></span> <font color="gray" weight="bold" size="4px">points (<%= eachChallenge.tasks.count.to_i-total_score_count.to_i %>&nbsp; tasks)</font>
-				    </section>                   
-				</section>
-				<br>
-			    </section>	
-				<script type="text/javascript">
-				      $(function() {
-					  $("#taskprogress<%= aWinner %>").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });					
-					  $("<p>").attr("id", "spercentage_personal").text($("#taskprogress<%= aWinner %>").progressbar("option", "value") + "%").appendTo("#taskpercentage<%= aWinner %>");		
-					  
-				      });
-				</script>						     	 	             	
-		      </td>
-                  </tr>
-                  <% sl +=1 %>
-                  <% if sl.to_i == @challenge.social_type.how_many_winners.to_i %>
-                      <% break %>
-                  <% end %>
-              <% end %>		
-          </tbody>
-        </table>
-      </section>
-			<section id="addPersonalM">
-				<%= link_to "Add personal message", "#", :id=>"sentMessage" %>		
-				<%= image_tag("cancellbutton.PNG", :style=>"float:right") %>
-				<%= image_tag("approve.png", :style=>"float:right; margin-right:10px;") %>
-			</section>
-			<section id="addPersonalMm" style="display:none">
-				<%= form_tag mForWinner_challenges_path, :method=> :get do %>
-						<%= hidden_field_tag "winnerList", @sendM %>	
-						<%= hidden_field_tag "noOfWinner", @challenge.social_type.how_many_winners.to_i%>
-						<%= hidden_field_tag "challengeId", @challenge.id %>	
-						<%= text_area_tag 'message','', :class =>"textareaMessage" %>
-						<%= link_to image_tag("cancellbutton.PNG", :style=>"float:right"), show_soc_challenges_path(:id => @challenge.id) %>
-						<%#= image_tag("approve.png", :style=>"float:right; margin-right:10px;")  %>
-						<%= submit_tag "APPROVE", :style => "width: 80px; float:right;", :class => "linksMWinner" %>
-				<% end %>
-			</section>	
-				</section>
-   
-  </section>
-</section>
-
 
 <script type="text/javascript">
 $(function() {
@@ -503,33 +118,9 @@ $(function() {
 </script>
 
 <script type="text/javascript">
-
-$(document).ready(function(){
-	$("#sentMessage").click(function(){
-		$("#addPersonalM").hide();
-		$("#addPersonalMm").show();	
-	});
-				
-});
-
 function mark_as_complete()
 {  
-  $(document).ready(function(){
-            $.colorbox({
-              opacity: 0.40,
-              transition: 'none',
-              speed: 200,
-              width: 700,
-              scrolling: true,
-              inline:true, 
-              href:"#winList",
-              title: '',
-              overlayClose: true,
-              onComplete: function () {
-                  // $(this).initFunctions(); // if you want to reinit another colorbox, you should pass the element as an argument to initFunctions rather than calling this as a blanket initializer for all colorboxes.
-              }              
-          });
-    });
+  alert("In Progress");
 }
 </script>
 
