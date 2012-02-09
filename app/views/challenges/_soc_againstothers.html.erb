@@ -26,7 +26,18 @@
 <table>
 	<tr>
 		<td width=10%>
-			Ranks
+				<%= user_list = 0 %>
+				<%= raise  @challenge.user_id.inspect %>
+				<% Challenges.each do|challenge|%>
+				<% if challenge.id== @challenge.id %>
+				<%= raise aaaaaaaaa %>
+				<% else %>
+				<%= raise nooooooooooo %>
+			<% end %>
+				<% end %>
+			
+			
+			
 		</td>
 		<td width=10%>
 			<%= image_tag (current_user.facebook.picture), :id=>"image" %>
@@ -49,7 +60,19 @@
 				</div>
 		</td>
 		<td width=10%>
-			Updates
+		<% time_stamps =Array[] %>
+		
+		<% @challenge.tasks.each do |aTask| %>
+			<% if aTask.updated_at == nil %>
+				<%#= rescue N/A %>
+			<% else %>
+				<% time_stamps << aTask.updated_at.to_date %>
+				
+			<% end %>
+		<% end %>
+		<%=  time_stamps.max  %>
+		
+	
 		</td>
 	</tr>
 </table>
