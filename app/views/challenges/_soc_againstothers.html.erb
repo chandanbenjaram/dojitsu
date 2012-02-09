@@ -1,64 +1,87 @@
+<%= javascript_include_tag('ui.progressbar')%>
+<%= stylesheet_link_tag('jquery-ui', 'ui.progressbar','ui.theme')%>
 
+<% total_score = 0 %>
+				<% total_score_count = 0 %>
+				<% total = 0 %>
+				<% @challenge.tasks.each do |aTask| %>
+				<% total += aTask.score.to_i %>
+				<%end%>
+				<br/>
 <table>
 	<tr>
 			<td width=50%>
 				<b  id="total"> HOW AM I DOING ? </b>
 			</td>
 			<td>
-				<% if @challenge.is_complete != 1 %>
-					<input type="button" value="I'm Done with this challenge >> Submit my score <%#= score_array.max%>" class="links_score_p" onclick="mark_as_complete();"/>
-					<%#= button_to "I'm Done with this challenge >> Submit my score #{total-total_score } ",:id=>"button_color" %>
-				<% end %>
+                            <% if @challenge.is_complete != 0 %>
+                                <input type="button" value="I'm Done with this challenge >> Submit my score <%= total-total_score%>" class="links_score_p" onclick="mark_as_complete();"/>
+                                <%#= button_to "I'm Done with this challenge >> Submit my score #{total-total_score } ",:id=>"button_color" %>
+                            <% end %>
 			</td>
 	</tr>
 </table>
-
 	<hr/>
 	<br/>
-	
 <table>
 	<tr>
 		<td width=10%>
-			Ranks
+				<%= user_list = 0 %>
+				<%= raise  @challenge.user_id.inspect %>
+				<% Challenges.each do|challenge|%>
+				<% if challenge.id== @challenge.id %>
+				<%= raise aaaaaaaaa %>
+				<% else %>
+				<%= raise nooooooooooo %>
+			<% end %>
+				<% end %>
+			
+			
+			
 		</td>
 		<td width=10%>
 			<%= image_tag (current_user.facebook.picture), :id=>"image" %>
 		</td>
-		<td width=10% id="td_content_percentage" >		
+		<td width=10%>
+			<div id="taskpercentage">
+			</div>
 		</td>
 		<td width=60%>
-			
-		</td>		
+				<div style="width=30px">
+						<span id="myscore"><b>My score</b></span><span  id ="top_score">Top Score</span> <br>
+						<div class="task" id="taskprogress"></div>
+						<div class="showperscore_personal"></div>	
+						<div id="blackbox_personal">
+							<div class="notcompleted2">
+									<span class="tasks_color"><%= (total-total_score) %></span> <font color="gray" weight="bold" size="4px">points (<%= @challenge.tasks.count.to_i-total_score_count.to_i %>&nbsp; tasks)</font>
+							</div>
+						</div>
+					<br>
+				</div>
+		</td>
 		<td width=10%>
+		<% time_stamps =Array[] %>
+		
+		<% @challenge.tasks.each do |aTask| %>
+			<% if aTask.updated_at == nil %>
+				<%#= rescue N/A %>
+			<% else %>
+				<% time_stamps << aTask.updated_at.to_date %>
+				
+			<% end %>
+		<% end %>
+		<%=  time_stamps.max  %>
+		
+	
 		</td>
 	</tr>
 </table>
 
-
-
-
-
 <style>
-
 #image
 {
 position:relaticve;
 margin-top:0px;
-}
-#score_under_progress1
-{
-color:#008000;
-font-weight:bold
-}
-#score_under_progress_in_words1
-{
-color:#8C8C8C;
-font-weight:bold;
-}
-#top_score_list
-{
-color:#8C8C8C;
-font-weight:bold;
 }
 p{
 color:green;
@@ -66,7 +89,7 @@ font-weight:bold;
 font-size:26px;
 margin-top:20px;
 }
-#top_score1
+#top_score
 {
 padding-left: 50%;
 font-weight:bold;
@@ -108,14 +131,19 @@ margin-right:20px;
 {
 	width:100%;
 	}
-#td_content_percentage1
-{
-color:green;
-font-weight:bold;
-font-size:20;
-text-align:right;
-font-size:22px;
-}
-
 </style>
+
+<script type="text/javascript">
+$(function() {
+	$("#taskprogress").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });							
+	$("<p>").attr("id", "percentage_personal").text($("#taskprogress").progressbar("option", "value") + "%").appendTo("#taskpercentage");
+});
+</script>
+
+<script type="text/javascript">
+function mark_as_complete()
+{  
+  alert("In Progress");
+}
+</script>
 

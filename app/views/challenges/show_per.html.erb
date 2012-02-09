@@ -10,6 +10,13 @@
 	<%= link_to "#{@challenge.title}","#" ,  :class => "challenge_link1" %> 
 </section> 
 
+<%if @challenge.pagecount==0%>
+    <script> 
+      $.dojitsuWallPost.renderFbWallPost();
+    </script>
+ <% @challenge.update_attribute("pagecount","1") %>
+<% end %>
+
 <%= link_to "MY CHALLENGES >> ", challenges_url , :class => "challenge_link1" %>
 
 <%= link_to "#{@challenge.title}","#" , :class => "challenge_link1" %>

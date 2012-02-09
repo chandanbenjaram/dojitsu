@@ -52,6 +52,7 @@ Dojitsu::Application.routes.draw do
       get "search_people"
 	  get "change_challenge_status"
 	  get "update_status_again"
+		get "mForWinner"
     end
   end
 

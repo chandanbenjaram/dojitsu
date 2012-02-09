@@ -8,5 +8,10 @@ class UserMailer < ActionMailer::Base
   
   def sendMail(email,aMessage)
     mail(:to => email, :subject => "You have mail form dojitsu friend", :body => aMessage)
-  end  
+  end
+
+	def sendMessage(email,aMessage)
+		mail(:to => email, :subject => "You have mail form dojitsu friend", :body => aMessage)
+	end	
+  
 end
