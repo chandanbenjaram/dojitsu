@@ -1,57 +1,3 @@
-<% percentage =0%>
-<% tasks = 0 %>
-<% score_total = 0 %>
-<% total_score = 0 %>
-<% total_score_count = 0 %>
-<% total = 0 %>
-<% @challenge.tasks.each do |aTask| %>
-	<% tasks+=1 %>
-	 <% total += aTask.total.to_i %>
-	<% if aTask.is_complete.to_i == 0 %>
-	<% else %>	
-		<% total_score += aTask.total.to_i %>
-	<% end %>
-<% end %>
-
-<script>
-<%  @parentChallenge = Challenge.where(:_id => @challenge.id).first%>
-<% x = 0%>
-<% tot_score = 0%>
-<% highest_score = Array [] %>
-<% organizer =0 %>
-<% participant =0 %>
-<% score_array1= Array[] %>
-	<% @parentChallenge.tasks.each do |parent_tasks|%>
-		  <%if parent_tasks.is_complete == 1%>
-				<%x += parent_tasks.total.to_i%></br>
-	    	<%end%>
-		<%tot_score+= parent_tasks.total.to_i%></br>
-		 <% score_array1 <<tot_score %>
-		<% organizer = score_array1.max %>
-	<%end%>
-	 <% score_array= Array[] %>
-<%if @challenge.parent .nil? %>
-		 <% childChallenges1 =  @challenge.child_challenges %>
-  <%else%>
-		 <% childChallenges1=  @challenge.parent.child_challenges %>
-<%end%>     
-<% childChallenges1.each do |aChildChallenge| %>
-	<% sum_score = 0%>
-	<% total_score = 0%>
-	<% aChildChallenge.tasks.each do |tasks_socre| %>
-		<%if tasks_socre.is_complete == 1%>
-			<% sum_score = sum_score +tasks_socre.total.to_i %>
-		<% end %>
-			<% total_score+= tasks_socre.total.to_i%>
-	<% end %>
-	
-	<% score_array <<sum_score %>
-<% end %>
-	<% participant = score_array.max %>
-	<% highest_score<<participant %>
-	<% highest_score<<organizer %>
-	<% highest_score.max %>
-</script>
 
 <table>
 	<tr>
@@ -60,7 +6,7 @@
 			</td>
 			<td>
 				<% if @challenge.is_complete != 1 %>
-					<input type="button" value="I'm Done with this challenge >> Submit my score <%= score_array.max%>" class="links_score_p" onclick="mark_as_complete();"/>
+					<input type="button" value="I'm Done with this challenge >> Submit my score <%#= score_array.max%>" class="links_score_p" onclick="mark_as_complete();"/>
 					<%#= button_to "I'm Done with this challenge >> Submit my score #{total-total_score } ",:id=>"button_color" %>
 				<% end %>
 			</td>
@@ -81,59 +27,30 @@
 		<td width=10% id="td_content_percentage" >		
 		</td>
 		<td width=60%>
-			<div style="width=30px">
-				<span id="myscore"><b>My score</b></span><span  id ="top_score">Top Score</span> <br>
-				<div class="task" id="taskprogress"></div>
-				<span id ="score_under_progress" ><%= total %></span> <span id="score_under_progress_in_words">Points( <%= tasks%> tasks)  </span> &nbsp; <span id="top_score_list"> <%= highest_score.max %>points (<%= tasks%> tasks ) </span>
-				<div class="showperscore_personal"></div>	
-					<div id="blackbox_personal">
-						<div class="notcompleted12">
-						</div>
-						<script type="text/javascript">
-								$(function() {
-									$("#taskprogress").progressbar({ value: Math.round(((<%= total_score %>/<%= highest_score.max %>)*100)) });							
-									$("<p>").attr("id", "percentage_personal").$("#taskprogress").progressbar("option") .appendTo("#taskpercentage");
-								});
-						</script>
-					</div><br>
-				</div>
+			
 		</td>		
 		<td width=10%>
 		</td>
 	</tr>
 </table>
 
-<script>
-	<% @challenge.tasks.each do |aTask| %>
-			<% if aTask.is_complete.to_i == 1 %>
-				<% total_score += aTask.total.to_i %>
-			<% end %>
-	<% end %>
-	var percentage= (<%= total_score %>/<%= highest_score.max %>)*100
-	alert(<%= total_score %>);
-	alert(<%= highest_score.max %>);
-	var percent = parseInt(percentage);
-	alert(percent);
-	document.getElementById("td_content_percentage").textContent=percent+"%"
-</script>
+
+
 
 
 <style>
-.task
-{
-width:400px;
-}
+
 #image
 {
 position:relaticve;
 margin-top:0px;
 }
-#score_under_progress
+#score_under_progress1
 {
 color:#008000;
 font-weight:bold
 }
-#score_under_progress_in_words
+#score_under_progress_in_words1
 {
 color:#8C8C8C;
 font-weight:bold;
@@ -149,7 +66,7 @@ font-weight:bold;
 font-size:26px;
 margin-top:20px;
 }
-#top_score
+#top_score1
 {
 padding-left: 50%;
 font-weight:bold;
@@ -191,7 +108,7 @@ margin-right:20px;
 {
 	width:100%;
 	}
-#td_content_percentage
+#td_content_percentage1
 {
 color:green;
 font-weight:bold;
@@ -199,16 +116,6 @@ font-size:20;
 text-align:right;
 font-size:22px;
 }
-.ui-widget-content
-{
-border-radius: 0px 0px 0px 0px;
-}
+
 </style>
 
-
-<script>
-function mark_as_complete()
-{
-alert("In progress");
-}
-</script>

@@ -8,6 +8,14 @@
 	<%= link_to "#{@challenge.title}","#" ,  :class => "challenge_link1" %> 
 </section>
 <% name_search = 0%>
+<%if @challenge.pagecount==0%>
+
+    <script> 
+      $.dojitsuWallPost.renderFbWallPost();
+    </script>
+	<% @challenge.update_attribute("pagecount","1") %>
+	<%end %>
+
 <!--
 <% if params[:isNewChallenge] == "isNew" %>
     <script> 
@@ -373,7 +381,7 @@
     </td>
     <td width="40%" valign="top">
       <section class="mychallengec">
-          <%= render :partial => "challenges/people_status" %>
+          <%#= render :partial => "challenges/people_status" %>
       </section>
     </td>
 </tr>

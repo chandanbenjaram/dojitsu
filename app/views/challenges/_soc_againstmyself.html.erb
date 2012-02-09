@@ -36,7 +36,7 @@
 <table>
 	<tr>
 		<td width=10%>
-			Ranks
+	
 		</td>
 		<td width=10%>
 			<%= image_tag (current_user.facebook.picture), :id=>"image" %>
@@ -58,7 +58,7 @@
 						<script type="text/javascript">
 								$(function() {
 									$("#taskprogress1").progressbar({ value: Math.round(((<%= total_score1 %>/<%= total1 %>)*100)) });							
-									$("<p>").attr("id", "percentage_personal").$("#taskprogress1").progressbar("option") .appendTo("#taskpercentage");
+									$("<p>").attr("id", "percentage_personal").$("#taskprogress1").progressbar("option") .appendTo("#taskprogress1");
 								});
 						</script>
 					</div><br>
@@ -151,10 +151,3 @@ border-radius: 0px 0px 0px 0px;
 }
 </style>
 
-
-<script>
-function mark_as_complete()
-{
-alert("In progress");
-}
-</script>

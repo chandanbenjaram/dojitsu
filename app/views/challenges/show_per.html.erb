@@ -340,10 +340,10 @@
 <div id="ch_main_div2">
 <table>
 <tr class="bgcolorb">
-<td width="40px">
+<td width=80%>
 <h3 align="left"><b class="totalstyle">Total : <%= @challenge.tasks.count %></b></h3>
 </td>
-<td>
+<td width=5%>
                                             <% if isStandalone %>
                                                 <% if @challenge.user_id == current_user.gmauth.id%>
 <%= link_to image_tag("btn_add_up.png", :style =>"margin-top:3px;" ), add_task_link_challenges_path(:id => @challenge), :class => "addComment add_task_popup" %>
@@ -354,7 +354,7 @@
 <% end %>
                                             <% end %>
 </td>
-<td align="center">
+<td width=15%>
                                             <% if isStandalone %>
                                                 <% if @challenge.user_id == current_user.gmauth.id %>
 <span class="totalstyle">ADD A TASK</span>
@@ -366,73 +366,306 @@
                                             <% end %>
 </td>
 </tr>
+</table>
 <tr bgcolor=#D7D7D7>
-  				<td width="90%">
-   					<span class ="elecolor" ><b>POINT(S)</b></span> <%= image_tag("icon_slash.png", :height => '12', :width => '5') %> <span class="elecolor"><b>TASKS</b></span>
-  						</td>
-  						<td></td>
-  							<td width="15%" class="scorestyle" >
-   								SCORE
-  						</td>
- 				</tr>
-				<% total_score = 0 %>
-				<% total_score_count = 0 %>
-				<% total = 0 %>
-				<% @challenge.tasks.each do |aTask| %>
-				<% total += aTask.score.to_i %>
-				<tr bgcolor=#ffffff >
-					<td id="task_list" colspan="3" >						
-						<% if aTask.is_complete.to_i == 0 %>
-							<div>
-								<div style="float:left; margin-top:15px;"><%= aTask.score %> <%= image_tag("icon_slash.png", :height => '10', :width => '5')%></div><div style="float:left;  margin-top:15px; margin-left:5px;"><%= aTask.name %></div>
-								<div class="showperscore_0"><%= link_to "0", task_update_challenges_path(:id => @challenge, :name=>aTask.name, :score=>aTask.score, :score_by=>aTask.score_by) ,:class=>"task_update_popup", :style => "text-decoration: underline; color:#F9AB47;" %></div>
-							</div>
-						<% else %>	
-							<div>
-								<% total_score_count +=1 %>
-								<div style="float:left; margin-top:15px;"><%= aTask.score %> <%= image_tag("icon_slash.png", :height => '10', :width => '5')%></div><p style="float:left; margin-top:15px; margin-left:5px; text-decoration:line-through;"><%= aTask.name %></p>
-								<div class="showperscore"><%= aTask.score %></div>
-								<% total_score += aTask.score.to_i %>
-							</div>
-						<% end %>
-						<hr/ width=400px>																																	
-					</td>
-				</tr>
-				
-				<% end %>
-				<tr bgcolor=#f4f4f4>
-					<td colspan="3"></td>
-				</tr>
-			</table>
-			<div style="width=30px">
-				My Dojitsu score: <br>
-				<div class="task" id="taskprogress"></div>
-				<div class="showperscore_personal"><%= total_score %></div>	
-				<style>
-					.task
-					{
-						width:790px;
-						}
-					</style>
-					<div id="blackbox_personal">
-						<div class="completedtask1">																	
-								<%= total_score %> points (<%= total_score_count %> &nbsp; tasks)
-						</div>
-						<div class="notcompleted1">
-									<span class="togostyle"><b>to go:</b></span>&nbsp; <span class="taskscolor"><%= (total-total_score) %> points (<%= @challenge.tasks.count.to_i-total_score_count.to_i %>&nbsp; tasks)</span>
-						</div>
-						<script type="text/javascript">
-								$(function() {
-									$("#taskprogress").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });							
-									$("<p>").attr("id", "percentage_personal").text($("#taskprogress").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress");
-								});
+<% total_score = 0 %>
+<% score = 1 %>
+<!--<table>
+	<tr>
+		<td>
+		<b  id="total">Total: <%= @challenge.tasks.count %></b>
+		</td>
+	</tr>
+</table>-->
+
+<table bgcolor=#f4f4f4>
+	<thead>
+		<td width=57%>
+				Name
+		</td>
+		<td width=4%>
+					Points
+		</td>
+		<td width=2%>
+				<span id="sign">	x </span>
+		</td>
+		<td width=4%>
+					Hours
+		</td>
+		<td width=2%>
+					<span id="sign">	= </span>
+		</td>
+		<td width=10%>
+			My Score
+		</td>
+		<td width=21%>
+			Updated
+		</td>
+	</thead>
+</table>
+	<% t = 1 %>
+	<% task =0 %>
+    <% total_tasks = 0%>
+<table>
+	<tbody>
+		<% @challenge.tasks.each do |aTask| %>
+		<% if aTask.is_complete ==0 %>
+			<tr id="row<%=t %>" class="tr_style">
+		<% else %>
+			<tr id="row<%=t %>" class="tr_style1">
+		<% end %>
+				<td  width=58% >
+					<b  id="total"><%= aTask.name %></b>
+				</td>
+				<td width=6% class="td_content">
+					<%= aTask.score.to_i %>
+				</td>
+				<td width=6% class="td_content">
+				   <% if aTask.score_by == "Check box:1 for checking off the task"  %>
+						<span id="check_zero">
+								<% if aTask.total==0 %>
+									<img src="/assets/check_zero.PNG" id="myImage<%= t %>"  onclick="update_task<%=t%>();" />
+									<%#= image_tag ("check_zero.PNG"),:onclick=>"update_task#{t}();" %>
+								<% else %>
+									<img src="/assets/check_one.PNG" />
+								<% end %>
+						</span>
+							
+						<script>
+								function update_task<%=t%>()
+										{
+										 var image = "/assets/check_one.PNG"
+										 document.myImage<%= t %>.src=image	
+											 if (image== "/assets/check_one.PNG")
+											 {
+												var my_check_score="<%= aTask.score.to_i %>";
+												var elTableRow = document.getElementById("row<%= t%>");
+												var elTableCells = elTableRow.getElementsByTagName("td");
+												document.getElementById("hours_myscore<%=t%>").innerHTML=my_check_score
+											 }
+										}
 						</script>
-						<% if @challenge.is_complete != 1 %>
-                                                  <%= markAsComplete%>
-                                                <% end %>
-					</div><br>
-				</div>
+					<% else %>
+					 <%if aTask.total == 0 %>
+						<input type="text" id="hours<%=t%>" class="hour" onkeypress="return isNumberKey(event)" onmouseout="getvalue<%=t %>();" />
+					 <%else%>
+							<% sc_score =aTask.score.to_i %>
+							 <%= aTask.total.to_i.div sc_score.to_i  rescue 0 %>
+                     <% end %>					  
+					   <script>
+						   function isNumberKey(evt)
+								  {
+									 var charCode = (evt.which) ? evt.which : event.keyCode
+									 if (charCode > 31 && (charCode < 48 || charCode > 57))
+										return false;
+
+									 return true;
+								  }
+					   </script>
+					 
+					   <script>
+							   function getvalue<%=t %>()
+									   {
+									  
+										   var elTableRow = document.getElementById("row<%= t%>");
+											var elTableCells = elTableRow.getElementsByTagName("td");
+											var points = elTableCells[1].textContent
+											var self_report = document.getElementById("hours<%=t %>").value
+											var sum = points*self_report
+										
+											document.getElementById("hours_myscore<%=t%>").innerHTML=sum
+											 var total = elTableCells[3].textContent
+											 var mytotal=String(total).replace('\t','');
+										      var my_score= parseInt(mytotal);
+											  
+											 document.getElementById("sum<%=t%>").value=mytotal
+											 document.getElementById("ch<%=t%>").value="<%= @challenge.id %>";
+											 document.getElementById("task<%=t%>").value="<%= aTask.id %>"
+									  }
+					   </script>
+					   <%#= raise @sum.inspect %>
+				<% end %>
+				</td>
+				<td width=8% id="hours_myscore<%=t%>" class="td_content">
+				 <% if aTask.score_by == "Check box:1 for checking off the task"  %>
+				 <%if aTask.total == 0 %>
+				<b id="hours_myscore<%=t%>"><b id="orange"><%= aTask.total %></b></b>
+					<% else %>
+					<b id="hours_myscore<%=t%>"><b id="green"><%= aTask.total %></b></b>
+				<%end %>
+				<%else %>
+				 <%if aTask.total == 0 %>
+				<b id="hours_myscore<%=t%>"><b id="orange"><%= aTask.total %></b></b>
+					<% else %>
+					<b id="hours_myscore<%=t%>"><b id="green"><%= aTask.total %></b></b>
+				<%end %>
+				<% end %>
+				</td>
+				<td width=24% id="updated_at" class="td_content">
+			       <% if aTask.score_by == "Check box:1 for checking off the task"  %>
+				        <%if aTask.total == 0 %>
+							<%= link_to image_tag("update.png"), update_tasks_list_challenges_path(:id=>aTask.id, :challengeId=>@challenge.id, :score=>aTask.score.to_i,:total=>aTask.total) %>
+				        <% else %>
+							  <b id="update_time"><%=  time_ago_in_words aTask.updated_at %></b>
+						<% end%>
+					<% else %>
+					<%= form_tag myscore_update_self_report_challenges_path, :method => :get do %>
+					   <%=hidden_field_tag 'sum', @sum, :id=>"sum#{t}"%>
+					   <%=hidden_field_tag 'challenge', @ch, :id=>"ch#{t}"%>
+					   <%=hidden_field_tag 'task', @task, :id=>"task#{t}"%>
+					    <%if aTask.total == 0 %>
+							<%= submit_tag "" ,:class=>"my_submit_button1"%>
+						<% else %>
+							  <b id="update_time"><%=  time_ago_in_words aTask.updated_at %></b>
+						<% end%>		
+					<% end %>	
+				<% end %>
+				  
+				  
+				  
+				  
+		
 			
+			
+				</td>
+				<script>
+				function update_data<%=t%>()
+				{
+					var elTableRow = document.getElementById("row<%= t%>");
+					var elTableCells = elTableRow.getElementsByTagName("td");
+					alert(elTableCells[2].textContent);
+				}
+				</script>
+			
+			</tr>
+			<% if aTask.is_complete ==0 %>
+				<tr  id="hr_line"> 
+			<%else%>
+				<tr id="hr_line1"> 
+			<% end %>
+				<td colspan="5"> 
+
+					<hr/>
+				</td>
+			</tr> 
+         <%t+=1 %>		
+       <% if aTask.is_complete == 1 %>	
+			<% task+=1 %>
+		<% end %>
+	    <% total_tasks+=1%>
+		
+		<% total_score=total_score+ aTask.total.to_i %>
+		
+	<% end %>
+		
+</tbody>
+	<tfoot id="tfoot">
+		<td width=50%>
+			<span  id="taskstatus"><%= task %> Tasks Completed <% tasks_remaining =  total_tasks - task %> <%= tasks_remaining %> more  to go</span>
+		</td>
+		<td width=6%>
+			
+		</td>
+		<td width=6%>
+			
+		</td>
+		<td width=6% class="td_content">
+			<b  id="total_score" ><%=total_score %></b>
+		<td width=28%>
+			<b  id="total1"><%= button_to "" ,show_per_challenges_path,:class=>"my_submit_button_all"%></b>
+		</td>
+	</tfoot>
+	
+</table>
+
+<style type="text/css">
+thead
+{
+font-style:normal;
+color:#8C8C8C;
+font-weight:bold;
+}
+#sign
+{
+color:orange;
+font-size:8;
+font-weight:bold;
+}
+.hour
+{
+width:30px;
+text-align: center;
+}
+#orange
+{
+color:orange;
+}
+#green
+{
+color:green;
+}
+#total_score
+{
+color:green;
+font-weigth:bold;
+}
+.my_submit_button1
+{
+background-image: url("/assets/update.png");
+color:#fff;
+height: 26px;
+width: 89px;
+}
+.my_submit_button_all
+{
+background-image: url("/assets/submit_button.PNG");
+background-repeat:no-repeat;
+color:#fff;
+height: 26px;
+width: 89px;
+}
+border: none;
+}
+.td_content
+{
+text-align:center;
+color:#8C8C8C;
+font-weight:bold;
+}
+#update_time
+{
+text-align:center;
+color:#8C8C8C;
+font-weight:bold;
+}
+#tfoot{
+ font-style: normal;
+ font-weight:bold;
+ color:#D7D7D7;
+ font-size:16px;
+}
+#taskstatus
+{
+font-weight:bold;
+color:#8C8C8C;
+}
+.tr_style
+{
+background:#ffffff;
+}
+.tr_style1
+{
+background:#f1faec;
+}
+hr_line
+{
+background:#ffffff;
+}
+hr_line1
+{
+background:#f1faec;
+}
+</style>
 	</tr>		
 </table>	
 

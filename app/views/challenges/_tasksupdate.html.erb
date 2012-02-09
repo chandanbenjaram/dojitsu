@@ -10,20 +10,26 @@
 
 <table bgcolor=#f4f4f4>
 	<thead>
-		<td width=50%>
-			<b  id="total">Name</b>
+		<td width=52%>
+				Name
 		</td>
-		<td width=6%>
-			<b  id="total">Points<b id="sign">x</b></b>
+		<td width=5%>
+					Points
 		</td>
-		<td width=6%>
-			<b  id="total">Hours<b id="sign">=</b></b>
+		<td width=2%>
+				<span id="sign">	x </span>
 		</td>
-		<td width=20%>
-			<b  id="total">My Score</b>
+		<td width=5%>
+					Hours
 		</td>
-		<td width=18%>
-			<b  id="total">Updated</b>
+		<td width=2%>
+					<span id="sign">	= </span>
+		</td>
+		<td width=18% id="myscore_td">
+			My Score
+		</td>
+		<td width=16%>
+			Updated
 		</td>
 	</thead>
 </table>
@@ -41,10 +47,10 @@
 				<td  width=50% >
 					<b  id="total"><%= aTask.name %></b>
 				</td>
-				<td width=6% class="td_content">
+				<td width=10% class="td_content">
 					<%= aTask.score.to_i %>
 				</td>
-				<td width=6% class="td_content">
+				<td width=4% class="td_content">
 				   <% if aTask.score_by == "Check box:1 for checking off the task"  %>
 						<span id="check_zero">
 								<% if aTask.total==0 %>
@@ -110,7 +116,7 @@
 					   <%#= raise @sum.inspect %>
 				<% end %>
 				</td>
-				<td width=20% id="hours_myscore<%=t%>" class="td_content">
+				<td width=8% id="hours_myscore<%=t%>" class="td_content_score">
 				 <% if aTask.score_by == "Check box:1 for checking off the task"  %>
 				 <%if aTask.total == 0 %>
 				<b id="hours_myscore<%=t%>"><b id="orange"><%= aTask.total %></b></b>
@@ -125,7 +131,7 @@
 				<%end %>
 				<% end %>
 				</td>
-				<td width=18% id="updated_at" class="td_content">
+				<td width=28% id="updated_at" class="td_content">
 			       <% if aTask.score_by == "Check box:1 for checking off the task"  %>
 				        <%if aTask.total == 0 %>
 							<%= link_to image_tag("update.png"), update_tasks_list_challenges_path(:id=>aTask.id, :challengeId=>@challenge.id, :score=>aTask.score.to_i,:total=>aTask.total) %>
@@ -193,10 +199,10 @@
 		<td width=6%>
 			
 		</td>
-		<td width=6%>
+		<td width=8%>
 			
 		</td>
-		<td width=20% class="td_content">
+		<td width=18% class="td_content_score">
 			<b  id="total_score" ><%=total_score %></b>
 		<td width=18%>
 			<b  id="total1"><%= button_to "" ,show_per_challenges_path,:class=>"my_submit_button1"%></b>
@@ -206,6 +212,20 @@
 </table>
 
 <style type="text/css">
+thead
+{
+
+color:#8C8C8C;
+font-weight:bold;
+}
+#myscore_td
+{
+text-align:left;
+}
+.td_content_score
+{
+text-align:center;
+}
 #sign
 {
 color:orange;
@@ -259,8 +279,11 @@ text-align:center;
 color:#8C8C8C;
 font-weight:bold;
 }
-tfoot  #tfoot{
-    font-style: bold;
+#tfoot{
+ font-style: normal;
+ font-weight:bold;
+ color:#D7D7D7;
+ font-size:16px;
 }
 #taskstatus
 {
