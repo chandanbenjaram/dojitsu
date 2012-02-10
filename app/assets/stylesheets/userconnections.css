@@ -27,7 +27,8 @@ padding-left:px;
 
 3edit_info
 {
-padding:left;
+width:30px;
+padding-left:100px;
 }
 #edit
 {
@@ -69,7 +70,9 @@ font-style:bold;
 	right:-90px; 
 	color:#999999; 
 	font-size: 12px;
-	font-weight:bold;	
+	font-weight:bold;
+	text-transform: uppercase;
+}	
 }
 
 .user 
@@ -80,6 +83,7 @@ font-style:bold;
 }
 .titlecol
 {
+        font-style:normal;
 	color: #999999;
 }
 .subtitlecol
