@@ -1,7 +1,14 @@
 
+#about_me
+{
+background-color: #fff;
+height:auto;
+}
+
 #about_me:hover
 {
 background-color: #f4f4f4;
+height:auto;
 }
 
 a
@@ -18,6 +25,10 @@ width:30px;
 padding-left:px;
 }
 
+3edit_info
+{
+padding:left;
+}
 #edit
 {
 width="30px;

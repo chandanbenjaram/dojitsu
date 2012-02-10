@@ -125,7 +125,7 @@
 						</td>
 						<td align="left" height="10px">
 							<span class="subtitlecol"  id="about_me1">
-								<b><%= truncate "#{current_user.facebook.bio rescue 'N/A'}", :length=>15 %>&nbsp;</b><a href="#" onclick="fun();">more</a></span><span id="image_icon"><%= image_tag("icon_edit.png") %></span>
+								<b><%= truncate "#{current_user.facebook.bio rescue 'N/A'}", :length=>15 %>&nbsp;</b><a href="#" onclick="fun();">more</a></span><%= image_tag("icon_edit.png" , :id=>"edit_info") %></span>
 						</td>						
 					</tr> 
 					<tr> 
@@ -173,6 +173,19 @@
 			document.getElementById("about_me1").innerHTML="<b><%=current_user.facebook.bio rescue 'N/A' %></b>";
 		}
 </script>
+
+<script>
+$(document).ready(function(){
+		$("#edit_info").hide();
+		$("#about_me").mouseover(function(){
+				$("#edit_info").show()
+		  });
+		$(document).mouseout(function(){
+						$("#edit_info").hide();
+		 });
+});
+</script>
+
 
 <script type="text/javascript" charset="utf-8">        
 (function($j) { 
