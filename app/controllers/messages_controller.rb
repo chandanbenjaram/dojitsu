@@ -44,4 +44,12 @@ class MessagesController < ApplicationController
     aUnread.update_attributes(:isRead => 0)
     render 'index'
   end
+
+	def storeWinner
+		raise params.inspect
+		@winners = params[:winners]
+		@winnerTitle = params[:title]
+		@noOfWinner = params[:noOfWinner]
+	end
+
 end

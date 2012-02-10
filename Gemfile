@@ -47,7 +47,7 @@ gem "on_the_spot"
 gem "will_paginate", "~> 3.0.2"
 
 #color window for testing
-gem "win32console", "~> 1.3.0"
+#gem "win32console", "~> 1.3.0"
 gem 'spork', '0.9.0.rc8'
 gem "webrat", "~> 0.7.3"
 gem 'factory_girl_rails'
@@ -74,7 +74,7 @@ group :assets do
   gem 'coffee-rails', "~> 3.1.0.rc"
   gem 'execjs'
   gem 'uglifier'
-  #gem 'therubyracer'   
+  gem 'therubyracer'   
 end
 
 # Deployment stuff
