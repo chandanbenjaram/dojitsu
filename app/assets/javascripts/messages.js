@@ -5,7 +5,7 @@
 			FB.ui({
 				method: 'send',  
 				to: to,
-				name: subject,
+				name: subject,				
 				link: link,
 				text: message,
 				message: message,
