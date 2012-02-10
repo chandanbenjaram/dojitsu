@@ -729,7 +729,7 @@
               <% @all.each do |aWinner,index| %>
 						<% @allWinners.push(aWinner) %>
                   <tr>
-							 <td>
+							 <td class="bordercolor">
 									<%= image_tag("dwn_sort.png") %>
 									<%= image_tag("up_sort.png") %>
 							</td>	
@@ -794,10 +794,10 @@
                         <% end %>
                       </td>
                       <td class="bordercolor"><div align="center">
-									<%#=image_tag(FbGraph::User.new(aWinner).fetch.picture) %></div>
+									<%=image_tag(FbGraph::User.new(aWinner).fetch.picture) %></div>
 							 </td>
                       <td class="bordercolor"><div align="center" style="float:left">
-									<%#= FbGraph::User.new(aWinner).fetch.name %></div>
+									<%= FbGraph::User.new(aWinner).fetch.name %></div>
 		      			 </td>               
                       <td class="bordercolor">
 								<div align="center">
@@ -835,7 +835,7 @@
 									});
 								</script>																							     	 	            
 							</td>	
-							<td><%= image_tag("btn_delete_up.png") %></td>						
+							<td class="bordercolor"><%= image_tag("btn_delete_up.png") %></td>						
                   </tr>
                   <% sl +=1 %>
                   <% if sl.to_i == @challenge.social_type.how_many_winners.to_i %>
@@ -942,8 +942,9 @@ function winnerList()
 
                       }, 'script'
                   );
-						var allWinns = '<%= @allWinners %>';                  
-						$.get('/messages/storeWinner', allWinns );
+						var allWinns = '<%= @allWinners %>';
+						//var title = '<%= @challenge.title %>';                  
+						$.get('/messages/storeWinner', allWinns,title );
 
               }
             }
