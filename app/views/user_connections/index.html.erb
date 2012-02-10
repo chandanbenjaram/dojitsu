@@ -1,9 +1,8 @@
-
 <%= stylesheet_link_tag('challenges.css','simple-tabs','jquery-ui', 'ui.core','ui.progressbar', 'main','colorbox','userconnections')%>
 <%= javascript_include_tag('jquery.facebook.multifriend.select','simple-tabs','ui.progressbar','jquery.colorbox-min','on_the_spot','ajaxPageLoad','user_connection','messages')%>
 <%= render 'layouts/loggedinbody'%>
-<% as= current_user.challenges.size %>
 
+<% as= current_user.challenges.size %>
 <section bgcolor="#f4f4f4" class="topbar" id="topbbarid" >	
 <section class="invitee_button" >
 		<%= render :partial => 'invitations' %>
@@ -14,7 +13,7 @@
 </section>
 
 <section id="ch_main_section5">
-	<p class="user"><%=current_user.facebook.name%></p>
+<p class="user"><%=current_user.facebook.name%></p>
 	<table border="1px">
 		<tr width="600px">
 			<td width="100px" height="200px" align="left">      
@@ -23,7 +22,6 @@
 					 picturePath = current_user.facebook.picture
 				end%>
 				<%= image_tag picturePath %>   
-				
 			</td>
 			<td width="570px" height="200px">
 				<table>
@@ -33,7 +31,7 @@
 						</td>
 						<td align="left">
 							<span class="subtitlecol" >
-								<%= current_user.created_at%>
+								<b><%= current_user.created_at.to_date%></b>
 							</span>
 						</td>
 					</tr> 
@@ -53,94 +51,89 @@
 									<% totalTasks+=ch.tasks.length%>
 								<% end %>
 								<b><%= current_user.challenges.length %>&nbsp;Challenges&nbsp;and&nbsp;<%= totalTasks%>&nbsp;tasks</b>
-								</span>
-							</td>
-						</tr>
-
-						<tr> 
-							<td colspan="2"> 
-								<hr/>
-							</td>
-						</tr>   
-
-						<tr>
-							<td width="100px" height="10px">
-								<span class="titlecol" ><b>CURRENT CITY</b></span></td>
-							</td>
-							<td align="left" >
-								<span class="subtitlecol" >
+							</span>
+						</td>
+					</tr>
+					<tr> 
+						<td colspan="2"> 
+							<hr/>
+						</td>
+					</tr>   
+					<tr>
+						<td width="100px" height="10px">
+							<span class="titlecol" ><b>CURRENT CITY</b></span></td>
+						</td>
+						<td align="left" >
+							<span class="subtitlecol" >
 								<b><%= current_user.facebook.location.name rescue 'N/A' %></b>
-								</span>
-							</td>
-						</tr>
-						<tr> 
-							<td colspan="2"> 
-								<hr/>
-							</td>
-						</tr>   
-
-						<tr>
-							<td width="100px">
-								<span class="titlecol" ><b>HOME CITY</b></span>
-								
-							</td>
-							</td>
-							<td align="left" height="10px">
-								<span class="subtitlecol" >
-									<b><%= current_user.facebook.hometown.name rescue 'N/A' %></b>
-								</span>
-							</td>
-						</tr>
-						<tr> 
-							<td colspan="2"> 
-								<hr/>
-							</td>
-						</tr>   
-
-						<tr>
-							<td width="100px">
-								<span class="titlecol" ><b>SEX</b></span></td>
-							</td>
-							<td align="left" height="10px">
-								<span class="subtitlecol" >
+							</span>
+						</td>
+					</tr>
+					<tr> 
+						<td colspan="2"> 
+							<hr/>
+						</td>
+					</tr>   
+					<tr>
+						<td width="100px">
+							<span class="titlecol" ><b>HOME CITY</b></span>
+						</td>
+						<td align="left" height="10px">
+							<span class="subtitlecol" >
+								<b><%= current_user.facebook.hometown.name rescue 'N/A' %></b>
+							</span>
+						</td>
+					</tr>
+					<tr> 
+						<td colspan="2"> 
+							<hr/>
+						</td>
+					</tr>   
+					<tr>
+						<td width="100px">
+							<span class="titlecol" ><b>SEX</b></span></td>
+						</td>
+						<td align="left" height="10px">
+							<span class="subtitlecol" >
 								<b><%= current_user.facebook.gender rescue 'N/A' %></b>
-								</span>
+							</span>
 							</td>
-						</tr>
-						<tr> 
-							<td colspan="2"> 
-								<hr/>
-							</td>
-						</tr>
-						<tr>
-							<td width="100px">
-								<span class="titlecol" ><b>BIRTH DAY</b></span></td>
-							</td>
-							<td align="left" height="10px">
-								<span class="subtitlecol" >
-								<b><%= current_user.facebook.birthday rescue 'N/A' %></b></span>
-							</td>
-						</tr>
-						<tr> 
-							<td colspan="2"> 
-								<hr/>
-							</td>
-						</tr>
-						<tr>
-							<td width="100px">
-								<span class="titlecol" ><b>ABOUT ME</b></span></td>
-							</td>
-							<td align="left" height="10px">
-								<span class="subtitlecol" >
-								<b><%= current_user.facebook.bio rescue 'N/A' %></b></span>
-							</td>						
-						</tr> 
-						<tr> 
-							<td colspan="2"> 
-								<hr/>
-							</td>
-						</tr>
-					</table>
+					</tr>
+					<tr> 
+						<td colspan="2"> 
+							<hr/>
+						</td>
+					</tr>
+					<tr>
+						<td width="100px">
+							<span class="titlecol" ><b>BIRTH DAY</b></span></td>
+						</td>
+						<td align="left" height="10px">
+							<span class="subtitlecol" >
+								<b><%= current_user.facebook.birthday rescue 'N/A' %></b>
+							</span>
+						</td>
+					</tr>
+					<tr> 
+						<td colspan="2"> 
+							<hr/>
+						</td>
+					</tr>
+					<tr id="about_me">
+						<td width="100px">
+							<span class="titlecol" ><b>ABOUT ME</b></span></td>
+						</td>
+						<td align="left" height="10px">
+							<span class="subtitlecol"  id="about_me1">
+								<b><%= truncate "#{current_user.facebook.bio rescue 'N/A'}", :length=>15 %>&nbsp;</b><a href="#" onclick="fun();">more</a></span><span id="image_icon"><%= image_tag("icon_edit.png") %></span>
+						</td>						
+					</tr> 
+					<tr> 
+						<td colspan="2"> 
+							<hr/>
+						</td>
+					</tr>
+				</table>
 			</td>
 		</tr>
 	 </table>
@@ -151,35 +144,36 @@
     				<li><a href="#tab1"><b>MY DOJO</b></a></li>
     				<li><a href="#tab2"><b>CHALLENGES</b></a></li>
 				</ul>
-					<section class="tab_container1">
-						<section id="tab1" class="tab_content2">
-							<section id="myDojo"></section>
-											<section id="myDojo1"></section>
+				<section class="tab_container1">
+					<section id="tab1" class="tab_content2">
+						<section id="myDojo"></section>
+						<section id="myDojo1"></section>
 					</section>
-				    <script>
-					$.dojitsuAjaxPage.renderAjaxPageLoad("/user_connections/myDojo","#myDojo","#myDojo1");
-				    </script>
-					
-		
-		
-		
+						<script>
+							$.dojitsuAjaxPage.renderAjaxPageLoad("/user_connections/myDojo","#myDojo","#myDojo1");
+						</script>
 					<section id="tab2" class="tab_content2"><br>
-					
 						<section id="people"></section>
-                                                <section id="people1"></section>
-                                        </section>
+                            <section id="people1"></section>
+                     </section>
 					<script>
-                                          $.dojitsuAjaxPage.renderAjaxPageLoad("/user_connections/people","#people","#people1");
+                         $.dojitsuAjaxPage.renderAjaxPageLoad("/user_connections/people","#people","#people1");
 					</script>
-</td>
-</tr>
-</table>
-
-
+			</td>
+		</tr>
+	</table>
 <section id="jfmfs-container-wrapper" margin-top:0px;="display: none">
   <section id="jfmfs-container">
   </section>
  </section>
+ 
+<script>
+	function fun()
+		{
+			document.getElementById("about_me1").innerHTML="<b><%=current_user.facebook.bio rescue 'N/A' %></b>";
+		}
+</script>
+
 <script type="text/javascript" charset="utf-8">        
 (function($j) { 
  var selectorObz = {    
@@ -196,19 +190,13 @@
    title: 'Invite Participants',
    width: '725px',
    open: function(event, ui) { $j("#jfmfs-container").jfmfs(selectorObz); },
-  
-
   buttons: {                                             
-               
-
-
-			   Cancel: function() {
+   Cancel: function() {
      $j("#jfmfs-container").data('jfmfs').clearSelected(); 
      $j('#inviteBtn').val("INVITE PARTICIPANTS");    
      $j(this).dialog( "close" );
     },
-    
-	
+
 	Invite: function() {
      var friendSelector = $j("#jfmfs-container").data('jfmfs');
      var selectedFriends = friendSelector.getSelectedIds();
@@ -219,24 +207,16 @@
 		$.get('/user_connections/sendInvitation', 
 			{inviteIds:selectedFriends},
 			function(data) {
-
 			}, 'script'
 		);
-		
-
-		
-		
      } 
    }
-   
   });
  }
  )          
 })(jQuery);
 
 $('.ui-button').live('click', function(){
-
-
   $.dojitsuAjaxPage.renderAjaxPageLoad("/user_connections/myDojo","#myDojo","#myDojo1");
     $(".tables").replaceWith($('.tables'));
   });
