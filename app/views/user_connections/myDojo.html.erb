@@ -6,16 +6,16 @@
 	<% end %>
 		<script>
 			function contactToInvitee() 
-			{
-			 var contact = '<%= group.join(",") %>';
-			 window.fbAsyncInit();
-				FB.ui({
-				  method: 'send',
-				  to:contact,
-				  name: 'Do your best',
-				  link: 'http://www.dojitsu.com'
-						 });										 
-			 }
+				{
+				 var contact = '<%= group.join(",") %>';
+					window.fbAsyncInit();
+					FB.ui({
+					  method: 'send',
+					  to:contact,
+					  name: 'Do your best',
+					  link: 'http://www.dojitsu.com'
+							 });										 
+				 }
 		</script>
 
 			<div class="tables">
@@ -32,7 +32,7 @@
 							</label>
 					</td>
 					<td style="width:80%; padding-left: 56%;"><input type="text" id="search"/>
-					<span class="searchbox"><%= image_tag ("searchbutton.PNG") %><span>
+					<span class="searchbox"><%= image_tag ("searchbutton.PNG") ,:id=>"search_button"%><span>
 						
 						
 					</td>
@@ -91,9 +91,9 @@
 				<script type="text/javascript">
 							$(document).ready(function()
 							{
-								$('#search').keyup(function()
+								$('#search_button').click(function()
 								{
-									searchTable($(this).val());
+									searchTable($('#search').val());
 								});
 							});
 							function searchTable(inputVal)

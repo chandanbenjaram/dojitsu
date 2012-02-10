@@ -68,4 +68,8 @@ class UserConnectionsController < ApplicationController
     @useconnection.destroy
 	redirect_to :action => 'index'
   end
+  
+  
+  
+
 end
