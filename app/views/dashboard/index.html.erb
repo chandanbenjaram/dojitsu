@@ -7,33 +7,33 @@
     </script>
 <% end %>
 <table>
-<td>
-<content>
-<table>
-  <td>
-  <tr>
-       <td>
-         <div class="dashboardsidebar">
-            <div class="mychallenge">
-              <div id="titlechallenge">
-                <div id="mychallengesstyle">
-                    <div class="shadow">my challenges &nbsp;&nbsp;<span class="fontstyle">( <%= current_user.challenges.size %> )</sapn>
-                    </div>
-                </div>
-                <div class="second_titlechallenge">
-                   <%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
-                </div>
-              </div>
-              <div id="myChallenge"></div>
-              <div id="myChallenge1" align="center"></div>
-              <script>
-                  $.dojitsuAjaxPage.renderAjaxPageLoad("/dashboard/myChallenge","#myChallenge","#myChallenge1");
-              </script>
-            </div>
-          </div>
-      </td>
-        </tr>
-        <tr>
+	<td>
+		<content>
+		<table>
+		  <td>
+		  <tr>
+	       <td>
+	         <div class="dashboardsidebar">
+	            <div class="mychallenge">
+	              <div id="titlechallenge">
+	                <div id="mychallengesstyle">
+	                    <div class="shadow">my challenges &nbsp;&nbsp;<span class="fontstyle">( <%= current_user.challenges.size %> )</sapn>
+	                    </div>
+	                </div>
+	                <div class="second_titlechallenge">
+	                   <%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
+	                </div>
+	              </div>
+	              <div id="myChallenge"></div>
+	              <div id="myChallenge1" align="center"></div>
+	              <script>
+	                  $.dojitsuAjaxPage.renderAjaxPageLoad("/dashboard/myChallenge","#myChallenge","#myChallenge1");
+	              </script>
+	            </div>
+	          </div>
+	     	</td>
+		  </tr>
+		  <tr>
           <td>	
               <div class="dashboardsidebar1">
                   <div class="mychallenge">
@@ -46,50 +46,49 @@
                           </div>
                       </div>
                       <div style="overflow-y: auto; overflow-x: hidden;" id="challengedetails">
-                      <div id="message"></div>
-                      <div id="message1" align="center"></div>
-                      <script>
-                        $.dojitsuAjaxPage.renderAjaxPageLoad("/dashboard/message","#message","#message1");
-                      </script>
-                  </div>	
-              </div>
-          </td>
-      </tr>
-   </td>
-</table>
-</content>
-</td>
-<td valign=top>
-    <div class="dashboardsidebar2">
-      <div class="whatsnew">
-          <div class="shadow1" id="shadowcolor">what's new</div>
-                                  <%= button_to "", challenges_url, :class => "ds_view_all", :method => :get%>
-          </div>
-          <% if Challenge.whatsNew.count == 0 %>
-    <p align="center">No challenges found</p>
-<% else %>
-<% Challenge.whatsNew.each do |aChallenge| %>
-    <div id="contentbox" >
-	 
-        <%= image_tag("new.gif", :height => '30', :width => '30' ,:class => "imagestyle") %>
-        <table width="100%" class="maintable">
-            <tr>
-              <td width="70%" class="firsttdst">
-                  <span class ="chatitle"><%= aChallenge.title%></span>	<br>										
-                  by
-                  <% if aChallenge.instance_of?ChildChallenge %>
-                     <% @parentChallenge = Challenge.where(:_id => aChallenge.challenge_id).first%>
-                     <script>
-                         var ordId = <%=  orgId = @parentChallenge.user_id %>
-                     </script>
-                     <b>
-                        <% if isStandalone %>
-                            <%= @parentChallenge.first_name %>
-                        <% else %>
-                            <%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %>
-                        <% end %>                                  
-                     </b>
-                  <% else %>
+	                      <div id="message"></div>
+	                      <div id="message1" align="center"></div>
+	                      <script>
+	                        $.dojitsuAjaxPage.renderAjaxPageLoad("/dashboard/message","#message","#message1");
+	                      </script>
+                  	</div>	
+              	</div>
+          	</td>
+      		</tr>
+			</td>
+		</table>
+		</content>
+	</td>
+	<td valign=top>
+	    <div class="dashboardsidebar2">
+	      <div class="whatsnew">
+	          <div class="shadow1" id="shadowcolor">what's new</div>
+	           	<%= button_to "", challenges_url, :class => "ds_view_all", :method => :get%>
+	          </div>
+	          <% if Challenge.whatsNew.count == 0 %>
+	    	  <p align="center">No challenges found</p>
+			  <% else %>
+			  <% Challenge.whatsNew.each do |aChallenge| %>
+	    <div id="contentbox" >
+		  <%= image_tag("new.gif", :height => '30', :width => '30' ,:class => "imagestyle") %>
+	        <table width="100%" class="maintable">
+	            <tr>
+	              <td width="70%" class="firsttdst">
+	                  <span class ="chatitle"><%= aChallenge.title%></span>	<br>										
+	                  by
+	                  <% if aChallenge.instance_of?ChildChallenge %>
+	                     <% @parentChallenge = Challenge.where(:_id => aChallenge.challenge_id).first%>
+	                     <script>
+	                         var ordId = <%=  orgId = @parentChallenge.user_id %>
+	                     </script>
+	                     <b>
+	                        <% if isStandalone %>
+	                            <%= @parentChallenge.first_name %>
+	                        <% else %>
+	                            <%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %>
+	                        <% end %>                                  
+	                     </b>
+	                  <% else %>
                           <b>
                               <% if isStandalone %>
                                   <%= current_user.gmauth.first_name %>
@@ -97,31 +96,31 @@
                                   <%= FbGraph::User.new(aChallenge.user_id).fetch.name %>
                               <% end %>                                  
                           </b>
-                  <% end %>
-<br>	
-                  <% if aChallenge.start_point.instance_of?PointDateType %>
-                          <%= aChallenge.start_point.value.strftime("%b %d, %Y")%> - <%= aChallenge.end_point.value.strftime("%b %d, %Y")%>
-                  <% else %>
-                          <%= aChallenge.start_point.value rescue 0%> - <%= aChallenge.end_point.value rescue 0%>
-                  <% end %>
-
-                  <% if aChallenge.child_challenges.size<2 %>
-                   <%= aChallenge.child_challenges.size%>&nbsp;&nbsp;contestant
-                   <%else%>
-                  <%= aChallenge.child_challenges.size%>&nbsp;&nbsp;contestants
-                  <%end%>
-                  <p class="texttransormn">
-                          <%=h truncate(aChallenge.description, :length => 15) %>&nbsp;&nbsp;<b><%= link_to "VIEW" , show_soc_challenges_path(:id => aChallenge.id), :class => 'underline_view'   %>	</b>								
-              </td>
-              <td valign="top" width="30%" class="tdalign" >
-                              <p class = "timestyle"><%= time_ago_in_words  aChallenge.created_at%></p>
-              </td>
-            </tr>
-        </table>
-    </div>
-    <% end %>
-<% end %>
-      </div>
+	                  <% end %>
+					  <br>	
+	                  <% if aChallenge.start_point.instance_of?PointDateType %>
+	                          <%= aChallenge.start_point.value.strftime("%b %d, %Y")%> - <%= aChallenge.end_point.value.strftime("%b %d, %Y")%>
+	                  <% else %>
+	                          <%= aChallenge.start_point.value rescue 0%> - <%= aChallenge.end_point.value rescue 0%>
+	                  <% end %>
+	
+	                  <% if aChallenge.child_challenges.size<2 %>
+	                   <%= aChallenge.child_challenges.size%>&nbsp;&nbsp;contestant
+	                   <%else%>
+	                  <%= aChallenge.child_challenges.size%>&nbsp;&nbsp;contestants
+	                  <%end%>
+	                  <p class="texttransormn">
+	                          <%=h truncate(aChallenge.description, :length => 15) %>&nbsp;&nbsp;<b><%= link_to "VIEW" , show_soc_challenges_path(:id => aChallenge.id), :class => 'underline_view'   %>	</b>								
+	              </td>
+	              <td valign="top" width="30%" class="tdalign" >
+	                  <p class = "timestyle"><%= time_ago_in_words  aChallenge.created_at%></p>
+	              </td>
+	            </tr>
+	        </table>
+	    </div>
+	    <% end %>
+		<% end %>
+	  </div>
     </td>
 </table>
         
