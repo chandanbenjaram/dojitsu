@@ -73,6 +73,13 @@
 						<%= link_to image_tag("btn_delete_up.png" , :id => "image2_#{eachConnection.target_id}"), delete_contact_user_connections_path( :id=>eachConnection.target_id), :class=>"remove" %></span> 
 						</td>
 						</tr>
+						<tr > 
+							<td colspan="2"> 
+								<hr/>
+							</td>
+						</tr> 
+			
+                                       
 						<style>
 						#row_<%= eachConnection.target_id %>:hover
 						  {
@@ -118,6 +125,13 @@
 								$('#search_button').click(function()
 								{
 									searchTable($('#search').val());
+								});
+							});
+							$(document).ready(function()
+							{
+								$('#search').keyup(function()
+								{
+									searchTable($(this).val());
 								});
 							});
 							function searchTable(inputVal)

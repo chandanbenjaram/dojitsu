@@ -90,6 +90,15 @@ html ul.tabs1 li.active, html ul.tabs1 li.active a:hover  { /*--Makes sure that 
 	border-bottom: 1px solid #fff; /*--Makes the active tab look like it's connected with its content--*/
 	
 }
+ul.tabs li a:out {
+	background: #fff;
+	color:#F8981D;
+}  
+ul.tabs1 li a:out {
+	background: #fff;
+	color:#F8981D;
+}      
+     
 
 .tab_container {
 	border: 1px solid #999;
@@ -109,7 +118,7 @@ html ul.tabs1 li.active, html ul.tabs1 li.active a:hover  { /*--Makes sure that 
 }         
 
 .tab_container1 {
-	border: 1px solid #999;
+	border: 0px solid #999;
 	border-top: none;
 	padding:4px;
 	clear: both;
