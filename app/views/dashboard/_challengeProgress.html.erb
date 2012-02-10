@@ -7,8 +7,8 @@
 		} 
 	); 
    </script> 
-			<% t=1 %>
-
+   
+		<% t=1 %>
 			<table   id="myTable" class="tablesorter">
 			<thead>
 			  <tr><th style="CURSOR: pointer; cursor: hand;" id="content1">NAME</th><th style="CURSOR: pointer; cursor: hand;" id="content2"><p id="p">MY DOJITSU SCORE</p></th></tr>
@@ -17,11 +17,7 @@
 				<% current_user.challenges.each do |userChallenge| %>
 				<tr valign="top" class="challengerow" onclick="location.href='<%= show_per_challenges_path(:id => userChallenge)  %>'" >
 					<td >
-						
 						<font family="Arial" color="#666666" size=3"><b><%= userChallenge.title %></b></font><br><font size=2>by </font>
-						
-						
-						
 						<% if userChallenge.instance_of?ChildChallenge %>
 						   <% @parentChallenge = Challenge.where(:_id => userChallenge.challenge_id).first%>
 						   <script>
@@ -32,24 +28,17 @@
 							<b><%= current_user.facebook.name %></b>
 						<% end %>
 						
-						
-						
-						
-						
 						</font><br><%=  userChallenge.start_point.value %> - <%= userChallenge.end_point.value %><br>
 						<%if ( userChallenge.child_challenges.size <2 ) %> 
 							<%= userChallenge.child_challenges.size >0 ? userChallenge.child_challenges.size : 1  %> contestant<br>
 						<% else %>
 							<%= userChallenge.child_challenges.size %> contestants<br>
 						<% end %>
-					
 					</td>
 					<td >					
 						<div class="taskprogress" id="taskprogress<%= t %>">
 						</div>
-						
-						
-					<br/>
+						<br/>
 						<div id="check1">
 							<% x=0 %>
 							<% y=0 %>
@@ -85,14 +74,9 @@
 						<div id="points">
 							&nbsp;&nbsp;<font size=4><b><%= a %></b></font>
 						</div>
-													
 					</td>
-																							
 					<% t+=1 %>																
-					
 				</tr>
-		
-				
 				<% end %>
 			</tbody>
 
