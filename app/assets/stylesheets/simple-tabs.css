@@ -111,7 +111,7 @@ html ul.tabs1 li.active, html ul.tabs1 li.active a:hover  { /*--Makes sure that 
 .tab_container1 {
 	border: 1px solid #999;
 	border-top: none;
-	
+	padding:4px;
 	clear: both;
 	float: left; width: 100%;
 	background: #f4f4f4;

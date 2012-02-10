@@ -1571,11 +1571,7 @@ input:required {
     height: 25px;
     width: 180px;
 }
-#search{
-  border: 1px solid #BEBEBE;
-    height: 20px;
-    width: 180px;
-}
+
 #tableshow_soc
 {
       margin-bottom: 1.4em;
@@ -1800,6 +1796,7 @@ top: -12px;
  .fbusername{
 	top:-20px;
 	position:relative;
+	font-weight:bold;
 }
 #all_hr{
 	color:#0066CC;
@@ -1981,7 +1978,7 @@ font-size:15px;
     font-family: Arial;
     font-size: 15px;
     color: #C6C6C6;
-    width: 200px;
+    width: 180px;
     height: 30px;
 }
 

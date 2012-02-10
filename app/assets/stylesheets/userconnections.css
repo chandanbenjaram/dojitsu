@@ -1,3 +1,35 @@
+
+#about_me:hover
+{
+background-color: #f4f4f4;
+}
+
+a
+{
+text-decoration:underline;
+font-weight:bold;
+}
+
+
+#image_icon
+{
+float:right;
+width:30px;
+padding-left:px;
+}
+
+#edit
+{
+width="30px;
+float:right;
+}
+a
+{
+color:#00b5cb;
+text-decoration:underline
+font-style:bold;
+}
+
 .topbar
 {
     background: none repeat scroll 0 0 #F4F4F4;
