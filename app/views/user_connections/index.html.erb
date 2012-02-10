@@ -113,7 +113,10 @@
 						</td>
 						<td align="left" height="10px">
 							<span class="subtitlecol" >
-								<b><%= current_user.facebook.birthday rescue 'N/A' %></b>
+							<% birthday = 0 %>
+							<% birth_month= 0%>
+							<%birthday = current_user.facebook.birthday rescue 'N/A' %>
+								<b><%birth_month= "#{birthday.strftime(" %B" )}".scan(/..../) %> <%= birth_month[0] %><%= birthday.strftime(" %d, %Y" )  %></b>
 							</span>
 						</td>
 					</tr>
