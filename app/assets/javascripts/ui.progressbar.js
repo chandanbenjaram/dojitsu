@@ -20,7 +20,7 @@ $.widget("ui.progressbar", {
 			.addClass("ui-progressbar"
 				+ " ui-widget"
 				+ " ui-widget-content"
-				+ " ui-corner-all")
+				+ " ui-corner-none")
 			.attr({
 				role: "progressbar",
 				"aria-valuemin": this._valueMin(),
@@ -28,7 +28,7 @@ $.widget("ui.progressbar", {
 				"aria-valuenow": this._value()
 			});
 
-		this.valueDiv = $('<div class="ui-progressbar-value ui-widget-header ui-corner-left"></div>').appendTo(this.element);
+		this.valueDiv = $('<div class="ui-progressbar-value ui-widget-header ui-corner-none"></div>').appendTo(this.element);
 
 		this._refreshValue();
 
@@ -40,7 +40,7 @@ $.widget("ui.progressbar", {
 			.removeClass("ui-progressbar"
 				+ " ui-widget"
 				+ " ui-widget-content"
-				+ " ui-corner-all")
+				+ " ui-corner-none")
 			.removeAttr("role")
 			.removeAttr("aria-valuemin")
 			.removeAttr("aria-valuemax")
@@ -95,7 +95,7 @@ $.widget("ui.progressbar", {
 
 	_refreshValue: function() {
 		var value = this.value();
-		this.valueDiv[value == this._valueMax() ? 'addClass' : 'removeClass']("ui-corner-right");
+		this.valueDiv[value == this._valueMax() ? 'addClass' : 'removeClass']("ui-corner-none");
 		this.valueDiv.width(value + '%');
 		this.element.attr("aria-valuenow", value);
 	}
