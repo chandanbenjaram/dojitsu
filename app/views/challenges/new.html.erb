@@ -263,3 +263,108 @@
 		</tr>
 	</table>			
 </div>
+<script>
+	$(function() {
+		$( "#tabs" ).tabs();
+	});
+	</script>
+
+
+	
+	
+	
+	
+
+<div class="demo">
+
+<div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">Nunc tincidunt</a></li>
+		<li><a href="#tabs-2" id = "pod">Proin dolor</a></li>
+		<li><a href="#tabs-3" id = "pod">Proin dolor</a></li>
+	
+	</ul>
+	<div id="tabs-1">
+		first
+	</div>
+	<div id="tabs-2">
+		second
+	</div>
+		<div id="tabs33">
+		third
+	</div>
+	<div id="tabs44">
+		fourth
+	</div>
+
+</div>
+
+<select id ="first"> 
+      <option  id ="first" value="others" selected="yes">AGINST OTHERS</option>
+      <option  id ="first" value="myself">AGINST MYSELF</option>
+     </select>
+<script>
+$(document).ready(function(){
+
+$("#tabs33").hide();
+$("#tabs44").hide();
+   $("#first").hide();
+ $("#pod").click(function () { 
+ 
+	 $("#pod").replaceWith($("#first").show());
+    });
+ 
+  $("#first").change(function()
+ {
+   var myfre = $("#first").val();
+   if(myfre == "others")
+   {
+    $("#tabs44").hide();
+    $("#tabs-2").replaceWith($("#tabs33").show());
+   }
+   else if(myfre == "myself")
+   {
+    $("#tabs33").hide();
+    $("#tabs-2").replaceWith($("#tabs44").show());
+   }
+ });
+ 
+ 
+});
+</script>
+<style>
+#tabs-1
+{
+	float: left;
+  height: 468px;
+  width: 635px;
+  background: #999999;
+}
+#tabs-2
+{
+	float: left;
+  height: 468px;
+  width: 635px;
+  background: #999999;
+}
+#tabs33
+{
+	float: left;
+  height: 468px;
+  width: 635px;
+  background: #999999;
+}
+#tabs44
+{
+	float: left;
+  height: 468px;
+  width: 635px;
+  background: #999999;
+}
+</style>
+
+		
+	
+
+			
+		
