@@ -1,5 +1,5 @@
-<%= javascript_include_tag('ui.progressbar','ajaxPageLoad','fbWallPost','jquery.colorbox-min', 'simple-tabs-dashboard')%>
-<%= stylesheet_link_tag('jquery-ui', 'ui.progressbar','ui.theme', 'main', 'dashboard','colorbox','messageCss','simple-tabs-dashboard')%>
+<%= javascript_include_tag('ajaxPageLoad','fbWallPost','jquery.colorbox-min', 'simple-tabs-dashboard')%>
+<%= stylesheet_link_tag('jquery-ui', 'ui.theme', 'main', 'dashboard','colorbox','messageCss','simple-tabs-dashboard')%>
 <%= render 'layouts/loggedinbody'%>
 <% if session[:isNewChallenge] == "isNew" %>
     <script>
@@ -18,26 +18,28 @@
        <td>
          <div class="dashboardsidebar">
             <div class="mychallenge">
-			
-             <ul class="tabs">
-				<li><a href="#howamdoing" id="soc">HOW AM I DOING? </a></li>
-				<li><a href="#againstother" id="per">AGINST OTHERS </a></li>
-			</ul>
-				<div id="howamdoing">
-					demo1
-				</div>
+             <div class="menubar">
+					<span id="howiamgoindspace"><span id="shadow">HOW AM I DOING?</span></span>
+						<div id="selecttb"> 
+						<select id ="first">	
+							<option  id ="first" value="others" selected="yes">AGINST OTHERS</option>
+							<option  id ="first" value="myself">AGINST MYSELF</option>
+						</select>
+						 
+					</div>
+					<%# image_tag , challenges_url, :class => "ds_view_all_challenge", :method => :get%>
+					<%=link_to( image_tag("viewallbutton.PNG"), challenges_url, :class=>"ds_view_all_challenge") %>
+					<%=link_to( image_tag("newbutton.PNG"), new_challenge_url, :class => "new_challenge") %>
+
+			</div>
+
 				<div id="againstother">
 					 <%= render :partial => "dashboard/against_others" %>
 				</div>
 				<div id="againstmyself">
 					 <%= render :partial => "dashboard/against_myself" %>
 				</div>
-				<div id="tab3">	
-					<select id ="first">	
-						<option  id ="first" value="others" selected="yes">AGINST OTHERS</option>
-						<option  id ="first" value="myself">AGINST MYSELF</option>
-					</select>
-				</div>
+			
             </div>
           </div>
 		  
@@ -45,13 +47,8 @@
 <script>
 	
 $(document).ready(function(){
-	$("#againstother").hide();
-   $("#againstmyself").hide();
-   $("#first").hide();
-	$("#per").click(function () { 
-		$("#per").replaceWith($("#first").show());
-    });
-	
+	$("#againstmyself").show();
+	 $("#againstother").hide();
 	$("#first").change(function()
 	{
 		 var myfre = $("#first").val();
@@ -60,7 +57,7 @@ $(document).ready(function(){
 			 $("#againstmyself").hide();
 			 $("#howamdoing").replaceWith($("#againstother").show());
 		 }
-		 else if(myfre == "myself")
+		 else 
 		 {
 			 $("#againstother").hide();
 			 $("#howamdoing").replaceWith($("#againstmyself").show());
@@ -69,15 +66,100 @@ $(document).ready(function(){
 
 });
 
+
 </script>
 	<style>
+	.new_challenge
+	{
+		float: right;
+		right: -6%;
+		position: relative;
+		top: 3px;
+	}
+	.ds_view_all_challenge
+	{
+		float: right;
+		right: 15%;
+		position: relative;
+		top: 3px;
+	}
+	#shadow
+	{
+		   color: #333333;
+			float: right;
+			font-family: arial;
+			font-size: 12px;
+			font-weight: bold;
+			position: relative;
+			right: 55px;
+			text-shadow: -1px 0 1px #E9E9E9;
+			text-transform: uppercase;
+			top: 8px;
+			width: 110px;
+	}
+	.howamidoing
+	{
+		color: red
+	}
+	#selecttb
+	{
+	
+		box-shadow: -5px 0 3px -1px #999999;
+		float: left;
+		height: 33px;
+		left: -40px;
+		overflow: hidden;
+		position: relative;
+		top: -1px;
+		width: 28%;
+	-webkit-box-shadow: -5px 0px 2px -1px #999999;
+	-moz-box-shadow: -5px 0px 2px -1px #999999;
+	box-shadow: -5px 0px 2px -1px #999999; 
+	}
+	#howiamgoindspace
+	{
+	    background: none repeat scroll 0 0 #BBBBBB;
+		color: red;
+		float: left;
+		height: 32px;
+		position: relative;
+		width: 30%;
+		
+	}
+	select {
+      color: #F9A943;
+    height: 31px;
+    margin-top: -8px;
+    top: 9px;
+    vertical-align: top;
+}
+	.menubar
+	{
+		background: none repeat scroll 0 0 #BBBBBB;
+		border-bottom: 1px solid #999999;
+		border-left: 1px solid #999999;
+		float: left;
+		height: 32px;
+		list-style: none outside none;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+	}
+	html ul.tabs li.active, html ul.tabs li.active a:hover
+	{
+	   background: none repeat scroll 0 0 #666666;
+		float: left;
+		left: 26%;
+		position: relative;
+	}
 	#first
 	{
-		 padding-left: 5%;
+		background: url("/assets/icon_combobox_arrow_down.png") no-repeat scroll 80% 45% #D7D7D7;
+		font-family: arial;
+		font-weight: bold;
+		padding-left: 5%;
 		position: relative;
-		
-		width: 130%;
-		
+		width: 110%;
 	}
 	#tab3{
 	
@@ -113,6 +195,13 @@ $(document).ready(function(){
 		width: 635px;
 		
 	 }
+	 .mychallenge {
+    border: 2px solid #BEBEBE;
+    border-radius: 6px 6px 6px 6px;
+    float: left;
+    height: 468px;
+    width: 635px;
+}
 	</style>
  
         </tr>
@@ -274,3 +363,4 @@ $(document).ready(function(){
           });
     });
 </script>    
+

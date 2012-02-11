@@ -1,3 +1,4 @@
+
 <table width="100">
 	<thead>
 		<tr id="tableheader">
@@ -19,13 +20,13 @@
 		<% total_challenges.take(3).each do |limitChallenge|%>
 			<tr>
 				<td class="bordercolort" width="150">	
-                 <br> <span class="userchallengestyle"><b><%= limitChallenge.title %></b></span><br> <span class="stedpoint"> by </span> 
+                 <br> <span class="userchallengestyle"><b><%= limitChallenge.title %></b></span><br>  
                   <% if limitChallenge.instance_of?ChildChallenge %>
                      <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>
                      <script>
                          var ordId = <%=  orgId = @parentChallenge.user_id %>
                      </script>
-                     <div class="chname">
+                     <div class="chname">by
                         <% if isStandalone %>
                             <%= @parentChallenge.first_name %>
                         <% else %>
@@ -33,7 +34,7 @@
                         <% end %>                                  
                     </div>                     
                   <% else %>
-                     <div class="chname">
+                     <div class="chname">by
                           <% if isStandalone %>
                               <%= current_user.gmauth.first_name %>
                           <% else %>
@@ -41,7 +42,7 @@
                           <% end %>                                  
                       </div>   
                   <% end %>
-                  <span class="stedpoint"><%=  limitChallenge.start_point.value %> - <%= limitChallenge.end_point.value %></div>
+                  <span class="stedpoint"><%=  limitChallenge.start_point.value %> - <%= limitChallenge.end_point.value %></span>
                  
               </td>
 			
@@ -64,15 +65,15 @@
 					
                      
                      <div class="completedtask"> 
-                         <%= aScore %> points <br>(<%= flag1 %>&nbsp;tasks)
+                         <%= aScore %> points <br> <%= flag1 %>&nbsp;tasks
                       </div>
                       <div class="notcompleted">
-                         <span class="pointscolor1"><%= bScore %> points <br> (<%= flag2 %>&nbsp;tasks)</span>
+                         <span class="pointscolor1"><%= bScore %> points <br> <%= flag2 %>&nbsp;tasks</span>
                       </div>
                     <script type="text/javascript">
                           $(function() {
                               $("#taskprogress<%= taskCompleted %>").progressbar({ value: Math.round(((<%= aScore %>/<%= (aScore+bScore) %>)*100)) });
-                              $("<p>").attr("id", "checkit").text($("#taskprogress<%= taskCompleted %>").progressbar("option", "value") + "%  ").appendTo("#taskprogress<%= taskCompleted %>");
+                              $("<span>").attr("id", "checkit").text($("#taskprogress<%= taskCompleted %>").progressbar("option", "value") + "%  ").appendTo("#taskprogress<%= taskCompleted %>");
                           });
                       </script>
                   
@@ -125,13 +126,7 @@
     width: 10%;
 	font-weight: bold;
 }
-.taskprogress {
-    float: right;
-    position: relative;
-    right: -30%;
-    width: 120%;
-	top: 20px;
-}
+
 .pointscolor1 {
     color: #F8981D;
     float: left;
