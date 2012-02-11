@@ -7,6 +7,7 @@ ul.tabs {
 	border-bottom: 1px solid #999;
 	border-left: 1px solid #999;
 	width: 100%;
+	background-color:#f4f4f4;
 }
 ul.tabs_against {
 	margin: 0;

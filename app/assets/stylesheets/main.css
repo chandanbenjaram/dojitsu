@@ -228,7 +228,7 @@ ul.homenavbar > li.selected > a {
 	font-family: arial;
 }
 .new_challenge_button1 {
-	background: #F8981D url("new1.PNG") no-repeat left center;	
+	background: #F8981D url("new_challenge_button1.PNG") no-repeat left center;	
 	text-align: right;
 	min-width: 70px;
 	height:25px;
@@ -802,7 +802,7 @@ input.radio {
     color: #FFFFFF;
     display: block;
     font-size: 12px;
-    left: -10px;
+    left: 5px;
     padding: 0;
     position: relative;
     text-align: center;
@@ -1984,7 +1984,7 @@ font-size:15px;
 #search{
     border-width: 1px;
     border-style: solid;
-    border-color: #F4F4F4;
+    border-color: #d7d7d7;
     text-align:center;
     background-repeat: repeat-x;
     font-family: Arial;
