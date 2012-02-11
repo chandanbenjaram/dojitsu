@@ -277,7 +277,98 @@ background: none repeat scroll 0 0 #999999;
 
 #on_focus_textarea
 {
+        color:#666666;
+        background:#f4f4f4;
 	max-width: 806px; 
 	min-width:806px; 
+	
+}
+#on_focus_textarea:hover
+{
 	height: 60px;
+        background:#fff;
+}
+#start_point_type:hover
+{
+background:#f4f4f4;
+}
+#end_point_type:hover
+{
+background:#f4f4f4;
+}
+#challenge_task_attributes__score_by:hover
+{
+    background:#f4f4f4;
+}
+#challenge_task_attributes__score
+{
+     background:#f4f4f4;
+}
+#challenge_task_attributes__score:hover
+{
+     background:#fff;
+}
+#challenge_task_attributes__name
+{
+     background:#f4f4f4;
+}
+#challenge_task_attributes__name:hover
+{
+     background:#fff;
+}
+#start_point_value
+{
+    font-style:italic;
+}
+#end_point_value
+{
+    font-style:italic;
+}
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+border: 1px solid #F8981D/*{borderColorHighlight}*/;
+background: white;
+color: #363636/*{fcHighlight}*/;
+border-image: initial;
+}
+.ui-datepicker th {
+text-align: center;
+font-weight: bold;
+border: 0;
+color: #666;
+border-image: initial;
+}
+.ui-datepicker-month{
+    color:#666666;
+}
+.ui-datepicker-year
+{
+    color:#666666;
+}
+.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {
+background-image: url(images/leftarrow.png)/*{iconsHover}*/;
+}
+#start_point_value {
+    background:#f4f4f4;
+    font-weight: bold;
+}
+#end_point_value {
+    background:#f4f4f4;
+    font-weight: bold;
+}
+#start_point_label {
+    background:#f4f4f4;
+    font-weight: bold;
+}
+#end_point_label {
+    background:#f4f4f4;
+    font-weight: bold;
+}
+#addparticipant{
+    color:#666666;
+    font-weight:bold;
+}
+#savechallenge{
+    color:#666;
+    font-weight:bold;
+    padding:2px 0 2px 0;
 }
