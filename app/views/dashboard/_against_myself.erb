@@ -70,13 +70,14 @@
                       <div class="notcompleted">
                          <span class="pointscolor1"><%= bScore %> points <br> <%= flag2 %>&nbsp;tasks</span>
                       </div>
-                    <script type="text/javascript">
+               
+                   <script type="text/javascript">
                           $(function() {
                               $("#taskprogress<%= taskCompleted %>").progressbar({ value: Math.round(((<%= aScore %>/<%= (aScore+bScore) %>)*100)) });
-                              $("<span>").attr("id", "checkit").text($("#taskprogress<%= taskCompleted %>").progressbar("option", "value") + "%  ").appendTo("#taskprogress<%= taskCompleted %>");
+                              $("<p>").attr("id", "checkit").text($("#taskprogress<%= taskCompleted %>").progressbar("option", "value") + "%  ").appendTo("#taskprogress<%= taskCompleted %>");
                           });
                       </script>
-                  
+                
                 
 			  </td>
 			  <td class="bordercolort" width="60">
