@@ -45,7 +45,7 @@
 							<% a= 0 %>
 							<% b= 0 %>
 							<% userChallenge.tasks.each do |aTask| %>
-					
+					        <%=  raise aTask.id.inspect  %>
 								<% if (aTask.is_complete == 1 ) %>
 									<% a+=Integer(aTask.score) %>
 									<% x+=1 %>
@@ -56,7 +56,7 @@
 							<% end %>
 							
 						<div class="update">
-							<%= image_tag("FDFDG.gif", :alt => "Update")%>												
+							<%= image_tag("FDFDG.gif", :alt => "Update" , :id=>'update'  ) %>												
 						</div>
 						<div class="completedtask"> 
 							<%= a %> points (<%= x %> &nbsp; tasks)

@@ -79,7 +79,7 @@
 					</tr>   
 					<tr>
 						<td width="100px">
-							<span class="titlecol" >HOME CITY</span>
+							<span class="titlecol" >HOME TOWN</span>
 						</td>
 						<td align="left" height="10px">
 							<span class="subtitlecol" >
@@ -155,6 +155,10 @@
     				<li><a href="#tab1"><b>MY DOJO</b></a></li>
     				<li><a href="#tab2"><b>CHALLENGES</b></a></li>
 				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
 				<section class="tab_container1">
 					<section id="tab1" class="tab_content2">
 						<section id="myDojo"></section>
@@ -224,13 +228,7 @@ $(document).ready(function(){
    width: '725px',
    open: function(event, ui) { $j("#jfmfs-container").jfmfs(selectorObz); },
   buttons: {                                             
-   Cancel: function() {
-     $j("#jfmfs-container").data('jfmfs').clearSelected(); 
-     $j('#inviteBtn').val("INVITE PARTICIPANTS");    
-     $j(this).dialog( "close" );
-    },
-
-	Invite: function() {
+ 	Invite: function() {
      var friendSelector = $j("#jfmfs-container").data('jfmfs');
      var selectedFriends = friendSelector.getSelectedIds();
      $j('#invitees_id').val(selectedFriends);
@@ -242,7 +240,12 @@ $(document).ready(function(){
 			function(data) {
 			}, 'script'
 		);
-     } 
+     } ,
+	  Cancel: function() {
+     $j("#jfmfs-container").data('jfmfs').clearSelected(); 
+     $j('#inviteBtn').val("INVITE PARTICIPANTS");    
+     $j(this).dialog( "close" );
+    }
    }
   });
  }
