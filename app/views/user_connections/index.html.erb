@@ -27,11 +27,14 @@
 				<table>
 					<tr>
 						<td width="100px">
-							<b><span class="titlecol" >MEMBER SINCE</span></b></td>
+							<span class="titlecol" >MEMBER SINCE</span></td>
 						</td>
 						<td align="left">
 							<span class="subtitlecol" >
-								<b><%= current_user.created_at.to_date%></b>
+							<% date = 0 %>
+							<% month =0%>
+							<% date = current_user.created_at.to_date%>
+								<b><%month= "#{date.strftime(" %B" )}".scan(/..../) %> <%= month[0] %><%= date.strftime(" %d, %Y" )  %></b>
 							</span>
 						</td>
 					</tr> 
@@ -42,7 +45,7 @@
 					</tr>   
 					<tr>
 						<td width="100px">
-							<b><span class="titlecol" >ACHIEVEMENTS</span></b>
+							<span class="titlecol" >ACHIEVEMENTS</span>
 						</td>
 						<td align="left" >
 							<span class="subtitlecol" >
@@ -61,7 +64,7 @@
 					</tr>   
 					<tr>
 						<td width="100px" height="10px">
-							<span class="titlecol" ><b>CURRENT CITY</b></span></td>
+							<span class="titlecol" >CURRENT CITY</span></td>
 						</td>
 						<td align="left" >
 							<span class="subtitlecol" >
@@ -76,7 +79,7 @@
 					</tr>   
 					<tr>
 						<td width="100px">
-							<span class="titlecol" ><b>HOME CITY</b></span>
+							<span class="titlecol" >HOME TOWN</span>
 						</td>
 						<td align="left" height="10px">
 							<span class="subtitlecol" >
@@ -91,11 +94,11 @@
 					</tr>   
 					<tr>
 						<td width="100px">
-							<span class="titlecol" ><b>SEX</b></span></td>
+							<span class="titlecol" >SEX</span></td>
 						</td>
 						<td align="left" height="10px">
 							<span class="subtitlecol" >
-								<b><%= current_user.facebook.gender rescue 'N/A' %></b>
+								<b><%= (current_user.facebook.gender).capitalize rescue 'N/A' %></b>
 							</span>
 							</td>
 					</tr>
@@ -106,11 +109,14 @@
 					</tr>
 					<tr>
 						<td width="100px">
-							<span class="titlecol" ><b>BIRTH DAY</b></span></td>
+							<span class="titlecol" >BIRTH DAY</span></td>
 						</td>
 						<td align="left" height="10px">
 							<span class="subtitlecol" >
-								<b><%= current_user.facebook.birthday rescue 'N/A' %></b>
+							<% birthday = 0 %>
+							<% birth_month= 0%>
+							<%birthday = current_user.facebook.birthday rescue 'N/A' %>
+								<b><%birth_month= "#{birthday.strftime(" %B" )}".scan(/..../) %> <%= birth_month[0] %><%= birthday.strftime(" %d, %Y" )  %></b>
 							</span>
 						</td>
 					</tr>
@@ -121,11 +127,16 @@
 					</tr>
 					<tr id="about_me">
 						<td width="100px">
-							<span class="titlecol" ><b>ABOUT ME</b></span></td>
+							<span class="titlecol" >ABOUT ME</span></td>
 						</td>
 						<td align="left" height="10px">
+							
+							<% if current_user.facebook.bio.nil?%>
+							
+							<% else %>
 							<span class="subtitlecol"  id="about_me1">
-								<b><%= truncate "#{current_user.facebook.bio rescue 'N/A'}", :length=>15 %>&nbsp;</b><a href="#" onclick="fun();">more</a></span><span id="image_icon"><%= image_tag("icon_edit.png") %></span>
+								<b><%= truncate "#{current_user.facebook.bio rescue 'N/A'}", :length=>15 %>&nbsp;</b><a href="#" onclick="fun();">more</a></span><%= image_tag("icon_edit.png" , :id=>"edit_info") %></span>
+						    <% end %>
 						</td>						
 					</tr> 
 					<tr> 
@@ -144,6 +155,10 @@
     				<li><a href="#tab1"><b>MY DOJO</b></a></li>
     				<li><a href="#tab2"><b>CHALLENGES</b></a></li>
 				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
 				<section class="tab_container1">
 					<section id="tab1" class="tab_content2">
 						<section id="myDojo"></section>
@@ -166,6 +181,15 @@
   <section id="jfmfs-container">
   </section>
  </section>
+ <style>
+ .user 
+{
+	font-size :20px;
+	text-transform: uppercase;
+	color: #F8981D;
+}
+
+ </style>
  
 <script>
 	function fun()
@@ -173,6 +197,19 @@
 			document.getElementById("about_me1").innerHTML="<b><%=current_user.facebook.bio rescue 'N/A' %></b>";
 		}
 </script>
+
+<script>
+$(document).ready(function(){
+		$("#edit_info").hide();
+		$("#about_me").mouseover(function(){
+				$("#edit_info").show()
+		  });
+		$(document).mouseout(function(){
+						$("#edit_info").hide();
+		 });
+});
+</script>
+
 
 <script type="text/javascript" charset="utf-8">        
 (function($j) { 
@@ -191,13 +228,7 @@
    width: '725px',
    open: function(event, ui) { $j("#jfmfs-container").jfmfs(selectorObz); },
   buttons: {                                             
-   Cancel: function() {
-     $j("#jfmfs-container").data('jfmfs').clearSelected(); 
-     $j('#inviteBtn').val("INVITE PARTICIPANTS");    
-     $j(this).dialog( "close" );
-    },
-
-	Invite: function() {
+ 	Invite: function() {
      var friendSelector = $j("#jfmfs-container").data('jfmfs');
      var selectedFriends = friendSelector.getSelectedIds();
      $j('#invitees_id').val(selectedFriends);
@@ -209,7 +240,12 @@
 			function(data) {
 			}, 'script'
 		);
-     } 
+     } ,
+	  Cancel: function() {
+     $j("#jfmfs-container").data('jfmfs').clearSelected(); 
+     $j('#inviteBtn').val("INVITE PARTICIPANTS");    
+     $j(this).dialog( "close" );
+    }
    }
   });
  }
