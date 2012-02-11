@@ -77,6 +77,7 @@ Dojitsu::Application.routes.draw do
       get "newmessage"
       get "individualAllMessage"
       get "markUnread"
+		get "storeWinner"
     end	
   end 
 

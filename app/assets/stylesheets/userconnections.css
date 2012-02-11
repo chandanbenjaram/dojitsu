@@ -1,3 +1,47 @@
+
+#about_me
+{
+background-color: #fff;
+height:auto;
+}
+
+#about_me:hover
+{
+background-color: #f4f4f4;
+height:auto;
+}
+
+a
+{
+text-decoration:underline;
+font-weight:bold;
+}
+
+
+#image_icon
+{
+float:right;
+width:30px;
+padding-left:px;
+}
+
+3edit_info
+{
+width:30px;
+padding-left:100px;
+}
+#edit
+{
+width="30px;
+float:right;
+}
+a
+{
+color:#00b5cb;
+text-decoration:underline
+font-style:bold;
+}
+
 .topbar
 {
     background: none repeat scroll 0 0 #F4F4F4;
@@ -26,7 +70,9 @@
 	right:-90px; 
 	color:#999999; 
 	font-size: 12px;
-	font-weight:bold;	
+	font-weight:bold;
+	text-transform: uppercase;
+}	
 }
 
 .user 
@@ -37,6 +83,7 @@
 }
 .titlecol
 {
+        font-style:normal;
 	color: #999999;
 }
 .subtitlecol

@@ -108,18 +108,18 @@
 												  <% if anc.personal_type.instance_of?ChallengePersonalType%>
 														  <p class="descriptionstyle">
 															  <% if anc.description.size > 200 %>
-																		<%=h truncate(anc.description, :length => 200) %>&nbsp;&nbsp;<%= link_to "VIEW" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view' %>
+																		<%=h truncate(anc.description, :length => 200) %>&nbsp;&nbsp;<%= link_to "view" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view' %>
 																<%else%>
-																		<%= anc.description %>&nbsp;&nbsp;<%= link_to "VIEW" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view' %>
+																		<%= anc.description %>&nbsp;&nbsp;<%= link_to "view" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view' %>
 															<%end%>
 														  </p>
 												  <% end %>
 												  <% if anc.social_type.instance_of?ChallengeSocialType%>
 														<p class="descriptionstyle">
 														<% if anc.description.size > 200 %>
-																<%=h truncate(anc.description, :length => 200) %>&nbsp;&nbsp;<%= link_to "VIEW" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view'%>									
+																<%=h truncate(anc.description, :length => 200) %>&nbsp;&nbsp;<%= link_to "view" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view'%>									
 														<%else%>
-																<%= anc.description %>&nbsp;&nbsp;<%= link_to "VIEW" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view' %>
+																<%= anc.description %>&nbsp;&nbsp;<%= link_to "view" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view' %>
 														<%end%>
 														</p>
 												  <% end %>
