@@ -12,9 +12,9 @@
 ----------------------------------*/
 .ui-widget { font-family: Verdana,Arial,sans-serif; font-size: 1.1em; }
 .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Verdana,Arial,sans-serif; font-size: 1em; }
-.ui-widget-content { border: 1px solid #aaaaaa;  background: none repeat scroll 0 0 #E9E9E9; color: #222222; width:90%; }
+.ui-widget-content { background: url('progress.PNG') repeat scroll 0 0 #E9E9E9; color: #222222; width:90%; }
 .ui-widget-content a { color: #222222; }
-.ui-widget-header { border: 1px solid #aaaaaa;  background: none repeat scroll 0 0 #7AC142;
+.ui-widget-header { background: none repeat scroll 0 0 #7AC142;
 color: #222222; font-weight: bold; }
 .ui-widget-header a { color: #222222; }
 

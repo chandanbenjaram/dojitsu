@@ -82,7 +82,7 @@
 				<% else %>
 						<% Challenge.whatsNew.each do |anc| %>
 							  <section class="messagereg">
-								  <%= image_tag("new.gif", :height => '30', :width => '30' , :class => "imagenew") %>
+								  <%= image_tag("new_banner.png", :class => "imagenew") %>
 								  <table width="100%" class="margin">
 									<tr>
 										  <td width="28%"  class="margin2">
@@ -108,18 +108,18 @@
 												  <% if anc.personal_type.instance_of?ChallengePersonalType%>
 														  <p class="descriptionstyle">
 															  <% if anc.description.size > 200 %>
-																		<%=h truncate(anc.description, :length => 200) %>&nbsp;&nbsp;<%= link_to "view" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view' %>
+																		<%=h truncate(anc.description, :length => 200) %>&nbsp;&nbsp;<b><%= link_to "view" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view' %></b>
 																<%else%>
-																		<%= anc.description %>&nbsp;&nbsp;<%= link_to "view" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view' %>
+																		<%= anc.description %>&nbsp;&nbsp;<b><%= link_to "view" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view' %></b>
 															<%end%>
 														  </p>
 												  <% end %>
 												  <% if anc.social_type.instance_of?ChallengeSocialType%>
 														<p class="descriptionstyle">
 														<% if anc.description.size > 200 %>
-																<%=h truncate(anc.description, :length => 200) %>&nbsp;&nbsp;<%= link_to "view" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view'%>									
+																<%=h truncate(anc.description, :length => 200) %>&nbsp;&nbsp;<b><%= link_to "view" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view'%></b>
 														<%else%>
-																<%= anc.description %>&nbsp;&nbsp;<%= link_to "view" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view' %>
+																<%= anc.description %>&nbsp;&nbsp;<b><%= link_to "view" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view' %></b>
 														<%end%>
 														</p>
 												  <% end %>
@@ -131,7 +131,7 @@
 		<% end %>
 	</td>
 	<td class = "imagebackground" width="7%"></td>
-	<td width="56%">
+	<td valign="top" width="56%">
 				<section class="regdojitsu2">	
 							<div class="fb-like-box" data-href="http://www.facebook.com/pages/Dojitsu/295711967114330" data-width="350" data-height="180" data-show-faces="true" data-stream="false" data-header="false"></div>
 							<section class="dourbest">
