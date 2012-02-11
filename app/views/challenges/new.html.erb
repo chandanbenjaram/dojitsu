@@ -39,7 +39,7 @@
 				</td>
 		</tr>
 		<tr>
-				<td width="13%"><b class="color999">START POINT</b></td>
+				<td width="13%"><b class="color999">STARTING POINT</b></td>
 				<td width="50px;"> 
 				    <div class="styled-select">
 					<%= select_tag "start_point_type", "<option value=''>Choose</option><option value='startPointDate'>Date</option><option value='startPointNumber'>Number</option>".html_safe , :required => "required" %>
@@ -61,7 +61,7 @@
 				<td><b class="color999">END POINT</b></td>
 				<td>  
 					<div class="styled-select">
-					<%= select_tag "end_point_type", "<option value=''>Choose</option><option value='endPointDate'>Date</option><option value='endPointNumber'>Number</option>".html_safe, :required => "required" %>
+					<%= select_tag "end_point_type", "<option  value=''>Choose</option><option value='endPointDate'>Date</option><option value='endPointNumber'>Number</option>".html_safe, :required => "required" %>
 					</div>
 				</td>  
 				<td colspan="2" class="endpointdatenumber">					
@@ -78,7 +78,7 @@
 		</tr>
 		<tr>
 				<td valign="top">
-					<b class="color999"> CREATE TASK</b> 
+					<b class="color999"> CREATE TASKS</b> 
 					<span class="moreInfoTip color999" rel="#moreCreateTaskId" title="The score for each task will be added up to determin the winner(s).">
 						<%= image_tag("btn_questionmark_up.png")%>
 					</span>
@@ -101,7 +101,7 @@
 								<%= task_fields.select :score_by, options_for_select([
 								["Choose", ""],
 								["Check box:1 for checking off the task", "Check box:1 for checking off the task"],	 
-								["Self-report number","Self-report number"]														
+								["Self-reported number","Self-report number"]														
 								]), :class => "styleselect", :required => "required"%>	
 							</td>
 							</div>
@@ -158,7 +158,7 @@
     						
 		<table width="100%" border="0">
 		<tr>
-			<td width="25%"><b class="color999">Who wins</b></td>
+			<td width="25%"><b class="color999">Who wins?</b></td>
 			<td>
 				<div class="styled-select1">
 				<%= select_tag :soc_who_win, options_for_select([
@@ -174,7 +174,7 @@
 			</td>
 			</tr>
 			<tr>
-				<td><b class="color999">How many winners</b></td>
+				<td><b class="color999">How many winners?</b></td>
 				<td>
 					<div class="styled-select1">
 					<%= select_tag :soc_how_many_winner, options_for_select([
@@ -198,12 +198,16 @@
 						<%= render :partial => 'invitations', :locals => {:form => f} %>
 					</td>
 				</tr>
+                                <tr>
+                                  <td></td>
+                                  <td ><input type="checkbox" ><span id="addparticipant">Add myself as one of the participants</span></td>
+                                </tr>
 	</table>
     					</div>
     					<div id="tab2" class="tab_content">
        						<table width="100%" border="0">
   								<tr>
-    								<td  width="20%"><b class="color999">Who wins</b></td>
+    								<td  width="20%"><b class="color999">Who wins?</b></td>
 									<td>
 										<div class="styled-select1">
 										<%= select_tag :per_who_win, options_for_select([
@@ -227,6 +231,14 @@
 						<hr id="all_hr">
 					</td>
 				</tr>
+        </table>  
+                                 <input type="checkbox" ><span id="savechallenge">Save this challenge as  template in my profile</span>
+                                 <table>
+                                <tr>
+                                  <td colspan="4">
+						<hr id="all_hr">
+					</td>
+                                </tr>
 				<tr>
 					<td colspan="4">
 						<%= link_to "CANCEL", challenges_path, :class => "links_cancel1"%>
@@ -263,9 +275,3 @@
 		</tr>
 	</table>			
 </div>
-
-			
-			
-
-			
-		

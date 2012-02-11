@@ -56,56 +56,7 @@
 				</tr>
 				</thead>
 				<tbody bgcolor="#ffffff">
-				<% allConnections = UserConnection.find(:all, :conditions =>["user_id=?", current_user.id]) %>
-                    				
-					<% allConnections.each  do |eachConnection| %>
-						<tr id="row_<%= eachConnection.target_id %>" onload="alert("hi");" onclick="function_<%= eachConnection.target_id %>();">
-						<td>
-						<%=image_tag(FbGraph::User.new(eachConnection.target_id).fetch.picture) %>
-						<span class="fbusername"><%= FbGraph::User.new(eachConnection.target_id).fetch.name %></span>
-						<span > 
-						</td>
-						<td>
-					
-						<%= image_tag('btn_msg_up.png', :id => "image1_#{eachConnection.target_id}", :class =>"private_msg" )%>
-			
-						
-						<%= link_to image_tag("btn_delete_up.png" , :id => "image2_#{eachConnection.target_id}"), delete_contact_user_connections_path( :id=>eachConnection.target_id), :class=>"remove" %></span> 
-						</td>
-						</tr>
-						<tr > 
-							<td colspan="2"> 
-								<hr/>
-							</td>
-						</tr> 
-			
-                                       
-						<style>
-						#row_<%= eachConnection.target_id %>:hover
-						  {
-							background-color: #f4f4f4;
-						  }
-						  
-						</style>
-					<script>
-						$(document).ready(function(){
-												$("#image1_<%= eachConnection.target_id%>").hide();
-												$("#image2_<%= eachConnection.target_id%>").hide();
-											   
-												  $("#row_<%= eachConnection.target_id %>").mouseover(function(){
-														$("#image1_<%= eachConnection.target_id%>").show()
-														$("#image2_<%= eachConnection.target_id%>").show()
-												  });
-										
-												$(document).mouseout(function(){
-																$("#image1_<%= eachConnection.target_id%>").hide();
-																$("#image2_<%= eachConnection.target_id%>").hide();
-												 });
-								 });
-				</script>
-						
-					<% end %>
-                                       
+				<%= render :partial =>"user_connections/dojofriends" %>
 				</tbody>
 				</table>
 				</div>
