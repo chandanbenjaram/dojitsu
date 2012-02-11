@@ -47,6 +47,9 @@ class MessagesController < ApplicationController
 
 	def storeWinner
 		raise params.inspect
+		@winners = params[:winners]
+		@winnerTitle = params[:title]
+		@noOfWinner = params[:noOfWinner]
 	end
 
 end

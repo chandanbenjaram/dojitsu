@@ -44,13 +44,6 @@ gem "slim-rails"
 # UI templates
 gem "simple-navigation"
 gem "on_the_spot"
-gem "will_paginate", "~> 3.0.2"
-
-#color window for testing
-gem "win32console", "~> 1.3.0"
-gem 'spork', '0.9.0.rc8'
-gem "webrat", "~> 0.7.3"
-gem 'factory_girl_rails'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
@@ -62,9 +55,7 @@ group :development, :test do
 	gem 'rspec-rails'
 	gem 'annotate'
 	#gem 'ruby-debug'
-	#gem "mongrel"
-	#gem 'ruby-debug-base19', "0.11.24"
-	#gem 'ruby-debug19', "0.11.6"  
+	#gem "mongrel"   
 end       
 
 # Gems used only for assets and not required
@@ -74,7 +65,6 @@ group :assets do
   gem 'coffee-rails', "~> 3.1.0.rc"
   gem 'execjs'
   gem 'uglifier'
-  #gem 'therubyracer'   
 end
 
 # Deployment stuff
