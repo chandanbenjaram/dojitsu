@@ -1,13 +1,16 @@
-<%= javascript_include_tag('ui.progressbar','ajaxPageLoad','fbWallPost','jquery.colorbox-min')%>
-<%= stylesheet_link_tag('jquery-ui', 'ui.progressbar','ui.theme', 'main', 'dashboard','colorbox','messageCss')%>
+<%= javascript_include_tag('ui.progressbar','ajaxPageLoad','fbWallPost','jquery.colorbox-min', 'simple-tabs-dashboard')%>
+<%= stylesheet_link_tag('jquery-ui', 'ui.progressbar','ui.theme', 'main', 'dashboard','colorbox','messageCss','simple-tabs-dashboard')%>
 <%= render 'layouts/loggedinbody'%>
 <% if session[:isNewChallenge] == "isNew" %>
     <script>
       $.dojitsuWallPost.renderFbWallPost();
     </script>
+
+
 <% end %>
 <table>
 <td>
+
 <content>
 <table>
   <td>
@@ -15,23 +18,103 @@
        <td>
          <div class="dashboardsidebar">
             <div class="mychallenge">
-              <div id="titlechallenge">
-                <div id="mychallengesstyle">
-                    <div class="shadow">my challenges &nbsp;&nbsp;<span class="fontstyle">( <%= current_user.challenges.size %> )</sapn>
-                    </div>
-                </div>
-                <div class="second_titlechallenge">
-                   <%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
-                </div>
-              </div>
-              <div id="myChallenge"></div>
-              <div id="myChallenge1" align="center"></div>
-              <script>
-                  $.dojitsuAjaxPage.renderAjaxPageLoad("/dashboard/myChallenge","#myChallenge","#myChallenge1");
-              </script>
+			
+             <ul class="tabs">
+				<li><a href="#howamdoing" id="soc">HOW AM I DOING? </a></li>
+				<li><a href="#againstother" id="per">AGINST OTHERS </a></li>
+			</ul>
+				<div id="howamdoing">
+					demo1
+				</div>
+				<div id="againstother">
+					 <%= render :partial => "dashboard/against_others" %>
+				</div>
+				<div id="againstmyself">
+					 <%= render :partial => "dashboard/against_myself" %>
+				</div>
+				<div id="tab3">	
+					<select id ="first">	
+						<option  id ="first" value="others" selected="yes">AGINST OTHERS</option>
+						<option  id ="first" value="myself">AGINST MYSELF</option>
+					</select>
+				</div>
             </div>
           </div>
+		  
       </td>
+<script>
+	
+$(document).ready(function(){
+	$("#againstother").hide();
+   $("#againstmyself").hide();
+   $("#first").hide();
+	$("#per").click(function () { 
+		$("#per").replaceWith($("#first").show());
+    });
+	
+	$("#first").change(function()
+	{
+		 var myfre = $("#first").val();
+		 if(myfre == "others")
+		 {
+			 $("#againstmyself").hide();
+			 $("#howamdoing").replaceWith($("#againstother").show());
+		 }
+		 else if(myfre == "myself")
+		 {
+			 $("#againstother").hide();
+			 $("#howamdoing").replaceWith($("#againstmyself").show());
+		 }
+	});
+
+});
+
+</script>
+	<style>
+	#first
+	{
+		 padding-left: 5%;
+		position: relative;
+		
+		width: 130%;
+		
+	}
+	#tab3{
+	
+		color: red;
+		background-image: url("icon_combobox_arrow_down.png");
+	 
+	 }
+	 #firstd
+	 {
+		position: relative;
+		width: 130%;
+	 }	
+	
+	 #howamdoing
+	  {
+		float: left;
+		height: 468px;
+		width: 635px;
+		
+	 }
+	  #againstother
+	  {
+		float: left;
+		height: 468px;
+		width: 635px;
+		
+	 }
+	 #againstmyself
+	 {
+		
+		float: left;
+		height: 468px;
+		width: 635px;
+		
+	 }
+	</style>
+ 
         </tr>
         <tr>
           <td>	
