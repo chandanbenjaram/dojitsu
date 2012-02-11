@@ -18,7 +18,7 @@
 	<%end%>
 	   <% taskCompleted=1 %>
 		<% total_challenges.take(3).each do |limitChallenge|%>
-			<tr>
+			<tr width="50">
 				<td class="bordercolort" width="150">	
                  <br> <span class="userchallengestyle"><b><%= limitChallenge.title %></b></span><br>  
                   <% if limitChallenge.instance_of?ChildChallenge %>
@@ -118,23 +118,23 @@
 	background: #BBBBBB;
 }
 #checkit {
-  color: #7AC142;
+    color: #7AC142;
     float: right;
     font-size: 15px;
+    font-weight: bold;
     position: relative;
-    right: 109%;
+    right: 106%;
     top: -20px;
     width: 10%;
-	font-weight: bold;
 }
 
 .pointscolor1 {
     color: #F8981D;
     float: left;
-    left: 320px;
+    font-weight: bold;
+    left: 300px;
     position: relative;
     top: -18px;
-	font-weight: bold;
 }
 
 .ui-corner-all
@@ -166,6 +166,13 @@ border-radius: 0 0 0 0;
     right: -30px;
     width: 110%;
 	font-weight: bold;
+}
+.taskprogress {
+    float: left;
+    left: 27px;
+    position: relative;
+    top: 20px;
+    width: 120%;
 }
 thead th {
     background: none repeat scroll 0 0 #BBBBBB;

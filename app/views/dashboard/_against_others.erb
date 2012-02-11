@@ -77,7 +77,7 @@
                 <script type="text/javascript">
                           $(function() {
                               $("#taskprogress1<%= taskCompleted %>").progressbar({ value: Math.round(((<%= aScore %>/<%= (aScore+bScore) %>)*100)) });
-                              $("<p>").attr("id", "checkit").text($("#taskprogress1<%= taskCompleted %>").progressbar("option", "value") + "%  ").appendTo("#taskprogress1<%= taskCompleted %>");
+                              $("<p>").attr("id", "checkit1").text($("#taskprogress1<%= taskCompleted %>").progressbar("option", "value") + "%  ").appendTo("#taskprogress1<%= taskCompleted %>");
                           });
                       </script>
                 
