@@ -6,7 +6,9 @@
 			</th>
 			<th>RANK
 			</th>
-			<th>MY SCORE
+			<th>
+			</th>
+			<th>MY SCORE<span>TOP SCORE
 			</th>
 			<th>TOP SCORE
 			</th>
@@ -50,6 +52,9 @@
                   <span class="stedpoint"><%=  limitChallenge.start_point.value %> - <%= limitChallenge.end_point.value %></span>
                  
               </td>
+			  <td  class="bordercolortdb" width="50"><span id ="rankspoints"><u>0</u></span><br>
+			  <span id="extraspace">(of 1233)</span>
+			  </td>
 			  <td class="bordercolort" width="280">
 			  <div class="taskprogress1" id="taskprogress1<%= taskCompleted %>"></div><br/>
                   
@@ -77,11 +82,14 @@
                 <script type="text/javascript">
                           $(function() {
                               $("#taskprogress1<%= taskCompleted %>").progressbar({ value: Math.round(((<%= aScore %>/<%= (aScore+bScore) %>)*100)) });
-                              $("<p>").attr("id", "checkit1").text($("#taskprogress1<%= taskCompleted %>").progressbar("option", "value") + "%  ").appendTo("#taskprogress1<%= taskCompleted %>");
+                              $("<p>").attr("id", "checkit").text($("#taskprogress1<%= taskCompleted %>").progressbar("option", "value") + "%  ").appendTo("#taskprogress1<%= taskCompleted %>");
                           });
                       </script>
                 
 			  </td>
+			  <td class="bordercolort" >
+			  </td>
+			 
 			  <% taskCompleted+=1 %>
 			   	</tr>
 				  	
@@ -89,6 +97,20 @@
 	</tbody>
 </table>
 <style>
+.bordercolortdb {
+    border-bottom: 1px solid #BEBEBE;
+    margin: 3px 5px 5px;
+    padding-left: 15px;
+};
+#extraspace
+{
+ width: 20%;
+}
+#rankspoints
+{
+color: #F8981D;
+font-weight: bold;
+}
 th
 {
 	text-align: center;
