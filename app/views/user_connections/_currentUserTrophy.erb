@@ -6,7 +6,7 @@
 <% noOfSixRank = 0 %>
 
 <% current_user.challenges.each do |eachChallenge| %>
-	<% eachChallenge.social_type.trophy.rank %>
+<% if eachChallenge.social_type.trophy != nil %>
 	<% if eachChallenge.social_type.trophy.rank == 1 %>                          
      <% noOfFirstRank += 1 %>                                                    
    <% elsif eachChallenge.social_type.trophy.rank == 2 %>                          
@@ -21,7 +21,7 @@
        <% noOfSixRank += 1 %>                                                   
    <% end %>
 <% end %>   
-                        
+<% end %>                       
 <% if noOfFirstRank > 0 %>                          
 <%= image_tag("trophy_gold.png") %><font id="trophyAlign"><%= noOfFirstRank %></font>
 <% end %>                                                                    
