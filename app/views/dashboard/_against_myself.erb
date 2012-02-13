@@ -1,0 +1,180 @@
+
+<table width="100">
+	<thead>
+		<tr id="tableheader">
+			<th><span id="spancefortext">NAME</span></th>
+			
+			<th id="spancefortext2">COMPLETED</span></th>
+			<th id="spancefortext3">TO GO</span></th>
+			<th id="spancefortext4">LAST UPDATE</span></th>
+		</tr>
+	</thead>
+	<tbody>
+	<% total_challenges =[]	%>
+	
+	<% current_user.challenges.each do |userChallenge| %>
+		<% total_challenges<<userChallenge %>
+		
+	<%end%>
+	   <% taskCompleted=1 %>
+		<% total_challenges.take(3).each do |limitChallenge|%>
+			<tr width="50">
+				<td class="bordercolort" width="150">	
+                 <br> <span class="userchallengestyle"><b><%= limitChallenge.title %></b></span><br>  
+                  <% if limitChallenge.instance_of?ChildChallenge %>
+                     <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>
+                     <script>
+                         var ordId = <%=  orgId = @parentChallenge.user_id %>
+                     </script>
+                     <div class="chname">by
+                        <% if isStandalone %>
+                            <%= @parentChallenge.first_name %>
+                        <% else %>
+                            <%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %>
+                        <% end %>                                  
+                    </div>                     
+                  <% else %>
+                     <div class="chname">by
+                          <% if isStandalone %>
+                              <%= current_user.gmauth.first_name %>
+                          <% else %>
+                              <%= current_user.facebook.name %>
+                          <% end %>                                  
+                      </div>   
+                  <% end %>
+                  <span class="stedpoint"><%=  limitChallenge.start_point.value %> - <%= limitChallenge.end_point.value %></span>
+                 
+              </td>
+			
+			  <td class="bordercolort" width="280">
+			  <div class="taskprogress" id="taskprogress<%= taskCompleted %>"></div><br/>
+                  
+                          <% flag1=0 %>
+                          <% flag2=0 %>
+                          <% aScore= 0 %>
+                          <% bScore= 0 %>
+                          <% limitChallenge.tasks.each do |aTask| %>
+                              <% if (aTask.is_complete == 1 ) %>
+                                <% aScore+=Integer(aTask.score) %>
+                                <% flag1+=1 %>
+                              <% else %>
+                                <% bScore += aTask.score.to_i %>
+                                <% flag2+=1 %>
+                              <% end %>
+                          <% end %>
+					
+                     
+                     <div class="completedtask"> 
+                         <%= aScore %> points <br> <%= flag1 %>&nbsp;tasks
+                      </div>
+                      <div class="notcompleted">
+                         <span class="pointscolor1"><%= bScore %> points <br> <%= flag2 %>&nbsp;tasks</span>
+                      </div>
+               
+                   <script type="text/javascript">
+                          $(function() {
+                              $("#taskprogress<%= taskCompleted %>").progressbar({ value: Math.round(((<%= aScore %>/<%= (aScore+bScore) %>)*100)) });
+                              $("<p>").attr("id", "checkit").text($("#taskprogress<%= taskCompleted %>").progressbar("option", "value") + "%  ").appendTo("#taskprogress<%= taskCompleted %>");
+                          });
+                      </script>
+                
+                
+			  </td>
+			  <td class="bordercolort" width="60">
+			  </td>
+			  <td class="bordercolort" width="70">
+			  <span class = "timestyle1"><%= time_ago_in_words  limitChallenge.created_at%></span>
+			  </td>
+			  <% taskCompleted+=1 %>	
+			</tr>
+		<%end%>
+	</tbody>
+</table>
+<style>
+.stedpoint
+{
+	 color: #666666;
+	 font-weight: bold;
+}
+.chname
+{
+	color: #666666;
+	 font-weight: bold;
+}
+#spancefortext1
+{
+	background: #BBBBBB;
+}
+#spancefortext2
+{
+	background: #BBBBBB;
+}
+#spancefortext3
+{
+	background: #BBBBBB;
+}
+#spancefortext4
+{
+	background: #BBBBBB;
+}
+#checkit {
+    color: #7AC142;
+    float: right;
+    font-size: 15px;
+    font-weight: bold;
+    position: relative;
+    right: 106%;
+    top: -20px;
+    width: 10%;
+}
+
+.pointscolor1 {
+    color: #F8981D;
+    float: left;
+    font-weight: bold;
+    left: 300px;
+    position: relative;
+    top: -18px;
+}
+
+.ui-corner-all
+{
+border-radius: 0 0 0 0;
+}
+.completedtask {
+    color: #7AC142;
+    font-weight: bold;
+    left: 30px;
+    position: relative;
+    top: 22px;
+    width: 40%;
+}
+.notcompleted
+{
+	float:left;
+	left:3px;
+	position:relative;
+	color:#F8981D;
+	top: 5px;
+}
+.timestyle1
+{
+	color: #666666;
+    float: right;
+    font-weight: bold;
+    position: relative;
+    right: -30px;
+    width: 110%;
+	font-weight: bold;
+}
+.taskprogress {
+    float: left;
+    left: 27px;
+    position: relative;
+    top: 20px;
+    width: 120%;
+}
+thead th {
+    background: none repeat scroll 0 0 #BBBBBB;
+}
+</style>

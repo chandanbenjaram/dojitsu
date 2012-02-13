@@ -1,0 +1,150 @@
+ul.tabs {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 32px; /*--Set height of tabs--*/
+	border-bottom: 1px solid #999;
+	border-left: 1px solid #999;
+	width: 100%;
+	background: none repeat scroll 0 0 #BBBBBB;
+}
+ul.tabs_against {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 32px; /*--Set height of tabs--*/
+	border-bottom: 1px solid #999;
+	border-left: 1px solid #999;
+	width: 100%;
+}
+
+
+ul.tabs li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	height: 31px; /*--Subtract 1px from the height of the unordered list--*/
+	line-height: 31px; /*--Vertically aligns the text within the tab--*/
+	border: 1px solid #999;
+	border-left: none;
+	margin-bottom: -1px; /*--Pull the list item down 1px--*/
+	overflow: hidden;
+	position: relative;
+	background: #e0e0e0;
+	width: 28%;
+	
+}                   
+ul.tabs1 li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	height: 31px; /*--Subtract 1px from the height of the unordered list--*/
+	line-height: 31px; /*--Vertically aligns the text within the tab--*/
+	border: 1px solid #999;
+	border-left: none;
+	margin-bottom: -1px; /*--Pull the list item down 1px--*/
+	overflow: hidden;
+	position: relative;
+	background: #e0e0e0;
+	
+}      
+ul.tabs li a {
+	
+    color: #FFFFFF;
+    display: block;
+    font-size: 1.2em;
+    outline: medium none;
+    padding-left: 40px;
+    text-decoration: none;
+    width: 140px;
+}
+ul.tabs1 li a {
+	
+    color: #FFFFFF;
+    display: block;
+    font-size: 1.2em;
+    outline: medium none;
+    padding-left: 40px;
+    text-decoration: none;
+    width: 100px;
+}
+
+ul.tabs li a:hover {
+	background: #666666;
+	color:#F8981D;
+}    
+ul.tabs1 li a:hover {
+	background: #666666;
+	color:#F8981D;
+}      
+   
+ 
+html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that the active tab does not listen to the hover properties--*/
+	background:#666666;
+	
+	
+}
+
+html ul.tabs1 li.active, html ul.tabs1 li.active a:hover  { /*--Makes sure that the active tab does not listen to the hover properties--*/
+	background:#666666;
+	border-bottom: 1px solid #fff; /*--Makes the active tab look like it's connected with its content--*/
+	
+}
+
+.tab_container {
+	border: 1px solid #999;
+	border-top: none;
+	overflow: hidden;
+	clear: both;
+	float: left; width: 100%;
+	background: #fff;
+}         
+.against_container {
+	border: 1px solid #999;
+	border-top: none;
+	overflow: hidden;
+	clear: both;
+	float: left; width: 100%;
+	background: #fff;
+}         
+
+.tab_container1 {
+	border: 1px solid #999;
+	border-top: none;
+	
+	clear: both;
+	float: left; width: 100%;
+	background: #f4f4f4;
+} 
+.tab_container22 {
+	border: 1px solid #999;
+	border-top: none;
+        width:100%;
+
+} 
+.tab_content {
+	padding: 20px;
+	font-size: 1.2em;
+	background:#F5F5F5;
+}
+.tab_content1 {
+	padding: 20px;
+	font-size: 1.2em;
+	background:#F5F5F5;
+}
+.tab_content2 {
+	margin-top:0px;
+	margin-left:5px;
+	margin-bottom:4px;
+	margin-right:5px;
+	font-size: 1.2em;
+}
+.tab_content3 {
+	margin-top:0px;
+	margin-left:5px;
+	margin-bottom:4px;
+	margin-right:5px;
+	font-size: 1.2em;
+}
