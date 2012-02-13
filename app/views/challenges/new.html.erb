@@ -30,7 +30,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td valign="top" class="color999"><%= f.label :description, "DESCRIPTION" %></td>
+			<td  class="color999"><%= f.label :description, "DESCRIPTION" %></td>
 			<td  colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea", :placeholder=>"Enter challenge description here" %></td>
 		</tr>
 		<tr>
@@ -231,9 +231,12 @@
 						<hr id="all_hr">
 					</td>
 				</tr>
-        </table>  
-                                 <input type="checkbox" ><span id="savechallenge">Save this challenge as  template in my profile</span>
-                                 <table>
+        </table> 
+		
+                                 <input type="checkbox" onclick="showMe('div1', this)"><span id="savechallenge">Save this challenge as  template in my profile</span>
+								 <div class="row" id="div1" style="display:none"><span id="templatename">TEMPLATE NAME</span><input id="templatenameinput" type="text"></div>
+                                
+								<table>
                                 <tr>
                                   <td colspan="4">
 						<hr id="all_hr">

@@ -14,6 +14,7 @@ Dojitsu::Application.routes.draw do
 
   resources :challenges do
     collection do
+    	post "storeWinner"
       get "show_soc"
       get "task_update"
       get "show_per"
@@ -54,6 +55,7 @@ Dojitsu::Application.routes.draw do
 	  get "change_challenge_status"
 	  get "update_status_again"
 		get "mForWinner"
+		get "deleteWinner"		
     end
   end
 
@@ -76,8 +78,7 @@ Dojitsu::Application.routes.draw do
       get "message"
       get "newmessage"
       get "individualAllMessage"
-      get "markUnread"
-		get "storeWinner"
+      get "markUnread"      		
     end	
   end 
 
