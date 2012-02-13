@@ -2,9 +2,10 @@
 {
 float: right;
 }
-#theadmyscore
-{
-float: left;
+#theadmyscore {
+    float: left;
+    left: 17%;
+    position: relative;
 }
 .bordercolortdb {
     border-bottom: 1px solid #BEBEBE;
@@ -68,4 +69,14 @@ th
     right: 114%;
     top: -20px;
     width: 10%;
+}
+#spancefortext1 {
+    float: right;
+    position: relative;
+    right: 74%;
+}
+#spancefortext2 {
+    float: right;
+    position: relative;
+    right: 10%;
 }

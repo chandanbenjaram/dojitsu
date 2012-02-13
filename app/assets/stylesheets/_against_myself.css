@@ -96,3 +96,15 @@ thead th {
     border-collapse: separate;
     border-spacing: 2;
 }
+#spancefortext
+{
+	float: right;
+	position: relative;
+	 right: 65%;
+}
+#spancefortext1
+{
+float: right;
+	position: relative;
+	right: 2%;
+}
