@@ -505,6 +505,7 @@ end
   
   def winnerListPopup
   		@challenge = Challenge.where(:_id => params[:id]).first
+  		Challenge.where(:_id => params[:id]).update(:is_complete => 1)
 		render :layout=>false
 	end
 

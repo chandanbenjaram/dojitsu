@@ -18,17 +18,30 @@
 				 <% if @challenge.canCompleteBeforeTasks? %> 
 				    <% @challenge.tasks.each do |aTask| %>
 				      <% if aTask.is_complete == 0 %>
-				        <% allTaskComplete = 1 %>			
+				        <%= allTaskComplete = 1 %>
+				        <% break %>			
 				      <% end %>
 				    <% end %>
-					 <% if allTaskComplete == 1 %>
-					 	<input type="button" value="I'm Done with this challenge >> Submit my score <%= total-total_score%>" class="links_score_p"/>
-					 <% end %>
+				    <% if allTaskComplete != 1 %> 
+				 			<%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", winnerListPopup_challenges_path(:id => @challenge.id) , :class => "links_score_p" %>
+				 	<% end %>					 	
 				 <% else %>
-				 	<input type="button" value="I'm Done with this challenge >> Submit my score <%= total-total_score%>" class="links_score_p"/>
+				 	<%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", winnerListPopup_challenges_path(:id => @challenge.id) , :class => "links_score_p" %>
 				 <% end %>
 			<% else %>
-				
+				<% if @challenge.canCompleteBeforeTasks? %> 
+				    <% @challenge.tasks.each do |aTask| %>
+				      <% if aTask.is_complete == 0 %>
+				        <%= allTaskComplete = 1 %>
+				        <% break %>			
+				      <% end %>
+				    <% end %>
+				    <% if allTaskComplete != 1 %> 
+				 			<%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", challenge_comp_challenges_path(:id => @challenge.id) , :class => "links_score_pp" %>
+				 	<% end %>					 	
+				 <% else %>
+				 	<%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", challenge_comp_challenges_path(:id => @challenge.id) , :class => "links_score_pp" %>
+				 <% end %>				
 			<% end %>	 
 			</td>
 	</tr>

@@ -786,6 +786,20 @@ input.radio {
 	width: 400px;
 }
 
+.links_score_pp {
+	background: none repeat scroll 0 0 #f9a943;
+	border-radius: 3px 3px 3px 3px;
+	color: #FFFFFF;
+	display: block;
+	font-size: 12px;
+	margin: 20px 0;
+	padding: 5px;
+	text-align: center;
+	margin-left:40px;
+	text-transform: uppercase;
+	width: 400px;
+}
+
 .links_message_update {
   background: none repeat scroll 0 0 #f9a943;
   border-radius: 3px 3px 3px 3px;
