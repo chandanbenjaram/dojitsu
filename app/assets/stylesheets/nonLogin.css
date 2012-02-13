@@ -11,6 +11,14 @@
 	margin-top:-10px;
 	margin-bottom: -25px;
 }
+.registertomessage{
+	width:500px;
+	height:150px;
+	background:#f4f4f4;
+	padding-top:10px;
+	padding-left:10px;
+	padding-right:10px;
+}
 .divone{
 	vertical-align:top;
 }

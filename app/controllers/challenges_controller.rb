@@ -1,5 +1,5 @@
 class ChallengesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:nonLoginShowPersonal, :nonLoginShowSocial, :nonLoginIndex]
+  before_filter :authenticate_user!, :except => [:nonLoginShowPersonal, :nonLoginShowSocial, :nonLoginIndex, :registerToMessage]
   before_filter :find_challenge, :only => [:show, :edit, :update, :destroy]
   #on_spot_edit  is the gem to edit the data on spot 
   can_edit_on_the_spot
@@ -498,6 +498,9 @@ end
   
   def socialpeople
     render :layout => false
+  end
+  def registerToMessage
+  	render :layout=>false
   end
 
 	def mForWinner		
