@@ -1,5 +1,16 @@
+.bottomunderline{
+	 border-bottom: 1px solid #BEBEBE;
+}
 
-
+.fb_iframe_widget{
+	overflow: hidden;
+}
+.fb_ltr{
+	margin-left:-10px;
+	margin-right:-5px;
+	margin-top:-10px;
+	margin-bottom: -25px;
+}
 .divone{
 	vertical-align:top;
 }
@@ -60,13 +71,13 @@ left:10px;
 	margin-top:10px;
 }
 .sectionone{
-		
 		background: #FFFFFF;
 }
 .sectiontwo
 {
 		background: #FFFFFF;
 		vertical-align:top;
+		padding-top:12px;
 }
 .newtag
 {
@@ -113,10 +124,12 @@ left:10px;
 {
 	top: 5px;
 	position:relative;
-	
-
 }
-
+.register:hover{
+	cursor:pointer;
+}.cancel:hover{
+	cursor:pointer;
+}
 .dourbest1 {
     position: relative;
     top: 4px;

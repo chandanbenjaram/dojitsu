@@ -6,48 +6,49 @@
              <span class="registertitle">REGISTER TO DOJITSU! </span>
                 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
                     <table>
-                        <tr>
-                            <td width="25%" >
-                                 <%= f.label :email %>
+                    	<hr/>
+                    	<tr>
+                            <td class="bottomunderline">
+                                 <%= f.label :first_name, "FIRST NAME" %><br />                                        
                             </td>
-                            <td width="75%">
+                            <td class="bottomunderline">
+                                 <%= f.text_field :first_name, :id => "textFieldEffect" %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="bottomunderline">
+                                 <%= f.label :last_name, "LAST NAME" %><br />                                        
+                            </td>
+                            <td class="bottomunderline">
+                                 <%= f.text_field :last_name, :id => "textFieldEffect" %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="bottomunderline" width="25%" >
+                                 <%= f.label :email, "EMAIL ADDRESS" %>
+                            </td>
+                            <td class="bottomunderline" width="75%">
                                  <%= f.text_field :email, :id => "textFieldEffect" %>
                             </td>
 
                         </tr>
                         <tr>
-                            <td>
-                                 <%= f.label :first_name, "First Name" %><br />                                        
-                            </td>
-                            <td>
-                                 <%= f.text_field :first_name, :id => "textFieldEffect" %>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                 <%= f.label :last_name, "Last Name" %><br />                                        
-                            </td>
-                            <td>
-                                 <%= f.text_field :last_name, :id => "textFieldEffect" %>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                 <%= f.label :password %> 
-                                 <span class="moreInfoTip color999" rel="#moreCreateTaskId" title="About your password....!.">
+                            <td class="bottomunderline">
+                                 <%= f.label :password, "PASSWORD" %> 
+                                 <span class="moreInfoTip color999" rel="#moreCreateTaskId" title="About your password...">
                                       <%= image_tag("btn_questionmark_up.png", :class => "btnquestionupimge")%>
 								 </span>                                 
                             </td>
-                            <td>
+                            <td class="bottomunderline">
                                  <%= f.password_field :password, :id => "textFieldEffect" %>
                                  <i class="reglable">6 character minimum</i>
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                 <%= f.label :password_confirmation %><br />                                        
+                            <td class="bottomunderline">
+                                 <%= f.label :password_confirmation, "CONFIRM PASSWORD" %><br />                                        
                             </td>
-                            <td>
+                            <td class="bottomunderline">
                                  <%= f.password_field :password_confirmation, :id => "textFieldEffect" %>
                             </td>
                         </tr>
@@ -58,7 +59,6 @@
                     </section>                     
               <% end %>          
 	</section>
-        <%= render :partial => "devise/shared/links" %>
 </section>
 <br>
 <section>
@@ -131,7 +131,7 @@
 		<% end %>
 	</td>
 	<td class = "imagebackground" width="7%"></td>
-	<td valign="top" width="56%">
+	<td class="sectiontwo" valign="top" width="56%">
 				<section class="regdojitsu2">	
 							<div class="fb-like-box" data-href="http://www.facebook.com/pages/Dojitsu/295711967114330" data-width="350" data-height="180" data-show-faces="true" data-stream="false" data-header="false"></div>
 							<section class="dourbest">
@@ -147,7 +147,7 @@
 				</section>							
 	</td>
 </table>
-
+</section>
 <script>
   $('.moreInfoTip').cluetip({
 		width:430,
