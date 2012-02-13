@@ -1,0 +1,73 @@
+<%= stylesheet_link_tag('registration') %>
+<div class="registertomessage">
+<div>  
+	    
+	<div class="authnav">
+	<b>Login to send a message to this organizer<b>
+			<ul>
+			<li>
+				<%=link_to image_tag("loginbutton.png"), user_omniauth_authorize_path(:facebook, :display=>"popup"), :class => "popup", :"data-width" => 600, :"data-height" => 400 , :isNewChallenge => "isNew"%>		
+			</li>
+			 <li>                                                                                                                                         
+				<%= link_to image_tag("register.PNG", :alt => "Register"), new_user_registration_path,  :title=>"Register", :style => "float:right"%>
+			</li>                                                                                                                                                                                                                                                           
+		</ul>
+	</div>
+	  
+	<div id="fb-root" />
+</div>
+
+<%= form_tag do %>
+  <p><%= label_tag :email %>
+  <%= email_field_tag :email %><br/>
+
+  <%= label_tag :password %>
+  <%= password_field_tag :password %></p>
+  
+  <section>
+      <input class="register" type="submit" value="LOGIN">
+      <input class="cancel" type="button" value="CANCEL">
+   </section> 
+   <% end%> 
+</div> 
+ 
+   <script>  										       
+			window.fbAsyncInit = function() {
+				FB.init({     
+					appId      : '<%= Rails.application.config.fb_app_id%>', // App ID
+					//channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
+					status     : true, // check login status
+					cookie     : true, // enable cookies to allow the server to access the session
+					xfbml      : true  // parse XFBML
+				});
+			
+				// Additional initialization code here
+			};
+			
+			// Load the SDK Asynchronously
+			(function(d){
+				var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+				js = d.createElement('script'); js.id = id; js.async = true;
+				js.src = "//connect.facebook.net/en_US/all.js";
+				d.getElementsByTagName('head')[0].appendChild(js);
+				}(document));
+			
+			// Load the SDK Asynchronously
+			function popupCenter(url, width, height, name) {
+  var left = (screen.width/2)-(width/2);
+  var top = (screen.height/2)-(height/2);
+  return window.open(url, name, "menubar=no,toolbar=no,status=no,width="+width+",height="+height+",toolbar=no,left="+left+",top="+top);
+}
+
+$("a.popup").click(function(e) {
+  popupCenter($(this).attr("href"), $(this).attr("data-width"), $(this).attr("data-height"), "authPopup");
+  e.stopPropagation(); return false;
+});
+if(window.opener) {
+    window.opener.location.reload(true);
+    window.close()
+  }
+</script>
+
+
+

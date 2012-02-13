@@ -18,7 +18,7 @@ float: left;
 }
 .facebooklike
 {
- background: none repeat scroll 0 0 #FFFFFF;
+ 	background: none repeat scroll 0 0 #FFFFFF;
     color:#486197;
     float: left;
     height: 50px;
@@ -29,25 +29,25 @@ float: left;
 }
 .dojitstuimage
 {
-position:relative;
-top:5px;
-width:45px;
-height:45px;
-background:#fff;
-border:1px solid #000;
-float:left;
-left:10px;
+	position:relative;
+	top:5px;
+	width:45px;
+	height:45px;
+	background:#fff;
+	border:1px solid #000;
+	float:left;
+	left:10px;
 }
 .dojitstuimage
 {
-position:relative;
-top:5px;
-width:45px;
-height:45px;
-background:#fff;
-border:1px solid #000;
-float:left;
-left:10px;
+	position:relative;
+	top:5px;
+	width:45px;
+	height:45px;
+	background:#fff;
+	border:1px solid #000;
+	float:left;
+	left:10px;
 }
 .messagereg
 {
@@ -59,9 +59,8 @@ left:10px;
 	margin-top:10px;
 }
 #main_log{
-	
 	color: #A5A5A5;
-	 font-size: 16px;
+	font-size: 16px;
 }
 .imagestyle{
 	margin-top:0px; 
@@ -70,5 +69,5 @@ left:10px;
 #task_name_trim{
 	float:right; 
 	margin-right:20px;
-	 color: #A9A8A8;
+	color: #A9A8A8;
 }

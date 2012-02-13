@@ -27,7 +27,7 @@
 							<option  id ="first" value="others" >AGINST OTHERS</option>
 							<option  id ="first" value="myself" selected="yes">AGINST MYSELF</option>
 						</select>
-						 <span id="countchallenge">(3)</span>
+						 
 					</div>
 					<%# image_tag , challenges_url, :class => "ds_view_all_challenge", :method => :get%>
 					<%=link_to( image_tag("viewallbutton.PNG"), challenges_url, :class=>"ds_view_all_challenge") %>
@@ -110,7 +110,7 @@ $(document).ready(function(){
 <% Challenge.whatsNew.each do |aChallenge| %>
     <div id="contentbox" >
 	 
-        <%= image_tag("new_banner.png", :height => '30', :width => '30' ,:class => "imagestyle") %>
+        <%= image_tag("new_banner.png", :class => "imagestyle") %>
         <table width="100%" class="maintable">
             <tr>
               <td width="70%" class="firsttdst">

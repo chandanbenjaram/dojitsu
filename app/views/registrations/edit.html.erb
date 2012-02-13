@@ -4,22 +4,22 @@
   <!--
   <%= devise_error_messages! %>
   -->
-  <p><%= f.label :email %><br />
+  <p><%= f.label :email, "EMAIL ADDRESS" %><br />
   <%= f.email_field :email , :class => "textfield_effect", :id => "on_focus_textfield"%></p>
   
-  <p><%= f.label :fname, "First Name" %><br />
+  <p><%= f.label :fname, "FIRST NAME" %><br />
   <%= f.text_field :fname , :class => "textfield_effect", :id => "on_focus_textfield"%></p>
   
-  <p><%= f.label :lname, "Last Name" %><br />
+  <p><%= f.label :lname, "LAST NAME" %><br />
   <%= f.text_field :lname , :class => "textfield_effect", :id => "on_focus_textfield"%></p>
 
-  <p><%= f.label :password %><br />
+  <p><%= f.label :password, "PASSWORD" %><br />
   <%= f.password_field :password , :class => "textfield_effect", :id => "on_focus_textfield"%></p>
 
-  <p><%= f.label :password_confirmation %><br />
+  <p><%= f.label :password_confirmation, "CONFIRM PASSWORD" %><br />
   <%= f.password_field :password_confirmation , :class => "textfield_effect", :id => "on_focus_textfield"%></p>
 
-  <p><%= f.label :current_password %><br />
+  <p><%= f.label :current_password, "CURRENT PASSWORD" %><br />
   <%= f.password_field :current_password , :class => "textfield_effect", :id => "on_focus_textfield"%></p>
 
   <p><%= f.submit "Update" %></p>

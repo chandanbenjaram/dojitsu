@@ -46,7 +46,7 @@
                                           <% if anc.description.size > 200 %>
                                               <%=h truncate(anc.description, :length => 200) %>&nbsp;&nbsp;<b><%= link_to "view" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view'%></b>									
                                           <%else%>
-                                              <%= anc.description %>&nbsp;&nbsp;<%= link_to "view" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view' %></b>
+                                              <%= anc.description %>&nbsp;&nbsp;<b><%= link_to "view" , nonLoginShowPersonal_challenges_path(:id => anc.id), :class => 'underline_view' %></b>
                                           <%end%>
                                       </p>                                   
                                 </td>
@@ -58,7 +58,7 @@
                   </td>
                   <td class = "imagebackground"></td>
                   <td class="sectiontwo" width="20%">
-                      <section class="regdojitsu">	
+                      <section class="regdojitsu">
                         <div class="fb-like-box" data-href="http://www.facebook.com/pages/Dojitsu/295711967114330" data-width="350" data-height="180" data-show-faces="true" data-stream="false" data-header="false"></div>
                           <section class="dourbest1">
                               <%= image_tag("dourbest.PNG" ,:size => "350x195", :alt => "Do YOur Best")%>
@@ -69,4 +69,3 @@
           </section>
     </td>
 </table>
-

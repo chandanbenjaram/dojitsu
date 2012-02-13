@@ -1,6 +1,5 @@
-<%= stylesheet_link_tag('simple-tabs','jquery-ui','ui.progressbar','ui.theme', 'main','challenges_social')%>
-<%= javascript_include_tag('simple-tabs','ui.progressbar.js','soc-per','messages','nonloginsocialpage')%>
-
+<%= stylesheet_link_tag('simple-tabs','jquery-ui','ui.progressbar','ui.theme', 'main','challenges_social','colorbox')%>
+<%= javascript_include_tag('simple-tabs','ui.progressbar.js','soc-per','messages','nonloginsocialpage','jquery.colorbox-min')%>
 <section id="ch_main_section"> 
     <section id="ch_main_section1"> 
         <section class="challange"> 
@@ -38,7 +37,7 @@
                         <% end %>	
                     </td>
                     <td width="100px">
-                        <%#= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(ordId)" ) %>
+                        <%=link_to image_tag("btn_msg_up.png"), registerToMessage_challenges_path(:id=>@challenge),:class=>"register_tomessage_popup" %>
                     </td>
                 </tr>
                 <tr>
@@ -121,7 +120,8 @@
                                     <%= render :partial=> "challenges/nonLoginTasks" %>																										
                             <% end %>
                         </section>
-                        <section id="tab2" class="tab_content">
+                     <!--
+                     	  <section id="tab2" class="tab_content">
                             <table>
      <td width="47%">
        <label for="search">
@@ -185,6 +185,7 @@
     htmltable="<table><% childChallenges.each do |aChildChallenge| %> <tr><td width=80%><img src="+"<%= FbGraph::User.new(aChildChallenge.user_id).fetch.picture %>"+"><%= FbGraph::User.new(aChildChallenge.user_id).fetch.name %></td><td> <% if aChildChallenge.social_type.status == 1 %><img src="+"/assets/icon_accept.png"+"><% elsif aChildChallenge.social_type.status == -1 %><img src="+"/assets/icon_decline.png"+"><% else %><img src="+"/assets/icon_thinking.png"+"><% end %></td></tr><% end %></table>";
         document.getElementById("name").innerHTML =htmltable
       </script>
+      
      <script>
        
         function select()
@@ -316,6 +317,7 @@
           <% end %>
              }
         </script>
+  
       <td></td>
      
 
@@ -323,7 +325,7 @@
    
     </tbody>
     </table>
-                               </section> 
+   </section> -->
                             </section> 
                            
                            
@@ -445,13 +447,11 @@
 				htmlcontent =response[0].name ;
 						$("#user_name").append(htmlcontent);    
 			});
-function contactToOrganizer(orgId)
-{
-	$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+orgId+"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenge_url(@challenge) +"'"%>);	
-}
 </script>
 
-
+<script>
+$('.register_tomessage_popup').colorbox();
+</script>
 
 
 
