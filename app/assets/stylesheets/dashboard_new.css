@@ -28,7 +28,7 @@
 			text-shadow: -1px 0 1px #E9E9E9;
 			text-transform: uppercase;
 			top: 8px;
-			width: 110px;
+			width: 60%
 	}
 	
 	.howamidoing
@@ -39,6 +39,7 @@
 	#selecttb
 	{
 		background: url("/assets/icon_combobox_arrow_down.png") no-repeat scroll 90% 50% #D7D7D7;
+		background-image: url("/assets/icon_combobox_arrow_down.png"), -webkit-linear-gradient(50%, #444444, #999999);
 		box-shadow: -5px 0 3px -1px #999999;
 		float: left;
 		height: 33px;
@@ -93,7 +94,9 @@
 		padding-left: 5%;
 		position: relative;
 		width: 130%;
+		vertical-align: sub;
 	}
+	
 	#tab3{
 	
 		color: red;
@@ -134,4 +137,8 @@
     float: left;
     height: 468px;
     width: 635px;
+}
+#countchallenge
+{
+ color: #FFFFFF;
 }

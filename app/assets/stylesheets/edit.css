@@ -1,0 +1,24 @@
+.atable{
+	border-collapse:collapse;
+	border:1px solid #AAA;
+	width:100%;
+}
+
+.atable th{
+	border:1px solid #AAF;
+	background:#ADD8E6;
+	font-weight:bold;
+}
+
+.atable td{
+	padding:4px;
+	border:1px solid #AAF;
+}
+
+.oddRow{
+	background:#FFFFFF;
+}
+
+.evenRow{
+	background:#F0F8FF;
+}

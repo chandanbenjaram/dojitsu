@@ -1,4 +1,4 @@
-
+<%= stylesheet_link_tag('soc_againstothers')%>
 <% total_score = 0 %>
 				<% total_score_count = 0 %>
 				<% total = 0 %>
@@ -63,61 +63,6 @@
 	</tr>
 </table>
 
-<style>
-#image
-{
-position:relaticve;
-margin-top:0px;
-}
-p{
-color:green;
-font-weight:bold;
-font-size:26px;
-margin-top:20px;
-}
-#top_score
-{
-padding-left: 50%;
-font-weight:bold;
-font-size:16px;
-color:gray;
-}
-.tasks_color
-{
-font-size:16px;
-font-weight:bold;
-color:green;
-}
-#points
-{
-font-size:16px;
-font-weight:bold;
-color:gray;
-}
-
-.notcompleted2 {
-    color: #FFFFFF;
-    float: left;
-    left: 1%;
-    position: relative;
-    top: 12%;
-}
-#update_progress {
-    margin-right: -10px;
-    padding-left: 100px;
-    position: relative;
-}
-#button_color
-{
-background-color:orange;
-color:white;
-margin-right:20px;
-}
-.task
-{
-	width:100%;
-	}
-</style>
 
 <script type="text/javascript">
 $(function() {
@@ -137,109 +82,20 @@ function mark_as_complete()
 
 
 
-<style>
-  #winList{
-    width: 100%;
-    background-color: #F4F4F4;    
-    font-size: 18px;
-    color: #666666;
-    font-weight:bold;
-    padding-left: 20px;
-    padding-top: 10px;
-  }
-  
-  #winListM{
-    width: 95%;
-    background-color: #FFFFFF;    
-    font-size: 14px;
-    color: #666666;
-    font-weight:bold;
-    padding: 10px 10px 10px 20px;
-  }
-  
-  #winListMNo{
-    background-color: #f4f4f4;
-    border: 2px;
-    border-style:solid;
-    border-color: #D0D0D0;
-    margin-top: 10px;
-    padding: 10px 10px 10px 20px;
-  }
-
-  #winListMNoEdit{
-    background-color: #f4f4f4;
-    border: 2px;
-    border-style:solid;
-    border-color: #D0D0D0;
-    margin-top: 10px;
-    padding: 10px 10px 10px 20px;
-  }	
-  
-  #winListMNoL{
-    margin-top: 10px;
-    background-color: #ffffff;
-  }
-
-  #addPersonalM{
-    margin-top:10px;	
-  }
-	
-  #addPersonalMm{
-    margin-top:10px;
-    hight:100px;	
-  }
-
-	.textareaMessage{
-		border-width: 1px;
-		border-style: solid;
-		border-color: #999999;
-		background-color:#F4F4F4;
-		background-repeat: repeat-x;
-		font-family: Arial;
-		font-size: 15px;
-		color: #333333;
-		resize: none;
-		height: 50px;	
-		width:98%;
-	}
-
-	.linksMWinner {
-		background: none repeat scroll 0 0 #f9a943;
-		border-radius: 3px 3px 3px 3px;
-		color: #FFFFFF;
-		display: block;
-		font-size: 12px;
-		margin: 20px 0;
-		padding: 5px;
-		text-align: center;
-		text-transform: uppercase;
-		width: 90px;
-		margin-right:10px;
-		position: relative;
-		text-align: center;
-		top: -20px;
-}
-
-	#sentMessage{
-		color: #666666;
-}
-
-</style>
-
 <section style="display: none">
   <section id="winList">
-    Publish the winners!
+    <span class="titlepopup">Publish the winners!</span>
     <section id="winListM">
       Here's the list of winner(s) for <%= @challenge.title %>. On your approval, the winner(s) will be published to Facebook.
       <section id="winListMNo">
         No of winners:&nbsp;<%= @challenge.social_type.how_many_winners %><%= image_tag("icon_edit.png", :style=>"float:right;", :id=>"editWinner" )%>
         <table id="winListMNoL" width="100%">
-          <thead>          
-            <th width="10%">Rank</th>
-            <th>Name</th>
-            <th></th>
-            <th></th>
-            <th>Score</th>
+          <thead >          
+            <th width="10%" id="backround">Rank</th>
+            <th id="backround">Name</th>
+            <th id="backround"></th>
+            <th id="backround" ></th>
+            <th id="backround">Score</th>
           </thead>
           <tbody>            
 	    <% if @challenge.instance_of?ChildChallenge %>
