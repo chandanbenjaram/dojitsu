@@ -47,11 +47,11 @@ th
     color: #F8981D;
     float: left;
     font-weight: bold;
-    left: 200px;
+    left: 220px;
     position: relative;
     top: -5px;
 }
-.completedtask1 {
+.overalltasks {
     color: #7AC142;
     font-weight: bold;
     left: 39px;
@@ -65,7 +65,7 @@ th
     font-size: 15px;
     font-weight: bold;
     position: relative;
-    right: 115%;
+    right: 114%;
     top: -20px;
     width: 10%;
 }
