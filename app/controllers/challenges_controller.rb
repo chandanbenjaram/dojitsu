@@ -553,8 +553,109 @@ end
 		#raise @my_total.inspect
 			#@ch_id = Challenge.find(params[:ch_id])
 	 
-					 redirect_to show_per_challenges_path(:id => @challengeId.id)
-end
+		 redirect_to show_per_challenges_path(:id => @challengeId.id)
+		end
+		
+		
+		def deleteWinner
+			@challenge = Challenge.where(:_id=>params[:id]).first
+			@challenge.tasks.each do |eachTask|
+				eachTask.update_attributes(:is_complete=>0)
+			end
+			redirect_to show_per_challenges_path(:id => params[:id])			
+		end
+		
+		def storeWinner
+		#raise params.inspect
+		#raise @winners = params[:winners].inspect
+		#@winnerTitle = params[:title]
+		#@noOfWinner = params[:noOfWinner]
+		#raise @winners = params[:orgId].inspect
+		#raise "Maisa"
+		@flag = 1
+      @latestScore = 1
+		winner = []
+		@flagBreak = 0
+		@challenge = Challenge.where(:_id=>params[:orgId]).first
+		@noOfWinner = @challenge.social_type.how_many_winners
+		Challenge.winner(params[:orgId]).each do |winnerId, index|
+			#raise winnerId.inspect
+			#raise winnerScore.inspect
+
+			@currentChallenge = Challenge.all(conditions: {:user_id=> winnerId, :title=> @challenge.title}).first
+						
+
+			if @flag == 1
+           @currentChallenge.social_type.create_trophy(:rank=>1)                           
+           @latestScore = index 
+           @flag += 1 
+         elsif @flag == 2
+            if @latestScore == index 
+             @currentChallenge.social_type.create_trophy(:rank=>1)                             
+            else 
+             @currentChallenge.social_type.create_trophy(:rank=>2)                             
+             @latestScore = index 
+             @flag += 1 
+            end               
+         elsif @flag == 3              
+            if @latestScore == index 
+             @currentChallenge.social_type.create_trophy(:rank=>2)                             
+            else 
+             @currentChallenge.social_type.create_trophy(:rank=>3)                             
+              @latestScore = index 
+              @flag += 1 
+            end  
+         elsif @flag == 4
+            if @latestScore == index 
+             @currentChallenge.social_type.create_trophy(:rank=>3)
+            else 
+             @currentChallenge.social_type.create_trophy(:rank=>4)                             
+              @latestScore = index 
+              @flag += 1 
+            end                 
+         elsif @flag == 5
+         	if @latestScore == index
+            @currentChallenge.social_type.create_trophy(:rank=>4)                                         
+            else 
+             @currentChallenge.social_type.create_trophy(:rank=>5)                             
+              @latestScore = index 
+              @flag += 1 
+            end                 
+         elsif @flag == 6
+            if @latestScore == index 
+             @currentChallenge.social_type.create_trophy(:rank=>5)                             
+            else 
+             @currentChallenge.social_type.create_trophy(:rank=>6)                             
+              @latestScore = index 
+              @flag += 1 
+            end                 
+         else
+
+         end
+
+
+			winner.push(winnerId)	
+			@flagBreak+=1
+			if @flagBreak == @noOfWinner.to_i
+				break
+			end	
+		end
+		#raise winner.inspect
+		#@winners.each do |sd|
+		#	raise sd.inspect
+		#end
+
+
+		#@tr= [[&quot;100002573213371&quot;, 0], [&quot;100003174704960&quot;, 0], [&quot;100003276706127&quot;, 0], [&quot;100003135115833&quot;, 0], [&quot;100000974421554&quot;, 0], [&quot;100000018823471&quot;, 0]]
+
+		#@tr= [&quot;100002573213371&quot;, 0].inspect
+
+		#@ch = Challenge.where(:title=>"people status checking").first
+		#@ch = Challenge.where(:title=>"trophy").first
+		#raise @ch.social_type.trophy.inspect
+		#raise @ch.social_type.trophy.class.inspect		
+
+	end
   
   protected
 
