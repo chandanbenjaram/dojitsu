@@ -1,0 +1,137 @@
+	 .mydashbotitle{
+ color: #F8981D;
+ font-size: 18px;
+ }
+	.new_challenge
+	{
+		float: right;
+		right: -6%;
+		position: relative;
+		top: 3px;
+	}
+	.ds_view_all_challenge
+	{
+		float: right;
+		right: 15%;
+		position: relative;
+		top: 3px;
+	}
+	#shadow
+	{
+		   color: #333333;
+			float: right;
+			font-family: arial;
+			font-size: 12px;
+			font-weight: bold;
+			position: relative;
+			right: 55px;
+			text-shadow: -1px 0 1px #E9E9E9;
+			text-transform: uppercase;
+			top: 8px;
+			width: 110px;
+	}
+	
+	.howamidoing
+	{
+		color: red
+	}
+	
+	#selecttb
+	{
+		background: url("/assets/icon_combobox_arrow_down.png") no-repeat scroll 90% 50% #D7D7D7;
+		box-shadow: -5px 0 3px -1px #999999;
+		float: left;
+		height: 33px;
+		left: -40px;
+		overflow: hidden;
+		position: relative;
+		top: -1px;
+		width: 28%;
+		-webkit-box-shadow: -5px 0px 2px -1px #999999;
+		-moz-box-shadow: -5px 0px 2px -1px #999999;
+		box-shadow: -5px 0px 2px -1px #999999; 
+	}
+	#howiamgoindspace
+	{
+	    background: none repeat scroll 0 0 #BBBBBB;
+		color: red;
+		float: left;
+		height: 32px;
+		position: relative;
+		width: 30%;
+		
+	}
+	select {
+      color: #F9A943;
+    height: 31px;
+    margin-top: -8px;
+    top: 9px;
+    vertical-align: top;
+}
+.menubar {
+    background: none repeat scroll 0 0 #BBBBBB;
+	border-bottom: 2px solid #FFFFFF;
+    float: left;
+    height: 32px;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+	html ul.tabs li.active, html ul.tabs li.active a:hover
+	{
+	   background: none repeat scroll 0 0 #666666;
+		float: left;
+		left: 26%;
+		position: relative;
+	}
+	#first
+	{
+	
+		font-family: arial;
+		font-weight: bold;
+		padding-left: 5%;
+		position: relative;
+		width: 130%;
+	}
+	#tab3{
+	
+		color: red;
+		background-image: url("icon_combobox_arrow_down.png");
+	 
+	 }
+	 #firstd
+	 {
+		position: relative;
+		width: 130%;
+	 }	
+	
+	 #howamdoing
+	  {
+		float: left;
+		height: 468px;
+		width: 635px;
+		
+	 }
+	  #againstother
+	  {
+		float: left;
+		height: 468px;
+		width: 635px;
+		
+	 }
+	 #againstmyself
+	 {
+		
+		float: left;
+		height: 468px;
+		width: 635px;
+		
+	 }
+	 .mychallenge {
+    border: 2px solid #BEBEBE;
+    border-radius: 6px 6px 6px 6px;
+    float: left;
+    height: 468px;
+    width: 635px;
+}
