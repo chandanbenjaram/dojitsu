@@ -1,5 +1,3 @@
-<%= javascript_include_tag('ui.progressbar')%>
-<%= stylesheet_link_tag('jquery-ui', 'ui.progressbar','ui.theme')%>
 
 <% total_score = 0 %>
 				<% total_score_count = 0 %>
@@ -237,7 +235,7 @@ function mark_as_complete()
         No of winners:&nbsp;<%= @challenge.social_type.how_many_winners %><%= image_tag("icon_edit.png", :style=>"float:right;", :id=>"editWinner" )%>
         <table id="winListMNoL" width="100%">
           <thead>          
-            <th>Rank</th>
+            <th width="10%">Rank</th>
             <th>Name</th>
             <th></th>
             <th></th>
@@ -270,7 +268,8 @@ function mark_as_complete()
 				  <% @allWinners = [] %>
 				  <% @all.each do |aWinner,index| %>
 				  		<% @allParticipants.push(aWinner) %>
-				  <% end %>							
+				  <% end %>
+				  <% @all %>					  						
               <% @all.each do |aWinner,index| %>
 						<% @allWinners.push(aWinner) %>
                   <tr>
@@ -369,12 +368,7 @@ function mark_as_complete()
 									</section>
 								<br>
 								</section>	
-								<script type="text/javascript">
-									$(function() {
-									$("#winnerListProgress<%= aWinner %>").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });					
-									$("<p>").attr("id", "spercentage_personal").text($("#winnerListProgress<%= aWinner %>").progressbar("option", "value") + "%").appendTo("#winnerListProgressPercentage<%= aWinner %>");			
-									});
-								</script>																							     	 	            
+								
 							</td>							
                   </tr>
                   <% sl +=1 %>
@@ -434,8 +428,8 @@ function mark_as_complete()
 						<% @allWinners.push(aWinner) %>
                   <tr>
 							 <td class="bordercolor">
-									<%= image_tag("dwn_sort.png") %>
-									<%= image_tag("up_sort.png") %>
+									<a href="#" class="up">Up</a>
+            					<a href="#" class="down">Down</a>
 							</td>	
                       <td class="bordercolor">
                         <% if @flag == 1 %>
@@ -506,7 +500,7 @@ function mark_as_complete()
                       <td class="bordercolor">
 								<div align="center">
 									<section id="taskpercentages">
-										<section id="winnerListProgressPercentage<%= aWinner %>">				
+										<section id="winnerListProgressPercentageEdit<%= aWinner %>">				
 									</section>            
 								</section>
 								</div>
@@ -524,7 +518,7 @@ function mark_as_complete()
 								<% end %>
 								<%end%>											            
 								<section style="width:200px">                
-								<section class="task" id="winnerListProgress<%= aWinner %>"></section>
+								<section class="task" id="winnerListProgressEdit<%= aWinner %>"></section>
 									<section id="sblackbox_personal">
 										<section class="snotcompleted2">
 											<span class="tasks_color"><%= total_score %></span> <font color="gray" weight="bold" size="4px">points </br><%= total_score_count %>&nbsp; tasks</font>
@@ -534,7 +528,7 @@ function mark_as_complete()
 								</section>	
 																															     	 	            
 							</td>	
-							<td class="bordercolor"><%= image_tag("btn_delete_up.png") %></td>						
+							<td class="bordercolor"><%= link_to image_tag("btn_delete_up.png"), deleteWinner_challenges_path(:id=>eachChallenge.id) %></td>						
                   </tr>
                   <% sl +=1 %>
                   <% if sl.to_i == @challenge.social_type.how_many_winners.to_i %>
@@ -544,7 +538,6 @@ function mark_as_complete()
           </tbody>
         </table>
       </section>
-
 
 		<section id="addPersonalM">
 			<%= link_to "Add personal message", "#", :id=>"sentMessage" %>		
@@ -564,29 +557,6 @@ function mark_as_complete()
 					<%= submit_tag "APPROVE", :style => "width: 80px; float:right;", :class => "linksMWinner" %>
 			<% end %>
 		</section>
-
-
-
-
-
-
-
-			
-			
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 		</section>   
   </section>
@@ -628,6 +598,16 @@ function winnerList()
 <script type="text/javascript" charset="utf-8">
 	$(document).ready(function(){
    	$("#approve").click(function(){
+   	
+   		//var orgId = '<%= @fetChallenge.id %>';
+			var winnerDetails = new Object();
+			//winnerDetails.winners = '<%= @allWinners %>',
+			//winnerDetails.title = '<%= @challenge.title %>',
+			winnerDetails.orgId = '<%= @fetChallenge.id %>',
+			//winnerDetails.noOfWinner = '<%= @fetChallenge.social_type.how_many_winners %>', 	
+			//var allWinns = '<%= @allWinners %>','<%= @challenge.title %>';
+			//var title = '<%= @challenge.title %>';                  
+			$.post('/challenges/storeWinner', winnerDetails );
 
 			$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+@allParticipants.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>, fbCallback).replace("'", "");	
 
@@ -643,16 +623,6 @@ function winnerList()
 
                       }, 'script'
                   );
-						//var orgId = '<%= @fetChallenge.id %>';
-						var winnerDetails = new Object();
-						//winnerDetails.winners = '<%= @allWinners %>',
-						//winnerDetails.title = '<%= @challenge.title %>',
-						winnerDetails.orgId = '<%= @fetChallenge.id %>',
-						//winnerDetails.noOfWinner = '<%= @fetChallenge.social_type.how_many_winners %>', 	
-						//var allWinns = '<%= @allWinners %>','<%= @challenge.title %>';
-						//var title = '<%= @challenge.title %>';                  
-						$.get('/messages/storeWinner', winnerDetails );
-
               }
             }
 		});
@@ -665,7 +635,20 @@ function winnerList()
 			$("#winListMNo").hide();
 			$("#winListMNoEdit").show();
 			//alert("Maisa")
-		});		
+		});
+		
+		$(document).ready(function(){
+    	$(".up,.down").click(function(){
+        var row = $(this).parents("tr:first");
+        if ($(this).is(".up")) {
+            row.insertBefore(row.prev());
+        } else {
+            row.insertAfter(row.next());
+        }
+    	});
+});
+		
+				
 	});
 </script>
 
