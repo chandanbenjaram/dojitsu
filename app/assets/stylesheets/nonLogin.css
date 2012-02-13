@@ -1,24 +1,3 @@
-.bottomunderline{
-	 border-bottom: 1px solid #BEBEBE;
-}
-
-.fb_iframe_widget{
-	overflow: hidden;
-}
-.fb_ltr{
-	margin-left:-10px;
-	margin-right:-5px;
-	margin-top:-10px;
-	margin-bottom: -25px;
-}
-.registertomessage{
-	width:500px;
-	height:150px;
-	background:#f4f4f4;
-	padding-top:10px;
-	padding-left:10px;
-	padding-right:10px;
-}
 .divone{
 	vertical-align:top;
 }
@@ -175,4 +154,29 @@ background: red;
     font-family: arial;
 	font-size: 12px;
 	font-weight: bold;
+}
+.bottomunderline{
+	 border-bottom: 1px solid #BEBEBE;
+}
+
+.fb_iframe_widget{
+	overflow: hidden;
+}
+.fb_ltr{
+	margin-left:-10px;
+	margin-right:-5px;
+	margin-top:-10px;
+	margin-bottom: -25px;
+}
+.registertomessage{
+	width:500px;
+	height:150px;
+	background:#f4f4f4;
+	padding-top:10px;
+	padding-left:10px;
+	padding-right:10px;
+}
+.nonlogintaskstable{
+	width:100%;
+	border:1px;
 }

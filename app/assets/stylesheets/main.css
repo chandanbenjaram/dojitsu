@@ -714,7 +714,7 @@ input.radio {
     float: left;
     font-family: Arial;
     height: 24px;
-    left: 105px;
+    left: 125px;
     min-width: 24%;
     position: relative;
     text-align: right;
@@ -1178,13 +1178,13 @@ ul.tabs1 {
 	border: 1px solid #BEBEBE;
 	background:#BEBEBE;
 	height:30px;
-	-moz-border-radius-topleft: 5px;
-	-moz-border-radius-topright: 5px;
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-topright: 3px;
 	-moz-border-radius-bottomright: 0px;
 	-moz-border-radius-bottomleft: 0px;
 
-	-webkit-border-radius: 5px 5px 0px 0px;
-	border-radius: 5px 5px 0px 0px; 
+	-webkit-border-radius: 0px 3px 0px 0px;
+	border-radius: 0px 3px 0px 0px; 
 }
 
 
@@ -1375,12 +1375,12 @@ width:90%;
 	border: 1px solid #BEBEBE;
 	background:#BEBEBE;
 	height:30px;
-	-moz-border-radius-topleft: 5px;
-	-moz-border-radius-topright: 5px;
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-topright: 3px;
 	-moz-border-radius-bottomright: 0px;
 	-moz-border-radius-bottomleft: 0px;
-	-webkit-border-radius: 5px 5px 0px 0px;
-	border-radius: 5px 5px 0px 0px;
+	-webkit-border-radius: 0px 3px 0px 0px;
+	border-radius: 0px 3px 0px 0px;
 }
 #viewall
 {
