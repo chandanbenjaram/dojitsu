@@ -40,6 +40,9 @@ $(document).ready(function () {
                                               <% if isStandalone %>
                                                   <%= current_user.first_name %>
                                               <% else %>
+                                              	  <section style="margin-top:-25px;">
+                                              	  		<%= render :partial=> "user_connections/currentUserTrophy" %>
+                                                  </section>
                                                   <%= current_user.authentications[0].name %>
                                               <% end %>
                                               &nbsp;<%=image_tag("nav-arrow.png")%></div> </a>
