@@ -80,3 +80,11 @@ th
     position: relative;
     right: 10%;
 }
+.timestyle2 {
+    color: #666666;
+    float: right;
+    font-weight: bold;
+    position: relative;
+    right: -20px;
+    width: 110%;
+}

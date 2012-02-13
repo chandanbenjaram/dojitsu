@@ -2,11 +2,11 @@
 <table>
 	<thead>
 		<tr id="tableheader">
-			<th id="namespace"><span id="spancefortextother">NAME</span>
+			<th id="namespace" width="20%"><span id="spancefortextother">NAME</span>
 			</th>
-			<th>RANK
+			<th width="12%">RANK
 			</th>
-			<th><span id="theadmyscore">MY SCORE </span><span id = "theadtopscore">TOP SCORE</span>
+			<th width="50%"><span id="theadmyscore">MY SCORE </span><span id = "theadtopscore">TOP SCORE</span>
 			</th>
 			<th id="lastupspace"><span id="spancefortext2">LAST UPDATE</span>
 			</th>
@@ -70,7 +70,7 @@
 						  
 					
                      
-                     <div class="overalltasks"><%= aScore %> points </div>(<%= flag1 %>&nbsp;tasks)
+                     <div class="overalltasks"><%= aScore %> points<br>(<%= flag1 %>&nbsp;tasks) </div>
                       
                      <div class="pointscolor2"><%= cScore %> points <br>(<%= flag3 %>&nbsp;tasks)</div>
                      
@@ -82,7 +82,7 @@
                       </script>
 			  </td>
 				  <td class="bordercolort" >
-				  <span class = "timestyle1"><%= time_ago_in_words  limitChallenge.created_at%></span><br>				 
+				  <span class = "timestyle2"><%= time_ago_in_words  limitChallenge.created_at%></span><br>				 
 				  <%=link_to( image_tag("update.png"), show_per_challenges_path(:id => limitChallenge._id), :class=>"updatebutton") %>
 			  </td>
 			  <% taskCompleted+=1 %>
