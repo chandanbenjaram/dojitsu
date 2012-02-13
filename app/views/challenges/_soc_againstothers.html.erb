@@ -7,11 +7,11 @@
 <%end%>
 <br/>
 <table>
-	<tr>
-		<td width=50%>
-			<b  id="total"> HOW AM I DOING ? </b>
+	<tr width="100%">
+		<td width="30%">
+			<span  id="total"> HOW AM I DOING ? </span>
 		</td>
-		<td>
+		<td width="70%" id ="createnewte">
 			
 			 <% allTaskComplete = 0 %>
 			 <% if @challenge.instance_of?Challenge %>
@@ -22,10 +22,10 @@
 				      <% end %>
 				    <% end %>
 					 <% if allTaskComplete == 1 %>
-					 	<input type="button" value="I'm Done with this challenge >> Submit my score <%= total-total_score%>" class="links_score_p"/>
+					 	<input type="button" value="I'm Done with this challenge >> Submit my score : <%= total-total_score%>" class="links_score_p"/>
 					 <% end %>
 				 <% else %>
-				 	<input type="button" value="I'm Done with this challenge >> Submit my score <%= total-total_score%>" class="links_score_p"/>
+				 	<input type="button" value="I'm Done with this challenge >> Submit my score :<%= total-total_score%>" class="links_score_p"/>
 				 <% end %>
 			<% else %>
 				
@@ -36,16 +36,19 @@
 <hr/>
 <br/>
 <table>
-	<tr>
+	<tr width="100%">
+		<td width="10%" id="ranktrip">
+		Rank<br><span id="rankcolor">18</span><br>(of 1234)
 		</td>
-		<td width=10%>
+		</td>
+		<td width="20%">
 			<%= image_tag (current_user.facebook.picture), :id=>"image" %>
 		</td>
-		<td width=10%>
+		<td width="50%">
 			<div id="taskpercentage">
 			</div>
 		</td>
-		<td width=60%>
+		<td width="30%">
 			<div style="width=30px">
 				<span id="myscore"><b>My score</b></span><span  id ="top_score">Top Score</span> <br>
 				<div class="task" id="taskprogress"></div>
@@ -58,16 +61,8 @@
 				<br>
 			</div>
 		</td>
-		<td width=10%>
-		<% time_stamps =Array[] %>		
-		<% @challenge.tasks.each do |aTask| %>
-			<% if aTask.updated_at == nil %>
-				<%#= rescue N/A %>
-			<% else %>
-				<% time_stamps << aTask.updated_at.to_date %>				
-			<% end %>
-		<% end %>
-		<%=  time_stamps.max  %>
+		<td width="10%">
+		 Last Upate
 		</td>
 	</tr>
 </table>
@@ -90,7 +85,6 @@ function mark_as_complete()
   alert("In Progress");
 }
 </script>
-
 
 
 
