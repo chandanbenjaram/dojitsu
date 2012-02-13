@@ -502,6 +502,11 @@ end
   def registerToMessage
   	render :layout=>false
   end
+  
+  def winnerListPopup
+  		@challenge = Challenge.where(:_id => params[:id]).first
+		render :layout=>false
+	end
 
 	def mForWinner		
 		@winnerList = params[:winnerList]
@@ -656,6 +661,7 @@ end
 		#raise @ch.social_type.trophy.class.inspect		
 
 	end
+	
   
   protected
 

@@ -56,7 +56,8 @@ Dojitsu::Application.routes.draw do
 	  get "update_status_again"
 	  get "mForWinner"
 	  get "registerToMessage"
-	  get "deleteWinner"		
+	  get "deleteWinner"	
+	  get "winnerListPopup"	
     end
   end
 
