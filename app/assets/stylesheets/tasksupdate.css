@@ -1,0 +1,94 @@
+thead
+{
+
+color:#8C8C8C;
+font-weight:bold;
+}
+#myscore_td
+{
+text-align:left;
+}
+.td_content_score
+{
+text-align:center;
+}
+#sign
+{
+color:orange;
+font-size:8;
+font-weight:bold;
+}
+.hour
+{
+width:30px;
+text-align: center;
+}
+#orange
+{
+color:orange;
+}
+#green
+{
+color:green;
+}
+#total_score
+{
+color:green;
+font-weigth:bold;
+}
+.my_submit_button
+{
+background-image: url("/assets/update.png");
+color:#fff;
+height: 26px;
+width: 89px;
+}
+.my_submit_button1
+{
+background-image: url("/assets/submit_button.PNG");
+background-repeat:no-repeat;
+color:#fff;
+height: 26px;
+width: 89px;
+}
+border: none;
+}
+.td_content
+{
+text-align:center;
+color:#8C8C8C;
+font-weight:bold;
+}
+#update_time
+{
+text-align:center;
+color:#8C8C8C;
+font-weight:bold;
+}
+#tfoot{
+ font-style: normal;
+ font-weight:bold;
+ color:#D7D7D7;
+ font-size:16px;
+}
+#taskstatus
+{
+font-weight:bold;
+color:#8C8C8C;
+}
+.tr_style
+{
+background:#ffffff;
+}
+.tr_style1
+{
+background:#f1faec;
+}
+hr_line
+{
+background:#ffffff;
+}
+hr_line1
+{
+background:#f1faec;
+}
