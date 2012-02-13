@@ -11,15 +11,15 @@ module ChallengesHelper
             end 
           end
           if allTaskComplete == 1 
-            link_to "MARK AS COMPLETED",  "#", :style => "text-decoration: none; color:#fff; float:right; position:relative; top:-5px; right: -37px;" ,:class => "challenge_mark_as_c"
+            link_to "I'm Done with this challenge >> Submit my score",  "#", :style => "text-decoration: none; color:#fff; float:right; position:relative; top:-5px; right: -10px;" ,:class => "links_score_p" 
           else 
-            link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => " position:relative; top:-5px; text-decoration: none; color:#fff; float:right; right: -37px;" ,:class => "challenge_mark_as_c"
+            link_to "I'm Done with this challenge >> Submit my score",  challenge_comp_challenges_path(:id=>@challenge), :style => " position:relative; top:-5px; text-decoration: none; color:#fff; float:right; right: -10px;" ,:class => "links_score_p"
           end
         else
-          link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => " position:relative; top:-5px; text-decoration: none; color:#fff; float:right; right: -37px;" ,:class => "challenge_mark_as_c"
+          link_to "I'm Done with this challenge >> Submit my score",  challenge_comp_challenges_path(:id=>@challenge), :style => " position:relative; top:-5px; text-decoration: none; color:#fff; float:right; right: -10px;" ,:class => "links_score_p"
         end
 		else
-			link_to "MARK AS COMPLETED",  "#", :style => " position:relative; top:-5px; text-decoration: none; color:#fff; float:right right: -37px;" ,:class => "challenge_mark_as_c"
+			link_to "I'm Done with this challenge >> Submit my score",  "#", :style => " position:relative; top:-5px; text-decoration: none; color:#fff; float:right right: -10px;" ,:class => "links_score_p"
 		end 
     else
       if @challenge.user_id == current_user.fbauth.uid
@@ -30,15 +30,15 @@ module ChallengesHelper
             end 
           end
           if allTaskComplete == 1 
-            link_to "MARK AS COMPLETED",  "#", :style => "text-decoration: none; color:#fff; float:right; position:relative; top:-5px; right: -37px;" ,:class => "challenge_mark_as_c"
+            link_to "I'm Done with this challenge >> Submit my score",  "#", :style => "text-decoration: none; color:#fff; float:right; position:relative; top:-5px; right: -10px;" ,:class => "links_score_p"
           else 
-            link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => " position:relative; top:-5px; text-decoration: none; color:#fff; float:right; right: -37px;" ,:class => "challenge_mark_as_c"
+            link_to "I'm Done with this challenge >> Submit my score",  challenge_comp_challenges_path(:id=>@challenge), :style => " position:relative; top:-5px; text-decoration: none; color:#fff; float:right; right: -10px;" ,:class => "links_score_p"
           end
         else
-          link_to "MARK AS COMPLETED",  challenge_comp_challenges_path(:id=>@challenge), :style => " position:relative; top:-5px; text-decoration: none; color:#fff; float:right; right: -37px;" ,:class => "challenge_mark_as_c"
+          link_to "I'm Done with this challenge >> Submit my score",  challenge_comp_challenges_path(:id=>@challenge), :style => " position:relative; top:-5px; text-decoration: none; color:#fff; float:right; right: -10px;" ,:class => "links_score_p"
         end
 		else
-			link_to "MARK AS COMPLETED",  "#", :style => " position:relative; top:-5px; text-decoration: none; color:#fff; float:right right: -37px;" ,:class => "challenge_mark_as_c"
+			link_to "I'm Done with this challenge >> Submit my score",  "#", :style => " position:relative; top:-5px; text-decoration: none; color:#fff; float:right right: -10px;" ,:class => "links_score_p"
 		end
     end	
 	end	
