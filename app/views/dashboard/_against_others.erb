@@ -1,4 +1,4 @@
-
+<%= stylesheet_link_tag('_against_other')%>
 <table>
 	<thead>
 		<tr id="tableheader">
@@ -6,11 +6,7 @@
 			</th>
 			<th>RANK
 			</th>
-			<th>
-			</th>
-			<th>MY SCORE<span>TOP SCORE
-			</th>
-			<th>TOP SCORE
+			<th><span id="theadmyscore">MY SCORE </span><span id = "theadtopscore">TOP SCORE</span>
 			</th>
 			<th>LAST UPDATE
 			</th>
@@ -18,15 +14,13 @@
 	</thead>
 	<tbody>
 		<% total_challenges =[]	%>
-	
-	<% current_user.challenges.each do |userChallenge| %>
-		<% total_challenges<<userChallenge %>
-		
-	<%end%>
+	    <% current_user.challenges.each do |userChallenge| %>
+			<% total_challenges<<userChallenge %>
+		<%end%>
 	   <% taskCompleted=1 %>
 		<% total_challenges.take(3).each do |limitChallenge|%>
 	  	<tr>
-		<td class="bordercolort" width="150">	
+		   <td class="bordercolort" width="150">	
                  <br> <span class="userchallengestyle"><b><%= limitChallenge.title %></b></span><br>  
                   <% if limitChallenge.instance_of?ChildChallenge %>
                      <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>
@@ -49,15 +43,13 @@
                           <% end %>                                  
                       </div>   
                   <% end %>
-                  <span class="stedpoint"><%=  limitChallenge.start_point.value %> - <%= limitChallenge.end_point.value %></span>
-                 
+                  <span class="stedpoint"><%=  limitChallenge.start_point.value %> - <%= limitChallenge.end_point.value %></span> 
               </td>
 			  <td  class="bordercolortdb" width="50"><span id ="rankspoints"><u>0</u></span><br>
-			  <span id="extraspace">(of 1233)</span>
+				<span id="extraspace">(of 1233)</span>
 			  </td>
 			  <td class="bordercolort" width="280">
-			  <div class="taskprogress1" id="taskprogress1<%= taskCompleted %>"></div><br/>
-                  
+			         <div class="taskprogress1" id="taskprogress1<%= taskCompleted %>"></div><br/>
                           <% flag1=0 %>
                           <% flag2=0 %>
                           <% aScore= 0 %>
@@ -79,41 +71,19 @@
                       <div class="notcompleted">
                          <span class="pointscolor1"><%= bScore %> points <br> <%= flag2 %>&nbsp;tasks</span>
                       </div>
-                <script type="text/javascript">
+					<script type="text/javascript">
                           $(function() {
                               $("#taskprogress1<%= taskCompleted %>").progressbar({ value: Math.round(((<%= aScore %>/<%= (aScore+bScore) %>)*100)) });
                               $("<p>").attr("id", "checkit").text($("#taskprogress1<%= taskCompleted %>").progressbar("option", "value") + "%  ").appendTo("#taskprogress1<%= taskCompleted %>");
                           });
                       </script>
-                
 			  </td>
-			  <td class="bordercolort" >
+				  <td class="bordercolort" >
+				  <span class = "timestyle1"><%= time_ago_in_words  limitChallenge.created_at%></span><br>				 
+				  <%=link_to( image_tag("update.png"), show_per_challenges_path(:id => limitChallenge._id), :class=>"updatebutton") %>
 			  </td>
-			 
 			  <% taskCompleted+=1 %>
-			   	</tr>
-				  	
-			  <% end %>
+		</tr>
+		<% end %>
 	</tbody>
 </table>
-<style>
-.bordercolortdb {
-    border-bottom: 1px solid #BEBEBE;
-    margin: 3px 5px 5px;
-    padding-left: 15px;
-};
-#extraspace
-{
- width: 20%;
-}
-#rankspoints
-{
-color: #F8981D;
-font-weight: bold;
-}
-th
-{
-	text-align: center;
-	color: #666666;	
-}
-</style>

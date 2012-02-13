@@ -1,0 +1,96 @@
+
+.stedpoint
+{
+	 color: #666666;
+	 font-weight: bold;
+}
+.chname
+{
+	color: #666666;
+	 font-weight: bold;
+}
+#spancefortext1
+{
+	background: #BBBBBB;
+}
+#spancefortext2
+{
+	background: #BBBBBB;
+}
+#spancefortext3
+{
+	background: #BBBBBB;
+}
+#spancefortext4
+{
+	background: #BBBBBB;
+}
+#checkit {
+    color: #7AC142;
+    float: right;
+    font-size: 15px;
+    font-weight: bold;
+    position: relative;
+    right: 106%;
+    top: -20px;
+    width: 10%;
+}
+
+.pointscolor1 {
+    color: #F8981D;
+    float: left;
+    font-weight: bold;
+    left: 300px;
+    position: relative;
+    top: -18px;
+}
+
+.ui-corner-all
+{
+border-radius: 0 0 0 0;
+}
+.completedtask {
+    color: #7AC142;
+    font-weight: bold;
+    left: 30px;
+    position: relative;
+    top: 22px;
+    width: 40%;
+}
+.notcompleted
+{
+	float:left;
+	left:3px;
+	position:relative;
+	color:#F8981D;
+	top: 5px;
+}
+.timestyle1
+{
+	color: #666666;
+    float: right;
+    font-weight: bold;
+    position: relative;
+    right: -30px;
+    width: 110%;
+	font-weight: bold;
+}
+.taskprogress {
+    float: left;
+    left: 27px;
+    position: relative;
+    top: 20px;
+    width: 120%;
+}
+thead th {
+    background: none repeat scroll 0 0 #BBBBBB;
+}
+#borderalign
+{
+ margin-top: 3px;
+}
+#tableheader
+{
+    border-collapse: separate;
+    border-spacing: 2;
+}
