@@ -2005,3 +2005,10 @@ font-size:15px;
         padding-left:15px;
         margin: 3px 5px 5px 5px;
     }
+    
+#trophyAlign{
+		left: -13px;
+		margin-top: -10px;
+		position: relative;
+		top: -20px;
+}    
