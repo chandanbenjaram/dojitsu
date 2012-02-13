@@ -16,5 +16,12 @@ class DashboardController < ApplicationController
 	def dashboardIndex
 		render :layout => false
 	end
+	
+	def against_others
+		render :layout => false
+	end
+	def against_myself
+		render :layout => false
+	end
   
 end

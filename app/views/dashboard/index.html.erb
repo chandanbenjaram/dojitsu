@@ -1,13 +1,18 @@
-<%= javascript_include_tag('ui.progressbar','ajaxPageLoad','fbWallPost','jquery.colorbox-min')%>
-<%= stylesheet_link_tag('jquery-ui', 'ui.progressbar','ui.theme', 'main', 'dashboard','colorbox','messageCss')%>
+<%= javascript_include_tag('ajaxPageLoad','fbWallPost','jquery.colorbox-min', 'simple-tabs-dashboard')%>
+<%= stylesheet_link_tag('jquery-ui', 'ui.theme', 'main', 'dashboard','colorbox','messageCss','simple-tabs-dashboard','dashboard_new')%>
 <%= render 'layouts/loggedinbody'%>
 <% if session[:isNewChallenge] == "isNew" %>
     <script>
       $.dojitsuWallPost.renderFbWallPost();
     </script>
+
+
 <% end %>
+<span class="mydashbotitle">MY DASHBOARD</span>
+
 <table>
 <td>
+
 <content>
 <table>
   <td>
@@ -15,23 +20,57 @@
        <td>
          <div class="dashboardsidebar">
             <div class="mychallenge">
-              <div id="titlechallenge">
-                <div id="mychallengesstyle">
-                    <div class="shadow">my challenges &nbsp;&nbsp;<span class="fontstyle">( <%= current_user.challenges.size %> )</sapn>
-                    </div>
-                </div>
-                <div class="second_titlechallenge">
-                   <%= button_to "", new_challenge_url, :class => "new_challenge_button", :method => :get%>
-                </div>
-              </div>
-              <div id="myChallenge"></div>
-              <div id="myChallenge1" align="center"></div>
-              <script>
-                  $.dojitsuAjaxPage.renderAjaxPageLoad("/dashboard/myChallenge","#myChallenge","#myChallenge1");
-              </script>
+             <div class="menubar">
+					<span id="howiamgoindspace"><span id="shadow">HOW AM I DOING?</span></span>
+						<div id="selecttb"> 
+						<select id ="first">	
+							<option  id ="first" value="others" >AGINST OTHERS</option>
+							<option  id ="first" value="myself" selected="yes">AGINST MYSELF</option>
+						</select>
+						 
+					</div>
+					<%# image_tag , challenges_url, :class => "ds_view_all_challenge", :method => :get%>
+					<%=link_to( image_tag("viewallbutton.PNG"), challenges_url, :class=>"ds_view_all_challenge") %>
+					<%=link_to( image_tag("newbutton.PNG"), new_challenge_url, :class => "new_challenge") %>
+
+			</div>
+
+				<div id="againstother">
+					 <%= render :partial => "dashboard/against_others" %>
+				</div>
+				<div id="againstmyself">
+					 <%= render :partial => "dashboard/against_myself" %>
+				</div>
+			
             </div>
           </div>
+		  
       </td>
+<script>
+	
+$(document).ready(function(){
+	$("#againstmyself").show();
+	 $("#againstother").hide();
+	$("#first").change(function()
+	{
+		 var myfre = $("#first").val();
+		 if(myfre == "others")
+		 {
+			 $("#againstmyself").hide();
+			 $("#howamdoing").replaceWith($("#againstother").show());
+		 }
+		 else 
+		 {
+			 $("#againstother").hide();
+			 $("#howamdoing").replaceWith($("#againstmyself").show());
+		 }
+	});
+
+});
+
+
+</script>
+ 
         </tr>
         <tr>
           <td>	
@@ -191,3 +230,4 @@
           });
     });
 </script>    
+

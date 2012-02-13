@@ -4,7 +4,8 @@ Dojitsu::Application.routes.draw do
   get "dashboard/message"
   get "dashboard/myChallenge"
   get "dashboard/dashboardIndex"
-
+  get "dashboard/against_others"
+  get "dashboard/against_myself"
   # user registration & 3rd party logins
   match 'users/auth/:provider/callback', :to=>'authentications#create'
 

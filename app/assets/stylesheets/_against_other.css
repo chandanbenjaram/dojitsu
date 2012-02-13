@@ -1,0 +1,71 @@
+#theadtopscore
+{
+float: right;
+}
+#theadmyscore
+{
+float: left;
+}
+.bordercolortdb {
+    border-bottom: 1px solid #BEBEBE;
+    margin: 3px 5px 5px;
+    padding-left: 15px;
+};
+#extraspace
+{
+ width: 20%;
+}
+#rankspoints
+{
+color: #F8981D;
+font-weight: bold;
+}
+th
+{
+	
+	color: #666666;	
+}
+#namespace
+{
+	border-left: 2px solid #FFFFFF;
+}
+#lastupspace
+{
+	border-right: 2px solid #FFFFFF;
+}
+.ui-widget-content {
+    background: none repeat scroll 0 0 #E9E9E9;
+    border: 1px solid #AAAAAA;
+    color: #222222;
+    float: right;
+    position: relative;
+    top: 20px;
+    width: 85%;
+}
+
+.pointscolor2 {
+    color: #F8981D;
+    float: left;
+    font-weight: bold;
+    left: 220px;
+    position: relative;
+    top: -5px;
+}
+.overalltasks {
+    color: #7AC142;
+    font-weight: bold;
+    left: 39px;
+    position: relative;
+    top: 28px;
+    width: 30%;
+}
+#checkit1 {
+    color: #7AC142;
+    float: right;
+    font-size: 15px;
+    font-weight: bold;
+    position: relative;
+    right: 114%;
+    top: -20px;
+    width: 10%;
+}
