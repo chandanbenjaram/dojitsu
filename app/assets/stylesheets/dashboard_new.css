@@ -30,13 +30,15 @@
 			top: 8px;
 			width: 110px;
 	}
+	
 	.howamidoing
 	{
 		color: red
 	}
+	
 	#selecttb
 	{
-	
+		background: url("/assets/icon_combobox_arrow_down.png") no-repeat scroll 90% 50% #D7D7D7;
 		box-shadow: -5px 0 3px -1px #999999;
 		float: left;
 		height: 33px;
@@ -45,9 +47,9 @@
 		position: relative;
 		top: -1px;
 		width: 28%;
-	-webkit-box-shadow: -5px 0px 2px -1px #999999;
-	-moz-box-shadow: -5px 0px 2px -1px #999999;
-	box-shadow: -5px 0px 2px -1px #999999; 
+		-webkit-box-shadow: -5px 0px 2px -1px #999999;
+		-moz-box-shadow: -5px 0px 2px -1px #999999;
+		box-shadow: -5px 0px 2px -1px #999999; 
 	}
 	#howiamgoindspace
 	{
@@ -68,6 +70,7 @@
 }
 .menubar {
     background: none repeat scroll 0 0 #BBBBBB;
+	border-bottom: 2px solid #FFFFFF;
     float: left;
     height: 32px;
     list-style: none outside none;
@@ -84,7 +87,7 @@
 	}
 	#first
 	{
-		background: url("/assets/icon_combobox_arrow_down.png") no-repeat scroll 80% 45% #D7D7D7;
+	
 		font-family: arial;
 		font-weight: bold;
 		padding-left: 5%;
