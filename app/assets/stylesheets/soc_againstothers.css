@@ -18,9 +18,8 @@
     font-size: 18px;
     font-weight: bold;
     padding: 10px 12px 20px;
-    width: 600px;
+    width: auto;
 }
-
   
 #winListM {
     background-color: #FFFFFF;
@@ -108,18 +107,12 @@
 position:relaticve;
 margin-top:0px;
 }
-p{
-color:green;
-font-weight:bold;
-font-size:26px;
-margin-top:20px;
-}
-#top_score
-{
-padding-left: 50%;
-font-weight:bold;
-font-size:16px;
-color:gray;
+
+#top_score {
+    color: #666666;
+    font-size: 12px;
+    font-weight: bold;
+    padding-left: 50%;
 }
 .tasks_color
 {
@@ -137,7 +130,7 @@ color:gray;
 .notcompleted2 {
     color: #FFFFFF;
     float: left;
-    left: 1%;
+    left: 49%;
     position: relative;
     top: 12%;
 }
@@ -156,3 +149,84 @@ margin-right:20px;
 {
 	width:100%;
 	}
+	
+ul.tabs1 li a {
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    display: block;
+    font-size: 1.2em;
+    outline: medium none;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-decoration: none;
+    width: 100px;
+}
+#createnewte
+{
+ padding: 0;
+}
+.links_score_p {
+    background: none repeat scroll 0 0 #F9A943;
+    color: #FFFFFF;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    margin: -1px 0 7px 60px;
+    padding: 7px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 86%;
+}
+#total {
+    color: #999999;
+    float: left;
+    font-size: 11px;
+    font-weight: bold;
+    left: -18px;
+    position: relative;
+}
+#rankcout
+{
+color: #F9A943;
+}
+
+#myscore {
+    color: #666666;
+    font-size: 12px;
+    font-weight: bold;
+}
+a:focus, a:hover
+{
+	color: #FFFFFF;
+}
+#rankcolor
+{
+	color: #999999;
+	font-weight: bold;
+}
+.pointscolor{
+ 
+ color: #666666;
+ font-weight: bold;
+ font-size: 13px;
+}
+
+
+#percentage_personal {
+    color: #7AC142;
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    left: -8px;
+    margin-top: -28px;
+    position: relative;
+}
+
+.resttask {
+    color: #666666;
+    float: left;
+    font-weight: bold;
+    left: -1px;
+    position: relative;
+    top: 0;
+}

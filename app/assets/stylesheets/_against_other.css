@@ -70,21 +70,25 @@ th
     top: -20px;
     width: 10%;
 }
-#spancefortextother {
-    float: right;
-    position: relative;
-    right: 74%;
-}
+
 #spancefortext2 {
     float: right;
     position: relative;
     right: 10%;
 }
+
+
+
 .timestyle2 {
     color: #666666;
     float: right;
     font-weight: bold;
     position: relative;
-    right: -20px;
+    right: -15px;
     width: 110%;
+}
+#spancefortextother {
+    float: right;
+    position: relative;
+    right: 67%;
 }

@@ -1,63 +1,62 @@
-#image
-{
-position:relaticve;
-margin-top:0px;
+.howamspace {
+    color: #666666;
+    font-size: 11px;
+    font-weight: bold;
 }
-p{
-color:green;
-font-weight:bold;
-font-size:26px;
-margin-top:20px;
+.links_score_p_myself {
+    background: none repeat scroll 0 0 #F9A943;
+    color: #FFFFFF;
+    display: block;
+    font-size: 9px;
+    font-weight: bold;
+    margin: -1px 0 7px 77px;
+    padding: 7px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 90%;
 }
-#top_score
-{
-padding-left: 50%;
-font-weight:bold;
-font-size:16px;
-color:gray;
+#myscoreself{
+	color: #666666;
+ 
+    font-weight: bold;
 }
-.tasks_color
-{
-font-size:16px;
-font-weight:bold;
-color:green;
-}
-#points
-{
-font-size:16px;
-font-weight:bold;
-color:gray;
+.togocolo {
+    color: #666666;
+    float: right;
+    position: relative;
+    right: 9%;
+	font-weight: bold;
 }
 
-.notcompleted2 {
-    color: #FFFFFF;
-    float: left;
-    left: 1%;
+.diffcolor{
+color: #7AC142;
+}
+
+#tasksnumber
+{
+	color: #666666;
+	font-weight: bold;
+}
+
+.totalscorecolor {
+    color: #666666;
+    font-weight: bold;
+}
+#imagewidth
+{
+	width: 20%;
+}
+p {
+    color: #7AC142;
+    font-weight: bold;
+    margin: -21px -41px 0;
+}
+
+#tasksnumber2 {
+    color: #666666;
+    float: right;
+    font-weight: bold;
     position: relative;
-    top: 12%;
-}
-#update_progress {
-    margin-right: -10px;
-    padding-left: 100px;
-    position: relative;
-}
-#button_color
-{
-background-color:orange;
-color:white;
-margin-right:20px;
-}
-.task
-{
-	width:100%;
-	}
-#td_content_percentage1
-{
-color:green;
-font-weight:bold;
-font-size:20;
-}
-.ui-widget-content
-{
-border-radius: 0px 0px 0px 0px;
+    right: 35px;
+    top: -16px;
 }
