@@ -132,35 +132,43 @@
 				<%end %>
 				<% end %>
 				</td>
-				<td width=28% id="updated_at" class="td_content">
-			       <% if aTask.score_by == "Check box:1 for checking off the task"  %>
-				        <%if aTask.total == 0 %>
-							<%= link_to image_tag("update.png"), update_tasks_list_challenges_path(:id=>aTask.id, :challengeId=>@challenge.id, :score=>aTask.score.to_i,:total=>aTask.total) %>
-				        <% else %>
-							  <b id="update_time"><%=  time_ago_in_words aTask.updated_at %></b>
-						<% end%>
-				<% else %>
-				<%#= raise @challenge.id.inspect %>
-				  <%= form_tag myscore_update_self_report_challenges_path, :method => :get do %>
-					   <%=hidden_field_tag 'sum', @sum, :id=>"sum#{t}"%>
-					   <%=hidden_field_tag 'challenge', @ch, :id=>"ch#{t}"%>
-					    <%=hidden_field_tag 'task', @task, :id=>"task#{t}"%>
-						
-					   <%#= raise @sum.inspect %>
-					    <%if aTask.total == 0 %>
-							<%= submit_tag "" ,:class=>"my_submit_button"%>
+				<% if @challenge.social_type.status.to_i == 1 %>
+				
+						<td width=28% id="updated_at" class="td_content">
+						   <% if aTask.score_by == "Check box:1 for checking off the task"  %>
+								<%if aTask.total == 0 %>
+									<%= link_to image_tag("update.png"), update_tasks_list_challenges_path(:id=>aTask.id, :challengeId=>@challenge.id, :score=>aTask.score.to_i,:total=>aTask.total) %>
+								<% else %>
+									  <b id="update_time"><%=  time_ago_in_words aTask.updated_at %></b>
+								<% end%>
 						<% else %>
-							  <b id="update_time"><%=  time_ago_in_words aTask.updated_at %></b>
-						<% end%>					   
-						<%#= raise @sum.inspect %>
-					   <%#= link_to image_tag("update.png"), myscore_update_self_report_challenges_path(:id=>aTask.id, :challengeId=>@challenge.id, :mytotal=>@sum) %>
-						<%#=image_tag("update.png",:id=>"#{t}",  :onclick =>"score_mytotal1#{t}();")%>
-					<% end %>
-						<%#=image_tag("update.png",:id=>"#{t}",  :onclick =>"score_mytotal();")%>
-						<script>
-                        </script>
-						<%#= link_to " update", update_tasks_list_challenges_path(:id=>aTask.id, :ch_id=>@challenge.id, :score=>aTask.score.to_i,:total=>aTask.total) %>
-					<% end %>
+						<%#= raise @challenge.id.inspect %>
+						  <%= form_tag myscore_update_self_report_challenges_path, :method => :get do %>
+							   <%=hidden_field_tag 'sum', @sum, :id=>"sum#{t}"%>
+							   <%=hidden_field_tag 'challenge', @ch, :id=>"ch#{t}"%>
+								<%=hidden_field_tag 'task', @task, :id=>"task#{t}"%>
+								
+							   <%#= raise @sum.inspect %>
+								<%if aTask.total == 0 %>
+									<%= submit_tag "" ,:class=>"my_submit_button"%>
+								<% else %>
+									  <b id="update_time"><%=  time_ago_in_words aTask.updated_at %></b>
+								<% end%>					   
+								<%#= raise @sum.inspect %>
+							   <%#= link_to image_tag("update.png"), myscore_update_self_report_challenges_path(:id=>aTask.id, :challengeId=>@challenge.id, :mytotal=>@sum) %>
+								<%#=image_tag("update.png",:id=>"#{t}",  :onclick =>"score_mytotal1#{t}();")%>
+							<% end %>
+								<%#=image_tag("update.png",:id=>"#{t}",  :onclick =>"score_mytotal();")%>
+								<script>
+								</script>
+								<%#= link_to " update", update_tasks_list_challenges_path(:id=>aTask.id, :ch_id=>@challenge.id, :score=>aTask.score.to_i,:total=>aTask.total) %>
+							<% end %>
+							</td>
+							<%else%>
+							<td width=28% id="updated_at" class="td_content">
+								<%= image_tag("update.png")%>
+							</td>
+						<%end%>
 				</td>
 				<script>
 				function update_data<%=t%>()
@@ -194,7 +202,7 @@
 		
 </tbody>
 	<tfoot id="tfoot">
-		<td width=50%>
+		<td width=60%>
 			<span  id="taskstatus"><%= task %> Tasks Completed <% tasks_remaining =  total_tasks - task %> <%= tasks_remaining %> more  to go</span>
 		</td>
 		<td width=6%>
