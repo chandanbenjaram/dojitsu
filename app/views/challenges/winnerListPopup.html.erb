@@ -49,7 +49,7 @@
 						<% else %>
 							<% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :_id=>@fetChallenge.id}).first %>
 						<% end %>						
-						<%# eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :title=>@fetChallenge.title}).first %>						
+						<% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :title=>@fetChallenge.title}).first %>						
 						<% unless eachChallenge.social_type.trophy.rank == -1 %>
                   <tr>
                       <td class="bordercolor">                      	
@@ -326,9 +326,9 @@
 							<td class="bordercolor"><%= link_to image_tag("btn_delete_up.png"), deleteWinner_challenges_path(:id=>eachChallenge.id) %></td>						
                   </tr>
                   <% sl +=1 %>
-                  <% if sl.to_i == @challenge.social_type.how_many_winners.to_i %>
-                      <% break %>
-                  <% end %>
+		               <% if sl.to_i == @challenge.social_type.how_many_winners.to_i %>
+		                   <% break %>
+		               <% end %>
                   <% end %>                  						
               <% end %>		
           </tbody>

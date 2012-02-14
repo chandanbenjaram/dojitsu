@@ -366,14 +366,17 @@ background-image: url(images/leftarrow.png)/*{iconsHover}*/;
     font-weight:bold;
     padding:2px 0 2px 0;
 }
-#templatename
-{
-	color: #666666;
+#templatename {
+    color: #999999;
     font-size: 12px;
+    font-weight: bold;
     padding-right: 20px;
 }
 #templatenameinput
 {
 width:85%;
 height:30px;
+color:#666666;
+font-weight:bold;
+background:#f4f4f4;
 }

@@ -5,14 +5,14 @@
 	.new_challenge
 	{
 		float: right;
-		right: -6%;
+		right: -8%;
 		position: relative;
 		top: 3px;
 	}
 	.ds_view_all_challenge
 	{
 		float: right;
-		right: 15%;
+		right: 13%;
 		position: relative;
 		top: 3px;
 	}
@@ -131,12 +131,15 @@
 		width: 635px;
 		
 	 }
-	 .mychallenge {
+	.mychallenge {
     border: 2px solid #BEBEBE;
-    border-radius: 6px 6px 6px 6px;
     float: left;
+    margin-left:-8px;
     height: 468px;
     width: 635px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+	border-radius: 6px;
 }
 #countchallenge
 {

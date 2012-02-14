@@ -3,17 +3,17 @@
             <td width="10%" class="bordercolort" id="name">
 			<script>
 			 window.fbAsyncInit();
-<% @challenge.child_challenges.each do |aTask| %>
-	var len = <%= @challenge.child_challenges.length %>
-	var img = <%= aTask.user_id %>
+			<% @challenge.child_challenges.each do |aTask| %>
+				var len = <%= @challenge.child_challenges.length %>
+				var img = <%= aTask.user_id %>
 						  FB.api({
-                                                            method: 'fql.query',
-                                                            query: 'SELECT name,pic_square FROM user WHERE uid=' +  <%= aTask.user_id %>
-                                                        }, function(response){
-																htmlcontent="<table><tr><td><img src=" + response[0].pic_square + " />"+ response[0].name+"</td><td><%= time_ago_in_words userMessage.created_at %><%= FbGraph::User.new(userMessage.from).fetch.name %><br/><%=h truncate(userMessage.body, :length => 55) %>..</td></tr></table>" ;
-                                                               $("#name").append(htmlcontent);
-                                                        });
-<% end %>
+                                method: 'fql.query',
+                                query: 'SELECT name,pic_square FROM user WHERE uid=' +  <%= aTask.user_id %>
+                            }, function(response){
+									htmlcontent="<table><tr><td><img src=" + response[0].pic_square + " />"+ response[0].name+"</td><td><%= time_ago_in_words userMessage.created_at %><%= FbGraph::User.new(userMessage.from).fetch.name %><br/><%=h truncate(userMessage.body, :length => 55) %>..</td></tr></table>" ;
+                                   $("#name").append(htmlcontent);
+                            });
+					<% end %>
 					</script>
        
             </td>
