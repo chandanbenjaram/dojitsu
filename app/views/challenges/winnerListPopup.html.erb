@@ -43,19 +43,16 @@
 				  <% end %>
 				  <% @all %>					  						
               <% @all.each do |aWinner,index| %>
-						<% @allWinners.push(aWinner) %>
-						
-						
-						
-						
-						
-						
-						<% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :title=>@fetChallenge.title}).first %>						
+						<% @allWinners.push(aWinner) %>						
+						<% if Challenge.all(conditions: {:user_id => aWinner, :challenge_id=>@fetChallenge.id}).first %>
+							<% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :challenge_id=>@fetChallenge.id}).first %>
+						<% else %>
+							<% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :_id=>@fetChallenge.id}).first %>
+						<% end %>						
+						<%# eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :title=>@fetChallenge.title}).first %>						
 						<% unless eachChallenge.social_type.trophy.rank == -1 %>
                   <tr>
-                      <td class="bordercolor">
-                      	<%#= @fetChallenge.id %>
-                      	<%#= Challenge.all(conditions: {:user_id => aWinner, :challenge_id=>BSON::ObjectId(@fetChallenge.id)}).first %>
+                      <td class="bordercolor">                      	
                         <% if @flag == 1 %>
                           gold
                           <%= image_tag("trophy_gold.png") %>                          
@@ -213,7 +210,12 @@
 				  <% end %>		
               <% @all.each do |aWinner,index| %>
 						<% @allWinners.push(aWinner) %>
-						<% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :title=>@fetChallenge.title}).first %>
+						<% if Challenge.all(conditions: {:user_id => aWinner, :challenge_id=>@fetChallenge.id}).first %>
+							<% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :challenge_id=>@fetChallenge.id}).first %>
+						<% else %>
+							<% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :_id=>@fetChallenge.id}).first %>
+						<% end %>
+						<%# eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :title=>@fetChallenge.title}).first %>
 						<% unless eachChallenge.social_type.trophy.rank == -1 %>
                   <tr>
 							 <td class="bordercolor">
