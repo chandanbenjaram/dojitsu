@@ -1,15 +1,11 @@
-
-						<table width="100%" id="tblData" class="sortable" border=1>
-				<tbody bgcolor="#ffffff">
-					<tr >
-				     <td >
-					 <div id="name">
-					 
-					 
+<table width="100%" id="tblData" class="sortable" border=1>
+	<tbody bgcolor="#ffffff">
+       <tr >
+		  <td >
+			<div id="name">
 					</div>
 					</td>		
 				</tr>
-				
 		</tbody>
 	</table>
 
@@ -17,25 +13,25 @@
 	    	 window.fbAsyncInit();
 		          FB.getLoginStatus(function(response) { 
                  if (response.session)
-            { 
-                       globaluserid=response.session["uid"]; 
-					   name=globaluserid;
-						}
-						}
-						);
+{ 
+   globaluserid=response.session["uid"]; 
+   name=globaluserid;
+}
+}
+);
 					
 <% @challenge.child_challenges.each do |aTask| %>
-						 var len = <%= @challenge.child_challenges.length %>
-			
-																					<% if aTask.user_id %>
-																						<% if aTask.social_type.status == 1  or  @challenge.user_id == aTask.user_id %>
-																										status='<%= image_tag ("icon_accept.png") %>';
-																							<% else %>
-																							<% if aTask.social_type.status == 0 %>
-																										status='<%= image_tag ("icon_thinking.png") %>';
-																							<% else %>
-																										status='<%= image_tag("icon_decline.png") %>';
-																							<% end %>
+var len = <%= @challenge.child_challenges.length %>
+
+<% if aTask.user_id %>
+<% if aTask.social_type.status == 1  or  @challenge.user_id == aTask.user_id %>
+			status='<%= image_tag ("icon_accept.png") %>';
+<% else %>
+<% if aTask.social_type.status == 0 %>
+			status='<%= image_tag ("icon_thinking.png") %>';
+<% else %>
+			status='<%= image_tag("icon_decline.png") %>';
+<% end %>
 																							
 																							 
 																							

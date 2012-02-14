@@ -1,0 +1,86 @@
+  #pStatusAll{
+      background-color: #F4F4F4;
+      padding: 8px 8px 8px 8px;
+      width: 95%;
+    }
+    
+    #pStatusMy{
+      background-color: #F4F4F4;
+      padding: 8px 8px 8px 8px;
+      width: 95%;
+    }
+
+    IMG {
+      position: relative;
+      top:5px;
+    }    
+    
+    UL.tabNavigation {
+        list-style: none;
+        margin: 0;
+        padding: 0;         
+    }
+
+    UL.tabNavigation LI {
+        display: inline;     
+    }
+
+    UL.tabNavigation LI A {
+        padding: 3px 5px;
+        background-color: #B4B4B4;
+        color: #000;
+        text-decoration: none;
+        font-weight: bold;           
+    }
+
+    UL.tabNavigation LI A.selected,
+    UL.tabNavigation LI A:hover {
+        background-color: #F4F4F4;
+        color: #000;
+        padding-top: 7px;
+        font-weight: bold;
+    }
+
+    UL.tabNavigation LI A:focus {
+            outline: 0;
+    }
+
+    div.tabs > div {
+            padding: 5px;
+            margin-top: 3px;
+            border: 5px solid #F4F4F4;
+    }
+
+    div.tabs > div h2 {
+            margin-top: 0;
+    }
+
+    #first,#second,#third,#fourth {
+        background-color: #FFF;
+    }
+    
+    #nameColor{
+      color: #6883AF; 
+      font-size: 15px;
+      font-weight: bold;
+    }
+    
+    #peopleinchallenge{
+      color:#F3A840;      
+      font-size:16px;
+      font-weight: bold;
+    }
+    
+    #changeChallegne{
+      color:#000000;
+      font-weight:bold;
+      font-size:14px;
+    }
+    
+    #floatRight{
+      float: right;
+    }
+    
+    thead th{
+      background-color: #FFFFFF;
+    }

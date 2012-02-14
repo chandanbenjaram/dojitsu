@@ -1,5 +1,5 @@
 <%= render 'layouts/loggedinbody'%>
-<%= stylesheet_link_tag('datePicker')%>
+<%= stylesheet_link_tag('datePicker','edit')%>
 <%= javascript_include_tag('jquery.datePicker', 'date','jquery.table.addrow')%>
 
 <% t = Time.now.strftime("%m-%d-%Y") %>
@@ -16,20 +16,6 @@
 		
 	</p>
 <% end %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!--
 <div id="ne_tsk_div_form">
@@ -198,32 +184,4 @@ jQuery(document).ready(function($) {
 });
 </script>
 
-<style type="text/css">
-
-.atable{
-	border-collapse:collapse;
-	border:1px solid #AAA;
-	width:100%;
-}
-
-.atable th{
-	border:1px solid #AAF;
-	background:#ADD8E6;
-	font-weight:bold;
-}
-
-.atable td{
-	padding:4px;
-	border:1px solid #AAF;
-}
-
-.oddRow{
-	background:#FFFFFF;
-}
-
-.evenRow{
-	background:#F0F8FF;
-}
-
-</style>
 

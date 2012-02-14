@@ -2,9 +2,10 @@
 {
 float: right;
 }
-#theadmyscore
-{
-float: left;
+#theadmyscore {
+    float: left;
+    left: 17%;
+    position: relative;
 }
 .bordercolortdb {
     border-bottom: 1px solid #BEBEBE;
@@ -34,7 +35,7 @@ th
 	border-right: 2px solid #FFFFFF;
 }
 .ui-widget-content {
-    background: none repeat scroll 0 0 #E9E9E9;
+    background: none repeat scroll 0 0 #;
     border: 1px solid #AAAAAA;
     color: #222222;
     float: right;
@@ -68,4 +69,22 @@ th
     right: 114%;
     top: -20px;
     width: 10%;
+}
+#spancefortextother {
+    float: right;
+    position: relative;
+    right: 74%;
+}
+#spancefortext2 {
+    float: right;
+    position: relative;
+    right: 10%;
+}
+.timestyle2 {
+    color: #666666;
+    float: right;
+    font-weight: bold;
+    position: relative;
+    right: -20px;
+    width: 110%;
 }
