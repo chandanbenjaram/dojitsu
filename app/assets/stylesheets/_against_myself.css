@@ -22,7 +22,6 @@
 {
 	background: #BBBBBB;
 	 border-right: 2px solid #FFFFFF;
-	 padding-left:20px;
 }
 #checkit {
     color: #7AC142;
@@ -64,16 +63,7 @@ border-radius: 0 0 0 0;
 	color:#F8981D;
 	top: 5px;
 }
-.timestyle1
-{
-	color: #666666;
-    float: right;
-    font-weight: bold;
-    position: relative;
-    right: -15px;
-    width: 110%;
-	font-weight: bold;
-}
+
 .taskprogress {
     float: left;
     left: 27px;
@@ -105,4 +95,18 @@ thead th {
     position: relative;
     right: 20%;
 	background: #BBBBBB;
+}
+
+#spancefortextother {
+    float: right;
+    position: relative;
+    right: 67%;
+}
+.timestyle1 {
+    color: #666666;
+    float: right;
+    font-weight: bold;
+    position: relative;
+    right: -15px;
+    width: 110%;
 }
