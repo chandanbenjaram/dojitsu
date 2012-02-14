@@ -165,7 +165,18 @@ ul.tabs1 li a {
 {
  padding: 0;
 }
-
+.links_score_p {
+    background: none repeat scroll 0 0 #F9A943;
+    color: #FFFFFF;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    margin: -1px 0 7px 60px;
+    padding: 7px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 86%;
+}
 #total {
     color: #999999;
     float: left;
@@ -218,16 +229,4 @@ a:focus, a:hover
     left: -1px;
     position: relative;
     top: 0;
-}
-.links_score_p {
-    background: none repeat scroll 0 0 #F9A943;
-    color: #FFFFFF;
-    display: block;
-    font-size: 12px;
-    font-weight: bold;
-    margin: -1px 0 7px 36px;
-    padding: 7px;
-    text-align: center;
-    text-transform: uppercase;
-    width: 89%;
 }
