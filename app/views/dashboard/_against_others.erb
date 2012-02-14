@@ -20,7 +20,7 @@
 	   <% taskCompleted=1 %>
 	   <% total_challenges.take(3).each do |limitChallenge|%>
 	  	<tr>
-		   <td class="bordercolort" width="150">	
+		   <td class="bordercolort" >	
                  <br> <span class="userchallengestyle"><b><%= limitChallenge.title %></b></span><br>  
                   <% if limitChallenge.instance_of?ChildChallenge %>
                      <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>
@@ -45,10 +45,10 @@
                   <% end %>
                   <span class="stedpoint"><%=  limitChallenge.start_point.value %> - <%= limitChallenge.end_point.value %></span> 
               </td>
-			  <td  class="bordercolortdb" width="50"><span id ="rankspoints"><u>0</u></span><br>
+			  <td  class="bordercolortdb" ><span id ="rankspoints"><u>0</u></span><br>
 				<span id="extraspace">(of 1233)</span>
 			  </td>
-			  <td class="bordercolort" width="280">
+			  <td class="bordercolort">
 			         <div class="taskprogress1" id="taskprogress1<%= taskCompleted %>"></div><br/>
                           <% flag1=0 %>
                           <% flag2=0 %>
@@ -70,7 +70,7 @@
 						  
 					
                      
-                     <div class="overalltasks"><%= aScore %> points </div>(<%= flag1 %>&nbsp;tasks)
+                     <div class="overalltasks"><span><%= aScore %></span> points <br/>(<%= flag1 %>&nbsp;tasks)</div>
                       
                      <div class="pointscolor2"><%= cScore %> points <br>(<%= flag3 %>&nbsp;tasks)</div>
                      
