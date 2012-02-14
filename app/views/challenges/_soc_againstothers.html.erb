@@ -97,15 +97,15 @@
 			</div>
 		</td>
 		<td width="10%">
-		<% time_stamps =Array[] %>		
-		<% @challenge.tasks.each do |aTask| %>
-			<% if aTask.updated_at == nil %>
-				<%#= rescue N/A %>
-			<% else %>
-				<% time_stamps << aTask.updated_at.to_date %>				
+			<% time_stamps = Array[] %>		
+			<% @challenge.tasks.each do |aTask| %>
+				<% if aTask.updated_at == nil %>
+					<%#= rescue N/A %>
+				<% else %>
+					<% time_stamps << aTask.updated_at.to_date %>				
+				<% end %>
 			<% end %>
-		<% end %>
-		<%=  time_stamps.max  %>
+			<%=  time_stamps  %>
 		</td>
 	</tr>
 </table>
