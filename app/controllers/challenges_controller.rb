@@ -564,10 +564,9 @@ end
 		
 		
 		def deleteWinner
+			#raise Challenge.all(conditions: {:user_id=>'100002573213371', :challenge_id=>BSON::ObjectId('4f38f7f779216d45d4000007')}).first.inspect
 			@challenge = Challenge.where(:_id=>params[:id]).first
-			@challenge.tasks.each do |eachTask|
-				eachTask.update_attributes(:is_complete=>0)
-			end
+			@challenge.social_type.create_trophy(:rank=>-1)				
 			redirect_to show_per_challenges_path(:id => params[:id])			
 		end
 		
