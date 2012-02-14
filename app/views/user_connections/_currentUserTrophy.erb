@@ -5,21 +5,22 @@
 <% noOffifthRank = 0 %>
 <% noOfSixRank = 0 %>
 
-<% current_user.challenges.each do |eachChallenge| %>
-	<% eachChallenge.social_type.trophy.rank %>
-	<% if eachChallenge.social_type.trophy.rank == 1 %>                          
-     <% noOfFirstRank += 1 %>                                                    
-   <% elsif eachChallenge.social_type.trophy.rank == 2 %>                          
-      <% noOfSecondRank += 1 %>                                                                      
-   <% elsif eachChallenge.social_type.trophy.rank == 3 %>                                        
-       <% noOfThirdRank += 1 %>                                                         
-   <% elsif eachChallenge.social_type.trophy.rank == 4 %>                          
-       <% noOfFourthRank += 1 %>                                                                      
-   <% elsif eachChallenge.social_type.trophy.rank == 5 %>                          
-       <% noOffifthRank += 1 %>                                                                      
-   <% elsif eachChallenge.social_type.trophy.rank == 6 %>                          
-       <% noOfSixRank += 1 %>                                                   
-   <% end %>
+<% current_user.challenges.each do |eachChallenge| %>	
+	<% if eachChallenge.social_type.trophy != nil %>
+		<% if eachChallenge.social_type.trophy.rank == 1 %>                          
+		 <% noOfFirstRank += 1 %>                                                    
+	   <% elsif eachChallenge.social_type.trophy.rank == 2 %>                          
+		  <% noOfSecondRank += 1 %>                                                                      
+	   <% elsif eachChallenge.social_type.trophy.rank == 3 %>                                        
+		   <% noOfThirdRank += 1 %>                                                         
+	   <% elsif eachChallenge.social_type.trophy.rank == 4 %>                          
+		   <% noOfFourthRank += 1 %>                                                                      
+	   <% elsif eachChallenge.social_type.trophy.rank == 5 %>                          
+		   <% noOffifthRank += 1 %>                                                                      
+	   <% elsif eachChallenge.social_type.trophy.rank == 6 %>                          
+		   <% noOfSixRank += 1 %>                                                   
+	   <% end %>
+	<% end %>  
 <% end %>   
                         
 <% if noOfFirstRank > 0 %>                          
