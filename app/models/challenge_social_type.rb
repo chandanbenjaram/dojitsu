@@ -2,7 +2,7 @@ class ChallengeSocialType < ChallengeType
   include Mongoid::Document
 
   embedded_in :challenge, :inverse_of => :social_type
-  embeds_one :trophy, as: :challenge_trophy
+  embeds_one :trophy, as: :trophy
   
   validates_presence_of :how_many_winners
     

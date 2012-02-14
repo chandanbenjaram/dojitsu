@@ -141,7 +141,7 @@ class ChallengesController < ApplicationController
 
     unless @so_who_win.blank?
       @challenge = Challenge.new(:user_id => (current_user.fbauth.uid rescue current_user.id), :title => @ch.title, :description => @ch.description, :canCompleteBeforeTasks => @ch.canCompleteBeforeTasks, \
-      :social_type => ChallengeSocialType.new(:status => 1,:who_win => @so_who_win, :how_many_winners => @so_how_many_winner)) do |new_challenge|
+      :social_type => ChallengeSocialType.new(:status => 1,:who_win => @so_who_win, :how_many_winners => @so_how_many_winner, :trophy => Trophy.new(:rank=>0))) do |new_challenge|
         if @ch_st_date == "startPointDate" and  @ch_ed_date == "endPointDate"
           new_challenge.start_point =  PointDateType.new(:value => Date.strptime(@st_p_val, '%m/%d/%Y'))
           new_challenge.end_point = PointDateType.new(:value => Date.strptime(@ed_p_val, '%m/%d/%Y')) 
@@ -187,13 +187,13 @@ class ChallengesController < ApplicationController
             @challenge.child_challenges.create!(:user_id => invitee, :title => @ch.title, :description => @ch.description, :canCompleteBeforeTasks => @ch.canCompleteBeforeTasks, \
             :start_point => PointDateType.new(:value => Date.strptime(@st_p_val, '%m/%d/%Y')), \
             :end_point => PointDateType.new(:value => Date.strptime(@ed_p_val, '%m/%d/%Y')), \
-            :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner), \
+            :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner, :trophy => Trophy.new(:rank=>0)), \
             :tasks => @ch.task_attributes)
           else 
             @challenge.child_challenges.create!(:user_id => invitee, :title => @ch.title, :description => @ch.description, :canCompleteBeforeTasks => @ch.canCompleteBeforeTasks, \
             :start_point => PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb), \
             :end_point => PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb), \
-            :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner), \
+            :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner, :trophy => Trophy.new(:rank=>0)), \
             :tasks => @ch.task_attributes)
           end
         end      
