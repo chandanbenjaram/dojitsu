@@ -43,9 +43,16 @@
 				  <% end %>
 				  <% @all %>					  						
               <% @all.each do |aWinner,index| %>
-						<% @allWinners.push(aWinner) %>
+						<% @allWinners.push(aWinner) %>						
+						<% if Challenge.all(conditions: {:user_id => aWinner, :challenge_id=>@fetChallenge.id}).first %>
+							<% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :challenge_id=>@fetChallenge.id}).first %>
+						<% else %>
+							<% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :_id=>@fetChallenge.id}).first %>
+						<% end %>						
+						<%# eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :title=>@fetChallenge.title}).first %>						
+						<% unless eachChallenge.social_type.trophy.rank == -1 %>
                   <tr>
-                      <td class="bordercolor">
+                      <td class="bordercolor">                      	
                         <% if @flag == 1 %>
                           gold
                           <%= image_tag("trophy_gold.png") %>                          
@@ -119,8 +126,7 @@
 								</section>
 								</div>
 							 </td>			                    
-    						<td class="bordercolor">
-								<% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :title=>@fetChallenge.title}).first %>
+    						<td class="bordercolor">    															
 								<% total_score = 0 %>
 									<% total_score_count = 0 %>
 									<% total = 0 %>              
@@ -148,6 +154,7 @@
 									</script>
 							</td>							
                   </tr>
+                  <% end %>
                   <% sl +=1 %>
                   <% if sl.to_i == @challenge.social_type.how_many_winners.to_i %>
                       <% break %>
@@ -155,7 +162,7 @@
               <% end %>		
           </tbody>
         </table>
-      
+      </section>
 		
 
 		<section id="winListMNoEdit" style="display:none">
@@ -203,6 +210,13 @@
 				  <% end %>		
               <% @all.each do |aWinner,index| %>
 						<% @allWinners.push(aWinner) %>
+						<% if Challenge.all(conditions: {:user_id => aWinner, :challenge_id=>@fetChallenge.id}).first %>
+							<% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :challenge_id=>@fetChallenge.id}).first %>
+						<% else %>
+							<% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :_id=>@fetChallenge.id}).first %>
+						<% end %>
+						<%# eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :title=>@fetChallenge.title}).first %>
+						<% unless eachChallenge.social_type.trophy.rank == -1 %>
                   <tr>
 							 <td class="bordercolor">
 									<a href="#" class="up">Up</a>
@@ -282,8 +296,7 @@
 								</section>
 								</div>
 							 </td>			                    
-    						<td class="bordercolor">
-								<% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :title=>@fetChallenge.title}).first %>
+    						<td class="bordercolor">								
 								<% total_score = 0 %>
 									<% total_score_count = 0 %>
 									<% total = 0 %>              
@@ -303,10 +316,16 @@
 									</section>
 								<br>
 								</section>	
-																															     	 	            
+								<script type="text/javascript">
+									$(function() {
+									$("#winnerListProgressEdit<%= aWinner %>").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });
+									$("<p>").attr("id", "spercentage_personal").text($("#winnerListProgressEdit<%= aWinner %>").progressbar("option", "value") + "%").appendTo("#winnerListProgressPercentageEdit<%= aWinner %>");
+									});
+									</script>																							     	 	            
 							</td>	
 							<td class="bordercolor"><%= link_to image_tag("btn_delete_up.png"), deleteWinner_challenges_path(:id=>eachChallenge.id) %></td>						
                   </tr>
+                  <% end %>
                   <% sl +=1 %>
                   <% if sl.to_i == @challenge.social_type.how_many_winners.to_i %>
                       <% break %>
