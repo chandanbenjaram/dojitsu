@@ -31,7 +31,7 @@
                 		<tr><%= time_ago_in_words userMessage.created_at %></tr><br>
                 		<tr><%=link_to( image_tag("icon_facebook.png"), "#", :class=>"icon_facebook") %></tr>
                 	</table>
-            		</span>
+            	</span>
                 <span class="messages_box_name"><b><%= FbGraph::User.new(userMessage.from).fetch.name %></b></span></br>
                 <span class="messages_box_message"><b><%=h truncate(userMessage.body, :length => 55) %>..</b></span></br>
                 </td>
