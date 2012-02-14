@@ -22,18 +22,18 @@
     <tbody>
         <% current_user.inbox.each do |userMessage| %>
         <tr>
-            <td class="messages_box_picture"width="10%" class="bordercolort">
+            <td width="10%" class="bordercolort">
                 <%= image_tag(FbGraph::User.new(userMessage.from).fetch.picture) %>
             </td>
             <td width="90%" class="bordercolort2">
-                <span class=""size="14px" style="float:right">
+                <span class="messages_box_picture">
                 	<table>
                 		<tr><%= time_ago_in_words userMessage.created_at %></tr><br>
-                		<tr>hi</tr>
+                		<tr><%=link_to( image_tag("icon_facebook.png"), "#", :class=>"icon_facebook") %></tr>
                 	</table>
             		</span>
-                <span size="3px" ><b><%= FbGraph::User.new(userMessage.from).fetch.name %></b></span></br>
-                <span size="2px"><b><%=h truncate(userMessage.body, :length => 55) %>..</b></span></br>
+                <span class="messages_box_name"><b><%= FbGraph::User.new(userMessage.from).fetch.name %></b></span></br>
+                <span class="messages_box_message"><b><%=h truncate(userMessage.body, :length => 55) %>..</b></span></br>
                 </td>
             </td>
         </tr>
