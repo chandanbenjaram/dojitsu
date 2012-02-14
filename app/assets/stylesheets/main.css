@@ -2027,3 +2027,9 @@ font-size:15px;
 	overflow-x: hidden;  
 	height : 465px;
 }
+.bordercolor6 {
+    border-bottom: 1px solid #BEBEBE;
+    margin: 3px 5px 5px;
+    padding-left: 15px;
+    width: 210px;
+}
