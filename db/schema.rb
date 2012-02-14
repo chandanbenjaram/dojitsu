@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20120118061835) do
     t.datetime "confirmation_sent_at"
   end
 
+  add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
 end

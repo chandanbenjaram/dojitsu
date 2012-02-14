@@ -20,7 +20,7 @@
 	<table width="100%" border="0" class ="challengecre">
 		<tr >
 			<td colspan="4">
-			<%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :placeholder=>"Enter challenge title here" , :required => "required", :maxlength => "30"  %><div id="title"></div>
+			<%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :placeholder=>"Enter challenge title here" , :required => "required", :maxlength => "30" , :onkeyup => "sync()" %><div id="title"></div>
 			</td>	
 		</tr>
 	
@@ -234,7 +234,7 @@
         </table> 
 		
                                  <input type="checkbox" onclick="showMe('div1', this)"><span id="savechallenge">Save this challenge as  template in my profile</span>
-								 <div class="row" id="div1" style="display:none"><span id="templatename">TEMPLATE NAME</span><input id="templatenameinput" type="text"></div>
+								 <div class="row" id="div1" style="display:none"><span id="templatename">TEMPLATE NAME</span><input id="templatenameinput" type="text" readonly></div>
                                 
 								<table>
                                 <tr>

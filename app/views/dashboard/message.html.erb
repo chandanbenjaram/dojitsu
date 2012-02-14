@@ -26,9 +26,14 @@
                 <%= image_tag(FbGraph::User.new(userMessage.from).fetch.picture) %>
             </td>
             <td width="90%" class="bordercolort2">
-                <font size="3px" style="float:right"><%= time_ago_in_words userMessage.created_at %></font>
-                <font size="3px" ><%= FbGraph::User.new(userMessage.from).fetch.name %></font></br>
-                <font size="3px"><%=h truncate(userMessage.body, :length => 55) %>..</font></br>
+                <span class="messages_box_picture">
+                	<table>
+                		<tr><%= time_ago_in_words userMessage.created_at %></tr><br>
+                		<tr><%=link_to( image_tag("icon_facebook.png"), "#", :class=>"icon_facebook") %></tr>
+                	</table>
+            	</span>
+                <span class="messages_box_name"><b><%= FbGraph::User.new(userMessage.from).fetch.name %></b></span></br>
+                <span class="messages_box_message"><b><%=h truncate(userMessage.body, :length => 55) %>..</b></span></br>
                 </td>
             </td>
         </tr>

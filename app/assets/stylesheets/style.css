@@ -41,3 +41,20 @@ table.tablesorter thead tr .headerSortUp {
 table.tablesorter thead tr .headerSortDown {
 	background-image: url(desc.gif);
 }
+.messages_box_picture{
+	font-size:14px;
+	float:right;
+	color:#666666;
+}
+.messages_box_name{
+	font-size:14px;
+	color:#666666;
+}
+.messages_box_message{
+	font-size:12px;
+	color:#666666;
+	
+}
+.icon_facebook{
+	float:right;
+}
