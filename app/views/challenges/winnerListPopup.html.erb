@@ -44,19 +44,11 @@
 				  <% @all %>					  						
               <% @all.each do |aWinner,index| %>
 						<% @allWinners.push(aWinner) %>
-						
-						
-						
-						
-						
-						
 						<% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :title=>@fetChallenge.title}).first %>						
 						<% unless eachChallenge.social_type.trophy.rank == -1 %>
                   <tr>
                       <td class="bordercolor">
-                      	<%#= @fetChallenge.id %>
-                      	<%#= Challenge.all(conditions: {:user_id => aWinner, :challenge_id=>BSON::ObjectId(@fetChallenge.id)}).first %>
-                        <% if @flag == 1 %>
+                      	<% if @flag == 1 %>
                           gold
                           <%= image_tag("trophy_gold.png") %>                          
                           <% @latestScore = index %>
