@@ -7,28 +7,41 @@
 <%end%>
 <br/>
 <table>
-	<tr width="100%">
-		<td width="30%">
-			<span  id="total"> HOW AM I DOING ? </span>
+	<tr>
+		<td width=50%>
+			<b  id="total"> HOW AM I DOING ? </b>
 		</td>
-		<td width="70%" id ="createnewte">
+		<td>
 			
 			 <% allTaskComplete = 0 %>
 			 <% if @challenge.instance_of?Challenge %>
 				 <% if @challenge.canCompleteBeforeTasks? %> 
 				    <% @challenge.tasks.each do |aTask| %>
 				      <% if aTask.is_complete == 0 %>
-				        <% allTaskComplete = 1 %>			
+				        <%= allTaskComplete = 1 %>
+				        <% break %>			
 				      <% end %>
 				    <% end %>
-					 <% if allTaskComplete == 1 %>
-					 	<input type="button" value="I'm Done with this challenge >> Submit my score : <%= total-total_score%>" class="links_score_p"/>
-					 <% end %>
+				    <% if allTaskComplete != 1 %> 
+				 			<%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", winnerListPopup_challenges_path(:id => @challenge.id) , :class => "links_score_p" %>
+				 	<% end %>					 	
 				 <% else %>
-				 	<input type="button" value="I'm Done with this challenge >> Submit my score :<%= total-total_score%>" class="links_score_p"/>
+				 	<%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", winnerListPopup_challenges_path(:id => @challenge.id) , :class => "links_score_p" %>
 				 <% end %>
 			<% else %>
-				
+				<% if @challenge.canCompleteBeforeTasks? %> 
+				    <% @challenge.tasks.each do |aTask| %>
+				      <% if aTask.is_complete == 0 %>
+				        <%= allTaskComplete = 1 %>
+				        <% break %>			
+				      <% end %>
+				    <% end %>
+				    <% if allTaskComplete != 1 %> 
+				 			<%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", challenge_comp_challenges_path(:id => @challenge.id) , :class => "links_score_pp" %>
+				 	<% end %>					 	
+				 <% else %>
+				 	<%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", challenge_comp_challenges_path(:id => @challenge.id) , :class => "links_score_pp" %>
+				 <% end %>				
 			<% end %>	 
 			</td>
 	</tr>
@@ -36,19 +49,16 @@
 <hr/>
 <br/>
 <table>
-	<tr width="100%">
-		<td width="10%" id="ranktrip">
-		Rank<br><span id="rankcolor">18</span><br>(of 1234)
+	<tr>
 		</td>
-		</td>
-		<td width="20%">
+		<td width=10%>
 			<%= image_tag (current_user.facebook.picture), :id=>"image" %>
 		</td>
-		<td width="50%">
+		<td width=10%>
 			<div id="taskpercentage">
 			</div>
 		</td>
-		<td width="30%">
+		<td width=60%>
 			<div style="width=30px">
 				<span id="myscore"><b>My score</b></span><span  id ="top_score">Top Score</span> <br>
 				<div class="task" id="taskprogress"></div>
@@ -61,8 +71,16 @@
 				<br>
 			</div>
 		</td>
-		<td width="10%">
-		 Last Upate
+		<td width=10%>
+		<% time_stamps =Array[] %>		
+		<% @challenge.tasks.each do |aTask| %>
+			<% if aTask.updated_at == nil %>
+				<%#= rescue N/A %>
+			<% else %>
+				<% time_stamps << aTask.updated_at.to_date %>				
+			<% end %>
+		<% end %>
+		<%=  time_stamps.max  %>
 		</td>
 	</tr>
 </table>
@@ -85,6 +103,7 @@ function mark_as_complete()
   alert("In Progress");
 }
 </script>
+
 
 
 
