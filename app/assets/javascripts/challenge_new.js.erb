@@ -190,3 +190,11 @@ function validate_form_fields(str)
 	} 
 	//--> 
 
+
+function sync()
+{
+  var n1 = document.getElementById('challenge_title');
+  var n2 = document.getElementById('templatenameinput');
+  n2.value = n1.value;
+}
+

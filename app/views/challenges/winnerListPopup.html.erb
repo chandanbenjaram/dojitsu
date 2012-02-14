@@ -49,8 +49,8 @@
 						<% else %>
 							<% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :_id=>@fetChallenge.id}).first %>
 						<% end %>						
-						<%# eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :title=>@fetChallenge.title}).first %>						
-						<% unless eachChallenge.social_type.trophy.rank == -1 %>
+						<% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :title=>@fetChallenge.title}).first %>						
+						<%# unless eachChallenge.social_type.trophy.rank == -1 %>
                   <tr>
                       <td class="bordercolor">                      	
                         <% if @flag == 1 %>
@@ -154,7 +154,7 @@
 									</script>
 							</td>							
                   </tr>
-                  <% end %>
+                  <%# end %>
                   <% sl +=1 %>
                   <% if sl.to_i == @challenge.social_type.how_many_winners.to_i %>
                       <% break %>
@@ -216,7 +216,7 @@
 							<% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :_id=>@fetChallenge.id}).first %>
 						<% end %>
 						<%# eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :title=>@fetChallenge.title}).first %>
-						<% unless eachChallenge.social_type.trophy.rank == -1 %>
+						<%# unless eachChallenge.social_type.trophy.rank == -1 %>
                   <tr>
 							 <td class="bordercolor">
 									<a href="#" class="up">Up</a>
@@ -283,10 +283,10 @@
                         <% end %>
                       </td>
                       <td class="bordercolor"><div align="center">
-									<%#=image_tag(FbGraph::User.new(aWinner).fetch.picture) %></div>
+									<%=image_tag(FbGraph::User.new(aWinner).fetch.picture) %></div>
 							 </td>
                       <td class="bordercolor"><div align="center" style="float:left">
-									<%#= FbGraph::User.new(aWinner).fetch.name %></div>
+									<%= FbGraph::User.new(aWinner).fetch.name %></div>
 		      			 </td>               
                       <td class="bordercolor">
 								<div align="center">
@@ -325,7 +325,7 @@
 							</td>	
 							<td class="bordercolor"><%= link_to image_tag("btn_delete_up.png"), deleteWinner_challenges_path(:id=>eachChallenge.id) %></td>						
                   </tr>
-                  <% end %>
+                  <%# end %>
                   <% sl +=1 %>
                   <% if sl.to_i == @challenge.social_type.how_many_winners.to_i %>
                       <% break %>
