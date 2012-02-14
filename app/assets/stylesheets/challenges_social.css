@@ -1,13 +1,8 @@
 .new_challenge_button_new1 {
-    background: url("new1.PNG") no-repeat scroll left center #F8981D;
     float: left;
-    font-family: arial;
-    height: 25px;
     left: 90px;
-    min-width: 70px;
     position: relative;
-    text-align: right;
-    top: 2px;
+    top: -3px;
 }
 .table
 {
@@ -25,6 +20,7 @@
     top: 7px;
 	text-decoration: none;
 	color: #666666;
+	text-transform:uppercase;
 }
 
 .challange{

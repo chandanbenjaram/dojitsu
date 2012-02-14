@@ -31,8 +31,8 @@
 				<div>
 					<table >
 							<tr>
-								<td width="100px" heigh="50px">
-									<b><font color= #909090>DESCRIPTION</font></b></td>
+								<td class="description_after_accepted">
+									<b><span>DESCRIPTION</span></b></td>
 								<td width="500px">
 								<pre ><%= on_the_spot_edit @challenge,:description , :type=>:textarea ,:rows => 10, :columns => 55  %></pre>
 								</td>
@@ -43,7 +43,7 @@
 					<table>
 						<tr>
 							<td width="100px" class="titles">
-								<b><font color= #909090>ORGANIZER</font></b>
+								<b><span class="description_color">ORGANIZER</span></b>
 							</td>
 							<td id="username">
 							</td>
@@ -63,7 +63,7 @@
 					<table>
 						<tr>
 							<td width=120px>
-								<b><font color= #909090>START POINT</font></b>
+								<b><span class="description_color">START POINT</span></b>
 							</td>
 							<td>
 								<%= @challenge.start_point.value%> 
@@ -78,7 +78,7 @@
 					<table>
 						<tr> 
 							<td width=120px>
-								<b><font color= #909090>END POINT</font></b>
+								<b><span class="description_color">END POINT</span></b>
 							</td>
 							<td>
 								<%= @challenge.end_point.value %>
@@ -96,7 +96,7 @@
 					<table>
 						<tr>
 							<td width="100px" class="titles">
-								<b><font color= #909090>PARTICIPANTS</b></font>
+								<b><span class="description_color">PARTICIPANTS</b></span>
 							</td>
 							<td><%= @challenge.child_challenges.length %> </td>
 						</tr>
@@ -116,8 +116,8 @@
        						<table width="100%" border="0">
   								<tr>	
 									<td>
-										<table bgcolor=#F4F4F4>
-											<tr bgcolor=#F4F4F4>
+										<table class="accepted_search_bgcolor">
+											<tr class="accepted_search_bgcolor">
 												<td width="250px"><b  id="total">Total:<%= @challenge.child_challenges.length %></b>	<%=link_to image_tag("btn_msg_up.png"), message_challenges_path(:id => @challenge) %>
 												</td>
 												<td><input type="text">&nbsp;
@@ -135,7 +135,7 @@
 										</table>
 									
 										<table  border="0"> 
-											<tr bgcolor=#F4F4F4>
+											<tr class="accepted_search_bgcolor">
 												<td>
 													NAME
 												</td>

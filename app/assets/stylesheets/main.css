@@ -1932,16 +1932,12 @@ color: #06BACE;
  color: #ffffff;
   font-weight: bold;
  }
- 
- .new_challenge_button_new1 {
-    background: url("newbutton.PNG") no-repeat scroll left center #F8981D;
+.new_challenge_button_new1 {
     float: left;
     left: 90px;
-    width:60px;
     position: relative;
-    top: 2px;
+    top: 0px;
 }
-
 a:focus, a:hover {
     color: #666666;
 }
@@ -2027,3 +2023,12 @@ font-size:15px;
 	overflow-x: hidden;  
 	height : 465px;
 }
+.description_after_accepted{
+	width:100px;
+	heigh:50px;
+}
+.description_color{
+	color:#909090;
+}
+.accepted_search_bgcolor{
+	background:#f4f4f4;
