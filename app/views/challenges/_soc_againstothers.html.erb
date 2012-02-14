@@ -18,7 +18,7 @@
 				 <% if @challenge.canCompleteBeforeTasks? %> 
 				    <% @challenge.tasks.each do |aTask| %>
 				      <% if aTask.is_complete == 0 %>
-				        <%= allTaskComplete = 1 %>
+				        <% allTaskComplete = 1 %>
 				        <% break %>			
 				      <% end %>
 				    <% end %>
@@ -32,7 +32,7 @@
 				<% if @challenge.canCompleteBeforeTasks? %> 
 				    <% @challenge.tasks.each do |aTask| %>
 				      <% if aTask.is_complete == 0 %>
-				        <%= allTaskComplete = 1 %>
+				        <% allTaskComplete = 1 %>
 				        <% break %>			
 				      <% end %>
 				    <% end %>
