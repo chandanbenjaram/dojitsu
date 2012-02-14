@@ -217,19 +217,15 @@ ul.homenavbar > li.selected > a {
 }
 
 .new_challenge_button {
-	background: #F8981D url("new1.PNG") no-repeat left center;	
-	text-align: right;
-	min-width: 70px;
-	height:25px;
+	background: #F8981D url("newbutton.PNG") no-repeat left center;	
+	min-width: 60px;
 	top:-5px;
 	position:relative;
 	float:left;
 	left:10px;
-	font-family: arial;
 }
 .new_challenge_button1 {
 	background: #F8981D url("new_challenge_button1.PNG") no-repeat left center;	
-	text-align: right;
 	min-width: 70px;
 	height:25px;
 	top:-10px;
@@ -237,7 +233,6 @@ ul.homenavbar > li.selected > a {
 	position:relative;
 	float:left;
 	left:30px;
-	font-family: arial;
 }
 
 
@@ -707,17 +702,18 @@ input.radio {
     overflow: hidden;
     width: 300px;
 }
-
+#time_td{
+	vertical-align:top;
+	width:30%;
+}
 
 .ds_view_all{
-	background: url("viewallbutton.PNG") no-repeat scroll -1px -1px transparent;
     float: left;
     font-family: Arial;
     height: 24px;
     left: 125px;
     min-width: 24%;
     position: relative;
-    text-align: right;
     top: 3px;
 }
 .ds_view_all1 {
@@ -749,15 +745,10 @@ input.radio {
 }
 
 .new_message_button {
-  background: #F8981D url("new1.PNG") no-repeat left center;  
-  text-align: right;
-  min-width: 70px;
-  height:25px;
-  top:-5px;
+  float:right;
+  top:-4px;
+  right:-30px;
   position:relative;
-  float:left;
-  left:10px;
- font-family: arial;
 }
 
 .links_invite_p {
@@ -1943,14 +1934,11 @@ color: #06BACE;
  }
  
  .new_challenge_button_new1 {
-    background: url("new1.PNG") no-repeat scroll left center #F8981D;
+    background: url("newbutton.PNG") no-repeat scroll left center #F8981D;
     float: left;
-    font-family: arial;
-    height: 25px;
     left: 90px;
-    min-width: 70px;
+    width:60px;
     position: relative;
-    text-align: right;
     top: 2px;
 }
 
@@ -2026,3 +2014,16 @@ font-size:15px;
 		position: relative;
 		top: -20px;
 }    
+.my_challenges_box{	
+	left: 16px; 
+	position: relative; 
+	top: 5px;
+}
+.my_challenges_spancolor{
+	color:#FFFFFF;
+}
+.dashboard_sidebardetails{
+	overflow-y: auto; 
+	overflow-x: hidden;  
+	height : 465px;
+}

@@ -1,15 +1,33 @@
-
+.newmessagescount{
+	color:#FFFFFF;
+	margin-left:5px;
+}
+.title_messages_header{
+	margin-left: 16px; 
+	position: relative; 
+	top: 5px;"
+}
+.messages_box_details{
+	overflow-y: auto; 
+	overflow-x: hidden;
+}
+.messages_disply{
+	display:none;
+}
+.new_messages_table{
+	width:100%; 
+	background:#f4f4f4;
+}
+.bgcolor_messages_tr{
+	background:#FFFFFF;
+}
 #messageBox{
      font-size: 25px;
      font-weight: bold;
 }
 
-#sendNewMessage{    
-    
-}
-
 .new_message_button_index {
-  background: #F8981D url("new1.PNG") no-repeat left center;  
+  background: #F8981D url("newbutton.PNG") no-repeat left center;  
   text-align: right;
   min-width: 70px;
   height:25px;
@@ -37,18 +55,18 @@
 
 .linksNewMessage {
 	background: none repeat scroll 0 0 #f9a943;
-	border-radius: 3px 3px 3px 3px;
+	border-style:none;
 	color: #FFFFFF;
 	display: block;
 	font-size: 12px;
 	margin: 20px 0;
 	padding: 5px;
+	float:right;
 	text-align: center;
 	text-transform: uppercase;
-	width: 90px;
+	width: 80px;
 	margin-right:10px;
 	position: relative;
-        text-align: center;
 	top: -5px;
 }
 

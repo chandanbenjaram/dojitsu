@@ -22,13 +22,18 @@
     <tbody>
         <% current_user.inbox.each do |userMessage| %>
         <tr>
-            <td width="10%" class="bordercolort">
+            <td class="messages_box_picture"width="10%" class="bordercolort">
                 <%= image_tag(FbGraph::User.new(userMessage.from).fetch.picture) %>
             </td>
             <td width="90%" class="bordercolort2">
-                <font size="3px" style="float:right"><%= time_ago_in_words userMessage.created_at %></font>
-                <font size="3px" ><%= FbGraph::User.new(userMessage.from).fetch.name %></font></br>
-                <font size="3px"><%=h truncate(userMessage.body, :length => 55) %>..</font></br>
+                <span class=""size="14px" style="float:right">
+                	<table>
+                		<tr><%= time_ago_in_words userMessage.created_at %></tr><br>
+                		<tr>hi</tr>
+                	</table>
+            		</span>
+                <span size="3px" ><b><%= FbGraph::User.new(userMessage.from).fetch.name %></b></span></br>
+                <span size="2px"><b><%=h truncate(userMessage.body, :length => 55) %>..</b></span></br>
                 </td>
             </td>
         </tr>
