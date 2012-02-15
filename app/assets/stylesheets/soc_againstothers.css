@@ -141,9 +141,9 @@ color:gray;
 }
 #button_color
 {
-background-color:orange;
-color:white;
-margin-right:20px;
+	background-color:orange;
+	color:white;
+	margin-right:20px;
 }
 .task
 {
@@ -230,3 +230,9 @@ a:focus, a:hover
     position: relative;
     top: 0;
 }
+
+#aspercentage_personal{
+  	 color: #7AC142;
+    font-weight: bold;
+    margin: 7px -8px 0;
+  }
