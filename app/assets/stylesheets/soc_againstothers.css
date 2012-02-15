@@ -167,15 +167,19 @@ ul.tabs1 li a {
 }
 .links_score_p {
     background: none repeat scroll 0 0 #F9A943;
+    border-radius: 0 0 0 0;
     color: #FFFFFF;
     display: block;
     font-size: 12px;
     font-weight: bold;
-    margin: -1px 0 7px 60px;
-    padding: 7px;
+    height: 13px;
+    margin: 0 0 0 50px;
+    padding-bottom: 5px;
+    padding-top: 3px;
     text-align: center;
     text-transform: uppercase;
-    width: 86%;
+    width: 89%;
+}
 }
 #total {
     color: #999999;
