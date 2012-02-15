@@ -136,4 +136,14 @@
 	 position:relative;
  }
  
- 
+ .tab_container
+{
+background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #F4F4F4 #F4F4F4 #666666;
+    border-style: solid;
+    border-width: 2px 2px 2px;
+    clear: both;
+    float: left;
+    overflow: hidden;
+    width: 100%;
+}

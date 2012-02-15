@@ -29,8 +29,9 @@
     background-color: #F4F4F4;
     color: #B4B4B4;
   }
-.show_scoreboard_span{
-	color:gray; 
-	font-weight:bold; 
-	font-size:16px;
-}
+  
+  #sspercentage_personal{
+  	 color: #7AC142;
+    font-weight: bold;
+    margin: -21px -8px 0;
+  }

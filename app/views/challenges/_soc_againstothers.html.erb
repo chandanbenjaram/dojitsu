@@ -5,7 +5,7 @@
 <% @challenge.tasks.each do |aTask| %>
 <% total += aTask.score.to_i %>
 <%end%>
-<br/>
+
 <table>
 	<tr width="100">
 		
@@ -97,15 +97,24 @@
 			</div>
 		</td>
 		<td width="10%">
-			<% time_stamps = Array[] %>		
+			<% time_stamps = Array[] %><span class="colorlastupdate">Last Updated</span><br>
+			<% timecount = []%>
 			<% @challenge.tasks.each do |aTask| %>
-				<% if aTask.updated_at == nil %>
-					<%#= rescue N/A %>
-				<% else %>
-					<% time_stamps << aTask.updated_at.to_date %>				
-				<% end %>
+				<% timecount.push(aTask.updated_at) %>
 			<% end %>
-			<%=  time_stamps  %>
+			<% finaltime = []%>
+			<% timecount.delete_if {|x| x == nil}.each do |latesttime|%>
+				<% finaltime.push(latesttime)	 %>
+			<%end%>
+			<% if finaltime.count == 1 %>
+					<%finaltime.each do |singleelement|%>
+						<%= time_ago_in_words singleelement%>
+					<%end%>
+				<%else%>
+				working
+			<%end%>
+			
+		
 		</td>
 	</tr>
 </table>

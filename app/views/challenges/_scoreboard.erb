@@ -157,7 +157,7 @@
             <script type="text/javascript">
               $(function() {
                   $("#taskprogress<%= eachChallenge.user_id %>").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });							
-                  $("<p>").attr("id", "spercentage_personal").text($("#taskprogress<%= eachChallenge.user_id %>").progressbar("option", "value") + "%").appendTo("#taskpercentage<%= eachChallenge.user_id %>");
+                  $("<p>").attr("id", "sspercentage_personal").text($("#taskprogress<%= eachChallenge.user_id %>").progressbar("option", "value") + "%").appendTo("#taskpercentage<%= eachChallenge.user_id %>");
               });
             </script>
       </td>
