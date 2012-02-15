@@ -206,6 +206,7 @@
               <% end %>
 				  <% @allParticipants = [] %>
 				  <% @allWinners = [] %>
+				  <% @allWinnersName = [] %>
 				  <% @all.each do |aWinner,index| %>
 				  		<% @allParticipants.push(aWinner) %>
 				  <% end %>		
@@ -284,10 +285,12 @@
                         <% end %>
                       </td>
                       <td class="bordercolor"><div align="center">
-									<%=image_tag(FbGraph::User.new(aWinner).fetch.picture) %></div>
+									<%#=image_tag(FbGraph::User.new(aWinner).fetch.picture) %></div>
 							 </td>
                       <td class="bordercolor"><div align="center" style="float:left">
-									<%= FbGraph::User.new(aWinner).fetch.name %></div>
+									<%#= FbGraph::User.new(aWinner).fetch.name %>
+									<% @allWinnersName.push(FbGraph::User.new(aWinner).fetch.name)%>
+									</div>
 		      			 </td>               
                       <td class="bordercolor">
 								<div align="center">
@@ -386,8 +389,45 @@ $(document).ready(function(){
 			//var allWinns = '<%= @allWinners %>','<%= @challenge.title %>';
 			//var title = '<%= @challenge.title %>';                  
 			$.post('/challenges/storeWinner', winnerDetails );
+			
+			//$.dojitsuWallPost.renderFbWallPost();
+			
+			
+			
+			
+			
+			window.fbAsyncInit();
+			FB.ui(
+			{
+			  method: 'feed',
+			  name: 'Winner List of <%= @fetChallenge.title %> challenge',
+			  link: 'http://developers.facebook.com/docs/reference/dialogs/',
+			  picture: 'http://fbrell.com/f8.jpg',
+			  caption: '<%= @allWinnersName %>',
+			  description: 'Dialogs provide a simple, consistent interface for applications to interface with users.',
+			  message: 'Facebook Dialogs are easy!'
+			},
+			function(response) {
+			  if (response && response.post_id) {
+				 
+			  } else {
+				
+			  }
+			}
+		 );
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 
-			$.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+@allParticipants.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>, fbCallback).replace("'", "");	
+			$.dojitsu.renderSendBox(<%= "'Winner list of "+@challenge.title + " challenge'" %>, <%= "'"+@allParticipants.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>, fbCallback).replace("'", "");	
 
             function fbCallback(response){
               if(response == null){
