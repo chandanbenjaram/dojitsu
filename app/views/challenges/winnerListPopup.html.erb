@@ -114,7 +114,7 @@
                       <td valign="center" class="bordercolor6"><span align="left">
 									<%=image_tag(FbGraph::User.new(aWinner).fetch.picture) %> &nbsp; <b style="bottom:10px; position:relative;"><%= FbGraph::User.new(aWinner).fetch.name %></b></span>
 						 </td>               
-                      <td style="width:40px; padding-top:5px; vertical-align:top;">
+                      <td style="width:40px; padding-top:5px; vertical-align:top;" class="bordercolor">
 								<div align="center">
 									<section id="taskpercentages">
 										<section id="winnerListProgressPercentage<%= aWinner %>">				
@@ -145,15 +145,12 @@
 								<script type="text/javascript">
 									$(function() {
 									$("#winnerListProgress<%= aWinner %>").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });
-									$("<p>").attr("id", "spercentage_personal").text($("#winnerListProgress<%= aWinner %>").progressbar("option", "value") + "%").appendTo("#winnerListProgressPercentage<%= aWinner %>");
+									$("<p>").attr("id", "aspercentage_personal").text($("#winnerListProgress<%= aWinner %>").progressbar("option", "value") + "%").appendTo("#winnerListProgressPercentage<%= aWinner %>");
 									});
 									</script>
 							</td>														
                   </tr>
-				  <tr>
-					<td colspan="4">
-						<hr id="all_hr">
-					</td>
+				  <tr>					
 				</tr>
                   <% sl +=1 %>
 		               <% if sl.to_i == @challenge.social_type.how_many_winners.to_i %>
@@ -323,7 +320,7 @@
 								<script type="text/javascript">
 									$(function() {
 									$("#winnerListProgressEdit<%= aWinner %>").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });
-									$("<p>").attr("id", "spercentage_personal").text($("#winnerListProgressEdit<%= aWinner %>").progressbar("option", "value") + "%").appendTo("#winnerListProgressPercentageEdit<%= aWinner %>");
+									$("<p>").attr("id", "aspercentage_personal").text($("#winnerListProgressEdit<%= aWinner %>").progressbar("option", "value") + "%").appendTo("#winnerListProgressPercentageEdit<%= aWinner %>");
 									});
 									</script>																							     	 	            
 							</td>	
@@ -392,19 +389,15 @@ $(document).ready(function(){
 			
 			//$.dojitsuWallPost.renderFbWallPost();
 			
-			
-			
-			
-			
 			window.fbAsyncInit();
 			FB.ui(
 			{
 			  method: 'feed',
-			  name: 'Winner List of <%= @fetChallenge.title %> challenge',
+			  name: "Winner List of '<%= @fetChallenge.title %>' challenge",
 			  link: 'http://developers.facebook.com/docs/reference/dialogs/',
 			  picture: 'http://fbrell.com/f8.jpg',
 			  caption: '<%= @allWinnersName %>',
-			  description: 'Dialogs provide a simple, consistent interface for applications to interface with users.',
+			  description: 'Project management software for personal use in tracking the participants progress in social, athletic, personal or travel related tasks.',
 			  message: 'Facebook Dialogs are easy!'
 			},
 			function(response) {
@@ -416,17 +409,6 @@ $(document).ready(function(){
 			}
 		 );
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-
 			$.dojitsu.renderSendBox(<%= "'Winner list of "+@challenge.title + " challenge'" %>, <%= "'"+@allParticipants.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>, fbCallback).replace("'", "");	
 
             function fbCallback(response){
