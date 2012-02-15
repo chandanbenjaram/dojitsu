@@ -92,3 +92,12 @@ hr_line1
 {
 background:#f1faec;
 }
+
+#total {
+    color: #999999;
+    float: left;
+    font-size: 11px;
+    font-weight: bold;
+    left: 1px;
+    position: relative;
+}
