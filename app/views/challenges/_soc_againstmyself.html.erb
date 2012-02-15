@@ -60,13 +60,10 @@
 		time
 	</td>
 </tr>
-							<script type="text/javascript">
-								$(function() {
-									$("#taskprogress1").progressbar({ value: Math.round(((<%= total_score1 %>/<%= total1 %>)*100)) });							
-									$("<p>").attr("id", "percentage_personal_myself").text($("#taskprogress1").progressbar("option", "value") + "%  ").appendTo("#taskprogress1");
-								});
-							</script>
+		<script type="text/javascript">
+			$(function() {
+				$("#taskprogress1").progressbar({ value: Math.round(((<%= total_score1 %>/<%= total1 %>)*100)) });							
+				$("<p>").attr("id", "percentage_personal_myself").text($("#taskprogress1").progressbar("option", "value") + "%  ").appendTo("#taskprogress1");
+			});
+		</script>
 </table>
-<style>
-
-</style>

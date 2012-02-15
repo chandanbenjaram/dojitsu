@@ -29,3 +29,8 @@
     background-color: #F4F4F4;
     color: #B4B4B4;
   }
+.show_scoreboard_span{
+	color:gray; 
+	font-weight:bold; 
+	font-size:16px;
+}
