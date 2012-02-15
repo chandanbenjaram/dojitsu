@@ -18140,3 +18140,1801 @@ Served asset /colorbox/loading.gif - 304 Not Modified (0ms)
 
 Started GET "/assets/colorbox/loading_background.png" for 127.0.0.1 at 2012-02-15 17:49:46 +0530
 Served asset /colorbox/loading_background.png - 304 Not Modified (0ms)
+
+
+Started GET "/challenges/show_per?id=4f3b41fea1137817b000000a" for 127.0.0.1 at 2012-02-15 17:55:16 +0530
+  Processing by ChallengesController#show_per as HTML
+  Parameters: {"id"=>"4f3b41fea1137817b000000a"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 18 LIMIT 1
+MONGODB dojitsu_dev['system.namespaces'].find({})
+MONGODB dojitsu_dev['challenges'].find({:_id=>BSON::ObjectId('4f3b41fea1137817b000000a')}).limit(-1).sort([[:_id, :asc]])
+  [1m[36mUserConnection Load (0.0ms)[0m  [1mSELECT target_id FROM `user_connections` WHERE `user_connections`.`user_id` = 18[0m
+MONGODB dojitsu_dev['challenges'].find({:user_id=>{"$in"=>["100003135115833", "100000974421554", "100000018823471", "100003118614355", "1813461773", "100001071283803"]}, :title=>"Social Challenge 5"})
+MONGODB dojitsu_dev['challenges'].update({:_id=>BSON::ObjectId('4f3b41fea1137817b000000a')}, {"$set"=>{:is_complete=>1}})
+Rendered layouts/_loggedinbody.slim (15.6ms)
+MONGODB dojitsu_dev['$cmd'].find({"count"=>"challenges", "query"=>{"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000000a'), :_type=>{"$in"=>["ChildChallenge"]}}, "fields"=>nil}).limit(-1)
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000000a'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mAuthentication Load (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+Rendered challenges/_soc_againstothers.html.erb (1234.4ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+Rendered challenges/_soc_againstmyself.html.erb (1218.8ms)
+Rendered challenges/_againstothers.html.erb (2468.8ms)
+Rendered challenges/_tasksupdate.html.erb (0.0ms)
+MONGODB dojitsu_dev['$cmd'].find({"count"=>"challenges", "query"=>{"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000000a'), :_type=>{"$in"=>["ChildChallenge"]}}, "fields"=>nil}).limit(-1)
+MONGODB dojitsu_dev['challenges'].find({:_id=>BSON::ObjectId('4f3b41fea1137817b000000a')}).limit(-1).sort([[:_id, :asc]])
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000000a'), :_type=>{"$in"=>["ChildChallenge"]}})
+MONGODB dojitsu_dev['challenges'].find({:user_id=>"1668161239", :title=>"Social Challenge 5"}).limit(-1).sort([[:_id, :asc]])
+MONGODB dojitsu_dev['challenges'].find({:user_id=>"100003118614355", :title=>"Social Challenge 5"}).limit(-1).sort([[:_id, :asc]])
+MONGODB dojitsu_dev['challenges'].find({:user_id=>"100001071283803", :title=>"Social Challenge 5"}).limit(-1).sort([[:_id, :asc]])
+MONGODB dojitsu_dev['challenges'].find({:user_id=>"100000018823471", :title=>"Social Challenge 5"}).limit(-1).sort([[:_id, :asc]])
+MONGODB dojitsu_dev['challenges'].find({:user_id=>"100000974421554", :title=>"Social Challenge 5"}).limit(-1).sort([[:_id, :asc]])
+MONGODB dojitsu_dev['challenges'].find({:user_id=>"1813461773", :title=>"Social Challenge 5"}).limit(-1).sort([[:_id, :asc]])
+Rendered challenges/_scoreboard.erb (16062.5ms)
+MONGODB dojitsu_dev['$cmd'].find({"count"=>"challenges", "query"=>{"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000000a'), :_type=>{"$in"=>["ChildChallenge"]}}, "fields"=>nil}).limit(-1)
+MONGODB dojitsu_dev['$cmd'].find({"count"=>"challenges", "query"=>{:user_id=>{"$in"=>["100003135115833", "100000974421554", "100000018823471", "100003118614355", "1813461773", "100001071283803"]}, :title=>"Social Challenge 5"}, "fields"=>nil}).limit(-1)
+Rendered challenges/_people_status.erb (30515.6ms)
+Rendered challenges/show_soc.html.erb within layouts/application (51187.5ms)
+Rendered layouts/_stylesheets.html.erb (15.6ms)
+Rendered layouts/_javascripts.html.erb (0.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'pandusuresh95@gmail.com' LIMIT 1[0m
+18
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"$or"=>[{:user_id=>"1668161239"}, {"child_challenges.user_id"=>"1668161239"}]})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f38d388a1137813ec00005b'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f38d585a1137813ec000064'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba4a1137800fc000007'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc00000d'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000013'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000019'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc00001f'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000025'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cf9a1137800fc000035'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc00003c'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000043'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc00004a'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000051'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000058'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000000a'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000011'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000018'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000001f'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000026'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000002d'), :_type=>{"$in"=>["ChildChallenge"]}})
+Rendered user_connections/_currentUserTrophy.erb (93.8ms)
+  [1m[35mAuthentication Load (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18
+Rendered layouts/_globalheader.html.erb (2484.4ms)
+Rendered layouts/_globalfooter.html.erb (0.0ms)
+Completed 200 OK in 54109ms (Views: 53656.2ms | ActiveRecord: 140.6ms)
+
+
+Started GET "/assets/blueprint/screen.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:11 +0530
+Served asset /blueprint/screen.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-02-15 17:56:11 +0530
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-02-15 17:56:11 +0530
+Served asset /application.js - 304 Not Modified (15ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /main.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/blueprint/print.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /blueprint/print.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/fb_logout.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /fb_logout.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/simple-tabs.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /simple-tabs.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails.validations?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /rails.validations - 304 Not Modified (0ms)
+
+
+Started GET "/assets/datePicker.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /datePicker.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /jquery-ui.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/colorbox.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /colorbox.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.cluetip.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /jquery.cluetip.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/ui.progressbar?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /ui.progressbar - 304 Not Modified (0ms)
+
+
+Started GET "/assets/ui.theme?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /ui.theme - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery-ui.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /jquery-ui.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tabs2.js?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /tabs2.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/simple-tabs.js?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /simple-tabs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/challenges.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /challenges.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/soc-per.js?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /soc-per.js - 304 Not Modified (15ms)
+
+
+Started GET "/assets/ajaxPageLoad.js?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /ajaxPageLoad.js - 304 Not Modified (15ms)
+
+
+Started GET "/assets/challenges_social.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /challenges_social.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.jeditable.mini.js?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /jquery.jeditable.mini.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/on_the_spot_code.js?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /on_the_spot_code.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.jeditable.checkbox.js?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /jquery.jeditable.checkbox.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.colorbox-min?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /jquery.colorbox-min - 304 Not Modified (0ms)
+
+
+Started GET "/assets/on_the_spot.js?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /on_the_spot.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.tools.min?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /jquery.tools.min - 304 Not Modified (0ms)
+
+
+Started GET "/assets/messages.js?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /messages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/fbWallPost.js?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /fbWallPost.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/status_update.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /status_update.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.tablesorter.min?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /jquery.tablesorter.min - 304 Not Modified (0ms)
+
+
+Started GET "/assets/soc_againstmyself.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /soc_againstmyself.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/soc_againstothers.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /soc_againstothers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tasksupdate.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /tasksupdate.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/people_status.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /people_status.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scoreboard.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /scoreboard.css - 304 Not Modified (15ms)
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2012-02-15 17:56:12 +0530
+Served asset /logo.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/ui.progressbar?body=1" for 127.0.0.1 at 2012-02-15 17:56:13 +0530
+Served asset /ui.progressbar - 304 Not Modified (0ms)
+
+
+Started GET "/assets/nav-arrow.png" for 127.0.0.1 at 2012-02-15 17:56:13 +0530
+Served asset /nav-arrow.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/ui.progressbar?body=1" for 127.0.0.1 at 2012-02-15 17:56:13 +0530
+Served asset /ui.progressbar - 304 Not Modified (0ms)
+
+
+Started GET "/assets/update.png" for 127.0.0.1 at 2012-02-15 17:56:13 +0530
+Served asset /update.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main_nav_bg_up.png" for 127.0.0.1 at 2012-02-15 17:56:13 +0530
+Served asset /main_nav_bg_up.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/new1.PNG" for 127.0.0.1 at 2012-02-15 17:56:13 +0530
+Served asset /new1.PNG - 304 Not Modified (15ms)
+
+
+Started GET "/assets/icon_edit.png" for 127.0.0.1 at 2012-02-15 17:56:13 +0530
+Served asset /icon_edit.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/check_one.PNG" for 127.0.0.1 at 2012-02-15 17:56:13 +0530
+Served asset /check_one.PNG - 304 Not Modified (0ms)
+
+
+Started GET "/assets/ui.progressbar?body=1" for 127.0.0.1 at 2012-02-15 17:56:13 +0530
+Served asset /ui.progressbar - 304 Not Modified (0ms)
+
+
+Started GET "/assets/submit_button.PNG" for 127.0.0.1 at 2012-02-15 17:56:13 +0530
+Served asset /submit_button.PNG - 304 Not Modified (0ms)
+
+
+Started GET "/assets/searchbutton.PNG" for 127.0.0.1 at 2012-02-15 17:56:13 +0530
+Served asset /searchbutton.PNG - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gold.png" for 127.0.0.1 at 2012-02-15 17:56:14 +0530
+Served asset /gold.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/icon_thinking.png" for 127.0.0.1 at 2012-02-15 17:56:14 +0530
+Served asset /icon_thinking.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/btn_questionmark_up.png" for 127.0.0.1 at 2012-02-15 17:56:14 +0530
+Served asset /btn_questionmark_up.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/icon_decline.png" for 127.0.0.1 at 2012-02-15 17:56:14 +0530
+Served asset /icon_decline.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/icon_combobox_arrow_down.png" for 127.0.0.1 at 2012-02-15 17:56:14 +0530
+Served asset /icon_combobox_arrow_down.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/icon_accept.png" for 127.0.0.1 at 2012-02-15 17:56:14 +0530
+Served asset /icon_accept.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/colorbox/controls.png" for 127.0.0.1 at 2012-02-15 17:56:14 +0530
+Served asset /colorbox/controls.png - 304 Not Modified (15ms)
+
+
+Started GET "/assets/colorbox/border.png" for 127.0.0.1 at 2012-02-15 17:56:14 +0530
+Served asset /colorbox/border.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/colorbox/loading_background.png" for 127.0.0.1 at 2012-02-15 17:56:14 +0530
+Served asset /colorbox/loading_background.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/progress.PNG" for 127.0.0.1 at 2012-02-15 17:56:14 +0530
+Served asset /progress.PNG - 304 Not Modified (0ms)
+
+
+Started GET "/assets/colorbox/loading.gif" for 127.0.0.1 at 2012-02-15 17:56:14 +0530
+Served asset /colorbox/loading.gif - 304 Not Modified (0ms)
+
+
+Started GET "/challenges/new" for 127.0.0.1 at 2012-02-15 17:56:29 +0530
+  Processing by ChallengesController#new as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 18 LIMIT 1[0m
+Rendered layouts/_loggedinbody.slim (859.4ms)
+  [1m[35mAuthentication Load (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+Rendered challenges/_invitations.html.erb (1812.5ms)
+Rendered challenges/new.html.erb within layouts/application (2687.5ms)
+Rendered layouts/_stylesheets.html.erb (15.6ms)
+Rendered layouts/_javascripts.html.erb (0.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'pandusuresh95@gmail.com' LIMIT 1[0m
+18
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['system.namespaces'].find({})
+MONGODB dojitsu_dev['challenges'].find({"$or"=>[{:user_id=>"1668161239"}, {"child_challenges.user_id"=>"1668161239"}]})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f38d388a1137813ec00005b'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f38d585a1137813ec000064'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba4a1137800fc000007'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc00000d'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000013'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000019'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc00001f'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000025'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cf9a1137800fc000035'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc00003c'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000043'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc00004a'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000051'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000058'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000000a'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000011'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000018'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000001f'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000026'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000002d'), :_type=>{"$in"=>["ChildChallenge"]}})
+Rendered user_connections/_currentUserTrophy.erb (234.4ms)
+  [1m[35mAuthentication Load (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18
+Rendered layouts/_globalheader.html.erb (1937.5ms)
+Rendered layouts/_globalfooter.html.erb (0.0ms)
+Completed 200 OK in 5016ms (Views: 4640.6ms | ActiveRecord: 93.8ms)
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:35 +0530
+Served asset /main.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/blueprint/print.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:35 +0530
+Served asset /blueprint/print.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-02-15 17:56:35 +0530
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-02-15 17:56:35 +0530
+Served asset /jquery_ujs.js - 304 Not Modified (15ms)
+
+
+Started GET "/assets/blueprint/screen.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:35 +0530
+Served asset /blueprint/screen.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-02-15 17:56:35 +0530
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/fb_logout.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:35 +0530
+Served asset /fb_logout.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2012-02-15 17:56:35 +0530
+Served asset /jquery-ui.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails.validations?body=1" for 127.0.0.1 at 2012-02-15 17:56:35 +0530
+Served asset /rails.validations - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery-ui.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:35 +0530
+Served asset /jquery-ui.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/challenges.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:35 +0530
+Served asset /challenges.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.cluetip.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:35 +0530
+Served asset /jquery.cluetip.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/simple-tabs_new.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:35 +0530
+Served asset /simple-tabs_new.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.cluetip.js?body=1" for 127.0.0.1 at 2012-02-15 17:56:35 +0530
+Served asset /jquery.cluetip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.table.addrow.js?body=1" for 127.0.0.1 at 2012-02-15 17:56:35 +0530
+Served asset /jquery.table.addrow.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.facebook.multifriend.select.css?body=1" for 127.0.0.1 at 2012-02-15 17:56:35 +0530
+Served asset /jquery.facebook.multifriend.select.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/simple-tabs.js?body=1" for 127.0.0.1 at 2012-02-15 17:56:35 +0530
+Served asset /simple-tabs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/challenge_new.js?body=1" for 127.0.0.1 at 2012-02-15 17:56:35 +0530
+Served asset /challenge_new.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.facebook.multifriend.select?body=1" for 127.0.0.1 at 2012-02-15 17:56:35 +0530
+Served asset /jquery.facebook.multifriend.select - 304 Not Modified (0ms)
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2012-02-15 17:56:36 +0530
+Served asset /logo.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/nav-arrow.png" for 127.0.0.1 at 2012-02-15 17:56:36 +0530
+Served asset /nav-arrow.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/btn_questionmark_up.png" for 127.0.0.1 at 2012-02-15 17:56:36 +0530
+Served asset /btn_questionmark_up.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/icon_arrow_left.png" for 127.0.0.1 at 2012-02-15 17:56:36 +0530
+Served asset /icon_arrow_left.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main_nav_bg_up.png" for 127.0.0.1 at 2012-02-15 17:56:36 +0530
+Served asset /main_nav_bg_up.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main_nav_bg_point_mo.png" for 127.0.0.1 at 2012-02-15 17:56:36 +0530
+Served asset /main_nav_bg_point_mo.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/icon_slash.png" for 127.0.0.1 at 2012-02-15 17:56:36 +0530
+Served asset /icon_slash.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/btn_delete_up.png" for 127.0.0.1 at 2012-02-15 17:56:36 +0530
+Served asset /btn_delete_up.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/icon_multiply.png" for 127.0.0.1 at 2012-02-15 17:56:36 +0530
+Served asset /icon_multiply.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/newbutton.PNG" for 127.0.0.1 at 2012-02-15 17:56:36 +0530
+Served asset /newbutton.PNG - 304 Not Modified (0ms)
+
+
+Started GET "/assets/btn_add_up.png" for 127.0.0.1 at 2012-02-15 17:56:36 +0530
+Served asset /btn_add_up.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/icon_combobox_arrow_down.png" for 127.0.0.1 at 2012-02-15 17:56:36 +0530
+Served asset /icon_combobox_arrow_down.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/btn_radio_off.png" for 127.0.0.1 at 2012-02-15 17:56:36 +0530
+Served asset /btn_radio_off.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/icon_equal.png" for 127.0.0.1 at 2012-02-15 17:56:36 +0530
+Served asset /icon_equal.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/btn_radio_on.png" for 127.0.0.1 at 2012-02-15 17:56:37 +0530
+Served asset /btn_radio_on.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/loader.gif" for 127.0.0.1 at 2012-02-15 17:56:37 +0530
+Served asset /loader.gif - 304 Not Modified (0ms)
+
+
+Started GET "/challenges/new" for 127.0.0.1 at 2012-02-15 18:02:23 +0530
+  Processing by ChallengesController#new as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 18 LIMIT 1[0m
+Rendered layouts/_loggedinbody.slim (15.6ms)
+  [1m[35mAuthentication Load (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+Rendered challenges/_invitations.html.erb (1359.4ms)
+Rendered challenges/new.html.erb within layouts/application (1484.4ms)
+Rendered layouts/_stylesheets.html.erb (15.6ms)
+Rendered layouts/_javascripts.html.erb (0.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'pandusuresh95@gmail.com' LIMIT 1[0m
+18
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['system.namespaces'].find({})
+MONGODB dojitsu_dev['challenges'].find({"$or"=>[{:user_id=>"1668161239"}, {"child_challenges.user_id"=>"1668161239"}]})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f38d388a1137813ec00005b'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f38d585a1137813ec000064'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba4a1137800fc000007'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc00000d'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000013'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000019'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc00001f'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000025'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cf9a1137800fc000035'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc00003c'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000043'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc00004a'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000051'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000058'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000000a'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000011'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000018'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000001f'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000026'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000002d'), :_type=>{"$in"=>["ChildChallenge"]}})
+Rendered user_connections/_currentUserTrophy.erb (828.1ms)
+  [1m[35mAuthentication Load (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18
+Rendered layouts/_globalheader.html.erb (2015.6ms)
+Rendered layouts/_globalfooter.html.erb (0.0ms)
+Completed 200 OK in 3828ms (Views: 3531.2ms | ActiveRecord: 93.8ms)
+
+
+Started GET "/assets/blueprint/screen.css?body=1" for 127.0.0.1 at 2012-02-15 18:02:32 +0530
+Served asset /blueprint/screen.css - 200 OK (0ms)
+
+
+Started GET "/assets/blueprint/print.css?body=1" for 127.0.0.1 at 2012-02-15 18:02:32 +0530
+Served asset /blueprint/print.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-02-15 18:02:32 +0530
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2012-02-15 18:02:32 +0530
+Served asset /main.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2012-02-15 18:02:32 +0530
+Served asset /jquery-ui.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-02-15 18:02:32 +0530
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-02-15 18:02:32 +0530
+Served asset /application.js - 200 OK (0ms)
+
+
+Started GET "/assets/rails.validations?body=1" for 127.0.0.1 at 2012-02-15 18:02:32 +0530
+Served asset /rails.validations - 200 OK (0ms)
+
+
+Started GET "/assets/fb_logout.css?body=1" for 127.0.0.1 at 2012-02-15 18:02:32 +0530
+Served asset /fb_logout.css - 200 OK (0ms)
+
+
+Started GET "/assets/simple-tabs_new.css?body=1" for 127.0.0.1 at 2012-02-15 18:02:32 +0530
+Served asset /simple-tabs_new.css - 200 OK (15ms)
+
+
+Started GET "/assets/jquery.cluetip.css?body=1" for 127.0.0.1 at 2012-02-15 18:02:32 +0530
+Served asset /jquery.cluetip.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery-ui.css?body=1" for 127.0.0.1 at 2012-02-15 18:02:32 +0530
+Served asset /jquery-ui.css - 200 OK (0ms)
+
+
+Started GET "/assets/challenges.css?body=1" for 127.0.0.1 at 2012-02-15 18:02:32 +0530
+Served asset /challenges.css - 200 OK (0ms)
+
+
+Started GET "/assets/simple-tabs.js?body=1" for 127.0.0.1 at 2012-02-15 18:02:32 +0530
+Served asset /simple-tabs.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.table.addrow.js?body=1" for 127.0.0.1 at 2012-02-15 18:02:32 +0530
+Served asset /jquery.table.addrow.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.cluetip.js?body=1" for 127.0.0.1 at 2012-02-15 18:02:32 +0530
+Served asset /jquery.cluetip.js - 200 OK (15ms)
+
+
+Started GET "/assets/challenge_new.js?body=1" for 127.0.0.1 at 2012-02-15 18:02:32 +0530
+Served asset /challenge_new.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.facebook.multifriend.select.css?body=1" for 127.0.0.1 at 2012-02-15 18:02:32 +0530
+Served asset /jquery.facebook.multifriend.select.css - 200 OK (0ms)
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2012-02-15 18:02:32 +0530
+Served asset /logo.png - 200 OK (0ms)
+
+
+Started GET "/assets/nav-arrow.png" for 127.0.0.1 at 2012-02-15 18:02:32 +0530
+Served asset /nav-arrow.png - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.facebook.multifriend.select?body=1" for 127.0.0.1 at 2012-02-15 18:02:32 +0530
+Served asset /jquery.facebook.multifriend.select - 200 OK (0ms)
+
+
+Started GET "/assets/btn_questionmark_up.png" for 127.0.0.1 at 2012-02-15 18:02:33 +0530
+Served asset /btn_questionmark_up.png - 200 OK (0ms)
+
+
+Started GET "/assets/icon_multiply.png" for 127.0.0.1 at 2012-02-15 18:02:33 +0530
+Served asset /icon_multiply.png - 200 OK (0ms)
+
+
+Started GET "/assets/icon_slash.png" for 127.0.0.1 at 2012-02-15 18:02:33 +0530
+Served asset /icon_slash.png - 200 OK (0ms)
+
+
+Started GET "/assets/btn_delete_up.png" for 127.0.0.1 at 2012-02-15 18:02:33 +0530
+Served asset /btn_delete_up.png - 200 OK (0ms)
+
+
+Started GET "/assets/btn_add_up.png" for 127.0.0.1 at 2012-02-15 18:02:33 +0530
+Served asset /btn_add_up.png - 200 OK (0ms)
+
+
+Started GET "/assets/icon_arrow_left.png" for 127.0.0.1 at 2012-02-15 18:02:33 +0530
+Served asset /icon_arrow_left.png - 200 OK (0ms)
+
+
+Started GET "/assets/icon_equal.png" for 127.0.0.1 at 2012-02-15 18:02:33 +0530
+Served asset /icon_equal.png - 200 OK (0ms)
+
+
+Started GET "/assets/main_nav_bg_point_mo.png" for 127.0.0.1 at 2012-02-15 18:02:34 +0530
+Served asset /main_nav_bg_point_mo.png - 200 OK (0ms)
+
+
+Started GET "/assets/newbutton.PNG" for 127.0.0.1 at 2012-02-15 18:02:34 +0530
+Served asset /newbutton.PNG - 200 OK (0ms)
+
+
+Started GET "/assets/main_nav_bg_up.png" for 127.0.0.1 at 2012-02-15 18:02:34 +0530
+Served asset /main_nav_bg_up.png - 200 OK (0ms)
+
+
+Started GET "/assets/icon_combobox_arrow_down.png" for 127.0.0.1 at 2012-02-15 18:02:34 +0530
+Served asset /icon_combobox_arrow_down.png - 200 OK (0ms)
+
+
+Started GET "/assets/btn_radio_off.png" for 127.0.0.1 at 2012-02-15 18:02:34 +0530
+Served asset /btn_radio_off.png - 200 OK (0ms)
+
+
+Started GET "/assets/btn_radio_on.png" for 127.0.0.1 at 2012-02-15 18:02:34 +0530
+Served asset /btn_radio_on.png - 200 OK (0ms)
+
+
+Started GET "/assets/loader.gif" for 127.0.0.1 at 2012-02-15 18:02:34 +0530
+Served asset /loader.gif - 200 OK (0ms)
+
+
+Started GET "/assets/main_nav_bg_point_up.png" for 127.0.0.1 at 2012-02-15 18:06:08 +0530
+Served asset /main_nav_bg_point_up.png - 200 OK (0ms)
+
+
+Started GET "/assets/main_nav_bg_mo.png" for 127.0.0.1 at 2012-02-15 18:06:08 +0530
+Served asset /main_nav_bg_mo.png - 200 OK (0ms)
+
+
+Started GET "/challenges" for 127.0.0.1 at 2012-02-15 18:06:10 +0530
+  Processing by ChallengesController#index as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 18 LIMIT 1[0m
+MONGODB dojitsu_dev['system.namespaces'].find({})
+MONGODB dojitsu_dev['$cmd'].find({"count"=>"challenges", "query"=>{}, "fields"=>nil}).limit(-1)
+  [1m[35mUser Load (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`email` = 'pandusuresh95@gmail.com' LIMIT 1
+18
+  [1m[36mAuthentication Load (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"$or"=>[{:user_id=>"1668161239"}, {"child_challenges.user_id"=>"1668161239"}]})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f38d388a1137813ec00005b'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f38d585a1137813ec000064'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba4a1137800fc000007'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc00000d'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000013'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000019'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc00001f'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000025'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cf9a1137800fc000035'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc00003c'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000043'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc00004a'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000051'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000058'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000000a'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000011'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000018'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000001f'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000026'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000002d'), :_type=>{"$in"=>["ChildChallenge"]}})
+MONGODB dojitsu_dev['challenges'].find({:_id=>nil}).limit(-1).sort([[:_id, :asc]])
+Rendered layouts/_loggedinbody.slim (15.6ms)
+Rendered challenges/index.html.erb within layouts/application (31.2ms)
+Rendered layouts/_stylesheets.html.erb (15.6ms)
+Rendered layouts/_javascripts.html.erb (0.0ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`email` = 'pandusuresh95@gmail.com' LIMIT 1
+18
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"$or"=>[{:user_id=>"1668161239"}, {"child_challenges.user_id"=>"1668161239"}]})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f38d388a1137813ec00005b'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f38d585a1137813ec000064'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba4a1137800fc000007'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc00000d'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000013'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000019'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc00001f'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000025'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cf9a1137800fc000035'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc00003c'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000043'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc00004a'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000051'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000058'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000000a'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000011'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000018'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000001f'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000026'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000002d'), :_type=>{"$in"=>["ChildChallenge"]}})
+Rendered user_connections/_currentUserTrophy.erb (125.0ms)
+  [1m[36mAuthentication Load (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18[0m
+Rendered layouts/_globalheader.html.erb (1953.1ms)
+Rendered layouts/_globalfooter.html.erb (0.0ms)
+Completed 200 OK in 2406ms (Views: 2046.9ms | ActiveRecord: 93.8ms)
+
+
+Started GET "/assets/blueprint/print.css?body=1" for 127.0.0.1 at 2012-02-15 18:06:13 +0530
+Served asset /blueprint/print.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-02-15 18:06:13 +0530
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2012-02-15 18:06:13 +0530
+Served asset /main.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/blueprint/screen.css?body=1" for 127.0.0.1 at 2012-02-15 18:06:13 +0530
+Served asset /blueprint/screen.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-02-15 18:06:13 +0530
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-02-15 18:06:13 +0530
+Served asset /application.js - 304 Not Modified (15ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2012-02-15 18:06:13 +0530
+Served asset /jquery-ui.js - 304 Not Modified (15ms)
+
+
+Started GET "/assets/rails.validations?body=1" for 127.0.0.1 at 2012-02-15 18:06:13 +0530
+Served asset /rails.validations - 304 Not Modified (0ms)
+
+
+Started GET "/assets/fb_logout.css?body=1" for 127.0.0.1 at 2012-02-15 18:06:13 +0530
+Served asset /fb_logout.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/colorbox.css?body=1" for 127.0.0.1 at 2012-02-15 18:06:13 +0530
+Served asset /colorbox.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.colorbox-min?body=1" for 127.0.0.1 at 2012-02-15 18:06:13 +0530
+Served asset /jquery.colorbox-min - 200 OK (0ms)
+
+
+Started GET "/assets/colorbox/controls.png" for 127.0.0.1 at 2012-02-15 18:06:13 +0530
+Served asset /colorbox/controls.png - 200 OK (0ms)
+
+
+Started GET "/assets/colorbox/loading_background.png" for 127.0.0.1 at 2012-02-15 18:06:13 +0530
+Served asset /colorbox/loading_background.png - 200 OK (0ms)
+
+
+Started GET "/assets/colorbox/loading.gif" for 127.0.0.1 at 2012-02-15 18:06:13 +0530
+Served asset /colorbox/loading.gif - 200 OK (0ms)
+
+
+Started GET "/assets/colorbox/border.png" for 127.0.0.1 at 2012-02-15 18:06:13 +0530
+Served asset /colorbox/border.png - 200 OK (0ms)
+
+
+Started GET "/challenges/show_per?id=4f3b41fea1137817b000000a" for 127.0.0.1 at 2012-02-15 18:06:15 +0530
+  Processing by ChallengesController#show_per as HTML
+  Parameters: {"id"=>"4f3b41fea1137817b000000a"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 18 LIMIT 1
+MONGODB dojitsu_dev['system.namespaces'].find({})
+MONGODB dojitsu_dev['challenges'].find({:_id=>BSON::ObjectId('4f3b41fea1137817b000000a')}).limit(-1).sort([[:_id, :asc]])
+  [1m[36mUserConnection Load (0.0ms)[0m  [1mSELECT target_id FROM `user_connections` WHERE `user_connections`.`user_id` = 18[0m
+MONGODB dojitsu_dev['challenges'].find({:user_id=>{"$in"=>["100003135115833", "100000974421554", "100000018823471", "100003118614355", "1813461773", "100001071283803"]}, :title=>"Social Challenge 5"})
+MONGODB dojitsu_dev['challenges'].update({:_id=>BSON::ObjectId('4f3b41fea1137817b000000a')}, {"$set"=>{:is_complete=>1}})
+Rendered layouts/_loggedinbody.slim (156.2ms)
+MONGODB dojitsu_dev['$cmd'].find({"count"=>"challenges", "query"=>{"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000000a'), :_type=>{"$in"=>["ChildChallenge"]}}, "fields"=>nil}).limit(-1)
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000000a'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mAuthentication Load (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+Rendered challenges/_soc_againstothers.html.erb (2328.1ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+Rendered challenges/_soc_againstmyself.html.erb (2015.6ms)
+Rendered challenges/_againstothers.html.erb (4343.8ms)
+Rendered challenges/_tasksupdate.html.erb (15.6ms)
+MONGODB dojitsu_dev['$cmd'].find({"count"=>"challenges", "query"=>{"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000000a'), :_type=>{"$in"=>["ChildChallenge"]}}, "fields"=>nil}).limit(-1)
+MONGODB dojitsu_dev['challenges'].find({:_id=>BSON::ObjectId('4f3b41fea1137817b000000a')}).limit(-1).sort([[:_id, :asc]])
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000000a'), :_type=>{"$in"=>["ChildChallenge"]}})
+MONGODB dojitsu_dev['challenges'].find({:user_id=>"1668161239", :title=>"Social Challenge 5"}).limit(-1).sort([[:_id, :asc]])
+MONGODB dojitsu_dev['challenges'].find({:user_id=>"100003118614355", :title=>"Social Challenge 5"}).limit(-1).sort([[:_id, :asc]])
+MONGODB dojitsu_dev['challenges'].find({:user_id=>"100001071283803", :title=>"Social Challenge 5"}).limit(-1).sort([[:_id, :asc]])
+MONGODB dojitsu_dev['challenges'].find({:user_id=>"100000018823471", :title=>"Social Challenge 5"}).limit(-1).sort([[:_id, :asc]])
+MONGODB dojitsu_dev['challenges'].find({:user_id=>"100000974421554", :title=>"Social Challenge 5"}).limit(-1).sort([[:_id, :asc]])
+MONGODB dojitsu_dev['challenges'].find({:user_id=>"1813461773", :title=>"Social Challenge 5"}).limit(-1).sort([[:_id, :asc]])
+Rendered challenges/_scoreboard.erb (14921.9ms)
+MONGODB dojitsu_dev['$cmd'].find({"count"=>"challenges", "query"=>{"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000000a'), :_type=>{"$in"=>["ChildChallenge"]}}, "fields"=>nil}).limit(-1)
+MONGODB dojitsu_dev['$cmd'].find({"count"=>"challenges", "query"=>{:user_id=>{"$in"=>["100003135115833", "100000974421554", "100000018823471", "100003118614355", "1813461773", "100001071283803"]}, :title=>"Social Challenge 5"}, "fields"=>nil}).limit(-1)
+Rendered challenges/_people_status.erb (30687.5ms)
+Rendered challenges/show_soc.html.erb within layouts/application (51546.9ms)
+Rendered layouts/_stylesheets.html.erb (15.6ms)
+Rendered layouts/_javascripts.html.erb (0.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'pandusuresh95@gmail.com' LIMIT 1[0m
+18
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"$or"=>[{:user_id=>"1668161239"}, {"child_challenges.user_id"=>"1668161239"}]})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f38d388a1137813ec00005b'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f38d585a1137813ec000064'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba4a1137800fc000007'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc00000d'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000013'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000019'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc00001f'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000025'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cf9a1137800fc000035'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc00003c'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000043'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc00004a'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000051'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000058'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000000a'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000011'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000018'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000001f'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000026'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000002d'), :_type=>{"$in"=>["ChildChallenge"]}})
+Rendered user_connections/_currentUserTrophy.erb (93.8ms)
+  [1m[35mAuthentication Load (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18
+Rendered layouts/_globalheader.html.erb (2156.2ms)
+Rendered layouts/_globalfooter.html.erb (0.0ms)
+Completed 200 OK in 54188ms (Views: 53750.0ms | ActiveRecord: 140.6ms)
+
+
+Started GET "/assets/blueprint/screen.css?body=1" for 127.0.0.1 at 2012-02-15 18:07:10 +0530
+Served asset /blueprint/screen.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2012-02-15 18:07:10 +0530
+Served asset /main.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/blueprint/print.css?body=1" for 127.0.0.1 at 2012-02-15 18:07:10 +0530
+Served asset /blueprint/print.css - 304 Not Modified (15ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-02-15 18:07:10 +0530
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails.validations?body=1" for 127.0.0.1 at 2012-02-15 18:07:10 +0530
+Served asset /rails.validations - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-02-15 18:07:10 +0530
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-02-15 18:07:10 +0530
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/simple-tabs.css?body=1" for 127.0.0.1 at 2012-02-15 18:07:10 +0530
+Served asset /simple-tabs.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2012-02-15 18:07:10 +0530
+Served asset /jquery-ui.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/fb_logout.css?body=1" for 127.0.0.1 at 2012-02-15 18:07:10 +0530
+Served asset /fb_logout.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/datePicker.css?body=1" for 127.0.0.1 at 2012-02-15 18:07:10 +0530
+Served asset /datePicker.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery-ui.css?body=1" for 127.0.0.1 at 2012-02-15 18:07:10 +0530
+Served asset /jquery-ui.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.cluetip.css?body=1" for 127.0.0.1 at 2012-02-15 18:07:10 +0530
+Served asset /jquery.cluetip.css - 304 Not Modified (15ms)
+
+
+Started GET "/assets/ui.theme?body=1" for 127.0.0.1 at 2012-02-15 18:07:10 +0530
+Served asset /ui.theme - 200 OK (0ms)
+
+
+Started GET "/assets/ui.progressbar?body=1" for 127.0.0.1 at 2012-02-15 18:07:10 +0530
+Served asset /ui.progressbar - 200 OK (0ms)
+
+
+Started GET "/assets/simple-tabs.js?body=1" for 127.0.0.1 at 2012-02-15 18:07:10 +0530
+Served asset /simple-tabs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/challenges.css?body=1" for 127.0.0.1 at 2012-02-15 18:07:10 +0530
+Served asset /challenges.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/challenges_social.css?body=1" for 127.0.0.1 at 2012-02-15 18:07:10 +0530
+Served asset /challenges_social.css - 200 OK (0ms)
+
+
+Started GET "/assets/colorbox.css?body=1" for 127.0.0.1 at 2012-02-15 18:07:10 +0530
+Served asset /colorbox.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/tabs2.js?body=1" for 127.0.0.1 at 2012-02-15 18:07:10 +0530
+Served asset /tabs2.js - 200 OK (0ms)
+
+
+Started GET "/assets/ajaxPageLoad.js?body=1" for 127.0.0.1 at 2012-02-15 18:07:10 +0530
+Served asset /ajaxPageLoad.js - 200 OK (0ms)
+
+
+Started GET "/assets/soc-per.js?body=1" for 127.0.0.1 at 2012-02-15 18:07:10 +0530
+Served asset /soc-per.js - 200 OK (0ms)
+
+
+Started GET "/assets/on_the_spot_code.js?body=1" for 127.0.0.1 at 2012-02-15 18:07:10 +0530
+Served asset /on_the_spot_code.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.jeditable.mini.js?body=1" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /jquery.jeditable.mini.js - 200 OK (31ms)
+
+
+Started GET "/assets/jquery.jeditable.checkbox.js?body=1" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /jquery.jeditable.checkbox.js - 200 OK (0ms)
+
+
+Started GET "/assets/on_the_spot.js?body=1" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /on_the_spot.js - 200 OK (78ms)
+
+
+Started GET "/assets/jquery.tools.min?body=1" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /jquery.tools.min - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.colorbox-min?body=1" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /jquery.colorbox-min - 304 Not Modified (0ms)
+
+
+Started GET "/assets/messages.js?body=1" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /messages.js - 200 OK (0ms)
+
+
+Started GET "/assets/fbWallPost.js?body=1" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /fbWallPost.js - 200 OK (0ms)
+
+
+Started GET "/assets/soc_againstothers.css?body=1" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /soc_againstothers.css - 200 OK (0ms)
+
+
+Started GET "/assets/soc_againstmyself.css?body=1" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /soc_againstmyself.css - 200 OK (0ms)
+
+
+Started GET "/assets/tasksupdate.css?body=1" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /tasksupdate.css - 200 OK (0ms)
+
+
+Started GET "/assets/scoreboard.css?body=1" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /scoreboard.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.tablesorter.min?body=1" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /jquery.tablesorter.min - 200 OK (0ms)
+
+
+Started GET "/assets/status_update.css?body=1" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /status_update.css - 200 OK (15ms)
+
+
+Started GET "/assets/people_status.css?body=1" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /people_status.css - 200 OK (15ms)
+
+
+Started GET "/assets/update.png" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /update.png - 200 OK (0ms)
+
+
+Started GET "/assets/ui.progressbar?body=1" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /ui.progressbar - 304 Not Modified (0ms)
+
+
+Started GET "/assets/icon_edit.png" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /icon_edit.png - 200 OK (0ms)
+
+
+Started GET "/assets/check_one.PNG" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /check_one.PNG - 200 OK (0ms)
+
+
+Started GET "/assets/searchbutton.PNG" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /searchbutton.PNG - 200 OK (0ms)
+
+
+Started GET "/assets/icon_decline.png" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /icon_decline.png - 200 OK (0ms)
+
+
+Started GET "/assets/icon_accept.png" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /icon_accept.png - 200 OK (0ms)
+
+
+Started GET "/assets/icon_thinking.png" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /icon_thinking.png - 200 OK (0ms)
+
+
+Started GET "/assets/gold.png" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /gold.png - 200 OK (0ms)
+
+
+Started GET "/assets/ui.progressbar?body=1" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /ui.progressbar - 304 Not Modified (0ms)
+
+
+Started GET "/assets/new1.PNG" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /new1.PNG - 200 OK (0ms)
+
+
+Started GET "/assets/ui.progressbar?body=1" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /ui.progressbar - 304 Not Modified (0ms)
+
+
+Started GET "/assets/submit_button.PNG" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /submit_button.PNG - 200 OK (0ms)
+
+
+Started GET "/assets/ui.progressbar?body=1" for 127.0.0.1 at 2012-02-15 18:07:11 +0530
+Served asset /ui.progressbar - 304 Not Modified (0ms)
+
+
+Started GET "/assets/progress.PNG" for 127.0.0.1 at 2012-02-15 18:07:12 +0530
+Served asset /progress.PNG - 200 OK (0ms)
+
+
+Started GET "/challenges/new" for 127.0.0.1 at 2012-02-15 18:08:22 +0530
+  Processing by ChallengesController#new as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 18 LIMIT 1[0m
+Rendered layouts/_loggedinbody.slim (15.6ms)
+  [1m[35mAuthentication Load (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+Rendered challenges/_invitations.html.erb (2125.0ms)
+Rendered challenges/new.html.erb within layouts/application (2171.9ms)
+Rendered layouts/_stylesheets.html.erb (15.6ms)
+Rendered layouts/_javascripts.html.erb (0.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'pandusuresh95@gmail.com' LIMIT 1[0m
+18
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['system.namespaces'].find({})
+MONGODB dojitsu_dev['challenges'].find({"$or"=>[{:user_id=>"1668161239"}, {"child_challenges.user_id"=>"1668161239"}]})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f38d388a1137813ec00005b'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f38d585a1137813ec000064'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba4a1137800fc000007'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc00000d'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000013'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000019'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc00001f'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000025'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cf9a1137800fc000035'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc00003c'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000043'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc00004a'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000051'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000058'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000000a'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000011'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000018'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000001f'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000026'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000002d'), :_type=>{"$in"=>["ChildChallenge"]}})
+Rendered user_connections/_currentUserTrophy.erb (265.6ms)
+  [1m[35mAuthentication Load (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18
+Rendered layouts/_globalheader.html.erb (2156.2ms)
+Rendered layouts/_globalfooter.html.erb (0.0ms)
+Completed 200 OK in 4625ms (Views: 4343.8ms | ActiveRecord: 78.1ms)
+
+
+Started GET "/assets/blueprint/screen.css?body=1" for 127.0.0.1 at 2012-02-15 18:08:27 +0530
+Served asset /blueprint/screen.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/blueprint/print.css?body=1" for 127.0.0.1 at 2012-02-15 18:08:27 +0530
+Served asset /blueprint/print.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-02-15 18:08:27 +0530
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2012-02-15 18:08:27 +0530
+Served asset /main.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-02-15 18:08:27 +0530
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-02-15 18:08:27 +0530
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails.validations?body=1" for 127.0.0.1 at 2012-02-15 18:08:27 +0530
+Served asset /rails.validations - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2012-02-15 18:08:27 +0530
+Served asset /jquery-ui.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/fb_logout.css?body=1" for 127.0.0.1 at 2012-02-15 18:08:27 +0530
+Served asset /fb_logout.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/challenges.css?body=1" for 127.0.0.1 at 2012-02-15 18:08:27 +0530
+Served asset /challenges.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery-ui.css?body=1" for 127.0.0.1 at 2012-02-15 18:08:27 +0530
+Served asset /jquery-ui.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.cluetip.css?body=1" for 127.0.0.1 at 2012-02-15 18:08:27 +0530
+Served asset /jquery.cluetip.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/simple-tabs_new.css?body=1" for 127.0.0.1 at 2012-02-15 18:08:27 +0530
+Served asset /simple-tabs_new.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/simple-tabs.js?body=1" for 127.0.0.1 at 2012-02-15 18:08:27 +0530
+Served asset /simple-tabs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/challenge_new.js?body=1" for 127.0.0.1 at 2012-02-15 18:08:27 +0530
+Served asset /challenge_new.js - 304 Not Modified (15ms)
+
+
+Started GET "/assets/jquery.table.addrow.js?body=1" for 127.0.0.1 at 2012-02-15 18:08:27 +0530
+Served asset /jquery.table.addrow.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.facebook.multifriend.select?body=1" for 127.0.0.1 at 2012-02-15 18:08:27 +0530
+Served asset /jquery.facebook.multifriend.select - 304 Not Modified (15ms)
+
+
+Started GET "/assets/jquery.cluetip.js?body=1" for 127.0.0.1 at 2012-02-15 18:08:27 +0530
+Served asset /jquery.cluetip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.facebook.multifriend.select.css?body=1" for 127.0.0.1 at 2012-02-15 18:08:27 +0530
+Served asset /jquery.facebook.multifriend.select.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/icon_calendar.png" for 127.0.0.1 at 2012-02-15 18:11:40 +0530
+Served asset /icon_calendar.png - 200 OK (0ms)
+
+
+Started GET "/assets/arrow_left.gif" for 127.0.0.1 at 2012-02-15 18:13:43 +0530
+Served asset /arrow_left.gif - 200 OK (0ms)
+
+
+Started GET "/challenges/new" for 127.0.0.1 at 2012-02-15 18:17:01 +0530
+  Processing by ChallengesController#new as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 18 LIMIT 1[0m
+Rendered layouts/_loggedinbody.slim (15.6ms)
+  [1m[35mAuthentication Load (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+Rendered challenges/_invitations.html.erb (2078.1ms)
+Rendered challenges/new.html.erb within layouts/application (2109.4ms)
+Rendered layouts/_stylesheets.html.erb (93.8ms)
+Rendered layouts/_javascripts.html.erb (0.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'pandusuresh95@gmail.com' LIMIT 1[0m
+18
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['system.namespaces'].find({})
+MONGODB dojitsu_dev['challenges'].find({"$or"=>[{:user_id=>"1668161239"}, {"child_challenges.user_id"=>"1668161239"}]})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f38d388a1137813ec00005b'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f38d585a1137813ec000064'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba4a1137800fc000007'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc00000d'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000013'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000019'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc00001f'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000025'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cf9a1137800fc000035'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc00003c'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000043'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc00004a'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000051'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000058'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000000a'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000011'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000018'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000001f'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000026'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000002d'), :_type=>{"$in"=>["ChildChallenge"]}})
+Rendered user_connections/_currentUserTrophy.erb (140.6ms)
+  [1m[35mAuthentication Load (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18
+Rendered layouts/_globalheader.html.erb (2531.2ms)
+Rendered layouts/_globalfooter.html.erb (0.0ms)
+Completed 200 OK in 5078ms (Views: 4750.0ms | ActiveRecord: 93.8ms)
+
+
+Started GET "/assets/blueprint/screen.css?body=1" for 127.0.0.1 at 2012-02-15 18:17:06 +0530
+Served asset /blueprint/screen.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2012-02-15 18:17:06 +0530
+Served asset /main.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/fb_logout.css?body=1" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /fb_logout.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/blueprint/print.css?body=1" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /blueprint/print.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails.validations?body=1" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /rails.validations - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /jquery-ui.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/simple-tabs_new.css?body=1" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /simple-tabs_new.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.cluetip.css?body=1" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /jquery.cluetip.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery-ui.css?body=1" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /jquery-ui.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/challenges.css?body=1" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /challenges.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/simple-tabs.js?body=1" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /simple-tabs.js - 304 Not Modified (15ms)
+
+
+Started GET "/assets/jquery.table.addrow.js?body=1" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /jquery.table.addrow.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.cluetip.js?body=1" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /jquery.cluetip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/challenge_new.js?body=1" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /challenge_new.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.facebook.multifriend.select.css?body=1" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /jquery.facebook.multifriend.select.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.facebook.multifriend.select?body=1" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /jquery.facebook.multifriend.select - 304 Not Modified (0ms)
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /logo.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/nav-arrow.png" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /nav-arrow.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/btn_questionmark_up.png" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /btn_questionmark_up.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/btn_delete_up.png" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /btn_delete_up.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/btn_add_up.png" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /btn_add_up.png - 304 Not Modified (15ms)
+
+
+Started GET "/assets/main_nav_bg_up.png" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /main_nav_bg_up.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/icon_multiply.png" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /icon_multiply.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/icon_combobox_arrow_down.png" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /icon_combobox_arrow_down.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/icon_slash.png" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /icon_slash.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/icon_arrow_left.png" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /icon_arrow_left.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/newbutton.PNG" for 127.0.0.1 at 2012-02-15 18:17:07 +0530
+Served asset /newbutton.PNG - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main_nav_bg_point_mo.png" for 127.0.0.1 at 2012-02-15 18:17:08 +0530
+Served asset /main_nav_bg_point_mo.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/btn_radio_off.png" for 127.0.0.1 at 2012-02-15 18:17:08 +0530
+Served asset /btn_radio_off.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/icon_equal.png" for 127.0.0.1 at 2012-02-15 18:17:08 +0530
+Served asset /icon_equal.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/btn_radio_on.png" for 127.0.0.1 at 2012-02-15 18:17:08 +0530
+Served asset /btn_radio_on.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/icon_calendar.png" for 127.0.0.1 at 2012-02-15 18:17:08 +0530
+Served asset /icon_calendar.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/loader.gif" for 127.0.0.1 at 2012-02-15 18:17:08 +0530
+Served asset /loader.gif - 304 Not Modified (0ms)
+
+
+Started GET "/challenges/new" for 127.0.0.1 at 2012-02-15 18:24:19 +0530
+  Processing by ChallengesController#new as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 18 LIMIT 1[0m
+Rendered layouts/_loggedinbody.slim (15.6ms)
+  [1m[35mAuthentication Load (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+Rendered challenges/_invitations.html.erb (2171.9ms)
+Rendered challenges/new.html.erb within layouts/application (2234.4ms)
+Rendered layouts/_stylesheets.html.erb (15.6ms)
+Rendered layouts/_javascripts.html.erb (0.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'pandusuresh95@gmail.com' LIMIT 1[0m
+18
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['system.namespaces'].find({})
+MONGODB dojitsu_dev['challenges'].find({"$or"=>[{:user_id=>"1668161239"}, {"child_challenges.user_id"=>"1668161239"}]})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f38d388a1137813ec00005b'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f38d585a1137813ec000064'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba4a1137800fc000007'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc00000d'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000013'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000019'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc00001f'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a2ba5a1137800fc000025'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cf9a1137800fc000035'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc00003c'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000043'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc00004a'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000051'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3a4cfaa1137800fc000058'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000000a'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000011'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000018'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000001f'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[35mCACHE (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b0000026'), :_type=>{"$in"=>["ChildChallenge"]}})
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18 AND `authentications`.`provider` = 'facebook' LIMIT 1[0m
+MONGODB dojitsu_dev['challenges'].find({"challenge_id"=>BSON::ObjectId('4f3b41fea1137817b000002d'), :_type=>{"$in"=>["ChildChallenge"]}})
+Rendered user_connections/_currentUserTrophy.erb (203.1ms)
+  [1m[35mAuthentication Load (0.0ms)[0m  SELECT `authentications`.* FROM `authentications` WHERE `authentications`.`user_id` = 18
+Rendered layouts/_globalheader.html.erb (2984.4ms)
+Rendered layouts/_globalfooter.html.erb (0.0ms)
+Completed 200 OK in 5609ms (Views: 5234.4ms | ActiveRecord: 93.8ms)
+
+
+Started GET "/assets/blueprint/screen.css?body=1" for 127.0.0.1 at 2012-02-15 18:24:25 +0530
+Served asset /blueprint/screen.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-02-15 18:24:25 +0530
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2012-02-15 18:24:25 +0530
+Served asset /main.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails.validations?body=1" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /rails.validations - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/fb_logout.css?body=1" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /fb_logout.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/blueprint/print.css?body=1" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /blueprint/print.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/simple-tabs_new.css?body=1" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /simple-tabs_new.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /jquery-ui.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery-ui.css?body=1" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /jquery-ui.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.cluetip.css?body=1" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /jquery.cluetip.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/challenges.css?body=1" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /challenges.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/simple-tabs.js?body=1" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /simple-tabs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.cluetip.js?body=1" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /jquery.cluetip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.table.addrow.js?body=1" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /jquery.table.addrow.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/challenge_new.js?body=1" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /challenge_new.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.facebook.multifriend.select?body=1" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /jquery.facebook.multifriend.select - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.facebook.multifriend.select.css?body=1" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /jquery.facebook.multifriend.select.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /logo.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/nav-arrow.png" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /nav-arrow.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/btn_questionmark_up.png" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /btn_questionmark_up.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/btn_delete_up.png" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /btn_delete_up.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main_nav_bg_up.png" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /main_nav_bg_up.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/icon_arrow_left.png" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /icon_arrow_left.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main_nav_bg_point_mo.png" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /main_nav_bg_point_mo.png - 304 Not Modified (15ms)
+
+
+Started GET "/assets/icon_combobox_arrow_down.png" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /icon_combobox_arrow_down.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/newbutton.PNG" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /newbutton.PNG - 304 Not Modified (0ms)
+
+
+Started GET "/assets/btn_radio_off.png" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /btn_radio_off.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/btn_add_up.png" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /btn_add_up.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/icon_slash.png" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /icon_slash.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/icon_multiply.png" for 127.0.0.1 at 2012-02-15 18:24:26 +0530
+Served asset /icon_multiply.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/icon_equal.png" for 127.0.0.1 at 2012-02-15 18:24:27 +0530
+Served asset /icon_equal.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/btn_radio_on.png" for 127.0.0.1 at 2012-02-15 18:24:27 +0530
+Served asset /btn_radio_on.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/loader.gif" for 127.0.0.1 at 2012-02-15 18:24:27 +0530
+Served asset /loader.gif - 304 Not Modified (0ms)
+
+
+Started GET "/assets/icon_calendar.png" for 127.0.0.1 at 2012-02-15 18:24:27 +0530
+Served asset /icon_calendar.png - 304 Not Modified (0ms)
