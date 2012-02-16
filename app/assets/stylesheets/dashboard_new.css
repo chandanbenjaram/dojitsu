@@ -63,11 +63,11 @@
 		
 	}
 	select {
-      color: #F9A943;
-    height: 31px;
-    margin-top: -8px;
-    top: 9px;
-    vertical-align: top;
+color: #F9A943;
+height: 35px;
+margin-top: -8px;
+top: 5px;
+vertical-align: top;
 }
 .menubar {
     background: none repeat scroll 0 0 #BBBBBB;
