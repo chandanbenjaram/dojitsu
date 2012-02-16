@@ -17,7 +17,7 @@
     </tr>
     <tr class="nonlogin_trbgcolor">
         <td width="90%">
-            <span class="nonlogin_points_color"><b>POINT(S)</b></span> <%= image_tag("icon_slash.png", :height => '12', :width => '5') %> <span class="nonlogin_points_color"><b>TASKS</b></span>
+            <span class="nonlogin_points_color"><b>POINT(S)</b> <%= image_tag("icon_slash.png", :height => '12', :width => '5') %> <b>TASKS</b></span>
         </td>
         <td></td>
         <td class="nonlogin_score_color">
@@ -35,7 +35,7 @@
                   <div id="task_list">
                       <p class="task_score_nonlogin">
                           <%= aTask.score %> 
-                          <%= image_tag("icon_slash.png", :height => '10', :width => '5')%>
+                          <%= image_tag("icon_slash.png", :class=>"tasks_slash")%>
                       </p>
                       <p class="task_name_nonlogin">
                           <%= aTask.name %>
@@ -47,7 +47,7 @@
               <% else %>	
                   <div id="task_list">
                       <% total_score_count +=1 %>
-                      <p class="task_score_nonlogin"><%= aTask.score %> <%= image_tag("icon_slash.png", :height => '10', :width => '5')%></p><p class="task_name2_nonlogin"><%= aTask.name %></p>
+                      <span class="task_score_nonlogin"><%= aTask.score %> <%= image_tag("icon_slash.png", :class=>"tasks_slash")%> <%= aTask.name %></span>
                   <div class="showperscore"><%= aTask.score %></div>
                       <% total_score += aTask.score.to_i %>
                   </div>
@@ -68,9 +68,7 @@
           <div class="task" id="taskprogress"></div>
 		
           <div class="showperscore1"><%= total_score %></div>	
-          <style>
-            
-            </style>
+          
             <div id="check3">
                 <div class="completedtask1"> 
 				<% if total_score_count < 1 %>
