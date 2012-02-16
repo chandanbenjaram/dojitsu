@@ -1,8 +1,8 @@
 <%= stylesheet_link_tag('main','nonLogin')%>
 <table class="nonlogintaskstable" >
-    <tr bgcolor=#f5f5f5>
+    <tr class="nonlogin_tasks_tr">
         <th width="85%">
-            <h3 align="left"><font color="#8c8c8c"><b>Total : <%= @challenge.tasks.count %></b></font></h3>
+            <h3><span class="nonlogin_tasks_count"><b>Total : <%= @challenge.tasks.count %></b></span></h3>
         </th>
         <% t=0 %>
         <% @challenge.child_challenges.each do |aTask| %>
@@ -15,12 +15,12 @@
             <th width="12%"></th>
         <% end %> 
     </tr>
-    <tr bgcolor=#D7D7D7>
+    <tr class="nonlogin_trbgcolor">
         <td width="90%">
-            <font color="#999999"  ><b>POINT(S)</b></font> <%= image_tag("icon_slash.png", :height => '12', :width => '5') %> <font color="#999999"><b>TASKS</b></font>
+            <span class="nonlogin_points_color"><b>POINT(S)</b></span> <%= image_tag("icon_slash.png", :height => '12', :width => '5') %> <span class="nonlogin_points_color"><b>TASKS</b></span>
         </td>
         <td></td>
-        <td width="15%" style="font-weight:bold;  color:#999999;">
+        <td class="nonlogin_score_color">
             SCORE
         </td>
     </tr>
@@ -29,15 +29,15 @@
     <% total = 0 %>
     <% @challenge.tasks.each do |aTask| %>
     <% total += aTask.score.to_i %>
-      <tr bgcolor=#ffffff>
+      <tr class="nonlogin_tr_color">
           <td colspan="3"  id="mytable" >
               <% if aTask.is_complete.to_i == 0 %>
                   <div id="task_list">
-                      <p style="float:left; margin-top:15px;">
+                      <p class="task_score_nonlogin">
                           <%= aTask.score %> 
                           <%= image_tag("icon_slash.png", :height => '10', :width => '5')%>
                       </p>
-                      <p style="float:left;  margin-top:15px; margin-left:5px;">
+                      <p class="task_name_nonlogin">
                           <%= aTask.name %>
                       </p>
                       <div class="showperscore_0">
@@ -47,7 +47,7 @@
               <% else %>	
                   <div id="task_list">
                       <% total_score_count +=1 %>
-                      <p style="float:left; margin-top:15px;"><%= aTask.score %> <%= image_tag("icon_slash.png", :height => '10', :width => '5')%></p><p style="float:left; margin-top:15px; margin-left:5px; text-decoration:line-through; "><%= aTask.name %></p>
+                      <p class="task_score_nonlogin"><%= aTask.score %> <%= image_tag("icon_slash.png", :height => '10', :width => '5')%></p><p class="task_name2_nonlogin"><%= aTask.name %></p>
                   <div class="showperscore"><%= aTask.score %></div>
                       <% total_score += aTask.score.to_i %>
                   </div>
@@ -56,24 +56,20 @@
           </td>
       </tr>
     <% end %>
-    <tr bgcolor=#f4f4f4>
+    <tr class="nonlogin_trcolor">
        <td colspan="3"></td>
     </tr>
 </table>
-<table bgcolor=#f4f4f4>
+<table class="nonlogin_trcolor">
     <% if @challenge.social_type.status == 1%>
-        <tr bgcolor=#f4f4f4>
+        <tr class="nonlogin_trcolor">
           <div>
           My Dojitsu score: <br>
           <div class="task" id="taskprogress"></div>
 		
           <div class="showperscore1"><%= total_score %></div>	
           <style>
-            .task
-            {
-                width: 795px;
-                background:url("perf_tracker_bg.png") repeat ;
-                }
+            
             </style>
             <div id="check3">
                 <div class="completedtask1"> 
@@ -84,8 +80,8 @@
 				<%end%>
                 </div>
                 <div class="notcompleted1">
-                       <font size=3 color="#F8981D"><b>to go:</b>
-					   </font>&nbsp; 
+                       <span class="taskbar_togo_color"><b>to go:</b>
+					   </span>&nbsp; 
 					   	<% if total_score_count < 1 %>
 					   <%= (total-total_score) %> points (<%= @challenge.tasks.count.to_i-total_score_count.to_i %>&nbsp; tasks)
 					   <%else%>
@@ -98,24 +94,16 @@
                             $("<p>").attr("id", "check5").text($("#taskprogress").progressbar("option", "value") + "% Completed:  ").appendTo("#taskprogress");
                     });
                 </script>
-                <%= link_to "MARK AS COMPLETED", "#", :style => "text-decoration: none; color:#fff; float:right" ,:class => "challenge_mark_as_c"%>
-                <style>
-                
-                </style>						
+                <%= link_to "MARK AS COMPLETED", "#", :id=>"nonlogin_markascomplete",:class => "challenge_mark_as_c"%>					
             </div>
         </tr>
     <% else %>
-    <tr bgcolor=#f4f4f4>
+    <tr class="nonlogin_trcolor">
         <div>
         My Dojitsu score: <br>
         <div class="task" id="taskprogress"></div>
         <div class="showperscore1"><%= total_score %></div>	
-        <style>
-            .task
-            {
-                    width:790px;
-                    }
-            </style>
+
             <div id="check3">
                 <script type="text/javascript">
                     $(function() {
@@ -132,3 +120,5 @@
             </tr>
     <% end %>
 </table>
+
+

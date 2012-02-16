@@ -180,3 +180,55 @@ background: red;
 	width:100%;
 	border:1px;
 }
+.nonlogin_tasks_tr{
+	background:#F5F5F5;
+}
+.nonlogin_tasks_count{
+	color:#8c8c8c;
+	text-align:left;
+}
+.nonlogin_trbgcolor{
+	background:#D7D7D7;
+}
+.nonlogin_points_color{
+	color:#999999;
+}
+.nonlogin_score_color{
+width:15%; 
+font-weight:bold;  
+color:#999999;
+}
+.nonlogin_tr_color{
+	background:#ffffff;
+}
+.task_score_nonlogin{
+	float:left; 
+	margin-top:15px;
+}
+.task_name_nonlogin{
+	float:left;  
+	margin-top:15px; 
+	margin-left:5px;
+}
+.task_name_nonlogin{
+	float:left; 
+	margin-top:15px; 
+	margin-left:5px; 
+	text-decoration:line-through;
+}
+.nonlogin_trcolor{
+	background:#f4f4f4;
+}
+.task {
+    width: 790px;
+    background:url("perf_tracker_bg.png") repeat ;
+}
+.taskbar_togo_color{
+	font-size:14px;
+	color:#F8981D;
+}
+#nonlogin_markascomplete{
+	text-decoration: none; 
+	color:#ffffff; 
+	float:right; 
+}
