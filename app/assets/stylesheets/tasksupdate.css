@@ -115,4 +115,5 @@ background:#f1faec;
     float: left;
     overflow: hidden;
     width: 100%;
+	border-bottom:2px solid #666666;
 }
