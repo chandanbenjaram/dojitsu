@@ -62,7 +62,22 @@
 		
 		</td>
 	<td width="10%">
-		time
+		<% time_stamps = Array[] %><span class="colorlastupdate">Last Updated</span><br>
+			<% timecount = []%>
+			<% @challenge.tasks.each do |aTask| %>
+				<% timecount.push(aTask.updated_at) %>
+			<% end %>
+			<% finaltime = []%>
+			<% timecount.delete_if {|x| x == nil}.each do |latesttime|%>
+				<% finaltime.push(latesttime)	 %>
+			<%end%>
+			<% if finaltime.count == 1 %>
+					<%finaltime.each do |singleelement|%>
+						<span class="latestupdatedtime"><%= time_ago_in_words singleelement%></span>
+					<%end%>
+				<%else%>
+				<%= time_ago_in_words finaltime.sort.last %>
+			<%end%>
 	</td>
 </tr>
 
