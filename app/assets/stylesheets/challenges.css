@@ -380,3 +380,20 @@ color:#666666;
 font-weight:bold;
 background:#f4f4f4;
 }
+.challenges_checkbox{
+	color:#f9a943; 
+	font-size:12px; 
+	margin-top:15px;
+}
+.challenges_selfreported{
+	color:#f9a943; 
+	font-size:12px; 
+	margin-top:15px;
+}
+.popup_multiplyicon{
+	height:15px; 
+	width:10px;
+}
+
+
+

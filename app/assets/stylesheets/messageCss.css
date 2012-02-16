@@ -29,7 +29,7 @@
 .new_message_button_index {
   background: #F8981D url("newbutton.PNG") no-repeat left center;  
   text-align: right;
-  min-width: 70px;
+  min-width: 60px;
   height:25px;
   top:1px;
   position:relative;
