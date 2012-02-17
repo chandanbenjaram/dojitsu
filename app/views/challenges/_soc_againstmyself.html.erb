@@ -71,12 +71,12 @@
 			<% timecount.delete_if {|x| x == nil}.each do |latesttime|%>
 				<% finaltime.push(latesttime)	 %>
 			<%end%>
-			<% if finaltime.count == 1 %>
+			<% if finaltime.count == 0 %>
 					<%finaltime.each do |singleelement|%>
-						<span class="latestupdatedtime"><%= time_ago_in_words singleelement%></span>
+						No updation is takes place
 					<%end%>
 				<%else%>
-				<%= time_ago_in_words finaltime.sort.last %>
+				<span class="latestupdatedtime"><%= time_ago_in_words finaltime.sort.last %></span>
 			<%end%>
 	</td>
 </tr>
