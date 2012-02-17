@@ -57,7 +57,13 @@ Dojitsu::Application.routes.draw do
 	  get "mForWinner"
 	  get "registerToMessage"
 	  get "deleteWinner"	
-	  get "winnerListPopup"	
+	  get "winnerListPopup"
+	  get "whoAccepted"
+	  get "whoThinking"
+	  get "whoDeclined"	
+	  get "myAccepted"
+	  get "myDeclined"
+	  get "myThinking"
     end
   end
 
