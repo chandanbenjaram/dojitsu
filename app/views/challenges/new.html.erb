@@ -263,7 +263,7 @@ $(".textarea_nw_tk").click(function () {
 
 	<table id="challengenewpopuptable" height="160">						
 		<tr>
-			<td><p style="color:#F8991F; font-size:13px; margin-top:15px;"><b>Check box:</b></p></td>
+			<td><p style="color:#F8991F; font-size:13px; margin-top:5px;"><b>Check box:</b></p></td>
 			<td ><input id="popupboxfirst" type="text" value="1(on checking off the task)" size="18" readonly></td>
 			<td ><%= image_tag("icon_multiply.png", :height => '11', :width => '9')%></td>
 			<td ><input id="popupboxsecond" type="text" value="point(s) per task" size="14" /></td>
@@ -274,7 +274,7 @@ $(".textarea_nw_tk").click(function () {
 		    <td colspan="6"><hr></td>
 		</tr>
 		<tr>
-			<td ><p style="color:#F8991F; font-size:13px; margin-top:15px;"><b>Data entry:</b></p></td>
+			<td ><p style="color:#F8991F; font-size:13px; margin-top:5px;"><b>Data entry:</b></p></td>
 			<td ><input id="popupboxfirst" type="text" value="Number of days to finish the task" size="18" readonly></td>
 			<td ><%= image_tag("icon_multiply.png", :height => '11', :width => '9')%></td>
 			<td ><input id="popupboxsecond" type="text" value="point(s) per task" size="14" /></td>
@@ -285,7 +285,7 @@ $(".textarea_nw_tk").click(function () {
 		    <td colspan="6"><hr></td>
 		</tr>
 		<tr>
-			<td ><p style="color:#F8991F; font-size:13px; margin-top:15px;"><b>Self-reported Number:</b></p></td>
+			<td ><p style="color:#F8991F; font-size:13px; margin-top:5px;"><b>Self-reported Number:</b></p></td>
 			<td ><input id="popupboxfirst" type="text" value="Number" size="18" readonly></td>
 			<td ><%= image_tag("icon_multiply.png", :height => '11', :width => '9')%></td>
 			<td ><input id="popupboxsecond" type="text" value="point(s) per task" size="14" /></td>
@@ -295,67 +295,6 @@ $(".textarea_nw_tk").click(function () {
 		<div id="checkboxtext1"> e.g., checking off "do laundry(3 points)" task scores 3 points </div>
 		<div id="checkboxtext2"> e.g., taking 3 days to finish "lose 1 pond" task scores 3 points </div>
 		<div id="checkboxtext3"> e.g., reporting 10 miles for"run treadmil(2 points)" task scores 20 points </div>
-		<style>
-		#popupboxthird
-		{
-		width:70px;
-		 height:20px; 
-		 font-weight:bold; 
-		 font-family:arial; 
-		 font-size:12px; 
-		 background:#f4f4f4;
-		 color:#666666;  
-				}
-		#popupboxsecond
-		{
-	width:110px;
-	height:20px; 
-	font-weight:bold; 
-	font-family:arial;
-	font-size:12px; 
-	background:#f4f4f4; 
-	color:#666666;
-		}
-		#popupboxfirst
-		{
-		width:200px; 
-		height:20px;
-		font-weight:bold; 
-		font-family:arial; 
-		font-size:12px;
-		background:#f4f4f4; 
-		color:#666666;
-		}
-		#checkboxtext1
-		{
-		color:#666666;
-		top:70px;
-		float:left;
-		left:160px;
-		position:absolute;
-		font-size:13px;
-		font-style:italic;
-		}
-		#checkboxtext2
-		{
-		color:#666666;
-		top:140px;
-		float:left;
-		left:160px;
-		position:absolute;
-		font-size:13px;
-		font-style:italic;
-		}
-		#checkboxtext3
-		{
-		color:#666666;
-		top:210px;
-		float:left;
-		left:160px;
-		position:absolute;
-		font-size:13px;
-		font-style:italic;
-		}
-		</style>
+		
 	</table>			
 </div>
