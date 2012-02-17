@@ -2,7 +2,14 @@
       background-color: #F4F4F4;
       padding: 8px 8px 8px 8px;
       width: 95%;
+      hight:auto;
     }
+    
+    #navAjax{
+		background-color:#f4f4f4;
+		height:35px;;
+		width:100%;
+	}
     
     #pStatusMy{
       background-color: #F4F4F4;

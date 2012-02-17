@@ -389,6 +389,10 @@ $(document).ready(function(){
 			
 			//$.dojitsuWallPost.renderFbWallPost();
 			
+			
+			
+			
+			
 			window.fbAsyncInit();
 			FB.ui(
 			{
@@ -397,7 +401,7 @@ $(document).ready(function(){
 			  link: 'http://developers.facebook.com/docs/reference/dialogs/',
 			  picture: 'http://fbrell.com/f8.jpg',
 			  caption: '<%= @allWinnersName %>',
-			  description: 'Project management software for personal use in tracking the participants progress in social, athletic, personal or travel related tasks.',
+			  description: 'Dialogs provide a simple, consistent interface for applications to interface with users.',
 			  message: 'Facebook Dialogs are easy!'
 			},
 			function(response) {
@@ -409,6 +413,17 @@ $(document).ready(function(){
 			}
 		 );
 			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
 			$.dojitsu.renderSendBox(<%= "'Winner list of "+@challenge.title + " challenge'" %>, <%= "'"+@allParticipants.join(",") +"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%=	"'"+ challenge_url(@challenge) +"'"%>, fbCallback).replace("'", "");	
 
             function fbCallback(response){
