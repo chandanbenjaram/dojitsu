@@ -8,7 +8,6 @@ float: right;
     position: relative;
 }
 .bordercolortdb {
-    border-bottom: 1px solid #BEBEBE;
     margin: 3px 5px 5px;
     padding-left: 15px;
 };
@@ -20,6 +19,7 @@ float: right;
 {
 color: #F8981D;
 font-weight: bold;
+font-size: 19px;
 }
 th
 {
@@ -46,19 +46,31 @@ th
 
 .pointscolor2 {
     color: #F8981D;
-    float: left;
-    font-weight: bold;
-    left: 220px;
-    position: relative;
-    top: -5px;
+float: left;
+font-weight: bold;
+left: 240px;
+position: relative;
+top: 2px;
+font-size: 12px;
+text-align: right;
 }
 .overalltasks {
     color: #7AC142;
-    font-weight: bold;
-    left: 39px;
-    position: relative;
-    top: 28px;
-    width: 30%;
+font-weight: bold;
+left: 45px;
+position: relative;
+top: 21px;
+width: 30%;
+text-align: left;
+font-size: 12px;
+}
+#other_tasks
+{
+font-weight: normal;
+font-size: 12px;
+color: #7AC142;
+left: -55px;
+position: relative;:
 }
 #checkit1 {
     color: #7AC142;

@@ -290,10 +290,6 @@ background: none repeat scroll 0 0 #999999;
         background:#fff;
 }
 
-#challenge_task_attributes__score_by:hover
-{
-    background:#f4f4f4;
-}
 #challenge_task_attributes__score
 {
      background:#f4f4f4;
@@ -440,7 +436,7 @@ background:#f4f4f4;
 		color:#666666;
 		top:123px;
 		float:left;
-		left:160px;
+		left:158px;
 		position:absolute;
 		font-size:13px;
 		font-style:italic;
@@ -456,5 +452,14 @@ background:#f4f4f4;
 		font-style:italic;
 		}
 		
-
+     #add_participant{ 
+	 white-space:nowrap; 
+	 }
+	 #participant
+	{
+		display: block;
+		height: 52px;
+		margin-top: -18px;
+		overflow: hidden;
+	}
 

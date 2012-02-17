@@ -22,7 +22,7 @@
     <tbody>
         <% current_user.inbox.each do |userMessage| %>
         <tr>
-            <td width="10%" class="bordercolort">
+            <td width="10%" class="bordercolort4">
                 <%= image_tag(FbGraph::User.new(userMessage.from).fetch.picture) %>
             </td>
             <td width="90%" class="bordercolort2">

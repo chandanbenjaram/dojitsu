@@ -161,7 +161,7 @@ $(".textarea_nw_tk").click(function () {
 					<div class="tab_container">
     					<div id="tab1" class="tab_content">
     						
-		<table width="100%" border="0">
+		<table cellspacing="10px" width="100%" border="0">
 		<tr>
 			<td width="25%"><b class="color999">Who wins?</b></td>
 			<td>
@@ -195,17 +195,15 @@ $(".textarea_nw_tk").click(function () {
 					</td>
 				</tr>
 
-				<tr>
-					<td><b class="color999">Participants</b></td>
-					<td>
-                            
-										
+				<tr id="add_participant">
+					<td ><b class="color999">Participants</b></td>
+					<td id="participant">
 						<%= render :partial => 'invitations', :locals => {:form => f} %>
 					</td>
 				</tr>
-                                <tr>
+                                <tr id="add_participant">
                                   <td></td>
-                                  <td ><input type="checkbox" ><span id="addparticipant">Add myself as one of the participants</span></td>
+                                  <td  ><input type="checkbox" ><span id="addparticipant">Add myself as one of the participants</span></td>
                                 </tr>
 	</table>
     					</div>
