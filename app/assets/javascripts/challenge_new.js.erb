@@ -17,7 +17,7 @@ $(document).ready(function($) {
 				$(div_tag).append($('<input id="start_point_label" name="start_point_label" class="textfield_effect" type="text" required="required" placeholder="Label(e.g.,miles)" >'));				
 				$('#end_point_type option[value="endPointNumber"]').attr('selected','selected').trigger('change');    
 			}else{
-				$(div_tag).append('<input id="start_point_value"  name="start_point_value" class="textfield_effect datepicker" type="text" required="required" placeholder="Enter date here">');				
+				$(div_tag).append('<input id="start_point_value"  name="start_point_value" class="textfield_effect datepicker" type="text" required="required" placeholder="10/12/2012">');				
 
 				$('#end_point_type option[value="endPointDate"]').attr('selected','selected').trigger('change');    
 				
@@ -51,7 +51,7 @@ $(document).ready(function($) {
 				$(div_tag).append($('<input id="end_point_label"  name="end_point_label" class="textfield_effect" type="text" required="required" placeholder="Label(e.g.,miles)">'));				
 				 
 			}else{
-				$(div_tag).append('<input id="end_point_value" name="end_point_value" class="textfield_effect datepicker" type="text" required="required" placeholder="Enter date here">');				
+				$(div_tag).append('<input id="end_point_value" name="end_point_value" class="textfield_effect datepicker" type="text" required="required" placeholder="10/12/2012">');				
 				
 			}
 

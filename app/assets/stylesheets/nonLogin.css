@@ -202,13 +202,12 @@ color:#999999;
 	background:#ffffff;
 }
 .task_score_nonlogin{
-	float:left; 
+	float:left;
 	margin-top:15px;
 }
 .task_name_nonlogin{
-	float:left;  
+	float:left;
 	margin-top:15px; 
-	margin-left:5px;
 }
 .task_name_nonlogin{
 	float:left; 
@@ -231,4 +230,8 @@ color:#999999;
 	text-decoration: none; 
 	color:#ffffff; 
 	float:right; 
+}
+.tasks_slash{
+	height:10px;
+	width:5px;
 }

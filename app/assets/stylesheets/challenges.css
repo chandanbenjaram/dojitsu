@@ -380,3 +380,81 @@ color:#666666;
 font-weight:bold;
 background:#f4f4f4;
 }
+.challenges_checkbox{
+	color:#f9a943; 
+	font-size:12px; 
+	margin-top:15px;
+}
+.challenges_selfreported{
+	color:#f9a943; 
+	font-size:12px; 
+	margin-top:15px;
+}
+.popup_multiplyicon{
+	height:15px; 
+	width:10px;
+}
+
+		#popupboxthird
+		{
+		width:70px;
+		 height:20px; 
+		 font-weight:bold; 
+		 font-family:arial; 
+		 font-size:12px; 
+		 background:#f4f4f4;
+		 color:#666666;  
+				}
+		#popupboxsecond
+		{
+	width:110px;
+	height:20px; 
+	font-weight:bold; 
+	font-family:arial;
+	font-size:12px; 
+	background:#f4f4f4; 
+	color:#666666;
+		}
+		#popupboxfirst
+		{
+		width:200px; 
+		height:20px;
+		font-weight:bold; 
+		font-family:arial; 
+		font-size:12px;
+		background:#f4f4f4; 
+		color:#666666;
+		}
+		#checkboxtext1
+		{
+		color:#666666;
+		top:62px;
+		float:left;
+		left:160px;
+		position:absolute;
+		font-size:13px;
+		font-style:italic;
+		}
+		#checkboxtext2
+		{
+		color:#666666;
+		top:123px;
+		float:left;
+		left:160px;
+		position:absolute;
+		font-size:13px;
+		font-style:italic;
+		}
+		#checkboxtext3
+		{
+		color:#666666;
+		top:182px;
+		float:left;
+		left:160px;
+		position:absolute;
+		font-size:13px;
+		font-style:italic;
+		}
+		
+
+
