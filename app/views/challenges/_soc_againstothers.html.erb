@@ -108,10 +108,10 @@
 			<%end%>
 			<% if finaltime.count == 1 %>
 					<%finaltime.each do |singleelement|%>
-						<%= time_ago_in_words singleelement%>
+						<span class="latestupdatedtime"><%= time_ago_in_words singleelement%></span>
 					<%end%>
 				<%else%>
-				working
+				<%= time_ago_in_words finaltime.sort.last %>
 			<%end%>
 			
 		
@@ -154,5 +154,8 @@ color: #7AC142;
 .totalscorecolor{
 color: #666666;
 }
+.latestupdatedtime{
+
+color: #999999;}
 </style>
 

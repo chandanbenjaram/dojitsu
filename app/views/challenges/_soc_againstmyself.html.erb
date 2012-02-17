@@ -18,6 +18,7 @@
 				<% end %>
 <table>
 <tr width="100">
+
 	<td width="22%">
 		<span class="howamspace"> HOW AM I DOING ?</span>
 	</td>
@@ -27,8 +28,9 @@
 			<%#= button_to "I'm Done with this challenge >> Submit my score #{total-total_score } ",:id=>"button_color" %>
 		<% end %>
 	</td>
-<hr/>
+
 </tr>
+<tr><hr/></tr>
 <tr width="100">
 	<td width="10%" id="imagewidth">
 		<%= image_tag (current_user.facebook.picture), :id=>"image" %>
@@ -52,14 +54,33 @@
 		<span id="myscoreself">Completed</span><span class="togocolo">To Go</span> <br>
 		
 		<div class="taskprogress1" id="taskprogress1"></div>
-		    <div id="modiifcation"><span id="tasksnumber"><%= flag2 %> tasks(</span><span class="diffcolor"><%= bScore %></span><span id="tasksnumber"> Points)</span></div>
-		    <div id="modiifcation2"><span id="tasksnumber2"><%= flag1 %>&nbsp;tasks(<%= aScore %>&nbsp; Points)</span></div>
+		    <div id="modiifcation"><span id="tasksnumber"><%= flag2 %>tasks&nbsp;(&nbsp;</span><span class="diffcolor"><%= bScore %></span><span id="tasksnumber"> Points)</span></div>
+		    <div id="modiifcation2"><span id="tasksnumber2">
+				<%= flag1 %>&nbsp;tasks&nbsp;
+				(&nbsp;<%= aScore %>&nbsp; Points)</span>
+			</div>
 		
 		</td>
 	<td width="10%">
-		time
+		<% time_stamps = Array[] %><span class="colorlastupdate">Last Updated</span><br>
+			<% timecount = []%>
+			<% @challenge.tasks.each do |aTask| %>
+				<% timecount.push(aTask.updated_at) %>
+			<% end %>
+			<% finaltime = []%>
+			<% timecount.delete_if {|x| x == nil}.each do |latesttime|%>
+				<% finaltime.push(latesttime)	 %>
+			<%end%>
+			<% if finaltime.count == 1 %>
+					<%finaltime.each do |singleelement|%>
+						<span class="latestupdatedtime"><%= time_ago_in_words singleelement%></span>
+					<%end%>
+				<%else%>
+				<%= time_ago_in_words finaltime.sort.last %>
+			<%end%>
 	</td>
 </tr>
+
 		<script type="text/javascript">
 			$(function() {
 				$("#taskprogress1").progressbar({ value: Math.round(((<%= total_score1 %>/<%= total1 %>)*100)) });							
