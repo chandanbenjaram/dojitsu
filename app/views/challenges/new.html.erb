@@ -5,7 +5,7 @@
 
 <div class="challengeSubNav">
 
-   	<%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %>
+   	<%=link_to( image_tag("newbutton.PNG"), new_challenge_url, :class => "new_challenge_button_new1", :method => :get )%>
     
 	<%= link_to "MY CHALLENGES >> ",challenges_url , :class => "challenge_link1" %>
 	
@@ -32,6 +32,11 @@
 		<tr>
 			<td  class="color999"><%= f.label :description, "DESCRIPTION" %></td>
 			<td  colspan="3"><%= f.text_area :description, :class => "textarea_nw_tk", :id => "on_focus_textarea", :placeholder=>"Enter challenge description here" %></td>
+		<script>
+$(".textarea_nw_tk").click(function () {
+  alert("checking");
+</script>
+
 		</tr>
 		<tr>
 				<td colspan="4">
@@ -79,7 +84,7 @@
 		<tr>
 				<td valign="top">
 					<b class="color999"> CREATE TASKS</b> 
-					<span class="moreInfoTip color999" rel="#moreCreateTaskId" title="The score for each task will be added up to determin the winner(s).">
+					<span class="moreInfoTip color999" style="background:#ffffff;" title="The score for each task will be added up to determin the winner(s)." rel="#moreCreateTaskId" >
 						<%= image_tag("btn_questionmark_up.png")%>
 					</span>
 				
@@ -131,9 +136,9 @@
 							<td colspan="6">
 								<b class="color999"><%= image_tag("icon_arrow_left.png")%>&nbsp;&nbsp;Do all tasks need to be complete before the challenge is marked complete?</b><br>
 								<span class="spacing2"><%= f.radio_button :canCompleteBeforeTasks, "1", :class => "chall_type" ,:checked =>"checked"%>
-								<font class="color999"><%= f.label "Yes" %></span></font><span class="spacing"></span>
+								<span class="color999"><%= f.label "Yes" %></span></span><span class="spacing"></span>
 								<%= f.radio_button :canCompleteBeforeTasks, "0", :class => "chall_type"%>
-								<font class="color999"><%= f.label "No" %></font>							   
+								<span class="color999"><%= f.label "No" %></span>							   
 							</td>
 						</tr>    
 					</tr> 
@@ -148,7 +153,7 @@
 				<tr>
 					<td valign="top"><b class="color999">PRIVACY</b></td>
 					<td colspan="3">
-					<ul class="tabs">
+					<ul style="background:#f4f4f4;" class="tabs">
     					<li><a href="#tab1" id="soc">Social</a></li>
     					<li><a href="#tab2" id="per">Personal</a></li>
 					</ul>
@@ -255,26 +260,41 @@
 	<% end %>	
 </div>
 <div id="moreCreateTaskId">
-	<table height="150">						
+
+	<table id="challengenewpopuptable" height="160">						
 		<tr>
-			<td width="43%"><p style="color:#f9a943; font-size:12px; margin-top:15px;"><b>check box:</b></p></td>
-			<td width="17%"><input type="text" value="1(Check of the task)" size="18" /></td>
-			<td width="3%"><%= image_tag("icon_multiply.png", :height => '15', :width => '11')%></td>
-			<td width="13%"><input type="text" value="point(s) per task" size="14" /></td>
-			<td width="3%"><%= image_tag("icon_equal.png", :height => '10', :width => '10')%></td>
-			<td width="21%"><input type="text" value="Score" size="5" /></td>
+			<td><p style="color:#F8991F; font-size:13px; margin-top:5px;"><b>Check box:</b></p></td>
+			<td ><input id="popupboxfirst" type="text" value="1(on checking off the task)" size="18" readonly></td>
+			<td ><%= image_tag("icon_multiply.png", :height => '11', :width => '9')%></td>
+			<td ><input id="popupboxsecond" type="text" value="point(s) per task" size="14" /></td>
+			<td ><%= image_tag("icon_equal.png", :height => '8', :width => '7')%></td>
+			<td ><input id="popupboxthird" type="text" value="Score" size="5" /></td>
 		</tr>
 		<tr>
-			<td width="43%" height="36"><p style="color:#f9a943; font-size:12px; margin-top:15px;"><b>Self-reported Number:</b></p></td>
-			<td width="17%"><input type="text" value="Number" size="18" /></td>
-			<td><%= image_tag("icon_multiply.png", :height => '15', :width => '10')%></td>
-			<td width="13%"><input type="text" value="point(s) per task" size="14" /></td>
-			<td><%= image_tag("icon_equal.png", :height => '10', :width => '10')%></td>
-			<td width="21%"><input type="text" value="Score" size="5" /></td>
+		    <td colspan="6"><hr></td>
 		</tr>
-		<tr>	
-			<td height="15"></td>
-			<td colspan="5">e.g. reporting 10 miles for "run treadmill (2 points)" task scores 20 points</td>
+		<tr>
+			<td ><p style="color:#F8991F; font-size:13px; margin-top:5px;"><b>Data entry:</b></p></td>
+			<td ><input id="popupboxfirst" type="text" value="Number of days to finish the task" size="18" readonly></td>
+			<td ><%= image_tag("icon_multiply.png", :height => '11', :width => '9')%></td>
+			<td ><input id="popupboxsecond" type="text" value="point(s) per task" size="14" /></td>
+			<td ><%= image_tag("icon_equal.png", :height => '8', :width => '7')%></td>
+			<td ><input id="popupboxthird" type="text" value="Score" size="5" /></td>
 		</tr>
+		<tr>
+		    <td colspan="6"><hr></td>
+		</tr>
+		<tr>
+			<td ><p style="color:#F8991F; font-size:13px; margin-top:5px;"><b>Self-reported Number:</b></p></td>
+			<td ><input id="popupboxfirst" type="text" value="Number" size="18" readonly></td>
+			<td ><%= image_tag("icon_multiply.png", :height => '11', :width => '9')%></td>
+			<td ><input id="popupboxsecond" type="text" value="point(s) per task" size="14" /></td>
+			<td ><%= image_tag("icon_equal.png", :height => '8', :width => '7')%></td>
+			<td ><input id="popupboxthird" type="text" value="Score" size="5" /></td>
+		</tr>
+		<div id="checkboxtext1"> e.g., checking off "do laundry(3 points)" task scores 3 points </div>
+		<div id="checkboxtext2"> e.g., taking 3 days to finish "lose 1 pond" task scores 3 points </div>
+		<div id="checkboxtext3"> e.g., reporting 10 miles for"run treadmil(2 points)" task scores 20 points </div>
+		
 	</table>			
 </div>

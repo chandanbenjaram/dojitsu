@@ -164,19 +164,24 @@
 		
 
 		<section id="winListMNoEdit" style="display:none">
-				No of winners:&nbsp;<%= @challenge.social_type.how_many_winners %>
+		<table style="position:relative;">
+		<td valign="top">
+				<span style="position:relative;">No of winners:&nbsp;<%= @challenge.social_type.how_many_winners %></span></td>
+				<td>
 				<%= link_to image_tag("cancellbutton.PNG", :style=>"float:right"), show_soc_challenges_path(:id => @challenge.id) %>
 				<%#= image_tag("approve.png", :style=>"float:right; margin-right:10px;")  %>
-				<%= submit_tag "SAVE", :style => "width: 80px; float:right;", :class => "linksMWinner" %>	
+				<%= submit_tag "SAVE", :style => "width: 80px; float:right;", :class => "linksMWinner" %>	</td></table>
         <table id="winListMNoL" width="100%">
-          <thead>
-				<th></th>          
-            <th>Rank</th>
-            <th>Name</th>
-            <th></th>
-            <th></th>
-            <th>Score</th>
-				<th></th>
+          <thead >
+		  <tr >
+				<th id="backround"></th>          
+            <th id="backround" style="text-align:center;" ><b style="right:30px; position:relative;">Rank</b></th>
+            <th id="backround" style="text-align:center;">Name</th>
+            <th id="backround" style="text-align:center;"></th>
+            <th id="backround" style="text-align:center;"></th>
+            <th id="backround" style="text-align:center;"><b style="left:140px; position:relative;">Score</b></th>
+				<th id="backround" style="text-align:center;"></th>
+				</tr>
           </thead>
           <tbody>            
 	    <% if @challenge.instance_of?ChildChallenge %>
@@ -217,62 +222,62 @@
 						<%# eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :title=>@fetChallenge.title}).first %>
 						<% unless eachChallenge.social_type.trophy.rank == -1 %>
                   <tr>
-							 <td class="bordercolor">
-									<a href="#" class="up">Up</a>
+							 <td >
+									<a href="#" class="up">Up</a><br>
             					<a href="#" class="down">Down</a>
 							</td>	
-                      <td class="bordercolor">
+                      <td >
                         <% if @flag == 1 %>
-                          gold
+                          gold<br/>
                           <%= image_tag("trophy_gold.png") %>                          
                           <% @latestScore = index %>
                           <% @flag += 1 %>
                         <% elsif @flag == 2 %>
                           <% if @latestScore == index %>
-                            gold
+                            gold<br/>
                             <%= image_tag("trophy_gold.png") %>                            
                           <% else %>
-                            silver
+                            silver<br/>
                             <%= image_tag("trophy_green.png") %>                            
                             <% @latestScore = index %>
                             <% @flag += 1 %>
                           <% end %>              
                         <% elsif @flag == 3 %>              
                           <% if @latestScore == index %>
-                            silver
+                            silver<br/>
                             <%= image_tag("trophy_green.png") %>                            
                           <% else %>
-                            bronze
+                            bronze<br/>
                             <%= image_tag("trophy_orange.png") %>                            
                             <% @latestScore = index %>
                             <% @flag += 1 %>
                           <% end %> 
                         <% elsif @flag == 4 %>
                           <% if @latestScore == index %>
-                            bronze
+                            bronze<br/>
                             <%= image_tag("trophy_orange.png") %>                            
                           <% else %>
-                            blue
+                            blue<br/>
                             <%= image_tag("trophy_blue.png") %>                            
                             <% @latestScore = index %>
                             <% @flag += 1 %>
                           <% end %>                
                         <% elsif @flag == 5 %>
                           <% if @latestScore == index %>
-                            blue
+                            blue<br/>
                             <%= image_tag("trophy_blue.png") %>                            
                           <% else %>
-                            red
+                            red<br/>
                             <%= image_tag("trophy_purple.png") %>                            
                             <% @latestScore = index %>
                             <% @flag += 1 %>
                           <% end %>                
                         <% elsif @flag == 6 %>
                           <% if @latestScore == index %>
-                            red
+                            red<br/>
                             <%= image_tag("trophy_purple.png") %>                            
                           <% else %>
-                            platinum
+                            platinum<br/>
                             <%= image_tag("trophy_platinum.png") %>                            
                             <% @latestScore = index %>
                             <% @flag += 1 %>
@@ -281,23 +286,23 @@
 
                         <% end %>
                       </td>
-                      <td class="bordercolor"><div align="center">
-									<%#=image_tag(FbGraph::User.new(aWinner).fetch.picture) %></div>
+                      <td style="width: 50px;"><div >
+									<%=image_tag(FbGraph::User.new(aWinner).fetch.picture) %></div>
 							 </td>
-                      <td class="bordercolor"><div align="center" style="float:left">
-									<%#= FbGraph::User.new(aWinner).fetch.name %>
+                      <td style="color:#666666; font-weight:bold;"><div align="center" style="float:left">
+									<%= FbGraph::User.new(aWinner).fetch.name %>
 									<% @allWinnersName.push(FbGraph::User.new(aWinner).fetch.name)%>
 									</div>
 		      			 </td>               
-                      <td class="bordercolor">
+                      <td  valign="top">
 								<div align="center">
-									<section id="taskpercentages">
-										<section id="winnerListProgressPercentageEdit<%= aWinner %>">				
+									<section style="position:relative;" id="taskpercentages">
+										<section  id="winnerListProgressPercentageEdit<%= aWinner %>">				
 									</section>            
 								</section>
 								</div>
 							 </td>			                    
-    						<td class="bordercolor">								
+    						<td >								
 								<% total_score = 0 %>
 									<% total_score_count = 0 %>
 									<% total = 0 %>              
@@ -308,8 +313,8 @@
 									<% total_score_count += 1 %>                  				                       
 								<% end %>
 								<%end%>											            
-								<section style="width:200px">                
-								<section class="task" id="winnerListProgressEdit<%= aWinner %>"></section>
+								<section style="width:300px">                
+								<section style="width:350px;" class="task" id="winnerListProgressEdit<%= aWinner %>"></section>
 									<section id="sblackbox_personal">
 										<section class="snotcompleted2">
 											<span class="tasks_color"><%= total_score %></span> <font color="#7AC142" weight="bold" size="4px">points </br><%= total_score_count %>&nbsp; tasks</font>
@@ -324,7 +329,7 @@
 									});
 									</script>																							     	 	            
 							</td>	
-							<td class="bordercolor"><%= link_to image_tag("btn_delete_up.png"), deleteWinner_challenges_path(:id=>eachChallenge.id) %></td>						
+							<td ><%= link_to image_tag("btn_delete_up.png"), deleteWinner_challenges_path(:id=>eachChallenge.id) %></td>						
                   </tr>
                   <% sl +=1 %>
 		               <% if sl.to_i == @challenge.social_type.how_many_winners.to_i %>

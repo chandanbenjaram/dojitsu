@@ -2,10 +2,10 @@
 <%= javascript_include_tag('simple-tabs','ui.progressbar','jquery.colorbox-min', 'jquery.cluetip.js','jquery.table.addrow','on_the_spot','jquery.tools.min','soc-per','challengePersonal','fbWallPost')%>
 <%= render 'layouts/loggedinbody'%>
 <body id="related">
-<div class="challengeSubNav" onclick="Testingbody();>
+<div class="challengeSubNav" onclick="Testingbody();">
 
    <section class="challengeSubNav">
-	<%= button_to "", new_challenge_url, :class => "new_challenge_button_new1", :method => :get %>
+	<%=link_to( image_tag("newbutton.PNG"), new_challenge_url, :class => "new_challenge_button_new1", :method => :get )%>
     <%= link_to "MY CHALLENGES >> ", challenges_url ,  :class => "challenge_link1" %>
 	<%= link_to "#{@challenge.title}","#" ,  :class => "challenge_link1" %> 
 </section> 

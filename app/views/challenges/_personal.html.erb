@@ -4,19 +4,18 @@
 	<div id="ch_main_div">
 	<div id="ch_main_div1">
 		<%= form_for @challenge do |f| %>
-		<table width="100%" border="0" border cellspacing=12px>
+		<table class="personaltasks_table" cellspacing:12px;>
 			<tr>
-				<table border=1px width=500px bgcolor=white cellspacing= 12px>
+				<table class="personal_tasks_color" cellspacing= 12px>
 					<tr>
 						<td>
-							<b><h1><font color="orange"><p class="allcaps"><%= @challenge.title %></p></font></h1></b>
+							<b><h1><span class="tasks_spancolor"><p class="allcaps"><%= @challenge.title %></p></span></h1></b>
 						</td>
 						<td>&nbsp; </td>
-			
 					</tr>
 				</table>
 		
-				<table border=1px width=500px height=60px bgcolor=white>
+				<table class="personaltasks_table2">
 					<tr>
 						<td width=120px>
 							<b><font color=	#909090>DESCRIPTION</b>
@@ -160,4 +159,6 @@
 	<% end %>	
 	</div>
 </div>
-	
+
+
+

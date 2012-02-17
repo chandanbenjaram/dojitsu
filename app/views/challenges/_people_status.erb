@@ -1,5 +1,5 @@
-   
-   <%= javascript_include_tag('jquery.tablesorter.min') %>
+
+   <%= javascript_include_tag('jquery.tablesorter.min','people_status') %>
    <%= stylesheet_link_tag('status_update', 'people_status')%>
    
     <% @totalChallegne = 1 %>
@@ -210,9 +210,8 @@ $(document).ready(function() {
       });
   }); 
 </script>
+
 <script>
 	$('#status_update_popup').colorbox();
 </script>
-
-
 

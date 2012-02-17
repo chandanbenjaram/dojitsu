@@ -1,13 +1,8 @@
 .new_challenge_button_new1 {
-    background: url("new1.PNG") no-repeat scroll left center #F8981D;
     float: left;
-    font-family: arial;
-    height: 25px;
     left: 90px;
-    min-width: 70px;
     position: relative;
-    text-align: right;
-    top: 2px;
+    top: -3px;
 }
 .table
 {
@@ -25,6 +20,7 @@
     top: 7px;
 	text-decoration: none;
 	color: #666666;
+	text-transform:uppercase;
 }
 
 .challange{
@@ -140,4 +136,14 @@
 	 position:relative;
  }
  
- 
+ .tab_container
+{
+background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #F4F4F4 #F4F4F4 #666666;
+    border-style: solid;
+    border-width: 2px 2px 2px;
+    clear: both;
+    float: left;
+    overflow: hidden;
+    width: 100%;
+}
