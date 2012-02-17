@@ -88,15 +88,18 @@
 <section id="pStatusAll">    	
   		<ul id="navAjax" class="tabNavigation">
 		  	<li>	
-		  		<a href="/challenges/whoAccepted?id=<%= @orgChallenge.id %>"><%= image_tag("icon_accept.png")%><b>Accepted (<%= @accepted %>)</b></a>  		
+		  		<a href="/challenges/whoAccepted?id=<%= @orgChallenge.id %>"><span id="firstH" style="display:none"><%= image_tag("icon_accept.png")%><b>(<%= @accepted %>)</b></span></a>
+		  		<a href="/challenges/whoAccepted?id=<%= @orgChallenge.id %>"><span id="firstS"><%= image_tag("icon_accept.png")%><b>Accepted (<%= @accepted %>)</b></span></a>  		
 		  		<%#= link_to "Accepted", whoAccepted_challenges_path(:id => @orgChallenge.id) %>
 			</li>
 			<li>	
-		  		<a href="/challenges/whoThinking?id=<%= @orgChallenge.id %>"><%= image_tag("icon_thinking.png")%><b>Thinking (<%= @thinking %>)</b></a>  		
+		  		<a href="/challenges/whoThinking?id=<%= @orgChallenge.id %>"><span id="secondS"><%= image_tag("icon_thinking.png")%><b>(<%= @thinking %>)</b></span></a>
+		  		<a href="/challenges/whoThinking?id=<%= @orgChallenge.id %>"><span id="secondH" style="display:none"><%= image_tag("icon_thinking.png")%><b>Thinking (<%= @thinking %>)</b></span></a>  		
 		  		<%#= link_to "Thinking", whoThinking_challenges_path(:id => @orgChallenge.id) %>
 		  </li>
 		  <li>	
-		  		<a href="/challenges/whoDeclined?id=<%= @orgChallenge.id %>"><%= image_tag("icon_decline.png")%><b>Declined (<%= @declined %>)</b></a>  		
+		  		<a href="/challenges/whoDeclined?id=<%= @orgChallenge.id %>"><span id="thirdS"><%= image_tag("icon_decline.png")%><b>(<%= @declined %>)</b></span></a>
+		  		<a href="/challenges/whoDeclined?id=<%= @orgChallenge.id %>"><span id="thirdH" style="display:none"><%= image_tag("icon_decline.png")%><b>Declined (<%= @declined %>)</b></span></a>  		
 		  		<%#= link_to "Declined", whoDeclined_challenges_path(:id => @orgChallenge.id) %>
 		  </li>
 		  <li>                            
@@ -105,6 +108,26 @@
 		</ul>	
 	<div id="ajax-content">This is default text, which will be replaced</div>	
 </section>
+
+<script>
+	$(document).ready(function() {	
+		$("#secondS").click(function(){
+			$('#secondS').replaceWith($('#secondH').show());
+			$('#firstH').replaceWith($('#firstS').show());
+		});
+		
+		$("#thirdS").click(function(){
+			alert("Maisa");
+		});
+		
+		$("#firstS").click(function(){
+			alert("Maisa");
+		});
+																		
+	});
+</script>
+
+
 
 <script>
 $(document).ready(function() {
