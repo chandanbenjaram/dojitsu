@@ -88,18 +88,15 @@
 <section id="pStatusAll">    	
   		<ul id="navAjax" class="tabNavigation">
 		  	<li>	
-		  		<a href="/challenges/whoAccepted?id=<%= @orgChallenge.id %>"><span id="firstH" style="display:none"><%= image_tag("icon_accept.png")%><b>(<%= @accepted %>)</b></span></a>
-		  		<a href="/challenges/whoAccepted?id=<%= @orgChallenge.id %>"><span id="firstS"><%= image_tag("icon_accept.png")%><b>Accepted (<%= @accepted %>)</b></span></a>  		
+		  		<a href="/challenges/whoAccepted?id=<%= @orgChallenge.id %>"><span id="firstH" style="display:none"><%= image_tag("icon_accept.png")%><b>(<%= @accepted %>)</b></span><span id="firstS"><%= image_tag("icon_accept.png")%><b>Accepted (<%= @accepted %>)</b></span></a>		  		  		
 		  		<%#= link_to "Accepted", whoAccepted_challenges_path(:id => @orgChallenge.id) %>
 			</li>
 			<li>	
-		  		<a href="/challenges/whoThinking?id=<%= @orgChallenge.id %>"><span id="secondS"><%= image_tag("icon_thinking.png")%><b>(<%= @thinking %>)</b></span></a>
-		  		<a href="/challenges/whoThinking?id=<%= @orgChallenge.id %>"><span id="secondH" style="display:none"><%= image_tag("icon_thinking.png")%><b>Thinking (<%= @thinking %>)</b></span></a>  		
+		  		<a href="/challenges/whoThinking?id=<%= @orgChallenge.id %>"><span id="secondS"><%= image_tag("icon_thinking.png")%><b>(<%= @thinking %>)</b></span><span id="secondH" style="display:none"><%= image_tag("icon_thinking.png")%><b>Thinking (<%= @thinking %>)</b></span></a>		  		  		
 		  		<%#= link_to "Thinking", whoThinking_challenges_path(:id => @orgChallenge.id) %>
 		  </li>
 		  <li>	
-		  		<a href="/challenges/whoDeclined?id=<%= @orgChallenge.id %>"><span id="thirdS"><%= image_tag("icon_decline.png")%><b>(<%= @declined %>)</b></span></a>
-		  		<a href="/challenges/whoDeclined?id=<%= @orgChallenge.id %>"><span id="thirdH" style="display:none"><%= image_tag("icon_decline.png")%><b>Declined (<%= @declined %>)</b></span></a>  		
+		  		<a href="/challenges/whoDeclined?id=<%= @orgChallenge.id %>"><span id="thirdS"><%= image_tag("icon_decline.png")%><b>(<%= @declined %>)</b></span><span id="thirdH" style="display:none"><%= image_tag("icon_decline.png")%><b>Declined (<%= @declined %>)</b></span></a>		  		  		
 		  		<%#= link_to "Declined", whoDeclined_challenges_path(:id => @orgChallenge.id) %>
 		  </li>
 		  <li>                            
@@ -109,31 +106,45 @@
 	<div id="ajax-content">This is default text, which will be replaced</div>	
 </section>
 
+
 <script>
 	$(document).ready(function() {	
 		$("#secondS").click(function(){
-			$('#secondS').replaceWith($('#secondH').show());
-			$('#firstH').replaceWith($('#firstS').show());
+			$('#secondS').hide();
+			$('#secondH').show();
+			$('#thirdH').hide();
+			$('#thirdS').show();
+			$('#firstS').hide();
+			$('#firstH').show();			
 		});
 		
 		$("#thirdS").click(function(){
-			alert("Maisa");
-		});
+			$('#thirdS').hide();
+			$('#thirdH').show();
+			$('#secondH').hide();
+			$('#secondS').show();
+			$('#firstS').hide();
+			$('#firstH').show();			
+		});		
 		
-		$("#firstS").click(function(){
-			alert("Maisa");
+		$("#firstH").click(function(){
+			$('#firstH').hide();
+			$('#firstS').show();
+			$('#thirdH').hide();
+			$('#thirdS').show();
+			$('#secondH').hide();
+			$('#secondS').show();			
 		});
 																		
 	});
 </script>
 
 
-
 <script>
 $(document).ready(function() {
     $("#navAjax li a").click(function() {
  
-        $("#ajax-content").empty().append("<div id='loading'><img src='/assets/ajax-loader.gif' /></div>");
+        $("#ajax-content").empty().append("<div id='loading'>loading...</div>");
         $("#nav li a").removeClass('current');
         $(this).addClass('current');
  
@@ -147,7 +158,7 @@ $(document).ready(function() {
  	 var challengeId= '<%= @challenge.id%>';
  	 //alert(challengeId);
  	 
-    $("#ajax-content").empty().append("<div id='loading'><img src='/assets/ajax-loader.gif' /></div>");
+    $("#ajax-content").empty().append("<div id='loading'>loading...</div>");
     $.ajax({    	 
     	 url: '/challenges/whoAccepted',
     	 data: {id:challengeId },    	 
@@ -161,15 +172,15 @@ $(document).ready(function() {
 <section id="pStatusMy" style="display: none">   
      <ul id="navAjaxHidden" class="tabNavigation">
 	  	<li>	
-		  		<a href="/challenges/myAccepted?id=<%= @orgChallenge.id %>"><%= image_tag("icon_accept.png")%><b>Accepted (<%= @myAccepted.count %>)</b></a>  		
+		  		<a href="/challenges/myAccepted?id=<%= @orgChallenge.id %>"><span id="firstHH" style="display:none"><%= image_tag("icon_accept.png")%><b>(<%= @myAccepted.count %>)</b></span><span id="firstSS"><%= image_tag("icon_accept.png")%><b>Accepted (<%= @myAccepted.count %>)</b></span></a>  		
 		  		<%#= link_to "Accepted", myAccepted_challenges_path(:id => @orgChallenge.id) %>
 		</li>
 		<li>	
-	  		<a href="/challenges/myThinking?id=<%= @orgChallenge.id %>"><%= image_tag("icon_thinking.png")%><b>Thinking (<%= @myThinking.count %>)</b></a>  		
+	  		<a href="/challenges/myThinking?id=<%= @orgChallenge.id %>"><span id="secondSS"><%= image_tag("icon_thinking.png")%><b>(<%= @myThinking.count %>)</b></span><span id="secondHH" style="display:none"><%= image_tag("icon_thinking.png")%><b>Thinking (<%= @myThinking.count %>)</b></span></a>  		
 	  		<%#= link_to "Thinking", myThinking_challenges_path(:id => @orgChallenge.id) %>
 	  </li>
 	  <li>	
-	  		<a href="/challenges/myDeclined?id=<%= @orgChallenge.id %>"><%= image_tag("icon_decline.png")%><b>Declined (<%= @myDeclined.count %>)</b></a>  		
+	  		<a href="/challenges/myDeclined?id=<%= @orgChallenge.id %>"><span id="thirdSS"><%= image_tag("icon_decline.png")%><b>(<%= @myDeclined.count %>)</b></span><span id="thirdHH" style="display:none"><%= image_tag("icon_decline.png")%><b>Declined (<%= @myDeclined.count %>)</b></span></a>
 	  		<%#= link_to "Declined", myDeclined_challenges_path(:id => @orgChallenge.id) %>
 	  </li>
 	  <li>                            
@@ -181,7 +192,7 @@ $(document).ready(function() {
 		$(document).ready(function() {
 			 $("#navAjaxHidden li a").click(function() {
 		 
-				  $("#ajax-contentH").empty().append("<div id='loading'><img src='/assets/ajax-loader.gif' /></div>");
+				  $("#ajax-contentH").empty().append("<div id='loading'>loading...</div>");
 				  $("#nav li a").removeClass('current');
 				  $(this).addClass('current');
 		 
@@ -195,7 +206,7 @@ $(document).ready(function() {
 		 	 var challengeId= '<%= @challenge.id%>';
 		 	 //alert(challengeId);
 		 	 
-			 $("#ajax-contentH").empty().append("<div id='loading'><img src='/assets/ajax-loader.gif' /></div>");
+			 $("#ajax-contentH").empty().append("<div id='loading'>loading...</div>");
 			 $.ajax({    	 
 			 	 url: '/challenges/whoAccepted',
 			 	 data: {id:challengeId },    	 
@@ -204,7 +215,38 @@ $(document).ready(function() {
 			 	}
 			 });
 		});
-	</script>	  
+	</script>
+	<script>
+	$(document).ready(function() {	
+		$("#secondSS").click(function(){
+			$('#secondSS').hide();
+			$('#secondHH').show();
+			$('#thirdHH').hide();
+			$('#thirdSS').show();
+			$('#firstSS').hide();
+			$('#firstHH').show();			
+		});
+		
+		$("#thirdSS").click(function(){
+			$('#thirdSS').hide();
+			$('#thirdHH').show();
+			$('#secondHH').hide();
+			$('#secondSS').show();
+			$('#firstSS').hide();
+			$('#firstHH').show();			
+		});		
+		
+		$("#firstHH").click(function(){
+			$('#firstHH').hide();
+			$('#firstSS').show();
+			$('#thirdHH').hide();
+			$('#thirdSS').show();
+			$('#secondHH').hide();
+			$('#secondSS').show();			
+		});
+																		
+	});
+</script>	  
 </section>
 
 <script>
