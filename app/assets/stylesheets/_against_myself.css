@@ -2,12 +2,14 @@
 .stedpoint
 {
 	 color: #666666;
-	 font-weight: bold;
+	
 }
 .chname
 {
 	color: #666666;
-	 font-weight: bold;
+	font-weight:bold;
+	font-size: 15px;
+	
 }
 
 #spancefortext2
@@ -128,4 +130,8 @@ font-size: 12px;
 
 font-size: 12px;
 font-weight: normal;
+}
+#by_properties
+{
+	font-weight: normal;
 }
