@@ -10,6 +10,12 @@
 		height:35px;;
 		width:100%;
 	}
+	
+	#navAjaxHidden{
+		background-color:#f4f4f4;
+		height:35px;;
+		width:100%;
+	}
     
     #pStatusMy{
       background-color: #F4F4F4;
@@ -90,4 +96,8 @@
     
     thead th{
       background-color: #FFFFFF;
+    }
+    
+    #myTable{
+    	background-color: #FFFFFF;
     }
