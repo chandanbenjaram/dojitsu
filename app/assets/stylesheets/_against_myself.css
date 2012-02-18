@@ -20,8 +20,9 @@
 }
 #spancefortext4
 {
-	background: #BBBBBB;
-	 border-right: 2px solid #FFFFFF;
+	background: #BBB;
+border-right: 1px solid white;
+padding-left: 18px;
 }
 #checkit {
     color: #7AC142;
@@ -31,16 +32,18 @@
     position: relative;
     right: 106%;
     top: -20px;
-    width: 10%;
+    width: 14%;
 }
 
 .pointscolor1 {
-    color: #F8981D;
-    float: left;
-    font-weight: bold;
-    left: 300px;
-    position: relative;
-    top: -18px;
+   color: #F8981D;
+float: left;
+font-weight: bold;
+left: 205px;
+position: relative;
+top: -30px;
+width: 100px;
+text-align: right;
 }
 
 .ui-corner-all
@@ -52,7 +55,7 @@ border-radius: 0 0 0 0;
     font-weight: bold;
     left: 30px;
     position: relative;
-    top: 22px;
+    top: 19px;
     width: 40%;
 }
 .notcompleted
@@ -93,7 +96,7 @@ thead th {
 #spancefortext1 {
     float: right;
     position: relative;
-    right: 20%;
+    right: 10%;
 	background: #BBBBBB;
 }
 
@@ -109,4 +112,20 @@ thead th {
     position: relative;
     right: -15px;
     width: 110%;
+}
+.updatebutton
+{
+top: 10px;
+position: relative;
+}
+#score_points
+{
+font-weight:bold;
+font-size: 12px;
+}
+#score_tasks
+{
+
+font-size: 12px;
+font-weight: normal;
 }
