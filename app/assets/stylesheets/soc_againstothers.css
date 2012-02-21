@@ -186,10 +186,7 @@ font-size: 19px;
     font-size: 12px;
     font-weight: bold;
 }
-a:focus, a:hover
-{
-	color: #FFFFFF;
-}
+
 #rankcolor
 {
 	color: #999999;
