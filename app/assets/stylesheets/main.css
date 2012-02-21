@@ -620,13 +620,12 @@ textarea:focus{
 
 select {
   
-	background: none repeat scroll 0 0 transparent;
+background: none repeat scroll 0 0 transparent;
 color: #F9A943;
 height: 32px;
 margin-top: -5px;
 position: relative;
 top: 5px;
-vertical-align: top;
 width: 130%;
 }
 
@@ -1186,7 +1185,7 @@ ul.tabs1 {
 	-moz-border-radius-topright: 3px;
 	-moz-border-radius-bottomright: 0px;
 	-moz-border-radius-bottomleft: 0px;
-
+     border-bottom: 2px solid #ffffff;
 	-webkit-border-radius: 0px 3px 0px 0px;
 	border-radius: 0px 3px 0px 0px; 
 }
@@ -1906,6 +1905,9 @@ color: #06BACE;
 }
 .table{
 	background:#ffffff;
+	padding:0px;
+	cell-padding:0px;
+	cell-spacing:0px;
 }
 .fontcolor{
 	color: #999999;

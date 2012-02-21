@@ -1,3 +1,4 @@
+
    <%= javascript_include_tag('jquery.tablesorter.min','people_status') %>
    <%= stylesheet_link_tag('status_update', 'people_status')%>
    
@@ -76,259 +77,205 @@
     </td>
   </tr>
 </table>
-<section id="pStatusAll">
-  <div class="tabs">
-        <ul class="tabNavigation">
-            <li>                
-                <a href="#first"><%= image_tag("icon_accept.png")%><b>Accepted (<%= @accepted %>)</b></a>              
-            </li>
-            <li>                
-                <a href="#second"><%= image_tag("icon_thinking.png")%><b>Thinking (<%= @thinking %>)</b></a>              
-            </li>            
-            <li>                
-                <a href="#third"><%= image_tag("icon_decline.png")%><b>Declined (<%= @declined %>)</b></a>
-            </li>
-            <li>                            
-                <a href="#fourth"><%= image_tag("btn_questionmark_up.png")%><b></b></a>
-            </li>
-        </ul>
-        <div id="first">            
-          <table width="100%" id="myTable" class="tablesorter"> 
-              <thead>
-                  <tr>
-                      <th></th>
-                      <th></th>                          
-                  </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td class="bordercolor" width="15%">
-                  <% if @challenge.instance_of?ChildChallenge %>
-                      <%= image_tag(FbGraph::User.new(@challenge.parent.user_id).fetch.picture) %>
-                  <% else %>
-                      <%= image_tag(FbGraph::User.new(@challenge.user_id).fetch.picture) %>
-                  <% end %>
-                </td>
-                <td class="bordercolor" width="85%" id="nameColor">
-                  <% if @challenge.instance_of?ChildChallenge %>
-                      <%= FbGraph::User.new(@challenge.parent.user_id).fetch.name %>
-                  <% else %>
-                      <%= FbGraph::User.new(@challenge.user_id).fetch.name %>
-                  <% end %>                  
-                </td>
-              </tr>
-              <% if @challenge.instance_of?ChildChallenge %>
-                  <% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
-                  <% @parentChallenge.child_challenges.each do |eachChallenge| %>
-                    <% if eachChallenge.social_type.status == 1 %>
-                      <tr>
-                        <td class="bordercolor" width="15%">                                                       
-                            <%= image_tag(FbGraph::User.new(eachChallenge.user_id).fetch.picture) %>                          
-                        </td>
-                        <td class="bordercolor" width="85%" id="nameColor">                          
-                            <%= FbGraph::User.new(eachChallenge.user_id).fetch.name %>                           
-                        </td>
-                      </tr>
-                    <% end %>
-                  <% end %>
-              <% else %>
-                  <% @challenge.child_challenges.each do |eachChallenge| %>
-                    <% if eachChallenge.social_type.status == 1 %>
-                      <tr>
-                        <td class="bordercolor" width="15%">                                                       
-                            <%= image_tag(FbGraph::User.new(eachChallenge.user_id).fetch.picture) %>                          
-                        </td>
-                        <td class="bordercolor" width="85%" id="nameColor">                          
-                            <%= FbGraph::User.new(eachChallenge.user_id).fetch.name %>                           
-                        </td>
-                      </tr>
-                    <% end %>
-                  <% end %>
-              <% end %>
-              </tbody>        
-            </table>
-        </div>
-        <div id="second">            
-            <table id="myTable" class="tablesorter">
-              <thead>
-                  <tr>
-                      <th></th>
-                      <th></th>                          
-                  </tr>
-              </thead>
-              <tbody>
-              <% if @challenge.instance_of?ChildChallenge %>
-                  <% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
-                  <% @parentChallenge.child_challenges.each do |eachChallenge| %>
-                    <% if eachChallenge.social_type.status.to_i == 0 %>
-                      <tr>
-                        <td class="bordercolor" width="15%">                                                       
-                            <%= image_tag(FbGraph::User.new(eachChallenge.user_id).fetch.picture) %>                          
-                        </td>
-                        <td class="bordercolor" width="85%" id="nameColor">                          
-                            <%= FbGraph::User.new(eachChallenge.user_id).fetch.name %>                           
-                        </td>
-                      </tr>
-                    <% end %>
-                  <% end %>
-              <% else %>
-                  <% @challenge.child_challenges.each do |eachChallenge| %>
-                    <% if eachChallenge.social_type.status.to_i == 0 %>
-                      <tr>
-                        <td class="bordercolor" width="15%">                                                       
-                            <%= image_tag(FbGraph::User.new(eachChallenge.user_id).fetch.picture) %>                          
-                        </td>
-                        <td class="bordercolor" width="85%" id="nameColor">                          
-                            <%= FbGraph::User.new(eachChallenge.user_id).fetch.name %>                           
-                        </td>
-                      </tr>
-                    <% end %>
-                  <% end %>
-              <% end %>
-              </tbody>        
-            </table>
-        </div>
-        <div id="third">
-          <table id="myTable" class="tablesorter">
-          <thead>
-                <tr>
-                    <th></th>
-                    <th></th>                          
-                </tr>
-            </thead>
-            <tbody>
-            <% if @challenge.instance_of?ChildChallenge %>
-              <% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
-              <% @parentChallenge.child_challenges.each do |eachChallenge| %>              
-                <% if eachChallenge.social_type.status.to_i == -1 %>
-                  <tr>
-                    <td class="bordercolor" width="15%">                                                       
-                        <%= image_tag(FbGraph::User.new(eachChallenge.user_id).fetch.picture) %>                          
-                    </td>
-                    <td class="bordercolor" width="85%" id="nameColor">                          
-                        <%= FbGraph::User.new(eachChallenge.user_id).fetch.name %>                           
-                    </td>
-                  </tr>
-                <% end %>
-              <% end %>
-          <% else %>
-              <% @challenge.child_challenges.each do |eachChallenge| %>                  
-                <% if eachChallenge.social_type.status.to_i == -1 %>
-                  <tr>
-                    <td class="bordercolor" width="15%">                                                       
-                        <%= image_tag(FbGraph::User.new(eachChallenge.user_id).fetch.picture) %>                          
-                    </td>
-                    <td class="bordercolor" width="85%" id="nameColor">                          
-                        <%= FbGraph::User.new(eachChallenge.user_id).fetch.name %>                           
-                    </td>
-                  </tr>
-                <% end %>
-              <% end %>
-          <% end %>
-          </tbody>        
-          </table>        
-        </div>
-        <div id="fourth">
-            <h2>No info</h2>
-             <span style="color="#666666">Under process.<span>
-        </div>
-    </div>
+
+<% if @challenge.instance_of?ChildChallenge %>
+	<% @orgChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
+<% else %>
+	<% @orgChallenge = Challenge.where(:_id => params[:id]).first%>
+<% end %>
+
+
+<section id="pStatusAll">    	
+  		<ul id="navAjax" class="tabNavigation">
+		  	<li>	
+		  		<a href="/challenges/whoAccepted?id=<%= @orgChallenge.id %>"><span id="firstH" style="display:none"><%= image_tag("icon_accept.png")%><b>(<%= @accepted %>)</b></span><span id="firstS"><%= image_tag("icon_accept.png")%><b>Accepted (<%= @accepted %>)</b></span></a>		  		  		
+		  		<%#= link_to "Accepted", whoAccepted_challenges_path(:id => @orgChallenge.id) %>
+			</li>
+			<li>	
+		  		<a href="/challenges/whoThinking?id=<%= @orgChallenge.id %>"><span id="secondS"><%= image_tag("icon_thinking.png")%><b>(<%= @thinking %>)</b></span><span id="secondH" style="display:none"><%= image_tag("icon_thinking.png")%><b>Thinking (<%= @thinking %>)</b></span></a>		  		  		
+		  		<%#= link_to "Thinking", whoThinking_challenges_path(:id => @orgChallenge.id) %>
+		  </li>
+		  <li>	
+		  		<a href="/challenges/whoDeclined?id=<%= @orgChallenge.id %>"><span id="thirdS"><%= image_tag("icon_decline.png")%><b>(<%= @declined %>)</b></span><span id="thirdH" style="display:none"><%= image_tag("icon_decline.png")%><b>Declined (<%= @declined %>)</b></span></a>		  		  		
+		  		<%#= link_to "Declined", whoDeclined_challenges_path(:id => @orgChallenge.id) %>
+		  </li>
+		  <li>                            
+		     <a href="#"><%= image_tag("btn_questionmark_up.png")%><b></b></a>
+		  </li>
+		</ul>	
+	<div id="ajax-content">This is default text, which will be replaced</div>	
 </section>
 
-<section id="pStatusMy" style="display: none">
-  <div class="tabs">
-        <ul class="tabNavigation">
-            <li>                
-                <a href="#first"><%= image_tag("icon_accept.png")%><b>Accepted (<%= @myAccepted.count %>)</b></a>              
-            </li>
-            <li>                
-                <a href="#second"><%= image_tag("icon_thinking.png")%><b>Thinking (<%= @myThinking.count %>)</b></a>              
-            </li>            
-            <li>                
-                <a href="#third"><%= image_tag("icon_decline.png")%><b>Declined (<%= @myDeclined.count %>)</b></a>
-            </li>
-            <li>                            
-                <a href="#fourth"><%= image_tag("btn_questionmark_up.png")%><b></b></a>
-            </li>
-        </ul>
-        <div id="first">            
-          <table width="100%" id="myTable" class="tablesorter"> 
-              <thead>
-                  <tr>
-                      <th></th>
-                      <th></th>                          
-                  </tr>
-              </thead>
-              <tbody> 
-                <% if @myAccepted.count > 0 %>
-                    <% @myAccepted.each do |eachChallenge| %>                    
-                        <tr>
-                          <td class="bordercolor" width="15%">                                                       
-                              <%= image_tag(FbGraph::User.new(eachChallenge).fetch.picture) %>                          
-                          </td>
-                          <td class="bordercolor" width="85%" id="nameColor">                          
-                              <%= FbGraph::User.new(eachChallenge).fetch.name %>                           
-                          </td>
-                        </tr>                    
-                    <% end %>
-                <% end %>        
-              </tbody>        
-            </table>
-        </div>
-        <div id="second">            
-            <table id="myTable" class="tablesorter">              
-              <thead>
-                  <tr>
-                      <th></th>
-                      <th></th>                          
-                  </tr>
-              </thead>
-              <tbody>
-              <% if @myThinking.count > 0 %>  
-                  <% @myThinking.each do |eachChallenge| %>                    
-                    <tr>
-                      <td class="bordercolor" width="15%">                                                       
-                          <%= image_tag(FbGraph::User.new(eachChallenge).fetch.picture) %>                          
-                      </td>
-                      <td class="bordercolor" width="85%" id="nameColor">                          
-                          <%= FbGraph::User.new(eachChallenge).fetch.name %>                           
-                      </td>
-                    </tr>
-                  <% end %>              
-              <% end %>      
-              </tbody>        
-            </table>
-        </div>
-        <div id="third">
-          <table id="myTable" class="tablesorter">
-          <thead>
-                <tr>
-                    <th></th>
-                    <th></th>                          
-                </tr>
-            </thead>
-            <tbody>
-            <% if @myDeclined.count > 0 %>  
-                <% @myDeclined.each do |eachChallenge| %>                              
-                  <tr>
-                    <td class="bordercolor" width="15%">                                                       
-                        <%= image_tag(FbGraph::User.new(eachChallenge).fetch.picture) %>                          
-                    </td>
-                    <td class="bordercolor" width="85%" id="nameColor">                          
-                        <%= FbGraph::User.new(eachChallenge).fetch.name %>                           
-                    </td>
-                  </tr>                
-                <% end %>
-            <% end %>      
-          </tbody>        
-          </table>        
-        </div>
-        <div id="fourth">
-            <h2>No info</h2>
-             <span style="color="#666666">Under process.<span>
-        </div>
-    </div>
+
+<script>
+	$(document).ready(function() {	
+		$("#secondS").click(function(){
+			$('#secondS').hide();
+			$('#secondH').show();
+			$('#thirdH').hide();
+			$('#thirdS').show();
+			$('#firstS').hide();
+			$('#firstH').show();			
+		});
+		
+		$("#thirdS").click(function(){
+			$('#thirdS').hide();
+			$('#thirdH').show();
+			$('#secondH').hide();
+			$('#secondS').show();
+			$('#firstS').hide();
+			$('#firstH').show();			
+		});		
+		
+		$("#firstH").click(function(){
+			$('#firstH').hide();
+			$('#firstS').show();
+			$('#thirdH').hide();
+			$('#thirdS').show();
+			$('#secondH').hide();
+			$('#secondS').show();			
+		});
+																		
+	});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    $("#navAjax li a").click(function() {
+ 
+        $("#ajax-content").empty().append("<div id='loading'>loading...</div>");
+        $("#nav li a").removeClass('current');
+        $(this).addClass('current');
+ 
+        $.ajax({ url: this.href, success: function(html) {
+            $("#ajax-content").empty().append(html);
+            }
+    });
+    return false;
+    });
+ 	 
+ 	 var challengeId= '<%= @challenge.id%>';
+ 	 //alert(challengeId);
+ 	 
+    $("#ajax-content").empty().append("<div id='loading'>loading...</div>");
+    $.ajax({    	 
+    	 url: '/challenges/whoAccepted',
+    	 data: {id:challengeId },    	 
+    	 success: function(html) {
+            $("#ajax-content").empty().append(html);
+    	}
+    });
+});
+</script>
+
+<section id="pStatusMy" style="display: none">   
+     <ul id="navAjaxHidden" class="tabNavigation">
+	  	<li>	
+		  		<a href="/challenges/myAccepted?id=<%= @orgChallenge.id %>"><span id="firstHH" style="display:none"><%= image_tag("icon_accept.png")%><b>(<%= @myAccepted.count %>)</b></span><span id="firstSS"><%= image_tag("icon_accept.png")%><b>Accepted (<%= @myAccepted.count %>)</b></span></a>  		
+		  		<%#= link_to "Accepted", myAccepted_challenges_path(:id => @orgChallenge.id) %>
+		</li>
+		<li>	
+	  		<a href="/challenges/myThinking?id=<%= @orgChallenge.id %>"><span id="secondSS"><%= image_tag("icon_thinking.png")%><b>(<%= @myThinking.count %>)</b></span><span id="secondHH" style="display:none"><%= image_tag("icon_thinking.png")%><b>Thinking (<%= @myThinking.count %>)</b></span></a>  		
+	  		<%#= link_to "Thinking", myThinking_challenges_path(:id => @orgChallenge.id) %>
+	  </li>
+	  <li>	
+	  		<a href="/challenges/myDeclined?id=<%= @orgChallenge.id %>"><span id="thirdSS"><%= image_tag("icon_decline.png")%><b>(<%= @myDeclined.count %>)</b></span><span id="thirdHH" style="display:none"><%= image_tag("icon_decline.png")%><b>Declined (<%= @myDeclined.count %>)</b></span></a>
+	  		<%#= link_to "Declined", myDeclined_challenges_path(:id => @orgChallenge.id) %>
+	  </li>
+	  <li>                            
+	     <a href="#"><%= image_tag("btn_questionmark_up.png")%><b></b></a>
+	  </li>
+	</ul>	
+	<div id="ajax-contentH">This is default text, which will be replaced</div>
+	<script>
+		$(document).ready(function() {
+			 $("#navAjaxHidden li a").click(function() {
+		 
+				  $("#ajax-contentH").empty().append("<div id='loading'>loading...</div>");
+				  $("#nav li a").removeClass('current');
+				  $(this).addClass('current');
+		 
+				  $.ajax({ url: this.href, success: function(html) {
+					   $("#ajax-contentH").empty().append(html);
+					   }
+			 });
+			 return false;
+			 });
+		 	 
+		 	 var challengeId= '<%= @challenge.id%>';
+		 	 //alert(challengeId);
+		 	 
+			 $("#ajax-contentH").empty().append("<div id='loading'>loading...</div>");
+			 $.ajax({    	 
+			 	 url: '/challenges/whoAccepted',
+			 	 data: {id:challengeId },    	 
+			 	 success: function(html) {
+					   $("#ajax-contentH").empty().append(html);
+			 	}
+			 });
+		});
+	</script>
+	<script>
+	$(document).ready(function() {	
+		$("#secondSS").click(function(){
+			$('#secondSS').hide();
+			$('#secondHH').show();
+			$('#thirdHH').hide();
+			$('#thirdSS').show();
+			$('#firstSS').hide();
+			$('#firstHH').show();			
+		});
+		
+		$("#thirdSS").click(function(){
+			$('#thirdSS').hide();
+			$('#thirdHH').show();
+			$('#secondHH').hide();
+			$('#secondSS').show();
+			$('#firstSS').hide();
+			$('#firstHH').show();			
+		});		
+		
+		$("#firstHH").click(function(){
+			$('#firstHH').hide();
+			$('#firstSS').show();
+			$('#thirdHH').hide();
+			$('#thirdSS').show();
+			$('#secondHH').hide();
+			$('#secondSS').show();			
+		});
+																		
+	});
+</script>	  
 </section>
+
+<script>
+  $(document).ready(function(){
+    $("#myfrd").click(function(){      
+      if ($('#myfrd').attr('checked')) 
+      {
+          $("#pStatusAll").hide();
+          $("#pStatusMy").show();
+      }
+      else
+      {         
+          $("#pStatusMy").hide();
+          $("#pStatusAll").show();
+      }
+    });    
+  });
+</script>
+
+<script type="text/javascript" id="js">
+  $(document).ready(function() {
+      // call the tablesorter plugin
+      $("table").tablesorter({
+              // sort on the first column and third column, order asc
+              sortList: [[0,0],[1,0]]
+      });
+  }); 
+</script>
+
 <script>
 	$('#status_update_popup').colorbox();
 </script>

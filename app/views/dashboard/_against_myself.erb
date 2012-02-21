@@ -2,10 +2,10 @@
 <table width="100%" >	
 	<thead id="tableheader ">
 		<tr >
-			<th width="20%" id="borderalign"><span id="spancefortext">NAME</span></th>
-			<th width="40%" id="spancefortext2">COMPLETED</th>
-			<th width="20%" id="spancefortext3"><span id="spancefortext1">TO GO</span></th>
-			<th width="20%" id="spancefortext4">LAST UPDATE</th>
+			<th width="29%" id="borderalign"><span id="spancefortext">NAME</span></th>
+			<th width="35%" id="spancefortext2">COMPLETED</th>
+			<th width="19%" id="spancefortext3"><span id="spancefortext1">TO GO</span></th>
+			<th width="17%" id="spancefortext4">LAST UPDATE</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -15,7 +15,7 @@
 	<%end%>
 	<% taskCompleted=1 %>
 	<% total_challenges.take(3).each do |limitChallenge|%>
-	<tr width="50" >
+	<tr id="check" width="50" >
 		<td class="bordercolort" >	
         <br>
 		<span class="userchallengestyle"><b><%= limitChallenge.title %></b></span>
@@ -59,10 +59,10 @@
 			   <% end %>
            <% end %>
 		   <div class="completedtask"> 
-				<%= aScore %> points <br> <%= flag1 %>&nbsp;tasks
+				<span id="score_points"><%= aScore %> points</span> <br> <span id="score_tasks"><%= flag1 %>&nbsp;tasks</span>
            </div>
            <div class="notcompleted">
-                <span class="pointscolor1"><%= bScore %> points <br> <%= flag2 %>&nbsp;tasks</span>
+               <span class="pointscolor1"> <span id="score_points"><%= bScore %> points </span><br> <span id="score_tasks"><%= flag2 %>&nbsp;tasks</span></span>
            </div>
 		   <script type="text/javascript">
                           $(function() {
@@ -78,6 +78,9 @@
 				<%=link_to( image_tag("update.png"), show_per_challenges_path(:id => limitChallenge._id), :class=>"updatebutton") %>
 		   </td>
 		<% taskCompleted+=1 %>	
+		</tr>
+		<tr>
+		<td colspan="4"><hr> </td>
 		</tr>
 		<%end%>
 	</tbody>

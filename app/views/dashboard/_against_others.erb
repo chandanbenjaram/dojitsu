@@ -70,9 +70,9 @@
 						  
 					
                      
-                     <div class="overalltasks"><%= aScore %> points<br>(<%= flag1 %>&nbsp;tasks) </div>
+                     <span class="overalltasks"><%= aScore %>&nbsp;Points <br/><span id="other_tasks"> (<%= flag1 %>&nbsp;tasks) </span></span>
                       
-                     <div class="pointscolor2"><%= cScore %> points <br>(<%= flag3 %>&nbsp;tasks)</div>
+                     <span class="pointscolor2"><%= cScore %> points <br>(<%= flag3 %>&nbsp;tasks)</span>
                      
 					<script type="text/javascript">
                           $(function() {
@@ -86,6 +86,9 @@
 				  <%=link_to( image_tag("update.png"), show_per_challenges_path(:id => limitChallenge._id), :class=>"updatebutton") %>
 			  </td>
 			  <% taskCompleted+=1 %>
+		</tr>
+		<tr>
+		<td colspan="4"><hr> </td>
 		</tr>
 		<% end %>
 	</tbody>

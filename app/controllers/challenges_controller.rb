@@ -22,32 +22,6 @@ class ChallengesController < ApplicationController
     @flg = params[:flg]
     @challenge = Challenge.find(params[:id]) 
     
-    #GETING ALL USER CONNECTION
-    aConnection = []
-    @allConnections = UserConnection.select(:target_id).where(:user_id=>current_user.id)
-    @allConnections.each do |aTargetId|
-      aConnection.push(aTargetId.target_id)
-    end
-    #ALL CONNECTION AS PARTICIPANT
-    @onlyMyFrd = Challenge.all(conditions: {:user_id.in => aConnection, :title => @challenge.title })
-    #ALL FRD IN CHALLENGE 
-    @myAccepted = [] 
-    @myThinking = []
-    @myDeclined = []
-    @onlyMyFrd.each do |aStatus|
-      if aStatus.social_type.status == 1
-        @myAccepted.push(aStatus.user_id)
-      elsif aStatus.social_type.status == -1
-        @myDeclined.push(aStatus.user_id)
-      else
-        @myThinking.push(aStatus.user_id)
-      end
-    end
-    
-    #raise @myAccepted.inspect
-    #raise @myDeclined.inspect
-    #raise @myThinking.inspect
-    
     @is_complete_status = 0 
     @challenge.tasks.each do |checkingTaskStatus|
       unless checkingTaskStatus.is_complete == 1
@@ -660,6 +634,165 @@ end
 		#raise @ch.social_type.trophy.inspect
 		#raise @ch.social_type.trophy.class.inspect		
 
+	end
+	
+	def whoAccepted
+		@accepted = []
+		@thinking = []
+		@declined = []	
+		@orgChallenge = Challenge.where(:_id=>params[:id]).first					
+		#raise @orgChallenge.id.inspect
+		@accepted.push(@orgChallenge.user_id)
+		Challenge.where(:_id=>params[:id]).first.child_challenges.each do |eachChild|
+			#raise eachChild.inspect
+			@childChallenge = Challenge.all(conditions: {:user_id=> eachChild.user_id, :challenge_id => @orgChallenge.id }).first
+			if @childChallenge.social_type.status.to_i == 1
+				@accepted.push(@childChallenge.user_id)
+			elsif @childChallenge.social_type.status.to_i == -1
+				@declined.push(@childChallenge.user_id)
+			else
+				@thinking.push(@childChallenge.user_id)
+			end	
+		end
+		#raise @accepted.inspect
+		#raise @thinking.inspect
+		#raise @declined.inspect
+		render :layout=> false
+	end
+	
+	def whoThinking
+		@accepted = []
+		@thinking = []
+		@declined = []	
+		@orgChallenge = Challenge.where(:_id=>params[:id]).first					
+		#raise @orgChallenge.id.inspect
+		@accepted.push(@orgChallenge.user_id)
+		Challenge.where(:_id=>params[:id]).first.child_challenges.each do |eachChild|
+			#raise eachChild.inspect
+			@childChallenge = Challenge.all(conditions: {:user_id=> eachChild.user_id, :challenge_id => @orgChallenge.id }).first
+			if @childChallenge.social_type.status.to_i == 1
+				@accepted.push(@childChallenge.user_id)
+			elsif @childChallenge.social_type.status.to_i == -1
+				@declined.push(@childChallenge.user_id)
+			else
+				@thinking.push(@childChallenge.user_id)
+			end	
+		end
+		#raise @accepted.inspect
+		#raise @thinking.inspect
+		#raise @declined.inspect
+		render :layout=> false
+	end
+	
+	def whoDeclined
+		@accepted = []
+		@thinking = []
+		@declined = []	
+		@orgChallenge = Challenge.where(:_id=>params[:id]).first					
+		#raise @orgChallenge.id.inspect
+		@accepted.push(@orgChallenge.user_id)
+		Challenge.where(:_id=>params[:id]).first.child_challenges.each do |eachChild|
+			#raise eachChild.inspect
+			@childChallenge = Challenge.all(conditions: {:user_id=> eachChild.user_id, :challenge_id => @orgChallenge.id }).first
+			if @childChallenge.social_type.status.to_i == 1
+				@accepted.push(@childChallenge.user_id)
+			elsif @childChallenge.social_type.status.to_i == -1
+				@declined.push(@childChallenge.user_id)
+			else
+				@thinking.push(@childChallenge.user_id)
+			end	
+		end
+		#raise @accepted.inspect
+		#raise @thinking.inspect
+		#raise @declined.inspect
+		render :layout=> false
+	end
+	
+	def myAccepted	
+		 @orgChallenge = Challenge.where(:_id=>params[:id]).first		 		
+		 #GETING ALL USER CONNECTION
+		 aConnection = []
+		 @allConnections = UserConnection.select(:target_id).where(:user_id=>current_user.id)
+		 @allConnections.each do |aTargetId|
+		   aConnection.push(aTargetId.target_id)
+		 end
+		 #ALL CONNECTION AS PARTICIPANT
+		 @onlyMyFrd = Challenge.all(conditions: {:user_id.in => aConnection, :challenge_id => @orgChallenge.id })
+		 #ALL FRD IN CHALLENGE 
+		 @myAccepted = [] 
+		 @myThinking = []
+		 @myDeclined = []
+		 @onlyMyFrd.each do |aStatus|
+		   if aStatus.social_type.status == 1
+		     @myAccepted.push(aStatus.user_id)
+		   elsif aStatus.social_type.status == -1
+		     @myDeclined.push(aStatus.user_id)
+		   else
+		     @myThinking.push(aStatus.user_id)
+		   end
+		 end
+		 render :layout=> false
+		 #raise @myAccepted.inspect
+		 #raise @myDeclined.inspect
+		 #raise @myThinking.inspect
+	end
+	
+	def myThinking
+		 @orgChallenge = Challenge.where(:_id=>params[:id]).first
+		 #GETING ALL USER CONNECTION
+		 aConnection = []
+		 @allConnections = UserConnection.select(:target_id).where(:user_id=>current_user.id)
+		 @allConnections.each do |aTargetId|
+		   aConnection.push(aTargetId.target_id)
+		 end
+		 #ALL CONNECTION AS PARTICIPANT
+		 @onlyMyFrd = Challenge.all(conditions: {:user_id.in => aConnection, :challenge_id => @orgChallenge.id })
+		 #ALL FRD IN CHALLENGE 
+		 @myAccepted = [] 
+		 @myThinking = []
+		 @myDeclined = []
+		 @onlyMyFrd.each do |aStatus|
+		   if aStatus.social_type.status == 1
+		     @myAccepted.push(aStatus.user_id)
+		   elsif aStatus.social_type.status == -1
+		     @myDeclined.push(aStatus.user_id)
+		   else
+		     @myThinking.push(aStatus.user_id)
+		   end
+		 end
+		 render :layout=> false
+		 #raise @myAccepted.inspect
+		 #raise @myDeclined.inspect
+		 #raise @myThinking.inspect
+	end
+	
+	def myDeclined
+		 @orgChallenge = Challenge.where(:_id=>params[:id]).first
+		 #GETING ALL USER CONNECTION
+		 aConnection = []
+		 @allConnections = UserConnection.select(:target_id).where(:user_id=>current_user.id)
+		 @allConnections.each do |aTargetId|
+		   aConnection.push(aTargetId.target_id)
+		 end
+		 #ALL CONNECTION AS PARTICIPANT
+		 @onlyMyFrd = Challenge.all(conditions: {:user_id.in => aConnection, :challenge_id => @orgChallenge.id })
+		 #ALL FRD IN CHALLENGE 
+		 @myAccepted = [] 
+		 @myThinking = []
+		 @myDeclined = []
+		 @onlyMyFrd.each do |aStatus|
+		   if aStatus.social_type.status == 1
+		     @myAccepted.push(aStatus.user_id)
+		   elsif aStatus.social_type.status == -1
+		     @myDeclined.push(aStatus.user_id)
+		   else
+		     @myThinking.push(aStatus.user_id)
+		   end
+		 end
+		 render :layout=> false
+		 #raise @myAccepted.inspect
+		 #raise @myDeclined.inspect
+		 #raise @myThinking.inspect
 	end
 	
   

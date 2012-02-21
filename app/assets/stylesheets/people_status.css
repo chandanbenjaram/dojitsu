@@ -2,7 +2,20 @@
       background-color: #F4F4F4;
       padding: 8px 8px 8px 8px;
       width: 95%;
+      hight:auto;
     }
+    
+    #navAjax{
+		background-color:#f4f4f4;
+		height:35px;;
+		width:100%;
+	}
+	
+	#navAjaxHidden{
+		background-color:#f4f4f4;
+		height:35px;;
+		width:100%;
+	}
     
     #pStatusMy{
       background-color: #F4F4F4;
@@ -32,9 +45,15 @@
         text-decoration: none;
         font-weight: bold;           
     }
-
-    UL.tabNavigation LI A.selected,
+    
     UL.tabNavigation LI A:hover {
+        background-color: #F4F4F4;
+        color: #000;
+        padding-top: 7px;
+        font-weight: bold;
+    }
+    
+    UL.tabNavigation LI A:focus{
         background-color: #F4F4F4;
         color: #000;
         padding-top: 7px;
@@ -83,4 +102,8 @@
     
     thead th{
       background-color: #FFFFFF;
+    }
+    
+    #myTable{
+    	background-color: #FFFFFF;
     }

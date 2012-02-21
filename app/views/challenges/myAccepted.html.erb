@@ -1,0 +1,24 @@
+<%= stylesheet_link_tag('status_update', 'people_status')%>
+
+<table width="100%" id="myTable" class="tablesorter"> 
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>                          
+      </tr>
+  </thead>
+  <tbody> 
+    <% if @myAccepted.count > 0 %>
+        <% @myAccepted.each do |eachChallenge| %>                    
+            <tr>
+              <td class="bordercolor" width="15%">                                                       
+                  <%= image_tag(FbGraph::User.new(eachChallenge).fetch.picture) %>                          
+              </td>
+              <td class="bordercolor" width="85%" id="nameColor">                          
+                  <%= FbGraph::User.new(eachChallenge).fetch.name %>                           
+              </td>
+            </tr>                    
+        <% end %>
+    <% end %>        
+  </tbody>        
+</table>
