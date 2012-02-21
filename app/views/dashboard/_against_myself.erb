@@ -1,12 +1,16 @@
+
 <%= stylesheet_link_tag('_against_myself')%>
-<table width="100%" >	
+
+<table width="100%"  class="sortable">	
 	<thead id="tableheader ">
 		<tr >
 			<th width="29%" id="borderalign"><span id="spancefortext">NAME</span></th>
-			<th width="35%" id="spancefortext2">COMPLETED</th>
+			<th></th>
+			<th width="35%" id="spancefortext2"><span id="completedtext">COMPLETED</span></th>
 			<th width="19%" id="spancefortext3"><span id="spancefortext1">TO GO</span></th>
 			<th width="17%" id="spancefortext4">LAST UPDATE</th>
 		</tr>
+
 	</thead>
 	<tbody>
 	<% total_challenges =[]	%>
@@ -44,6 +48,9 @@
         <span class="stedpoint"><%=  limitChallenge.start_point.value %> - <%= limitChallenge.end_point.value %></span>
         </td>
 		<td class="bordercolort">
+			<section id="percentagecompleted<%= taskCompleted %>">		</section>
+		</td>
+		<td class="bordercolort">
 		   <div class="taskprogress" id="taskprogress<%= taskCompleted %>"></div><br/>
            <% flag1=0 %>
 		   <% flag2=0 %>
@@ -67,7 +74,7 @@
 		   <script type="text/javascript">
                           $(function() {
                               $("#taskprogress<%= taskCompleted %>").progressbar({ value: Math.round(((<%= aScore %>/<%= (aScore+bScore) %>)*100)) });
-                              $("<p>").attr("id", "checkit").text($("#taskprogress<%= taskCompleted %>").progressbar("option", "value") + "%  ").appendTo("#taskprogress<%= taskCompleted %>");
+                              $("<p>").attr("id", "checkit").text($("#taskprogress<%= taskCompleted %>").progressbar("option", "value") + "%  ").appendTo("#percentagecompleted<%= taskCompleted %>");
                           });
            </script>
            </td>
@@ -75,7 +82,7 @@
 		   </td>
 		   <td class="bordercolort" >
 				<span class = "timestyle1"><%= time_ago_in_words  limitChallenge.created_at%></span><br>
-				<%=link_to( image_tag("update.png"), show_per_challenges_path(:id => limitChallenge._id), :class=>"updatebutton") %>
+				<span class = "updatebuttonmyself"><%=link_to( image_tag("update.png"), show_per_challenges_path(:id => limitChallenge._id), :class=>"updatebutton") %></span>
 		   </td>
 		<% taskCompleted+=1 %>	
 		</tr>
@@ -85,4 +92,5 @@
 		<%end%>
 	</tbody>
 </table>
+
 

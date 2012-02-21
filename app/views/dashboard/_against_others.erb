@@ -1,11 +1,12 @@
+
 <%= stylesheet_link_tag('_against_other')%>
 <table>
 	<thead>
 		<tr id="tableheader">
 			<th id="namespace" width="20%"><span id="spancefortextother">NAME</span>
 			</th>
-			<th width="12%">RANK
-			</th>
+			<th width="12%">RANK</th>
+			<th width="12%"> </th>
 			<th width="50%"><span id="theadmyscore">MY SCORE </span><span id = "theadtopscore">TOP SCORE</span>
 			</th>
 			<th id="lastupspace"><span id="spancefortext2">LAST UPDATE</span>
@@ -48,6 +49,9 @@
 			  <td  class="bordercolortdb" width="50"><span id ="rankspoints"><u>0</u></span><br>
 				<span id="extraspace">(of 1233)</span>
 			  </td>
+			  <td>
+			  <span id="taskprogressaginstothers<%= taskCompleted %>"> </span>
+			  </td>
 			  <td class="bordercolort" width="280">
 			         <div class="taskprogress1" id="taskprogress1<%= taskCompleted %>"></div><br/>
                           <% flag1=0 %>
@@ -77,7 +81,7 @@
 					<script type="text/javascript">
                           $(function() {
                               $("#taskprogress1<%= taskCompleted %>").progressbar({ value: Math.round(((<%= aScore %>/<%= (aScore+bScore) %>)*100)) });
-                              $("<p>").attr("id", "checkit1").text($("#taskprogress1<%= taskCompleted %>").progressbar("option", "value") + "%  ").appendTo("#taskprogress1<%= taskCompleted %>");
+                              $("<p>").attr("id", "checkit1").text($("#taskprogress1<%= taskCompleted %>").progressbar("option", "value") + "%  ").appendTo("#taskprogressaginstothers<%= taskCompleted %>");
                           });
                       </script>
 			  </td>
@@ -88,7 +92,7 @@
 			  <% taskCompleted+=1 %>
 		</tr>
 		<tr>
-		<td colspan="4"><hr> </td>
+		<td colspan="5"><hr> </td>
 		</tr>
 		<% end %>
 	</tbody>

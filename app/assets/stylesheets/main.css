@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* app global placeholder properties */
 ::-webkit-textarea-placeholder, ::-webkit-input-placeholder { 
 	color: #c6c6c6;

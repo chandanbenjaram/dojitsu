@@ -65,7 +65,7 @@ group :assets do
   gem 'coffee-rails', "~> 3.1.0.rc"
   gem 'execjs'
   gem 'uglifier'
-  gem 'therubyracer' 
+  #gem 'therubyracer' 
 end
 
 # Deployment stuff
