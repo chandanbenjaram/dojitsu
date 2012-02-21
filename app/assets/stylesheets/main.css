@@ -2052,3 +2052,9 @@ font-size:15px;
 	font-weight:bold; 
 	color:#666666;
 }
+.td_content
+{
+   font-family: arial;
+    color: #666;
+    font-weight: bold;
+}

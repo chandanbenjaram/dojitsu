@@ -241,7 +241,7 @@
                   <section>
                   <table id="organizer">
                     <tr>
-                         <td height="34px" width="100px">
+                         <td height="20px" width="100px">
                              <span class="colorligtblk1">ORGANIZER</span>
                          </td>
                          <td >
@@ -271,7 +271,7 @@
                    <section>
                    <table id="startdate">
                      <tr>
-                       <td height="34px" width="100px">
+                       <td height="20px" width="100px">
                             <b class="colorligtblk">START POINT</b>
                        </td>
                        <td >
@@ -298,7 +298,7 @@
                 <section>
                 <table id="enddate">
                   <tr> 
-		                 <td height="34px" width=100px>
+		                 <td height="20px" width=100px>
 		                     <b class="colorligtblk">END POINT</b>
 		                 </td>
 		                 <td>
@@ -329,7 +329,7 @@
 			<tr>
             <td>
                 <section class="mychallengea">
-                      <%#= render :partial=> "challenges/againstothers" %>
+                      <%= render :partial=> "challenges/againstothers" %>
                 </section>
 				</section>
             </td>					
@@ -344,13 +344,13 @@
 											      <li><a href="#tab7"><b>TASKS</b></a></li>
 											      <li><a href="#tab8"><b>SCOREBOARD</b></a></li>
 											 </ul>
-											 <section class="tab_container">
+											 <section id="tab_container" class="tab_container12">
 												  <section id="tab7" class="tab_content" style="background:white;">
-												      <%#= render :partial=> "challenges/tasksupdate" %>
+												      <%= render :partial=> "challenges/tasksupdate" %>
 												  </section>
 												  <section id="tab8" style="background:white;" class="tab_content">
 												      <section class="tables">
-												           <%#= render :partial=> "challenges/scoreboard" %>			
+												           <%= render :partial=> "challenges/scoreboard" %>			
 												      </section>   
 												  </section> 
 											 </section> 
@@ -375,23 +375,15 @@
     
     
     float: left;
-    max-height: auto;
-	width: 570px;
+    width: 70%;
 }
 .mychallengea {
-   
-   
-    float: left;
-	max-height: auto;
-	width: 570px;
-    
+   float: left;
+    width: 100%;
 }
 .mychallengeb {
-    
-   
     float: left;
-	max-height: auto;
-    width: 570px;
+    width: 100%;
 }
 .mychallengec {
    

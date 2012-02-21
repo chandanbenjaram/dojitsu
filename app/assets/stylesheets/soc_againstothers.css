@@ -211,7 +211,7 @@ font-size: 19px;
 }
 
 .resttask {
-    color: #666;
+    color: #999;
 float: left;
 left: -1px;
 position: relative;
@@ -237,5 +237,10 @@ font-family: arial;
     padding-top: 4px;
     text-align: center;
     text-transform: uppercase;
-    width: 89%;
+    width: 87%;
+    border: 1px solid #666;
+}
+.links_score_p:hover
+{
+    color:#fff;
 }
