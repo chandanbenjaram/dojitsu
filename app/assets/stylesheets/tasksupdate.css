@@ -6,11 +6,24 @@ font-weight:bold;
 }
 #myscore_td
 {
-text-align:left;
+text-align:center;
+color:#666666;
+}
+#updated_align 
+{
+text-align:center;
+color:#666666;
+}
+#points_align
+{
+left: 10px;
+position: relative;
+color:#666666;
 }
 .td_content_score
 {
 text-align:center;
+background: #F4F4F4;
 }
 #sign
 {
@@ -74,8 +87,11 @@ font-weight:bold;
 #taskstatus
 {
 font-weight:bold;
-color:#8C8C8C;
+color:#666666;
 font-size: 14px;
+}
+.colorlastupdate{
+    color:#999999;
 }
 .tr_style
 {
@@ -95,12 +111,12 @@ background:#f1faec;
 }
 
 #total {
-    color: #999999;
+    color: #999;
     float: left;
-    font-size: 11px;
-    font-weight: bold;
+    font-size: 12px;
     left: 1px;
     position: relative;
+    font-family: arial;
 }
 .taskupdate_bgcolor{
 	background:#f4f4f4;

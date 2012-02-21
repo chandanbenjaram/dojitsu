@@ -17,7 +17,7 @@
 					<% end %>
 				<% end %>
 <table>
-<tr width="100">
+<tr width="100%">
 
 	<td width="22%">
 		<span class="howamspace"> HOW AM I DOING ?</span>
@@ -30,12 +30,15 @@
 	</td>
 
 </tr>
-<tr><hr/></tr>
-<tr width="100">
-	<td width="10%" id="imagewidth">
+</table>
+<hr/>
+<table>
+<tr width="100%">
+  <td width="5%"></td>
+	<td width="15%" id="imagewidth">
 		<%= image_tag (current_user.facebook.picture), :id=>"image" %>
 	</td>
-	<td width="80%">
+	<td width="50%">
 		<div class="task" id="taskpercentage"></div>
 	       <% flag1=0 %>
 		   <% flag2=0 %>
@@ -61,7 +64,7 @@
 			</div>
 		
 		</td>
-	<td width="10%">
+	<td width="15%">
 		<% time_stamps = Array[] %><span class="colorlastupdate">Last Updated</span><br>
 			<% timecount = []%>
 			<% @challenge.tasks.each do |aTask| %>

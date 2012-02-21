@@ -34,13 +34,17 @@ color: #7AC142;
 
 #tasksnumber
 {
-	color: #666666;
-	font-weight: bold;
+	color: #999;
+	
+}
+#percentage_personal_myself
+{
+position:relative;
+    right: 12px;
 }
 
 .totalscorecolor {
-    color: #666666;
-    font-weight: bold;
+    color: #999999;
 }
 #imagewidth
 {
@@ -53,9 +57,8 @@ p {
 }
 
 #tasksnumber2 {
-    color: #666666;
+    color: #999999;
     float: right;
-    font-weight: bold;
     position: relative;
     right: 35px;
     top: -16px;

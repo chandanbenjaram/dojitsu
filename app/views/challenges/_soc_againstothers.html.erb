@@ -51,18 +51,18 @@
 <br/>
 <table>
 	<tr width="100">
-		<td width="13%">
+		<td width="11%">
 			<span id="rankcolor">Rank </span><br><span id="rankcout">18</span><br><span id="rankcolor">(of 2345)</span>
 		</td>
 		</td>
 		<td width="11%">
 			<%= image_tag (current_user.facebook.picture), :id=>"image" %>
 		</td>
-		<td width="10%">
+		<td width="8%">
 			<div id="taskpercentage">
 			</div>
 		</td>
-		<td width="60%">
+		<td width="55%">
 			<div style="width=30px">
 						  <% flag1=0 %>
                           <% flag2=0 %>
@@ -96,7 +96,7 @@
 				<br>
 			</div>
 		</td>
-		<td width="10%">
+		<td width="14%">
 			<% time_stamps = Array[] %><span class="colorlastupdate">Last Updated</span><br>
 			<% timecount = []%>
 			<% @challenge.tasks.each do |aTask| %>

@@ -777,17 +777,18 @@ input.radio {
 }
 
 .links_score_pp {
-	background: none repeat scroll 0 0 #f9a943;
-	border-radius: 3px 3px 3px 3px;
-	color: #FFFFFF;
-	display: block;
-	font-size: 12px;
-	margin: 20px 0;
-	padding: 5px;
-	text-align: center;
-	margin-left:40px;
-	text-transform: uppercase;
-	width: 400px;
+background: none repeat scroll 0 0 #F9A943;
+border: 1px solid #666;
+color: #ffffff;
+display: block;
+font-size: 12px;
+margin: 2px 0px 0px 16px;
+padding: 5px;
+text-align: center;
+text-transform: uppercase;
+width: 380px;
+font-weight: bold;
+font-family: arial;
 }
 
 .links_message_update {
@@ -1943,6 +1944,13 @@ color: #06BACE;
     position: relative;
     top: 2px;
 }
+ .new_challenge_button_new1:hover {
+    float: left;
+    left: 90px;
+    width:60px;
+    position: relative;
+    top: 2px;
+}
 
 a:focus, a:hover {
     color: #666666;
@@ -2044,4 +2052,10 @@ font-size:15px;
 	text-decoration: none; 
 	font-weight:bold; 
 	color:#666666;
+}
+.td_content
+{
+   font-family: arial;
+    color: #666;
+    font-weight: bold;
 }

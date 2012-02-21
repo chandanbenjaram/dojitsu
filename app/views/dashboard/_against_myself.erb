@@ -29,7 +29,7 @@
            <script>
                   var ordId = <%=  orgId = @parentChallenge.user_id %>
            </script>
-           <div class="chname">by
+           <div class="chname"><span id="by_properties" >by </span>
            <% if isStandalone %>
                   <%= @parentChallenge.first_name %>
            <% else %>
@@ -37,7 +37,7 @@
            <% end %>                                  
            </div>                     
         <% else %>
-           <div class="chname">by
+           <div class="chname"><span id="by_properties" >by </span>
            <% if isStandalone %>
                    <%= current_user.gmauth.first_name %>
            <% else %>

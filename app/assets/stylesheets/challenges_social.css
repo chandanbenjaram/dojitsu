@@ -22,15 +22,27 @@
 	color: #666666;
 	text-transform:uppercase;
 }
+.challenge_link1:hover
+{
+    color: gray;
+    font-family: arial;
+    font-size: 12px;
+    font-weight: bold;
+    left: 100px;
+    position: relative;
+    text-decoration: none;
+    top: 7px;
+	text-decoration: none;
+	color: #666666;
+	text-transform:uppercase;
+}
 
 .challange{
 	color: #F8981D;
-    font-size: 20px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-	font-size: 25px;
-	font-weight: bold;
-	
+    	 margin-bottom: 10px;
+   	 text-transform: uppercase;
+	 font-size: 20px;
+	font-family: arial;
 }
 .colorligtblk
 {
@@ -146,4 +158,19 @@ background: none repeat scroll 0 0 #FFFFFF;
     float: left;
     overflow: hidden;
     width: 100%;
+}
+
+#tab_container {
+background: none repeat scroll 0 0 white;
+border-color: #F4F4F4 #F4F4F4 #666;
+border-style: solid;
+clear: both;
+float: left;
+overflow: hidden;
+width: 103%;
+margin-left: -9px;
+}
+.tab_content {
+padding: 10px;
+font-size: 1.2em;
 }

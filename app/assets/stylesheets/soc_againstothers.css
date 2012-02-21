@@ -177,6 +177,8 @@ ul.tabs1 li a {
 #rankcout
 {
 color: #F9A943;
+font-weight: bold;
+font-size: 19px;
 }
 
 #myscore {
@@ -209,12 +211,12 @@ color: #F9A943;
 }
 
 .resttask {
-    color: #666666;
-    float: left;
-    font-weight: bold;
-    left: -1px;
-    position: relative;
-    top: 0;
+    color: #999;
+float: left;
+left: -1px;
+position: relative;
+top: 0;
+font-family: arial;
 }
 
 #aspercentage_personal{
@@ -235,5 +237,10 @@ color: #F9A943;
     padding-top: 4px;
     text-align: center;
     text-transform: uppercase;
-    width: 89%;
+    width: 87%;
+    border: 1px solid #666;
+}
+.links_score_p:hover
+{
+    color:#fff;
 }

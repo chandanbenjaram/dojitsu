@@ -6,7 +6,12 @@ float: right;
 .bordercolortdb {
     margin: 3px 5px 5px;
     padding-left: 15px;
-};
+}
+.ui-widget-content {
+background: url('progress.PNG') repeat scroll 0 0 #E9E9E9;
+color: #222;
+width: 97%;
+}
 #extraspace
 {
  width: 20%;
