@@ -177,6 +177,8 @@ ul.tabs1 li a {
 #rankcout
 {
 color: #F9A943;
+font-weight: bold;
+font-size: 19px;
 }
 
 #myscore {
@@ -212,12 +214,12 @@ a:focus, a:hover
 }
 
 .resttask {
-    color: #666666;
-    float: left;
-    font-weight: bold;
-    left: -1px;
-    position: relative;
-    top: 0;
+    color: #666;
+float: left;
+left: -1px;
+position: relative;
+top: 0;
+font-family: arial;
 }
 
 #aspercentage_personal{

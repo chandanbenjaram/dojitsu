@@ -37,10 +37,14 @@ color: #7AC142;
 	color: #666666;
 	font-weight: bold;
 }
+#percentage_personal_myself
+{
+position:relative;
+    right: 12px;
+}
 
 .totalscorecolor {
     color: #666666;
-    font-weight: bold;
 }
 #imagewidth
 {
