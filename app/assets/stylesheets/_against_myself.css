@@ -2,14 +2,12 @@
 .stedpoint
 {
 	 color: #666666;
-	
+	 font-weight: bold;
 }
 .chname
 {
 	color: #666666;
-	font-weight:bold;
-	font-size: 15px;
-	
+	 font-weight: bold;
 }
 
 #spancefortext2
@@ -27,25 +25,26 @@ border-right: 1px solid white;
 padding-left: 18px;
 }
 #checkit {
-    color: #7AC142;
+ color: #7AC142;
     float: right;
     font-size: 15px;
     font-weight: bold;
     position: relative;
-    right: 106%;
-    top: -20px;
-    width: 14%;
+    right: 36%;
+    top: -10px;
+    width: 57%;
 }
 
+
 .pointscolor1 {
-   color: #F8981D;
-float: left;
-font-weight: bold;
-left: 205px;
-position: relative;
-top: -30px;
-width: 100px;
-text-align: right;
+    color: #F8981D;
+    float: left;
+    font-weight: bold;
+    left: 177px;
+    position: relative;
+    text-align: right;
+    top: -30px;
+    width: 100px;
 }
 
 .ui-corner-all
@@ -55,11 +54,12 @@ border-radius: 0 0 0 0;
 .completedtask {
     color: #7AC142;
     font-weight: bold;
-    left: 30px;
+    left: -3px;
     position: relative;
     top: 19px;
     width: 40%;
 }
+
 .notcompleted
 {
 	float:left;
@@ -68,13 +68,19 @@ border-radius: 0 0 0 0;
 	color:#F8981D;
 	top: 5px;
 }
-
 .taskprogress {
     float: left;
-    left: 27px;
+    left: -7px;
     position: relative;
-    top: 20px;
-    width: 140%;
+    top: 22px;
+    width: 155%;
+}
+select {
+color: #F9A943;
+height: 35px;
+margin-top: -8px;
+top: 5px;
+vertical-align: top;
 }
 thead th {
     background: none repeat scroll 0 0 #BBBBBB;
@@ -105,16 +111,9 @@ thead th {
 #spancefortextother {
     float: right;
     position: relative;
-    right: 67%;
+    right: 59%;
 }
-.timestyle1 {
-    color: #666666;
-    float: right;
-    font-weight: bold;
-    position: relative;
-    right: -15px;
-    width: 110%;
-}
+
 .updatebutton
 {
 top: 10px;
@@ -131,7 +130,26 @@ font-size: 12px;
 font-size: 12px;
 font-weight: normal;
 }
-#by_properties
-{
-	font-weight: normal;
+#completedtext {
+    float: right;
+    position: relative;
+    right: 182px;
+}
+.updatebuttonmyself {
+    float: right;
+    position: relative;
+    right: 7px;
+    top: -1px;
+}
+.bordercolort {
+    margin: 3px 5px 5px;
+    padding-bottom: 6px;
+    padding-left: 16px;
+}
+.timestyle1 {
+    color: #666666;
+    float: right;
+    font-weight: bold;
+    position: relative;
+    right: 52px;
 }

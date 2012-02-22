@@ -2,11 +2,7 @@
 {
 float: right;
 }
-#theadmyscore {
-    float: left;
-    left: 17%;
-    position: relative;
-}
+
 .bordercolortdb {
     margin: 3px 5px 5px;
     padding-left: 15px;
@@ -39,36 +35,26 @@ th
 {
 	border-right: 2px solid #FFFFFF;
 }
+
 .ui-widget-content {
-    background: none repeat scroll 0 0 #;
     border: 1px solid #AAAAAA;
     color: #222222;
     float: right;
     position: relative;
     top: 20px;
-    width: 85%;
-}
-
-.pointscolor2 {
-    color: #F8981D;
-float: left;
-font-weight: bold;
-left: 240px;
-position: relative;
-top: 2px;
-font-size: 12px;
-text-align: right;
+    width: 104%;
 }
 .overalltasks {
     color: #7AC142;
-font-weight: bold;
-left: 45px;
-position: relative;
-top: 21px;
-width: 30%;
-text-align: left;
-font-size: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    left: -8px;
+    position: relative;
+    text-align: left;
+    top: 21px;
+    width: 30%;
 }
+
 #other_tasks
 {
 font-weight: normal;
@@ -80,17 +66,32 @@ position: relative;:
 #checkit1 {
     color: #7AC142;
     float: right;
-    font-size: 15px;
+    font-size: 19px;
     font-weight: bold;
     position: relative;
-    right: 114%;
-    top: -20px;
-    width: 10%;
+    right: 5%;
+    top: 4px;
+}
+.pointscolor2 {
+    color: #F8981D;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    left: 193px;
+    position: relative;
+    text-align: right;
+    top: 2px;
 }
 
 #spancefortext2 {
- 
-    right: 10%;
+float: right;
+position: relative;
+right: 0%;
+}
+#theadmyscore {
+    float: left;
+    left: -7%;
+    position: relative;
 }
 
 
@@ -107,4 +108,9 @@ position: relative;:
     float: right;
     position: relative;
     right: 67%;
+}
+.bordercolort {
+    margin: 3px 5px 5px;
+    padding-bottom: 17px;
+    padding-left: 16px;
 }
