@@ -1,15 +1,15 @@
 #cboxBottomCenter {
-   height: 0px;
+    height: 0px;
 }
 #cboxMiddleLeft {
-    
+
     width: 0px;
 }
 #cboxTopCenter {
     height: 0;
 }
 #cboxMiddleRight {
- 
+
     width: 0px;
 }
 #winList {
@@ -20,7 +20,7 @@
     padding: 10px 12px 20px;
     width: auto;
 }
-  
+
 #winListM {
     background-color: #FFFFFF;
     color: #666666;
@@ -29,74 +29,89 @@
     padding: 10px 10px 10px 20px;
     width: auto;
 }
-  
+
 #winListMNo {
     background-color: #F4F4F4;
     border: 2px solid #D0D0D0;
     margin-top: 10px;
     padding: 10px 10px 10px 20px;
 }
-  #winListMNoEdit{
+#winListMNoEdit{
     background-color: #f4f4f4;
     border: 2px;
     border-style:solid;
     border-color: #D0D0D0;
     margin-top: 10px;
     padding: 10px 10px 10px 20px;
-  }	
-  
-  #winListMNoL{
+}	
+
+#winListMNoL1{
     margin-top: 10px;
     background-color: #ffffff;
-  }
-
-  #addPersonalM{
+}
+#winListMNoL{
+    margin-top: -40px;
+    background-color: #ffffff;
+}
+#addPersonalM{
     margin-top:10px;	
-  }
-	
-  #addPersonalMm{
-    margin-top:10px;
-    hight:100px;	
-  }
-
-	.textareaMessage{
-		border-width: 1px;
-		border-style: solid;
-		border-color: #999999;
-		background-color:#F4F4F4;
-		background-repeat: repeat-x;
-		font-family: Arial;
-		font-size: 15px;
-		color: #333333;
-		resize: none;
-		height: 50px;	
-		width:98%;
-	}
-
-	.linksMWinner {
-		background: none repeat scroll 0 0 #f9a943;
-		border-radius: 3px 3px 3px 3px;
-		color: #FFFFFF;
-		display: block;
-		font-size: 12px;
-		margin: 20px 0;
-		padding: 5px;
-		text-align: center;
-		text-transform: uppercase;
-		width: 90px;
-		margin-right:10px;
-		position: relative;
-		text-align: center;
-		top: -20px;
 }
 
-	#sentMessage{
-		color: #666666;
+#addPersonalMm{
+    margin-top:10px;	
+}
+
+.textareaMessage{
+    border-width: 1px;
+    border-style: solid;
+    border-color: #999999;
+    background-color:#F4F4F4;
+    background-repeat: repeat-x;
+    font-family: Arial;
+    font-size: 15px;
+    color: #333333;
+    resize: none;
+    height: 50px;	
+    width:98%;
+}
+
+.linksMWinner {
+    background: none repeat scroll 0 0 #f9a943;
+    border-radius: 3px 3px 3px 3px;
+    color: #FFFFFF;
+    display: block;
+    font-size: 12px;
+    margin: 20px 0;
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 90px;
+    margin-right:10px;
+    position: relative;
+    text-align: center;
+    top: -20px;
+}
+
+#sentMessage{
+    color: #666666;
 }
 
 #backround
 {
- background: #BBBBBB;
+    background: #BBB;
+    padding-left: 10px;
+}
+#winners_text{
+    font-weight: bold;
+    font-size: 15px;
+    color: #999;
+}
+#backround1 {
+    background: #BBB;
+    text-align: right;
+    float: right;
+    position: relative;
+    padding-right: 30px;
 }
 .titlepopup {
     position: relative;
@@ -104,8 +119,8 @@
 }
 #image
 {
-position:relaticve;
-margin-top:0px;
+    position:relaticve;
+    margin-top:0px;
 }
 
 #top_score {
@@ -116,15 +131,15 @@ margin-top:0px;
 }
 .tasks_color
 {
-font-size:16px;
-font-weight:bold;
-color:green;
+    font-size:16px;
+    font-weight:bold;
+    color:green;
 }
 #points
 {
-font-size:16px;
-font-weight:bold;
-color:gray;
+    font-size:16px;
+    font-weight:bold;
+    color:gray;
 }
 
 .notcompleted2 {
@@ -141,15 +156,15 @@ color:gray;
 }
 #button_color
 {
-	background-color:orange;
-	color:white;
-	margin-right:20px;
+    background-color:orange;
+    color:white;
+    margin-right:20px;
 }
 .task
 {
-	width:100%;
-	}
-	
+    width:100%;
+}
+
 ul.tabs1 li a {
     border: 1px solid #FFFFFF;
     color: #FFFFFF;
@@ -163,7 +178,7 @@ ul.tabs1 li a {
 }
 #createnewte
 {
- padding: 0;
+    padding: 0;
 }
 
 #total {
@@ -176,9 +191,9 @@ ul.tabs1 li a {
 }
 #rankcout
 {
-color: #F9A943;
-font-weight: bold;
-font-size: 19px;
+    color: #F9A943;
+    font-weight: bold;
+    font-size: 19px;
 }
 
 #myscore {
@@ -189,14 +204,14 @@ font-size: 19px;
 
 #rankcolor
 {
-	color: #999999;
-	font-weight: bold;
+    color: #999999;
+    font-weight: bold;
 }
 .pointscolor{
- 
- color: #666666;
- font-weight: bold;
- font-size: 13px;
+
+    color: #666666;
+    font-weight: bold;
+    font-size: 13px;
 }
 
 
@@ -212,18 +227,18 @@ font-size: 19px;
 
 .resttask {
     color: #999;
-float: left;
-left: -1px;
-position: relative;
-top: 0;
-font-family: arial;
+    float: left;
+    left: -1px;
+    position: relative;
+    top: 0;
+    font-family: arial;
 }
 
 #aspercentage_personal{
-  	 color: #7AC142;
+    color: #7AC142;
     font-weight: bold;
     margin: 7px -8px 0;
-  }
+}
 .links_score_p {
     background: none repeat scroll 0 0 #F9A943;
     border-radius: 0 0 0 0;

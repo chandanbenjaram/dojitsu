@@ -1,113 +1,120 @@
 thead
 {
 
-color:#8C8C8C;
-font-weight:bold;
+    color:#8C8C8C;
+    font-weight:bold;
 }
 #myscore_td
 {
-text-align:center;
-color:#666666;
+    text-align: center;
+    color: #999;
+    font-weight: bold;
+    font-family: arial;
 }
 #updated_align 
 {
-text-align:center;
-color:#666666;
+    text-align: center;
+    color: #999;
+    font-family: arial;
+    font-weight: bold;
 }
 #points_align
 {
-left: 10px;
-position: relative;
-color:#666666;
+    left: 10px;
+    position: relative;
+    color: #999;
+    font-family: arial;
+    font-weight: bold;
 }
 .td_content_score
 {
-text-align:center;
-background: #F4F4F4;
+    text-align:center;
+    background: #F4F4F4;
 }
 #sign
 {
-color:orange;
-font-size:8;
-font-weight:bold;
+    color:orange;
+    font-weight:bold;
 }
 .hour
 {
-width:30px;
-text-align: center;
+    width:30px;
+    text-align: center;
 }
 #orange
 {
-color:orange;
+    color:orange;
 }
 #green
 {
-color:green;
+    color:green;
 }
 #total_score
 {
-color:green;
-font-weigth:bold;
+    left: 10px;
+    position: relative;
+    color: #999;
+    font-family: arial;
+    font-weight: bold;
 }
 .my_submit_button
 {
-background-image: url("/assets/update.png");
-color:#fff;
-height: 26px;
-width: 89px;
+    background-image: url("/assets/update.png");
+    color:#fff;
+    height: 26px;
+    width: 89px;
 }
 .my_submit_button1
 {
-background-image: url("/assets/submit_button.PNG");
-background-repeat:no-repeat;
-color:#fff;
-height: 26px;
-width: 89px;
+    background-image: url("/assets/submit_button.PNG");
+    background-repeat: no-repeat;
+    color: white;
+    height: 30px;
+    width: 99px;
 }
-border: none;
-}
+
 .td_content
 {
-text-align:center;
-color:#8C8C8C;
-font-weight:bold;
+    text-align:center;
+    color:#8C8C8C;
+    font-weight:bold;
 }
 #update_time
 {
-text-align:center;
-color:#8C8C8C;
-font-weight:bold;
+    text-align:center;
+    color:#8C8C8C;
+    font-weight:bold;
 }
 #tfoot{
- font-style: normal;
- font-weight:bold;
- color:#D7D7D7;
- font-size:16px;
+    font-style: normal;
+    font-weight:bold;
+    color:#D7D7D7;
+    font-size:16px;
 }
 #taskstatus
 {
-font-weight:bold;
-color:#666666;
-font-size: 14px;
+    font-weight:bold;
+    color:#666666;
+    font-size: 14px;
 }
 .colorlastupdate{
     color:#999999;
 }
 .tr_style
 {
-background:#ffffff;
+    background:#ffffff;
 }
 .tr_style1
 {
-background:#f1faec;
+    background:#f1faec;
 }
 hr_line
 {
-background:#ffffff;
+    background:#ffffff;
 }
 hr_line1
 {
-background:#f1faec;
+    background:#f1faec;
 }
 
 #total {
@@ -119,7 +126,7 @@ background:#f1faec;
     font-family: arial;
 }
 .taskupdate_bgcolor{
-	background:#f4f4f4;
+    background:#f4f4f4;
 }
 
 .tab_container {
@@ -131,5 +138,5 @@ background:#f1faec;
     float: left;
     overflow: hidden;
     width: 100%;
-	border-bottom:2px solid #666666;
+    border-bottom:2px solid #666666;
 }

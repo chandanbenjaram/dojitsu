@@ -3,159 +3,159 @@
 <% total_score_count = 0 %>
 <% total = 0 %>
 <% @challenge.tasks.each do |aTask| %>
-<% total += aTask.score.to_i %>
+  <% total += aTask.score.to_i %>
 <%end%>
 
 <table>
-	<tr width="100">
-		
-		<td width="22%">
-			<b  id="total"> HOW AM I DOING ? </b>
-		</td>
-		<td width="80%">
-			
-			 <% allTaskComplete = 0 %>
-			 <% if @challenge.instance_of?Challenge %>
-				 <% if @challenge.canCompleteBeforeTasks? %> 
-				    <% @challenge.tasks.each do |aTask| %>
-				      <% if aTask.is_complete == 0 %>
-				        <% allTaskComplete = 1 %>
-				        <% break %>			
-				      <% end %>
-				    <% end %>
-				    <% if allTaskComplete != 1 %> 
-				 			<%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", winnerListPopup_challenges_path(:id => @challenge.id) , :class => "links_score_p" %>
-				 	<% end %>					 	
-				 <% else %>
-				 	<%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", winnerListPopup_challenges_path(:id => @challenge.id) , :class => "links_score_p" %>
-				 <% end %>
-			<% else %>
-				<% if @challenge.canCompleteBeforeTasks? %> 
-				    <% @challenge.tasks.each do |aTask| %>
-				      <% if aTask.is_complete == 0 %>
-				        <% allTaskComplete = 1 %>
-				        <% break %>			
-				      <% end %>
-				    <% end %>
-				    <% if allTaskComplete != 1 %> 
-				 			<%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", challenge_comp_challenges_path(:id => @challenge.id) , :class => "links_score_pp" %>
-				 	<% end %>					 	
-				 <% else %>
-				 	<%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", challenge_comp_challenges_path(:id => @challenge.id) , :class => "links_score_pp" %>
-				 <% end %>				
-			<% end %>	 
-			</td>
-	</tr>
+  <tr width="100">
+
+    <td width="22%">
+      <b  id="total"> HOW AM I DOING ? </b>
+    </td>
+    <td width="80%">
+
+      <% allTaskComplete = 0 %>
+      <% if @challenge.instance_of?Challenge %>
+        <% if @challenge.canCompleteBeforeTasks? %> 
+          <% @challenge.tasks.each do |aTask| %>
+            <% if aTask.is_complete == 0 %>
+              <% allTaskComplete = 1 %>
+              <% break %>			
+            <% end %>
+          <% end %>
+          <% if allTaskComplete != 1 %> 
+            <%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", winnerListPopup_challenges_path(:id => @challenge.id) , :class => "links_score_p" %>
+          <% end %>					 	
+        <% else %>
+          <%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", winnerListPopup_challenges_path(:id => @challenge.id) , :class => "links_score_p" %>
+        <% end %>
+      <% else %>
+        <% if @challenge.canCompleteBeforeTasks? %> 
+          <% @challenge.tasks.each do |aTask| %>
+            <% if aTask.is_complete == 0 %>
+              <% allTaskComplete = 1 %>
+              <% break %>			
+            <% end %>
+          <% end %>
+          <% if allTaskComplete != 1 %> 
+            <%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", challenge_comp_challenges_path(:id => @challenge.id) , :class => "links_score_pp" %>
+          <% end %>					 	
+        <% else %>
+          <%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", challenge_comp_challenges_path(:id => @challenge.id) , :class => "links_score_pp" %>
+        <% end %>				
+      <% end %>	 
+    </td>
+  </tr>
 </table>
 <hr/>
 <br/>
 <table>
-	<tr width="100">
-		<td width="11%">
-			<span id="rankcolor">Rank </span><br><span id="rankcout">18</span><br><span id="rankcolor">(of 2345)</span>
-		</td>
-		</td>
-		<td width="11%">
-			<%= image_tag (current_user.facebook.picture), :id=>"image" %>
-		</td>
-		<td width="8%">
-			<div id="taskpercentage">
-			</div>
-		</td>
-		<td width="55%">
-			<div style="width=30px">
-						  <% flag1=0 %>
-                          <% flag2=0 %>
-						  <% flag3=0 %>
-                          <% aScore= 0 %>
-                          <% bScore= 0 %>
-						  <% cScore= 0 %>
-                          <% @challenge.tasks.each do |aTask| %>
-							<% cScore+=Integer(aTask.score) %>
-							<% flag3+=1 %>
-                              <% if (aTask.is_complete == 1 ) %>
-                                <% aScore+=Integer(aTask.score) %>
-                                <% flag1+=1 %>
-                              <% else %>
-                                <% bScore += aTask.score.to_i %>
-                                <% flag2+=1 %>
-                              <% end %>
-                          <% end %>
-				<span id="myscore">My score</span><span  id ="top_score">Top Score</span> <br>
-				<div class="taskprogress" id="taskprogress"></div>
-				
-				<div class="showperscore_personal"></div>	
-				<div id="blackbox_personal">
-				<div class="overalldata">
-						<span class="totalscorecolor"><%= cScore %> points (<%= flag3 %>&nbsp;tasks)</span>
-				</div>
-				<div class="resttask">
-					<span class="myscorecolor"><%= aScore %> </span>points (<%= flag1 %>&nbsp;tasks) 
-				</div>
-			</div>
-				<br>
-			</div>
-		</td>
-		<td width="14%">
-			<% time_stamps = Array[] %><span class="colorlastupdate">Last Updated</span><br>
-			<% timecount = []%>
-			<% @challenge.tasks.each do |aTask| %>
-				<% timecount.push(aTask.updated_at) %>
-			<% end %>
-			<% finaltime = []%>
-			<% timecount.delete_if {|x| x == nil}.each do |latesttime|%>
-				<% finaltime.push(latesttime)	 %>
-			<%end%>
-		<% if finaltime.count == 0 %>
-				
-						No updation is takes place
-				
-				<%else%>
-				<span class="latestupdatedtime"><%= time_ago_in_words finaltime.sort.last %></span>
-			<%end%>	
-			
-		
-		</td>
-	</tr>
+  <tr width="100">
+    <td width="11%">
+      <span id="rankcolor">Rank </span><br><span id="rankcout">18</span><br><span id="rankcolor">(of 2345)</span>
+    </td>
+    </td>
+    <td width="11%">
+      <%= image_tag (current_user.facebook.picture), :id=>"image" %>
+    </td>
+    <td width="8%">
+      <div id="taskpercentage">
+      </div>
+    </td>
+    <td width="55%">
+      <div >
+        <% flag1=0 %>
+        <% flag2=0 %>
+        <% flag3=0 %>
+        <% aScore= 0 %>
+        <% bScore= 0 %>
+        <% cScore= 0 %>
+        <% @challenge.tasks.each do |aTask| %>
+          <% cScore+=Integer(aTask.score) %>
+          <% flag3+=1 %>
+          <% if (aTask.is_complete == 1 ) %>
+            <% aScore+=Integer(aTask.score) %>
+            <% flag1+=1 %>
+          <% else %>
+            <% bScore += aTask.score.to_i %>
+            <% flag2+=1 %>
+          <% end %>
+        <% end %>
+        <span id="myscore">My score</span><span  id ="top_score">Top Score</span> <br>
+        <div class="taskprogress" id="taskprogress"></div>
+
+        <div class="showperscore_personal"></div>	
+        <div id="blackbox_personal">
+          <div class="overalldata">
+            <span class="totalscorecolor"><%= cScore %> points (<%= flag3 %>&nbsp;tasks)</span>
+          </div>
+          <div class="resttask">
+            <span class="myscorecolor"><%= aScore %> </span>points (<%= flag1 %>&nbsp;tasks) 
+          </div>
+        </div>
+        <br>
+      </div>
+    </td>
+    <td width="14%">
+      <% time_stamps = Array[] %><span class="colorlastupdate">Last Updated</span><br>
+      <% timecount = []%>
+      <% @challenge.tasks.each do |aTask| %>
+        <% timecount.push(aTask.updated_at) %>
+      <% end %>
+      <% finaltime = []%>
+      <% timecount.delete_if {|x| x == nil}.each do |latesttime|%>
+        <% finaltime.push(latesttime)	 %>
+      <%end%>
+      <% if finaltime.count == 0 %>
+
+        No updation is takes place
+
+      <%else%>
+        <span class="latestupdatedtime"><%= time_ago_in_words finaltime.sort.last %></span>
+      <%end%>	
+
+
+    </td>
+  </tr>
 </table>
 
 <%#= link_to "Testing", winnerListPopup_challenges_path(:id => @challenge.id) , :class => "links_score_p" %>
 
 <script type="text/javascript">
 
-$('.links_score_p').colorbox();
+  $('.links_score_p').colorbox();
 
-$(function() {
+  $(function() {
 		
-	$("#taskprogress").progressbar({ value: Math.round(((<%= aScore %>/<%= (aScore+bScore) %>)*100)) });	
+    $("#taskprogress").progressbar({ value: Math.round(((<%= aScore %>/<%= (aScore+bScore) %>)*100)) });	
 	
-	$("<p>").attr("id", "percentage_personal").text($("#taskprogress").progressbar("option", "value") + "%  ").appendTo("#taskprogress");
-});
+      $("<p>").attr("id", "percentage_personal").text($("#taskprogress").progressbar("option", "value") + "%  ").appendTo("#taskprogress");
+    });
 </script>
 
 <script type="text/javascript">
-function mark_as_complete()
-{  
-  alert("In Progress");
-}
+    function mark_as_complete()
+    {  
+      alert("In Progress");
+    }
 </script>
 
 
 
 
 <style>
-.overalldata {
+  .overalldata {
     float: right;
     width: 45%;
-}
-.myscorecolor{
-color: #7AC142;
-}
-.totalscorecolor{
-color: #666666;
-}
-.latestupdatedtime{
+  }
+  .myscorecolor{
+    color: #7AC142;
+  }
+  .totalscorecolor{
+    color: #666666;
+  }
+  .latestupdatedtime{
 
-color: #999999;}
+    color: #999999;}
 </style>
 
