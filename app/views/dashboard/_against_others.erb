@@ -1,5 +1,6 @@
 
 <%= stylesheet_link_tag('_against_other')%>
+
 <table>
 	<thead>
 		<tr id="tableheader">
@@ -14,6 +15,7 @@
 		</tr>
 	</thead>
 	<tbody>
+	 <%@totalChallegne = 1%>
 		<% total_challenges =[]	%>
 	    <% current_user.challenges.each do |userChallenge| %>
 			<% total_challenges<<userChallenge %>
@@ -47,7 +49,17 @@
                   <span class="stedpoint"><%=  limitChallenge.start_point.value %> - <%= limitChallenge.end_point.value %></span> 
               </td>
 			  <td  class="bordercolortdb" width="50"><span id ="rankspoints"><u>0</u></span><br>
-				<span id="extraspace">(of 1233)</span>
+			 
+			<% if limitChallenge.instance_of?ChildChallenge %>
+				<% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>
+				<% abtTatal = @parentChallenge.child_challenges.count %>
+				 <span id="extraspace">(of <%= @totalChallegne = abtTatal +1 %>)</span>
+			 
+			<% else %>
+				<% abtTatal = limitChallenge.child_challenges.count %>
+				 <span id="extraspace">(of <%= @totalChallegne = abtTatal +1 %>)</span>
+
+			<% end %>
 			  </td>
 			  <td>
 			  <span id="taskprogressaginstothers<%= taskCompleted %>"> </span>

@@ -52,7 +52,18 @@
 <table>
   <tr width="100">
     <td width="11%">
-      <span id="rankcolor">Rank </span><br><span id="rankcout">18</span><br><span id="rankcolor">(of 2345)</span>
+	<% if @challenge.instance_of?ChildChallenge %>
+			<% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
+			<% abtTatal = @parentChallenge.child_challenges.count %>
+			<span id="rankcolor">Rank </span><br><span id="rankcout">18</span><br><span id="rankcolor">(of <%= @totalChallegne = abtTatal +1 %>)</span>		
+	
+		 
+		<% else %>
+			<% abtTatal = @challenge.child_challenges.count %>
+			<span id="rankcolor">Rank </span><br><span id="rankcout">18</span><br><span id="rankcolor">(of <%= @totalChallegne = abtTatal +1 %>)</span>		
+
+		<% end %>
+     
     </td>
     </td>
     <td width="11%">
@@ -108,7 +119,7 @@
       <%end%>
       <% if finaltime.count == 0 %>
 
-        No updation is takes place
+        No Updates
 
       <%else%>
         <span class="latestupdatedtime"><%= time_ago_in_words finaltime.sort.last %></span>
