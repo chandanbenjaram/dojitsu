@@ -70,8 +70,13 @@
 												var my_check_score="<%= aTask.score.to_i %>";
 												var elTableRow = document.getElementById("row<%= t%>");
 												var elTableCells = elTableRow.getElementsByTagName("td");
-												document.getElementById("hours_myscore<%=t%>").innerHTML=my_check_score
+												document.getElementById("hours_myscore<%= t %>").innerHTML = my_check_score
 											 }
+										}
+										
+										function buttonClicked()
+										{
+											alert(document.getElementById("hours_myscore<%= t%>"));
 										}
 						</script>
 					<% else %>
@@ -135,7 +140,7 @@
 						<td width=28% id="updated_at" class="td_content">
 						   <% if aTask.score_by == "Check box:1 for checking off the task"  %>
 								<%if aTask.total == 0 %>
-									<%= link_to image_tag("update.png"), update_tasks_list_challenges_path(:id=>aTask.id, :challengeId=>@challenge.id, :score=>aTask.score.to_i,:total=>aTask.total) %>
+									<%= link_to image_tag("update.png"), update_tasks_list_challenges_path(:id=>aTask.id, :challengeId=>@challenge.id, :score=>aTask.score.to_i, :total=>aTask.total) %>
 								<% else %>
 									  <b id="update_time"><%=  time_ago_in_words aTask.updated_at %></b>
 								<% end%>
@@ -212,11 +217,18 @@
 		<td width=18% class="td_content_score">
 			<b  id="total_score" ><%=total_score %></b>
 		<td width=18%>
-			<b  id="total1"><%= button_to "" ,show_per_challenges_path,:class=>"my_submit_button1"%></b>
+			<%=image_tag("submit.PNG",  :onclick => "demo();") %>
 		</td>
 	</tfoot>
 	
 </table>
+<script>
+function demo(){
+
+buttonClicked();
+}
+
+</script>
 
 
 
