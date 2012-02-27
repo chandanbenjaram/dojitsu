@@ -35,7 +35,14 @@ padding-left: 18px;
     width: 57%;
 }
 
-
+.timestyle1 {
+    color: #666666;
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    position: relative;
+    right: 14px;
+}
 .pointscolor1 {
     color: #F8981D;
     float: left;
@@ -145,11 +152,4 @@ font-weight: normal;
     margin: 3px 5px 5px;
     padding-bottom: 6px;
     padding-left: 16px;
-}
-.timestyle1 {
-    color: #666666;
-    float: right;
-    font-weight: bold;
-    position: relative;
-    right: 52px;
 }

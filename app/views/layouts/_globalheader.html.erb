@@ -57,7 +57,7 @@ $(document).ready(function () {
 		<div class="authnav">
 			<ul>
 				<li>
-					<%=link_to image_tag("loginbutton.png"), user_omniauth_authorize_path(:facebook, :display=>"popup"), :class => "popup", :"data-width" => 600, :"data-height" => 400 , :isNewChallenge => "isNew"%>		
+					<%=link_to image_tag("btn_connect_fb.png"), user_omniauth_authorize_path(:facebook, :display=>"popup"), :class => "popup", :"data-width" => 600, :"data-height" => 400 , :isNewChallenge => "isNew"%>		
 				</li>
 				 <li>                                                                                                                                         
 				<%= link_to image_tag("register.PNG", :alt => "Register"), new_user_registration_path,  :title=>"Register", :style => "float:right"%>
