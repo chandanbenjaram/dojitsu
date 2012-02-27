@@ -1,31 +1,39 @@
 
 .stedpoint
 {
-	 color: #666666;
-	 font-weight: bold;
+    color: #666;
+    font-weight: normal;
+    font-size: 12px;
+    font-family: arial;
+}
+#by_properties{
+    font-weight: normal;
+    font-family: arial;
 }
 .chname
 {
-	color: #666666;
-	 font-weight: bold;
+    color: #666;
+    font-weight: bold;
+    font-size: 12px;
+    font-family: arial;
 }
 
 #spancefortext2
 {
-	background: #BBBBBB;
+    background: #BBBBBB;
 }
 #spancefortext3
 {
-	background: #BBBBBB;
+    background: #BBBBBB;
 }
 #spancefortext4
 {
-	background: #BBB;
-border-right: 1px solid white;
-padding-left: 18px;
+    background: #BBB;
+    border-right: 1px solid white;
+    padding-left: 18px;
 }
 #checkit {
- color: #7AC142;
+    color: #7AC142;
     float: right;
     font-size: 15px;
     font-weight: bold;
@@ -35,84 +43,78 @@ padding-left: 18px;
     width: 57%;
 }
 
-.timestyle1 {
-    color: #666666;
-    float: right;
-    font-size: 12px;
-    font-weight: bold;
-    position: relative;
-    right: 14px;
-}
+
 .pointscolor1 {
     color: #F8981D;
-    float: left;
+    float: right;
     font-weight: bold;
-    left: 177px;
+    right: 20px;
     position: relative;
     text-align: right;
-    top: -30px;
+    top: 18px;
     width: 100px;
 }
 
 .ui-corner-all
 {
-border-radius: 0 0 0 0;
+    border-radius: 0 0 0 0;
 }
 .completedtask {
     color: #7AC142;
     font-weight: bold;
     left: -3px;
     position: relative;
-    top: 19px;
-    width: 40%;
+    top: 2px;
+    width: 70%;
 }
+
 
 .notcompleted
 {
-	float:left;
-	left:3px;
-	position:relative;
-	color:#F8981D;
-	top: 5px;
+    float:left;
+    left:3px;
+    position:relative;
+    color:#F8981D;
+    top: 5px;
 }
 .taskprogress {
     float: left;
     left: -7px;
     position: relative;
-    top: 22px;
-    width: 155%;
+    top: 5px;
+    width: 190%;
 }
 select {
-color: #F9A943;
-height: 35px;
-margin-top: -8px;
-top: 5px;
-vertical-align: top;
+    color: #F9A943;
+    height: 35px;
+    margin-top: -8px;
+    top: 5px;
+    vertical-align: top;
 }
 thead th {
     background: none repeat scroll 0 0 #BBBBBB;
 }
 #borderalign
 {
- margin-top: 3px;
- border-left: 2px solid #FFFFFF;
+    margin-top: 3px;
+    border-left: 2px solid #FFFFFF;
 }
 #tableheader
 {
     border-collapse: separate;
-    border-spacing: 2;
+
 }
 #spancefortext
 {
-	float: right;
-	position: relative;
-	 right: 67%;
+    float: right;
+    position: relative;
+    right: 67%;
 }
 #spancefortext1 {
     float: right;
     position: relative;
     right: 10%;
-	background: #BBBBBB;
+    background: #BBBBBB;
 }
 
 #spancefortextother {
@@ -123,19 +125,19 @@ thead th {
 
 .updatebutton
 {
-top: 10px;
-position: relative;
+    top: 10px;
+    position: relative;
 }
 #score_points
 {
-font-weight:bold;
-font-size: 12px;
+    font-weight:bold;
+    font-size: 12px;
 }
 #score_tasks
 {
 
-font-size: 12px;
-font-weight: normal;
+    font-size: 12px;
+    font-weight: normal;
 }
 #completedtext {
     float: right;
@@ -150,6 +152,20 @@ font-weight: normal;
 }
 .bordercolort {
     margin: 3px 5px 5px;
-    padding-bottom: 6px;
-    padding-left: 16px;
+padding-bottom: 6px;
+padding-left: 16px;
+border-bottom: 1px solid #999;
+
+}
+.timestyle1 {
+    color: #999;
+float: left;
+font-weight: bold;
+position: relative;
+font-size: 12px;
+}
+#completed_header{
+    left: 18px;
+    position: relative;
+    z-index: 1;
 }
