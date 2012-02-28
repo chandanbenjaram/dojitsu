@@ -620,7 +620,7 @@ textarea:focus{
 }*/
 
 select {
-
+	-webkit-appearance: none; 
     background: none repeat scroll 0 0 transparent;
     color: #F9A943;
     height: 32px;
