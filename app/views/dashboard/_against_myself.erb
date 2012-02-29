@@ -23,7 +23,7 @@
 </script>
 <script type="text/javascript" src="http://autobahn.tablesorter.com/jquery.tablesorter.js"></script>
 
-<table width="100%" id="myTable" class="tablesorter">	
+<table width="100%" id="myTable">	
   <thead >
     <tr >
       <th width="40%"><span >NAME</span></th>
@@ -44,7 +44,7 @@
       <tr id="check" width="50" >
         <td class="bordercolort" >	
           <br>
-          <span class="userchallengestyle"><b><%= limitChallenge.title %></b></span>
+          <span class="userchallengestyle"><%= limitChallenge.title %></span>
           <br>  
           <% if limitChallenge.instance_of?ChildChallenge %>
             <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>
@@ -104,7 +104,7 @@
         </td>
         <td class="bordercolort" >
           <span class = "timestyle1"><%= time_ago_in_words  limitChallenge.created_at%></span><br>
-          <span class = "updatebuttonmyself"><%=link_to( image_tag("update.png"), show_per_challenges_path(:id => limitChallenge._id), :class=>"updatebutton") %></span>
+          <%=link_to( image_tag("update.png"), show_per_challenges_path(:id => limitChallenge._id), :class=>"updatebutton") %>
         </td>
         <% taskCompleted+=1 %>	
       </tr>

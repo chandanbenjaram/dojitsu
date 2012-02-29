@@ -620,7 +620,7 @@ textarea:focus{
 }*/
 
 select {
-
+	-webkit-appearance: none; 
     background: none repeat scroll 0 0 transparent;
     color: #F9A943;
     height: 32px;
@@ -1946,17 +1946,7 @@ input:required {
     position: relative;
     top: 2px;
 }
-.new_challenge_button_new1:hover {
-    float: left;
-    left: 90px;
-    width:60px;
-    position: relative;
-    top: 2px;
-}
 
-a:focus, a:hover {
-    color: #666666;
-}
 
 .links {
     background: none repeat scroll 0 0 #f9a943;
