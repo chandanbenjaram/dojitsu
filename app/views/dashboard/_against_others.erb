@@ -4,7 +4,7 @@
 <table>
 	<thead>
 		<tr id="tableheader">
-			<th id="namespace" width="20%"><span id="spancefortextother">NAME</span>
+			<th id="namespace" width="30%"><span id="spancefortextother">NAME</span>
 			</th>
 			<th width="12%">RANK</th>
 			<th width="12%"> </th>
@@ -48,7 +48,7 @@
                   <% end %>
                   <span class="stedpoint"><%=  limitChallenge.start_point.value %> - <%= limitChallenge.end_point.value %></span> 
               </td>
-			  <td  class="bordercolortdb" width="50"><span id ="rankspoints"><u>0</u></span><br>
+			  <td  class="bordercolort" width="50"><span id ="rankspoints"><u>0</u></span><br>
 			 
 			<% if limitChallenge.instance_of?ChildChallenge %>
 				<% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>
@@ -61,7 +61,7 @@
 
 			<% end %>
 			  </td>
-			  <td>
+			  <td class="bordercolort">
 			  <span id="taskprogressaginstothers<%= taskCompleted %>"> </span>
 			  </td>
 			  <td class="bordercolort" width="280">
@@ -103,9 +103,7 @@
 			  </td>
 			  <% taskCompleted+=1 %>
 		</tr>
-		<tr>
-		<td colspan="5"><hr> </td>
-		</tr>
+		
 		<% end %>
 	</tbody>
 </table>

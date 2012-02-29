@@ -42,14 +42,33 @@
     </tr>
   </table>
 
-  <table id="table_align" width="100%">    
+  <script type="text/javascript" >
+    $(document).ready(function() 
+    { 
+        $("#myTable").tablesorter({ 
+        // define a custom text extraction function 
+        textExtraction: function(node) { 
+            // extract data from markup and return it 
+          if (node.innerHTML.indexOf("%") != -1)
+          {
+            return node.innerHTML.replace("%","");
+          }
+            return node.innerHTML; 
+        } 
+    }); 
+    } 
+); </script>
+  <table id="myTable" class='tablesorter' width="100%">   
+    <thead>
     <tr id="sTable">
       <th width="8%">Rank</th>
       <th width="23%">Contestants</th>
       <th width="8%"></th>
       <th width="45%">Achievement</th>
-      <th width="17%">Time</th>        
+      <th width="17%">Time</th>  
+    </thead>
     </tr>        
+    <tbody>
     <% @flag = 1 %>
     <% @latestScore = 1 %>
     <% lastUpdate = @challenge.created_at %>
@@ -126,6 +145,7 @@
         <td class="bordercolor">
           <section id="taskpercentages">
             <section id="taskpercentage<%= listOfAll[0] %>">
+            
             </section>            
           </section>
         </td>
@@ -157,7 +177,8 @@
           <script type="text/javascript">
             $(function() {
               $("#taskprogress<%= eachChallenge.user_id %>").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });							
-                $("<p>").attr("id", "sspercentage_personal").text($("#taskprogress<%= eachChallenge.user_id %>").progressbar("option", "value") + "%").appendTo("#taskpercentage<%= eachChallenge.user_id %>");
+             
+               $("<p>").attr("id", "sspercentage_personal").text($("#taskprogress<%= eachChallenge.user_id %>").progressbar("option", "value")  ).appendTo("#taskpercentage<%= eachChallenge.user_id %>");
               });
           </script>
         </td>
@@ -166,6 +187,7 @@
         </td>
       </tr>
       <% lastUpdate = @challenge.created_at %>
-    <% end %>    
+    <% end %>  
+    </tbody>
   </table>
 

@@ -628,6 +628,7 @@ select {
     position: relative;
     top: 5px;
     width: 130%;
+  -webkit-appearance: none; 
 }
 
 .flt_s{
@@ -656,7 +657,8 @@ option {
     border-bottom: 1px solid #ebdac0;
     border-right: 1px solid #d6bb86;
     border-left: 1px solid #d6bb86;
-    height: 35px;
+    min-height: 50px;
+     
 }
 
 
