@@ -18,6 +18,16 @@
     width: 100%;
 
 }
+#image_edit
+{
+    position:relative;
+    top:-2px;
+}
+#organizer_section
+{
+   margin-top: -14px;
+    position: relative;
+}
 .new_challenge_button_new1 {
     float: left;
     left: 90px;
