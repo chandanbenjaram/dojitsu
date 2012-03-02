@@ -203,7 +203,7 @@
                             <%else%>
                               <% if @challenge.user_id == current_user.fbauth.uid %>
                                 <td valign="top" width ="20" onclick="TestingDesc();">
-                                  <span id="image1"><%= image_tag("icon_edit.png") %></span>
+                                  <span id="image1"><%= image_tag("icon_edit.png", :class =>"image_edit") %></span>
                                 </td>
                               <% else %>
                                 <td width ="20"></td>
@@ -236,7 +236,7 @@
                           });
                         </script>
                      
-                        <section>
+                        <section id="organizer_section">
                           <table id="organizer">
                             <tr>
                               <td height="20px" width="100px">

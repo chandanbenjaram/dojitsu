@@ -147,17 +147,17 @@ thead th {
 }
 .bordercolort {
     margin: 3px 5px 5px;
-padding-bottom: 6px;
-padding-left: 16px;
-border-bottom: 1px solid #999;
+    padding-bottom: 6px;
+    padding-left: 16px;
+    border-bottom: 1px solid #999;
 
 }
 .timestyle1 {
     color: #999;
-float: left;
-font-weight: bold;
-position: relative;
-font-size: 12px;
+    float: left;
+    font-weight: bold;
+    position: relative;
+    font-size: 12px;
 }
 #completed_header{
     left: 18px;

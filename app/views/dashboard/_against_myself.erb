@@ -3,7 +3,20 @@
 <script>
  $(document).ready(function() 
     { 
-        $("#myTable").tablesorter( {sortList: [[0,0], [1,0]]} ); 
+        
+        $("#myTable").tablesorter({
+        // define a custom text extraction function
+        textExtraction: function(node) {
+            // extract data from markup and return it 
+          if (node.innerHTML.indexOf("%") != -1)
+          {
+            return node.innerHTML.replace("%","");
+          }
+            return node.innerHTML;
+        }
+      
+    }); 
+        
     } 
 ); 
 	
