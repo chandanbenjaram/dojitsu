@@ -6,7 +6,7 @@
           <% if isStandalone %>
               
           <% else %>
-              <%= image_tag((current_user.facebook.picture), :style => "float: right; position: relative; top: 1px;", :alt => "Profile") %><br>
+              <%= image_tag((current_user.facebook.picture), :style => "float: right; position: relative; top: -10px;", :alt => "Profile") %><br>
           <% end %>
         <% else %>                                                                                       
 	<%= link_to(image_tag("logo.png", :style => "float:left", :alt => "Home"), root_path) %>

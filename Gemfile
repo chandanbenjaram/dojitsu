@@ -17,7 +17,7 @@ gem "bson_ext", "~> 1.5.0.rc0"
 
 #gem "bson_ext", "~> 1.4"
 
-
+gem "resque"
 #gem "mongoid", "~> 2.2"
 #gem "bson_ext", "~> 1.3"
 #gem "bson", "~> 1.4.1"
