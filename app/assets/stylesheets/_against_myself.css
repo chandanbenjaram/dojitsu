@@ -110,18 +110,9 @@ thead th {
     position: relative;
     right: 67%;
 }
-#spancefortext1 {
-    float: right;
-    position: relative;
-    right: 10%;
-    background: #BBBBBB;
-}
 
-#spancefortextother {
-    float: right;
-    position: relative;
-    right: 59%;
-}
+
+
 
 .updatebutton
 {
@@ -168,4 +159,21 @@ thead th {
     left: 18px;
     position: relative;
     z-index: 1;
+}
+
+#spancefortext1 {
+    background: none repeat scroll 0 0 #BBBBBB;
+    border-left: 2px solid white;
+}
+#textmodification
+{
+	float: left;
+	position: relative;
+	left: 15px;
+}
+
+#spancefortextother {
+float: right;
+position: relative;
+right: 71%;
 }

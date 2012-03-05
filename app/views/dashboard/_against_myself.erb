@@ -12,9 +12,8 @@
           {
             return node.innerHTML.replace("%","");
           }
-            return node.innerHTML;
-        }
-      
+          return node.innerHTML;
+        }  
     }); 
         
     } 
@@ -26,11 +25,16 @@
 <table width="100%" id="myTable">	
   <thead >
     <tr >
-      <th width="40%"><span >NAME</span></th>
+      <th width="40%" id="spancefortext1"><span id="textmodification">NAME</span></th>
       <th width="5%"></th>
       <th width="35%" id="spancefortext2"><span id="completed_header">COMPLETED</span></th>
+<<<<<<< HEAD
       <th width="18%" id="spancefortext3"><span id="spancefortext1">TO GO</span></th>
       <th width="9%" id="spancefortext4">LAST UPDATED</th>
+=======
+      <th width="18%" id="spancefortext3">TO GO</th>
+      <th width="9%" id="spancefortext4">LAST UPDATE</th>
+>>>>>>> 6cd3ecded201432c9d49996ad66a55de29ead1b9
     </tr>
 
   </thead>
@@ -41,6 +45,7 @@
     <%end%>
     <% taskCompleted=1 %>
     <% total_challenges.take(3).each do |limitChallenge|%>
+	 
       <tr id="check" width="50" >
         <td class="bordercolort" >	
           <br>
