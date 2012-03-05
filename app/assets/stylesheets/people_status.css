@@ -106,8 +106,9 @@ thead th{
     background-color: #FFFFFF;
 }
 
-#myTable{
-    background-color: #FFFFFF;
+#myTable1{
+   top: -95px;
+position: relative;
 }
 #showonly_text
 {
