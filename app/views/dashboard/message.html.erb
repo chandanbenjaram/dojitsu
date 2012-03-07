@@ -28,7 +28,16 @@
             <td width="90%" class="bordercolort2">
                 <span class="messages_box_picture">
                 	<table>
-                		<tr><%= time_ago_in_words userMessage.created_at %></tr><br>
+                		<tr>                		
+                			<% challengeCreatedAt = userMessage.created_at.to_i %>              		              		
+				        		<% freranceTime = Time.now.to_i %>
+				        		<% diffTime = freranceTime - challengeCreatedAt %>
+				        		<% if diffTime > 8640 %>
+				        			<p class = "timestyle"><%= userMessage.created_at.strftime("%b %d, %Y") %></p>	
+				        		<% else %>
+				            	<p class = "timestyle"><%= time_ago_in_words  userMessage.created_at %></p>
+				            <% end %>                       			
+                		</tr><br>
                 		<tr><%=link_to( image_tag("icon_facebook.png"), "#", :class=>"icon_facebook") %></tr>
                 	</table>
             	</span>

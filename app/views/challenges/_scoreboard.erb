@@ -164,8 +164,13 @@
               });
           </script>
         </td>
-        <td class="bordercolor">
-          <%= time_ago_in_words lastUpdate %>        
+        <td class="bordercolor">        		
+            <% diffTime = lastUpdate.to_i %>
+            <% if diffTime > 8640 %>
+            	<%= lastUpdate.strftime("%b %d, %Y") %>	
+            <% else %>
+              	<%= time_ago_in_words  lastUpdate %>
+            <% end %>        
         </td>
       </tr>
       <% lastUpdate = @challenge.created_at %>
