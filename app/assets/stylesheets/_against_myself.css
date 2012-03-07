@@ -155,7 +155,9 @@ thead th {
     z-index: 1;
 }
 
-
+#spancefortext1{
+padding-left: 70px;
+}
 #textmodification
 {
     float: left;
