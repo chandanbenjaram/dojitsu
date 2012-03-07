@@ -18,17 +18,10 @@
     font-family: arial;
 }
 
-#spancefortext2
-{
-    background: #BBBBBB;
-}
-#spancefortext3
-{
-    background: #BBBBBB;
-}
+
 #spancefortext4
 {
-    background: #BBB;
+
     border-right: 1px solid white;
     padding-left: 18px;
 }
@@ -92,7 +85,8 @@ select {
     vertical-align: top;
 }
 thead th {
-    background: none repeat scroll 0 0 #BBBBBB;
+    background: none repeat scroll 0 0 #D7D7D7;
+    color:#999999;
 }
 #borderalign
 {
@@ -161,19 +155,16 @@ thead th {
     z-index: 1;
 }
 
-#spancefortext1 {
-    background: none repeat scroll 0 0 #BBBBBB;
-    border-left: 2px solid white;
-}
+
 #textmodification
 {
-	float: left;
-	position: relative;
-	left: 15px;
+    float: left;
+    position: relative;
+    left: 15px;
 }
 
 #spancefortextother {
-float: right;
-position: relative;
-right: 71%;
+    float: right;
+    position: relative;
+    right: 71%;
 }

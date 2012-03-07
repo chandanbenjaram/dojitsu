@@ -1,137 +1,133 @@
-	 .mydashbotitle{
- color: #F8981D;
- font-size: 18px;
- }
-	.new_challenge
-	{
-		float: right;
-		right: -8%;
-		position: relative;
-		top: 3px;
-	}
-	.ds_view_all_challenge
-	{
-		float: right;
-		right: 13%;
-		position: relative;
-		top: 3px;
-	}
-	#shadow
-	{
-		   color: #333333;
-			float: right;
-			font-family: arial;
-			font-size: 12px;
-			font-weight: bold;
-			position: relative;
-			right: 55px;
-			text-shadow: -1px 0 1px #E9E9E9;
-			text-transform: uppercase;
-			top: 8px;
-			width: 60%
-	}
-	
-	.howamidoing
-	{
-		color: red
-	}
-	
-	#selecttb
-	{
-		background: url("/assets/icon_combobox_arrow_down.png") no-repeat scroll 90% 50% #D7D7D7;
-		background-image: url("/assets/icon_combobox_arrow_down.png"), -webkit-linear-gradient(50%, #444444, #999999);
-		box-shadow: -5px 0 3px -1px #999999;
-		float: left;
-		height: 33px;
-		left: -40px;
-		overflow: hidden;
-		position: relative;
-		top: -1px;
-		width: 28%;
-		-webkit-box-shadow: -5px 0px 2px -1px #999999;
-		-moz-box-shadow: -5px 0px 2px -1px #999999;
-		box-shadow: -5px 0px 2px -1px #999999; 
-	}
-	#howiamgoindspace
-	{
-	    background: none repeat scroll 0 0 #BBBBBB;
-		color: red;
-		float: left;
-		height: 32px;
-		position: relative;
-		width: 30%;
-		
-	}
-	select {
-color: #F9A943;
-height: 35px;
-margin-top: -8px;
-top: 5px;
-vertical-align: top;
+.mydashbotitle{
+    color: #F8981D;
+    font-size: 18px;
+}
+.new_challenge
+{
+    float: right;
+    right: -8%;
+    position: relative;
+}
+.ds_view_all_challenge
+{
+    float: right;
+    right: 13%;
+    position: relative;
+}
+#shadow
+{
+    color: #666;
+    float: right;
+    font-family: arial;
+    font-size: 12px;
+    font-weight: bolder;
+    position: relative;
+    right: 55px;
+    top: 5px;
+    width: 60%;
+}
+
+.howamidoing
+{
+    color: red
+}
+
+#selecttb
+{
+    background: url("/assets/icon_combobox_arrow_down.png") no-repeat scroll 90% 50% #D7D7D7;
+    float: left;
+    height: 25px;
+    left: -40px;
+    overflow: hidden;
+    position: relative;
+    top: -1px;
+    width: 28%;
+    -webkit-box-shadow: -5px 0px 2px -1px #999999;
+    -moz-box-shadow: -5px 0px 2px -1px #999999;
+    box-shadow: -5px 0px 2px -1px #999999; 
+}
+#howiamgoindspace
+{
+    background: none repeat scroll 0 0 #BBBBBB;
+    color: red;
+    float: left;
+    height: 25px;
+    position: relative;
+    width: 30%;
+
+}
+select {
+    color: #F9A943;
+    height: 35px;
+    margin-top: -8px;
+    top: 5px;
+    vertical-align: top;
 }
 .menubar {
-    background: none repeat scroll 0 0 #BBBBBB;
-	border-bottom: 2px solid #FFFFFF;
+    background: none repeat scroll 0 0 #BBB;
+    border-bottom: 2px solid white;
     float: left;
-    height: 32px;
+    height: 25px;
     list-style: none outside none;
     margin: 0;
     padding: 0;
     width: 100%;
 }
-	html ul.tabs li.active, html ul.tabs li.active a:hover
-	{
-	   background: none repeat scroll 0 0 #666666;
-		float: left;
-		left: 26%;
-		position: relative;
-	}
-	#first
-	{
-	
-		font-family: arial;
-		font-weight: bold;
-		padding-left: 5%;
-		position: relative;
-		width: 130%;
-		vertical-align: sub;
-	}
-	
-	#tab3{
-	
-		color: red;
-		background-image: url("icon_combobox_arrow_down.png");
-	 
-	 }
-	 #firstd
-	 {
-		position: relative;
-		width: 130%;
-	 }	
-	
-	 #howamdoing
-	  {
-		float: left;
-		height: auto;
-		width: 635px;
-		
-	 }
-	  #againstother
-	  {
-		float: left;
-		height: auto;
-		width: 635px;
-		
-	 }
-	 #againstmyself
-	 {
-		
-		float: left;
-		height: auto;
-		width: 635px;
-		
-	 }
-	.mychallenge {
+html ul.tabs li.active, html ul.tabs li.active a:hover
+{
+    background: none repeat scroll 0 0 #666666;
+    float: left;
+    left: 26%;
+    position: relative;
+}
+#first
+{
+    font-family: arial;
+    font-weight: bold;
+    padding-left: 5%;
+    position: relative;
+    width: 90%;
+    vertical-align: sub;
+    text-align: center;
+    color: #F8981D;
+    font-size: 13px;
+}
+
+#tab3{
+
+    color: red;
+    background-image: url("icon_combobox_arrow_down.png");
+
+}
+#firstd
+{
+    position: relative;
+    width: 130%;
+}	
+
+#howamdoing
+{
+    float: left;
+    height: auto;
+    width: 635px;
+
+}
+#againstother
+{
+    float: left;
+    height: auto;
+    width: 635px;
+
+}
+#againstmyself
+{
+
+    float: left;
+    height: auto;
+    width: 635px;
+
+}
+.mychallenge {
     border: 2px solid #BEBEBE;
     float: left;
     margin-left:-8px;
@@ -139,7 +135,7 @@ vertical-align: top;
     width: 635px;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
-	border-radius: 6px;
+    border-radius: 6px;
 }
 .mychallenge2 {
     border: 2px solid #BEBEBE;
@@ -149,18 +145,18 @@ vertical-align: top;
     width: 635px;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
-	border-radius: 6px;
+    border-radius: 6px;
 }
 #countchallenge
 {
- color: #FFFFFF;
+    color: #FFFFFF;
 }
 #no_of_tasks
 {
-position: relative;
-font-size: 14px;
-color: white;
-top: 5px;
-right: 30px;
-font-weight: bold;
+    position: relative;
+    font-size: 13px;
+    color: white;
+    top: 2px;
+    right: 30px;
+    font-weight: bold;
 }

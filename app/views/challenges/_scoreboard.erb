@@ -1,7 +1,7 @@
 <%= javascript_include_tag('ui.progressbar')%>
 <%= stylesheet_link_tag('jquery-ui', 'ui.progressbar','ui.theme','scoreboard')%>
 <%#=  debug  Challenge.scoreboard(params[:id])  %>
-
+ <script language="javascript" type="text/javascript" src="http://tablefilter.free.fr/TableFilter/tablefilter_all_min.js"></script>
 <% @totalChallegne = 1 %>
 <%#= current_user.fbauth.uid %>
 <% if @challenge.instance_of?ChildChallenge %>
@@ -12,40 +12,21 @@
   <% abtTatal = @challenge.child_challenges.count %>
   <% @totalChallegne = abtTatal +1 %>    
 <% end %>
-
-<section id="msBorad">
-  <table width="100%">
-    <tr>      
-      <td width="41%"><b id="total"><%= @totalChallegne %> Participants</b></td>
-      <td width="25%"></td>    
-      <td width="19%" >
-        <input type="text" id="search" />
-      </td>
-    <script>
-      function search()
-      {
-        var name_search=document.getElementById("search").value;
-        select();    
-      }
-    </script>
-    <td width="12%" ><section class="styled-select"> <select id="select">
+<section class="styled-select" style="left:75%; position:relative; z-index:5"> <select id="select">
           <option value="All" id="select">ALL</option>
           <option value="Winners" id="select">Winners</option>
           <option value="Top Ten" id="select">Top Ten</option>
           <option value="My Friends" id="select">My Friends</option>
           <option value="My Competitors" id="select">My Competitors(10 people before and/or after me)</option>
         </select> </section>
-    </td>
-    <td width="3%">
-      <%=image_tag("searchbutton.PNG",  :onclick=>"search();", :hight=>30, :width =>30 ) %>                   
-    </td>
-    </tr>
-  </table>
-
+<section id="msBorad">
+  <section id="no_of_participants"><%= @totalChallegne %> Participants</section>
+  <section id="image_section_search">
+<%=image_tag("searchbutton.PNG",  :onclick=>"search();", :hight=>30, :width =>30 ) %> </section>
   <script type="text/javascript" >
     $(document).ready(function() 
     { 
-        $("#myTable").tablesorter({ 
+        $("#myTable1").tablesorter({ 
         // define a custom text extraction function 
         textExtraction: function(node) { 
             // extract data from markup and return it 
@@ -58,7 +39,8 @@
     }); 
     } 
 ); </script>
-  <table id="myTable" class='tablesorter' width="100%">   
+
+  <table id="myTable1" class='tablesorter' width="100%">   
     <thead>
     <tr id="sTable">
       <th width="8%">Rank</th>
@@ -178,7 +160,7 @@
             $(function() {
               $("#taskprogress<%= eachChallenge.user_id %>").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });							
              
-               $("<p>").attr("id", "sspercentage_personal").text($("#taskprogress<%= eachChallenge.user_id %>").progressbar("option", "value")  ).appendTo("#taskpercentage<%= eachChallenge.user_id %>");
+               $("<p>").attr("id", "sspercentage_personal").text($("#taskprogress<%= eachChallenge.user_id %>").progressbar("option", "value")+ "%"   ).appendTo("#taskpercentage<%= eachChallenge.user_id %>");
               });
           </script>
         </td>
@@ -191,3 +173,15 @@
     </tbody>
   </table>
 
+<script language="javascript" type="text/javascript">
+//<![CDATA[
+	var table12_Props = {
+							highlight_keywords: true,
+							on_keyup: true,
+							on_keyup_delay: 1500,
+							single_search_filter: true,
+							selectable: true
+						};
+	var tf12 = setFilterGrid( "myTable1",table12_Props );
+//]]>
+</script>

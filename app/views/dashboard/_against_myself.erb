@@ -12,8 +12,9 @@
           {
             return node.innerHTML.replace("%","");
           }
-          return node.innerHTML;
-        }  
+            return node.innerHTML;
+        }
+      
     }); 
         
     } 
@@ -25,11 +26,11 @@
 <table width="100%" id="myTable">	
   <thead >
     <tr >
-      <th width="40%" id="spancefortext1"><span id="textmodification">NAME</span></th>
+      <th width="40%"><span >NAME</span></th>
       <th width="5%"></th>
       <th width="35%" id="spancefortext2"><span id="completed_header">COMPLETED</span></th>
-      <th width="18%" id="spancefortext3">TO GO</th>
-      <th width="9%" id="spancefortext4">LAST UPDATE</th>
+      <th width="18%" id="spancefortext3"><span id="spancefortext1">TO GO</span></th>
+      <th width="9%" id="spancefortext4">LAST UPDATED</th>
     </tr>
 
   </thead>
@@ -40,7 +41,6 @@
     <%end%>
     <% taskCompleted=1 %>
     <% total_challenges.take(3).each do |limitChallenge|%>
-	 
       <tr id="check" width="50" >
         <td class="bordercolort" >	
           <br>
@@ -88,7 +88,7 @@
             <% end %>
           <% end %>
           <div class="completedtask"> 
-            <span id="score_points"><%= aScore %> points</span> <br> <span id="score_tasks"><%= flag1 %>&nbsp;tasks</span>
+            <span id="score_points"><%= aScore %> points</span> <br> <span id="score_tasks">(<%= flag1 %>&nbsp;tasks)</span>
           </div>
 
           <script type="text/javascript">
@@ -99,7 +99,7 @@
           </script>
         </td>
         <td class="bordercolort" >
-          <span class="pointscolor1"> <span id="score_points"><%= bScore %> points </span><br> <span id="score_tasks"><%= flag2 %>&nbsp;tasks</span></span>
+          <span class="pointscolor1"> <span id="score_points"><%= bScore %> points </span><br> <span id="score_tasks">(<%= flag2 %>&nbsp;tasks)</span></span>
 
         </td>
         <td class="bordercolort" >
