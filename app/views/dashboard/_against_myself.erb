@@ -103,6 +103,19 @@
 
         </td>
         <td class="bordercolort" >
+        
+        
+        		<% challengeCreatedAt = limitChallenge.created_at %>              		              		
+        		<% freranceTime = Time.now.to_i %>
+        		<% diffTime = freranceTime - challengeCreatedAt %>
+        		<% if diffTime > 8640 %>
+        			<p class = "timestyle"><%= limitChallenge.created_at.strftime("%b %d, %Y") %></p><br>	
+        		<% else %>
+            	<p class = "timestyle"><%= time_ago_in_words  limitChallenge.created_at%></p><br>
+            <% end %>
+        
+        
+        
           <span class = "timestyle1"><%= time_ago_in_words  limitChallenge.created_at%></span><br>
           <%=link_to( image_tag("update.png"), show_per_challenges_path(:id => limitChallenge._id), :class=>"updatebutton") %>
         </td>
