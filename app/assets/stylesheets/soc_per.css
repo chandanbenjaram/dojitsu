@@ -7,7 +7,6 @@ font-weight:bold;
 #sign
 {
 color:orange;
-font-size:8;
 font-weight:bold;
 }
 .hour
@@ -26,7 +25,7 @@ color:green;
 #total_score
 {
 color:green;
-font-weigth:bold;
+font-weight:bold;
 }
 .my_submit_button1
 {
@@ -43,8 +42,8 @@ color:#fff;
 height: 26px;
 width: 89px;
 }
-border: none;
-}
+
+
 .td_content
 {
 text-align:center;

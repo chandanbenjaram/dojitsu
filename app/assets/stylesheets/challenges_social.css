@@ -1,3 +1,30 @@
+
+.mychallenges {
+    float: left;
+    width: 70%;
+}
+.mychallengea {
+    float: left;
+    width: 100%;
+}
+.mychallengeb {
+    float: left;
+    width: 100%;
+}
+.mychallengec {
+    float: left;
+    width: 113%;
+}
+
+#image_edit
+{
+    position:relative;
+    top:-2px;
+}
+#organizer_section
+{
+    position: relative;
+}
 .new_challenge_button_new1 {
     float: left;
     left: 90px;
@@ -6,7 +33,7 @@
 }
 .table
 {
-		background:#ffffff;
+    background:#ffffff;
 }
 .challenge_link1 
 {
@@ -18,88 +45,100 @@
     position: relative;
     text-decoration: none;
     top: 7px;
-	text-decoration: none;
-	color: #666666;
-	text-transform:uppercase;
+    text-decoration: none;
+    color: #666666;
+    text-transform:uppercase;
+}
+.challenge_link1:hover
+{
+    color: gray;
+    font-family: arial;
+    font-size: 12px;
+    font-weight: bold;
+    left: 100px;
+    position: relative;
+    text-decoration: none;
+    top: 7px;
+    text-decoration: none;
+    color: #666666;
+    text-transform:uppercase;
 }
 
 .challange{
-	color: #F8981D;
-    font-size: 20px;
+    color: #F8981D;
     margin-bottom: 10px;
     text-transform: uppercase;
-	font-size: 25px;
-	font-weight: bold;
-	
+    font-size: 20px;
+    font-family: arial;
 }
 .colorligtblk
 {
-	color: #999999;
+    color: #999999;
 }
 .colorligtblk1
 {
-	color: #999999;
-	font-weight: bold;
-	float: left;
+    color: #999999;
+    font-weight: bold;
+    float: left;
 }
 
 
 .colordarkblk
 {
-	color: #666666;
-	font-weight: bold;
+    color: #666666;
+    font-weight: bold;
 }
 
 .textdecoration
 {
-	text-decoration:none;
+    text-decoration:none;
 }
 .marginalign
 {
-	margin-top:0px;
+    margin-top:0px;
 }
 .againstalign
 {
-	margin-top:0px;
+    margin-top:0px;
 }
 .tab_content
 {
-	background:#F5F5F5;
+    background:#F5F5F5;
 }
 .against_content
 {
-	background:#F5F5F5;
+    background:#F5F5F5;
 }
 
 .button_edit
 {
-	background:#f8981d; color:#ffffff; 
- }
+    background:#f8981d; color:#ffffff; 
+}
 .cancel_edit
 {
-	background:#999999; color:#ffffff; 
+    background:#999999; color:#ffffff; 
 }
-	
+
 .ui-widget-header 
 {
-		background: none repeat scroll 0 0 #7AC142;
-		border: 1px solid #AAAAAA;
-		color: #222222;
-		font-weight: bold;
+    background: none repeat scroll 0 0 #7AC142;
+    border: 1px solid #AAAAAA;
+    color: #222222;
+    font-weight: bold;
 }
-	
+
 .donedivbutton
 {
-	position:relative; 
-	margin-top:-40px; 
-	margin-bottom:-15px; 
-	float:left; 
-	left:400px;
+    position:relative; 
+    margin-top:-40px; 
+    margin-bottom:-15px; 
+    float:left; 
+    left:400px;
 }
 
 #cancelbutton
 {
-   color: #FFFFFF;
+    color: #FFFFFF;
     float: right;
     position: relative;
     right: -80%;
@@ -122,23 +161,23 @@
 
 .textareastyle
 {
-	width: 240px;
-	height: 93px;
-	resize: none;
+    width: 240px;
+    height: 93px;
+    resize: none;
 }
 
- 
+
 #ahref
- {     
-	 color: #666666;
-	 font-weight: bold;
-	 top: -20px;
-	 position:relative;
- }
- 
- .tab_container
+{     
+    color: #666666;
+    font-weight: bold;
+    top: -20px;
+    position:relative;
+}
+
+.tab_container
 {
-background: none repeat scroll 0 0 #FFFFFF;
+    background: none repeat scroll 0 0 #FFFFFF;
     border-color: #F4F4F4 #F4F4F4 #666666;
     border-style: solid;
     border-width: 2px 2px 2px;
@@ -146,4 +185,19 @@ background: none repeat scroll 0 0 #FFFFFF;
     float: left;
     overflow: hidden;
     width: 100%;
+}
+
+#tab_container {
+    background: none repeat scroll 0 0 white;
+    border-color: #F4F4F4 #F4F4F4 #666;
+    border-style: solid;
+    clear: both;
+    float: left;
+    overflow: hidden;
+    width: 103%;
+    margin-left: -9px;
+}
+.tab_content {
+    padding: 10px;
+    font-size: 1.2em;
 }

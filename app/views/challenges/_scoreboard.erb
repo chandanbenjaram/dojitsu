@@ -5,58 +5,77 @@
 <% @totalChallegne = 1 %>
 <%#= current_user.fbauth.uid %>
 <% if @challenge.instance_of?ChildChallenge %>
-    <% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
-    <% abtTatal = @parentChallenge.child_challenges.count %>
-    <% @totalChallegne = abtTatal +1 %>    
+  <% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
+  <% abtTatal = @parentChallenge.child_challenges.count %>
+  <% @totalChallegne = abtTatal +1 %>    
 <% else %>
-    <% abtTatal = @challenge.child_challenges.count %>
-    <% @totalChallegne = abtTatal +1 %>    
+  <% abtTatal = @challenge.child_challenges.count %>
+  <% @totalChallegne = abtTatal +1 %>    
 <% end %>
 
 <section id="msBorad">
-<table width="100%">
-  <tr>      
-    <td width="41%"><b id="total"><%= @totalChallegne %> Participants</b></td>
-    <td width="25%"></td>    
-    <td width="19%" >
-      <input type="text" id="search" />
-    </td>
+  <table width="100%">
+    <tr>      
+      <td width="41%"><b id="total"><%= @totalChallegne %> Participants</b></td>
+      <td width="25%"></td>    
+      <td width="19%" >
+        <input type="text" id="search" />
+      </td>
     <script>
-       function search()
-       {
-           var name_search=document.getElementById("search").value;
-           select();    
-       }
+      function search()
+      {
+        var name_search=document.getElementById("search").value;
+        select();    
+      }
     </script>
     <td width="12%" ><section class="styled-select"> <select id="select">
-       <option value="All" id="select">ALL</option>
-       <option value="Winners" id="select">Winners</option>
-       <option value="Top Ten" id="select">Top Ten</option>
-       <option value="My Friends" id="select">My Friends</option>
-       <option value="My Competitors" id="select">My Competitors(10 people before and/or after me)</option>
-      </select> </section>
+          <option value="All" id="select">ALL</option>
+          <option value="Winners" id="select">Winners</option>
+          <option value="Top Ten" id="select">Top Ten</option>
+          <option value="My Friends" id="select">My Friends</option>
+          <option value="My Competitors" id="select">My Competitors(10 people before and/or after me)</option>
+        </select> </section>
     </td>
     <td width="3%">
       <%=image_tag("searchbutton.PNG",  :onclick=>"search();", :hight=>30, :width =>30 ) %>                   
     </td>
-  </tr>
-</table>
+    </tr>
+  </table>
 
-<table width="100%">    
+  <script type="text/javascript" >
+    $(document).ready(function() 
+    { 
+        $("#myTable").tablesorter({ 
+        // define a custom text extraction function 
+        textExtraction: function(node) { 
+            // extract data from markup and return it 
+          if (node.innerHTML.indexOf("%") != -1)
+          {
+            return node.innerHTML.replace("%","");
+          }
+            return node.innerHTML; 
+        } 
+    }); 
+    } 
+); </script>
+  <table id="myTable" class='tablesorter' width="100%">   
+    <thead>
     <tr id="sTable">
-      <th width="10%">Rank</th>
-      <th width="15%">Contestants</th>
-      <th width="10%"></th>
+      <th width="8%">Rank</th>
+      <th width="23%">Contestants</th>
+      <th width="8%"></th>
       <th width="45%">Achievement</th>
-      <th width="20%">Time</th>        
+      <th width="17%">Time</th>  
+    </thead>
     </tr>        
+    <tbody>
     <% @flag = 1 %>
     <% @latestScore = 1 %>
     <% lastUpdate = @challenge.created_at %>
     <% Challenge.scoreboard(params[:id]).each do |listOfAll| %>
-    <tr>
-      <td class="bordercolor">
-         <% unless listOfAll[1] == 0 %>
+      <tr>
+        <td class="bordercolor">
+          <% unless listOfAll[1] == 0 %>
             <% if @flag == 1 %>
               <%= image_tag("gold.png") %>
               gold
@@ -113,59 +132,62 @@
                 <% @flag += 1 %>
               <% end %>                
             <% else %>
-              
+
             <% end %>            
-         <% else %>
-              
-         <% end %>     
-      </td>
-      <td class="bordercolor">
-        <%= FbGraph::User.new(listOfAll[0]).fetch.name %>
-        <%= image_tag(FbGraph::User.new(listOfAll[0]).fetch.picture) %>
-      </td>
-      <td class="bordercolor">
-        <section id="taskpercentages">
-          <section id="taskpercentage<%= listOfAll[0] %>">
-          </section>            
-        </section>
-      </td>
-      <td class="bordercolor">
+          <% else %>
+
+          <% end %>     
+        </td>
+        <td class="bordercolor">
+          <%= FbGraph::User.new(listOfAll[0]).fetch.name %><br>
+          <%= image_tag(FbGraph::User.new(listOfAll[0]).fetch.picture) %>
+        </td>
+        <td class="bordercolor">
+          <section id="taskpercentages">
+            <section id="taskpercentage<%= listOfAll[0] %>">
+            
+            </section>            
+          </section>
+        </td>
+        <td class="bordercolor">
           <% eachChallenge = Challenge.all(conditions: {:user_id => listOfAll[0], :title=>@challenge.title}).first %>
           <% total_score = 0 %>
-            <% total_score_count = 0 %>
-            <% total = 0 %>              
-            <% eachChallenge.tasks.each do |aTask| %>
-                <% total += aTask.score.to_i %>
-                <% if (aTask.is_complete == 1 ) %>
-                  <% total_score+=Integer(aTask.score) %>  
-                  <% total_score_count += 1 %>                  
-                  <% if lastUpdate.to_i < aTask.updated_at.to_i %>                        
-                    <% lastUpdate = aTask.updated_at %>
-                  <% end %>                     
-                <% end %>
-            <%end%>             
-            <section style="width:200px">                
-                <section class="task" id="taskprogress<%= eachChallenge.user_id %>"></section>
-                <section class="sshowperscore_personal"></section>	
-                <section id="sblackbox_personal">
-                    <section class="snotcompleted2">
-                        <span class="tasks_color"><%= (total-total_score) %></span> <span class="show_scoreboard_span">points (<%= eachChallenge.tasks.count.to_i-total_score_count.to_i %>&nbsp; tasks)</span>
-                    </section>                   
-                </section>
-                <br>
+          <% total_score_count = 0 %>
+          <% total = 0 %>              
+          <% eachChallenge.tasks.each do |aTask| %>
+            <% total += aTask.score.to_i %>
+            <% if (aTask.is_complete == 1 ) %>
+              <% total_score+=Integer(aTask.score) %>  
+              <% total_score_count += 1 %>                  
+              <% if lastUpdate.to_i < aTask.updated_at.to_i %>                        
+                <% lastUpdate = aTask.updated_at %>
+              <% end %>                     
+            <% end %>
+          <%end%>             
+          <section style="width:110%">                
+            <section class="task" id="taskprogress<%= eachChallenge.user_id %>"></section>
+            <section class="sshowperscore_personal"></section>	
+            <section id="sblackbox_personal">
+              <section class="snotcompleted2">
+                <span class="tasks_color"><%= (total-total_score) %></span> <span class="show_scoreboard_span">points (<%= eachChallenge.tasks.count.to_i-total_score_count.to_i %>&nbsp; tasks)</span>
+              </section>                   
             </section>
-            <script type="text/javascript">
-              $(function() {
-                  $("#taskprogress<%= eachChallenge.user_id %>").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });							
-                  $("<p>").attr("id", "sspercentage_personal").text($("#taskprogress<%= eachChallenge.user_id %>").progressbar("option", "value") + "%").appendTo("#taskpercentage<%= eachChallenge.user_id %>");
+            <br>
+          </section>
+          <script type="text/javascript">
+            $(function() {
+              $("#taskprogress<%= eachChallenge.user_id %>").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });							
+             
+               $("<p>").attr("id", "sspercentage_personal").text($("#taskprogress<%= eachChallenge.user_id %>").progressbar("option", "value")  ).appendTo("#taskpercentage<%= eachChallenge.user_id %>");
               });
-            </script>
-      </td>
-      <td class="bordercolor">
-        <%= time_ago_in_words lastUpdate %>        
-      </td>
-    </tr>
-    <% lastUpdate = @challenge.created_at %>
-    <% end %>    
-</table>
+          </script>
+        </td>
+        <td class="bordercolor">
+          <%= time_ago_in_words lastUpdate %>        
+        </td>
+      </tr>
+      <% lastUpdate = @challenge.created_at %>
+    <% end %>  
+    </tbody>
+  </table>
 

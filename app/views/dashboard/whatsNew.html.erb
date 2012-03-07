@@ -14,21 +14,21 @@
                      <script>
                          var ordId = <%=  orgId = @parentChallenge.user_id %>
                      </script>
-                     <b>
+                     <span id="user_name">
                         <% if isStandalone %>
                             <%= @parentChallenge.first_name %>
                         <% else %>
                             <%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %>
                         <% end %>                                  
-                     </b>
+                     <span id="user_name">
                   <% else %>
-                          <b>
+                          <span id="user_name">
                               <% if isStandalone %>
                                   <%= current_user.gmauth.first_name %>
                               <% else %>
                                   <%= FbGraph::User.new(aChallenge.user_id).fetch.name %>
                               <% end %>                                  
-                          </b>
+                          </span>
                   <% end %>
 <br>	
                   <% if aChallenge.start_point.instance_of?PointDateType %>

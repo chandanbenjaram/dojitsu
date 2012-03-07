@@ -3,15 +3,15 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #mychallengesstyle
 {
-		left: 16px;
-		position: relative; 
-		top: 5px;
- }
- .fontstyle
- {
- color: #ffffff;
-  font-weight: bold;
- }
+    left: 16px;
+    position: relative; 
+    top: 5px;
+}
+.fontstyle
+{
+    color: #ffffff;
+    font-weight: bold;
+}
 .shadow {
     color: #333333;
     font-family: arial;
@@ -23,124 +23,126 @@
 }
 
 .shadow1{
-	color: #333333;
+    color: #333333;
     font-family: arial;
     font-size: 11px;
     font-weight: bold;
     text-shadow: -1px 0 1px #E9E9E9;
     text-transform: uppercase;
     width: 78px;
-	
+
 }
 
 #shadowcolor{
- float: left;
- left: 15px; 
- position: relative;
- top:6px;
- }
- 
+    float: left;
+    left: 15px; 
+    position: relative;
+    top:6px;
+}
+
 .dashboardsidebar1
 {
 
-	width: 645px;
+    width: 645px;
 }
 
 // mychallenge styles
 
 #challengedetails
 {
-	position:absolute;
-	background: none repeat scroll 0 0 #FFFFFF;
-   
+    position:absolute;
+    background: none repeat scroll 0 0 #FFFFFF;
+
     height: 425px;
     margin-top: -1px;
     position: absolute;
     width: 635px;
-	-moz-border-radius-topleft: 0px;
-	-moz-border-radius-topright: 0px;
-	-moz-border-radius-bottomright: 5px;
-	-moz-border-radius-bottomleft: 5px;
-	-webkit-border-radius: 0px 0px 5px 5px;
-	border-radius: 0px 0px 5px 5px; 
-	overflow-y: auto; 
-	overflow-x: hidden;
+    -moz-border-radius-topleft: 0px;
+    -moz-border-radius-topright: 0px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -webkit-border-radius: 0px 0px 5px 5px;
+    border-radius: 0px 0px 5px 5px; 
+    overflow-y: auto; 
+    overflow-x: hidden;
 
 }
 .challengerow{
 
-	border:10px solid #FF0000;
-	cursor:pointer;
- 
+    border:10px solid #FF0000;
+    cursor:pointer;
+
 }
 
 .bordercolort
 {
-	height:5px;
-	padding-left:15px;
+    height:5px;
+    padding-left:15px;
 }
 .bordercolort1
 {
-	height:5px;
-	border-bottom:2px solid #BEBEBE;
-	padding-right:8px;
+    height:5px;
+    border-bottom:2px solid #BEBEBE;
+    padding-right:8px;
 }
 .bordercolort2
 {
-	height:5px;
-	border-bottom:1px solid #BEBEBE;
-	padding-right:20px;
+    height:5px;
+    border-bottom:1px solid #BEBEBE;
+    padding-right:20px;
 }
-.userchallengestyle{
-		font-family: arial;
-		color: #666666;
-		font-size: 13px;
+.userchallengestyle
+{
+    font-family: arial;
+    color: #666;
+    font-size: 14px;
+    font-weight:bold;
 }
 .fontsize
 {
-	font-size: 13px;
+    font-size: 13px;
 }
 .togostyle
 {
-	font-size: 14px;
-	color: #F8981D;
+    font-size: 14px;
+    color: #F8981D;
 }
 .pointscolor
 {
-	color: #FFFFFF;
+    color: #FFFFFF;
 }
 .ascoresize
 {
-	font-size: 16px;
+    font-size: 16px;
 }
 
 #content1
 {
-	float:left;
-	postion:absolute;
-	padding-left:20px;
-	width:120px;
-	height:auto;
-	cursor: pointer; 
-	cursor: hand;
+    float:left;
+    postion:absolute;
+    padding-left:20px;
+    width:120px;
+    height:auto;
+    cursor: pointer; 
+    cursor: hand;
 }
 #content2
 {
-	float:left;
-	postion:absolute;
-	padding-left:10px;
-	width:400px;
-	height:auto;
-	text-align: right;
-	cursor: pointer; 
-	cursor: hand;
+    float:left;
+    postion:absolute;
+    padding-left:10px;
+    width:400px;
+    height:auto;
+    text-align: right;
+    cursor: pointer; 
+    cursor: hand;
 }
 
 //what's new styles
 
 #contentbox
 {
-	background: none repeat scroll 0 0 #F4F4F4;
+    background: none repeat scroll 0 0 #F4F4F4;
     border: 1px solid #BEBEBE;
     height: auto;
     margin: 10px;
@@ -151,37 +153,44 @@
 }
 .imagestyle
 {
- 	 
-	margin-top:0px;	
-	margin-left:-2px;
+
+    margin-top:0px;	
+    margin-left:-2px;
 }
 .maintable
 {
-	margin-top:-10px;
+    margin-top:-10px;
 }
 .firsttdst
 {
-	padding-left:15px;
+    padding-left:15px;
+    color:#666666;
 }
 .chatitle
 {
-	font-size: 13px;
-	font-weight:bold;
+    font-size: 13px;
+    font-weight:bold;
+    color:#666;
 }
 .tdalign
 {
-	text-align: right;
+    text-align: right;
 }
 .timestyle
 {
-	float:right; 
-	position: relative; 
-	right: 10px; 
-	width:110%;
+    float:right; 
+    position: relative; 
+    right: 10px; 
+    width:110%;
 }
 .texttransormn
 {
-	text-transform:none;
+    text-transform:none;
 }
 
-//message css styles
+
+#user_name
+{
+    font-weight:bold;
+    color:#666666;
+}
