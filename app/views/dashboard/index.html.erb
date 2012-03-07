@@ -124,12 +124,15 @@
                   <p class="texttransormn">
                           <%=h truncate(aChallenge.description, :length => 15) %>&nbsp;&nbsp;<b><%= link_to "view" , show_soc_challenges_path(:id => aChallenge.id), :class => 'underline_view'   %>	</b>								
               </td>
-              <td id="time_td" class="tdalign" >
-              		<%= aChallenge.created_at %></br>
-              		<%= aChallenge.created_at.to_i %></br>
-              		<%= Time.now.to_i*4 %></br>
-              		<%= Time.now.to_i %>
-                  <p class = "timestyle"><%= time_ago_in_words  aChallenge.created_at%></p>
+              <td id="time_td" class="tdalign" >              		
+              		<% challengeCreatedAt = aChallenge.created_at.to_i %>              		              		
+              		<% freranceTime = Time.now.to_i %>
+              		<% diffTime = freranceTime - challengeCreatedAt %>
+              		<% if diffTime > 8640 %>
+              			<p class = "timestyle"><%= aChallenge.created_at.strftime("%b %d, %Y") %></p>	
+              		<% else %>
+                  	<p class = "timestyle"><%= time_ago_in_words  aChallenge.created_at%></p>
+                  <% end %>	
               </td>
             </tr>
         </table>
