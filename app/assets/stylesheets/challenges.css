@@ -1,5 +1,5 @@
 #jfmfs-container-wrapper {
-background-color: #f2f2f2;
+    background-color: #f2f2f2;
 }
 
 .socialinvitemodal {
@@ -16,53 +16,53 @@ div.ui-dialog-titlebar{
 
 .floatleft 
 {
-	float: left;
+    float: left;
 }
 
 
 td.taskScorebySelection select 
 {
-	width: 100%;
+    width: 100%;
 }
 
 td.taskSelection select 
 {
-	width: 130%;
+    width: 130%;
 }
 
 .taskIcon 
 {
-	width: 5px;
+    width: 5px;
 }
 
 .color999 
 {
-	color:#999999;
-        
+    color:#999999;
+
 }
 .ui-datepicker-trigger
 {
-	margin-left:10px;
+    margin-left:10px;
 }
 
 
 .challengecre
 {
-	margin-top:0px;
+    margin-top:0px;
 }
 .endpointdatenumber
 {
-	float: left;
+    float: left;
 }
 .styleselect
 {
-	width:300px;
+    width:300px;
 }
 .addRow
 {
-	 position:relative;
-	 top:-43px;
-	 left:25px;
+    position:relative;
+    top:-43px;
+    left:25px;
 }
 
 .ui-draggable .ui-dialog-titlebar 
@@ -84,52 +84,52 @@ td.taskSelection select
     color: #FFFFFF;
     cursor: pointer;
     margin: 0.5em 0.4em 0.5em 0;
-	font-weight: bold;
+    font-weight: bold;
 }
 .selectagwidth
 {
-	width:130%;
+    width:130%;
 }
 
 .links 
 {
-	background: none repeat scroll 0 0 #f9a943;
-	border-radius: 3px 3px 3px 3px;
-	color: #FFFFFF;
-	display: block;
-	font-size: 12px;
-	margin: 20px 0;
-	padding: 5px;
-	text-align: center;
-	text-transform: uppercase;
-	width: 90px;
-	margin-right:10px;
-	position: relative;
+    background: none repeat scroll 0 0 #f9a943;
+    border-radius: 3px 3px 3px 3px;
+    color: #FFFFFF;
+    display: block;
+    font-size: 12px;
+    margin: 20px 0;
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 90px;
+    margin-right:10px;
+    position: relative;
     right: -38%;
     text-align: center;
 }
 
 .linksnew
 {
-	background: none repeat scroll 0 0 #f9a943;
-	border-radius: 3px 3px 3px 3px;
-	color: #FFFFFF;
-	display: block;
-	font-size: 12px;
-	margin: 20px 0;
-	padding: 5px;
-	text-align: center;
-	text-transform: uppercase;
-	width: 90px;
-	margin-right:10px;
-	position: relative;
+    background: none repeat scroll 0 0 #f9a943;
+    border-radius: 3px 3px 3px 3px;
+    color: #FFFFFF;
+    display: block;
+    font-size: 12px;
+    margin: 20px 0;
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 90px;
+    margin-right:10px;
+    position: relative;
     right: -78%;
     text-align: center;
 }
 
 .links_cancel1
 {
-	background: none repeat #999999;
+    background: none repeat #999999;
     height: 21px;
     color: #FFFFFF;
     display: block;
@@ -144,7 +144,7 @@ td.taskSelection select
 }
 .links_cancel1:hover
 {
-	color: #FFFFFF;
+    color: #FFFFFF;
 }
 
 
@@ -158,18 +158,18 @@ td.taskSelection select
 
 .bgcolorb
 {
-	background-color: #f5f5f5;
+    background-color: #f5f5f5;
 }
 
 .titlewidth
 {
-	height: 30px;
-	width: 	45%;
+    height: 30px;
+    width: 	45%;
 }
 
 .replacetitle
 {
-   float: right;
+    float: right;
     height: 30px;
     position: relative;
     right: 37%;
@@ -179,7 +179,7 @@ td.taskSelection select
 
 .replace_cancel
 {
-	background: none repeat scroll 0 0 #999999;
+    background: none repeat scroll 0 0 #999999;
     color: #FFFFFF;
     display: block;
     float: right;
@@ -196,12 +196,12 @@ td.taskSelection select
 }
 .replace_cancel:hover
 {
-	color: #FFFFFF;
+    color: #FFFFFF;
 }
 
 .replace_cancel_desc
 {
-	background: none repeat scroll 0 0 #999999;
+    background: none repeat scroll 0 0 #999999;
     color: #FFFFFF;
     display: block;
     float: right;
@@ -219,22 +219,22 @@ td.taskSelection select
 
 .replacedesc
 {
-	float: left;
-        height: 30px;
-        left: 1%;
-        position: relative;
-        top: 80px;
-        width: 16%;
+    float: left;
+    height: 30px;
+    left: 90%;
+    position: relative;
+    top: -40px;
+    width: 20%;
 }
 
 .replace_cancel_desc:hover
 {
-	color: #FFFFFF;
+    color: #FFFFFF;
 }
 
 textarea
 {
-	
+
     border-color: #999999;
     border-style: solid;
     border-width: 1px;
@@ -249,61 +249,61 @@ textarea
 
 .updatedesccolo
 {	
-	color: #666666;	
+    color: #666666;	
 }
 
 .replace_cancel_desc1
 {
-background: none repeat scroll 0 0 #999999;
-   display: block;
+    background: none repeat scroll 0 0 #999;
+    display: block;
     float: right;
     font-size: 12px;
     height: 19px;
     margin: 0 -10% 0 0;
     padding: 5px;
     position: relative;
-    right: -20%;
+    right: -25%;
     text-align: center;
     text-transform: uppercase;
-    top: 50px;
+    top: -39px;
     width: 60px;
 }
 
 .onthespandescription
 {	
-	color: #666666;
-	font-weight: bold;
+    color: #666666;
+    font-weight: bold;
 }
 
 #on_focus_textarea
 {
-        color:#666666;
-        background:#f4f4f4;
-	max-width: 806px; 
-	min-width:806px; 
-	
+    color:#666666;
+    background:#f4f4f4;
+    max-width: 806px; 
+    min-width:806px; 
+
 }
 #on_focus_textarea:hover
 {
-	height: 60px;
-        background:#fff;
+    height: 60px;
+    background:#fff;
 }
 
 #challenge_task_attributes__score
 {
-     background:#f4f4f4;
+    background:#f4f4f4;
 }
 #challenge_task_attributes__score:hover
 {
-     background:#fff;
+    background:#fff;
 }
 #challenge_task_attributes__name
 {
-     background:#f4f4f4;
+    background:#f4f4f4;
 }
 #challenge_task_attributes__name:hover
 {
-     background:#fff;
+    background:#fff;
 }
 #start_point_value
 {
@@ -314,17 +314,17 @@ background: none repeat scroll 0 0 #999999;
     font-style:italic;
 }
 .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
-border: 1px solid #F8981D/*{borderColorHighlight}*/;
-background: white;
-color: #363636/*{fcHighlight}*/;
-border-image: initial;
+    border: 1px solid #F8981D/*{borderColorHighlight}*/;
+    background: white;
+    color: #363636/*{fcHighlight}*/;
+    border-image: initial;
 }
 .ui-datepicker th {
-text-align: center;
-font-weight: bold;
-border: 0;
-color: #666;
-border-image: initial;
+    text-align: center;
+    font-weight: bold;
+    border: 0;
+    color: #666;
+    border-image: initial;
 }
 .ui-datepicker-month{
     color:#666666;
@@ -334,7 +334,7 @@ border-image: initial;
     color:#666666;
 }
 .ui-state-hover .ui-icon, .ui-state-focus .ui-icon {
-background-image: url(images/leftarrow.png)/*{iconsHover}*/;
+    background-image: url(images/leftarrow.png)/*{iconsHover}*/;
 }
 #start_point_value {
     background:#f4f4f4;
@@ -369,96 +369,96 @@ background-image: url(images/leftarrow.png)/*{iconsHover}*/;
 }
 #templatenameinput
 {
-width:85%;
-height:30px;
-color:#666666;
-font-weight:bold;
-background:#f4f4f4;
+    width:85%;
+    height:30px;
+    color:#666666;
+    font-weight:bold;
+    background:#f4f4f4;
 }
 .challenges_checkbox{
-	color:#f9a943; 
-	font-size:12px; 
-	margin-top:15px;
+    color:#f9a943; 
+    font-size:12px; 
+    margin-top:15px;
 }
 .challenges_selfreported{
-	color:#f9a943; 
-	font-size:12px; 
-	margin-top:15px;
+    color:#f9a943; 
+    font-size:12px; 
+    margin-top:15px;
 }
 .popup_multiplyicon{
-	height:15px; 
-	width:10px;
+    height:15px; 
+    width:10px;
 }
 
-		#popupboxthird
-		{
-		width:70px;
-		 height:20px; 
-		 font-weight:bold; 
-		 font-family:arial; 
-		 font-size:12px; 
-		 background:#f4f4f4;
-		 color:#666666;  
-				}
-		#popupboxsecond
-		{
-	width:110px;
-	height:20px; 
-	font-weight:bold; 
-	font-family:arial;
-	font-size:12px; 
-	background:#f4f4f4; 
-	color:#666666;
-		}
-		#popupboxfirst
-		{
-		width:200px; 
-		height:20px;
-		font-weight:bold; 
-		font-family:arial; 
-		font-size:12px;
-		background:#f4f4f4; 
-		color:#666666;
-		}
-		#checkboxtext1
-		{
-		color:#666666;
-		top:62px;
-		float:left;
-		left:160px;
-		position:absolute;
-		font-size:13px;
-		font-style:italic;
-		}
-		#checkboxtext2
-		{
-		color:#666666;
-		top:123px;
-		float:left;
-		left:158px;
-		position:absolute;
-		font-size:13px;
-		font-style:italic;
-		}
-		#checkboxtext3
-		{
-		color:#666666;
-		top:182px;
-		float:left;
-		left:160px;
-		position:absolute;
-		font-size:13px;
-		font-style:italic;
-		}
-		
-     #add_participant{ 
-	 white-space:nowrap; 
-	 }
-	 #participant
-	{
-		display: block;
-		height: 52px;
-		margin-top: -18px;
-		overflow: hidden;
-	}
+#popupboxthird
+{
+    width:70px;
+    height:20px; 
+    font-weight:bold; 
+    font-family:arial; 
+    font-size:12px; 
+    background:#f4f4f4;
+    color:#666666;  
+}
+#popupboxsecond
+{
+    width:110px;
+    height:20px; 
+    font-weight:bold; 
+    font-family:arial;
+    font-size:12px; 
+    background:#f4f4f4; 
+    color:#666666;
+}
+#popupboxfirst
+{
+    width:200px; 
+    height:20px;
+    font-weight:bold; 
+    font-family:arial; 
+    font-size:12px;
+    background:#f4f4f4; 
+    color:#666666;
+}
+#checkboxtext1
+{
+    color:#666666;
+    top:62px;
+    float:left;
+    left:160px;
+    position:absolute;
+    font-size:13px;
+    font-style:italic;
+}
+#checkboxtext2
+{
+    color:#666666;
+    top:123px;
+    float:left;
+    left:158px;
+    position:absolute;
+    font-size:13px;
+    font-style:italic;
+}
+#checkboxtext3
+{
+    color:#666666;
+    top:182px;
+    float:left;
+    left:160px;
+    position:absolute;
+    font-size:13px;
+    font-style:italic;
+}
+
+#add_participant{ 
+    white-space:nowrap; 
+}
+#participant
+{
+    display: block;
+    height: 52px;
+    margin-top: -18px;
+    overflow: hidden;
+}
 

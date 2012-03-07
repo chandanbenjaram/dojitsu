@@ -37,8 +37,7 @@
 }
 .challenge_link1 
 {
-    color: gray;
-    font-family: arial;
+   font-family: arial;
     font-size: 12px;
     font-weight: bold;
     left: 100px;
@@ -46,7 +45,7 @@
     text-decoration: none;
     top: 7px;
     text-decoration: none;
-    color: #666666;
+    color: #999;
     text-transform:uppercase;
 }
 .challenge_link1:hover
