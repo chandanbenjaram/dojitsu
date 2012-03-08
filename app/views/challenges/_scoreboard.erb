@@ -174,7 +174,18 @@
         </td>
       </tr>
       <% lastUpdate = @challenge.created_at %>
-    <% end %>  
+    <% end %> 
+    <tr>
+    	<td colspan="5">
+    		<% total_score = 0 %>
+			<% total_score_count = 0 %>
+			<% total = 0 %>
+			<% @challenge.tasks.each do |aTask| %>
+			  <% total += aTask.score.to_i %>
+			<%end%>
+    		<%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", "#" , :class => "links_score_p" %>
+    	</td>
+    </tr> 
     </tbody>
   </table>
 

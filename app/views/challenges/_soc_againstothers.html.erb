@@ -13,37 +13,7 @@
       <b  id="total"> HOW AM I DOING ? </b>
     </td>
     <td width="80%">
-
-      <% allTaskComplete = 0 %>
-      <% if @challenge.instance_of?Challenge %>
-        <% if @challenge.canCompleteBeforeTasks? %> 
-          <% @challenge.tasks.each do |aTask| %>
-            <% if aTask.is_complete == 0 %>
-              <% allTaskComplete = 1 %>
-              <% break %>			
-            <% end %>
-          <% end %>
-          <% if allTaskComplete != 1 %> 
-            <%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", winnerListPopup_challenges_path(:id => @challenge.id) , :class => "links_score_p" %>
-          <% end %>					 	
-        <% else %>
-          <%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", winnerListPopup_challenges_path(:id => @challenge.id) , :class => "links_score_p" %>
-        <% end %>
-      <% else %>
-        <% if @challenge.canCompleteBeforeTasks? %> 
-          <% @challenge.tasks.each do |aTask| %>
-            <% if aTask.is_complete == 0 %>
-              <% allTaskComplete = 1 %>
-              <% break %>			
-            <% end %>
-          <% end %>
-          <% if allTaskComplete != 1 %> 
-            <%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", challenge_comp_challenges_path(:id => @challenge.id) , :class => "links_score_pp" %>
-          <% end %>					 	
-        <% else %>
-          <%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", challenge_comp_challenges_path(:id => @challenge.id) , :class => "links_score_pp" %>
-        <% end %>				
-      <% end %>	 
+		<%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", "#" , :class => "links_score_p" %>	 
     </td>
   </tr>
 </table>
@@ -134,7 +104,7 @@
 
 <script type="text/javascript">
 
-  $('.links_score_p').colorbox();
+  $('.markAsComplete').colorbox();
 
   $(function() {
 		
