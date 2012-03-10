@@ -13,7 +13,6 @@ class Challenge
   field :title, :type=>String
   field :description, :type=>String
   field :canCompleteBeforeTasks,:type=>Boolean
-  field :pagecount, :default => 0
   # challenge status
   field :is_complete, :default => 0
 
@@ -260,5 +259,6 @@ class Challenge
      end
   end
   
+ 
     
 end                

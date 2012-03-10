@@ -56,11 +56,13 @@ class ChallengesController < ApplicationController
     end     
     #ALL CONNECTION AS PARTICIPANT
     @onlyMyFrd = Challenge.all(conditions: {:user_id.in => aConnection, :title => @challenge.title })
-    #ALL FRD IN CHALLENGE 
+    #ALL FRD IN CHALLENGE
+    @onlyMyFrdInChallenge = [] 
     @myAccepted = [] 
     @myThinking = []
     @myDeclined = []
     @onlyMyFrd.each do |aStatus|
+    	@onlyMyFrdInChallenge.push(aStatus.user_id)
       if aStatus.social_type.status == 1
         @myAccepted.push(aStatus.user_id)
       elsif aStatus.social_type.status == -1
