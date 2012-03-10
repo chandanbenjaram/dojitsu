@@ -19,7 +19,7 @@
 #pStatusMy{
     background-color: #F4F4F4;
     padding: 8px 8px 8px 8px;
-    width: 95%;
+    width: 85%;
 }
 
 IMG {
@@ -81,6 +81,7 @@ div.tabs > div h2 {
     color: #6883AF; 
     font-size: 15px;
     font-weight: bold;
+    background:#ffffff;
 }
 
 #peopleinchallenge{
@@ -107,8 +108,8 @@ thead th{
 }
 
 #myTable1{
-   top: -95px;
-position: relative;
+    top: -95px;
+    position: relative;
 }
 #showonly_text
 {
