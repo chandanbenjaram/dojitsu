@@ -19,7 +19,7 @@
 #pStatusMy{
     background-color: #F4F4F4;
     padding: 8px 8px 8px 8px;
-    width: 95%;
+    width: 85%;
 }
 
 IMG {
@@ -108,8 +108,8 @@ thead th{
 }
 
 #myTable1{
-   top: -95px;
-position: relative;
+    top: -95px;
+    position: relative;
 }
 #showonly_text
 {
