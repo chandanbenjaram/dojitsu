@@ -22,8 +22,10 @@
     <%end%>
     <% taskCompleted=1 %>
     <% total_challenges.take(3).each do |limitChallenge|%>
-      <tr>
-        <td class="bordercolort" width="150">	
+      <tr style="height:120px; ">
+        <td id="againest_others_tr<%= taskCompleted %>" class="bordercolort" width="150">	
+          <span class="checkimage<%= taskCompleted %>"> <%= image_tag("closed.png") %></span>
+        
           <br> <span class="userchallengestyle"><b><%= limitChallenge.title %></b></span><br>  
           <% if limitChallenge.instance_of?ChildChallenge %>
             <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>
@@ -48,7 +50,7 @@
           <% end %>
           <span class="stedpoint"><%=  limitChallenge.start_point.value %> - <%= limitChallenge.end_point.value %></span> 
         </td>
-        <td  class="bordercolort" width="50"><span id ="rankspoints"><u>0</u></span><br>
+        <td id="againest_others_tr<%= taskCompleted %>" class="bordercolort" width="50"><span id ="rankspoints"><u>0</u></span><br>
 
           <% if limitChallenge.instance_of?ChildChallenge %>
             <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>
@@ -61,10 +63,10 @@
 
           <% end %>
         </td>
-        <td class="bordercolort">
+        <td id="againest_others_tr<%= taskCompleted %>" class="bordercolort">
           <span id="taskprogressaginstothers<%= taskCompleted %>"> </span>
         </td>
-        <td class="bordercolort" width="280">
+        <td id="againest_others_tr<%= taskCompleted %>" class="bordercolort" width="280">
           <div class="taskprogress1" id="taskprogress1<%= taskCompleted %>"></div><br/>
           <% flag1=0 %>
           <% flag2=0 %>
@@ -86,24 +88,73 @@
 
 
 
-          <span class="overalltasks"><%= aScore %>&nbsp;Points <br/><span id="other_tasks"> (<%= flag1 %>&nbsp;tasks) </span></span>
-
+          <span  class="overalltasks<%= taskCompleted %>"><%= aScore %>&nbsp;Points <br/><span id="other_tasks"> (<%= flag1 %>&nbsp;tasks) </span></span>
+          <span style="top: 20px;color: #999; left:-10px; font-weight:bold; position: relative;" class="overalltasks1<%= taskCompleted %>">CONGRATS!<br><span style="position:relative;" >YOU WON THE GOLD DOJITSU </span></span>
           <span class="pointscolor2"><%= cScore %> points <br>(<%= flag3 %>&nbsp;tasks)</span>
-
+         
+          <%  percentage = (( aScore / (aScore+bScore) )*100) %>
           <script type="text/javascript">
+           $(".checkimage<%= taskCompleted %>").hide();
+           $(".overalltasks1<%= taskCompleted %>").hide();
+          
             $(function() {
               $("#taskprogress1<%= taskCompleted %>").progressbar({ value: Math.round(((<%= aScore %>/<%= (aScore+bScore) %>)*100)) });
                 $("<p>").attr("id", "checkit1").text($("#taskprogress1<%= taskCompleted %>").progressbar("option", "value") + "%  ").appendTo("#taskprogressaginstothers<%= taskCompleted %>");
+               
               });
+               
           </script>
         </td>
-        <td class="bordercolort" >
+        <td id="againest_others_tr<%= taskCompleted %>" class="bordercolort" >
           <span class = "timestyle2"><%= time_ago_in_words  limitChallenge.created_at%></span><br>				 
           <%=link_to( image_tag("update.png"), show_per_challenges_path(:id => limitChallenge._id), :class=>"updatebutton") %>
         </td>
+        <% if (percentage == 100 ) %>
+    <script>
+         $(".checkimage<%= taskCompleted %>").show();
+            $(".overalltasks<%= taskCompleted %>").hide();
+            $(".overalltasks1<%= taskCompleted %>").show();
+             
+         
+     </script>
+   
+   <% else  %>
+     <script>
+        
+            $(".overalltasks<%= taskCompleted %>").show();
+            $(".overalltasks1<%= taskCompleted %>").hide();
+            
+         
+     </script>
+   
+        <% end %>
         <% taskCompleted+=1 %>
-      </tr>
-
-    <% end %>
-  </tbody>
+     <style>
+       .overalltasks<%= taskCompleted %> {
+    color: #7AC142;
+    font-size: 12px;
+    font-weight: bold;
+    left: -8px;
+    position: relative;
+    text-align: left;
+    top: 20px;
+    width: 30%;
+}
+  .pointscolor2
+  {
+   color: #F8981D;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    left: 153px;
+    position: relative;
+    text-align: right;
+    top: 2px;
+  }
+     </style>
+     
+    </tr>
+    
+  <% end %>
+</tbody>
 </table>
