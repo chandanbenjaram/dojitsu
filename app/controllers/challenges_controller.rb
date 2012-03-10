@@ -53,7 +53,7 @@ class ChallengesController < ApplicationController
     @allConnections = UserConnection.select(:target_id).where(:user_id=>current_user.id)
     @allConnections.each do |aTargetId|
       aConnection.push(aTargetId.target_id)
-    end
+    end     
     #ALL CONNECTION AS PARTICIPANT
     @onlyMyFrd = Challenge.all(conditions: {:user_id.in => aConnection, :title => @challenge.title })
     #ALL FRD IN CHALLENGE 
@@ -312,9 +312,9 @@ class ChallengesController < ApplicationController
     socialType = aChallenge.social_type
     socialType.update_attributes(:status => params[:status])
     if params[:status] == '1'       
-      redirect_to show_soc_challenges_path(:id => params[:id], :isNewChallenge => "isNew")
+      redirect_to show_per_challenges_path(:id => params[:id], :isNewChallenge => "isNew")
     else
-      redirect_to show_soc_challenges_path(:id => params[:id]) 
+      redirect_to show_per_challenges_path(:id => params[:id]) 
     end
       
   end
@@ -327,7 +327,7 @@ class ChallengesController < ApplicationController
     aChallenge = Challenge.find(params[:id])
     socialType = aChallenge.social_type
     socialType.update_attributes(:status => params[:status])
-    redirect_to show_soc_challenges_path(:id => params[:id])
+    redirect_to show_per_challenges_path(:id => params[:id])
   end
   
   def update_status_af_meg
@@ -709,6 +709,7 @@ class ChallengesController < ApplicationController
 	end
 	
 	def myAccepted	
+	 #raise "Maisa"
     @orgChallenge = Challenge.where(:_id=>params[:id]).first		 		
     #GETING ALL USER CONNECTION
     aConnection = []
@@ -718,10 +719,11 @@ class ChallengesController < ApplicationController
     end
     #ALL CONNECTION AS PARTICIPANT
     @onlyMyFrd = Challenge.all(conditions: {:user_id.in => aConnection, :challenge_id => @orgChallenge.id })
-    #ALL FRD IN CHALLENGE 
+    #ALL FRD IN CHALLENGE     
     @myAccepted = [] 
     @myThinking = []
-    @myDeclined = []
+    @myDeclined = []    
+    @myAccepted.push(@orgChallenge.user_id)   
     @onlyMyFrd.each do |aStatus|
       if aStatus.social_type.status == 1
         @myAccepted.push(aStatus.user_id)

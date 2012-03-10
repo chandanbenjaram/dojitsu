@@ -84,7 +84,6 @@
 	<% @orgChallenge = Challenge.where(:_id => params[:id]).first%>
 <% end %>
 
-
 <section id="pStatusAll">    	
   		<ul id="navAjax" class="tabNavigation">
 		  	<li>	
@@ -100,7 +99,7 @@
 		  		<%#= link_to "Declined", whoDeclined_challenges_path(:id => @orgChallenge.id) %>
 		  </li>
 		  <li>                            
-		     <a href="#"><%= image_tag("btn_questionmark_up.png")%><b></b></a>
+		     <a href="#"><%#= image_tag("btn_questionmark_up.png")%><b></b></a>
 		  </li>
 		</ul>	
 	<div id="ajax-content">This is default text, which will be replaced</div>	
@@ -155,7 +154,7 @@ $(document).ready(function() {
     return false;
     });
  	 
- 	 var challengeId= '<%= @challenge.id%>';
+ 	 var challengeId= '<%= @orgChallenge.id %>';
  	 //alert(challengeId);
  	 
     $("#ajax-content").empty().append("<div id='loading'>loading...</div>");
@@ -184,7 +183,7 @@ $(document).ready(function() {
 	  		<%#= link_to "Declined", myDeclined_challenges_path(:id => @orgChallenge.id) %>
 	  </li>
 	  <li>                            
-	     <a href="#"><%= image_tag("btn_questionmark_up.png")%><b></b></a>
+	     <a href="#"><%#= image_tag("btn_questionmark_up.png")%><b></b></a>
 	  </li>
 	</ul>	
 	<div id="ajax-contentH">This is default text, which will be replaced</div>
@@ -203,12 +202,12 @@ $(document).ready(function() {
 			 return false;
 			 });
 		 	 
-		 	 var challengeId= '<%= @challenge.id%>';
+		 	 var challengeId= '<%= @orgChallenge.id %>';
 		 	 //alert(challengeId);
 		 	 
 			 $("#ajax-contentH").empty().append("<div id='loading'>loading...</div>");
 			 $.ajax({    	 
-			 	 url: '/challenges/whoAccepted',
+			 	 url: '/challenges/myAccepted',
 			 	 data: {id:challengeId },    	 
 			 	 success: function(html) {
 					   $("#ajax-contentH").empty().append(html);
