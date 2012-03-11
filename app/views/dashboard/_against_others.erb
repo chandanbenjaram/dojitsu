@@ -130,7 +130,9 @@
 			 <div id="nametask"><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></div>
 				<div class="alltaskslist"><span  id="pointsbefore"><%= aScore %>&nbsp;Points  (<%= flag1 %>&nbsp;tasks)</span>
 				  <span class="pointscolor22">/<%= cScore %> points (<%= flag3 %>&nbsp;tasks)</span></div>
-                 <div class="imagebackgroundfordashboard"><%= image_tag(FbGraph::User.new(@parentChallenge.user_id).fetch.picture) %> <%@parentChallenge.child_challenges.each do |chaild| %>	
+                 <div class="imagebackgroundfordashboard">
+				 <%= image_tag(FbGraph::User.new(@parentChallenge.user_id).fetch.picture) %>
+     				 <%@parentChallenge.child_challenges.each do |chaild| %>	
 						 <%= image_tag(FbGraph::User.new(chaild.user_id).fetch.picture) %>&nbsp; 
 					<%end%>
 				</div>
@@ -143,12 +145,13 @@
 		<%else%>
 			
 		   <% if limitChallenge.is_complete == 1 %>
+		   <div id="nametask"><%= FbGraph::User.new(limitChallenge.user_id).fetch.name %></div>
 		     <div class="alltaskslist"><span  id="pointsbefore"><%= aScore %>&nbsp;Points  (<%= flag1 %>&nbsp;tasks) </span>
 				<span class="pointscolor22">/<%= cScore %> points (<%= flag3 %>&nbsp;tasks)</span></div>
 
-				<div class="imagebackgroundfordashboard" ><%= image_tag(FbGraph::User.new(limitChallenge.user_id).fetch.picture) %></div><%limitChallenge.child_challenges.each do |chaild|%>
-					<div class=""><%= image_tag(FbGraph::User.new(chaild.user_id).fetch.picture) %></div>&nbsp;
-				<%end%>
+				<div class="imagebackgroundfordashboard" ><%= image_tag(FbGraph::User.new(limitChallenge.user_id).fetch.picture) %><%limitChallenge.child_challenges.each do |chaild|%>
+					<%= image_tag(FbGraph::User.new(chaild.user_id).fetch.picture) %>&nbsp;
+				<%end%></div>
 			<%else%>
 				 <div class="taskprogress1" id="taskprogress1<%= taskCompleted %>"></div><br/>
 				<span  class="overalltasks<%= taskCompleted %>"><%= aScore %>&nbsp;Points <br/><span id="other_tasks"> (<%= flag1 %>&nbsp;tasks) </span></span>
