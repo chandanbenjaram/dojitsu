@@ -223,7 +223,7 @@
 	
 	
 	
-	<!-- Winners -->
+	<!-- Winners  -->
 	<div class="showhide" id="myTable11" name="myTable11" style="margin-top:50px;">
 		<table id="myTable1" class='tablesorter' width="100%">   
 			 
@@ -409,7 +409,7 @@
 	
 	
 	
-	<!-- Topten -->
+	<!-- Topten  -->
 	<div class="showhide" id="myTable12" name="myTable12" style="margin-top:50px;">
 			<table id="myTable1" class='tablesorter' width="100%">   
 			 
@@ -599,7 +599,7 @@
 	
 	
 	
-	<!--Only my friend-->
+	<!--Only my friend -->
 	<div class="showhide" id="myTable13" name="myTable13" style="margin-top:50px;">	
 		<table id="myTable1" class='tablesorter' width="100%">   
     <tr id="sTable">
@@ -748,6 +748,173 @@
 			<% @challenge.tasks.each do |aTask| %>
 			  <% total += aTask.score.to_i %>
 			<%end%>
+    		<%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", "#" , :class => "links_score_p" %>
+    	</td>
+    </tr>
+  </table>
+	<a class="tlink" href="#">[Top]</a><br>&nbsp;</div>
+	
+  
+	
+	
+	
+	
+	
+	
+	<!--My comptitor-->
+	<div class="showhide" id="myTable14" name="myTable14">	
+		<table id="myTable1" class='tablesorter' width="100%" style="margin-top:50px;">   
+    <tr id="sTable">
+      <th width="8%">Rank</th>
+      <th width="23%">Contestants</th>
+      <th width="8%"></th>
+      <th width="45%">Achievement</th>
+      <th width="17%">Time</th>
+    </tr>    
+           
+    <tbody>
+    <% sl = 0 %>
+    <% @flag = 1 %>
+    <% @latestScore = 1 %>
+    <% lastUpdate = @challenge.created_at %>
+    <% @winner = Challenge.scoreboard(params[:id]) %>
+    <% @total = 0 %>
+	 <% @challenge.tasks.each do |aTask| %>
+		  <% @total += aTask.score.to_i %>
+	 <%end%>
+	 <% @total %>
+    <% @myComptitor = @winner.take_while {|a,b | b < @total } %>
+    <% [1, 2, 3, 4, 5, 0].take_while {|i| i > @total } %>
+    <% @winner.each do |listOfAll| %>       
+      <tr>
+        <td class="bordercolor">        
+          <% unless listOfAll[1] == 0 %>
+            <% if @flag == 1 %>
+              <%= image_tag("gold.png") %>
+              gold
+              <% @latestScore = listOfAll[1] %>
+              <% @flag += 1 %>
+            <% elsif @flag == 2 %>
+              <% if @latestScore == listOfAll[1] %>
+                <%= image_tag("gold.png") %>
+                gold
+              <% else %>
+                <%= image_tag("silver.png") %>
+                silver
+                <% @latestScore = listOfAll[1] %>
+                <% @flag += 1 %>
+              <% end %>              
+            <% elsif @flag == 3 %>              
+              <% if @latestScore == listOfAll[1] %>
+                <%= image_tag("silver.png") %>
+                silver
+              <% else %>
+                <%= image_tag("brozone.png") %>
+                bronze
+                <% @latestScore = listOfAll[1] %>
+                <% @flag += 1 %>
+              <% end %> 
+            <% elsif @flag == 4 %>
+              <% if @latestScore == listOfAll[1] %>
+                <%= image_tag("brozone.png") %>
+                bronze
+              <% else %>
+                <%= image_tag("blue.png") %>
+                blue
+                <% @latestScore = listOfAll[1] %>
+                <% @flag += 1 %>
+              <% end %>                
+            <% elsif @flag == 5 %>
+              <% if @latestScore == listOfAll[1] %>
+                <%= image_tag("blue.png") %>
+                blue
+              <% else %>
+                <%= image_tag("red.png") %>
+                red
+                <% @latestScore = listOfAll[1] %>
+                <% @flag += 1 %>
+              <% end %>                
+            <% elsif @flag == 6 %>
+              <% if @latestScore == listOfAll[1] %>
+                <%= image_tag("red.png") %>
+                red
+              <% else %>
+                <%= image_tag("platinum.png") %>
+                platinum
+                <% @latestScore = listOfAll[1] %>
+                <% @flag += 1 %>
+              <% end %>                
+            <% else %>
+
+            <% end %>            
+          <% else %>
+
+          <% end %>     
+        </td>
+        <td class="bordercolor">
+          <%= FbGraph::User.new(listOfAll[0]).fetch.name %><br>
+          <%= image_tag(FbGraph::User.new(listOfAll[0]).fetch.picture) %>
+        </td>
+        <td class="bordercolor">
+          <section id="taskpercentages">
+            <section id="taskpercentageMyCom<%= listOfAll[0] %>">
+            
+            </section>            
+          </section>
+        </td>
+        <td class="bordercolor">
+          <% eachChallenge = Challenge.all(conditions: {:user_id => listOfAll[0], :title=>@challenge.title}).first %>
+          <% total_score = 0 %>
+          <% total_score_count = 0 %>
+          <% total = 0 %>              
+          <% eachChallenge.tasks.each do |aTask| %>
+            <% total += aTask.score.to_i %>
+            <% if (aTask.is_complete == 1 ) %>
+              <% total_score+=Integer(aTask.score) %>  
+              <% total_score_count += 1 %>                  
+              <% if lastUpdate.to_i < aTask.updated_at.to_i %>                        
+                <% lastUpdate = aTask.updated_at %>
+              <% end %>                     
+            <% end %>
+          <%end%>             
+          <section style="width:110%">                
+            <section class="task" id="taskprogressMyCom<%= eachChallenge.user_id %>"></section>
+            <section class="sshowperscore_personal"></section>	
+            <section id="sblackbox_personal">
+              <section class="snotcompleted2">
+                <span class="tasks_color"><%= (total-total_score) %></span> <span class="show_scoreboard_span">points (<%= eachChallenge.tasks.count.to_i-total_score_count.to_i %>&nbsp; tasks)</span>
+              </section>                   
+            </section>
+            <br>
+          </section>
+          <script type="text/javascript">
+            $(function() {
+              $("#taskprogressMyCom<%= eachChallenge.user_id %>").progressbar({ value: Math.round(((<%= total_score %>/<%= total %>)*100)) });							
+             
+               $("<p>").attr("id", "sspercentage_personal").text($("#taskprogressMyCom<%= eachChallenge.user_id %>").progressbar("option", "value")+ "%"   ).appendTo("#taskpercentageMyCom<%= eachChallenge.user_id %>");
+              });
+          </script>
+        </td>
+        <td class="bordercolor">        		
+            <% diffTime = lastUpdate.to_i %>
+            <% if diffTime > 8640 %>
+            	<%= lastUpdate.strftime("%b %d, %Y") %>	
+            <% else %>
+              	<%= time_ago_in_words  lastUpdate %>
+            <% end %>        
+        </td>
+      </tr>
+      <% lastUpdate = @challenge.created_at %>
+      <% sl +=1 %>
+     	<% if sl.to_i == 10 %>
+     	  <% break %>
+     	<% end %>
+    <% end %>      
+    </tbody>
+  </table>
+  <table style="margin-top: -70px;">
+  	 <tr>
+    	<td colspan="5">    		
     		<%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", "#" , :class => "links_score_p" %>
     	</td>
     </tr>
