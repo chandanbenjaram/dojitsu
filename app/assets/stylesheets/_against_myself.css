@@ -22,7 +22,7 @@
 #spancefortext4
 {
 
-    border-right: 1px solid white;
+    border-right: 2px solid white;
     padding-left: 18px;
 }
 #checkit {
@@ -170,3 +170,11 @@ padding-left: 70px;
     position: relative;
     right: 71%;
 }
+
+.namedetails{
+float: right;
+position: relative;
+right: 82%;
+}
+.namespace{ border-left: 2px solid white;
+    padding-left: 18px;}
