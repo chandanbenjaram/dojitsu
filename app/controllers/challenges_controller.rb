@@ -76,16 +76,17 @@ class ChallengesController < ApplicationController
     #raise @myDeclined.inspect
     #raise @myThinking.inspect
     
-    @is_complete_status = 0 
-    @challenge.tasks.each do |checkingTaskStatus|
-      unless checkingTaskStatus.is_complete == 1
-        @is_complete_status = 1
-        next
-      end
-    end
-    if @is_complete_status == 0
-      Challenge.where(:_id => params[:id]).update(:is_complete => 1)
-    end
+    #MARK CHALLENGE AS COMPLETE
+    #@is_complete_status = 0 
+    #@challenge.tasks.each do |checkingTaskStatus|
+    #  unless checkingTaskStatus.is_complete == 1
+    #    @is_complete_status = 1
+    #    next
+    #  end
+    #end
+    #if @is_complete_status == 0
+    #  Challenge.where(:_id => params[:id]).update(:is_complete => 1)
+    #end
     if (@challenge.social_type.instance_of? ChallengeSocialType rescue false)
       render "show_soc" and return 
     else 

@@ -70,7 +70,7 @@
   </tr>
   <tr id="changeChallegne">
     <td>
-      <%= check_box_tag 'myfrd', '1', false %> <b id="showonly_text">show only my friends (<%= @onlyMyFrd.count %>)</b>
+      <%= check_box_tag 'myfrd', '1', false %> <b id="showonly_text">show only my friends (<%= @onlyMyFrdInChallenge.count %>)</b>
     </td>
     <td>
       
@@ -79,9 +79,9 @@
 </table>
 
 <% if @challenge.instance_of?ChildChallenge %>
-	<% @orgChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
+	<% @orgChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>	
 <% else %>
-	<% @orgChallenge = Challenge.where(:_id => params[:id]).first%>
+	<% @orgChallenge = Challenge.where(:_id => params[:id]).first%>	
 <% end %>
 
 <section id="pStatusAll">    	
