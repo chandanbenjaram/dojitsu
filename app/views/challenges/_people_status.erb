@@ -12,6 +12,7 @@
     <% abtTatal = @parentChallenge.child_challenges.count %>
     <% @totalChallegne = abtTatal +1 %>
       <% @parentChallenge.child_challenges.each do |eachChallenge| %>
+       
       <% if eachChallenge.social_type.status == 1 %>
           <% @accepted += 1 %>
       <% elsif eachChallenge.social_type.status == -1 %>

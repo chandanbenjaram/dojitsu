@@ -5,7 +5,7 @@
 <% @challenge.tasks.each do |aTask| %>
   <% total += aTask.score.to_i %>
 <%end%>
-
+<% raise current_user.inspect %>
 <table>
   <tr width="100">
 
