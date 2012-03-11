@@ -13,7 +13,7 @@
       <b  id="total"> HOW AM I DOING ? </b>
     </td>
     <td width="80%">
-		<%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", "#" , :class => "links_score_p" %>	 
+		<%= link_to "I'm done with this challenge >> Submit my score: #{total-total_score} ", "#" , :class => "links_score_p_social" %>	 
     </td>
   </tr>
 </table>
@@ -25,12 +25,12 @@
 	<% if @challenge.instance_of?ChildChallenge %>
 			<% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
 			<% abtTatal = @parentChallenge.child_challenges.count %>
-			<span id="rankcolor">Rank </span><br><span id="rankcout">18</span><br><span id="rankcolor">(of <%= @totalChallegne = abtTatal +1 %>)</span>		
+			<span id="rankcolor">Rank </span><br><span id="rankcout">0</span><br><span id="rankcolor">(of <%= @totalChallegne = abtTatal +1 %>)</span>		
 	
 		 
 		<% else %>
 			<% abtTatal = @challenge.child_challenges.count %>
-			<span id="rankcolor">Rank </span><br><span id="rankcout">18</span><br><span id="rankcolor">(of <%= @totalChallegne = abtTatal +1 %>)</span>		
+			<span id="rankcolor">Rank </span><br><span id="rankcout">0</span><br><span id="rankcolor">(of <%= @totalChallegne = abtTatal +1 %>)</span>		
 
 		<% end %>
      

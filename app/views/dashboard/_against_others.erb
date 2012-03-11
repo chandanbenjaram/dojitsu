@@ -69,7 +69,9 @@
 		   <% if limitChallenge.instance_of?ChildChallenge %>
             <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>          
 		    <%if @parentChallenge.is_complete == 1%>
-			  <u> <%=  @parentChallenge.social_type.trophy.rank	%></u>   
+			<%if @parentChallenge.social_type.trophy?%>
+			  <u> <%=  @parentChallenge.social_type.trophy.rank	%></u>
+			<%end%>			  
 			  <%else%>
 			  <u>0</u>
 			<%end%>
@@ -127,15 +129,15 @@
 		  	<% if limitChallenge.instance_of?ChildChallenge %>
             <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>          
 		    <%if @parentChallenge.is_complete == 1%> 
-			 <div id="nametask"><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></div>
+			 <div id="nametask"><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></div> <%= image_tag("details.png", :class=> "detailsbutton") %>
 				<div class="alltaskslist"><span  id="pointsbefore"><%= aScore %>&nbsp;Points  (<%= flag1 %>&nbsp;tasks)</span>
 				  <span class="pointscolor22">/<%= cScore %> points (<%= flag3 %>&nbsp;tasks)</span></div>
                  <div class="imagebackgroundfordashboard">
-				 <%= image_tag(FbGraph::User.new(@parentChallenge.user_id).fetch.picture) %>
+				 <%= image_tag(FbGraph::User.new(@parentChallenge.user_id).fetch.picture, :class => "fbimage") %>
      				 <%@parentChallenge.child_challenges.each do |chaild| %>	
-						 <%= image_tag(FbGraph::User.new(chaild.user_id).fetch.picture) %>&nbsp; 
+						 <%= image_tag(FbGraph::User.new(chaild.user_id).fetch.picture, :class => "fbimage") %>&nbsp; 
 					<%end%>
-				</div>
+					</div>
 			<%else%>
 				
 			    <div class="taskprogress1" id="taskprogress1<%= taskCompleted %>"></div><br/>
@@ -145,12 +147,12 @@
 		<%else%>
 			
 		   <% if limitChallenge.is_complete == 1 %>
-		   <div id="nametask"><%= FbGraph::User.new(limitChallenge.user_id).fetch.name %></div>
+		   <div id="nametask"><%= FbGraph::User.new(limitChallenge.user_id).fetch.name %><%= image_tag("details.png", :class=> "detailsbutton") %></div>
 		     <div class="alltaskslist"><span  id="pointsbefore"><%= aScore %>&nbsp;Points  (<%= flag1 %>&nbsp;tasks) </span>
 				<span class="pointscolor22">/<%= cScore %> points (<%= flag3 %>&nbsp;tasks)</span></div>
 
-				<div class="imagebackgroundfordashboard" ><%= image_tag(FbGraph::User.new(limitChallenge.user_id).fetch.picture) %><%limitChallenge.child_challenges.each do |chaild|%>
-					<%= image_tag(FbGraph::User.new(chaild.user_id).fetch.picture) %>&nbsp;
+				<div class="imagebackgroundfordashboard" ><%= image_tag(FbGraph::User.new(limitChallenge.user_id).fetch.picture, :class => "fbimage") %><%limitChallenge.child_challenges.each do |chaild|%>
+					<%= image_tag(FbGraph::User.new(chaild.user_id).fetch.picture, :class => "fbimage") %>&nbsp;
 				<%end%></div>
 			<%else%>
 				 <div class="taskprogress1" id="taskprogress1<%= taskCompleted %>"></div><br/>
@@ -231,6 +233,8 @@
 	 #pointsbefore{ color: #7AC142; font-size: 13px; font-weight: bold;}
 	 .pointscolor22{color: #F8981D; font-size: 13px; font-weight: bold;}
 	 .alltaskslist{width: 150%;}
+	 .fbimage{ height: 34px;}
+	 .detailsbutton{float: right; position: relative;   right: -104px;    top: -27px;}
 	 </style>
      
     </tr>
