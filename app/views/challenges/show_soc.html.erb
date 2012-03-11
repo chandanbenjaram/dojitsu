@@ -117,37 +117,38 @@
                 
                 
                 
-               
-					<% allTaskComplete = 0 %>
-					<% if @challenge.instance_of?Challenge %>
-					  <% if @challenge.canCompleteBeforeTasks? %> 
-						 <% @challenge.tasks.each do |aTask| %>
-						   <% if aTask.is_complete == 0 %>
-						     <% allTaskComplete = 1 %>
-						     <% break %>			
-						   <% end %>
-						 <% end %>
-						 <% if allTaskComplete != 1 %> 						   
-						   <%= link_to "Mark the challenge as complete", winnerListPopup_challenges_path(:id => @challenge.id) , :class => "markAsComplete" %>
-						 <% end %>					 	
-					  <% else %>						 
-						<%= link_to "Mark the challenge as complete", winnerListPopup_challenges_path(:id => @challenge.id) , :class => "markAsComplete" %> 
-					  <% end %>
-					<% else %>
-					  <% if @challenge.canCompleteBeforeTasks? %> 
-						 <% @challenge.tasks.each do |aTask| %>
-						   <% if aTask.is_complete == 0 %>
-						     <% allTaskComplete = 1 %>
-						     <% break %>			
-						   <% end %>
-						 <% end %>
-						 <% if allTaskComplete != 1 %> 						   
-						 <%= link_to "Mark the challenge as complete", challenge_comp_challenges_path(:id => @challenge.id) , :class => "markAsCompletee" %>  
-						 <% end %>					 	
-					  <% else %>						 
-						 <%= link_to "Mark the challenge as complete", challenge_comp_challenges_path(:id => @challenge.id) , :class => "markAsCompletee" %>
-					  <% end %>				
-					<% end %>	
+               <% if @challenge.is_complete != 1 %>               	
+							<% allTaskComplete = 0 %>
+							<% if @challenge.instance_of?Challenge %>
+							  <% if @challenge.canCompleteBeforeTasks? %> 
+								 <% @challenge.tasks.each do |aTask| %>
+									<% if aTask.is_complete == 0 %>
+									  <% allTaskComplete = 1 %>
+									  <% break %>			
+									<% end %>
+								 <% end %>
+								 <% if allTaskComplete != 1 %> 						   
+									<%= link_to "Mark the challenge as complete", winnerListPopup_challenges_path(:id => @challenge.id) , :class => "markAsComplete" %>
+								 <% end %>					 	
+							  <% else %>						 
+								<%= link_to "Mark the challenge as complete", winnerListPopup_challenges_path(:id => @challenge.id) , :class => "markAsComplete" %> 
+							  <% end %>
+							<% else %>
+							  <% if @challenge.canCompleteBeforeTasks? %> 
+								 <% @challenge.tasks.each do |aTask| %>
+									<% if aTask.is_complete == 0 %>
+									  <% allTaskComplete = 1 %>
+									  <% break %>			
+									<% end %>
+								 <% end %>
+								 <% if allTaskComplete != 1 %> 						   
+								 <%= link_to "Mark the challenge as complete", challenge_comp_challenges_path(:id => @challenge.id) , :class => "markAsCompletee" %>  
+								 <% end %>					 	
+							  <% else %>						 
+								 <%= link_to "Mark the challenge as complete", challenge_comp_challenges_path(:id => @challenge.id) , :class => "markAsCompletee" %>
+							  <% end %>				
+							<% end %>
+						<% end %>		
 					
 					
 					
