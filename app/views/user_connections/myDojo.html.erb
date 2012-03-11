@@ -111,9 +111,13 @@
 
 <script>
     $(document).ready(function() {
-        $(".private_msg").click(function(event) {                                                                                                                  
+        $(".private_msg").click(function(event) {                                                                                                              
             var targetId = event.target.id;
-            $.dojitsu.renderSendBox("Testing", targetId,"http://www.dojitsu.com", <%= "'"+ challenges_url() +"'"%>);	
+            //alert("Maisa="+targetId);
+            var toAdd = targetId.split("_");
+            //alert("1="+toAdd[0]);
+            //alert("2="+toAdd[1]);    
+            $.dojitsu.renderSendBox("Testing", toAdd[1],"http://www.dojitsu.com", <%= "'"+ challenges_url() +"'"%>);	
         });
     });
  </script>
