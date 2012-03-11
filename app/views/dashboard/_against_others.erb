@@ -131,8 +131,8 @@
 				<div class="alltaskslist"><span  id="pointsbefore"><%= aScore %>&nbsp;Points  (<%= flag1 %>&nbsp;tasks)</span>
 				  <span class="pointscolor22">/<%= cScore %> points (<%= flag3 %>&nbsp;tasks)</span></div>
                  <div class="imagebackgroundfordashboard"><%= image_tag(FbGraph::User.new(@parentChallenge.user_id).fetch.picture) %> <%@parentChallenge.child_challenges.each do |chaild| %>	
-				 <%= image_tag(FbGraph::User.new(chaild.user_id).fetch.picture) %>&nbsp; 
-			<%end%>
+						 <%= image_tag(FbGraph::User.new(chaild.user_id).fetch.picture) %>&nbsp; 
+					<%end%>
 				</div>
 			<%else%>
 				
@@ -141,7 +141,7 @@
 				<span class="pointscolor2"><%= cScore %> points <br>(<%= flag3 %>&nbsp;tasks)</span>
 			<%end%>
 		<%else%>
-			<div id="nametask"><%= FbGraph::User.new(limitChallenge.user_id).fetch.name %></div>
+			
 		   <% if limitChallenge.is_complete == 1 %>
 		     <div class="alltaskslist"><span  id="pointsbefore"><%= aScore %>&nbsp;Points  (<%= flag1 %>&nbsp;tasks) </span>
 				<span class="pointscolor22">/<%= cScore %> points (<%= flag3 %>&nbsp;tasks)</span></div>
