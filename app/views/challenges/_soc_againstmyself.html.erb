@@ -24,7 +24,7 @@
     </td>
     <td width="85%">
       <% if @challenge.is_complete != 1 %>
-        <input type="button" value="I'm Done with this challenge >> Submit my score <%=total_score1%>" class="links_score_p_myself" onclick="mark_as_complete();"/>
+        <input type="button" value="I'm done with this challenge >> Submit my score: <%=total_score1%>" class="links_score_p_myself" onclick="mark_as_complete();"/>
   <%#= button_to "I'm Done with this challenge >> Submit my score #{total-total_score } ",:id=>"button_color" %>
 <% end %>
     </td>
