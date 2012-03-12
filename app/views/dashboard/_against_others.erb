@@ -69,7 +69,7 @@
 		   <% if limitChallenge.instance_of?ChildChallenge %>
             <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>          
 		    <%if @parentChallenge.is_complete == 1%>
-			<%if @parentChallenge.social_type.trophy?%>
+			<%if @parentChallenge.social_type.trophy %>
 			  <u> <%=  @parentChallenge.social_type.trophy.rank	%></u>
 			<%end%>			  
 			  <%else%>
