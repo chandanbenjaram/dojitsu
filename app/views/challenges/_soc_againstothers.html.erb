@@ -17,7 +17,7 @@
   <% end %>
 <% end %>   
 
-
+<% if @challenge.is_complete != 1 %>
 <table>
   <tr width="100">
 
@@ -25,11 +25,12 @@
       <b  id="total"> HOW AM I DOING ? </b>
     </td>
     <td width="80%">
-		<%= link_to "I'm Done with this challenge >> Submit my score: #{total_score1} ", "#" , :class => "links_score_p" %>
+		<%= link_to "I'm Done with this challenge >> Submit my score: #{total_score1} ", challenge_comp_challenges_path(:id=>@challenge.id) , :class => "links_score_p" %>
     </td>
   </tr>
 </table>
 <hr/>
+<% end %>
 <br/>
 <table>
   <tr width="100">

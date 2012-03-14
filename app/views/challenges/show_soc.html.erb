@@ -134,6 +134,7 @@
 							  <% else %>						 
 								<%= link_to "Mark the challenge as complete", winnerListPopup_challenges_path(:id => @challenge.id) , :class => "markAsComplete" %> 
 							  <% end %>
+							<!--
 							<% else %>
 							  <% if @challenge.canCompleteBeforeTasks? %> 
 								 <% @challenge.tasks.each do |aTask| %>
@@ -147,7 +148,8 @@
 								 <% end %>					 	
 							  <% else %>						 
 								 <%= link_to "Mark the challenge as complete", challenge_comp_challenges_path(:id => @challenge.id) , :class => "markAsCompletee" %>
-							  <% end %>				
+							  <% end %>
+							  -->				
 							<% end %>
 						<% end %>		
 					

@@ -219,13 +219,15 @@
     <% end %>  
     </tbody>
   </table>
+  <% if @challenge.is_complete != 1 %>
   <table style="margin-top: -70px;">
   	 <tr>
     	<td colspan="5">    		
-    		<%= link_to "I'm Done with this challenge >> Submit my score: #{total_score1} ", "#" , :class => "links_score_p" %>
+    		<%= link_to "I'm Done with this challenge >> Submit my score: #{total_score1} ", challenge_comp_challenges_path(:id=>@challenge.id) , :class => "links_score_p" %>
     	</td>
     </tr>
-  </table>	
+  </table>
+  <% end %>	
 	<a class="tlink" href="#">[Top]</a><br>&nbsp;</div>
 	
 	
@@ -238,7 +240,13 @@
 	
 	
 	<!-- Winners  -->
+	 <% if @challenge.instance_of?ChildChallenge %>
+      <% @fetChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
+    <% else %>
+      <% @fetChallenge = Challenge.where(:_id => params[:id]).first%>
+    <% end %>
 	<div class="showhide" id="myTable11" name="myTable11" style="margin-top:50px;">
+	<% if @fetChallenge.is_complete == 1 %>
 		<table id="myTable1" class='tablesorter' width="100%">   
 			 
 				 <tr id="sTable">
@@ -248,12 +256,7 @@
 					<th width="45%">Achievement</th>
 					<th width="17%">Time</th>
 				 </tr>    
-			 
-			 	<% if @challenge.instance_of?ChildChallenge %>
-		         <% @fetChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
-		       <% else %>
-		         <% @fetChallenge = Challenge.where(:_id => params[:id]).first%>
-		       <% end %>
+		 
 		       <% @flag = 1 %>
 		       <% @latestScore = 1 %>
 		       <% sl=0 %>
@@ -404,14 +407,20 @@
               <% end %>                                  
             <% end %>								  
 		</table>
-		<table style="margin-top: -70px;">
-	  	 <tr>
-		 	<td colspan="5">		 		
-		 		<%= link_to "I'm Done with this challenge >> Submit my score: #{total_score1} ", "#" , :class => "links_score_p" %>
-		 	</td>
-		 </tr>
-	  </table> 
-	<a class="tlink" href="#">[Top]</a><br>&nbsp;</div>
+		<% if @challenge.is_complete != 1 %>
+		  <table style="margin-top: -70px;">
+		  	 <tr>
+			 	<td colspan="5">    		
+			 		<%= link_to "I'm Done with this challenge >> Submit my score: #{total_score1} ", challenge_comp_challenges_path(:id=>@challenge.id) , :class => "links_score_p" %>
+			 	</td>
+			 </tr>
+		  </table>
+		  <% end %> 
+			<a class="tlink" href="#">[Top]</a><br>&nbsp;
+	<% else %>
+		Winner list is not declared!
+	<% end %>
+	</div>
 	
 	
 	
@@ -585,13 +594,15 @@
             <% end %>								  
 			 
 		</table>
-		<table style="margin-top: -70px;">
-	  	 <tr>
-		 	<td colspan="5">		 		
-		 		<%= link_to "I'm Done with this challenge >> Submit my score: #{total_score1} ", "#" , :class => "links_score_p" %>
-		 	</td>
-		 </tr>
-	  </table>
+		<% if @challenge.is_complete != 1 %>
+		  <table style="margin-top: -70px;">
+		  	 <tr>
+			 	<td colspan="5">    		
+			 		<%= link_to "I'm Done with this challenge >> Submit my score: #{total_score1} ", challenge_comp_challenges_path(:id=>@challenge.id) , :class => "links_score_p" %>
+			 	</td>
+			 </tr>
+		  </table>
+		  <% end %>
 	<a class="tlink" href="#">[Top]</a><br>&nbsp;</div>
 	
 	
@@ -741,13 +752,15 @@
     <% end %>  
     </tbody>
   </table>
-  <table style="margin-top: -70px;">
-  	 <tr>
-    	<td colspan="5">    		
-    		<%= link_to "I'm Done with this challenge >> Submit my score: #{total_score1} ", "#" , :class => "links_score_p" %>
-    	</td>
-    </tr>
-  </table>
+  <% if @challenge.is_complete != 1 %>
+	  <table style="margin-top: -70px;">
+	  	 <tr>
+		 	<td colspan="5">    		
+		 		<%= link_to "I'm Done with this challenge >> Submit my score: #{total_score1} ", challenge_comp_challenges_path(:id=>@challenge.id) , :class => "links_score_p" %>
+		 	</td>
+		 </tr>
+	  </table>
+  <% end %>
 	<a class="tlink" href="#">[Top]</a><br>&nbsp;</div>
 	
   
@@ -759,7 +772,7 @@
 	
 	<!--My comptitor-->
 	<div class="showhide" id="myTable14" name="myTable14">	
-		<table id="myTable1" class='tablesorter' width="100%" style="margin-top:50px;">   
+		<table id="myTable1" class='tablesorter' width="100%" style="margin-top:40px;">   
     <tr id="sTable">
       <th width="8%">Rank</th>
       <th width="23%">Contestants</th>
@@ -773,7 +786,7 @@
     <% @flag = 1 %>
     <% @latestScore = 1 %>
     <% lastUpdate = @challenge.created_at %>
-    <%= @winner = Challenge.scoreboard(params[:id]) %>
+    <% @winner = Challenge.scoreboard(params[:id]) %>
     <% @total = 0 %>
 	 <% @challenge.tasks.each do |aTask| %>
 		  <% @total += aTask.score.to_i %>
@@ -913,13 +926,15 @@
     <% end %>      
     </tbody>
   </table>
-  <table style="margin-top: -70px;">
-  	 <tr>
-    	<td colspan="5">    		
-    		<%= link_to "I'm Done with this challenge >> Submit my score: #{total_score1} ", "#" , :class => "links_score_p" %>
-    	</td>
-    </tr>
-  </table>
+  <% if @challenge.is_complete != 1 %>
+	  <table style="margin-top: -70px;">
+	  	 <tr>
+		 	<td colspan="5">
+		 		<%= link_to "I'm Done with this challenge >> Submit my score: #{total_score1} ", challenge_comp_challenges_path(:id=>@challenge.id) , :class => "links_score_p" %>
+		 	</td>
+		 </tr>
+	  </table>
+	  <% end %>
 	<a class="tlink" href="#">[Top]</a><br>&nbsp;</div>
 	
 	<!--

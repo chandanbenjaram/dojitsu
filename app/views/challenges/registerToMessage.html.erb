@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag('registration') %>
+<%= stylesheet_link_tag('registration','nonLogin') %>
 <div class="registertomessage">
 <div>  
 	    
@@ -16,19 +16,36 @@
 	  
 	<div id="fb-root" />
 </div>
-
+<section id="loginForm">
 <%= form_tag do %>
-  <p><%= label_tag :email %>
-  <%= email_field_tag :email %><br/>
-
-  <%= label_tag :password %>
-  <%= password_field_tag :password %></p>
-  
-  <section>
-      <input class="register" type="submit" value="LOGIN">
-      <input class="cancel" type="button" value="CANCEL">
-   </section> 
-   <% end%> 
+   <table width="100%">                    	
+     	<tr>
+		    <td>
+		         <%= label_tag :email, 'EMAIL' %>                                        
+		    </td>
+		    <td>		         
+		         <%= email_field_tag :email%>
+		    </td>
+      </tr>
+      <tr>
+          <td>
+               <%= label_tag :password, 'PASSWORD' %>                                        
+          </td>
+          <td>               
+               <%= password_field_tag :password%>
+          </td>
+      </tr>
+      <tr>  
+      	<td>
+      	</td>    	
+		   <td>
+		   	<input class="nLoginCancel" type="button" value="CANCEL">	
+		   	<input class="nLoginRegister" type="submit" value="LOGIN">		   			   	
+		   </td>	
+   	</td>      
+   </table>
+   <% end%>
+</section>    
 </div> 
  
    <script>  										       
