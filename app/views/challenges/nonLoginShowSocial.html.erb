@@ -1,3 +1,4 @@
+<%= render 'layouts/loggedinbody'%>
 <%= stylesheet_link_tag('simple-tabs','jquery-ui','ui.progressbar','ui.theme', 'main','challenges_social','colorbox')%>
 <%= javascript_include_tag('simple-tabs','ui.progressbar.js','soc-per','messages','nonloginsocialpage','jquery.colorbox-min')%>
 <section id="ch_main_section"> 
@@ -37,7 +38,11 @@
                         <% end %>	
                     </td>
                     <td width="100px">
-                        <%=link_to image_tag("btn_msg_up.png"), registerToMessage_challenges_path(:id=>@challenge),:class=>"register_tomessage_popup" %>
+                    <% if current_user %>
+                    		<%= image_tag("btn_msg_up.png", :onclick=>"contactToOrganizer(ordId)" ) %>
+                    <% else %>
+                    		<%=link_to image_tag("btn_msg_up.png"), registerToMessage_challenges_path(:id=>@challenge),:class=>"register_tomessage_popup" %>
+                    <% end %>                                                
                     </td>
                 </tr>
                 <tr>
@@ -136,6 +141,14 @@
 <script>
 $('.register_tomessage_popup').colorbox();
 </script>
+
+<script>
+    function contactToOrganizer(orgId)
+    {
+        $.dojitsu.renderSendBox(<%= "'"+@challenge.title + "'" %>, <%= "'"+orgId+"'"%>, <%= "'http://www.dojitsu.com" + "'"%>, <%= "'"+ challenge_url(@challenge) +"'"%>);
+    }
+</script>
+
 
 
 

@@ -1,11 +1,23 @@
 <%= stylesheet_link_tag('soc_againstothers')%>
-<% total_score = 0 %>
-<% total_score_count = 0 %>
-<% total = 0 %>
+<% percentage1 =0%>
+<% tasks1=0%>
+<% score_total1 = 0 %>
+<% total_score1 = 0 %>
+<% remaining_score1 = 0 %>
+<% total_score_count1 = 0 %>
+<% total1 = 0 %>
 <% @challenge.tasks.each do |aTask| %>
-  <% total += aTask.score.to_i %>
-<%end%>
+  <% tasks1+=1 %>
+  <% total1 += aTask.score.to_i %>
+  <% if aTask.is_complete.to_i == 0 %>
+    <% remaining_score1+= aTask.score.to_i %>
+  <% else %>	
+    <% total_score1 += aTask.score.to_i %>
+    </div>
+  <% end %>
+<% end %>   
 
+<% if @challenge.is_complete != 1 %>
 <table>
   <tr width="100">
 
@@ -13,11 +25,12 @@
       <b  id="total"> HOW AM I DOING ? </b>
     </td>
     <td width="80%">
-		<%= link_to "I'm Done with this challenge >> Submit my score: #{total-total_score} ", "#" , :class => "links_score_p" %>	 
+		<%= link_to "I'm Done with this challenge >> Submit my score: #{total_score1} ", challenge_comp_challenges_path(:id=>@challenge.id) , :class => "links_score_p" %>
     </td>
   </tr>
 </table>
 <hr/>
+<% end %>
 <br/>
 <table>
   <tr width="100">
@@ -25,12 +38,12 @@
 	<% if @challenge.instance_of?ChildChallenge %>
 			<% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
 			<% abtTatal = @parentChallenge.child_challenges.count %>
-			<span id="rankcolor">Rank </span><br><span id="rankcout">18</span><br><span id="rankcolor">(of <%= @totalChallegne = abtTatal +1 %>)</span>		
+			<span id="rankcolor">Rank </span><br><span id="rankcout">0</span><br><span id="rankcolor">(of <%= @totalChallegne = abtTatal +1 %>)</span>		
 	
 		 
 		<% else %>
 			<% abtTatal = @challenge.child_challenges.count %>
-			<span id="rankcolor">Rank </span><br><span id="rankcout">18</span><br><span id="rankcolor">(of <%= @totalChallegne = abtTatal +1 %>)</span>		
+			<span id="rankcolor">Rank </span><br><span id="rankcout">0</span><br><span id="rankcolor">(of <%= @totalChallegne = abtTatal +1 %>)</span>		
 
 		<% end %>
      

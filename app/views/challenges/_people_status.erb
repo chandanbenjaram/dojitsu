@@ -80,9 +80,9 @@
 </table>
 
 <% if @challenge.instance_of?ChildChallenge %>
-	<% @orgChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
+	<% @orgChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>	
 <% else %>
-	<% @orgChallenge = Challenge.where(:_id => params[:id]).first%>
+	<% @orgChallenge = Challenge.where(:_id => params[:id]).first%>	
 <% end %>
 
 <section id="pStatusAll">    	

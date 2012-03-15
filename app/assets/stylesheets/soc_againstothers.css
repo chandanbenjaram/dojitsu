@@ -251,30 +251,25 @@ ul.tabs1 li a {
     padding-bottom: 9px;
     padding-top: 4px;
     text-align: center;
-    text-transform: uppercase;
     width: 87%;
     border: 1px solid #666;
 }
 
-
 .markAsComplete {
-background: none repeat scroll 0 0 #C9C9C9;
-border-radius: 0 0 0 0;
-color: #333;
-display: block;
-font-size: 12px;
-height: 14px;
-margin: 0 0 0 52px;
-padding-bottom: 9px;
-padding-top: 4px;
-text-align: center;
-width: 45%;
-border: 1px solid #333;
-float: right;
-left: 170px;
-position: relative;
-top: -30px;
-font-weight: bold;
+    background: none repeat scroll 0 0 #C9C9C9;
+    border-radius: 0 0 0 0;
+    color: #000000;
+    display: block;
+    font-size: 12px;    
+    height: 14px;
+    margin: 0 0 0 52px;
+    padding-bottom: 9px;
+    padding-top: 4px;
+    text-align: center;    
+    width: 45%;
+    border: 1px solid #666;
+    float:right;
+    margin-right:-180px;
 }
 
 .markAsCompletee {
@@ -291,6 +286,7 @@ font-weight: bold;
     width: 45%;
     border: 1px solid #666;
     float:right;
+    margin-right:-180px;
 }
 
 

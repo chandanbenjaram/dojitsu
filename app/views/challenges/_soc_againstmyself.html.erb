@@ -16,22 +16,21 @@
     </div>
   <% end %>
 <% end %>
+<% if @challenge.is_complete != 1 %>
 <table>
-  <tr width="100%">
+  <tr width="100">
 
     <td width="22%">
-      <span class="howamspace"> HOW AM I DOING ?</span>
+      <b  id="total"> HOW AM I DOING ? </b>
     </td>
-    <td width="85%">
-      <% if @challenge.is_complete != 1 %>
-        <input type="button" value="I'm Done with this challenge >> Submit my score <%=total_score1%>" class="links_score_p_myself" onclick="mark_as_complete();"/>
-  <%#= button_to "I'm Done with this challenge >> Submit my score #{total-total_score } ",:id=>"button_color" %>
-<% end %>
+    <td width="80%">
+		<%= link_to "I'm Done with this challenge >> Submit my score: #{total_score1} ", challenge_comp_challenges_path(:id=>@challenge.id) , :class => "links_score_p" %>
     </td>
-
   </tr>
 </table>
 <hr/>
+<% end %>
+
 <table>
   <tr width="100%">
     <td width="5%"></td>
