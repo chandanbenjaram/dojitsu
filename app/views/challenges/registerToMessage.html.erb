@@ -17,14 +17,16 @@
 	<div id="fb-root" />
 </div>
 <section id="loginForm">
-<%= form_tag do %>
+
+<%= form_for(:user, :url => {:action=>"create", :controller=>"devise/sessions"}) do |f| %>
    <table width="100%">                    	
      	<tr>
 		    <td>
 		         <%= label_tag :email, 'EMAIL' %>                                        
 		    </td>
 		    <td>		         
-		         <%= email_field_tag :email%>
+		         <%#= email_field_tag :email%>
+		         <%= f.email_field :email %>
 		    </td>
       </tr>
       <tr>
@@ -32,19 +34,22 @@
                <%= label_tag :password, 'PASSWORD' %>                                        
           </td>
           <td>               
-               <%= password_field_tag :password%>
+               <%#= password_field_tag :password %>
+               <%= f.password_field :password %>
           </td>
       </tr>
       <tr>  
       	<td>
       	</td>    	
 		   <td>
-		   	<input class="nLoginCancel" type="button" value="CANCEL">	
-		   	<input class="nLoginRegister" type="submit" value="LOGIN">		   			   	
+		   	<input class="nLoginCancel" type="button" value="CANCEL">			   	
+		   	<%#= submit_tag "LOGIN", :class=>"nLoginRegister" %>
+		   	<%= f.submit "Sign in", :class=>"nLoginRegister"  %>		   			   	
 		   </td>	
    	</td>      
    </table>
-   <% end%>
+<% end%>
+
 </section>    
 </div> 
  
