@@ -143,12 +143,19 @@
 								 <% end %>
 								 <% if allTaskComplete != 1 %> 						   
 								 <%= link_to "Mark the challenge as complete", challenge_comp_challenges_path(:id => @challenge.id) , :class => "markAsCompletee" %>  
+								 
 								 <% end %>					 	
 							  <% else %>						 
 								 <%= link_to "Mark the challenge as complete", challenge_comp_challenges_path(:id => @challenge.id) , :class => "markAsCompletee" %>
+				
 							  <% end %>				
-							<% end %>
-						<% end %>		
+							<% end %>		
+						<% end %>	
+		
+					
+					   <% if @challenge.is_complete == 1 %>
+									<span>	 <%= image_tag("is_complete.PNG")%></span>
+					   <%end%>		
 					
 					
 					

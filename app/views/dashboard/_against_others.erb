@@ -1,6 +1,5 @@
 
 <%= stylesheet_link_tag('_against_other')%>
-
 <table>
   <thead>
     <tr id="tableheader">
@@ -19,6 +18,7 @@
     <% total_challenges =[]	%>
     <% current_user.challenges.each do |userChallenge| %>
       <% total_challenges<<userChallenge %>
+
     <%end%>
     <% taskCompleted=1 %>
     <% total_challenges.take(3).each do |limitChallenge|%>
@@ -69,7 +69,7 @@
 		   <% if limitChallenge.instance_of?ChildChallenge %>
             <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>          
 		    <%if @parentChallenge.is_complete == 1%>
-			<%if @parentChallenge.social_type.trophy?%>
+			<%if @parentChallenge.social_type.trophy%>
 			  <u> <%=  @parentChallenge.social_type.trophy.rank	%></u>
 			<%end%>			  
 			  <%else%>
@@ -131,15 +131,16 @@
 		  	<% if limitChallenge.instance_of?ChildChallenge %>
             <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>          
 		    <%if @parentChallenge.is_complete == 1%> 
-			 <div id="nametask"><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></div> <%= image_tag("details.png", :class=> "detailsbutton") %>
+			 <div id="nametask"><%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %></div> <%= image_tag("details.png", :class=> "detailsbuttondash")%>
 				<div class="alltaskslist"><span  id="pointsbefore"><%= aScore %>&nbsp;Points  (<%= flag1 %>&nbsp;tasks)</span>
 				  <span class="pointscolor22">/<%= cScore %> points (<%= flag3 %>&nbsp;tasks)</span></div>
-                 <div class="imagebackgroundfordashboard">
-				 <%= image_tag(FbGraph::User.new(@parentChallenge.user_id).fetch.picture, :class => "fbimage") %>
-     				 <%@parentChallenge.child_challenges.each do |chaild| %>	
-						 <%= image_tag(FbGraph::User.new(chaild.user_id).fetch.picture, :class => "fbimage") %>&nbsp; 
-					<%end%>
-					</div>
+                
+				    <div class="imagebackgroundfordashboard"><%= image_tag(FbGraph::User.new(@parentChallenge.user_id).fetch.picture, :class => "fbimage") %> <%@parentChallenge.child_challenges.each do |chaild| %>	
+				 <%= image_tag(FbGraph::User.new(chaild.user_id).fetch.picture, :class => "fbimage") %>&nbsp; 
+			<%end%>
+				</div>
+				 
+			
 			<%else%>
 				
 			    <div class="taskprogress1" id="taskprogress1<%= taskCompleted %>"></div><br/>
@@ -148,14 +149,57 @@
 			<%end%>
 		<%else%>
 			
-		   <% if limitChallenge.is_complete == 1 %>
-		   <div id="nametask"><%= FbGraph::User.new(limitChallenge.user_id).fetch.name %><%= image_tag("details.png", :class=> "detailsbutton") %></div>
-		     <div class="alltaskslist"><span  id="pointsbefore"><%= aScore %>&nbsp;Points  (<%= flag1 %>&nbsp;tasks) </span>
-				<span class="pointscolor22">/<%= cScore %> points (<%= flag3 %>&nbsp;tasks)</span></div>
-
-				<div class="imagebackgroundfordashboard" ><%= image_tag(FbGraph::User.new(limitChallenge.user_id).fetch.picture, :class => "fbimage") %><%limitChallenge.child_challenges.each do |chaild|%>
-					<%= image_tag(FbGraph::User.new(chaild.user_id).fetch.picture, :class => "fbimage") %>&nbsp;
-				<%end%></div>
+		   <% if limitChallenge.is_complete == 1 %>		   
+				 <div class="alltaskslist"><span  id="pointsbefore"><%= aScore %>&nbsp;Points  (<%= flag1 %>&nbsp;tasks) </span>
+					<span class="pointscolor22">/<%= cScore %> points (<%= flag3 %>&nbsp;tasks)</span></div>			  
+					<% sl=0 %>
+				
+					  <% if limitChallenge.social_type.who_win == "Highest number of points" %>
+						<% @all =  Challenge.winner(limitChallenge._id) %>
+					  <% end %>
+					  <% if limitChallenge.social_type.who_win == "Participant completes all tasks" %>
+						<% @all =  Challenge.winnerCompleteAllTask(limitChallenge._id) %>
+					  <% end %>
+					  <% if limitChallenge.social_type.who_win == "Lowest number of points" %>
+						<% @temp =  Challenge.winner(limitChallenge._id) %>
+						<% @all = @temp.sort {|a,b| a[1] <=> b[1]} %>
+					  <% end %>			
+					  <% if limitChallenge.social_type.who_win == "1st person to reach End Point" %>
+						<% @temp =  Challenge.winnerFirstPersonReach(limitChallenge._id) %>
+						<% @all = @temp.sort {|a,b| a[1] <=> b[1]} %>
+					  <% end %>
+					  <% @allParticipants = [] %>
+					  <% @allWinners = [] %>
+					  <% @all.each do |aWinner,index| %>
+						<% @allParticipants.push(aWinner) %>
+					  <% end %>
+					  <% @all %>
+					<%a=1%>	  
+					  <% @all.each do |aWinner,index| %>
+						<% @allWinners.push(aWinner) %>						
+						<% if Challenge.all(conditions: {:user_id => aWinner, :challenge_id=>limitChallenge._id}).first %>
+						  <% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :challenge_id=>limitChallenge._id}).first %>
+						<% else %>
+						  <% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :_id=>limitChallenge._id}).first %>
+						<% end %>		
+						<% unless eachChallenge.social_type.trophy.rank == -1 %>	
+		
+							<%= image_tag(FbGraph::User.new(aWinner).fetch.picture, :id => "#{aWinner}" , :onclick => "imageid#{a}();") %>
+				            <% a =+ 1 %>
+				            <% sl +=1 %>
+							<% if sl.to_i == limitChallenge.social_type.how_many_winners.to_i %>
+							<script>
+								function imageid(){  
+								  var id = document.getElementById("<%= aWinner%>");
+						          alert(id);
+								}
+								
+							</script>
+					<% break %>
+				  <% end %>                                  
+				<% end %>						
+			  <% end %>		
+				
 			<%else%>
 				 <div class="taskprogress1" id="taskprogress1<%= taskCompleted %>"></div><br/>
 				<span  class="overalltasks<%= taskCompleted %>"><%= aScore %>&nbsp;Points <br/><span id="other_tasks"> (<%= flag1 %>&nbsp;tasks) </span></span>
@@ -228,7 +272,7 @@
 	 .imagebackgroundfordashboard
 	 {
 		 background-color: #D7D7D7;
-		  width: 152%;
+		  max-width: 152%;
 	 }
 	 
      #nametask{ color: #666666;font-family: arial;font-size: 14px;font-weight: bold;}
@@ -236,7 +280,8 @@
 	 .pointscolor22{color: #F8981D; font-size: 13px; font-weight: bold;}
 	 .alltaskslist{width: 150%;}
 	 .fbimage{ height: 34px;}
-	 .detailsbutton{float: right; position: relative;   right: -104px;    top: -27px;}
+	 .detailsbuttondash{float: right;  position: absolute;  right: 39%;}
+	 .selecttag{background-color: red;}
 	 </style>
      
     </tr>
