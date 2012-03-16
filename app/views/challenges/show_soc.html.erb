@@ -136,13 +136,12 @@
 								  <% end %>			
 							<% end %>
 					<% end %>		
-					 <% if @challenge.is_complete == 1 %> 
-						  <%= image_tag("is_complete.PNG")%>
-					 <%end%>
-					
-					
-					
-                <% unless @challenge.social_type.status.to_i == 1 %>
+	                <% if @challenge.instance_of?ChildChallenge %>
+					<% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>					
+						<% if @parentChallenge.is_complete == 1 %> 
+							  <%= image_tag("is_complete.PNG")%>
+						 <%else%>
+						  <% unless @challenge.social_type.status.to_i == 1 %>
                   <table width="100">
                     <tr >
                       <td >  
@@ -170,7 +169,15 @@
                       }
                     });
                   }
-                </script>							
+                </script>		
+						 <%end%>
+					<%else%>
+							<% if @challenge.is_complete == 1 %> 
+								<%= image_tag("is_complete.PNG")%>
+							<%end%>
+					<%end%>
+			   	
+               					
                 <script type="text/javascript">
                   $(document).ready(function(){
                     $("#image1").hide();
