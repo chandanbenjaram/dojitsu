@@ -20,7 +20,7 @@
 #search{
     border: 1px solid #BEBEBE;
     height: 28px;
-    width: 150px;
+    width:200px;
 }
 
 .styled-select {
@@ -64,4 +64,9 @@
     font-weight: bold;
     left: 10px;
     width: 30%;
+}
+#participant_score{
+    color: #999;
+    font-weight: bold;
+    font-family: arial;
 }
