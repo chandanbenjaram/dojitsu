@@ -26,6 +26,43 @@
     top: 5px;
     
 }
+
+.nLoginRegister {
+    background: none repeat scroll 0 0 #F8981D;
+    color: #FFFFFF;
+    float: right;
+    height: 22px;
+    width: 82px;
+}
+
+.nLoginCancel {
+    background: none repeat scroll 0 0 #A5A5A5;
+    color: #FFFFFF;
+    float: right;
+    height: 22px;
+    width: 62px;
+}
+
+#loginForm{
+	background:#ffffff;
+	margin-top:15px;
+}
+
+#email, #password{
+    background: none repeat scroll 0 0 #CFCFCF;
+    border-color: #A5A5A5;
+    border-style: solid;
+    border-width: 1px;
+    color: #C6C6C6;
+    font-family: Arial;
+    font-size: 15px;
+    height: 20px;
+    width: 415px;
+    background: #F4F4F4;
+}
+
+
+
 .dojitstuimage
 {
 position:relative;

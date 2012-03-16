@@ -22,16 +22,16 @@ class ChallengesController < ApplicationController
     @flg = params[:flg]
     @challenge = Challenge.find(params[:id]) 
     
-    @is_complete_status = 0 
-    @challenge.tasks.each do |checkingTaskStatus|
-      unless checkingTaskStatus.is_complete == 1
-        @is_complete_status = 1
-        next
-      end
-    end
-    if @is_complete_status == 0
-      Challenge.where(:_id => params[:id]).update(:is_complete => 1)
-    end
+    #@is_complete_status = 0 
+    #@challenge.tasks.each do |checkingTaskStatus|
+    #  unless checkingTaskStatus.is_complete == 1
+    #    @is_complete_status = 1
+    #    next
+    #  end
+    #end
+    #if @is_complete_status == 0
+    #  Challenge.where(:_id => params[:id]).update(:is_complete => 1)
+    #end
     @org = User.find(:all,:conditions => ["id=?",@challenge.user_id]).first
   end
   
@@ -257,10 +257,8 @@ class ChallengesController < ApplicationController
   
   
   def challenge_comp
-    #raise "Maisa"
-    #render :layout => false
     Challenge.where(:_id => params[:id]).update(:is_complete => 1)
-    redirect_to challenges_path(:isNewChallenge => "isNew", :id => params[:id])
+    redirect_to show_per_challenges_path(:isNewChallenge => "isNew", :id => params[:id])
   end
 
   def my_challenge

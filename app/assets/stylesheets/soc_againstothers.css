@@ -269,6 +269,7 @@ ul.tabs1 li a {
     width: 45%;
     border: 1px solid #666;
     float:right;
+    margin-right:-180px;
 }
 
 .markAsCompletee {
@@ -285,6 +286,7 @@ ul.tabs1 li a {
     width: 45%;
     border: 1px solid #666;
     float:right;
+    margin-right:-180px;
 }
 
 
