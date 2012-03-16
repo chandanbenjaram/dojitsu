@@ -48,18 +48,24 @@
 
 <table width="100%">
   <tr id="changeChallegne">
-    <% if @challenge.instance_of?ChildChallenge%>	 
-      <% if @challenge.social_type.status.to_i == 1 %>
-        <td width="85%">
-          <b>You accepted the challenge</b>
-        </td>
-      <td width="15%">
-        <%= link_to image_tag("change.png" , :class=> "update_challenge_stat"), change_challenge_status_challenges_path(:id => @challenge), :id=> "status_update_popup" %>
-       </td>
-      <%else%>
-      <%end%>
-    <%else%>			
-    <%end%>
+         <% if @challenge.instance_of?ChildChallenge %>
+			<% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
+			  <% if @parentChallenge.is_complete == 1 %> 
+			  <%else%>
+			     <td width="85%">
+				    <b>You accepted the challenge</b>
+				</td>
+			    <td width="15%">
+				  <% if @challenge.social_type.status.to_i == 1 %>
+				     <% if @parentChallenge.is_complete == 1 %> 
+					 <%else%>
+				        <%= link_to image_tag("change.png" , :class=> "update_challenge_stat"), change_challenge_status_challenges_path(:id => @challenge), :id=> "status_update_popup" %>
+					  <%end%>
+				  <%end%>
+			   </td>
+			  <%end%>
+		  <%else%>
+		<%end%>
   </tr>
   <tr id="peopleinchallenge">
     <td>

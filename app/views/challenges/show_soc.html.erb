@@ -115,32 +115,33 @@
                   );
                   });
                 </script>
-
-
-
-                <% if @challenge.is_complete != 1 %>               	
-                  <% allTaskComplete = 0 %>
-                  <% if @challenge.instance_of?Challenge %>
-                    <% if @challenge.canCompleteBeforeTasks? %> 
-                      <% @challenge.tasks.each do |aTask| %>
-                        <% if aTask.is_complete == 0 %>
-                          <% allTaskComplete = 1 %>
-                          <% break %>			
-                        <% end %>
-                      <% end %>
-                      <% if allTaskComplete != 1 %> 						   
-                        <%= link_to "Mark the challenge as complete", winnerListPopup_challenges_path(:id => @challenge.id) , :class => "markAsComplete" %>
-                      <% end %>					 	
-                    <% else %>						 
-                      <%= link_to "Mark the challenge as complete", winnerListPopup_challenges_path(:id => @challenge.id) , :class => "markAsComplete" %> 
-                    <% end %>			
-                  <% end %>
-                <% end %>		
-
-
-
-
-                <% unless @challenge.social_type.status.to_i == 1 %>
+                
+                
+                
+               <% if @challenge.is_complete != 1 %>               	
+							<% allTaskComplete = 0 %>
+							<% if @challenge.instance_of?Challenge %>
+								  <% if @challenge.canCompleteBeforeTasks? %> 
+										 <% @challenge.tasks.each do |aTask| %>
+											<% if aTask.is_complete == 0 %>
+											  <% allTaskComplete = 1 %>
+											  <% break %>			
+											<% end %>
+										 <% end %>
+										 <% if allTaskComplete != 1 %> 						   
+												<%= link_to "Mark the challenge as complete", winnerListPopup_challenges_path(:id => @challenge.id) , :class => "markAsComplete" %>
+										 <% end %>					 	
+								  <% else %>						 
+										 <%= link_to "Mark the challenge as complete", winnerListPopup_challenges_path(:id => @challenge.id) , :class => "markAsComplete" %> 
+								  <% end %>			
+							<% end %>
+					<% end %>		
+	                <% if @challenge.instance_of?ChildChallenge %>
+					<% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>					
+						<% if @parentChallenge.is_complete == 1 %> 
+							  <%= image_tag("is_complete.PNG")%>
+						 <%else%>
+						  <% unless @challenge.social_type.status.to_i == 1 %>
                   <table width="100">
                     <tr >
                       <td >  
@@ -168,7 +169,15 @@
                       }
                     });
                   }
-                </script>							
+                </script>		
+						 <%end%>
+					<%else%>
+							<% if @challenge.is_complete == 1 %> 
+								<%= image_tag("is_complete.PNG")%>
+							<%end%>
+					<%end%>
+			   	
+               					
                 <script type="text/javascript">
                   $(document).ready(function(){
                     $("#image1").hide();
@@ -304,11 +313,11 @@
                                 <% end %>
                               </td>
                               <!-- <% if @challenge.user_id == current_user.fbauth.uid %>
-                                      <td valign="top" width="12%" onclick="TestingDesc();">
-                                          <span id="image3"><%= image_tag("icon_edit.png") %></span>
-                                      </td>
+                                    <td valign="top" width="12%" onclick="TestingDesc();">
+                                        <span id="image3"><%= image_tag("icon_edit.png") %></span>
+                                    </td>
                               <% else %>
-                                          <td width="12%"></td>
+                                        <td width="12%"></td>
                               <%end%>
                               -->
                             </tr>
@@ -331,11 +340,11 @@
                                 <% end %>
                               </td>
                               <!-- <% if @challenge.user_id == current_user.fbauth.uid %>
-                            <td valign="top" width="12%" onclick="TestingDesc();">
-                                    <span id="image4"><%= image_tag("icon_edit.png") %></span>
-                            </td>
+                          <td valign="top" width="12%" onclick="TestingDesc();">
+                                  <span id="image4"><%= image_tag("icon_edit.png") %></span>
+                          </td>
                               <% else %>
-                                    <td width="12%"></td>
+                                  <td width="12%"></td>
                               <%end%> -->
                             </tr>
                           </table>
