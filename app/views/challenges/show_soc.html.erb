@@ -136,7 +136,9 @@
 								  <% end %>			
 							<% end %>
 					<% end %>		
-					
+					 <% if @challenge.is_complete == 1 %> 
+						  <%= image_tag("is_complete.PNG")%>
+					 <%end%>
 					
 					
 					
