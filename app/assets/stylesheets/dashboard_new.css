@@ -136,6 +136,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
+	min-height:400px;
 }
 .mychallenge2 {
     border: 2px solid #BEBEBE;

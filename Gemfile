@@ -1,73 +1,55 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc8'
+gem 'rails', '3.1.1'
 
-gem 'mysql', '2.8.1'
-#gem 'mysql2' 
-
-# MongoDB specifics
-gem "mongoid", "~> 2.2"    
-#gem "bson", "= 1.4.1", :path => "vendor"
-
-gem "mongo", "~> 1.5.0.rc0"
-gem "bson", "~> 1.5.0.rc0"
-gem "bson_ext", "~> 1.5.0.rc0"  
-
-#gem "bcrypt-ruby"
-
-#gem "bson_ext", "~> 1.4"
-
-gem "resque"
-#gem "mongoid", "~> 2.2"
-#gem "bson_ext", "~> 1.3"
-#gem "bson", "~> 1.4.1"
-
-           
-# authentication specifics
-gem 'devise', '1.5'
-#gem "oa-oauth", :require => "omniauth/oauth"
-gem "omniauth-facebook"
-
-# helpers
+# Bundle edge Rails instead:before_filter :authenticate_user!
+# gem 'rails',     :git => 'git://github.com/rails/rails.git'
+gem 'twitter-bootstrap-rails'
 gem 'json'
-gem 'fb_graph', '2.1.12'
-
-gem 'jquery-rails'
-#gem 'prototype-rails'
-
-gem 'sprockets'
-gem "client_side_validations", "~> 3.1.0"
-
-# Templating engine specifics
-gem "slim-rails"
-
-# UI templates
-gem "simple-navigation"
-gem "on_the_spot"
-
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
-group :development, :test do
-	gem 'rspec-rails'
-	gem 'annotate'
-	#gem 'ruby-debug'
-	#gem "mongrel"   
-end       
-
+gem 'execjs'
+gem 'therubyracer'
+gem 'devise'
+gem 'paperclip'
+gem "aws-sdk"
+gem 'activeadmin'
+gem "meta_search"
+gem 'sass-rails',   '~> 3.1.4'
+gem 'thin'
+gem 'client_side_validations'
+#gem 'thinking-sphinx', '2.0.10'
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets do
-  gem 'sass-rails', "~> 3.1.0.rc"
-  gem 'coffee-rails', "~> 3.1.0.rc"
-  gem 'execjs'
-  gem 'uglifier'
- # gem 'therubyracer' 
+group :assets do  
+  gem 'coffee-rails', '~> 3.1.1'
+  gem 'uglifier', '>= 1.0.3'  
 end
+group :development, :test do
+   #gem 'sqlite3'
+   gem 'mysql2'
+end
+group :production do
+  gem 'pg'
+  
+end
+gem 'jquery-rails'
 
-# Deployment stuff
-gem "highline", "~> 1.6.8"
-gem "rubber", "1.15.0"
+# To use ActiveModel has_secure_password
+# gem 'bcrypt-ruby', '~> 3.0.0'
+
+# Use unicorn as the web server
+# gem 'unicorn'
+
+# Deploy with Capistrano
+# gem 'capistrano'
+
+# To use debugger
+#group :development, :test do 
+#   if RUBY_VERSION =~ /1.9/ 
+#     gem 'ruby-debug19' 
+#   else 
+#     gem 'ruby-debug' 
+#   end 
+#end
+
+#gem 'ruby-debug-ide19'
+#gem 'ruby-debug19'
