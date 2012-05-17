@@ -92,23 +92,23 @@
 <% end %>
 
 <section id="pStatusAll">    	
-  		<ul id="navAjax" class="tabNavigation">
-		  	<li>	
-		  		<a href="/challenges/whoAccepted?id=<%= @orgChallenge.id %>"><span id="firstH" style="display:none"><%= image_tag("icon_accept.png")%><b>&nbsp;(<%= @accepted %>)</b></span><span id="firstS"><%= image_tag("icon_accept.png")%><b>Accepted (<%= @accepted %>)</b></span></a>		  		  		
-		  		<%#= link_to "Accepted", whoAccepted_challenges_path(:id => @orgChallenge.id) %>
-			</li>
-			<li>	
-		  		<a href="/challenges/whoThinking?id=<%= @orgChallenge.id %>"><span id="secondS"><%= image_tag("icon_thinking.png")%><b>(<%= @thinking %>)</b></span><span id="secondH" style="display:none"><%= image_tag("icon_thinking.png")%><b>Thinking (<%= @thinking %>)</b></span></a>		  		  		
-		  		<%#= link_to "Thinking", whoThinking_challenges_path(:id => @orgChallenge.id) %>
-		  </li>
-		  <li>	
-		  		<a href="/challenges/whoDeclined?id=<%= @orgChallenge.id %>"><span id="thirdS"><%= image_tag("icon_decline.png")%><b>(<%= @declined %>)</b></span><span id="thirdH" style="display:none"><%= image_tag("icon_decline.png")%><b>Declined (<%= @declined %>)</b></span></a>		  		  		
-		  		<%#= link_to "Declined", whoDeclined_challenges_path(:id => @orgChallenge.id) %>
-		  </li>
-		  <li>                            
-		     <a href="#"><%#= image_tag("btn_questionmark_up.png")%><b></b></a>
-		  </li>
-		</ul>	
+	<ul id="navAjax" class="tabNavigation">
+  	<li>	
+  		<a href="/challenges/whoAccepted?id=<%= @orgChallenge.id %>"><span id="firstH" style="display:none"><%= image_tag("icon_accept.png")%><b>&nbsp;(<%= @accepted %>)</b></span><span id="firstS"><%= image_tag("icon_accept.png")%><b>Accepted (<%= @accepted %>)</b></span></a>		  		  		
+  		<%#= link_to "Accepted", whoAccepted_challenges_path(:id => @orgChallenge.id) %>
+		</li>
+		<li>	
+			<a href="/challenges/whoThinking?id=<%= @orgChallenge.id %>"><span id="secondS"><%= image_tag("icon_thinking.png")%><b>(<%= @thinking %>)</b></span><span id="secondH" style="display:none"><%= image_tag("icon_thinking.png")%><b>Thinking (<%= @thinking %>)</b></span></a>		  		  		
+			<%#= link_to "Thinking", whoThinking_challenges_path(:id => @orgChallenge.id) %>
+		</li>
+		<li>	
+			<a href="/challenges/whoDeclined?id=<%= @orgChallenge.id %>"><span id="thirdS"><%= image_tag("icon_decline.png")%><b>(<%= @declined %>)</b></span><span id="thirdH" style="display:none"><%= image_tag("icon_decline.png")%><b>Declined (<%= @declined %>)</b></span></a>		  		  		
+			<%#= link_to "Declined", whoDeclined_challenges_path(:id => @orgChallenge.id) %>
+		</li>
+		<li>                            
+		  <a href="#"><%#= image_tag("btn_questionmark_up.png")%><b></b></a>
+		</li>
+	</ul>	
 	<div id="ajax-content">This is default text, which will be replaced</div>	
 </section>
 
@@ -166,6 +166,7 @@ $(document).ready(function() {
  	 
     $("#ajax-content").empty().append("<div id='loading'>loading...</div>");
     $.ajax({    	 
+    	 //alert("Pride");
     	 url: '/challenges/whoAccepted',
     	 data: {id:challengeId },    	 
     	 success: function(html) {
@@ -213,7 +214,8 @@ $(document).ready(function() {
 		 	 //alert(challengeId);
 		 	 
 			 $("#ajax-contentH").empty().append("<div id='loading'>loading...</div>");
-			 $.ajax({    	 
+			 $.ajax({  
+			 	 //alert("Maisa");  	 
 			 	 url: '/challenges/myAccepted',
 			 	 data: {id:challengeId },    	 
 			 	 success: function(html) {
