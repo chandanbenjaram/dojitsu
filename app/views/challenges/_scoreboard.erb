@@ -91,7 +91,7 @@
     <div class="showhide" id="myTable10" name="myTable10" style="top:-5px;">
 
       <table id="myTable1 " class='tablesorter1' width="100%">   
-        <thead>
+        
         <tr id="sTable">
           <th width="8%">Rank</th>
           <th width="23%">Contestants</th>
@@ -99,7 +99,7 @@
           <th width="45%">Achievement</th>
           <th width="17%">Time</th>
         </tr>    
-</thead>
+
 
         <tbody>
           <% @flag = 1 %>
@@ -260,7 +260,7 @@
     <div class="showhide" id="myTable11" name="myTable11" style="margin-top:90px;">
       <% if @fetChallenge.is_complete == 1 %>
         <table id="myTable1" class='tablesorter1' width="100%">   
-<thead>
+
           <tr id="sTable">
             <th width="8%">Rank</th>
             <th width="23%">Contestants</th>
@@ -268,7 +268,7 @@
             <th width="45%">Achievement</th>
             <th width="17%">Time</th>
           </tr>    
-</thead>
+
           <% @flag = 1 %>
           <% @latestScore = 1 %>
           <% sl=0 %>
@@ -441,7 +441,7 @@
     <!-- Topten  -->
     <div class="showhide" id="myTable12" name="myTable12" style="margin-top:90px;">
       <table id="myTable1" class='tablesorter1' width="100%">   
-<thead>
+
         <tr id="sTable">
           <th width="8%">Rank</th>
           <th width="23%">Contestants</th>
@@ -449,7 +449,7 @@
           <th width="45%">Achievement</th>
           <th width="17%">Time</th>
         </tr>    
-</thead>
+
         <% if @challenge.instance_of?ChildChallenge %>
           <% @fetChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
         <% else %>
@@ -777,7 +777,7 @@
       <!--My comptitor-->
     <div class="showhide" id="myTable14" name="myTable14">	
       <table id="myTable1" class='tablesorter1' width="100%" style="margin-top:90px;">   
-    <thead>
+    
         <tr id="sTable">
           <th width="8%">Rank</th>
           <th width="23%">Contestants</th>
@@ -785,7 +785,7 @@
           <th width="45%">Achievement</th>
           <th width="17%">Time</th>
         </tr>    
-</thead>
+
         <tbody>
           <% sl = 0 %>
           <% @flag = 1 %>
