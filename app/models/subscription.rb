@@ -12,7 +12,6 @@ class Subscription
   include Mongoid::Timestamps
 
   field :rating, type: String
-  field :user_id, type: ObjectId
 
   belongs_to :user
 end

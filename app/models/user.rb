@@ -51,7 +51,7 @@ class User
   end
 
   def inbox
-    Message.all(conditions: { :to => (fbauth.uid rescue gmauth.id), :isDeleted => 0 }, limit: 6).desc("created_at")
+    Message.all(conditions: { :to => (fbauth.uid rescue gmauth.try(:id)), :isDeleted => 0 }, limit: 6).desc("created_at")
     #Message.all(conditions: { :to => (fbauth.uid rescue gmauth.id)}, limit: 6).desc("created_at")
   end
 
@@ -61,8 +61,9 @@ class User
 
   def challenges
     challenges = []
-    logger.debug gmauth.id
-    Challenge.any_of({:user_id => (fbauth.uid rescue gmauth.id.to_s) }, {"child_challenges.user_id" => (fbauth.uid rescue gmauth.id.to_s)}).each do |aChallenge|
+    #logger.debug gmauth.id
+    mail_auth_id = gmauth.try(:id).try(:to_s)
+    Challenge.any_of({:user_id => (fbauth.uid rescue mail_auth_id) }, {"child_challenges.user_id" => (fbauth.uid rescue mail_auth_id)}).each do |aChallenge|
       addUserOnlyChallenge challenges, aChallenge
     end
 
@@ -70,21 +71,21 @@ class User
   end
 
   def facebook
-    FbGraph::User.new('me', :access_token => self.fbauth.token).fetch
+    FbGraph::User.new('me', :access_token => self.fbauth.try(:token)).fetch
   end
 
   def fbauth
-    self.authentications.find_by_provider('facebook')
+    self.authentications.where(:provider=>'facebook').first
   end
 
   def gmauth
-    User.find_by_email(email)
+    User.where(:email=>email).first
     #logger.debug "Maisa"
   end
 
   private
   def addUserOnlyChallenge(challenges, aChallenge)
-    if aChallenge.user_id == (fbauth.uid rescue gmauth.id.to_s)
+    if aChallenge.user_id == (fbauth.uid rescue gmauth.try(:id).try(to_s))
       challenges.push(aChallenge)
     end
 

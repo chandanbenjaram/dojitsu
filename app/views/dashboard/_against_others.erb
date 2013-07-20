@@ -23,9 +23,9 @@
     <% taskCompleted=1 %>
     <% total_challenges.take(3).each do |limitChallenge|%>
       <tr style="height:120px; ">
-        <td id="againest_others_tr<%= taskCompleted %>" class="bordercolort" width="150">	
+        <td id="againest_others_tr<%= taskCompleted %>" class="bordercolort" width="150">
         <% if limitChallenge.instance_of?ChildChallenge %>
-            <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>          
+            <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>
 		    <%if @parentChallenge.is_complete == 1%>
 			   <span class="checkimage<%= taskCompleted %>"> <%= image_tag("closed.png") %></span>
 			<%end%>
@@ -37,7 +37,7 @@
 		 <%end%>
           <br>
 	  <div class="aboutchallenge">
-		   <span class="userchallengestyle"><b><%= limitChallenge.title %></b></span><br>  
+		   <span class="userchallengestyle"><b><%= limitChallenge.title %></b></span><br>
            <% if limitChallenge.instance_of?ChildChallenge %>
             <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>
             <script>
@@ -48,30 +48,30 @@
                 <%= @parentChallenge.first_name %>
               <% else %>
                 <%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %>
-              <% end %>                                  
-            </div>                     
+              <% end %>
+            </div>
           <% else %>
             <div class="chname"><span id="by_properties" >by </span>
               <% if isStandalone %>
                 <%= current_user.gmauth.first_name %>
               <% else %>
                 <%= current_user.facebook.name %>
-              <% end %>                                  
-            </div>   
+              <% end %>
+            </div>
           <% end %>
-          <span class="stedpoint"><%=  limitChallenge.start_point.value %> - <%= limitChallenge.end_point.value %></span> 
+          <span class="stedpoint"><%=  limitChallenge.start_point.value %> - <%= limitChallenge.end_point.value %></span>
 		 </div>
         </td>
         <td id="againest_others_tr<%= taskCompleted %>" class="bordercolort" width="50">
-		
+
 		  <span id ="rankspoints">
-		   
+
 		   <% if limitChallenge.instance_of?ChildChallenge %>
-            <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>          
+            <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>
 		    <%if @parentChallenge.is_complete == 1%>
 			<%if @parentChallenge.social_type.trophy%>
 			  <u> <%=  @parentChallenge.social_type.trophy.rank	%></u>
-			<%end%>			  
+			<%end%>
 			  <%else%>
 			  <u>0</u>
 			<%end%>
@@ -79,11 +79,11 @@
 		     <% if limitChallenge.is_complete == 1 %>
 		      <% if limitChallenge.social_type.trophy %>
 					<u><%=limitChallenge.social_type.trophy.rank%></u>
-				<% end %>	   
+				<% end %>
 			 <%else%>
-			 <u>0</u>   
+			 <u>0</u>
 			 <%end%>
-		 <%end%> 
+		 <%end%>
 		  </span><br>
           <% if limitChallenge.instance_of?ChildChallenge %>
             <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>
@@ -96,8 +96,8 @@
         </td>
         <td id="againest_others_tr<%= taskCompleted %>" class="bordercolort">
 		<% if limitChallenge.instance_of?ChildChallenge %>
-            <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>          
-		    <%if @parentChallenge.is_complete == 1%>         
+            <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>
+		    <%if @parentChallenge.is_complete == 1%>
 				<div class="percentagecolor"><span id="taskprogressaginstothers1<%= taskCompleted %>"> </span>%</div>
 			<%else%>
 			    <span id="taskprogressaginstothers<%= taskCompleted %>"> </span>
@@ -110,7 +110,7 @@
 		   <%end%>
 		<%end%>
         </td>
-        <td id="againest_others_tr<%= taskCompleted %>" class="bordercolort" width="280">	  
+        <td id="againest_others_tr<%= taskCompleted %>" class="bordercolort" width="280">
           <% flag1=0 %>
           <% flag2=0 %>
           <% flag3=0 %>
@@ -129,13 +129,13 @@
             <% end %>
           <% end %>
 		  	<% if limitChallenge.instance_of?ChildChallenge %>
-            <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>          
-			
-			 <% if @parentChallenge.is_complete == 1 %>		   
+            <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>
+
+			 <% if @parentChallenge.is_complete == 1 %>
 				 <div class="alltaskslist"><span  id="pointsbefore"><%= aScore %>&nbsp;Points  (<%= flag1 %>&nbsp;tasks) </span>
-					<span class="pointscolor22">/<%= cScore %> points (<%= flag3 %>&nbsp;tasks)</span></div>			  
+					<span class="pointscolor22">/<%= cScore %> points (<%= flag3 %>&nbsp;tasks)</span></div>
 					<% sl=0 %>
-				
+
 					  <% if @parentChallenge.social_type.who_win == "Highest number of points" %>
 						<% @all =  Challenge.winner(@parentChallenge._id) %>
 					  <% end %>
@@ -145,7 +145,7 @@
 					  <% if @parentChallenge.social_type.who_win == "Lowest number of points" %>
 						<% @temp =  Challenge.winner(@parentChallenge._id) %>
 						<% @all = @temp.sort {|a,b| a[1] <=> b[1]} %>
-					  <% end %>			
+					  <% end %>
 					  <% if @parentChallenge.social_type.who_win == "1st person to reach End Point" %>
 						<% @temp =  Challenge.winnerFirstPersonReach(@parentChallenge._id) %>
 						<% @all = @temp.sort {|a,b| a[1] <=> b[1]} %>
@@ -156,51 +156,51 @@
 						<% @allParticipants.push(aWinner) %>
 					  <% end %>
 					  <% @all %>
-					<%a=1%>	  
+					<%a=1%>
 					  <% @all.each do |aWinner,index| %>
-						<% @allWinners.push(aWinner) %>						
+						<% @allWinners.push(aWinner) %>
 						<% if Challenge.all(conditions: {:user_id => aWinner, :challenge_id=>@parentChallenge._id}).first %>
 						  <% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :challenge_id=>@parentChallenge._id}).first %>
 						<% else %>
 						  <% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :_id=>@parentChallenge._id}).first %>
-						<% end %>		
-						<% unless eachChallenge.social_type.trophy.rank == -1 %>	
-		
+						<% end %>
+						<% unless eachChallenge.social_type.trophy.rank == -1 %>
+
 							<%= image_tag(FbGraph::User.new(aWinner).fetch.picture, :id => "#{aWinner}" , :onclick => "imageid#{a}();") %>
 				            <% a =+ 1 %>
 				            <% sl +=1 %>
 							<% if sl.to_i == @parentChallenge.social_type.how_many_winners.to_i %>
 							<script>
-								function imageid(){  
+								function imageid(){
 								  var id = document.getElementById("<%= aWinner%>");
 						          alert(id);
 								}
-								
+
 							</script>
 					<% break %>
-				  <% end %>                                  
-				<% end %>						
-			  <% end %>		
-					
-			
+				  <% end %>
+				<% end %>
+			  <% end %>
+
+
 		   <%= image_tag("details.png", :class=> "detailsbuttondash")%>
 
-               
-				 
-			
+
+
+
 			<%else%>
-				
+
 			    <div class="taskprogress1" id="taskprogress1<%= taskCompleted %>"></div><br/>
 				 <span  class="overalltasks<%= taskCompleted %>"><%= aScore %>&nbsp;Points <br/><span id="other_tasks"> (<%= flag1 %>&nbsp;tasks) </span></span>
 				<span class="pointscolor2"><%= cScore %> points <br>(<%= flag3 %>&nbsp;tasks)</span>
 			<%end%>
 		<%else%>
-			
-		   <% if limitChallenge.is_complete == 1 %>		   
+
+		   <% if limitChallenge.is_complete == 1 %>
 				 <div class="alltaskslist"><span  id="pointsbefore"><%= aScore %>&nbsp;Points  (<%= flag1 %>&nbsp;tasks) </span>
-					<span class="pointscolor22">/<%= cScore %> points (<%= flag3 %>&nbsp;tasks)</span></div>			  
+					<span class="pointscolor22">/<%= cScore %> points (<%= flag3 %>&nbsp;tasks)</span></div>
 					<% sl=0 %>
-				
+
 					  <% if limitChallenge.social_type.who_win == "Highest number of points" %>
 						<% @all =  Challenge.winner(limitChallenge._id) %>
 					  <% end %>
@@ -210,7 +210,7 @@
 					  <% if limitChallenge.social_type.who_win == "Lowest number of points" %>
 						<% @temp =  Challenge.winner(limitChallenge._id) %>
 						<% @all = @temp.sort {|a,b| a[1] <=> b[1]} %>
-					  <% end %>			
+					  <% end %>
 					  <% if limitChallenge.social_type.who_win == "1st person to reach End Point" %>
 						<% @temp =  Challenge.winnerFirstPersonReach(limitChallenge._id) %>
 						<% @all = @temp.sort {|a,b| a[1] <=> b[1]} %>
@@ -221,31 +221,31 @@
 						<% @allParticipants.push(aWinner) %>
 					  <% end %>
 					  <% @all %>
-					<%a=1%>	  
+					<%a=1%>
 					  <% @all.each do |aWinner,index| %>
-						<% @allWinners.push(aWinner) %>						
+						<% @allWinners.push(aWinner) %>
 						<% if Challenge.all(conditions: {:user_id => aWinner, :challenge_id=>limitChallenge._id}).first %>
 						  <% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :challenge_id=>limitChallenge._id}).first %>
 						<% else %>
 						  <% eachChallenge = Challenge.all(conditions: {:user_id => aWinner, :_id=>limitChallenge._id}).first %>
-						<% end %>		
-						<% unless eachChallenge.social_type.trophy.rank == -1 %>	
-		
+						<% end %>
+						<% unless eachChallenge.social_type.trophy.rank == -1 %>
+
 							<%= image_tag(FbGraph::User.new(aWinner).fetch.picture, :id => "#{aWinner}" , :onclick => "imageid#{a}();") %>
 				            <% a =+ 1 %>
 				            <% sl +=1 %>
 							<% if sl.to_i == limitChallenge.social_type.how_many_winners.to_i %>
 							<script>
-								function imageid(){  
+								function imageid(){
 								  var id = document.getElementById("<%= aWinner%>");
 						          alert(id);
 								}
-								
+
 							</script>
 					<% break %>
-				  <% end %>                                  
-				<% end %>						
-			  <% end %>		
+				  <% end %>
+				<% end %>
+			  <% end %>
 				 <%= image_tag("details.png", :class=> "detailsbuttondash")%>
 			<%else%>
 				 <div class="taskprogress1" id="taskprogress1<%= taskCompleted %>"></div><br/>
@@ -257,35 +257,35 @@
 		  <script type="text/javascript">
             $(function() {
               $("#taskprogress1<%= taskCompleted %>").progressbar({ value: Math.round(((<%= aScore %>/<%= (aScore+bScore) %>)*100)) });
-                
+
 				$("<p>").attr("id", "checkit1").text($("#taskprogress1<%= taskCompleted %>").progressbar("option", "value") + "%  ")
 				$("<p>").attr("id", "checkit1").text($("#taskprogress1<%= taskCompleted %>").progressbar("option", "value") + "%  ").appendTo("#taskprogressaginstothers<%= taskCompleted %>");
                 $('#taskprogressaginstothers1<%= taskCompleted %>').append(<%=percentage%>);
-				
+
               });
-               
+
           </script>
         </td>
         <td id="againest_others_tr<%= taskCompleted %>" class="bordercolort" >
 		<% if limitChallenge.instance_of?ChildChallenge %>
-            <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>          
-		    <%if @parentChallenge.is_complete == 1%>         
-					
+            <% @parentChallenge = Challenge.where(:_id => limitChallenge.challenge_id).first%>
+		    <%if @parentChallenge.is_complete == 1%>
+
 			<%else%>
-			  <span class = "timestyle2"><%= time_ago_in_words  limitChallenge.created_at%></span><br>				 
+			  <span class = "timestyle2"><%= time_ago_in_words  limitChallenge.created_at%></span><br>
 			  <%=link_to( image_tag("update.png"), show_per_challenges_path(:id => limitChallenge._id), :class=>"updatebutton") %>
 			<%end%>
 		<%else%>
 		   <% if limitChallenge.is_complete == 1 %>
-				
+
 			<%else%>
-				 <span class = "timestyle2"><%= time_ago_in_words  limitChallenge.created_at%></span><br>				 
+				 <span class = "timestyle2"><%= time_ago_in_words  limitChallenge.created_at%></span><br>
 				 <%=link_to( image_tag("update.png"), show_per_challenges_path(:id => limitChallenge._id), :class=>"updatebutton") %>
 		   <%end%>
-		<%end%>         
-		 
+		<%end%>
+
         </td>
- 
+
         <% taskCompleted+=1 %>
      <style>
        .overalltasks<%= taskCompleted %> {
@@ -321,7 +321,7 @@
 		 background-color: #D7D7D7;
 		  max-width: 152%;
 	 }
-	 
+
      #nametask{ color: #666666;font-family: arial;font-size: 14px;font-weight: bold;}
 	 #pointsbefore{ color: #7AC142; font-size: 13px; font-weight: bold;}
 	 .pointscolor22{color: #F8981D; font-size: 13px; font-weight: bold;}
@@ -330,9 +330,9 @@
 	 .detailsbuttondash{float: right;  position: absolute;  right: 39%;}
 	 .selecttag{background-color: red;}
 	 </style>
-     
+
     </tr>
-    
+
   <% end %>
 </tbody>
 </table>

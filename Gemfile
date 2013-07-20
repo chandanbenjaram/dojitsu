@@ -22,7 +22,7 @@ gem "resque"
 #gem "bson_ext", "~> 1.3"
 #gem "bson", "~> 1.4.1"
 
-           
+
 # authentication specifics
 gem 'devise', '1.5'
 #gem "oa-oauth", :require => "omniauth/oauth"
@@ -52,10 +52,11 @@ gem "on_the_spot"
 # gem 'webrat'
 # end
 group :development, :test do
-gem 'rspec-rails'
-gem 'annotate'
-#gem 'ruby-debug'
-#gem "mongrel"
+	gem 'debugger'
+	gem 'rspec-rails'
+	gem 'annotate'
+	#gem 'ruby-debug'
+	#gem "mongrel"
 end
 
 # Gems used only for assets and not required
