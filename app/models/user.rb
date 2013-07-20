@@ -1,4 +1,24 @@
-class User < ActiveRecord::Base
+class User
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  field :first_name, type: String
+  field :last_name, type: String
+  field :email,              :type => String, :default => ""
+  field :encrypted_password, :type => String, :default => ""
+  field :reset_password_token,   :type => String
+  field :remember_token, type: String
+  field :remember_created_at, :type => Time
+  field :sign_in_count,      :type => Integer, :default => 0
+  field :current_sign_in_at, :type => Time
+  field :last_sign_in_at,    :type => Time
+  field :current_sign_in_ip, :type => String
+  field :last_sign_in_ip,    :type => String
+  field :salt,:type => String
+  field :confirmation_token,   :type => String
+  field :confirmed_at,         :type => Time
+  field :confirmation_sent_at, :type => Time
+
   regex_email= /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
@@ -22,7 +42,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def apply_omniauth(omniauth)      
+  def apply_omniauth(omniauth)
     authentications.build(:provider => omniauth[:provider], :uid => omniauth[:uid], :email => omniauth[:email], :name => omniauth[:name], :first_name => omniauth[:first_name], :last_name => omniauth[:last_name], :token =>omniauth[:token])
   end
 
@@ -30,16 +50,16 @@ class User < ActiveRecord::Base
     (authentications.empty? || !password.blank?) && super
   end
 
-  def inbox 
+  def inbox
     Message.all(conditions: { :to => (fbauth.uid rescue gmauth.id), :isDeleted => 0 }, limit: 6).desc("created_at")
     #Message.all(conditions: { :to => (fbauth.uid rescue gmauth.id)}, limit: 6).desc("created_at")
   end
-  
+
   def unReadMessage
     Message.all(conditions: { :to => fbauth.uid , :isRead => 0 })
   end
-  
-  def challenges 
+
+  def challenges
     challenges = []
     logger.debug gmauth.id
     Challenge.any_of({:user_id => (fbauth.uid rescue gmauth.id.to_s) }, {"child_challenges.user_id" => (fbauth.uid rescue gmauth.id.to_s)}).each do |aChallenge|
@@ -56,17 +76,17 @@ class User < ActiveRecord::Base
   def fbauth
     self.authentications.find_by_provider('facebook')
   end
-  
+
   def gmauth
     User.find_by_email(email)
     #logger.debug "Maisa"
   end
 
   private
-  def addUserOnlyChallenge(challenges, aChallenge) 
+  def addUserOnlyChallenge(challenges, aChallenge)
     if aChallenge.user_id == (fbauth.uid rescue gmauth.id.to_s)
       challenges.push(aChallenge)
-    end             
+    end
 
     aChallenge.child_challenges.each do |aChallengeChild|
       addUserOnlyChallenge challenges, aChallengeChild

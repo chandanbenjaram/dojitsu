@@ -1,6 +1,8 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'rails/all'
+require "action_controller/railtie"
+require "action_mailer/railtie"
+require "active_resource/railtie"
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -38,7 +40,7 @@ module Dojitsu
     config.action_mailer.default_url_options = { :host => 'localhost:4000' }
 
     # mail server settings
-      
+
     config.action_mailer.delivery_method = :smtp
 
     config.action_mailer.smtp_settings = {
@@ -52,23 +54,21 @@ module Dojitsu
     }
 
     config.action_mailer.perform_deliveries = true
-    config.action_mailer.raise_delivery_errors = true 
-    
+    config.action_mailer.raise_delivery_errors = true
+
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
     # Enable the asset pipeline
     config.assets.enabled = true
     config.autoload_paths << "#{config.root}/lib"
-    config.generators do |g| 
-      g.orm :active_record 
-    end
-    
+
+
     # FACEBOOK GLOBALS
-    config.fb_scopes = 'offline_access, email, read_friendlists,user_birthday,manage_notifications, read_mailbox' 
+    config.fb_scopes = 'offline_access, email, read_friendlists,user_birthday,manage_notifications, read_mailbox'
     # fallback used for development, test. prod differs
-	
-    config.fb_app_id = '181761375220642' 
-    config.fb_app_secret = '28dc6fdf9d4318d0a3ae0c91692b4005'  
+
+    config.fb_app_id = '181761375220642'
+    config.fb_app_secret = '28dc6fdf9d4318d0a3ae0c91692b4005'
   end
 end

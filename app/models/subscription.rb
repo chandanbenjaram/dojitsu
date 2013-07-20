@@ -7,6 +7,12 @@
 #  rating :string(255)
 #
 
-class Subscription < ActiveRecord::Base   
+class Subscription
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  field :rating, type: String
+  field :user_id, type: ObjectId
+
   belongs_to :user
 end

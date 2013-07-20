@@ -12,7 +12,7 @@ Devise.setup do |config|
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
-  require 'devise/orm/active_record'
+  require 'devise/orm/mongoid'
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
@@ -174,9 +174,9 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   # provider :facebook, '208068219229732', '0d8e4313c829e165ebf70272fc8a2f48'
   # config.omniauth :facebook, '208068219229732', '0d8e4313c829e165ebf70272fc8a2f48'
-   
+
   config.stretches = Rails.env.test? ? 1 : 10
-  
+
   ########## FACEBOOK call backs #####################
   ### UNCOMMENT FOLLOWING BLOCK BASED ON YOUR ENVIRONMENT
   ### localhost:4000 callback
@@ -194,8 +194,8 @@ config.omniauth :facebook, Rails.application.config.fb_app_id, Rails.application
   #   manager.failure_app   = AnotherApp
   #   manager.intercept_401 = false
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
-  # end  
-  
+  # end
+
   class Hash
       def recursive_find_by_key(key)
         # Create a stack of hashes to search through for the needle which
@@ -217,5 +217,5 @@ config.omniauth :facebook, Rails.application.config.fb_app_id, Rails.application
           end
         end
       end
-    end  
+    end
 end
