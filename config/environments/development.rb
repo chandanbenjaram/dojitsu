@@ -8,7 +8,7 @@ Dojitsu::Application.configure do
 
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
-  
+
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
@@ -16,7 +16,7 @@ Dojitsu::Application.configure do
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { :host => 'localhost:4000' }
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
 
   # Print deprecation notices to the Rails logger
@@ -33,6 +33,9 @@ Dojitsu::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  config.fb_app_id = '162757790578172'
+  config.fb_app_secret = '93105682151f568cf2b53eb21d220f74'
 
   # Slim configuration
   # 1. DEV MODE DO PRETTY PRINT
