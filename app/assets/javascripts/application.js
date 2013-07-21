@@ -11,8 +11,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery.tablesorter.min
 
-function dojoFBLogout(e){ 
+function dojoFBLogout(e){
 	FB.logout();
 };
 

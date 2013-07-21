@@ -6,16 +6,15 @@ class AuthenticationsController < ApplicationController
 
   def create
     # get provider
-    params[:provider] ? provider_route = params[:provider] : provider_route = ''
-
+    provider_route = params[:provider] ? params[:provider]:''
     # callback hash
     omniauth = request.env["omniauth.auth"]
 
     if omniauth and params[:provider]
         if provider_route == 'facebook'
             # user unique id per provider [REQUIRED]
-            omniauth['uid'] ?  uid =  omniauth['uid'] : uid = ''
-            omniauth['provider'] ? provider =  omniauth['provider'] : provider = ''
+            uid = omniauth['uid'] ? omniauth['uid']:''
+            provider = omniauth['provider'] ? omniauth['provider']:''
 
             # user profile specific
             if infoKey = omniauth.info
@@ -23,7 +22,7 @@ class AuthenticationsController < ApplicationController
               name =  infoKey.name
               first_name =  infoKey.first_name
               last_name =  infoKey.last_name
-              image_path =  infoKey.image_path
+              image_path =  infoKey.image
             end
 
             # user location specific
