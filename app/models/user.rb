@@ -75,7 +75,7 @@ class User
   end
 
   def fbauth
-    self.authentications.where(:provider=>'facebook')
+    self.authentications.where(:provider=>'facebook').first
   end
 
   def gmauth
