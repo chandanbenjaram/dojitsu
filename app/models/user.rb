@@ -26,7 +26,7 @@ class User
   :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :confirmable
 
   has_many :user_connections
-  has_many :authentications
+  has_many :authentications, autosave: true, dependent: :destroy
 
   has_many :subscriptions
 
