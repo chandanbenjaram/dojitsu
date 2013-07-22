@@ -1,7 +1,7 @@
 class ChallengesController < ApplicationController
   before_filter :authenticate_user!, :except => [:nonLoginShowPersonal, :nonLoginShowSocial, :nonLoginIndex, :registerToMessage]
   before_filter :find_challenge, :only => [:show, :edit, :update, :destroy]
-  #on_spot_edit  is the gem to edit the data on spot 
+  #on_spot_edit  is the gem to edit the data on spot
   can_edit_on_the_spot
 
   def index
@@ -14,15 +14,15 @@ class ChallengesController < ApplicationController
     #raise @orgChallenge.social_type.who_win.inspect
   end
 
-  def show       
+  def show
     @challenge = Challenge.find(params[:id])
   end
 
   def show_soc
     @flg = params[:flg]
-    @challenge = Challenge.find(params[:id]) 
-    
-    #@is_complete_status = 0 
+    @challenge = Challenge.find(params[:id])
+
+    #@is_complete_status = 0
     #@challenge.tasks.each do |checkingTaskStatus|
     #  unless checkingTaskStatus.is_complete == 1
     #    @is_complete_status = 1
@@ -34,15 +34,15 @@ class ChallengesController < ApplicationController
     #end
     @org = User.find(:all,:conditions => ["id=?",@challenge.user_id]).first
   end
-  
+
   def scoreboard_main
     @challenge = Challenge.find(params[:id])
     @this_tasks = @challenge.tasks
     @challenge.child_challenges.each do |childid|
-      @cid = childid.user_id 
+      @cid = childid.user_id
     end
     @challenge.child_challenges.each do |chalid|
-      @chaid = chalid.challenge_id 
+      @chaid = chalid.challenge_id
     end
   end
 
@@ -50,15 +50,15 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.find(params[:id])
     #GETING ALL USER CONNECTION
     aConnection = []
-    @allConnections = UserConnection.select(:target_id).where(:user_id=>current_user.id)
+    @allConnections = UserConnection.only(:target_id).where(:user_id=>current_user.id)
     @allConnections.each do |aTargetId|
       aConnection.push(aTargetId.target_id)
-    end     
+    end
     #ALL CONNECTION AS PARTICIPANT
     @onlyMyFrd = Challenge.all(conditions: {:user_id.in => aConnection, :title => @challenge.title })
     #ALL FRD IN CHALLENGE
-    @onlyMyFrdInChallenge = [] 
-    @myAccepted = [] 
+    @onlyMyFrdInChallenge = []
+    @myAccepted = []
     @myThinking = []
     @myDeclined = []
     @onlyMyFrd.each do |aStatus|
@@ -71,13 +71,13 @@ class ChallengesController < ApplicationController
         @myThinking.push(aStatus.user_id)
       end
     end
-    
+
     #raise @myAccepted.inspect
     #raise @myDeclined.inspect
     #raise @myThinking.inspect
-    
+
     #MARK CHALLENGE AS COMPLETE
-    #@is_complete_status = 0 
+    #@is_complete_status = 0
     #@challenge.tasks.each do |checkingTaskStatus|
     #  unless checkingTaskStatus.is_complete == 1
     #    @is_complete_status = 1
@@ -88,21 +88,21 @@ class ChallengesController < ApplicationController
     #  Challenge.where(:_id => params[:id]).update(:is_complete => 1)
     #end
     if (@challenge.social_type.instance_of? ChallengeSocialType rescue false)
-      render "show_soc" and return 
-    else 
+      render "show_soc" and return
+    else
       render "show_per"
     end
   end
-  
-  
+
+
 
   def new
     @challenge = Challenge.new
-    1.times {@challenge.tasks.build} 
+    1.times {@challenge.tasks.build}
   end
 
   def create
-    
+
     @ch = Challenge.new(params[:challenge])
     @ch_st_date = params[:start_point_type]
     @st_p_val = params[:start_point_value]
@@ -121,23 +121,23 @@ class ChallengesController < ApplicationController
           :social_type => ChallengeSocialType.new(:status => 1,:who_win => @so_who_win, :how_many_winners => @so_how_many_winner, :trophy => Trophy.new(:rank=>0))) do |new_challenge|
         if @ch_st_date == "startPointDate" and  @ch_ed_date == "endPointDate"
           new_challenge.start_point =  PointDateType.new(:value => Date.strptime(@st_p_val, '%m/%d/%Y'))
-          new_challenge.end_point = PointDateType.new(:value => Date.strptime(@ed_p_val, '%m/%d/%Y')) 
+          new_challenge.end_point = PointDateType.new(:value => Date.strptime(@ed_p_val, '%m/%d/%Y'))
         else
           new_challenge.start_point =  PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb)
-          new_challenge.end_point = PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb) 
+          new_challenge.end_point = PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb)
         end
       end
     else
       @challenge = Challenge.new(:user_id => (current_user.fbauth.uid rescue current_user.id), :title => @ch.title, :description => @ch.description, :canCompleteBeforeTasks => @ch.canCompleteBeforeTasks, \
           :personal_type => ChallengePersonalType.new(:who_win => @pr_who_win)) do |new_challenge|
-        if @ch_st_date == "startPointDate" and  @ch_ed_date == "endPointDate" 
+        if @ch_st_date == "startPointDate" and  @ch_ed_date == "endPointDate"
           new_challenge.start_point =  PointDateType.new(:value => Date.strptime(@st_p_val, '%m/%d/%Y'))
-          new_challenge.end_point = PointDateType.new(:value => Date.strptime(@ed_p_val, '%m/%d/%Y')) 
+          new_challenge.end_point = PointDateType.new(:value => Date.strptime(@ed_p_val, '%m/%d/%Y'))
         else
           new_challenge.start_point =  PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb)
-          new_challenge.end_point = PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb) 
+          new_challenge.end_point = PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb)
         end
-      end            
+      end
     end
 
     @ch.task_attributes.each do |task_attr|
@@ -145,16 +145,16 @@ class ChallengesController < ApplicationController
     end
 
     @challenge.save!
-	
+
     unless @so_who_win.blank?
       # referenced documents can only be saved when parent exists
       if !params[:invitees].nil?
         params[:invitees].split(",").each do |aFBId|
-          current_user.user_connections.find_or_create_by_target_id(:target_id => aFBId )
+          current_user.user_connections.find_or_create_by(:target_id => aFBId )
         end
       end
     end
-		
+
 
     unless @so_who_win.blank?
       # referenced documents can only be saved when parent exists
@@ -166,23 +166,23 @@ class ChallengesController < ApplicationController
                 :end_point => PointDateType.new(:value => Date.strptime(@ed_p_val, '%m/%d/%Y')), \
                 :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner, :trophy => Trophy.new(:rank=>0)), \
                 :tasks => @ch.task_attributes)
-          else 
+          else
             @challenge.child_challenges.create!(:user_id => invitee, :title => @ch.title, :description => @ch.description, :canCompleteBeforeTasks => @ch.canCompleteBeforeTasks, \
                 :start_point => PointNumberType.new(:value => @st_p_val, :label=> @st_p_leb), \
                 :end_point => PointNumberType.new(:value => @ed_p_val, :label=>@ed_p_leb), \
                 :social_type => ChallengeSocialType.new(:who_win => @so_who_win, :how_many_winners => @so_how_many_winner, :trophy => Trophy.new(:rank=>0)), \
                 :tasks => @ch.task_attributes)
           end
-        end      
-      end  
-    end   
-    redirect_to show_per_challenges_path(:id => @challenge, :isNewChallenge => "isNew"), :notice => "Challenge created!" 
+        end
+      end
+    end
+    redirect_to show_per_challenges_path(:id => @challenge, :isNewChallenge => "isNew"), :notice => "Challenge created!"
 
-  
+
 
   end
   def publish
-    render :layout => false 
+    render :layout => false
   end
   def edit
     @challenge = Challenge.find(params[:id])
@@ -203,7 +203,7 @@ class ChallengesController < ApplicationController
 
   def update
     @challenge = Challenge.find(params[:id])
-	
+
     if @challenge.update_attributes(params[:challenge])
       #raise "aaa"
       redirect_to :action => 'index', :id => @challenge
@@ -211,19 +211,19 @@ class ChallengesController < ApplicationController
       render :action => edit
     end
   end
-	
+
   def destroy
     @challenge.destroy
     redirect_to :action => 'index'
-  end  
+  end
 
   def invitee_accepted_req
-    
+
   end
 
   def message
     render :partial => 'challenges/message'
-  end  
+  end
 
   def task_update
     @id = params[:id]
@@ -247,15 +247,15 @@ class ChallengesController < ApplicationController
       @ch_ts_update.tasks.where(:name => params[:name]).update(:is_complete => 1, :score => params[:tatal_s])
       redirect_to show_per_challenges_path(:id => params[:id], :isNewChallenge => "isNew")
       return
-    end 
+    end
   end
 
-  
+
   def search_people
 		render :layout => false
   end
-  
-  
+
+
   def challenge_comp
     Challenge.where(:_id => params[:id]).update(:is_complete => 1)
     redirect_to show_per_challenges_path(:isNewChallenge => "isNew", :id => params[:id])
@@ -275,27 +275,27 @@ class ChallengesController < ApplicationController
   end
 
   def add_task_fun
-    @chall_ref = Challenge.find(params[:challenge_id]) 
+    @chall_ref = Challenge.find(params[:challenge_id])
     @chall_ref.tasks.push(Task.new(:name => params[:name], :score => params[:score], :score_by => params[:score_by]))
     @chall_ref.child_challenges.each do |ts|
       ts.tasks.push(Task.new(:name => params[:name], :score => params[:score], :score_by => params[:score_by]))
     end
     redirect_to show_per_challenges_path(:id => params[:challenge_id])
   end
-  
-  def date_updateStart	
+
+  def date_updateStart
     @challenge = Challenge.find(params[:value][:myParams2])
     if params[:value][:myParams3]
       startPoint = @challenge.start_point
       startPoint.update_attributes(:value => params[:value][:myParams1], :label =>params[:value][:myParams3])
-	 
+
     else
       startPoint = @challenge.start_point
       startPoint.update_attributes(:value => params[:value][:myParams1])
       redirect_to challenges_path
     end
   end
-  
+
   def date_updateEnd
     @challenge = Challenge.find(params[:value][:myParams2])
     if params[:value][:myParams3]
@@ -312,25 +312,25 @@ class ChallengesController < ApplicationController
     aChallenge = Challenge.find(params[:id])
     socialType = aChallenge.social_type
     socialType.update_attributes(:status => params[:status])
-    if params[:status] == '1'       
+    if params[:status] == '1'
       redirect_to show_per_challenges_path(:id => params[:id], :isNewChallenge => "isNew")
     else
-      redirect_to show_per_challenges_path(:id => params[:id]) 
+      redirect_to show_per_challenges_path(:id => params[:id])
     end
-      
+
   end
 
   def change_challenge_status
 		render :layout => false
   end
-  
+
   def update_status_again
     aChallenge = Challenge.find(params[:id])
     socialType = aChallenge.social_type
     socialType.update_attributes(:status => params[:status])
     redirect_to show_per_challenges_path(:id => params[:id])
   end
-  
+
   def update_status_af_meg
     Challenge.where(:_id => params[:thinking_abt] ).all.each do |aChallenge|
       aChallenge.child_challenges.each do |aChildChallenge|
@@ -339,99 +339,99 @@ class ChallengesController < ApplicationController
       end
     end
   end
-  
+
   def title_update
     @aChallenge = Challenge.find(params[:value][:myParams21])
-    @aChallenge.update_attributes(:title =>params[:value][:myParams11]) 
+    @aChallenge.update_attributes(:title =>params[:value][:myParams11])
   end
 
   def desc_update
     @aChallenge = Challenge.find(params[:value][:myParams21])
-    @aChallenge.update_attributes(:description =>params[:value][:myParams11]) 
+    @aChallenge.update_attributes(:description =>params[:value][:myParams11])
   end
-  
+
   def title_soc_update
     @aChallenge = Challenge.find(params[:value][:myParams21])
-    @aChallenge.update_attributes(:title =>params[:value][:myParams11]) 
+    @aChallenge.update_attributes(:title =>params[:value][:myParams11])
   end
-  
+
   def desc_soc_update
   	@aChallenge = Challenge.find(params[:value][:myParams21])
-    @aChallenge.update_attributes(:description =>params[:value][:myParams11]) 
+    @aChallenge.update_attributes(:description =>params[:value][:myParams11])
   end
-  
-	
+
+
   def paginationTest
     @challenge = Challenge.where(:_id => "4ef1a6a454b53001a4000067").first
-    $wins ={"first"=>{"id"=>"1", "score"=>"1"},"second"=>{"id"=>"2", "score"=>"2"},"third"=>{"id"=>"3", "score"=>"3"},"fourth"=>{"id"=>"4", "score"=>"4"},"fifth"=>{"id"=>"5", "score"=>"5"}} 
-    temp ={"id"=>"10","score"=>"20"} 
-    aTotalScore = 0 
-   
+    $wins ={"first"=>{"id"=>"1", "score"=>"1"},"second"=>{"id"=>"2", "score"=>"2"},"third"=>{"id"=>"3", "score"=>"3"},"fourth"=>{"id"=>"4", "score"=>"4"},"fifth"=>{"id"=>"5", "score"=>"5"}}
+    temp ={"id"=>"10","score"=>"20"}
+    aTotalScore = 0
+
     $wins["first"]["score"] = 1
     $wins["second"]["score"] = 2
     $wins["third"]["score"] = 3
     $wins["fourth"]["score"] = 4
     $wins["fifth"]["score"] = 5
-    
+
     $wins["first"]["id"] = 1
     $wins["second"]["id"] = 2
     $wins["third"]["id"] = 3
     $wins["fourth"]["id"] = 4
     $wins["fifth"]["id"] = 5
 
- 
-   
+
+
     if @challenge.instance_of?Challenge
-      @challenge.tasks.each_with_index do |orgTasks,index|  
-        aTotalScore += orgTasks.score.to_i 
-      end 
+      @challenge.tasks.each_with_index do |orgTasks,index|
+        aTotalScore += orgTasks.score.to_i
+      end
       $wins["first"]["id"]= @challenge.user_id
-      $wins["first"]["score"]= aTotalScore     
-      aTotalScore = 0 
-      
+      $wins["first"]["score"]= aTotalScore
+      aTotalScore = 0
+
       @challenge.child_challenges.each do |aChildChallenge|
-        aChildChallenge.tasks.each_with_index do |eachTasks,index| 
-          aTotalScore += eachTasks.score.to_i  
+        aChildChallenge.tasks.each_with_index do |eachTasks,index|
+          aTotalScore += eachTasks.score.to_i
         end
         #raise aTotalScore.inspect
-        if aTotalScore > $wins["first"]["score"] 
+        if aTotalScore > $wins["first"]["score"]
           #raise "first less"
           whoWinning aTotalScore, $wins["first"]["score"], aChildChallenge.user_id, 1
           #raise "returned"
           aTotalScore = 0
           next if aTotalScore == 0
-        elsif aTotalScore > $wins["second"]["score"]        
+        elsif aTotalScore > $wins["second"]["score"]
           raise "second less"
           whoWinning aTotalScore, $wins["second"]["score"], aChildChallenge.user_id, 2
           #raise "returned"
           aTotalScore = 0
           next
-        elsif aTotalScore > $wins["third"]["score"]  
+        elsif aTotalScore > $wins["third"]["score"]
           #raise "third less"
           whoWinning aTotalScore, $wins["third"]["score"], aChildChallenge.user_id, 3
           #raise "returned"
           aTotalScore = 0
           next
-        elsif aTotalScore > $wins["fourth"]["score"]  
+        elsif aTotalScore > $wins["fourth"]["score"]
           #raise "fourht less"
           whoWinning aTotalScore, $wins["fourth"]["score"], aChildChallenge.user_id, 4
           #raise "returned"
           aTotalScore = 0
           next
-        else       
+        else
           #raise "fifth less"
           whoWinning aTotalScore, $wins["fifth"]["score"], aChildChallenge.user_id, 5
           #raise "returned"
           aTotalScore = 0
           next
-        end 
-        aTotalScore = 0 
+        end
+        aTotalScore = 0
       end
-      
-    else 
+
+    else
       raise "childchallenge"
-    end 
-    
+    end
+
     #@challegnes = Challenge.where(:_type.exists => false)
     #@users = Challenge.paginate(:page => params[:page])
     # or, use an explicit "per page" limit:
@@ -440,7 +440,7 @@ class ChallengesController < ApplicationController
     #@users = Message.paginate(:conditions=>{:to => '100002573213371'},:per_page=>2, :page=>params[:page])
     #@users = Challenge.where(:_type.exists => false).paginate(:page =>params[:page], :per_page => 1)
   end
-  
+
   def nonLoginShowPersonal
     @challenge = Challenge.find(params[:id])
     if(@challenge.social_type.instance_of? ChallengeSocialType rescue false)
@@ -453,55 +453,55 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.find(params[:id])
     @this_tasks = @challenge.tasks
 	  @challenge.child_challenges.each do |childid|
-	 		@cid = childid.user_id 
+	 		@cid = childid.user_id
 	  end
 	  @challenge.child_challenges.each do |chalid|
-      @chaid = chalid.challenge_id 
+      @chaid = chalid.challenge_id
 	  end
   end
   def trophies
     @challenge = Challenge.find(params[:id])
   end
-  
+
   def nonLoginShowSocial
     @challenge = Challenge.find(params[:id])
   end
-  
+
   def nonLoginIndex
     @challenges = Challenge.where(:_type.exists => false).desc("created_at")
   end
-  
+
   def socialpeople
     render :layout => false
   end
   def registerToMessage
   	render :layout=>false
   end
-  
+
   def winnerListPopup
     @challenge = Challenge.where(:_id => params[:id]).first
     Challenge.where(:_id => params[:id]).update(:is_complete => 1)
 		render :layout=>false
 	end
 
-	def mForWinner		
+	def mForWinner
 		@winnerList = params[:winnerList]
 		@winnerList.split(" ").each do |eachWinner|
-      whomSend = Authentication.find_by_uid(eachWinner)				
-      UserMailer.sendMessage(whomSend.email,params[:message]).deliver						
+      whomSend = Authentication.find_by_uid(eachWinner)
+      UserMailer.sendMessage(whomSend.email,params[:message]).deliver
 		end
 		redirect_to show_soc_challenges_path(:id => params[:challengeId])
 	end
-  
-  
+
+
   def update_tasks_list
 	  @task_id = params[:id]
 	  @challengeId = Challenge.find(params[:challengeId])
 	  @myscore = params[:score]
 	  @challengeId.tasks.each do |aTask|
-	  
+
       if aTask.id.to_s==@task_id
-			   
+
 			  aTask.update_attribute("total",@myscore)
         if  aTask.total !=0
 					aTask.update_attribute("is_complete",1)
@@ -509,11 +509,11 @@ class ChallengesController < ApplicationController
       end
     end
     t= DateTime.now
-    date=t.strftime("%d/%m/%y%H:%M:%S") 
-	   
+    date=t.strftime("%d/%m/%y%H:%M:%S")
+
     redirect_to show_per_challenges_path(:id => @challengeId.id)
   end
-  
+
   def myscore_update_self_report
 		#raise params.inspect
 		@sum = params[:sum]
@@ -533,18 +533,18 @@ class ChallengesController < ApplicationController
     end
 		#raise @my_total.inspect
     #@ch_id = Challenge.find(params[:ch_id])
-	 
+
     redirect_to show_per_challenges_path(:id => @challengeId.id)
   end
-		
-		
+
+
   def deleteWinner
     #raise Challenge.all(conditions: {:user_id=>'100002573213371', :challenge_id=>BSON::ObjectId('4f38f7f779216d45d4000007')}).first.inspect
     @challenge = Challenge.where(:_id=>params[:id]).first
-    @challenge.social_type.create_trophy(:rank=>-1)				
-    redirect_to show_per_challenges_path(:id => params[:id])			
+    @challenge.social_type.create_trophy(:rank=>-1)
+    redirect_to show_per_challenges_path(:id => params[:id])
   end
-		
+
   def storeWinner
 		#raise params.inspect
 		#raise @winners = params[:winners].inspect
@@ -563,62 +563,62 @@ class ChallengesController < ApplicationController
 			#raise winnerScore.inspect
 
 			@currentChallenge = Challenge.all(conditions: {:user_id=> winnerId, :title=> @challenge.title}).first
-						
+
 
 			if @flag == 1
-        @currentChallenge.social_type.create_trophy(:rank=>1)                           
-        @latestScore = index 
-        @flag += 1 
+        @currentChallenge.social_type.create_trophy(:rank=>1)
+        @latestScore = index
+        @flag += 1
       elsif @flag == 2
-        if @latestScore == index 
-          @currentChallenge.social_type.create_trophy(:rank=>1)                             
-        else 
-          @currentChallenge.social_type.create_trophy(:rank=>2)                             
-          @latestScore = index 
-          @flag += 1 
-        end               
-      elsif @flag == 3              
-        if @latestScore == index 
-          @currentChallenge.social_type.create_trophy(:rank=>2)                             
-        else 
-          @currentChallenge.social_type.create_trophy(:rank=>3)                             
-          @latestScore = index 
-          @flag += 1 
-        end  
-      elsif @flag == 4
-        if @latestScore == index 
+        if @latestScore == index
+          @currentChallenge.social_type.create_trophy(:rank=>1)
+        else
+          @currentChallenge.social_type.create_trophy(:rank=>2)
+          @latestScore = index
+          @flag += 1
+        end
+      elsif @flag == 3
+        if @latestScore == index
+          @currentChallenge.social_type.create_trophy(:rank=>2)
+        else
           @currentChallenge.social_type.create_trophy(:rank=>3)
-        else 
-          @currentChallenge.social_type.create_trophy(:rank=>4)                             
-          @latestScore = index 
-          @flag += 1 
-        end                 
+          @latestScore = index
+          @flag += 1
+        end
+      elsif @flag == 4
+        if @latestScore == index
+          @currentChallenge.social_type.create_trophy(:rank=>3)
+        else
+          @currentChallenge.social_type.create_trophy(:rank=>4)
+          @latestScore = index
+          @flag += 1
+        end
       elsif @flag == 5
         if @latestScore == index
-          @currentChallenge.social_type.create_trophy(:rank=>4)                                         
-        else 
-          @currentChallenge.social_type.create_trophy(:rank=>5)                             
-          @latestScore = index 
-          @flag += 1 
-        end                 
+          @currentChallenge.social_type.create_trophy(:rank=>4)
+        else
+          @currentChallenge.social_type.create_trophy(:rank=>5)
+          @latestScore = index
+          @flag += 1
+        end
       elsif @flag == 6
-        if @latestScore == index 
-          @currentChallenge.social_type.create_trophy(:rank=>5)                             
-        else 
-          @currentChallenge.social_type.create_trophy(:rank=>6)                             
-          @latestScore = index 
-          @flag += 1 
-        end                 
+        if @latestScore == index
+          @currentChallenge.social_type.create_trophy(:rank=>5)
+        else
+          @currentChallenge.social_type.create_trophy(:rank=>6)
+          @latestScore = index
+          @flag += 1
+        end
       else
 
       end
 
 
-			winner.push(winnerId)	
+			winner.push(winnerId)
 			@flagBreak+=1
 			if @flagBreak == @noOfWinner.to_i
 				break
-			end	
+			end
 		end
 		#raise winner.inspect
 		#@winners.each do |sd|
@@ -633,15 +633,15 @@ class ChallengesController < ApplicationController
 		#@ch = Challenge.where(:title=>"people status checking").first
 		#@ch = Challenge.where(:title=>"trophy").first
 		#raise @ch.social_type.trophy.inspect
-		#raise @ch.social_type.trophy.class.inspect		
+		#raise @ch.social_type.trophy.class.inspect
 
 	end
-	
+
 	def whoAccepted
 		@accepted = []
 		@thinking = []
-		@declined = []	
-		@orgChallenge = Challenge.where(:_id=>params[:id]).first					
+		@declined = []
+		@orgChallenge = Challenge.where(:_id=>params[:id]).first
 		#raise @orgChallenge.id.inspect
 		@accepted.push(@orgChallenge.user_id)
 		Challenge.where(:_id=>params[:id]).first.child_challenges.each do |eachChild|
@@ -653,19 +653,19 @@ class ChallengesController < ApplicationController
 				@declined.push(@childChallenge.user_id)
 			else
 				@thinking.push(@childChallenge.user_id)
-			end	
+			end
 		end
 		#raise @accepted.inspect
 		#raise @thinking.inspect
 		#raise @declined.inspect
 		render :layout=> false
 	end
-	
+
 	def whoThinking
 		@accepted = []
 		@thinking = []
-		@declined = []	
-		@orgChallenge = Challenge.where(:_id=>params[:id]).first					
+		@declined = []
+		@orgChallenge = Challenge.where(:_id=>params[:id]).first
 		#raise @orgChallenge.id.inspect
 		@accepted.push(@orgChallenge.user_id)
 		Challenge.where(:_id=>params[:id]).first.child_challenges.each do |eachChild|
@@ -677,19 +677,19 @@ class ChallengesController < ApplicationController
 				@declined.push(@childChallenge.user_id)
 			else
 				@thinking.push(@childChallenge.user_id)
-			end	
+			end
 		end
 		#raise @accepted.inspect
 		#raise @thinking.inspect
 		#raise @declined.inspect
 		render :layout=> false
 	end
-	
+
 	def whoDeclined
 		@accepted = []
 		@thinking = []
-		@declined = []	
-		@orgChallenge = Challenge.where(:_id=>params[:id]).first					
+		@declined = []
+		@orgChallenge = Challenge.where(:_id=>params[:id]).first
 		#raise @orgChallenge.id.inspect
 		@accepted.push(@orgChallenge.user_id)
 		Challenge.where(:_id=>params[:id]).first.child_challenges.each do |eachChild|
@@ -701,30 +701,30 @@ class ChallengesController < ApplicationController
 				@declined.push(@childChallenge.user_id)
 			else
 				@thinking.push(@childChallenge.user_id)
-			end	
+			end
 		end
 		#raise @accepted.inspect
 		#raise @thinking.inspect
 		#raise @declined.inspect
 		render :layout=> false
 	end
-	
-	def myAccepted	
+
+	def myAccepted
 	 #raise "Maisa"
-    @orgChallenge = Challenge.where(:_id=>params[:id]).first		 		
+    @orgChallenge = Challenge.where(:_id=>params[:id]).first
     #GETING ALL USER CONNECTION
     aConnection = []
-    @allConnections = UserConnection.select(:target_id).where(:user_id=>current_user.id)
+    @allConnections = UserConnection.only(:target_id).where(:user_id=>current_user.id)
     @allConnections.each do |aTargetId|
       aConnection.push(aTargetId.target_id)
     end
     #ALL CONNECTION AS PARTICIPANT
     @onlyMyFrd = Challenge.all(conditions: {:user_id.in => aConnection, :challenge_id => @orgChallenge.id })
-    #ALL FRD IN CHALLENGE     
-    @myAccepted = [] 
+    #ALL FRD IN CHALLENGE
+    @myAccepted = []
     @myThinking = []
-    @myDeclined = []    
-    @myAccepted.push(@orgChallenge.user_id)   
+    @myDeclined = []
+    @myAccepted.push(@orgChallenge.user_id)
     @onlyMyFrd.each do |aStatus|
       if aStatus.social_type.status == 1
         @myAccepted.push(aStatus.user_id)
@@ -739,7 +739,7 @@ class ChallengesController < ApplicationController
     #raise @myDeclined.inspect
     #raise @myThinking.inspect
 	end
-	
+
 	def myThinking
     @orgChallenge = Challenge.where(:_id=>params[:id]).first
     #GETING ALL USER CONNECTION
@@ -750,8 +750,8 @@ class ChallengesController < ApplicationController
     end
     #ALL CONNECTION AS PARTICIPANT
     @onlyMyFrd = Challenge.all(conditions: {:user_id.in => aConnection, :challenge_id => @orgChallenge.id })
-    #ALL FRD IN CHALLENGE 
-    @myAccepted = [] 
+    #ALL FRD IN CHALLENGE
+    @myAccepted = []
     @myThinking = []
     @myDeclined = []
     @onlyMyFrd.each do |aStatus|
@@ -768,7 +768,7 @@ class ChallengesController < ApplicationController
     #raise @myDeclined.inspect
     #raise @myThinking.inspect
 	end
-	
+
 	def myDeclined
     @orgChallenge = Challenge.where(:_id=>params[:id]).first
     #GETING ALL USER CONNECTION
@@ -779,8 +779,8 @@ class ChallengesController < ApplicationController
     end
     #ALL CONNECTION AS PARTICIPANT
     @onlyMyFrd = Challenge.all(conditions: {:user_id.in => aConnection, :challenge_id => @orgChallenge.id })
-    #ALL FRD IN CHALLENGE 
-    @myAccepted = [] 
+    #ALL FRD IN CHALLENGE
+    @myAccepted = []
     @myThinking = []
     @myDeclined = []
     @onlyMyFrd.each do |aStatus|
@@ -797,14 +797,14 @@ class ChallengesController < ApplicationController
     #raise @myDeclined.inspect
     #raise @myThinking.inspect
 	end
-	
-  
+
+
   protected
 
   def find_challenge
     @challenge = Challenge.all
   end
-  
+
   def whoWinning(tempScore, winnerScore, winnerId, aPossition  )
     aTScore = 0
     aTId = 0
@@ -833,15 +833,15 @@ class ChallengesController < ApplicationController
           return 1
         end
       end
-        
+
       if aPossition == 2
         #aTScore,$wins["second"]["score"] = $wins["second"]["score"],tempScore
         #aTId = $wins["third"]["id"]
         #$wins["third"]["score"],$wins["second"]["id"] = aTScore,winnerId
         #if $wins["fourth"]["score"].to_i > $wins["third"]["score"]
-        #    whoWinning $wins["fourth"]["score"], $wins["third"]["score"], aTId, 3                
+        #    whoWinning $wins["fourth"]["score"], $wins["third"]["score"], aTId, 3
         #end
-            
+
         #raise "replaceing 2nd"
         #raise tempScore.inspect
         #raise winnerScore.inspect
@@ -857,28 +857,28 @@ class ChallengesController < ApplicationController
         if $wins["third"]["score"].to_i > $wins["second"]["score"]
           whoWinning $wins["third"]["score"], $wins["second"]["score"], $wins["third"]["score"], 2
         end
-        
-        
+
+
       end
-        
+
       if aPossition == 3
         aTScore,$wins["third"]["score"] = $wins["third"]["score"],tempScore
         aTId = $wins["fourth"]["id"]
         $wins["fourth"]["score"],$wins["third"]["id"] = aTScore,winnerId
         if $wins["fifth"]["score"].to_i > $wins["fourth"]["score"]
-          whoWinning $wins["fifth"]["score"], $wins["fourth"]["score"], aTId, 4                
+          whoWinning $wins["fifth"]["score"], $wins["fourth"]["score"], aTId, 4
         end
       end
-        
+
       if aPossition == 4
         aTScore,$wins["fourth"]["score"] = $wins["fourth"]["score"],tempScore
         aTId = $wins["fifth"]["id"]
         $wins["fifth"]["score"],$wins["fourth"]["id"] = aTScore,winnerId
-        #whoWinning $wins["fifth"]["score"], $wins["fourth"]["score"], aTId, 5            
+        #whoWinning $wins["fifth"]["score"], $wins["fourth"]["score"], aTId, 5
       end
     end
   end
-  
+
 
 end
 
