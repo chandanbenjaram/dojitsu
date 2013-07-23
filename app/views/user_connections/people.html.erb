@@ -7,8 +7,8 @@
 			      <font size="4" color="#8c8c8c"><b  id="total">Total: </b><b id="total"><%= current_user.challenges.size %> </b></font>
 			</td>
 			<td width=40%>
-				
-						
+
+
 			</td>
 			<td width=50% id="button_new">
 			     <%= button_to "", new_challenge_url, :class => "new_challenge_button1", :method => :get%>
@@ -16,12 +16,12 @@
 		</tr>
 	</thead>
 </table>
-	
+
 <div style="overflow-y: auto; overflow-x: width: 10%; hidden;  height : 440px;" id="challengedetails1">
-       <%#= render 'dashboard/challengeProgress' %>
+       <%= render 'dashboard/challengeProgress' %>
 </div>
-	  
-	  
+
+
 <style>
 #select
 {
