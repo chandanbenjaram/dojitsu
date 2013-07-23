@@ -406,7 +406,7 @@ nav .menu #check :hover {
 
 .authnav li {
     float: left;
-    margin: 2;
+    margin: 2px;
 } 
 
 
@@ -1322,7 +1322,7 @@ ul.tabs1 {
     color:#7AC142;
     top:18px;
     font-size:15px;
-    font-style:bold;
+    font-style: bold;
     position:relative;
     width: 35%;
 }

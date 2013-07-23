@@ -22,23 +22,23 @@ font-weight:bold;
 {
 float:right;
 width:30px;
-padding-left:px;
+padding-left:0px;
 }
 
-3edit_info
+#edit_info
 {
 width:30px;
 padding-left:100px;
 }
 #edit
 {
-width="30px;
+width:30px;
 float:right;
 }
 a
 {
 color:#00b5cb;
-text-decoration:underline
+text-decoration:underline;
 font-style:bold;
 }
 
@@ -50,32 +50,31 @@ font-style:bold;
     position: relative;
     top: -20px;
     width: 100%;
-	margin-top: 0px; 
+	margin-top: 0px;
 
 }
 #topbbarid
 {
 	margin-top: 0px;
 	width: 100%;
-	height: 30px; 
+	height: 30px;
 	background: none repeat scroll 0% 0% rgb(244, 244, 244);
 	top: -18px;
 	position: relative;
 }
 .username
 {
-	position:relative; 
-	top:-30px; 
-	float:right; 
-	right:-90px; 
-	color:#999999; 
+	position:relative;
+	top:-30px;
+	float:right;
+	right:-90px;
+	color:#999999;
 	font-size: 12px;
 	font-weight:bold;
 	text-transform: uppercase;
-}	
 }
 
-.user 
+.user
 {
 	font-size :20px;
 	text-transform: uppercase;
@@ -109,7 +108,7 @@ font-style:bold;
     width: 40px;
 }
 
-.ui-widget-header 
+.ui-widget-header
 {
     background: none repeat scroll 0 0 #7AC142;
     border: 1px solid #AAAAAA;
