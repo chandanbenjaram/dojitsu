@@ -1,7 +1,7 @@
 
    <%= javascript_include_tag('jquery.tablesorter.min','people_status') %>
    <%= stylesheet_link_tag('status_update', 'people_status')%>
-   
+
     <% @totalChallegne = 1 %>
     <% @accepted = 1 %>
     <% @thinking = 0 %>
@@ -12,7 +12,7 @@
     <% abtTatal = @parentChallenge.child_challenges.count %>
     <% @totalChallegne = abtTatal +1 %>
       <% @parentChallenge.child_challenges.each do |eachChallenge| %>
-       
+
       <% if eachChallenge.social_type.status == 1 %>
           <% @accepted += 1 %>
       <% elsif eachChallenge.social_type.status == -1 %>
@@ -36,13 +36,13 @@
 <% end %>
 
 <% if @challenge.instance_of?ChildChallenge %>
-    <% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>    
+    <% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
     <% @parentChallenge.child_challenges.each do |eachChallenge| %>
 
     <% end %>
-<% else %>    
+<% else %>
     <% @challenge.child_challenges.each do |eachChallenge| %>
-      
+
     <% end %>
 <% end %>
 
@@ -50,14 +50,14 @@
   <tr id="changeChallegne">
          <% if @challenge.instance_of?ChildChallenge %>
 			<% @parentChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
-			  <% if @parentChallenge.is_complete == 1 %> 
+			  <% if @parentChallenge.is_complete == 1 %>
 			  <%else%>
 			     <td width="85%">
 				    <b>You accepted the challenge</b>
 				</td>
 			    <td width="15%">
 				  <% if @challenge.social_type.status.to_i == 1 %>
-				     <% if @parentChallenge.is_complete == 1 %> 
+				     <% if @parentChallenge.is_complete == 1 %>
 					 <%else%>
 				        <%= link_to image_tag("change.png" , :class=> "update_challenge_stat"), change_challenge_status_challenges_path(:id => @challenge), :id=> "status_update_popup" %>
 					  <%end%>
@@ -77,71 +77,75 @@
   </tr>
   <tr id="changeChallegne">
     <td>
-      <%= check_box_tag 'myfrd', '1', false %> <b id="showonly_text">show only my friends (<%= @onlyMyFrdInChallenge.count %>)</b>
+    	<%unless @onlyMyFrdInChallenge.blank? %>
+      	<%= check_box_tag 'myfrd', '1', false %> <b id="showonly_text">show only my friends (<%= @onlyMyFrdInChallenge.count %>)</b>
+      <%else%>
+      	<%= check_box_tag 'myfrd', '1', false %> <b id="showonly_text">show only my friends (0)</b>
+      <%end%>
     </td>
     <td>
-      
+
     </td>
   </tr>
 </table>
 
 <% if @challenge.instance_of?ChildChallenge %>
-	<% @orgChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>	
+	<% @orgChallenge = Challenge.where(:_id => @challenge.challenge_id).first%>
 <% else %>
-	<% @orgChallenge = Challenge.where(:_id => params[:id]).first%>	
+	<% @orgChallenge = Challenge.where(:_id => params[:id]).first%>
 <% end %>
 
-<section id="pStatusAll">    	
+<section id="pStatusAll">
 	<ul id="navAjax" class="tabNavigation">
-  	<li>	
-  		<a href="/challenges/whoAccepted?id=<%= @orgChallenge.id %>"><span id="firstH" style="display:none"><%= image_tag("icon_accept.png")%><b>&nbsp;(<%= @accepted %>)</b></span><span id="firstS"><%= image_tag("icon_accept.png")%><b>Accepted (<%= @accepted %>)</b></span></a>		  		  		
+  	<li>
+  		<a href="/challenges/whoAccepted?id=<%= @orgChallenge.id %>"><span id="firstH" style="display:none"><%= image_tag("icon_accept.png")%><b>&nbsp;(<%= @accepted %>)</b></span><span id="firstS"><%= image_tag("icon_accept.png")%><b>Accepted (<%= @accepted %>)</b></span></a>
   		<%#= link_to "Accepted", whoAccepted_challenges_path(:id => @orgChallenge.id) %>
 		</li>
-		<li>	
-			<a href="/challenges/whoThinking?id=<%= @orgChallenge.id %>"><span id="secondS"><%= image_tag("icon_thinking.png")%><b>(<%= @thinking %>)</b></span><span id="secondH" style="display:none"><%= image_tag("icon_thinking.png")%><b>Thinking (<%= @thinking %>)</b></span></a>		  		  		
+		<li>
+			<a href="/challenges/whoThinking?id=<%= @orgChallenge.id %>"><span id="secondS"><%= image_tag("icon_thinking.png")%><b>(<%= @thinking %>)</b></span><span id="secondH" style="display:none"><%= image_tag("icon_thinking.png")%><b>Thinking (<%= @thinking %>)</b></span></a>
 			<%#= link_to "Thinking", whoThinking_challenges_path(:id => @orgChallenge.id) %>
 		</li>
-		<li>	
-			<a href="/challenges/whoDeclined?id=<%= @orgChallenge.id %>"><span id="thirdS"><%= image_tag("icon_decline.png")%><b>(<%= @declined %>)</b></span><span id="thirdH" style="display:none"><%= image_tag("icon_decline.png")%><b>Declined (<%= @declined %>)</b></span></a>		  		  		
+		<li>
+			<a href="/challenges/whoDeclined?id=<%= @orgChallenge.id %>"><span id="thirdS"><%= image_tag("icon_decline.png")%><b>(<%= @declined %>)</b></span><span id="thirdH" style="display:none"><%= image_tag("icon_decline.png")%><b>Declined (<%= @declined %>)</b></span></a>
 			<%#= link_to "Declined", whoDeclined_challenges_path(:id => @orgChallenge.id) %>
 		</li>
-		<li>                            
+		<li>
 		  <a href="#"><%#= image_tag("btn_questionmark_up.png")%><b></b></a>
 		</li>
-	</ul>	
-	<div id="ajax-content">This is default text, which will be replaced</div>	
+	</ul>
+	<div id="ajax-content">This is default text, which will be replaced</div>
 </section>
 
 
 <script>
-	$(document).ready(function() {	
+	$(document).ready(function() {
 		$("#secondS").click(function(){
 			$('#secondS').hide();
 			$('#secondH').show();
 			$('#thirdH').hide();
 			$('#thirdS').show();
 			$('#firstS').hide();
-			$('#firstH').show();			
+			$('#firstH').show();
 		});
-		
+
 		$("#thirdS").click(function(){
 			$('#thirdS').hide();
 			$('#thirdH').show();
 			$('#secondH').hide();
 			$('#secondS').show();
 			$('#firstS').hide();
-			$('#firstH').show();			
-		});		
-		
+			$('#firstH').show();
+		});
+
 		$("#firstH").click(function(){
 			$('#firstH').hide();
 			$('#firstS').show();
 			$('#thirdH').hide();
 			$('#thirdS').show();
 			$('#secondH').hide();
-			$('#secondS').show();			
+			$('#secondS').show();
 		});
-																		
+
 	});
 </script>
 
@@ -149,26 +153,26 @@
 <script>
 $(document).ready(function() {
     $("#navAjax li a").click(function() {
- 
+
         $("#ajax-content").empty().append("<div id='loading'>loading...</div>");
         $("#nav li a").removeClass('current');
         $(this).addClass('current');
- 
+
         $.ajax({ url: this.href, success: function(html) {
             $("#ajax-content").empty().append(html);
             }
     });
     return false;
     });
- 	 
+
  	 var challengeId= '<%= @orgChallenge.id %>';
  	 //alert(challengeId);
- 	 
+
     $("#ajax-content").empty().append("<div id='loading'>loading...</div>");
-    $.ajax({    	 
+    $.ajax({
     	 //alert("Pride");
     	 url: '/challenges/whoAccepted',
-    	 data: {id:challengeId },    	 
+    	 data: {id:challengeId },
     	 success: function(html) {
             $("#ajax-content").empty().append(html);
     	}
@@ -176,48 +180,61 @@ $(document).ready(function() {
 });
 </script>
 
-<section id="pStatusMy" style="display: none">   
+<section id="pStatusMy" style="display: none">
      <ul id="navAjaxHidden" class="tabNavigation">
-	  	<li>	
-		  		<a href="/challenges/myAccepted?id=<%= @orgChallenge.id %>"><span id="firstHH" style="display:none"><%= image_tag("icon_accept.png")%><b>(<%= @myAccepted.count %>)</b></span><span id="firstSS"><%= image_tag("icon_accept.png")%><b>Accepted (<%= @myAccepted.count %>)</b></span></a>  		
+	  	<li>
+	  			<%unless @myAccepted.blank? %>
+		  			<a href="/challenges/myAccepted?id=<%= @orgChallenge.id %>"><span id="firstHH" style="display:none"><%= image_tag("icon_accept.png")%><b>(<%= @myAccepted.count %>)</b></span><span id="firstSS"><%= image_tag("icon_accept.png")%><b>Accepted (<%= @myAccepted.count %>)</b></span></a>
 		  		<%#= link_to "Accepted", myAccepted_challenges_path(:id => @orgChallenge.id) %>
+		  		<%else%>
+		  			<a href="/challenges/myAccepted?id=<%= @orgChallenge.id %>"><span id="firstHH" style="display:none"><%= image_tag("icon_accept.png")%><b>(0)</b></span><span id="firstSS"><%= image_tag("icon_accept.png")%><b>Accepted (0)</b></span></a>
+		  		<%end%>
 		</li>
-		<li>	
-	  		<a href="/challenges/myThinking?id=<%= @orgChallenge.id %>"><span id="secondSS"><%= image_tag("icon_thinking.png")%><b>(<%= @myThinking.count %>)</b></span><span id="secondHH" style="display:none"><%= image_tag("icon_thinking.png")%><b>Thinking (<%= @myThinking.count %>)</b></span></a>  		
-	  		<%#= link_to "Thinking", myThinking_challenges_path(:id => @orgChallenge.id) %>
+		<li>
+				<%unless @myThinking.blank?%>
+	  			<a href="/challenges/myThinking?id=<%= @orgChallenge.id %>"><span id="secondSS"><%= image_tag("icon_thinking.png")%><b>(<%= @myThinking.count %>)</b></span><span id="secondHH" style="display:none"><%= image_tag("icon_thinking.png")%><b>Thinking (<%= @myThinking.count %>)</b></span></a>
+	  			<%#= link_to "Thinking", myThinking_challenges_path(:id => @orgChallenge.id) %>
+	  		<%else%>
+	  			<a href="/challenges/myThinking?id=<%= @orgChallenge.id %>"><span id="secondSS"><%= image_tag("icon_thinking.png")%><b>(0)</b></span><span id="secondHH" style="display:none"><%= image_tag("icon_thinking.png")%><b>Thinking (0)</b></span></a>
+	  		<%end%>
 	  </li>
-	  <li>	
-	  		<a href="/challenges/myDeclined?id=<%= @orgChallenge.id %>"><span id="thirdSS"><%= image_tag("icon_decline.png")%><b>(<%= @myDeclined.count %>)</b></span><span id="thirdHH" style="display:none"><%= image_tag("icon_decline.png")%><b>Declined (<%= @myDeclined.count %>)</b></span></a>
-	  		<%#= link_to "Declined", myDeclined_challenges_path(:id => @orgChallenge.id) %>
+	  <li>
+	  		<%unless @myDeclined.blank? %>
+		  		<a href="/challenges/myDeclined?id=<%= @orgChallenge.id %>"><span id="thirdSS"><%= image_tag("icon_decline.png")%><b>(<%= @myDeclined.count %>)</b></span><span id="thirdHH" style="display:none"><%= image_tag("icon_decline.png")%><b>Declined (<%= @myDeclined.count %>)</b></span></a>
+		  		<%#= link_to "Declined", myDeclined_challenges_path(:id => @orgChallenge.id) %>
+		  	<%else%>
+		  		<a href="/challenges/myDeclined?id=<%= @orgChallenge.id %>"><span id="thirdSS"><%= image_tag("icon_decline.png")%><b>(0)</b></span><span id="thirdHH" style="display:none"><%= image_tag("icon_decline.png")%><b>Declined (0)</b></span></a>
+		  		<%#= link_to "Declined", myDeclined_challenges_path(:id => @orgChallenge.id) %>
+		  	<%end%>
 	  </li>
-	  <li>                            
+	  <li>
 	     <a href="#"><%#= image_tag("btn_questionmark_up.png")%><b></b></a>
 	  </li>
-	</ul>	
+	</ul>
 	<div id="ajax-contentH">This is default text, which will be replaced</div>
 	<script>
 		$(document).ready(function() {
 			 $("#navAjaxHidden li a").click(function() {
-		 
+
 				  $("#ajax-contentH").empty().append("<div id='loading'>loading...</div>");
 				  $("#nav li a").removeClass('current');
 				  $(this).addClass('current');
-		 
+
 				  $.ajax({ url: this.href, success: function(html) {
 					   $("#ajax-contentH").empty().append(html);
 					   }
 			 });
 			 return false;
 			 });
-		 	 
+
 		 	 var challengeId= '<%= @orgChallenge.id %>';
 		 	 //alert(challengeId);
-		 	 
+
 			 $("#ajax-contentH").empty().append("<div id='loading'>loading...</div>");
-			 $.ajax({  
-			 	 //alert("Maisa");  	 
+			 $.ajax({
+			 	 //alert("Maisa");
 			 	 url: '/challenges/myAccepted',
-			 	 data: {id:challengeId },    	 
+			 	 data: {id:challengeId },
 			 	 success: function(html) {
 					   $("#ajax-contentH").empty().append(html);
 			 	}
@@ -225,52 +242,52 @@ $(document).ready(function() {
 		});
 	</script>
 	<script>
-	$(document).ready(function() {	
+	$(document).ready(function() {
 		$("#secondSS").click(function(){
 			$('#secondSS').hide();
 			$('#secondHH').show();
 			$('#thirdHH').hide();
 			$('#thirdSS').show();
 			$('#firstSS').hide();
-			$('#firstHH').show();			
+			$('#firstHH').show();
 		});
-		
+
 		$("#thirdSS").click(function(){
 			$('#thirdSS').hide();
 			$('#thirdHH').show();
 			$('#secondHH').hide();
 			$('#secondSS').show();
 			$('#firstSS').hide();
-			$('#firstHH').show();			
-		});		
-		
+			$('#firstHH').show();
+		});
+
 		$("#firstHH").click(function(){
 			$('#firstHH').hide();
 			$('#firstSS').show();
 			$('#thirdHH').hide();
 			$('#thirdSS').show();
 			$('#secondHH').hide();
-			$('#secondSS').show();			
+			$('#secondSS').show();
 		});
-																		
+
 	});
-</script>	  
+</script>
 </section>
 
 <script>
   $(document).ready(function(){
-    $("#myfrd").click(function(){      
-      if ($('#myfrd').attr('checked')) 
+    $("#myfrd").click(function(){
+      if ($('#myfrd').attr('checked'))
       {
           $("#pStatusAll").hide();
           $("#pStatusMy").show();
       }
       else
-      {         
+      {
           $("#pStatusMy").hide();
           $("#pStatusAll").show();
       }
-    });    
+    });
   });
 </script>
 
@@ -281,7 +298,7 @@ $(document).ready(function() {
               // sort on the first column and third column, order asc
               sortList: [[0,0],[1,0]]
       });
-  }); 
+  });
 </script>
 
 <script>

@@ -19,14 +19,14 @@
             <div class="mychallenge">
              <div class="menubar">
 					<span id="howiamgoindspace"><span id="shadow">HOW AM I DOING?</span></span>
-						<div id="selecttb"> 
-						<select id ="first" class="first_selct_class" >	
+						<div id="selecttb">
+						<select id ="first" class="first_selct_class" >
 							<option  id ="first" value="others" >AGAINST OTHERS</option>
 							<option  id ="first" value="myself" selected="yes">AGAINST MYSELF</option>
 						</select>
-						
+
 					</div>
-					<span id="no_of_tasks"> (3) </span> 
+					<span id="no_of_tasks"> (3) </span>
 					<%# image_tag , challenges_url, :class => "ds_view_all_challenge", :method => :get%>
 					<%=link_to( image_tag("viewallbutton.PNG"), challenges_url, :class=>"ds_view_all_challenge") %>
 					<%=link_to( image_tag("newbutton.PNG"), new_challenge_url, :class => "new_challenge") %>
@@ -39,13 +39,13 @@
 				<div id="againstmyself">
 					 <%= render :partial => "dashboard/against_myself" %>
 				</div>
-			
+
             </div>
           </div>
       </td>
         </tr>
        <tr>
-          <td>	
+          <td>
               <div class="dashboardsidebar1">
                   <div class="mychallenge2">
                       <div id="titlechallenge">
@@ -53,7 +53,7 @@
                              <div class="shadow">new messages <span class="newmessagescount">( <%= current_user.inbox.count %> )</span></div>
                           </div>
                           <div class="second_titlechallenge">
-                          	<%=link_to( image_tag("newbutton.PNG"), "#", :class => "new_message_button", :method => :get )%>
+                          	<%=link_to( image_tag("newbutton.PNG"), "#", :class => "new_message_button")%>
                           </div>
                       </div>
                       <div class="messages_box_details" id="challengedetails">
@@ -62,10 +62,10 @@
                       <script>
                         $.dojitsuAjaxPage.renderAjaxPageLoad("/dashboard/message","#message","#message1");
                       </script>
-                  </div>	
+                  </div>
               </div>
           </td>
-      </tr> 
+      </tr>
    </td>
 </table>
 </content>
@@ -81,12 +81,12 @@
 <% else %>
 <% Challenge.whatsNew.each do |aChallenge| %>
     <div id="contentbox" >
-	 
+
         <%= image_tag("new_banner.png", :class => "imagestyle") %>
         <table width="100%" class="maintable">
             <tr>
               <td width="70%" class="firsttdst">
-                  <span class ="chatitle"><%= aChallenge.title%></span>	<br>										
+                  <span class ="chatitle"><%= aChallenge.title%></span>	<br>
                   by
                   <% if aChallenge.instance_of?ChildChallenge %>
                      <% @parentChallenge = Challenge.where(:_id => aChallenge.challenge_id).first%>
@@ -98,7 +98,7 @@
                             <%= @parentChallenge.first_name %>
                         <% else %>
                             <%= FbGraph::User.new(@parentChallenge.user_id).fetch.name %>
-                        <% end %>                                  
+                        <% end %>
                      </b>
                   <% else %>
                           <b>
@@ -106,10 +106,10 @@
                                   <%= current_user.gmauth.first_name %>
                               <% else %>
                                   <%= FbGraph::User.new(aChallenge.user_id).fetch.name %>
-                              <% end %>                                  
+                              <% end %>
                           </b>
                   <% end %>
-<br>	
+<br>
                   <% if aChallenge.start_point.instance_of?PointDateType %>
                           <%= aChallenge.start_point.value.strftime("%b %d, %Y")%> - <%= aChallenge.end_point.value.strftime("%b %d, %Y")%>
                   <% else %>
@@ -122,27 +122,27 @@
                   <%= aChallenge.child_challenges.size%>&nbsp;&nbsp;contestants
                   <%end%>
                   <p class="texttransormn">
-                          <%=h truncate(aChallenge.description, :length => 15) %>&nbsp;&nbsp;<b><%= link_to "view" , show_soc_challenges_path(:id => aChallenge.id), :class => 'underline_view'   %>	</b>								
+                          <%=h truncate(aChallenge.description, :length => 15) %>&nbsp;&nbsp;<b><%= link_to "view" , show_soc_challenges_path(:id => aChallenge.id), :class => 'underline_view'   %>	</b>
               </td>
-              <td id="time_td" class="tdalign" >              		
-              		<% challengeCreatedAt = aChallenge.created_at.to_i %>              		              		
+              <td id="time_td" class="tdalign" >
+              		<% challengeCreatedAt = aChallenge.created_at.to_i %>
               		<% freranceTime = Time.now.to_i %>
               		<% diffTime = freranceTime - challengeCreatedAt %>
               		<% if diffTime > 8640 %>
-              			<p class = "timestyle"><%= aChallenge.created_at.strftime("%b %d, %Y") %></p>	
+              			<p class = "timestyle"><%= aChallenge.created_at.strftime("%b %d, %Y") %></p>
               		<% else %>
                   	<p class = "timestyle"><%= time_ago_in_words  aChallenge.created_at%></p>
-                  <% end %>	
+                  <% end %>
               </td>
             </tr>
         </table>
     </div>
     <% end %>
 <% end %>
-      </div>    </td> 
+      </div>    </td>
 
 </table>
-        
+
 <section class="messages_disply">
 <section id="sendNewMessage">
     <%= form_tag newmessage_messages_path, :method => :get do  %>
@@ -154,7 +154,7 @@
       </tr>
       <tr class="bgcolor_messages_tr">
         <td width="17%" class="bordercolort1">
-          <span id="messageText">T0</span>        
+          <span id="messageText">T0</span>
         </td>
         <td width="83%" class="bordercolort1">
           <%= text_field_tag 'to', nil, :size=>"61" %>        </td>
@@ -181,13 +181,13 @@
       </tr>
       <tr class="bgcolor_messages_tr">
         <td colspan="2">
-          <%= link_to "CANCEL",  dashboard_index_path,:class => "links_cancel_message"%>        
+          <%= link_to "CANCEL",  dashboard_index_path,:class => "links_cancel_message"%>
           <%= submit_tag "SEND", :class => "linksNewMessage" %>
         </td>
       </tr>
     </table>
     <% end %>
 </section>
-</section>    
-         
+</section>
+
 

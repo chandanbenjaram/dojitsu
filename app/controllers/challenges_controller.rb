@@ -33,7 +33,7 @@ class ChallengesController < ApplicationController
     #if @is_complete_status == 0
     #  Challenge.where(:_id => params[:id]).update(:is_complete => 1)
     #end
-    @org = User.find(:all,:conditions => ["id=?",@challenge.user_id]).first
+    @org = User.where(:id=>@challenge.user_id).first
   end
 
   def scoreboard_main
@@ -63,7 +63,7 @@ class ChallengesController < ApplicationController
     @myThinking = []
     @myDeclined = []
     @onlyMyFrd.each do |aStatus|
-    	@onlyMyFrdInChallenge.push(aStatus.user_id)
+      @onlyMyFrdInChallenge.push(aStatus.user_id)
       if aStatus.social_type.status == 1
         @myAccepted.push(aStatus.user_id)
       elsif aStatus.social_type.status == -1

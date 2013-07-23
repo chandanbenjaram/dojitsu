@@ -11,7 +11,7 @@
   <% total1 += aTask.score.to_i %>
   <% if aTask.is_complete.to_i == 0 %>
     <% remaining_score1+= aTask.score.to_i %>
-  <% else %>	
+  <% else %>
     <% total_score1 += aTask.score.to_i %>
     </div>
   <% end %>
@@ -56,10 +56,10 @@
       <span id="myscoreself">Completed</span><span class="togocolo">To Go</span> <br>
 
       <div class="taskprogress1" id="taskprogress1"></div>
-      <div id="modiifcation"><span id="tasksnumber"><%= flag2 %>tasks&nbsp;(&nbsp;</span><span class="diffcolor"><%= bScore %></span><span id="tasksnumber"> Points)</span></div>
+      <div id="modiifcation"><span id="tasksnumber"><%= flag1 %>tasks&nbsp;(&nbsp;</span><span class="diffcolor"><%= aScore %></span><span id="tasksnumber"> Points)</span></div>
       <div id="modiifcation2"><span id="tasksnumber2">
-          <%= flag1 %>&nbsp;tasks&nbsp;
-          (&nbsp;<%= aScore %>&nbsp; Points)</span>
+          <%= flag2 %>&nbsp;tasks&nbsp;
+          (&nbsp;<%= bScore %>&nbsp; Points)</span>
       </div>
 
     </td>
@@ -85,7 +85,7 @@
 
   <script type="text/javascript">
     $(function() {
-      $("#taskprogress1").progressbar({ value: Math.round(((<%= total_score1 %>/<%= total1 %>)*100)) });							
+      $("#taskprogress1").progressbar({ value: Math.round(((<%= total_score1 %>/<%= total1 %>)*100)) });
         $("<p>").attr("id", "percentage_personal_myself").text($("#taskprogress1").progressbar("option", "value") + "%  ").appendTo("#taskprogress1");
       });
   </script>
