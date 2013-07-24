@@ -1,15 +1,12 @@
-<%= stylesheet_link_tag('simple-tabs_new.css','jquery-ui.css','jquery.cluetip.css','challenges.css')%>
-<%= javascript_include_tag('simple-tabs','jquery.table.addrow.js','jquery.cluetip.js','challenge_new')%>
-
 <%= render 'layouts/loggedinbody'%>
 
 <div class="challengeSubNav">
 
    	<%=link_to( image_tag("newbutton.PNG"), new_challenge_url, :class => "new_challenge_button_new1", :method => :get )%>
-    
+
 	<%= link_to "MY CHALLENGES >> ",challenges_url , :class => "challenge_link1" %>
-	
-	<%= link_to "CREATE NEW ",new_challenge_url , :class => "challenge_link1" %> 
+
+	<%= link_to "CREATE NEW ",new_challenge_url , :class => "challenge_link1" %>
 
 </div>
 
@@ -21,9 +18,9 @@
 		<tr >
 			<td colspan="4">
 			<%= f.text_field :title, :class => "textfield_effect_nw_tk_title", :placeholder=>"Enter challenge title here" , :required => "required", :maxlength => "30" , :onkeyup => "sync()" %><div id="title"></div>
-			</td>	
+			</td>
 		</tr>
-	
+
 		<tr >
 			<td colspan="4">
 				<hr id="all_hr">
@@ -45,35 +42,35 @@ $(".textarea_nw_tk").click(function () {
 		</tr>
 		<tr>
 				<td width="13%"><b class="color999">STARTING POINT</b></td>
-				<td width="50px;"> 
+				<td width="50px;">
 				    <div class="styled-select">
 					<%= select_tag "start_point_type", "<option value=''>Choose</option><option value='startPointDate'>Date</option><option value='startPointNumber'>Number</option>".html_safe , :required => "required" %>
 					</div>
-				</td>  
-				<td colspan="2">					
+				</td>
+				<td colspan="2">
 					<div class="startPointDate">
 					</div>
 					<div class="startPointNumber">
-					</div>				
-				</td>  
+					</div>
+				</td>
 		</tr>
 		<tr>
 				<td colspan="4">
 					<hr id="all_hr">
 				</td>
 		</tr>
-		<tr>  
+		<tr>
 				<td><b class="color999">END POINT</b></td>
-				<td>  
+				<td>
 					<div class="styled-select">
 					<%= select_tag "end_point_type", "<option  value=''>Choose</option><option value='endPointDate'>Date</option><option value='endPointNumber'>Number</option>".html_safe, :required => "required" %>
 					</div>
-				</td>  
-				<td colspan="2" class="endpointdatenumber">					
+				</td>
+				<td colspan="2" class="endpointdatenumber">
 					<div class="endPointDate">
 					</div>
 					<div class="endPointNumber">
-					</div>				
+					</div>
 				</td>
 		</tr>
 		<tr>
@@ -83,11 +80,11 @@ $(".textarea_nw_tk").click(function () {
 		</tr>
 		<tr>
 				<td valign="top">
-					<b class="color999"> CREATE TASKS</b> 
+					<b class="color999"> CREATE TASKS</b>
 					<span class="moreInfoTip color999" style="background:#ffffff;" title="The score for each task will be added up to determin the winner(s)." rel="#moreCreateTaskId" >
 						<%= image_tag("btn_questionmark_up.png")%>
 					</span>
-				
+
 				</td>
 				<td colspan="3">
 					<table border="1">
@@ -98,39 +95,39 @@ $(".textarea_nw_tk").click(function () {
 							</th>
 						</tr>
 
-						<% @challenge.tasks.each_with_index do |task, index| %>      
-						<%= f.fields_for "task_attributes[]", task do |task_fields| %>						
+						<% @challenge.tasks.each_with_index do |task, index| %>
+						<%= f.fields_for "task_attributes[]", task do |task_fields| %>
 						<tr>
 							<td width="25%" class="taskSelection">
 							<div class="styled-select">
 								<%= task_fields.select :score_by, options_for_select([
 								["Choose", ""],
-								["Check box:1 for checking off the task", "Check box:1 for checking off the task"],	 
-								["Self-reported number","Self-report number"]														
-								]), :class => "styleselect", :required => "required"%>	
+								["Check box:1 for checking off the task", "Check box:1 for checking off the task"],
+								["Self-reported number","Self-report number"]
+								]), :class => "styleselect", :required => "required"%>
 							</td>
 							</div>
 							<td align="center" class="taskIcon"><%= image_tag("icon_multiply.png")%></td>
-							<td align="center">     
+							<td align="center">
 								<%= task_fields.text_field :score, :class => "textfield_effect_nw_tk_add", :size=>"10px",:required => "required", :placeholder=>"Enter task point(s)" %>
 							</td>
 							<td align="center" class="taskIcon"><%= image_tag("icon_slash.png")%></td>
-							<td align="center">     
+							<td align="center">
 								<%= task_fields.text_field :name, :class => "textfield_effect_nw_tk", :required => "required",  :placeholder=>"Enter task name here"%>
-							</td>				
+							</td>
 							<td>
-								<%= image_tag("btn_delete_up.png" ,:class => "delRow") %>			
+								<%= image_tag("btn_delete_up.png" ,:class => "delRow") %>
 							</td>
 						</tr>
 						<tr>
-							<td colspan="5"><hr id="all_hr1"></td>									
+							<td colspan="5"><hr id="all_hr1"></td>
 							<td align="right">
 							<%= image_tag("btn_add_up.png", :class => "addRow")%>
-								
+
 							</td>
 						</tr>
-							
-						<% end %> 
+
+						<% end %>
 						<% end %>
 						<tr>
 							<td colspan="6">
@@ -138,10 +135,10 @@ $(".textarea_nw_tk").click(function () {
 								<span class="spacing2"><%= f.radio_button :canCompleteBeforeTasks, "1", :class => "chall_type" ,:checked =>"checked"%>
 								<span class="color999"><%= f.label "Yes" %></span></span><span class="spacing"></span>
 								<%= f.radio_button :canCompleteBeforeTasks, "0", :class => "chall_type"%>
-								<span class="color999"><%= f.label "No" %></span>							   
+								<span class="color999"><%= f.label "No" %></span>
 							</td>
-						</tr>    
-					</tr> 
+						</tr>
+					</tr>
 					</table>
 				</td>
 				</tr>
@@ -160,21 +157,21 @@ $(".textarea_nw_tk").click(function () {
 
 					<div class="tab_container">
     					<div id="tab1" class="tab_content">
-    						
+
 		<table cellspacing="10px" width="100%" border="0">
 		<tr>
 			<td width="25%"><b class="color999">Who wins?</b></td>
 			<td>
 				<div class="styled-select1">
 				<%= select_tag :soc_who_win, options_for_select([
-					["Choose", ""],							
+					["Choose", ""],
 					["Highest number of points","Highest number of points"],
-					["Lowest number of points","Lowest number of points"],	 
-					["1st person to reach End Point","1st person to reach End Point"],	
-					["Participant completes all tasks","Participant completes all tasks"]			 														
+					["Lowest number of points","Lowest number of points"],
+					["1st person to reach End Point","1st person to reach End Point"],
+					["Participant completes all tasks","Participant completes all tasks"]
 					]), :id => "soc_wn", :class => "selectagwidth"
-					%>		
-				</div>	
+					%>
+				</div>
 				<div id="select_challenge_div"></div>
 			</td>
 			</tr>
@@ -184,14 +181,14 @@ $(".textarea_nw_tk").click(function () {
 					<div class="styled-select1">
 					<%= select_tag :soc_how_many_winner, options_for_select([
 						["Choose", ""],
-						["1", "1"],							
+						["1", "1"],
 						["3","3"],
-						["5","5"],	 
-						["All participants win","all"] 														
+						["5","5"],
+						["All participants win","all"]
 						]), :id => "soc_hm", :class => "selectagwidth"
 						%>
-					</div>		
-						<div id="soc_how_many_winner_div"></div>	
+					</div>
+						<div id="soc_how_many_winner_div"></div>
 					</td>
 				</tr>
 
@@ -214,19 +211,19 @@ $(".textarea_nw_tk").click(function () {
 									<td>
 										<div class="styled-select1">
 										<%= select_tag :per_who_win, options_for_select([
-    										["Choose", ""],							
+    										["Choose", ""],
 											["Add all points together","Add all points together"],
 											["Reach all milestones","Reach all milestones"]
- 											]), :id => "per_wn", :class => "selectagwidth" 
+ 											]), :id => "per_wn", :class => "selectagwidth"
  										%>
 										</div>
 									</td>
   								</tr>
-							</table>  
+							</table>
     					</div>
-					</div>	
-		
-	
+					</div>
+
+
 					</td>
 				</tr>
 				<tr>
@@ -234,11 +231,11 @@ $(".textarea_nw_tk").click(function () {
 						<hr id="all_hr">
 					</td>
 				</tr>
-        </table> 
-		
+        </table>
+
                                  <input type="checkbox" onclick="showMe('div1', this)"><span id="savechallenge">Save this challenge as  template in my profile</span>
 								 <div class="row" id="div1" style="display:none"><span id="templatename">TEMPLATE NAME</span><input id="templatenameinput" type="text" readonly></div>
-                                
+
 								<table>
                                 <tr>
                                   <td colspan="4">
@@ -249,17 +246,17 @@ $(".textarea_nw_tk").click(function () {
 					<td colspan="4">
 						<%= link_to "CANCEL", challenges_path, :class => "links_cancel1"%>
 						<%= f.submit "DONE" ,  :class => "linksnew" %>
-					
+
 					</td>
-				</tr> 
-			</table> 
-		</td>	
-	</tr>						
-	<% end %>	
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<% end %>
 </div>
 <div id="moreCreateTaskId">
 
-	<table id="challengenewpopuptable" height="160">						
+	<table id="challengenewpopuptable" height="160">
 		<tr>
 			<td><p style="color:#F8991F; font-size:13px; margin-top:5px;"><b>Check box:</b></p></td>
 			<td ><input id="popupboxfirst" type="text" value="1(on checking off the task)" size="18" readonly></td>
@@ -293,6 +290,6 @@ $(".textarea_nw_tk").click(function () {
 		<div id="checkboxtext1"> e.g., checking off "do laundry(3 points)" task scores 3 points </div>
 		<div id="checkboxtext2"> e.g., taking 3 days to finish "lose 1 pond" task scores 3 points </div>
 		<div id="checkboxtext3"> e.g., reporting 10 miles for"run treadmil(2 points)" task scores 20 points </div>
-		
-	</table>			
+
+	</table>
 </div>

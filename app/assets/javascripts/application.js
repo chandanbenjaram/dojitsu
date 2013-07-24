@@ -12,7 +12,11 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery.tablesorter.min
-
+//= require rails.validations
+//= require simple-tabs
+//= require jquery.table.addrow
+//= require jquery.cluetip
+//= require challenge_new
 function dojoFBLogout(e){
 	FB.logout();
 };
